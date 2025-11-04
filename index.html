@@ -1,0 +1,2718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revolutionary Voices Script Builder - Enhanced</title>
+    
+    <!-- Font Awesome 6 CDN with fallback -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+    
+    <style>
+        /* Fallback icons using Unicode if Font Awesome doesn't load */
+        .fa-microphone-alt::before { content: '🎙️'; }
+        .fa-clock::before { content: '⏱️'; }
+        .fa-play::before, .fa-play-circle::before { content: '▶️'; }
+        .fa-book::before, .fa-book-open::before { content: '📖'; }
+        .fa-flag-checkered::before { content: '🏁'; }
+        .fa-rocket::before { content: '🚀'; }
+        .fa-clipboard-list::before { content: '📋'; }
+        .fa-info-circle::before { content: 'ℹ️'; }
+        .fa-lightbulb::before { content: '💡'; }
+        .fa-star::before { content: '⭐'; }
+        .fa-check::before, .fa-check-circle::before { content: '✓'; }
+        .fa-bullseye::before { content: '🎯'; }
+        .fa-tasks::before { content: '✅'; }
+        .fa-magic::before { content: '✨'; }
+        .fa-copy::before { content: '📋'; }
+        .fa-redo::before { content: '🔄'; }
+        .fa-bolt::before { content: '⚡'; }
+        .fa-exclamation-triangle::before { content: '⚠️'; }
+        .fa-question-circle::before, .fa-question::before { content: '❓'; }
+        .fa-music::before { content: '🎵'; }
+        .fa-comments::before { content: '💬'; }
+        .fa-newspaper::before { content: '📰'; }
+        .fa-pencil-alt::before { content: '✏️'; }
+        .fa-user::before, .fa-user-circle::before { content: '👤'; }
+        .fa-calendar::before, .fa-calendar-check::before { content: '📅'; }
+        .fa-monument::before { content: '🏛️'; }
+        .fa-fire::before { content: '🔥'; }
+        .fa-heart::before { content: '❤️'; }
+        .fa-brain::before { content: '🧠'; }
+        .fa-graduation-cap::before { content: '🎓'; }
+        .fa-hands-helping::before { content: '🤝'; }
+        .fa-eye::before { content: '👁️'; }
+        .fa-thinking::before { content: '💭'; }
+        .fa-forward::before { content: '⏩'; }
+        .fa-history::before { content: '⏮️'; }
+        .fa-walking::before { content: '🚶'; }
+        .fa-users::before { content: '👥'; }
+        .fa-search::before { content: '🔍'; }
+        .fa-microphone::before { content: '🎤'; }
+        .fa-broadcast-tower::before { content: '📡'; }
+        .fa-map-marker-alt::before { content: '📍'; }
+        .fa-video::before { content: '📹'; }
+        .fa-volume-up::before { content: '🔊'; }
+        .fa-snowflake::before { content: '❄️'; }
+        .fa-mountain::before { content: '⛰️'; }
+        .fa-handshake::before { content: '🤝'; }
+        .fa-user-secret::before { content: '🕵️'; }
+        .fa-id-badge::before { content: '🆔'; }
+        .fa-balance-scale::before { content: '⚖️'; }
+        .fa-times-circle::before { content: '❌'; }
+        .fa-chart-line::before { content: '📈'; }
+        .fa-flag::before { content: '🚩'; }
+        .fa-surprise::before { content: '😮'; }
+        .fa-wind::before { content: '💨'; }
+        .fa-heartbeat::before { content: '💓'; }
+        .fa-calculator::before { content: '🔢'; }
+        .fa-comment-dots::before { content: '💬'; }
+        .fa-puzzle-piece::before { content: '🧩'; }
+        .fa-eye-slash::before { content: '🙈'; }
+        .fa-map-marked::before { content: '🗺️'; }
+        .fa-image::before { content: '🖼️'; }
+        .fa-hourglass::before { content: '⏳'; }
+        .fa-exchange-alt::before { content: '🔄'; }
+        .fa-child::before { content: '👶'; }
+        .fa-trophy::before { content: '🏆'; }
+        .fa-chalkboard-teacher::before { content: '👨‍🏫'; }
+        .fa-globe::before { content: '🌍'; }
+        .fa-fist-raised::before { content: '✊'; }
+        .fa-sign-out-alt::before { content: '👋'; }
+        .fa-signature::before { content: '✍️'; }
+        .fa-pen::before { content: '🖊️'; }
+        .fa-frown::before { content: '☹️'; }
+        .fa-exclamation-circle::before, .fa-exclamation::before { content: '❗'; }
+        .fa-volume-mute::before { content: '🔇'; }
+        .fa-user-plus::before { content: '👥'; }
+        .fa-file-alt::before { content: '📄'; }
+        .fa-arrow-right::before { content: '➡️'; }
+        .fa-ruler::before { content: '📏'; }
+        .fa-calendar-day::before { content: '📆'; }
+        .fa-save::before { content: '💾'; }
+        .fa-trash::before { content: '🗑️'; }
+        .fa-history::before { content: '⏮️'; }
+        .fa-undo::before { content: '↩️'; }
+        .fa-times::before { content: '✖️'; }
+        .fa-hourglass-half::before { content: '⏳'; }
+    </style>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; background-color: #f4f4f4; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 30px; border-radius: 10px; margin-bottom: 30px; text-align: center; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        
+        /* TIME ESTIMATOR */
+        .time-estimator { background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%); color: #333; padding: 25px; border-radius: 10px; margin-bottom: 30px; text-align: center; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); }
+        .time-estimator h2 { margin-bottom: 15px; font-size: 1.8em; }
+        .time-display { font-size: 3em; font-weight: bold; margin: 15px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+        .time-breakdown { display: flex; justify-content: space-around; margin-top: 15px; font-size: 0.9em; flex-wrap: wrap; }
+        .time-item { background: rgba(255,255,255,0.3); padding: 10px 15px; border-radius: 5px; margin: 5px; }
+        
+        /* SECTION COLOR CODING */
+        .section { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 30px; border-left: 8px solid #999; }
+        .section-basic { border-left-color: #9c27b0; background: linear-gradient(to right, #f3e5f5 0%, white 10%); }
+        .section-intro { border-left-color: #2196f3; background: linear-gradient(to right, #e3f2fd 0%, white 10%); }
+        .section-content { border-left-color: #4caf50; background: linear-gradient(to right, #e8f5e9 0%, white 10%); }
+        .section-conclusion { border-left-color: #ff9800; background: linear-gradient(to right, #fff3e0 0%, white 10%); }
+        .section h2 { padding-bottom: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .section-basic h2 { color: #9c27b0; border-bottom: 3px solid #9c27b0; }
+        .section-intro h2 { color: #2196f3; border-bottom: 3px solid #2196f3; }
+        .section-content h2 { color: #4caf50; border-bottom: 3px solid #4caf50; }
+        .section-conclusion h2 { color: #ff9800; border-bottom: 3px solid #ff9800; }
+        
+        .choice-group { margin: 20px 0; }
+        .choice-option { display: block; padding: 15px; margin: 10px 0; background: #f8f9fa; border: 2px solid #ddd; border-radius: 5px; cursor: pointer; transition: all 0.3s; }
+        .choice-option:hover { border-color: #667eea; background: #e3f2fd; }
+        .choice-option input[type="radio"] { margin-right: 10px; }
+        .form-section { display: none; margin: 20px 0; padding: 20px; background: #fafafa; border-radius: 10px; border-left: 4px solid #667eea; }
+        .form-section.active { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* ENHANCED LABELS WITH TOOLTIPS */
+        label { display: flex; align-items: center; gap: 8px; margin: 20px 0 5px 0; font-weight: bold; color: #764ba2; }
+        .info-icon { color: #2196f3; cursor: help; position: relative; font-size: 0.9em; }
+        .info-icon:hover::after { content: attr(data-tooltip); position: absolute; left: 25px; top: -5px; background: #333; color: white; padding: 8px 12px; border-radius: 5px; white-space: nowrap; z-index: 1000; font-size: 0.85em; font-weight: normal; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+        
+        input[type="text"], textarea, select { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 5px; font-family: Arial, sans-serif; font-size: 14px; transition: border-color 0.3s; }
+        input[type="text"]:focus, textarea:focus, select:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
+        textarea { resize: vertical; min-height: 100px; }
+        
+        /* HELPER TEXT - ENHANCED */
+        .helper-text { background: #f8f9fa; border-left: 3px solid #667eea; padding: 12px; margin-top: 8px; border-radius: 5px; font-size: 0.9em; }
+        .helper-text strong { color: #764ba2; display: block; margin-bottom: 5px; }
+        .helper-text .length { color: #ff6b6b; font-weight: bold; }
+        .helper-text .tip { color: #2196f3; margin-top: 5px; display: block; }
+        
+        /* WORD COUNTER */
+        .word-counter { text-align: right; font-size: 0.85em; color: #666; margin-top: 5px; }
+        .word-counter.warning { color: #ff6b6b; font-weight: bold; }
+        .word-counter.good { color: #4caf50; font-weight: bold; }
+        
+        /* EXEMPLAR BOXES */
+        .exemplar-box { background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 15px; margin: 15px 0; }
+        .exemplar-toggle { background: #ffc107; color: #333; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: all 0.2s; }
+        .exemplar-toggle:hover { background: #ffb300; transform: translateY(-1px); }
+        .exemplar-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 2px dashed #ffc107; }
+        .exemplar-content.show { display: block; animation: slideDown 0.3s; }
+        @keyframes slideDown { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 500px; } }
+        .exemplar-content .example { background: white; padding: 12px; border-radius: 5px; margin: 10px 0; border-left: 3px solid #4caf50; }
+        .exemplar-content .why { font-style: italic; color: #666; margin-top: 8px; font-size: 0.9em; }
+        
+        /* RUBRIC BOXES */
+        .rubric-box { background: #e8f5e9; border: 2px solid #4caf50; border-radius: 8px; padding: 15px; margin: 15px 0; }
+        .rubric-box h4 { color: #2e7d32; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .rubric-items { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .rubric-item { background: white; padding: 10px; border-radius: 5px; font-size: 0.9em; }
+        .rubric-item strong { color: #4caf50; display: block; }
+        
+        /* STEP INDICATORS */
+        .step-indicator { background: #e3f2fd; border-left: 4px solid #2196f3; padding: 10px 15px; margin-bottom: 15px; border-radius: 5px; font-weight: bold; color: #1976d2; display: flex; align-items: center; gap: 10px; }
+        
+        .btn { background: #667eea; color: white; border: none; padding: 15px 30px; border-radius: 5px; cursor: pointer; font-size: 1.1em; transition: all 0.3s; margin: 10px 5px; display: inline-flex; align-items: center; gap: 10px; }
+        .btn:hover { background: #5568d3; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        .btn-secondary { background: #28a745; }
+        .btn-secondary:hover { background: #218838; }
+        
+        #finalScript { display: none; margin-top: 30px; }
+        #scriptOutput { background: white; padding: 30px; border-radius: 10px; border: 2px solid #667eea; white-space: pre-wrap; font-family: 'Courier New', monospace; max-height: 600px; overflow-y: auto; }
+        
+        .info-box { background: #e3f2fd; border-left: 4px solid #2196f3; padding: 15px; margin: 20px 0; border-radius: 5px; }
+        .tip-box { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 5px; }
+        .success-box { background: #e8f5e9; border-left: 4px solid #4caf50; padding: 15px; margin: 20px 0; border-radius: 5px; }
+        
+        .progress-indicator { background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; }
+        .progress-step { display: inline-block; padding: 10px 20px; margin: 5px; background: #ddd; border-radius: 5px; font-weight: bold; transition: all 0.3s; }
+        .progress-step.active { background: #667eea; color: white; }
+        .progress-step.completed { background: #28a745; color: white; }
+        
+        /* STARTER BUTTONS WITH ICONS */
+        .starter-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+        .starter-category { margin: 15px 0; }
+        .starter-category-label { font-size: 0.85em; color: #666; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .difficulty-badge { display: inline-block; padding: 3px 8px; border-radius: 10px; font-size: 0.75em; font-weight: bold; }
+        .badge-beginner { background: #90EE90; color: #2d5016; }
+        .badge-intermediate { background: #FFE4B5; color: #8B4513; }
+        .badge-advanced { background: #FFB6C1; color: #8B0000; }
+        
+        .starter-btn { background: #e3f2fd; border: 2px solid #2196f3; color: #1976d2; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 0.9em; transition: all 0.2s; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+        .starter-btn:hover { background: #2196f3; color: white; transform: translateY(-2px); box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .starter-btn:active { transform: translateY(0); }
+        .starter-btn i { font-size: 0.9em; }
+        
+        .group-size-badge { display: inline-block; background: #9c27b0; color: white; padding: 5px 12px; border-radius: 15px; font-size: 0.85em; margin-left: 10px; font-weight: normal; }
+        
+        /* CHECK YOUR WORK REMINDERS */
+        .check-reminder { background: #fff3e0; border: 2px dashed #ff9800; padding: 15px; margin: 20px 0; border-radius: 8px; }
+        .check-reminder h4 { color: #e65100; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .check-reminder ul { margin-left: 25px; }
+        .check-reminder li { margin: 5px 0; }
+        
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .time-display { font-size: 2em; }
+            .rubric-items { grid-template-columns: 1fr; }
+            .time-breakdown { font-size: 0.8em; }
+            .progress-step { font-size: 0.85em; padding: 8px 12px; }
+            .section { padding: 20px; }
+        }
+        
+        /* AUTO-SAVE INDICATOR */
+        .auto-save-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(76, 175, 80, 0.95);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 10000;
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+        .auto-save-indicator.saving {
+            background: rgba(255, 152, 0, 0.95);
+        }
+        .auto-save-indicator i {
+            margin-right: 8px;
+        }
+        
+        /* SAVE CONTROLS */
+        .save-controls {
+            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .save-controls button {
+            background: white;
+            color: #4caf50;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .save-controls button:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        .last-saved {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        /* VERB BANK STYLING */
+        .verb-bank {
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .verb-bank-toggle {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            width: 100%;
+            justify-content: center;
+        }
+        .verb-bank-toggle:hover {
+            background: #45a049;
+            transform: translateY(-1px);
+        }
+        .verb-bank-content {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #4caf50;
+        }
+        .verb-bank-content.show {
+            display: block;
+            animation: slideDown 0.3s;
+        }
+        .verb-category {
+            margin: 10px 0;
+        }
+        .verb-category h5 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        .verb-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .verb-btn {
+            background: white;
+            border: 2px solid #4caf50;
+            color: #2e7d32;
+            padding: 6px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.2s;
+        }
+        .verb-btn:hover {
+            background: #4caf50;
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        /* COMPARISON BOX STYLING */
+        .comparison-box {
+            background: #fff3e0;
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .comparison-box h4 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .weak-example, .strong-example {
+            background: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 8px 0;
+            border-left: 4px solid;
+        }
+        .weak-example {
+            border-left-color: #f44336;
+        }
+        .weak-example::before {
+            content: '❌ WEAK: ';
+            font-weight: bold;
+            color: #f44336;
+        }
+        .strong-example {
+            border-left-color: #4caf50;
+        }
+        .strong-example::before {
+            content: '✅ STRONG: ';
+            font-weight: bold;
+            color: #4caf50;
+        }
+        .comparison-why {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255, 152, 0, 0.1);
+            border-radius: 5px;
+        }
+        
+        /* RESTORE NOTIFICATION */
+        .restore-notification {
+            background: #2196f3;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideDown 0.5s;
+        }
+        .restore-notification h3 {
+            margin-bottom: 10px;
+        }
+        .restore-notification button {
+            background: white;
+            color: #2196f3;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .restore-notification button:hover {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Auto-Save Indicator -->
+    <div class="auto-save-indicator" id="autoSaveIndicator">
+        <i class="fas fa-check-circle"></i>
+        <span id="saveIndicatorText">Work saved!</span>
+    </div>
+    
+    <div class="container">
+        <!-- Restore Notification -->
+        <div class="restore-notification" id="restoreNotification">
+            <h3><i class="fas fa-history"></i> Welcome Back!</h3>
+            <p>We found your saved work from a previous session. Would you like to restore it?</p>
+            <button onclick="restoreSavedData()"><i class="fas fa-undo"></i> Yes, Restore My Work</button>
+            <button onclick="dismissRestore()"><i class="fas fa-times"></i> No, Start Fresh</button>
+        </div>
+        
+        <!-- Save Controls -->
+        <div class="save-controls" id="saveControls" style="display: none;">
+            <div>
+                <strong><i class="fas fa-save"></i> Auto-Save Active</strong>
+                <div class="last-saved" id="lastSaved">Your work is being saved automatically</div>
+            </div>
+            <div>
+                <button onclick="manualSave()"><i class="fas fa-save"></i> Save Now</button>
+                <button onclick="clearSavedData()"><i class="fas fa-trash"></i> Clear Saved Data</button>
+            </div>
+        </div>
+        <div class="header">
+            <h1><i class="fas fa-microphone-alt"></i> Revolutionary Voices Script Builder</h1>
+            <p>Build your podcast script step-by-step with guidance, examples, and helpful tips!</p>
+        </div>
+        
+        <!-- TIME ESTIMATOR -->
+        <div class="time-estimator" id="timeEstimator" style="display: none;">
+            <h2><i class="fas fa-clock"></i> Estimated Script Time</h2>
+            <div class="time-display" id="timeDisplay">0:00</div>
+            <div class="time-breakdown">
+                <div class="time-item"><strong>Intro:</strong> <span id="introTime">0:00</span></div>
+                <div class="time-item"><strong>Content:</strong> <span id="contentTime">0:00</span></div>
+                <div class="time-item"><strong>Conclusion:</strong> <span id="conclusionTime">0:00</span></div>
+            </div>
+            <p style="margin-top: 15px; font-size: 0.9em;"><strong><i class="fas fa-bullseye"></i> Goal: 3-6 minutes</strong> | Estimate based on 150 words/min</p>
+        </div>
+        
+        <div class="progress-indicator">
+            <span class="progress-step" id="step1-indicator"><i class="fas fa-play"></i> 1. Introduction</span>
+            <span class="progress-step" id="step2-indicator"><i class="fas fa-book"></i> 2. Content</span>
+            <span class="progress-step" id="step3-indicator"><i class="fas fa-flag-checkered"></i> 3. Conclusion</span>
+            <span class="progress-step" id="step4-indicator"><i class="fas fa-rocket"></i> 4. Generate</span>
+        </div>
+        
+        <!-- BASIC INFO -->
+        <div class="section section-basic">
+            <h2><i class="fas fa-clipboard-list"></i> Basic Information</h2>
+            
+            <label>
+                Your Name(s):
+                <i class="fas fa-info-circle info-icon" data-tooltip="List everyone in your group"></i>
+            </label>
+            <input type="text" id="studentName" placeholder="e.g., Alex and Jordan" oninput="updateTimeEstimate()">
+            <div class="helper-text">
+                <strong>What to include:</strong> First names of all group members separated by "and"
+            </div>
+            
+            <label>
+                Podcast Name:
+                <i class="fas fa-info-circle info-icon" data-tooltip="Choose a catchy, memorable title"></i>
+            </label>
+            <input type="text" id="podcastName" placeholder="e.g., Untold Voices, Revolutionary Stories, Hidden History" oninput="updateTimeEstimate()">
+            <div class="helper-text">
+                <strong>What makes a good podcast name:</strong> Short, memorable, and hints at your topic<br>
+                <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Use powerful words like "Untold," "Hidden," "Voices," "Stories," or "Chronicles"</span>
+            </div>
+            
+            <div class="exemplar-box">
+                <button class="exemplar-toggle" onclick="toggleExemplar('podcast-name-example')">
+                    <i class="fas fa-lightbulb"></i> See Examples of Great Podcast Names
+                </button>
+                <div id="podcast-name-example" class="exemplar-content">
+                    <div class="example">
+                        <strong>Examples:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>"Voices of Resistance" - Shows your topic is about people fighting back</li>
+                            <li>"Hidden Patriots" - Creates mystery and intrigue</li>
+                            <li>"Revolutionary Chronicles" - Sounds professional and historical</li>
+                            <li>"Untold Stories 1776" - Specific and attention-grabbing</li>
+                        </ul>
+                    </div>
+                    <div class="why">
+                        <i class="fas fa-check-circle"></i> <strong>Why these work:</strong> They're short (2-3 words), easy to remember, and immediately tell listeners what to expect.
+                    </div>
+                </div>
+            </div>
+            
+            <label>
+                Subject/Topic of Your Episode:
+                <i class="fas fa-info-circle info-icon" data-tooltip="Who or what is your episode about?"></i>
+            </label>
+            <input type="text" id="subject" placeholder="e.g., Phillis Wheatley, Enslaved people in the war, Women soldiers" oninput="updateTimeEstimate()">
+            <div class="helper-text">
+                <strong>Be specific:</strong> Name the person, group, or event you're focusing on<br>
+                <span class="length"><i class="fas fa-ruler"></i> Length: 2-8 words</span>
+            </div>
+            
+            <label>
+                Group Size:
+                <i class="fas fa-info-circle info-icon" data-tooltip="This adjusts the script format for your group"></i>
+            </label>
+            <select id="groupSize" onchange="updateGroupOptions()">
+                <option value="">Select your group size</option>
+                <option value="1">Solo (1 person)</option>
+                <option value="2">Pair (2 people)</option>
+                <option value="3">Group (3 people)</option>
+            </select>
+        </div>
+        
+        <!-- INTRODUCTION -->
+        <div class="section section-intro">
+            <div class="step-indicator">
+                <i class="fas fa-play-circle"></i> STEP 1 of 3: Choose Your Introduction Style
+            </div>
+            
+            <div class="info-box">
+                <strong><i class="fas fa-bullseye"></i> Goal:</strong> Hook your listeners in the first 30-45 seconds! Your introduction should make people WANT to keep listening.
+            </div>
+            
+            <div class="rubric-box">
+                <h4><i class="fas fa-star"></i> What Makes an Excellent Introduction?</h4>
+                <div class="rubric-items">
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Grabs attention immediately</strong>
+                        Uses drama, mystery, or surprise
+                    </div>
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Sets up the topic clearly</strong>
+                        Listeners know what to expect
+                    </div>
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Creates curiosity</strong>
+                        Makes listeners ask "What happens next?"
+                    </div>
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Appropriate length</strong>
+                        30-45 seconds (75-110 words)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="choice-group">
+                <label class="choice-option">
+                    <input type="radio" name="intro" value="dramatic" onchange="showIntroForm('dramatic'); updateTimeEstimate()">
+                    <strong><i class="fas fa-bolt"></i> Dramatic Hook</strong> - Start with tension, action, or a powerful moment
+                </label>
+                <label class="choice-option">
+                    <input type="radio" name="intro" value="fact" onchange="showIntroForm('fact'); updateTimeEstimate()">
+                    <strong><i class="fas fa-exclamation-triangle"></i> Shocking Fact</strong> - Begin with a surprising statistic or truth
+                </label>
+                <label class="choice-option">
+                    <input type="radio" name="intro" value="question" onchange="showIntroForm('question'); updateTimeEstimate()">
+                    <strong><i class="fas fa-question-circle"></i> Mystery Question</strong> - Hook listeners with an intriguing question
+                </label>
+                <label class="choice-option">
+                    <input type="radio" name="intro" value="sound" onchange="showIntroForm('sound'); updateTimeEstimate()">
+                    <strong><i class="fas fa-music"></i> Sound & Setting</strong> - Immerse listeners in the time and place
+                </label>
+            </div>
+            
+            <!-- DRAMATIC HOOK -->
+            <div id="intro-dramatic" class="form-section">
+                <h3><i class="fas fa-bolt"></i> Dramatic Hook Introduction</h3>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('dramatic-example')">
+                        <i class="fas fa-lightbulb"></i> See Strong Examples (3 Different Subjects)
+                    </button>
+                    <div id="dramatic-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example 1 - Enslaved Poet (Phillis Wheatley):</strong><br>
+                            "The quill trembled in her hand as she prepared to do the impossible. In 1773, no enslaved person - especially not a young African woman - was supposed to be able to write poetry that rivaled the greatest minds of Europe. But Phillis Wheatley was about to prove them all wrong."
+                        </div>
+                        <div class="example" style="margin-top: 15px;">
+                            <strong>Example 2 - Woman Soldier (Deborah Sampson):</strong><br>
+                            "She bound her chest with linen strips, her hands shaking as she cut her long hair short. If anyone discovered that Robert Shurtliff was really Deborah Sampson, a woman, she'd be imprisoned or worse. But tomorrow, she would march into battle with the Continental Army, and no one would ever know her secret."
+                        </div>
+                        <div class="example" style="margin-top: 15px;">
+                            <strong>Example 3 - Enslaved Spy (James Armistead):</strong><br>
+                            "He stood in the British camp, pretending to be a runaway slave seeking refuge. In reality, every word he heard, every troop movement he witnessed, was information that could help the Patriots win the war. One wrong move, and James Armistead would hang as a spy. But he had a role to play - and history to change."
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why these work:</strong> All three create immediate tension, show specific stakes, and use vivid details. Notice how each reveals the unique danger their subject faced due to their identity (enslaved, woman, spy). Choose a similar approach for your own subject!
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    1. Opening Hook - Create tension or drama
+                    <i class="fas fa-info-circle info-icon" data-tooltip="What's the most dramatic moment of your story?"></i>
+                </label>
+                <textarea id="dramatic-hook" oninput="updateTimeEstimate(); countWords(this, 'hook', 20, 40)"></textarea>
+                <div class="word-counter" id="hook-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Describe a tense, exciting, or surprising moment from your subject's story<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-40 words (2-3 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Use vivid verbs and sensory details to make it come alive!</span>
+                </div>
+                
+                <!-- VERB BANK -->
+                <div class="verb-bank">
+                    <button class="verb-bank-toggle" onclick="toggleVerbBank('hook-verbs')">
+                        <i class="fas fa-magic"></i> 💪 Click for Vivid Verbs (Make Your Writing Powerful!)
+                    </button>
+                    <div id="hook-verbs" class="verb-bank-content">
+                        <div class="verb-category">
+                            <h5><i class="fas fa-bolt"></i> Action & Combat</h5>
+                            <div class="verb-buttons">
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'fought')">fought</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'battled')">battled</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'charged')">charged</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'attacked')">attacked</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'defended')">defended</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'struck')">struck</button>
+                            </div>
+                        </div>
+                        <div class="verb-category">
+                            <h5><i class="fas fa-walking"></i> Movement</h5>
+                            <div class="verb-buttons">
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'fled')">fled</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'marched')">marched</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'crept')">crept</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'stormed')">stormed</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'advanced')">advanced</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'escaped')">escaped</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'retreated')">retreated</button>
+                            </div>
+                        </div>
+                        <div class="verb-category">
+                            <h5><i class="fas fa-volume-up"></i> Communication</h5>
+                            <div class="verb-buttons">
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'declared')">declared</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'proclaimed')">proclaimed</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'demanded')">demanded</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'whispered')">whispered</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'shouted')">shouted</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'pleaded')">pleaded</button>
+                            </div>
+                        </div>
+                        <div class="verb-category">
+                            <h5><i class="fas fa-heartbeat"></i> Emotion</h5>
+                            <div class="verb-buttons">
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'trembled')">trembled</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'feared')">feared</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'hoped')">hoped</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'despaired')">despaired</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'rejoiced')">rejoiced</button>
+                                <button class="verb-btn" onclick="insertVerb('dramatic-hook', 'grieved')">grieved</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- COMPARISON BOX -->
+                <div class="comparison-box">
+                    <h4><i class="fas fa-balance-scale"></i> Strong vs. Weak Writing</h4>
+                    <div class="weak-example">The person did something important during the war.</div>
+                    <div class="strong-example">Her hands trembled as she loaded the musket, knowing that one wrong move could betray her disguise as a male soldier.</div>
+                    <div class="comparison-why">
+                        <strong>Why stronger?</strong> Uses specific action verb (trembled, loaded), sensory details, shows stakes, and creates tension. Paints a picture instead of just telling.
+                    </div>
+                </div>
+                
+                <div class="starter-category">
+                    <div class="starter-category-label">
+                        <i class="fas fa-magic"></i> Clickable Starters - Beginner Friendly
+                        <span class="difficulty-badge badge-beginner">EASY START</span>
+                    </div>
+                    <div class="starter-buttons">
+                        <button class="starter-btn" onclick="insertStarter('dramatic-hook', 'In that moment, everything changed when ')"><i class="fas fa-clock"></i> In that moment...</button>
+                        <button class="starter-btn" onclick="insertStarter('dramatic-hook', 'Nobody could have predicted that ')"><i class="fas fa-surprise"></i> Nobody could have predicted...</button>
+                        <button class="starter-btn" onclick="insertStarter('dramatic-hook', 'The air was thick with tension as ')"><i class="fas fa-wind"></i> The air was thick...</button>
+                        <button class="starter-btn" onclick="insertStarter('dramatic-hook', 'It all came down to this one decision: ')"><i class="fas fa-balance-scale"></i> One decision...</button>
+                    </div>
+                </div>
+                
+                <div class="starter-category">
+                    <div class="starter-category-label">
+                        <i class="fas fa-star"></i> Advanced Starters
+                        <span class="difficulty-badge badge-advanced">CHALLENGE</span>
+                    </div>
+                    <div class="starter-buttons">
+                        <button class="starter-btn" onclick="insertStarter('dramatic-hook', 'They had no idea that their decision that cold morning would ')"><i class="fas fa-snowflake"></i> They had no idea...</button>
+                        <button class="starter-btn" onclick="insertStarter('dramatic-hook', 'History would later call this moment ')"><i class="fas fa-book"></i> History would later...</button>
+                        <button class="starter-btn" onclick="insertStarter('dramatic-hook', 'Against all odds and expectations, ')"><i class="fas fa-mountain"></i> Against all odds...</button>
+                        <button class="starter-btn" onclick="insertStarter('dramatic-hook', 'The sound of ')"><i class="fas fa-volume-up"></i> The sound of...</button>
+                    </div>
+                </div>
+                
+                <label>
+                    2. Reveal the Subject - Who is this story about?
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Introduce your subject and their importance"></i>
+                </label>
+                <textarea id="dramatic-subject" oninput="updateTimeEstimate(); countWords(this, 'subject', 15, 30)"></textarea>
+                <div class="word-counter" id="subject-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Name your subject and briefly explain why they matter<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 15-30 words (1-2 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Include their role or identity (e.g., "enslaved poet," "soldier," "spy")</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('dramatic-subject', 'This is the story of ')"><i class="fas fa-user"></i> This is the story...</button>
+                    <button class="starter-btn" onclick="insertStarter('dramatic-subject', 'Meet ')"><i class="fas fa-handshake"></i> Meet...</button>
+                    <button class="starter-btn" onclick="insertStarter('dramatic-subject', 'Few people today know the name ')"><i class="fas fa-user-secret"></i> Few people know...</button>
+                    <button class="starter-btn" onclick="insertStarter('dramatic-subject', 'Their name was ')"><i class="fas fa-id-badge"></i> Their name was...</button>
+                </div>
+                
+                <label>
+                    3. Set the Stakes - Why does this story matter?
+                    <i class="fas fa-info-circle info-icon" data-tooltip="What was at risk? What did they have to overcome?"></i>
+                </label>
+                <textarea id="dramatic-stakes" oninput="updateTimeEstimate(); countWords(this, 'stakes', 20, 40)"></textarea>
+                <div class="word-counter" id="stakes-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Explain the challenge, danger, or significance of what they did<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-40 words (2-3 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Show what could have gone wrong or what they risked</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('dramatic-stakes', 'The risks were enormous: ')"><i class="fas fa-exclamation-triangle"></i> The risks were...</button>
+                    <button class="starter-btn" onclick="insertStarter('dramatic-stakes', 'If they failed, ')"><i class="fas fa-times-circle"></i> If they failed...</button>
+                    <button class="starter-btn" onclick="insertStarter('dramatic-stakes', 'Everything depended on ')"><i class="fas fa-balance-scale"></i> Everything depended...</button>
+                    <button class="starter-btn" onclick="insertStarter('dramatic-stakes', 'The odds were stacked against them: ')"><i class="fas fa-chart-line"></i> The odds were...</button>
+                    <button class="starter-btn" onclick="insertStarter('dramatic-stakes', 'At stake was nothing less than ')"><i class="fas fa-flag"></i> At stake was...</button>
+                </div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your Introduction</h4>
+                    <ul>
+                        <li>Does your hook create drama or excitement?</li>
+                        <li>Did you clearly name your subject?</li>
+                        <li>Will listeners understand why this matters?</li>
+                        <li>Is it 60-110 words total? (30-45 seconds)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- SHOCKING FACT -->
+            <div id="intro-fact" class="form-section">
+                <h3><i class="fas fa-exclamation-triangle"></i> Shocking Fact Introduction</h3>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('fact-example')">
+                        <i class="fas fa-lightbulb"></i> See a Strong Example
+                    </button>
+                    <div id="fact-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example for Women in the Revolution:</strong><br>
+                            "Historians estimate that hundreds of women disguised themselves as men to fight in the Revolutionary War. But their stories were erased from history books for over 200 years. Today, we're uncovering the truth about these hidden soldiers who risked everything for freedom."
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why this works:</strong> Starts with a specific, surprising fact that challenges what listeners think they know. Creates curiosity about these hidden stories.
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    1. The Shocking Fact - Start with something surprising
+                    <i class="fas fa-info-circle info-icon" data-tooltip="What fact will surprise your listeners?"></i>
+                </label>
+                <textarea id="fact-statement" oninput="updateTimeEstimate(); countWords(this, 'factstatement', 15, 30)"></textarea>
+                <div class="word-counter" id="factstatement-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> State a surprising statistic, contradiction, or little-known truth<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 15-30 words (1-2 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Numbers and specific details make facts more powerful (e.g., "Over 5,000..." not "Many...")</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('fact-statement', 'Most people don\'t know that ')"><i class="fas fa-eye-slash"></i> Most people don't...</button>
+                    <button class="starter-btn" onclick="insertStarter('fact-statement', 'Here\'s a fact that will shock you: ')"><i class="fas fa-bolt"></i> Here's a fact...</button>
+                    <button class="starter-btn" onclick="insertStarter('fact-statement', 'Historians estimate that ')"><i class="fas fa-calculator"></i> Historians estimate...</button>
+                    <button class="starter-btn" onclick="insertStarter('fact-statement', 'While everyone knows about [famous event], few realize that ')"><i class="fas fa-balance-scale"></i> While everyone knows...</button>
+                    <button class="starter-btn" onclick="insertStarter('fact-statement', 'The textbooks won\'t tell you this, but ')"><i class="fas fa-book"></i> The textbooks won't...</button>
+                </div>
+                
+                <label>
+                    2. Why It's Shocking - Explain why this matters
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Why should listeners care?"></i>
+                </label>
+                <textarea id="fact-significance" oninput="updateTimeEstimate(); countWords(this, 'factsig', 20, 35)"></textarea>
+                <div class="word-counter" id="factsig-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Show why this fact changes our understanding or challenges common beliefs<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-35 words (2-3 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Compare to what people usually believe</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('fact-significance', 'This completely changes how we think about ')"><i class="fas fa-brain"></i> This completely changes...</button>
+                    <button class="starter-btn" onclick="insertStarter('fact-significance', 'For decades, this truth was hidden because ')"><i class="fas fa-user-secret"></i> For decades...</button>
+                    <button class="starter-btn" onclick="insertStarter('fact-significance', 'This reveals that ')"><i class="fas fa-eye"></i> This reveals...</button>
+                    <button class="starter-btn" onclick="insertStarter('fact-significance', 'Yet this story has been left out of ')"><i class="fas fa-book"></i> Yet this story...</button>
+                </div>
+                
+                <label>
+                    3. Meet Your Subject - Introduce the person/group
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Who will we learn about?"></i>
+                </label>
+                <textarea id="fact-subject" oninput="updateTimeEstimate(); countWords(this, 'factsubj', 20, 40)"></textarea>
+                <div class="word-counter" id="factsubj-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Name and describe your subject, connecting them to the shocking fact<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-40 words (2-3 sentences)</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('fact-subject', 'Today, we\'re telling the story of ')"><i class="fas fa-user"></i> Today, we're telling...</button>
+                    <button class="starter-btn" onclick="insertStarter('fact-subject', 'One person who experienced this was ')"><i class="fas fa-walking"></i> One person who...</button>
+                    <button class="starter-btn" onclick="insertStarter('fact-subject', 'Meet ')"><i class="fas fa-handshake"></i> Meet...</button>
+                    <button class="starter-btn" onclick="insertStarter('fact-subject', 'Their name was ')"><i class="fas fa-id-badge"></i> Their name was...</button>
+                </div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your Introduction</h4>
+                    <ul>
+                        <li>Is your fact truly surprising or little-known?</li>
+                        <li>Did you explain WHY it's shocking?</li>
+                        <li>Did you clearly connect it to your subject?</li>
+                        <li>Is it 55-105 words total? (30-45 seconds)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- MYSTERY QUESTION -->
+            <div id="intro-question" class="form-section">
+                <h3><i class="fas fa-question-circle"></i> Mystery Question Introduction</h3>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('question-example')">
+                        <i class="fas fa-lightbulb"></i> See a Strong Example
+                    </button>
+                    <div id="question-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example for James Armistead:</strong><br>
+                            "What if I told you that one of the most important spies in the Revolutionary War couldn't read or write? What if I told you he was enslaved, yet held the secrets that would help win the war? How is it possible that James Armistead Lafayette risked his life for American freedom while he himself had none?"
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why this works:</strong> Each question builds mystery and creates paradoxes that demand answers. The questions challenge expectations and create emotional investment.
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    1. Opening Question - Create mystery
+                    <i class="fas fa-info-circle info-icon" data-tooltip="What question will hook your listeners?"></i>
+                </label>
+                <textarea id="question-hook" oninput="updateTimeEstimate(); countWords(this, 'qhook', 10, 25)"></textarea>
+                <div class="word-counter" id="qhook-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Ask a question that creates curiosity or presents a puzzle<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 10-25 words (1 sentence)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: "What if..." and "How..." questions work great!</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('question-hook', 'What if I told you that ')"><i class="fas fa-comment-dots"></i> What if I told...</button>
+                    <button class="starter-btn" onclick="insertStarter('question-hook', 'How could ')"><i class="fas fa-question"></i> How could...</button>
+                    <button class="starter-btn" onclick="insertStarter('question-hook', 'Have you ever wondered ')"><i class="fas fa-brain"></i> Have you ever...</button>
+                    <button class="starter-btn" onclick="insertStarter('question-hook', 'Why would someone ')"><i class="fas fa-user-circle"></i> Why would...</button>
+                    <button class="starter-btn" onclick="insertStarter('question-hook', 'Can you imagine ')"><i class="fas fa-lightbulb"></i> Can you imagine...</button>
+                </div>
+                
+                <label>
+                    2. Building Questions - Add 2-3 more questions that deepen the mystery
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Each question should raise the stakes"></i>
+                </label>
+                <textarea id="question-buildup" oninput="updateTimeEstimate(); countWords(this, 'qbuild', 25, 50)"></textarea>
+                <div class="word-counter" id="qbuild-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> 2-3 related questions that add complexity and interest<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 25-50 words (2-3 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Each question should make listeners more curious!</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('question-buildup', 'What if they ')"><i class="fas fa-thinking"></i> What if they...</button>
+                    <button class="starter-btn" onclick="insertStarter('question-buildup', 'And how is it possible that ')"><i class="fas fa-puzzle-piece"></i> How is it possible...</button>
+                    <button class="starter-btn" onclick="insertStarter('question-buildup', 'Why hasn\'t ')"><i class="fas fa-eye-slash"></i> Why hasn't...</button>
+                    <button class="starter-btn" onclick="insertStarter('question-buildup', 'What would make ')"><i class="fas fa-fire"></i> What would make...</button>
+                </div>
+                
+                <label>
+                    3. Answer Preview - Hint at the amazing answer
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Don't give it all away - just a teaser!"></i>
+                </label>
+                <textarea id="question-answer" oninput="updateTimeEstimate(); countWords(this, 'qans', 20, 35)"></textarea>
+                <div class="word-counter" id="qans-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Preview that you'll reveal the answer, name your subject<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-35 words (2 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Don't answer the question yet - save it for the content section!</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('question-answer', 'The answers to these questions lie in the story of ')"><i class="fas fa-map-marked"></i> The answers lie...</button>
+                    <button class="starter-btn" onclick="insertStarter('question-answer', 'Today, we\'re uncovering the truth about ')"><i class="fas fa-search"></i> We're uncovering...</button>
+                    <button class="starter-btn" onclick="insertStarter('question-answer', 'Meet ')"><i class="fas fa-user"></i> Meet...</button>
+                    <button class="starter-btn" onclick="insertStarter('question-answer', 'This is the story of ')"><i class="fas fa-book-open"></i> This is the story...</button>
+                </div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your Introduction</h4>
+                    <ul>
+                        <li>Do your questions create genuine curiosity?</li>
+                        <li>Did you avoid answering the questions too early?</li>
+                        <li>Did you hint at an interesting answer?</li>
+                        <li>Is it 55-110 words total? (30-45 seconds)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- SOUND & SETTING -->
+            <div id="intro-sound" class="form-section">
+                <h3><i class="fas fa-music"></i> Sound & Setting Introduction</h3>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('sound-example')">
+                        <i class="fas fa-lightbulb"></i> See a Strong Example
+                    </button>
+                    <div id="sound-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example for Valley Forge:</strong><br>
+                            "[SOUND: Wind howling, soldiers coughing]<br>
+                            December 1777. Valley Forge, Pennsylvania. The Continental Army huddled in makeshift shelters as freezing rain turned the ground to ice. You could hear men coughing through the thin walls, the crunch of frozen snow under bare feet, the desperate prayers whispered in the darkness. This is where the Revolution nearly died."
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why this works:</strong> Engages multiple senses (sound, touch, sight) to transport listeners to that moment. Specific sensory details make the scene vivid and real.
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    1. Sound Effects (Optional) - What sounds transport us to this moment?
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Describe sounds your reader/listener can imagine"></i>
+                </label>
+                <input type="text" id="sound-effects" placeholder="e.g., cannon fire, marching feet, whispered voices" oninput="updateTimeEstimate()">
+                <div class="helper-text">
+                    <strong>What to write:</strong> Describe 2-3 sounds that help set the scene (these are imaginary sound effects)<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Length: 3-8 words</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Think about what someone would HEAR if they were there</span>
+                </div>
+                
+                <label>
+                    2. Set the Scene - When and where?
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Paint a picture with words"></i>
+                </label>
+                <textarea id="sound-setting" oninput="updateTimeEstimate(); countWords(this, 'ssetting', 20, 40)"></textarea>
+                <div class="word-counter" id="ssetting-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Describe the time, place, and what the scene looked/felt/sounded like<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-40 words (2-3 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Use sensory details - what could you see, hear, smell, feel?</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('sound-setting', 'It was [year/season]. [Place]. ')"><i class="fas fa-calendar"></i> It was...</button>
+                    <button class="starter-btn" onclick="insertStarter('sound-setting', 'Picture this: ')"><i class="fas fa-image"></i> Picture this...</button>
+                    <button class="starter-btn" onclick="insertStarter('sound-setting', 'The year was ')"><i class="fas fa-hourglass"></i> The year was...</button>
+                    <button class="starter-btn" onclick="insertStarter('sound-setting', 'Close your eyes and imagine ')"><i class="fas fa-eye"></i> Close your eyes...</button>
+                </div>
+                
+                <label>
+                    3. Introduce Subject - Who is there?
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Bring your subject into this scene"></i>
+                </label>
+                <textarea id="sound-subject" oninput="updateTimeEstimate(); countWords(this, 'ssubject', 15, 30)"></textarea>
+                <div class="word-counter" id="ssubject-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Show your subject in this setting - what are they doing?<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 15-30 words (1-2 sentences)</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('sound-subject', 'In the midst of this, ')"><i class="fas fa-user-circle"></i> In the midst...</button>
+                    <button class="starter-btn" onclick="insertStarter('sound-subject', 'This is where we find ')"><i class="fas fa-search"></i> This is where...</button>
+                    <button class="starter-btn" onclick="insertStarter('sound-subject', 'One person stood ')"><i class="fas fa-walking"></i> One person stood...</button>
+                    <button class="starter-btn" onclick="insertStarter('sound-subject', 'Among them was ')"><i class="fas fa-users"></i> Among them was...</button>
+                </div>
+                
+                <label>
+                    4. The Conflict - What challenge do they face?
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Set up the problem or tension"></i>
+                </label>
+                <textarea id="sound-conflict" oninput="updateTimeEstimate(); countWords(this, 'sconflict', 15, 30)"></textarea>
+                <div class="word-counter" id="sconflict-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> What problem, danger, or decision do they face?<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 15-30 words (1-2 sentences)</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('sound-conflict', 'They faced an impossible choice: ')"><i class="fas fa-balance-scale"></i> They faced...</button>
+                    <button class="starter-btn" onclick="insertStarter('sound-conflict', 'But danger was closing in: ')"><i class="fas fa-exclamation-triangle"></i> But danger...</button>
+                    <button class="starter-btn" onclick="insertStarter('sound-conflict', 'This is where everything would change: ')"><i class="fas fa-exchange-alt"></i> This is where...</button>
+                    <button class="starter-btn" onclick="insertStarter('sound-conflict', 'The stakes could not be higher: ')"><i class="fas fa-fire"></i> The stakes...</button>
+                </div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your Introduction</h4>
+                    <ul>
+                        <li>Can listeners "see" the scene in their minds?</li>
+                        <li>Did you use sensory details (sights, sounds, feelings)?</li>
+                        <li>Did you introduce your subject and their challenge?</li>
+                        <li>Is it 50-100 words total? (30-45 seconds)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- GROUP INTRODUCTION -->
+            <div id="intro-group" class="form-section" style="display: none;">
+                <div class="success-box">
+                    <h4><i class="fas fa-users"></i> Group Introduction <span class="group-size-badge" id="groupBadge"></span></h4>
+                    <p id="groupTip"></p>
+                </div>
+                
+                <label>
+                    Self-Introduction - Each person introduces themselves
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Who is on your team?"></i>
+                </label>
+                <textarea id="group-intro" placeholder="e.g., 'Hi, I'm Alex, and I'll be your host today.' 'And I'm Jordan, bringing you the voices of history.'" oninput="updateTimeEstimate(); countWords(this, 'groupintro', 15, 40)"></textarea>
+                <div class="word-counter" id="groupintro-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Each person says their name and role (host, narrator, interviewer, etc.)<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 15-40 words total</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Keep it friendly and welcoming!</span>
+                </div>
+                
+                <label>
+                    Welcome Your Listeners
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Greet your audience warmly"></i>
+                </label>
+                <textarea id="group-welcome" placeholder="e.g., Welcome to Revolutionary Voices, where we uncover the hidden stories of America's founding." oninput="updateTimeEstimate(); countWords(this, 'gwelcome', 10, 25)"></textarea>
+                <div class="word-counter" id="gwelcome-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Welcome listeners and tell them what your podcast is about<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 10-25 words (1-2 sentences)</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CONTENT SECTION -->
+        <div class="section section-content">
+            <div class="step-indicator">
+                <i class="fas fa-book-open"></i> STEP 2 of 3: Choose Your Content Format
+            </div>
+            
+            <div class="info-box">
+                <strong><i class="fas fa-bullseye"></i> Goal:</strong> This is the main body of your podcast (2-4 minutes). Choose a format that best tells your subject's story!
+            </div>
+            
+            <div class="rubric-box">
+                <h4><i class="fas fa-star"></i> What Makes Excellent Content?</h4>
+                <div class="rubric-items">
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Shows change over time</strong>
+                        Beginning → Challenge → Resolution
+                    </div>
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Uses specific details</strong>
+                        Names, dates, places, emotions
+                    </div>
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Brings history to life</strong>
+                        Makes it feel real and human
+                    </div>
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Appropriate length</strong>
+                        300-600 words (2-4 minutes)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="choice-group">
+                <label class="choice-option">
+                    <input type="radio" name="content" value="narrative" onchange="showContentForm('narrative'); updateTimeEstimate()">
+                    <strong><i class="fas fa-book"></i> First-Person Narrative</strong> - Tell the story as if you ARE the historical figure (3 scenes)
+                </label>
+                <label class="choice-option">
+                    <input type="radio" name="content" value="interview" onchange="showContentForm('interview'); updateTimeEstimate()">
+                    <strong><i class="fas fa-comments"></i> Interview Format</strong> - Interview your historical figure with 5 questions
+                </label>
+                <label class="choice-option">
+                    <input type="radio" name="content" value="news" onchange="showContentForm('news'); updateTimeEstimate()">
+                    <strong><i class="fas fa-newspaper"></i> News Report</strong> - Report on events as if you're a journalist at the time
+                </label>
+                <label class="choice-option">
+                    <input type="radio" name="content" value="diary" onchange="showContentForm('diary'); updateTimeEstimate()">
+                    <strong><i class="fas fa-pencil-alt"></i> Diary Entries</strong> - Share 3 diary entries showing change over time
+                </label>
+            </div>
+            
+            <!-- NARRATIVE FORMAT -->
+            <div id="content-narrative" class="form-section">
+                <h3><i class="fas fa-book"></i> First-Person Narrative (3 Scenes)</h3>
+                <p style="margin-bottom: 20px;">Tell the story AS IF you are the historical figure. Show how things changed across three key moments.</p>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('narrative-example')">
+                        <i class="fas fa-lightbulb"></i> See a Strong Example (Scene 1)
+                    </button>
+                    <div id="narrative-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example - Phillis Wheatley, Scene 1 (Before):</strong><br>
+                            "My name is Phillis. That's not the name I was born with - that name was stolen from me along with everything else when I was seven years old. The Wheatley family who bought me off the ship taught me to read, which was rare. But I quickly discovered I didn't just want to read words - I wanted to write them. Late at night, by candlelight, I would write poems. Every word I wrote was an act of defiance. They could enslave my body, but not my mind."
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why this works:</strong> Written in first person ("I"), shows specific details, reveals emotions, and sets up the before-situation. The speaker sounds like a real person with thoughts and feelings.
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    Narrator Introduction to Narrative
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Transition from intro to the narrative"></i>
+                </label>
+                <textarea id="narrative-intro" placeholder="e.g., Let's step into their shoes and hear this story in their own words..." oninput="updateTimeEstimate(); countWords(this, 'narrintro', 10, 25)"></textarea>
+                <div class="word-counter" id="narrintro-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Brief transition explaining we'll hear from the subject directly<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 10-25 words (1-2 sentences)</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('narrative-intro', 'Let\'s step into their shoes and hear this story in their own words.')"><i class="fas fa-walking"></i> Step into...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-intro', 'Now, let [subject] tell you their story.')"><i class="fas fa-user"></i> Let them tell...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-intro', 'Here\'s what [subject] might have said...')"><i class="fas fa-comment"></i> What they said...</button>
+                </div>
+                
+                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-play"></i> SCENE 1: Before / Early in the War</h4>
+                <label>
+                    Subject Speaking (First Person) - What was life like before the major events?
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Write as if YOU are this person!"></i>
+                </label>
+                <textarea id="narrative-scene1" placeholder="Start with: My name is... OR I remember when..." oninput="updateTimeEstimate(); countWords(this, 'narr1', 60, 100)"></textarea>
+                <div class="word-counter" id="narr1-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Introduce yourself (as the historical figure) and describe your situation before the major events<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 60-100 words (4-7 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Use "I" and "my" - you ARE this person! Include emotions and specific details.</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene1', 'My name is ')"><i class="fas fa-user"></i> My name is...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene1', 'I remember the day when ')"><i class="fas fa-calendar"></i> I remember when...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene1', 'Before everything changed, I ')"><i class="fas fa-history"></i> Before everything...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene1', 'People called me ')"><i class="fas fa-id-badge"></i> People called me...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene1', 'Every day, I would ')"><i class="fas fa-calendar-day"></i> Every day...</button>
+                </div>
+                
+                <!-- COMPARISON BOX #2 -->
+                <div class="comparison-box">
+                    <h4><i class="fas fa-balance-scale"></i> Strong vs. Weak First-Person Writing</h4>
+                    <div class="weak-example">I was enslaved. I worked hard. It was bad. I wanted freedom.</div>
+                    <div class="strong-example">My name is James, though the Armstead family who owned me called me "property." Every morning, I woke before dawn to tend their horses, my hands raw from the cold. But in my heart, I dreamed of something they could never chain - my freedom.</div>
+                    <div class="comparison-why">
+                        <strong>Why stronger?</strong> Uses first person ("I," "my"), includes specific details (name, family, horses, dawn), shows sensory details (raw hands, cold), and reveals internal thoughts/emotions. Makes the person feel real, not just a summary.
+                    </div>
+                </div>
+                
+                <label>
+                    Narrator Transition to Scene 2
+                </label>
+                <textarea id="narrative-trans1" placeholder="e.g., But then, everything changed..." oninput="updateTimeEstimate(); countWords(this, 'narrtrans1', 10, 25)"></textarea>
+                <div class="word-counter" id="narrtrans1-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Brief transition showing time passing or situation changing<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 10-25 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('narrative-trans1', 'But then, everything changed when ')"><i class="fas fa-bolt"></i> Everything changed...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-trans1', 'Then came the moment that would change everything: ')"><i class="fas fa-hourglass-half"></i> The moment came...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-trans1', 'Months later, ')"><i class="fas fa-forward"></i> Months later...</button>
+                </div>
+                
+                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-exclamation-triangle"></i> SCENE 2: The Turning Point</h4>
+                <label>
+                    Subject Speaking - What was the major challenge or turning point?
+                </label>
+                <textarea id="narrative-scene2" placeholder="Describe the crisis, decision, or major event..." oninput="updateTimeEstimate(); countWords(this, 'narr2', 60, 120)"></textarea>
+                <div class="word-counter" id="narr2-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Describe the main challenge, crisis, or turning point in first person<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 60-120 words (4-8 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Show emotions! What were you thinking and feeling?</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene2', 'I\'ll never forget ')"><i class="fas fa-brain"></i> I'll never forget...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene2', 'That\'s when I realized ')"><i class="fas fa-lightbulb"></i> That's when...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene2', 'I had to make a choice: ')"><i class="fas fa-balance-scale"></i> I had to choose...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene2', 'My heart was pounding as ')"><i class="fas fa-heartbeat"></i> My heart pounded...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene2', 'The danger was real: ')"><i class="fas fa-exclamation-triangle"></i> The danger was...</button>
+                </div>
+                
+                <label>
+                    Narrator Transition to Scene 3
+                </label>
+                <textarea id="narrative-trans2" placeholder="e.g., The aftermath of that decision would change history..." oninput="updateTimeEstimate(); countWords(this, 'narrtrans2', 10, 25)"></textarea>
+                <div class="word-counter" id="narrtrans2-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Transition to the resolution/aftermath<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 10-25 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('narrative-trans2', 'The consequences of that decision were ')"><i class="fas fa-arrow-right"></i> The consequences...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-trans2', 'After that day, nothing was the same: ')"><i class="fas fa-exchange-alt"></i> Nothing was same...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-trans2', 'Looking back now, ')"><i class="fas fa-eye"></i> Looking back...</button>
+                </div>
+                
+                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-flag-checkered"></i> SCENE 3: The Impact / Aftermath</h4>
+                <label>
+                    Subject Speaking - What happened as a result? How did things change?
+                </label>
+                <textarea id="narrative-scene3" placeholder="Describe the outcome and what it meant..." oninput="updateTimeEstimate(); countWords(this, 'narr3', 60, 100)"></textarea>
+                <div class="word-counter" id="narr3-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Explain what happened afterward and what it meant<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 60-100 words (4-7 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Reflect on what you learned or what changed</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene3', 'After that, ')"><i class="fas fa-forward"></i> After that...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene3', 'What I learned was ')"><i class="fas fa-graduation-cap"></i> What I learned...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene3', 'Today, ')"><i class="fas fa-calendar-day"></i> Today...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene3', 'My legacy is ')"><i class="fas fa-monument"></i> My legacy...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-scene3', 'Though I ')"><i class="fas fa-thought"></i> Though I...</button>
+                </div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your Narrative</h4>
+                    <ul>
+                        <li>Did you write in FIRST PERSON (I, my, me)?</li>
+                        <li>Do all 3 scenes show change over time?</li>
+                        <li>Did you include specific details and emotions?</li>
+                        <li>Is the total 200-350 words? (Check word counters)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- INTERVIEW FORMAT -->
+            <div id="content-interview" class="form-section">
+                <h3><i class="fas fa-comments"></i> Interview Format (5 Questions)</h3>
+                <p style="margin-bottom: 20px;">One person asks questions, another person answers AS the historical figure.</p>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('interview-example')">
+                        <i class="fas fa-lightbulb"></i> See a Strong Example
+                    </button>
+                    <div id="interview-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example Question & Answer:</strong><br>
+                            <strong>Q:</strong> "Crispus Attucks, many historians call you the first casualty of the American Revolution. Can you tell us what happened that night in Boston?"<br><br>
+                            <strong>A:</strong> "That night - March 5, 1770 - started like any other evening at the docks. But tensions had been building for months between colonists and British soldiers. When I heard about the confrontation in King Street, I joined the crowd. We were unarmed, but angry. When the soldiers opened fire, I was the first to fall. I never knew I'd be remembered as the first to die for American freedom."
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why this works:</strong> Question is specific and sets context. Answer is detailed, emotional, in first person, and provides historical information naturally.
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    Narrator Introduction to Interview
+                </label>
+                <textarea id="interview-intro" placeholder="e.g., Today, we have the incredible opportunity to interview..." oninput="updateTimeEstimate(); countWords(this, 'intrintro', 15, 35)"></textarea>
+                <div class="word-counter" id="intrintro-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Set up the interview format<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 15-35 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('interview-intro', 'Today, we have the incredible opportunity to interview ')"><i class="fas fa-microphone"></i> Incredible opportunity...</button>
+                    <button class="starter-btn" onclick="insertStarter('interview-intro', 'Joining us today is ')"><i class="fas fa-user-plus"></i> Joining us...</button>
+                    <button class="starter-btn" onclick="insertStarter('interview-intro', 'Welcome to the show, ')"><i class="fas fa-handshake"></i> Welcome...</button>
+                </div>
+                
+                <div class="tip-box" style="margin: 20px 0;">
+                    <strong><i class="fas fa-lightbulb"></i> Interview Tips:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Questions should be specific, not generic ("What was it like?" is weak)</li>
+                        <li>Build questions that let your subject tell a story</li>
+                        <li>Answers should be 40-80 words each (detailed but not too long)</li>
+                        <li>Show emotion and personality in answers</li>
+                        <li>Include specific historical details</li>
+                    </ul>
+                </div>
+                
+                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-question"></i> Question 1: Background/Introduction</h4>
+                <label>Question (Interviewer):</label>
+                <textarea id="q1" placeholder="Ask about their background, identity, or situation" oninput="updateTimeEstimate(); countWords(this, 'q1text', 10, 25)"></textarea>
+                <div class="word-counter" id="q1text-counter"></div>
+                <div class="helper-text">
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 10-25 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('q1', 'Can you tell us about your life before ')"><i class="fas fa-history"></i> Life before...</button>
+                    <button class="starter-btn" onclick="insertStarter('q1', 'What was it like growing up as ')"><i class="fas fa-child"></i> Growing up as...</button>
+                    <button class="starter-btn" onclick="insertStarter('q1', 'How did you first become involved in ')"><i class="fas fa-play-circle"></i> First involved...</button>
+                </div>
+                
+                <label>Answer (Subject):</label>
+                <textarea id="a1" placeholder="Answer in first person, with details and emotion" oninput="updateTimeEstimate(); countWords(this, 'a1text', 40, 80)"></textarea>
+                <div class="word-counter" id="a1text-counter"></div>
+                <div class="helper-text">
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 40-80 words</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Remember: Answer as the historical figure (use "I")!</span>
+                </div>
+                
+                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-question"></i> Question 2: The Challenge/Conflict</h4>
+                <label>Question (Interviewer):</label>
+                <textarea id="q2" placeholder="Ask about challenges, obstacles, or dangers they faced" oninput="updateTimeEstimate(); countWords(this, 'q2text', 10, 25)"></textarea>
+                <div class="word-counter" id="q2text-counter"></div>
+                <label>Answer (Subject):</label>
+                <textarea id="a2" placeholder="Describe the challenge with specific details" oninput="updateTimeEstimate(); countWords(this, 'a2text', 40, 80)"></textarea>
+                <div class="word-counter" id="a2text-counter"></div>
+                
+                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-question"></i> Question 3: The Key Decision/Action</h4>
+                <label>Question (Interviewer):</label>
+                <textarea id="q3" placeholder="Ask about a crucial decision or action they took" oninput="updateTimeEstimate(); countWords(this, 'q3text', 10, 25)"></textarea>
+                <div class="word-counter" id="q3text-counter"></div>
+                <label>Answer (Subject):</label>
+                <textarea id="a3" placeholder="Explain what you did and why" oninput="updateTimeEstimate(); countWords(this, 'a3text', 40, 80)"></textarea>
+                <div class="word-counter" id="a3text-counter"></div>
+                
+                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-question"></i> Question 4: The Turning Point/Impact</h4>
+                <label>Question (Interviewer):</label>
+                <textarea id="q4" placeholder="Ask about the outcome or impact of their actions" oninput="updateTimeEstimate(); countWords(this, 'q4text', 10, 25)"></textarea>
+                <div class="word-counter" id="q4text-counter"></div>
+                <label>Answer (Subject):</label>
+                <textarea id="a4" placeholder="Describe what happened as a result" oninput="updateTimeEstimate(); countWords(this, 'a4text', 40, 80)"></textarea>
+                <div class="word-counter" id="a4text-counter"></div>
+                
+                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-question"></i> Question 5: Reflection/Legacy</h4>
+                <label>Question (Interviewer):</label>
+                <textarea id="q5" placeholder="Ask about lessons learned or what they want people to remember" oninput="updateTimeEstimate(); countWords(this, 'q5text', 10, 25)"></textarea>
+                <div class="word-counter" id="q5text-counter"></div>
+                <label>Answer (Subject):</label>
+                <textarea id="a5" placeholder="Reflect on the meaning and legacy" oninput="updateTimeEstimate(); countWords(this, 'a5text', 40, 80)"></textarea>
+                <div class="word-counter" id="a5text-counter"></div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your Interview</h4>
+                    <ul>
+                        <li>Are questions specific (not generic)?</li>
+                        <li>Do answers tell a story with details?</li>
+                        <li>Did you answer in FIRST PERSON?</li>
+                        <li>Is the total 300-500 words? (Check word counters)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- NEWS REPORT FORMAT -->
+            <div id="content-news" class="form-section">
+                <h3><i class="fas fa-newspaper"></i> News Report Format</h3>
+                <p style="margin-bottom: 20px;">Report on events as if you're a journalist covering the story as it happens!</p>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('news-example')">
+                        <i class="fas fa-lightbulb"></i> See a Strong Example (Opening)
+                    </button>
+                    <div id="news-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example News Opening:</strong><br>
+                            "This is Sarah Johnson, reporting live from Boston Harbor. Behind me, the waters are still dark with tea - thousands of pounds of it, dumped by colonists just hours ago in what many are calling an act of rebellion. The scene here is tense. British officials are furious, and whispers of retaliation fill the streets. We're here to uncover who was behind this bold act of defiance."
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why this works:</strong> Uses present tense to create immediacy, includes specific location and sensory details, and sets up the story like a real news report.
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    1. News Opening - "On the scene" introduction
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Set the scene like a TV reporter"></i>
+                </label>
+                <textarea id="news-opening" placeholder="This is [your name], reporting live from..." oninput="updateTimeEstimate(); countWords(this, 'newsopen', 30, 60)"></textarea>
+                <div class="word-counter" id="newsopen-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Set the scene like you're reporting from the location<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 30-60 words</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Use present tense to make it feel immediate!</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('news-opening', 'This is [name], reporting live from ')"><i class="fas fa-broadcast-tower"></i> Reporting live...</button>
+                    <button class="starter-btn" onclick="insertStarter('news-opening', 'Good evening. I\'m standing here at ')"><i class="fas fa-map-marker-alt"></i> I'm standing here...</button>
+                    <button class="starter-btn" onclick="insertStarter('news-opening', 'Breaking news from ')"><i class="fas fa-newspaper"></i> Breaking news...</button>
+                    <button class="starter-btn" onclick="insertStarter('news-opening', 'We\'re on the scene where ')"><i class="fas fa-video"></i> On the scene...</button>
+                </div>
+                
+                <label>
+                    2. Background Information - What led to this event?
+                </label>
+                <textarea id="news-background" placeholder="Provide context about what happened before..." oninput="updateTimeEstimate(); countWords(this, 'newsbg', 40, 80)"></textarea>
+                <div class="word-counter" id="newsbg-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Explain the background and context<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 40-80 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('news-background', 'To understand what happened here, we need to go back to ')"><i class="fas fa-history"></i> Go back to...</button>
+                    <button class="starter-btn" onclick="insertStarter('news-background', 'Sources tell us that ')"><i class="fas fa-user-secret"></i> Sources tell us...</button>
+                    <button class="starter-btn" onclick="insertStarter('news-background', 'According to witnesses, ')"><i class="fas fa-users"></i> According to...</button>
+                </div>
+                
+                <label>
+                    3. Interview/Quote - Include words from the subject or witnesses
+                </label>
+                <textarea id="news-quote" placeholder="We spoke with... OR In their words..." oninput="updateTimeEstimate(); countWords(this, 'newsquote', 40, 80)"></textarea>
+                <div class="word-counter" id="newsquote-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Include a quote or interview segment<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 40-80 words</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Make the quote emotional and revealing!</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('news-quote', 'We spoke with [subject], who told us: ')"><i class="fas fa-microphone"></i> We spoke with...</button>
+                    <button class="starter-btn" onclick="insertStarter('news-quote', 'In an exclusive interview, ')"><i class="fas fa-star"></i> Exclusive interview...</button>
+                    <button class="starter-btn" onclick="insertStarter('news-quote', 'One witness described ')"><i class="fas fa-eye"></i> Witness described...</button>
+                </div>
+                
+                <label>
+                    4. The Turning Point - What was the crucial moment?
+                </label>
+                <textarea id="news-turning" placeholder="Describe the key action or decision..." oninput="updateTimeEstimate(); countWords(this, 'newsturn', 40, 80)"></textarea>
+                <div class="word-counter" id="newsturn-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Describe the main action or turning point<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 40-80 words</span>
+                </div>
+                
+                <label>
+                    5. The Aftermath - What happened next?
+                </label>
+                <textarea id="news-aftermath" placeholder="Report on consequences and reactions..." oninput="updateTimeEstimate(); countWords(this, 'newsafter', 40, 80)"></textarea>
+                <div class="word-counter" id="newsafter-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Explain the immediate consequences<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 40-80 words</span>
+                </div>
+                
+                <label>
+                    6. Closing Statement - Sign off like a news reporter
+                </label>
+                <textarea id="news-closing" placeholder="Reporting from [location], this is [name]..." oninput="updateTimeEstimate(); countWords(this, 'newsclose', 15, 35)"></textarea>
+                <div class="word-counter" id="newsclose-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Professional sign-off<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 15-35 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('news-closing', 'Reporting from [location], this is [name].')"><i class="fas fa-signature"></i> Reporting from...</button>
+                    <button class="starter-btn" onclick="insertStarter('news-closing', 'This is [name], signing off from ')"><i class="fas fa-sign-out-alt"></i> Signing off...</button>
+                    <button class="starter-btn" onclick="insertStarter('news-closing', 'We\'ll continue to follow this story as it develops.')"><i class="fas fa-forward"></i> Continue to follow...</button>
+                </div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your News Report</h4>
+                    <ul>
+                        <li>Did you use present tense to create immediacy?</li>
+                        <li>Did you include quotes or interviews?</li>
+                        <li>Does it sound like a real news report?</li>
+                        <li>Is it 205-405 words total? (Check word counters)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- DIARY ENTRIES FORMAT -->
+            <div id="content-diary" class="form-section">
+                <h3><i class="fas fa-pencil-alt"></i> Diary Entries Format (3 Entries)</h3>
+                <p style="margin-bottom: 20px;">Share three diary entries showing how things changed over time.</p>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('diary-example')">
+                        <i class="fas fa-lightbulb"></i> See a Strong Example (Entry 1)
+                    </button>
+                    <div id="diary-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example Diary Entry:</strong><br>
+                            <em>April 12, 1775</em><br>
+                            "Dear Diary, Today I heard that fighting has broken out in Lexington and Concord. My husband left with the militia three days ago, and I have heard nothing since. I am terrified, yet I know what must be done. If the men are fighting, then we women must keep everything else going. I spent the day making bandages and helping Mrs. Adams organize supplies. My hands are shaking as I write this, but my resolve is firm. Whatever comes, I will not sit idle while history is being made."
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why this works:</strong> Uses diary format with specific date, reveals emotions ("terrified," "hands shaking"), includes personal details, and shows the writer's mindset and determination. Feels authentic to the time period.
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    Narrator Introduction to Diary Entries
+                </label>
+                <textarea id="diary-intro" placeholder="e.g., These are the private diary entries of..." oninput="updateTimeEstimate(); countWords(this, 'diaryintro', 15, 35)"></textarea>
+                <div class="word-counter" id="diaryintro-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Set up the diary format<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 15-35 words</span>
+                </div>
+                
+                <div class="tip-box" style="margin: 20px 0;">
+                    <strong><i class="fas fa-lightbulb"></i> Diary Entry Tips:</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Start with "Dear Diary," or just begin writing</li>
+                        <li>Use first person (I, my, me)</li>
+                        <li>Include emotions and private thoughts</li>
+                        <li>Make each entry show a different point in time</li>
+                        <li>Show how feelings and situations change</li>
+                    </ul>
+                </div>
+                
+                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-book"></i> DIARY ENTRY 1: Before / Early</h4>
+                <label>Date of First Entry:</label>
+                <input type="text" id="diary1-date" placeholder="e.g., March 15, 1775 OR Summer 1776" oninput="updateTimeEstimate()">
+                
+                <label>First Diary Entry Content:</label>
+                <textarea id="diary1-content" placeholder="Dear Diary,..." oninput="updateTimeEstimate(); countWords(this, 'diary1', 60, 100)"></textarea>
+                <div class="word-counter" id="diary1-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Describe the situation at the beginning<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 60-100 words</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Include hopes, fears, and daily life details</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('diary1-content', 'Dear Diary, Today ')"><i class="fas fa-book"></i> Dear Diary...</button>
+                    <button class="starter-btn" onclick="insertStarter('diary1-content', 'I can hardly believe ')"><i class="fas fa-surprise"></i> Can hardly believe...</button>
+                    <button class="starter-btn" onclick="insertStarter('diary1-content', 'My heart is full of ')"><i class="fas fa-heart"></i> Heart is full...</button>
+                    <button class="starter-btn" onclick="insertStarter('diary1-content', 'I must record what happened today: ')"><i class="fas fa-pen"></i> Must record...</button>
+                </div>
+                
+                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-book"></i> DIARY ENTRY 2: The Challenge</h4>
+                <label>Date of Second Entry:</label>
+                <input type="text" id="diary2-date" placeholder="e.g., September 28, 1776" oninput="updateTimeEstimate()">
+                
+                <label>Second Diary Entry Content:</label>
+                <textarea id="diary2-content" placeholder="Dear Diary,..." oninput="updateTimeEstimate(); countWords(this, 'diary2', 60, 120)"></textarea>
+                <div class="word-counter" id="diary2-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Describe a crisis, challenge, or turning point<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 60-120 words</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Show how things have changed since Entry 1</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('diary2-content', 'Everything has changed. ')"><i class="fas fa-exchange-alt"></i> Everything changed...</button>
+                    <button class="starter-btn" onclick="insertStarter('diary2-content', 'I never thought I would ')"><i class="fas fa-thinking"></i> Never thought...</button>
+                    <button class="starter-btn" onclick="insertStarter('diary2-content', 'Today was the hardest day: ')"><i class="fas fa-frown"></i> Hardest day...</button>
+                </div>
+                
+                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-book"></i> DIARY ENTRY 3: The Resolution</h4>
+                <label>Date of Third Entry:</label>
+                <input type="text" id="diary3-date" placeholder="e.g., January 3, 1778" oninput="updateTimeEstimate()">
+                
+                <label>Third Diary Entry Content:</label>
+                <textarea id="diary3-content" placeholder="Dear Diary,..." oninput="updateTimeEstimate(); countWords(this, 'diary3', 60, 100)"></textarea>
+                <div class="word-counter" id="diary3-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Reflect on what happened and what it means<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 60-100 words</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Show growth or change in the writer's perspective</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('diary3-content', 'Looking back, ')"><i class="fas fa-eye"></i> Looking back...</button>
+                    <button class="starter-btn" onclick="insertStarter('diary3-content', 'So much has happened since ')"><i class="fas fa-calendar"></i> So much happened...</button>
+                    <button class="starter-btn" onclick="insertStarter('diary3-content', 'I am not the same person who ')"><i class="fas fa-user"></i> Not the same...</button>
+                </div>
+                
+                <label>
+                    Narrator Closing - Wrap up the diary entries
+                </label>
+                <textarea id="diary-closing" placeholder="e.g., These entries reveal..." oninput="updateTimeEstimate(); countWords(this, 'diaryclose', 20, 40)"></textarea>
+                <div class="word-counter" id="diaryclose-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Brief closing about what the diaries reveal<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-40 words</span>
+                </div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your Diary Entries</h4>
+                    <ul>
+                        <li>Did you include specific dates for each entry?</li>
+                        <li>Do the entries show change over time?</li>
+                        <li>Did you include emotions and private thoughts?</li>
+                        <li>Is the total 215-395 words? (Check word counters)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CONCLUSION SECTION -->
+        <div class="section section-conclusion">
+            <div class="step-indicator">
+                <i class="fas fa-flag-checkered"></i> STEP 3 of 3: Choose Your Conclusion Style
+            </div>
+            
+            <div class="info-box">
+                <strong><i class="fas fa-bullseye"></i> Goal:</strong> End with impact! Your conclusion should leave listeners thinking about why this story matters (45-60 seconds).
+            </div>
+            
+            <div class="rubric-box">
+                <h4><i class="fas fa-star"></i> What Makes an Excellent Conclusion?</h4>
+                <div class="rubric-items">
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Connects to bigger ideas</strong>
+                        Shows why this matters beyond one person
+                    </div>
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Leaves listeners thinking</strong>
+                        Creates reflection or new understanding
+                    </div>
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Memorable ending</strong>
+                        Final thought that sticks with them
+                    </div>
+                    <div class="rubric-item">
+                        <strong><i class="fas fa-check"></i> Appropriate length</strong>
+                        110-150 words (45-60 seconds)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="choice-group">
+                <label class="choice-option">
+                    <input type="radio" name="conclusion" value="significance" onchange="showConclusionForm('significance'); updateTimeEstimate()">
+                    <strong><i class="fas fa-star"></i> Historical Significance</strong> - Explain why this person/event matters to history
+                </label>
+                <label class="choice-option">
+                    <input type="radio" name="conclusion" value="today" onchange="showConclusionForm('today'); updateTimeEstimate()">
+                    <strong><i class="fas fa-calendar-check"></i> Connection to Today</strong> - Link the past to the present
+                </label>
+                <label class="choice-option">
+                    <input type="radio" name="conclusion" value="challenge" onchange="showConclusionForm('challenge'); updateTimeEstimate()">
+                    <strong><i class="fas fa-question-circle"></i> Challenge the Narrative</strong> - Question what's missing from standard history
+                </label>
+                <label class="choice-option">
+                    <input type="radio" name="conclusion" value="legacy" onchange="showConclusionForm('legacy'); updateTimeEstimate()">
+                    <strong><i class="fas fa-monument"></i> Legacy & Lessons</strong> - Reflect on lasting impact and what we can learn
+                </label>
+            </div>
+            
+            <!-- HISTORICAL SIGNIFICANCE -->
+            <div id="conclusion-significance" class="form-section">
+                <h3><i class="fas fa-star"></i> Historical Significance Conclusion</h3>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('significance-example')">
+                        <i class="fas fa-lightbulb"></i> See a Strong Example
+                    </button>
+                    <div id="significance-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example for Crispus Attucks:</strong><br>
+                            "So why does Crispus Attucks matter? He was the first to fall, but his story reveals something bigger: the Revolution wasn't just fought by wealthy white men in powdered wigs. It was fought by enslaved people, free Black Americans, immigrants, and working-class colonists. Attucks's presence at the Boston Massacre challenges us to remember ALL the people who risked everything for freedom - even those who weren't free themselves. His sacrifice reminds us that the Revolution was messy, complicated, and far more diverse than most textbooks admit. Crispus Attucks didn't just die that night - he showed us who the Revolution was really for: everyone willing to fight for it."
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why this works:</strong> Starts with clear question, explains the bigger picture, challenges common narratives, and ends with powerful statement about meaning.
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    1. What Happened? - Summarize the key takeaway
+                    <i class="fas fa-info-circle info-icon" data-tooltip="What's the main point?"></i>
+                </label>
+                <textarea id="sig-what" placeholder="So what happened with [subject]?" oninput="updateTimeEstimate(); countWords(this, 'sigwhat', 20, 40)"></textarea>
+                <div class="word-counter" id="sigwhat-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Briefly summarize what we learned<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-40 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('sig-what', 'So what happened with [subject]? ')"><i class="fas fa-question"></i> What happened...</button>
+                    <button class="starter-btn" onclick="insertStarter('sig-what', 'Let\'s recap: ')"><i class="fas fa-list"></i> Let's recap...</button>
+                    <button class="starter-btn" onclick="insertStarter('sig-what', 'Here\'s what we learned: ')"><i class="fas fa-graduation-cap"></i> What we learned...</button>
+                </div>
+                
+                <label>
+                    2. What Does This Reveal? - Explain the bigger picture
+                </label>
+                <textarea id="sig-reveals" placeholder="But this story reveals something bigger..." oninput="updateTimeEstimate(); countWords(this, 'sigrev', 30, 50)"></textarea>
+                <div class="word-counter" id="sigrev-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Connect to larger historical themes<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 30-50 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('sig-reveals', 'But this story reveals something bigger: ')"><i class="fas fa-eye"></i> Reveals something...</button>
+                    <button class="starter-btn" onclick="insertStarter('sig-reveals', 'What makes this significant is ')"><i class="fas fa-star"></i> What makes this...</button>
+                    <button class="starter-btn" onclick="insertStarter('sig-reveals', 'This challenges our understanding of ')"><i class="fas fa-brain"></i> Challenges understanding...</button>
+                </div>
+                
+                <label>
+                    3. Why Should We Care? - Make it matter
+                </label>
+                <textarea id="sig-why" placeholder="Why does this matter?" oninput="updateTimeEstimate(); countWords(this, 'sigwhy', 30, 50)"></textarea>
+                <div class="word-counter" id="sigwhy-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Explain why this is important to understand<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 30-50 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('sig-why', 'This matters because ')"><i class="fas fa-exclamation-circle"></i> This matters...</button>
+                    <button class="starter-btn" onclick="insertStarter('sig-why', 'Without understanding this, we miss ')"><i class="fas fa-eye-slash"></i> Without this...</button>
+                    <button class="starter-btn" onclick="insertStarter('sig-why', 'Their story reminds us that ')"><i class="fas fa-lightbulb"></i> Story reminds us...</button>
+                </div>
+                
+                <label>
+                    4. Final Thought - End with impact
+                </label>
+                <textarea id="sig-final" placeholder="Powerful final statement..." oninput="updateTimeEstimate(); countWords(this, 'sigfinal', 20, 35)"></textarea>
+                <div class="word-counter" id="sigfinal-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> A memorable closing statement<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-35 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('sig-final', '[Subject] didn\'t just [action] - they ')"><i class="fas fa-bolt"></i> Didn't just...</button>
+                    <button class="starter-btn" onclick="insertStarter('sig-final', 'And that\'s a legacy worth ')"><i class="fas fa-heart"></i> Legacy worth...</button>
+                    <button class="starter-btn" onclick="insertStarter('sig-final', 'That\'s the power of ')"><i class="fas fa-fire"></i> The power of...</button>
+                </div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your Conclusion</h4>
+                    <ul>
+                        <li>Did you explain WHY this matters to history?</li>
+                        <li>Did you connect to bigger themes?</li>
+                        <li>Will listeners remember your final thought?</li>
+                        <li>Is it 100-175 words? (Check word counters)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- CONNECTION TO TODAY -->
+            <div id="conclusion-today" class="form-section">
+                <h3><i class="fas fa-calendar-check"></i> Connection to Today Conclusion</h3>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('today-example')">
+                        <i class="fas fa-lightbulb"></i> See a Strong Example
+                    </button>
+                    <div id="today-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example for Women Soldiers:</strong><br>
+                            "The lesson here is clear: people will fight for what they believe in, even when the system tells them they don't belong. Just like those women who disguised themselves to fight in 1776, we see people today fighting to be included in spaces where they're told they don't fit. Whether it's women in combat roles, immigrants fighting for their new country, or anyone standing up to be counted - the Revolutionary War reminds us that courage comes in all forms. These hidden soldiers teach us that when we exclude people from the story, we lose part of the truth. And that's as relevant today as it was 250 years ago."
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why this works:</strong> Draws clear parallels to present day without being preachy. Shows how past connects to current issues. Makes history feel relevant and personal.
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    1. The Lesson - What should we learn from this story?
+                </label>
+                <textarea id="today-lesson" placeholder="The lesson here is..." oninput="updateTimeEstimate(); countWords(this, 'todaylesson', 20, 40)"></textarea>
+                <div class="word-counter" id="todaylesson-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> State the key lesson or principle<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-40 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('today-lesson', 'The lesson here is clear: ')"><i class="fas fa-graduation-cap"></i> The lesson...</button>
+                    <button class="starter-btn" onclick="insertStarter('today-lesson', 'What can we learn from ')"><i class="fas fa-brain"></i> What can we...</button>
+                    <button class="starter-btn" onclick="insertStarter('today-lesson', 'This story teaches us that ')"><i class="fas fa-chalkboard-teacher"></i> This teaches...</button>
+                </div>
+                
+                <label>
+                    2. Modern Parallel - How do we see this today?
+                </label>
+                <textarea id="today-parallel" placeholder="Just like [historical example], today we see..." oninput="updateTimeEstimate(); countWords(this, 'todaypar', 30, 60)"></textarea>
+                <div class="word-counter" id="todaypar-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Draw a specific connection to current events or issues<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 30-60 words</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Be specific - name real current examples!</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('today-parallel', 'Just like [then], today we see ')"><i class="fas fa-balance-scale"></i> Just like then...</button>
+                    <button class="starter-btn" onclick="insertStarter('today-parallel', 'This same struggle continues in ')"><i class="fas fa-forward"></i> Same struggle...</button>
+                    <button class="starter-btn" onclick="insertStarter('today-parallel', 'Sound familiar? That\'s because ')"><i class="fas fa-lightbulb"></i> Sound familiar...</button>
+                </div>
+                
+                <label>
+                    3. Specific Example - Give a concrete present-day example
+                </label>
+                <textarea id="today-specific" placeholder="For example, we can see this when..." oninput="updateTimeEstimate(); countWords(this, 'todayspec', 25, 45)"></textarea>
+                <div class="word-counter" id="todayspec-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Provide a real-world example people can relate to<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 25-45 words</span>
+                </div>
+                
+                <label>
+                    4. Final Connection - Why this matters now
+                </label>
+                <textarea id="today-final" placeholder="That's why this story still matters..." oninput="updateTimeEstimate(); countWords(this, 'todayfinal', 20, 35)"></textarea>
+                <div class="word-counter" id="todayfinal-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Explain why understanding this history helps us today<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-35 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('today-final', 'That\'s why this story still matters: ')"><i class="fas fa-heart"></i> Still matters...</button>
+                    <button class="starter-btn" onclick="insertStarter('today-final', 'And that\'s as relevant today as ')"><i class="fas fa-calendar"></i> As relevant...</button>
+                    <button class="starter-btn" onclick="insertStarter('today-final', 'Understanding this history helps us ')"><i class="fas fa-hands-helping"></i> Helps us...</button>
+                </div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your Conclusion</h4>
+                    <ul>
+                        <li>Did you clearly connect past to present?</li>
+                        <li>Did you give specific modern examples?</li>
+                        <li>Is your conclusion relevant to students' lives?</li>
+                        <li>Is it 95-180 words? (Check word counters)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- CHALLENGE THE NARRATIVE -->
+            <div id="conclusion-challenge" class="form-section">
+                <h3><i class="fas fa-question-circle"></i> Challenge the Narrative Conclusion</h3>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('challenge-example')">
+                        <i class="fas fa-lightbulb"></i> See a Strong Example
+                    </button>
+                    <div id="challenge-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example for African Americans in the Revolution:</strong><br>
+                            "We all learn about Washington, Jefferson, and Paul Revere. But what about the thousands of Black Americans who fought on both sides of this war? Their names don't appear in most textbooks. Their stories were deliberately erased because they complicate the simple narrative of white Founding Fathers creating freedom. Why were these stories hidden? Because acknowledging that enslaved people fought for American independence while being denied their own freedom exposes the hypocrisy at our nation's founding. When we leave these voices out of history, we lose the full truth. We lose the complexity. We lose the real people who shaped this country. And that matters because you can't understand America without understanding ALL Americans who built it."
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why this works:</strong> Questions what's missing, explains WHY it's missing, shows consequences of incomplete history, and makes it urgent and relevant.
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    1. The Standard Story - What do most people learn?
+                </label>
+                <textarea id="challenge-standard" placeholder="We all learn about..." oninput="updateTimeEstimate(); countWords(this, 'chalstand', 20, 40)"></textarea>
+                <div class="word-counter" id="chalstand-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Describe the typical/simplified version of history people learn<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-40 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('challenge-standard', 'We all learn about ')"><i class="fas fa-book"></i> We all learn...</button>
+                    <button class="starter-btn" onclick="insertStarter('challenge-standard', 'The textbooks tell us that ')"><i class="fas fa-book-reader"></i> Textbooks tell...</button>
+                    <button class="starter-btn" onclick="insertStarter('challenge-standard', 'Most people think ')"><i class="fas fa-users"></i> Most people...</button>
+                </div>
+                
+                <label>
+                    2. What's Missing? - Point out the gap
+                </label>
+                <textarea id="challenge-missing" placeholder="But what about...?" oninput="updateTimeEstimate(); countWords(this, 'chalmiss', 25, 45)"></textarea>
+                <div class="word-counter" id="chalmiss-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Identify whose stories are left out<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 25-45 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('challenge-missing', 'But what about ')"><i class="fas fa-question"></i> But what about...</button>
+                    <button class="starter-btn" onclick="insertStarter('challenge-missing', 'What they don\'t tell you is ')"><i class="fas fa-eye-slash"></i> Don't tell you...</button>
+                    <button class="starter-btn" onclick="insertStarter('challenge-missing', 'The history books leave out ')"><i class="fas fa-book"></i> Books leave out...</button>
+                </div>
+                
+                <label>
+                    3. Why Was This Hidden? - Explain the reason
+                </label>
+                <textarea id="challenge-why" placeholder="Why were these stories hidden?" oninput="updateTimeEstimate(); countWords(this, 'chalwhy', 30, 55)"></textarea>
+                <div class="word-counter" id="chalwhy-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Explain why certain stories were excluded from standard history<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 30-55 words</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Think about who writes history and what they want to emphasize</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('challenge-why', 'These stories were hidden because ')"><i class="fas fa-user-secret"></i> Stories hidden...</button>
+                    <button class="starter-btn" onclick="insertStarter('challenge-why', 'Why? Because acknowledging ')"><i class="fas fa-exclamation"></i> Because acknowledging...</button>
+                    <button class="starter-btn" onclick="insertStarter('challenge-why', 'The reason is uncomfortable: ')"><i class="fas fa-uncomfortable"></i> Reason uncomfortable...</button>
+                </div>
+                
+                <label>
+                    4. What Do We Lose? - Show the consequences
+                </label>
+                <textarea id="challenge-lose" placeholder="When we leave these voices out..." oninput="updateTimeEstimate(); countWords(this, 'challose', 25, 45)"></textarea>
+                <div class="word-counter" id="challose-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Explain what's lost when we don't tell the full story<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 25-45 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('challenge-lose', 'When we leave these voices out, ')"><i class="fas fa-volume-mute"></i> Leave out voices...</button>
+                    <button class="starter-btn" onclick="insertStarter('challenge-lose', 'Without these stories, we lose ')"><i class="fas fa-times-circle"></i> We lose...</button>
+                    <button class="starter-btn" onclick="insertStarter('challenge-lose', 'This matters because ')"><i class="fas fa-exclamation-circle"></i> This matters...</button>
+                </div>
+                
+                <label>
+                    5. Call to Action - Challenge listeners
+                </label>
+                <textarea id="challenge-final" placeholder="So ask yourself..." oninput="updateTimeEstimate(); countWords(this, 'chalfinal', 20, 35)"></textarea>
+                <div class="word-counter" id="chalfinal-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> End with a challenge or question for listeners<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 20-35 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('challenge-final', 'So ask yourself: ')"><i class="fas fa-question"></i> Ask yourself...</button>
+                    <button class="starter-btn" onclick="insertStarter('challenge-final', 'The next time you learn history, ')"><i class="fas fa-forward"></i> Next time...</button>
+                    <button class="starter-btn" onclick="insertStarter('challenge-final', 'We owe it to ')"><i class="fas fa-hands-helping"></i> We owe it...</button>
+                </div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your Conclusion</h4>
+                    <ul>
+                        <li>Did you clearly identify what's missing from standard history?</li>
+                        <li>Did you explain WHY certain stories were hidden?</li>
+                        <li>Did you challenge listeners to think differently?</li>
+                        <li>Is it 120-220 words? (Check word counters)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- LEGACY & LESSONS -->
+            <div id="conclusion-legacy" class="form-section">
+                <h3><i class="fas fa-monument"></i> Legacy & Lessons Conclusion</h3>
+                
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('legacy-example')">
+                        <i class="fas fa-lightbulb"></i> See a Strong Example
+                    </button>
+                    <div id="legacy-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Example for Phillis Wheatley:</strong><br>
+                            "Phillis Wheatley's impact went far beyond her poetry. She proved that enslaved people had the same intellectual capacity as anyone else - at a time when many denied this. Her legacy lived on in the abolition movement, as activists used her work as evidence that slavery was morally wrong. The lesson? Your voice matters, even when the world tries to silence you. No matter who you are or where you come from, you have the power to challenge the status quo with your words and actions. Phillis Wheatley honored the dreams of the thousands of enslaved people who never got the chance she did. And we honor her by continuing to tell the stories that others want to keep hidden."
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle"></i> <strong>Why this works:</strong> Describes concrete impact, extracts universal lesson, makes it personal, and ends with how we honor their legacy today.
+                        </div>
+                    </div>
+                </div>
+                
+                <label>
+                    1. The Impact - What did they accomplish or change?
+                </label>
+                <textarea id="legacy-impact" placeholder="[Subject]'s impact was..." oninput="updateTimeEstimate(); countWords(this, 'legimp', 30, 50)"></textarea>
+                <div class="word-counter" id="legimp-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Describe the lasting effects of their actions<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 30-50 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('legacy-impact', '[Subject]\'s impact went far beyond ')"><i class="fas fa-arrow-right"></i> Impact went beyond...</button>
+                    <button class="starter-btn" onclick="insertStarter('legacy-impact', 'What [subject] accomplished was ')"><i class="fas fa-trophy"></i> What they accomplished...</button>
+                    <button class="starter-btn" onclick="insertStarter('legacy-impact', 'Their legacy lived on in ')"><i class="fas fa-monument"></i> Legacy lived on...</button>
+                </div>
+                
+                <label>
+                    2. The Lesson - What can WE learn from this?
+                </label>
+                <textarea id="legacy-lesson" placeholder="The lesson? ..." oninput="updateTimeEstimate(); countWords(this, 'legless', 25, 45)"></textarea>
+                <div class="word-counter" id="legless-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Extract a universal lesson for listeners<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 25-45 words</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Make it applicable to anyone, not just historians!</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('legacy-lesson', 'The lesson? ')"><i class="fas fa-graduation-cap"></i> The lesson...</button>
+                    <button class="starter-btn" onclick="insertStarter('legacy-lesson', 'What can we learn? ')"><i class="fas fa-brain"></i> What can we...</button>
+                    <button class="starter-btn" onclick="insertStarter('legacy-lesson', 'This teaches us that ')"><i class="fas fa-chalkboard-teacher"></i> This teaches...</button>
+                </div>
+                
+                <label>
+                    3. Universal Message - How does this apply to everyone?
+                </label>
+                <textarea id="legacy-universal" placeholder="No matter who you are..." oninput="updateTimeEstimate(); countWords(this, 'leguniv', 25, 45)"></textarea>
+                <div class="word-counter" id="leguniv-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Make the message personal and universal<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 25-45 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('legacy-universal', 'No matter who you are or where you come from, ')"><i class="fas fa-globe"></i> No matter who...</button>
+                    <button class="starter-btn" onclick="insertStarter('legacy-universal', 'Each of us has the power to ')"><i class="fas fa-fist-raised"></i> Power to...</button>
+                    <button class="starter-btn" onclick="insertStarter('legacy-universal', 'You don\'t have to be ')"><i class="fas fa-user"></i> Don't have to...</button>
+                </div>
+                
+                <label>
+                    4. How We Honor Them - What should we do now?
+                </label>
+                <textarea id="legacy-honor" placeholder="We honor [subject] by..." oninput="updateTimeEstimate(); countWords(this, 'leghon', 25, 45)"></textarea>
+                <div class="word-counter" id="leghon-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Explain how we carry forward their legacy<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 25-45 words</span>
+                </div>
+                
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('legacy-honor', 'We honor [subject] by ')"><i class="fas fa-hands-helping"></i> We honor them...</button>
+                    <button class="starter-btn" onclick="insertStarter('legacy-honor', 'The best way to remember ')"><i class="fas fa-heart"></i> Best way to...</button>
+                    <button class="starter-btn" onclick="insertStarter('legacy-honor', 'Their spirit lives on when we ')"><i class="fas fa-fire"></i> Spirit lives on...</button>
+                </div>
+                
+                <div class="check-reminder">
+                    <h4><i class="fas fa-tasks"></i> Check Your Conclusion</h4>
+                    <ul>
+                        <li>Did you describe their lasting impact?</li>
+                        <li>Did you extract a universal lesson?</li>
+                        <li>Is your message personal and applicable?</li>
+                        <li>Is it 105-185 words? (Check word counters)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- GENERATE SCRIPT BUTTON -->
+        <div style="text-align: center; margin: 40px 0;">
+            <button class="btn" onclick="generateScript()">
+                <i class="fas fa-magic"></i> Generate My Script!
+            </button>
+        </div>
+        
+        <!-- FINAL SCRIPT OUTPUT -->
+        <div id="finalScript">
+            <div class="section">
+                <h2 style="color: #667eea;"><i class="fas fa-file-alt"></i> Your Complete Script</h2>
+                <div class="success-box">
+                    <strong><i class="fas fa-check-circle"></i> Success!</strong> Your script is ready! Read it through, then copy it to Google Docs for recording.
+                </div>
+                <pre id="scriptOutput"></pre>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn btn-secondary" onclick="copyScript()">
+                        <i class="fas fa-copy"></i> Copy to Clipboard
+                    </button>
+                    <button class="btn" onclick="startOver()">
+                        <i class="fas fa-redo"></i> Start Over
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Toggle exemplar display
+        function toggleExemplar(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('show');
+        }
+        
+        // Insert starter text
+        function insertStarter(fieldId, text) {
+            const field = document.getElementById(fieldId);
+            if (field.value === '') {
+                field.value = text;
+            } else {
+                field.value += ' ' + text;
+            }
+            field.focus();
+            updateTimeEstimate();
+            // Trigger word count update
+            const match = fieldId.match(/[a-zA-Z0-9-]+/);
+            if (match) {
+                const baseId = match[0];
+                const counter = document.getElementById(baseId + '-counter');
+                if (counter) {
+                    const words = field.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+                    countWords(field, baseId, 0, 999);
+                }
+            }
+        }
+        
+        // Word counter function
+        function countWords(element, id, min, max) {
+            const text = element.value.trim();
+            const words = text === '' ? 0 : text.split(/\s+/).filter(w => w.length > 0).length;
+            const counter = document.getElementById(id + '-counter');
+            if (counter) {
+                counter.textContent = words + ' words';
+                if (words < min) {
+                    counter.className = 'word-counter warning';
+                    counter.textContent += ' (need ' + (min - words) + ' more)';
+                } else if (words > max) {
+                    counter.className = 'word-counter warning';
+                    counter.textContent += ' (too many - reduce by ' + (words - max) + ')';
+                } else {
+                    counter.className = 'word-counter good';
+                    counter.textContent += ' ✓';
+                }
+            }
+        }
+        
+        // Show intro form
+        function showIntroForm(type) {
+            const forms = ['dramatic', 'fact', 'question', 'sound'];
+            forms.forEach(f => {
+                document.getElementById('intro-' + f).classList.remove('active');
+            });
+            document.getElementById('intro-' + type).classList.add('active');
+            document.getElementById('step1-indicator').classList.add('completed');
+        }
+        
+        // Show content form
+        function showContentForm(type) {
+            const forms = ['narrative', 'interview', 'news', 'diary'];
+            forms.forEach(f => {
+                document.getElementById('content-' + f).classList.remove('active');
+            });
+            document.getElementById('content-' + type).classList.add('active');
+            document.getElementById('step2-indicator').classList.add('completed');
+        }
+        
+        // Show conclusion form
+        function showConclusionForm(type) {
+            const forms = ['significance', 'today', 'challenge', 'legacy'];
+            forms.forEach(f => {
+                document.getElementById('conclusion-' + f).classList.remove('active');
+            });
+            document.getElementById('conclusion-' + type).classList.add('active');
+            document.getElementById('step3-indicator').classList.add('completed');
+        }
+        
+        // Update group options
+        function updateGroupOptions() {
+            const size = document.getElementById('groupSize').value;
+            const groupForm = document.getElementById('intro-group');
+            const badge = document.getElementById('groupBadge');
+            const tip = document.getElementById('groupTip');
+            
+            if (size === '1') {
+                groupForm.style.display = 'none';
+            } else {
+                groupForm.style.display = 'block';
+                badge.textContent = size + ' people';
+                if (size === '2') {
+                    tip.innerHTML = '<strong>Pair Tips:</strong> One person can be the host/narrator, the other can voice the historical figure. Practice together!';
+                } else {
+                    tip.innerHTML = '<strong>Group Tips:</strong> Divide roles: host, narrator, historical figure. Everyone should have speaking parts!';
+                }
+            }
+            updateTimeEstimate();
+        }
+        
+        // Update time estimate
+        function updateTimeEstimate() {
+            // Count all words in the script
+            let totalWords = 0;
+            let introWords = 0;
+            let contentWords = 0;
+            let conclusionWords = 0;
+            
+            // Basic info words
+            totalWords += countFieldWords('podcastName');
+            totalWords += countFieldWords('subject');
+            
+            // Intro words
+            const introType = document.querySelector('input[name="intro"]:checked')?.value;
+            if (introType === 'dramatic') {
+                introWords += countFieldWords('dramatic-hook');
+                introWords += countFieldWords('dramatic-subject');
+                introWords += countFieldWords('dramatic-stakes');
+            } else if (introType === 'fact') {
+                introWords += countFieldWords('fact-statement');
+                introWords += countFieldWords('fact-significance');
+                introWords += countFieldWords('fact-subject');
+            } else if (introType === 'question') {
+                introWords += countFieldWords('question-hook');
+                introWords += countFieldWords('question-buildup');
+                introWords += countFieldWords('question-answer');
+            } else if (introType === 'sound') {
+                introWords += countFieldWords('sound-effects');
+                introWords += countFieldWords('sound-setting');
+                introWords += countFieldWords('sound-subject');
+                introWords += countFieldWords('sound-conflict');
+            }
+            
+            // Group intro if applicable
+            const size = document.getElementById('groupSize').value;
+            if (size !== '1') {
+                introWords += countFieldWords('group-intro');
+                introWords += countFieldWords('group-welcome');
+            }
+            
+            // Content words
+            const contentType = document.querySelector('input[name="content"]:checked')?.value;
+            if (contentType === 'narrative') {
+                contentWords += countFieldWords('narrative-intro');
+                contentWords += countFieldWords('narrative-scene1');
+                contentWords += countFieldWords('narrative-trans1');
+                contentWords += countFieldWords('narrative-scene2');
+                contentWords += countFieldWords('narrative-trans2');
+                contentWords += countFieldWords('narrative-scene3');
+            } else if (contentType === 'interview') {
+                contentWords += countFieldWords('interview-intro');
+                for (let i = 1; i <= 5; i++) {
+                    contentWords += countFieldWords('q' + i);
+                    contentWords += countFieldWords('a' + i);
+                }
+            } else if (contentType === 'news') {
+                contentWords += countFieldWords('news-opening');
+                contentWords += countFieldWords('news-background');
+                contentWords += countFieldWords('news-quote');
+                contentWords += countFieldWords('news-turning');
+                contentWords += countFieldWords('news-aftermath');
+                contentWords += countFieldWords('news-closing');
+            } else if (contentType === 'diary') {
+                contentWords += countFieldWords('diary-intro');
+                contentWords += countFieldWords('diary1-content');
+                contentWords += countFieldWords('diary2-content');
+                contentWords += countFieldWords('diary3-content');
+                contentWords += countFieldWords('diary-closing');
+            }
+            
+            // Conclusion words
+            const conclusionType = document.querySelector('input[name="conclusion"]:checked')?.value;
+            if (conclusionType === 'significance') {
+                conclusionWords += countFieldWords('sig-what');
+                conclusionWords += countFieldWords('sig-reveals');
+                conclusionWords += countFieldWords('sig-why');
+                conclusionWords += countFieldWords('sig-final');
+            } else if (conclusionType === 'today') {
+                conclusionWords += countFieldWords('today-lesson');
+                conclusionWords += countFieldWords('today-parallel');
+                conclusionWords += countFieldWords('today-specific');
+                conclusionWords += countFieldWords('today-final');
+            } else if (conclusionType === 'challenge') {
+                conclusionWords += countFieldWords('challenge-standard');
+                conclusionWords += countFieldWords('challenge-missing');
+                conclusionWords += countFieldWords('challenge-why');
+                conclusionWords += countFieldWords('challenge-lose');
+                conclusionWords += countFieldWords('challenge-final');
+            } else if (conclusionType === 'legacy') {
+                conclusionWords += countFieldWords('legacy-impact');
+                conclusionWords += countFieldWords('legacy-lesson');
+                conclusionWords += countFieldWords('legacy-universal');
+                conclusionWords += countFieldWords('legacy-honor');
+            }
+            
+            totalWords = introWords + contentWords + conclusionWords;
+            
+            // Convert to time (150 words per minute)
+            const totalMinutes = Math.floor(totalWords / 150);
+            const totalSeconds = Math.round((totalWords % 150) / 150 * 60);
+            const introMinutes = Math.floor(introWords / 150);
+            const introSeconds = Math.round((introWords % 150) / 150 * 60);
+            const contentMinutes = Math.floor(contentWords / 150);
+            const contentSeconds = Math.round((contentWords % 150) / 150 * 60);
+            const conclusionMinutes = Math.floor(conclusionWords / 150);
+            const conclusionSeconds = Math.round((conclusionWords % 150) / 150 * 60);
+            
+            // Update display
+            if (totalWords > 0) {
+                document.getElementById('timeEstimator').style.display = 'block';
+                document.getElementById('timeDisplay').textContent = totalMinutes + ':' + String(totalSeconds).padStart(2, '0');
+                document.getElementById('introTime').textContent = introMinutes + ':' + String(introSeconds).padStart(2, '0');
+                document.getElementById('contentTime').textContent = contentMinutes + ':' + String(contentSeconds).padStart(2, '0');
+                document.getElementById('conclusionTime').textContent = conclusionMinutes + ':' + String(conclusionSeconds).padStart(2, '0');
+            }
+        }
+        
+        function countFieldWords(fieldId) {
+            const field = document.getElementById(fieldId);
+            if (!field || !field.value) return 0;
+            const text = field.value.trim();
+            if (text === '') return 0;
+            return text.split(/\s+/).filter(w => w.length > 0).length;
+        }
+        
+        // Generate script
+        function generateScript() {
+            const studentName = document.getElementById('studentName').value;
+            const podcastName = document.getElementById('podcastName').value;
+            const subject = document.getElementById('subject').value;
+            
+            if (!studentName || !podcastName || !subject) {
+                alert('Please fill in your name, podcast name, and subject!');
+                return;
+            }
+            
+            let script = '===============================================\n';
+            script += 'PODCAST SCRIPT: ' + podcastName + '\n';
+            script += 'Created by: ' + studentName + '\n';
+            script += 'Subject: ' + subject + '\n';
+            script += '===============================================\n\n';
+            
+            // GROUP INTRODUCTION (if applicable)
+            const size = document.getElementById('groupSize').value;
+            if (size !== '1') {
+                script += 'GROUP INTRODUCTION\n';
+                script += '===============================================\n\n';
+                const groupIntro = document.getElementById('group-intro').value;
+                const groupWelcome = document.getElementById('group-welcome').value;
+                if (groupIntro) script += groupIntro + '\n\n';
+                if (groupWelcome) script += groupWelcome + '\n\n';
+            }
+            
+            // INTRODUCTION
+            const introType = document.querySelector('input[name="intro"]:checked')?.value;
+            if (!introType) {
+                alert('Please choose an introduction style!');
+                return;
+            }
+            
+            script += '\nINTRODUCTION\n';
+            script += '===============================================\n\n';
+            
+            if (introType === 'dramatic') {
+                script += 'HOST:\n' + document.getElementById('dramatic-hook').value + '\n\n';
+                script += document.getElementById('dramatic-subject').value + '\n\n';
+                script += document.getElementById('dramatic-stakes').value + '\n\n';
+            } else if (introType === 'fact') {
+                script += 'HOST:\n' + document.getElementById('fact-statement').value + '\n\n';
+                script += document.getElementById('fact-significance').value + '\n\n';
+                script += document.getElementById('fact-subject').value + '\n\n';
+            } else if (introType === 'question') {
+                script += 'HOST:\n' + document.getElementById('question-hook').value + '\n\n';
+                script += document.getElementById('question-buildup').value + '\n\n';
+                script += document.getElementById('question-answer').value + '\n\n';
+            } else if (introType === 'sound') {
+                const effects = document.getElementById('sound-effects').value;
+                const setting = document.getElementById('sound-setting').value;
+                const soundSubject = document.getElementById('sound-subject').value;
+                const conflict = document.getElementById('sound-conflict').value;
+                if (effects) script += '[SOUND EFFECTS: ' + effects + ']\n\n';
+                script += 'NARRATOR:\n' + setting + '\n\n';
+                script += soundSubject + '\n\n';
+                script += conflict + '\n\n';
+            }
+            
+            // CONTENT
+            const contentType = document.querySelector('input[name="content"]:checked')?.value;
+            if (!contentType) {
+                alert('Please choose a content format!');
+                return;
+            }
+            
+            script += '\nCONTENT SECTION\n';
+            script += '===============================================\n\n';
+            
+            if (contentType === 'narrative') {
+                script += 'NARRATOR:\n' + document.getElementById('narrative-intro').value + '\n\n';
+                script += '--- SCENE 1: BEFORE/EARLY IN THE WAR ---\n\n';
+                script += 'SUBJECT (as ' + subject + '):\n' + document.getElementById('narrative-scene1').value + '\n\n';
+                script += 'NARRATOR:\n' + document.getElementById('narrative-trans1').value + '\n\n';
+                script += '--- SCENE 2: THE TURNING POINT ---\n\n';
+                script += 'SUBJECT (as ' + subject + '):\n' + document.getElementById('narrative-scene2').value + '\n\n';
+                script += 'NARRATOR:\n' + document.getElementById('narrative-trans2').value + '\n\n';
+                script += '--- SCENE 3: THE IMPACT/AFTERMATH ---\n\n';
+                script += 'SUBJECT (as ' + subject + '):\n' + document.getElementById('narrative-scene3').value + '\n\n';
+            } else if (contentType === 'interview') {
+                script += 'NARRATOR:\n' + document.getElementById('interview-intro').value + '\n\n';
+                for (let i = 1; i <= 5; i++) {
+                    const q = document.getElementById('q' + i).value;
+                    const a = document.getElementById('a' + i).value;
+                    if (q && a) {
+                        script += 'INTERVIEWER:\n' + q + '\n\n';
+                        script += 'SUBJECT (as ' + subject + '):\n' + a + '\n\n';
+                    }
+                }
+            } else if (contentType === 'news') {
+                script += 'REPORTER:\n' + document.getElementById('news-opening').value + '\n\n';
+                script += document.getElementById('news-background').value + '\n\n';
+                script += document.getElementById('news-quote').value + '\n\n';
+                script += document.getElementById('news-turning').value + '\n\n';
+                script += document.getElementById('news-aftermath').value + '\n\n';
+                script += 'REPORTER (CLOSING):\n' + document.getElementById('news-closing').value + '\n\n';
+            } else if (contentType === 'diary') {
+                script += 'NARRATOR:\n' + document.getElementById('diary-intro').value + '\n\n';
+                script += '--- DIARY ENTRY 1: ' + document.getElementById('diary1-date').value + ' ---\n\n';
+                script += 'SUBJECT (as ' + subject + '):\n' + document.getElementById('diary1-content').value + '\n\n';
+                script += '--- DIARY ENTRY 2: ' + document.getElementById('diary2-date').value + ' ---\n\n';
+                script += 'SUBJECT (as ' + subject + '):\n' + document.getElementById('diary2-content').value + '\n\n';
+                script += '--- DIARY ENTRY 3: ' + document.getElementById('diary3-date').value + ' ---\n\n';
+                script += 'SUBJECT (as ' + subject + '):\n' + document.getElementById('diary3-content').value + '\n\n';
+                script += 'NARRATOR (CLOSING):\n' + document.getElementById('diary-closing').value + '\n\n';
+            }
+            
+            // CONCLUSION
+            const conclusionType = document.querySelector('input[name="conclusion"]:checked')?.value;
+            if (!conclusionType) {
+                alert('Please choose a conclusion type!');
+                return;
+            }
+            
+            script += '\nCONCLUSION\n';
+            script += '===============================================\n\n';
+            
+            if (conclusionType === 'significance') {
+                script += 'HOST:\n';
+                script += document.getElementById('sig-what').value + '\n\n';
+                script += document.getElementById('sig-reveals').value + '\n\n';
+                script += document.getElementById('sig-why').value + '\n\n';
+                script += document.getElementById('sig-final').value + '\n\n';
+            } else if (conclusionType === 'today') {
+                script += 'HOST:\n';
+                script += document.getElementById('today-lesson').value + '\n\n';
+                script += document.getElementById('today-parallel').value + '\n\n';
+                script += document.getElementById('today-specific').value + '\n\n';
+                script += document.getElementById('today-final').value + '\n\n';
+            } else if (conclusionType === 'challenge') {
+                script += 'HOST:\n';
+                script += document.getElementById('challenge-standard').value + '\n\n';
+                script += document.getElementById('challenge-missing').value + '\n\n';
+                script += document.getElementById('challenge-why').value + '\n\n';
+                script += document.getElementById('challenge-lose').value + '\n\n';
+                script += document.getElementById('challenge-final').value + '\n\n';
+            } else if (conclusionType === 'legacy') {
+                script += 'HOST:\n';
+                script += document.getElementById('legacy-impact').value + '\n\n';
+                script += document.getElementById('legacy-lesson').value + '\n\n';
+                script += document.getElementById('legacy-universal').value + '\n\n';
+                script += document.getElementById('legacy-honor').value + '\n\n';
+            }
+            
+            script += '===============================================\n';
+            script += 'END OF SCRIPT\n';
+            script += '===============================================\n\n';
+            script += '✓ Practice reading aloud\n';
+            script += '✓ Time yourself (3-6 minutes)\n';
+            script += '✓ Mark where to pause and emphasize\n';
+            script += '✓ Add emotion and expression!\n';
+            
+            document.getElementById('scriptOutput').textContent = script;
+            document.getElementById('finalScript').style.display = 'block';
+            document.getElementById('step4-indicator').classList.add('completed');
+            document.getElementById('finalScript').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function copyScript() {
+            const scriptText = document.getElementById('scriptOutput').textContent;
+            navigator.clipboard.writeText(scriptText).then(() => {
+                alert('✅ Script copied! Now paste it into Google Docs (Ctrl+V or Cmd+V)');
+            }).catch(err => {
+                alert('❌ Could not copy. Please select the text manually.');
+            });
+        }
+        
+        function startOver() {
+            if (confirm('Are you sure you want to start over? All your work will be lost!')) {
+                clearSavedData();
+                location.reload();
+            }
+        }
+        
+        // ============================================
+        // AUTO-SAVE FUNCTIONALITY
+        // ============================================
+        
+        let autoSaveTimer;
+        
+        // Toggle verb bank
+        function toggleVerbBank(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('show');
+        }
+        
+        // Insert verb with proper spacing
+        function insertVerb(fieldId, verb) {
+            const field = document.getElementById(fieldId);
+            if (field.value === '') {
+                field.value = verb;
+            } else {
+                // Add space before verb if needed
+                const lastChar = field.value.slice(-1);
+                if (lastChar !== ' ' && lastChar !== '') {
+                    field.value += ' ' + verb;
+                } else {
+                    field.value += verb;
+                }
+            }
+            field.focus();
+            updateTimeEstimate();
+            autoSave();
+        }
+        
+        // Get all form data
+        function getAllFormData() {
+            const data = {
+                timestamp: new Date().toISOString(),
+                fields: {}
+            };
+            
+            // Get all input, textarea, and select elements
+            const inputs = document.querySelectorAll('input[type="text"], textarea, select');
+            inputs.forEach(input => {
+                if (input.id) {
+                    data.fields[input.id] = input.value;
+                }
+            });
+            
+            // Get all radio buttons
+            const radios = document.querySelectorAll('input[type="radio"]:checked');
+            radios.forEach(radio => {
+                data.fields[radio.name] = radio.value;
+            });
+            
+            return data;
+        }
+        
+        // Save data to localStorage
+        function saveToLocalStorage() {
+            try {
+                const data = getAllFormData();
+                localStorage.setItem('revolutionaryVoicesScript', JSON.stringify(data));
+                return true;
+            } catch (e) {
+                console.error('Error saving to localStorage:', e);
+                return false;
+            }
+        }
+        
+        // Auto-save with debouncing
+        function autoSave() {
+            clearTimeout(autoSaveTimer);
+            autoSaveTimer = setTimeout(() => {
+                if (saveToLocalStorage()) {
+                    showSaveIndicator();
+                }
+            }, 2000); // Save 2 seconds after user stops typing
+        }
+        
+        // Manual save
+        function manualSave() {
+            if (saveToLocalStorage()) {
+                showSaveIndicator('✅ Saved!', false);
+            } else {
+                alert('Error saving your work. Please try again.');
+            }
+        }
+        
+        // Show save indicator
+        function showSaveIndicator(text = 'Work saved!', temporary = true) {
+            const indicator = document.getElementById('autoSaveIndicator');
+            const textSpan = document.getElementById('saveIndicatorText');
+            textSpan.textContent = text;
+            indicator.style.display = 'block';
+            
+            // Update last saved time
+            const lastSaved = document.getElementById('lastSaved');
+            if (lastSaved) {
+                const now = new Date();
+                lastSaved.textContent = 'Last saved: ' + now.toLocaleTimeString();
+            }
+            
+            if (temporary) {
+                setTimeout(() => {
+                    indicator.style.display = 'none';
+                }, 2000);
+            }
+        }
+        
+        // Check for saved data on page load
+        function checkForSavedData() {
+            try {
+                const saved = localStorage.getItem('revolutionaryVoicesScript');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    const savedDate = new Date(data.timestamp);
+                    const now = new Date();
+                    const hoursSince = (now - savedDate) / (1000 * 60 * 60);
+                    
+                    // Only show restore if saved within last 7 days
+                    if (hoursSince < 168) {
+                        document.getElementById('restoreNotification').style.display = 'block';
+                        document.getElementById('saveControls').style.display = 'flex';
+                        return true;
+                    }
+                }
+            } catch (e) {
+                console.error('Error checking saved data:', e);
+            }
+            return false;
+        }
+        
+        // Restore saved data
+        function restoreSavedData() {
+            try {
+                const saved = localStorage.getItem('revolutionaryVoicesScript');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    
+                    // Restore all fields
+                    Object.keys(data.fields).forEach(key => {
+                        const element = document.getElementById(key);
+                        if (element) {
+                            element.value = data.fields[key];
+                        }
+                    });
+                    
+                    // Restore radio buttons
+                    ['intro', 'content', 'conclusion'].forEach(radioName => {
+                        if (data.fields[radioName]) {
+                            const radio = document.querySelector(`input[name="${radioName}"][value="${data.fields[radioName]}"]`);
+                            if (radio) {
+                                radio.checked = true;
+                                // Trigger the form display
+                                if (radioName === 'intro') showIntroForm(data.fields[radioName]);
+                                if (radioName === 'content') showContentForm(data.fields[radioName]);
+                                if (radioName === 'conclusion') showConclusionForm(data.fields[radioName]);
+                            }
+                        }
+                    });
+                    
+                    // Update time estimate and word counters
+                    updateTimeEstimate();
+                    
+                    // Hide notification
+                    document.getElementById('restoreNotification').style.display = 'none';
+                    
+                    // Show success message
+                    showSaveIndicator('✅ Work restored!', true);
+                    
+                    alert('✅ Your work has been restored!');
+                }
+            } catch (e) {
+                console.error('Error restoring data:', e);
+                alert('Error restoring your work. You may need to start fresh.');
+            }
+        }
+        
+        // Dismiss restore notification
+        function dismissRestore() {
+            document.getElementById('restoreNotification').style.display = 'none';
+            clearSavedData();
+        }
+        
+        // Clear saved data
+        function clearSavedData() {
+            if (confirm('This will delete your saved work. Are you sure?')) {
+                try {
+                    localStorage.removeItem('revolutionaryVoicesScript');
+                    document.getElementById('saveControls').style.display = 'none';
+                    alert('✅ Saved data cleared!');
+                } catch (e) {
+                    console.error('Error clearing data:', e);
+                }
+            }
+        }
+        
+        // Initialize auto-save on page load
+        window.addEventListener('load', () => {
+            // Check for saved data
+            checkForSavedData();
+            
+            // Show save controls if user has started typing
+            setTimeout(() => {
+                const hasContent = document.querySelector('input[type="text"], textarea').value !== '';
+                if (hasContent) {
+                    document.getElementById('saveControls').style.display = 'flex';
+                }
+            }, 1000);
+            
+            // Add auto-save to all inputs
+            const inputs = document.querySelectorAll('input[type="text"], textarea, select, input[type="radio"]');
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    autoSave();
+                    // Show save controls when user starts typing
+                    document.getElementById('saveControls').style.display = 'flex';
+                });
+                input.addEventListener('change', () => {
+                    autoSave();
+                    document.getElementById('saveControls').style.display = 'flex';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

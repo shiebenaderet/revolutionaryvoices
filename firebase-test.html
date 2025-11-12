@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Setup Test - Revolutionary Voices</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #4285f4;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #ddd;
+            background: #f9f9f9;
+        }
+        .test-section.success {
+            border-color: #34a853;
+            background: #f0f9f4;
+        }
+        .test-section.error {
+            border-color: #ea4335;
+            background: #fef0ef;
+        }
+        .test-section.warning {
+            border-color: #fbbc04;
+            background: #fffaf0;
+        }
+        .test-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .status {
+            font-size: 20px;
+        }
+        .result {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+        button {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px 10px 0;
+        }
+        button:hover {
+            background: #357ae8;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .user-info {
+            padding: 15px;
+            background: #e8f0fe;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔥 Firebase Setup Test</h1>
+        <p class="subtitle">Testing your Revolutionary Voices Firebase configuration</p>
+
+        <button onclick="runAllTests()">▶️ Run All Tests</button>
+        <button onclick="testAuth()">Test Authentication</button>
+        <button onclick="testFirestore()">Test Firestore</button>
+
+        <div id="results"></div>
+
+        <div id="authSection" style="display:none;">
+            <h3>Authentication Test</h3>
+            <button onclick="signIn()">Sign In with Google</button>
+            <button onclick="signOut()">Sign Out</button>
+            <div id="userInfo"></div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC-wK5QKjX0zUdDxbfz1a-vLr6UW0o9Glw",
+            authDomain: "voicespodcast-6afe4.firebaseapp.com",
+            projectId: "voicespodcast-6afe4",
+            storageBucket: "voicespodcast-6afe4.firebasestorage.app",
+            messagingSenderId: "184415895069",
+            appId: "1:184415895069:web:de62acbe80851ec5c3d0f4"
+        };
+
+        let app, auth, db;
+        const results = document.getElementById('results');
+
+        function addResult(name, status, message) {
+            const statusClass = status === 'success' ? 'success' : status === 'error' ? 'error' : 'warning';
+            const statusIcon = status === 'success' ? '✅' : status === 'error' ? '❌' : '⚠️';
+
+            const section = document.createElement('div');
+            section.className = `test-section ${statusClass}`;
+            section.innerHTML = `
+                <div class="test-name">
+                    <span class="status">${statusIcon}</span>
+                    <span>${name}</span>
+                </div>
+                <div class="result">${message}</div>
+            `;
+            results.appendChild(section);
+        }
+
+        function clearResults() {
+            results.innerHTML = '';
+        }
+
+        async function runAllTests() {
+            clearResults();
+
+            // Test 1: Initialize Firebase
+            try {
+                app = firebase.initializeApp(firebaseConfig);
+                addResult('Firebase Initialization', 'success', 'Firebase SDK initialized successfully');
+            } catch (error) {
+                addResult('Firebase Initialization', 'error', `Failed: ${error.message}`);
+                return;
+            }
+
+            // Test 2: Initialize Auth
+            try {
+                auth = firebase.auth();
+                addResult('Firebase Authentication', 'success', 'Auth service initialized');
+            } catch (error) {
+                addResult('Firebase Authentication', 'error', `Failed: ${error.message}`);
+            }
+
+            // Test 3: Initialize Firestore
+            try {
+                db = firebase.firestore();
+                addResult('Firestore Database', 'success', 'Firestore service initialized');
+            } catch (error) {
+                addResult('Firestore Database', 'error', `Failed: ${error.message}`);
+            }
+
+            // Test 4: Check Auth Config
+            try {
+                const providers = await fetch(`https://identitytoolkit.googleapis.com/v1/projects/${firebaseConfig.projectId}/config?key=${firebaseConfig.apiKey}`)
+                    .then(r => r.json());
+
+                const googleEnabled = providers.signIn?.allowPasswordSignup !== false;
+
+                if (googleEnabled) {
+                    addResult('Google Sign-In Provider', 'success', 'Google authentication is enabled in Firebase Console');
+                } else {
+                    addResult('Google Sign-In Provider', 'warning', 'Please enable Google Sign-In in Firebase Console → Authentication → Sign-in method');
+                }
+            } catch (error) {
+                addResult('Google Sign-In Provider', 'warning', 'Could not verify - please check Firebase Console manually');
+            }
+
+            // Test 5: Project Info
+            addResult('Project Configuration', 'success', `
+                <strong>Project ID:</strong> ${firebaseConfig.projectId}<br>
+                <strong>Auth Domain:</strong> ${firebaseConfig.authDomain}<br>
+                <strong>Storage Bucket:</strong> ${firebaseConfig.storageBucket}
+            `);
+
+            // Show auth section
+            document.getElementById('authSection').style.display = 'block';
+
+            addResult('Next Steps', 'warning', `
+                <strong>Manual Tests Required:</strong><br>
+                1. Click "Sign In with Google" below to test authentication<br>
+                2. After signing in, click "Test Firestore" to test database<br>
+                3. Verify you can see your name and profile picture<br>
+                4. Check browser console (F12) for any errors
+            `);
+        }
+
+        async function testAuth() {
+            if (!auth) {
+                addResult('Auth Test', 'error', 'Firebase not initialized. Click "Run All Tests" first.');
+                return;
+            }
+
+            addResult('Auth Test', 'warning', 'Click "Sign In with Google" button to test authentication');
+            document.getElementById('authSection').style.display = 'block';
+        }
+
+        async function signIn() {
+            try {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                const result = await auth.signInWithPopup(provider);
+
+                const user = result.user;
+                document.getElementById('userInfo').innerHTML = `
+                    <div class="user-info">
+                        <strong>✅ Sign-In Successful!</strong><br>
+                        <strong>Name:</strong> ${user.displayName}<br>
+                        <strong>Email:</strong> ${user.email}<br>
+                        <strong>User ID:</strong> ${user.uid}<br>
+                        <img src="${user.photoURL}" style="width:50px; border-radius:50%; margin-top:10px;">
+                    </div>
+                `;
+
+                addResult('Authentication Test', 'success', `Successfully signed in as ${user.displayName}`);
+            } catch (error) {
+                addResult('Authentication Test', 'error', `Sign-in failed: ${error.message}`);
+            }
+        }
+
+        async function signOut() {
+            try {
+                await auth.signOut();
+                document.getElementById('userInfo').innerHTML = '<div class="user-info">Signed out successfully</div>';
+                addResult('Sign Out', 'success', 'Successfully signed out');
+            } catch (error) {
+                addResult('Sign Out', 'error', `Sign-out failed: ${error.message}`);
+            }
+        }
+
+        async function testFirestore() {
+            if (!db) {
+                addResult('Firestore Test', 'error', 'Firestore not initialized. Click "Run All Tests" first.');
+                return;
+            }
+
+            if (!auth.currentUser) {
+                addResult('Firestore Test', 'error', 'Please sign in first to test Firestore');
+                return;
+            }
+
+            try {
+                // Try to write test data
+                const testData = {
+                    test: true,
+                    timestamp: new Date().toISOString(),
+                    message: 'This is a test from Firebase setup verification'
+                };
+
+                await db.collection('scripts').doc(auth.currentUser.uid).set(testData);
+                addResult('Firestore Write Test', 'success', 'Successfully wrote test data to Firestore');
+
+                // Try to read it back
+                const doc = await db.collection('scripts').doc(auth.currentUser.uid).get();
+
+                if (doc.exists) {
+                    addResult('Firestore Read Test', 'success', `Successfully read data back from Firestore<br><pre>${JSON.stringify(doc.data(), null, 2)}</pre>`);
+                } else {
+                    addResult('Firestore Read Test', 'warning', 'Could not read data back (might be security rules issue)');
+                }
+
+            } catch (error) {
+                if (error.code === 'permission-denied') {
+                    addResult('Firestore Test', 'error', `
+                        <strong>Permission Denied!</strong><br>
+                        You need to set up Firestore security rules.<br><br>
+                        Go to: <a href="https://console.firebase.google.com/project/${firebaseConfig.projectId}/firestore/rules" target="_blank">Firestore Rules</a><br><br>
+                        Paste this:<br>
+                        <pre>rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /scripts/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}</pre>
+                    `);
+                } else {
+                    addResult('Firestore Test', 'error', `Failed: ${error.message}`);
+                }
+            }
+        }
+
+        // Auto-run tests on page load
+        window.addEventListener('load', () => {
+            setTimeout(runAllTests, 500);
+        });
+    </script>
+</body>
+</html>

@@ -413,7 +413,150 @@
         .restore-notification button:hover {
             background: #f0f0f0;
         }
+
+        /* FIREBASE AUTH UI STYLES */
+        .auth-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .auth-button {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+        .auth-button:hover {
+            background: #357ae8;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+        .user-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+        .sign-out-btn {
+            background: #f1f3f4;
+            color: #5f6368;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .sign-out-btn:hover {
+            background: #e8eaed;
+        }
+        .sync-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            font-size: 13px;
+            color: #5f6368;
+            display: none;
+            align-items: center;
+            gap: 6px;
+            z-index: 999;
+        }
+        .sync-status.show {
+            display: flex;
+        }
+        .sync-status.synced {
+            color: #1e8e3e;
+        }
+        .sync-status.syncing {
+            color: #1967d2;
+        }
+        .sync-status.error {
+            color: #d93025;
+        }
+        .auth-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+        .auth-banner.show {
+            display: block;
+        }
+        .auth-banner button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .auth-banner button:hover {
+            background: #f0f0f0;
+        }
     </style>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Configuration -->
+    <script>
+        // ⚠️ REPLACE THIS WITH YOUR FIREBASE CONFIG
+        // Get this from Firebase Console → Project Settings → Your apps → Web app
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY_HERE",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        let app, auth, db;
+        let currentUser = null;
+
+        try {
+            app = firebase.initializeApp(firebaseConfig);
+            auth = firebase.auth();
+            db = firebase.firestore();
+            console.log('✅ Firebase initialized successfully');
+        } catch (error) {
+            console.error('❌ Firebase initialization error:', error);
+            console.log('ℹ️ Please update firebaseConfig in index.html with your Firebase credentials');
+        }
+    </script>
 </head>
 <body>
     <!-- Auto-Save Indicator -->
@@ -421,8 +564,38 @@
         <i class="fas fa-check-circle"></i>
         <span id="saveIndicatorText">Work saved!</span>
     </div>
-    
+
+    <!-- Firebase Authentication UI -->
+    <div class="auth-container" id="authContainer">
+        <!-- Sign In Button (shown when not signed in) -->
+        <button class="auth-button" id="signInButton" onclick="signInWithGoogle()" style="display: none;">
+            <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M17.6 9.2l-.1-1.8H9v3.4h4.8C13.6 12 13 13 12 13.6v2.2h3a8.8 8.8 0 0 0 2.6-6.6z" fill="#4285F4"/><path d="M9 18c2.4 0 4.5-.8 6-2.2l-3-2.2a5.4 5.4 0 0 1-8-2.9H1V13a9 9 0 0 0 8 5z" fill="#34A853"/><path d="M4 10.7a5.4 5.4 0 0 1 0-3.4V5H1a9 9 0 0 0 0 8l3-2.3z" fill="#FBBC05"/><path d="M9 3.6c1.3 0 2.5.4 3.4 1.3L15 2.3A9 9 0 0 0 1 5l3 2.4a5.4 5.4 0 0 1 5-3.7z" fill="#EA4335"/></g></svg>
+            Sign in with Google
+        </button>
+
+        <!-- User Info (shown when signed in) -->
+        <div class="user-info" id="userInfo" style="display: none;">
+            <img class="user-avatar" id="userAvatar" src="" alt="User">
+            <span class="user-name" id="userName"></span>
+            <button class="sign-out-btn" onclick="signOut()">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Sync Status Indicator -->
+    <div class="sync-status" id="syncStatus">
+        <i class="fas fa-cloud"></i>
+        <span id="syncStatusText">Synced to cloud</span>
+    </div>
+
     <div class="container">
+        <!-- Auth Banner (prompts users to sign in) -->
+        <div class="auth-banner" id="authBanner">
+            <h3><i class="fas fa-cloud-upload-alt"></i> Save Your Work Across Devices!</h3>
+            <p>Sign in with Google to save your podcast script to the cloud. Access it from any device, anytime.</p>
+            <button onclick="signInWithGoogle()">
+                <i class="fas fa-sign-in-alt"></i> Sign in with Google
+            </button>
+        </div>
         <!-- Restore Notification -->
         <div class="restore-notification" id="restoreNotification">
             <h3><i class="fas fa-history"></i> Welcome Back!</h3>
@@ -2766,6 +2939,214 @@
                 });
             });
         });
+
+        // ============================================
+        // FIREBASE AUTHENTICATION & CLOUD SYNC
+        // ============================================
+
+        // Sign in with Google
+        async function signInWithGoogle() {
+            if (!auth) {
+                alert('⚠️ Firebase is not configured. Please add your Firebase credentials to the firebaseConfig object in index.html.');
+                return;
+            }
+
+            try {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                await auth.signInWithPopup(provider);
+                console.log('✅ Signed in successfully');
+            } catch (error) {
+                console.error('❌ Sign-in error:', error);
+                if (error.code === 'auth/popup-closed-by-user') {
+                    // User closed popup, no need to alert
+                    return;
+                }
+                alert('Sign-in failed: ' + error.message);
+            }
+        }
+
+        // Sign out
+        async function signOut() {
+            if (!auth) return;
+
+            try {
+                await auth.signOut();
+                console.log('✅ Signed out successfully');
+                // Clear UI
+                document.getElementById('authBanner').classList.add('show');
+            } catch (error) {
+                console.error('❌ Sign-out error:', error);
+                alert('Sign-out failed: ' + error.message);
+            }
+        }
+
+        // Listen for auth state changes
+        if (auth) {
+            auth.onAuthStateChanged(async (user) => {
+                currentUser = user;
+
+                if (user) {
+                    // User is signed in
+                    console.log('✅ User signed in:', user.email);
+
+                    // Update UI
+                    document.getElementById('signInButton').style.display = 'none';
+                    document.getElementById('userInfo').style.display = 'flex';
+                    document.getElementById('userName').textContent = user.displayName || user.email;
+                    document.getElementById('userAvatar').src = user.photoURL || 'https://via.placeholder.com/32';
+                    document.getElementById('authBanner').classList.remove('show');
+
+                    // Load user's work from Firestore
+                    await loadFromFirestore();
+
+                } else {
+                    // User is signed out
+                    console.log('ℹ️ User signed out');
+
+                    // Update UI
+                    document.getElementById('signInButton').style.display = 'flex';
+                    document.getElementById('userInfo').style.display = 'none';
+                    document.getElementById('authBanner').classList.add('show');
+
+                    // Hide sync status
+                    document.getElementById('syncStatus').classList.remove('show');
+                }
+            });
+        }
+
+        // Save data to Firestore
+        async function saveToFirestore() {
+            if (!currentUser || !db) {
+                return false; // Not signed in or Firebase not configured
+            }
+
+            try {
+                const data = getAllFormData();
+                await db.collection('scripts').doc(currentUser.uid).set(data);
+
+                // Show sync status
+                updateSyncStatus('synced', '☁️ Synced to cloud');
+                console.log('✅ Data saved to Firestore');
+                return true;
+            } catch (error) {
+                console.error('❌ Firestore save error:', error);
+                updateSyncStatus('error', '⚠️ Sync failed');
+                return false;
+            }
+        }
+
+        // Load data from Firestore
+        async function loadFromFirestore() {
+            if (!currentUser || !db) {
+                return false;
+            }
+
+            try {
+                const doc = await db.collection('scripts').doc(currentUser.uid).get();
+
+                if (doc.exists) {
+                    const data = doc.data();
+                    console.log('✅ Loaded data from Firestore');
+
+                    // Check if cloud data is newer than localStorage
+                    const localData = localStorage.getItem('revolutionaryVoicesScript');
+                    let shouldRestore = true;
+
+                    if (localData) {
+                        const localTimestamp = new Date(JSON.parse(localData).timestamp);
+                        const cloudTimestamp = new Date(data.timestamp);
+
+                        if (localTimestamp > cloudTimestamp) {
+                            shouldRestore = confirm(
+                                'You have local work that is newer than your cloud backup.\n\n' +
+                                'Cloud backup: ' + cloudTimestamp.toLocaleString() + '\n' +
+                                'Local work: ' + localTimestamp.toLocaleString() + '\n\n' +
+                                'Do you want to load from the cloud (Yes) or keep your local work (No)?'
+                            );
+                        }
+                    }
+
+                    if (shouldRestore && data.fields) {
+                        // Restore all fields
+                        Object.keys(data.fields).forEach(fieldId => {
+                            const element = document.getElementById(fieldId);
+                            if (element) {
+                                if (element.type === 'radio') {
+                                    const radio = document.querySelector(`input[name="${fieldId}"][value="${data.fields[fieldId]}"]`);
+                                    if (radio) radio.checked = true;
+                                } else {
+                                    element.value = data.fields[fieldId];
+                                }
+                            }
+                        });
+
+                        // Update time estimate and word counters
+                        updateTimeEstimate();
+
+                        // Show save controls
+                        document.getElementById('saveControls').style.display = 'flex';
+
+                        updateSyncStatus('synced', '☁️ Loaded from cloud');
+                    }
+
+                    return true;
+                } else {
+                    console.log('ℹ️ No cloud data found for this user');
+                    return false;
+                }
+            } catch (error) {
+                console.error('❌ Firestore load error:', error);
+                updateSyncStatus('error', '⚠️ Failed to load from cloud');
+                return false;
+            }
+        }
+
+        // Update sync status indicator
+        function updateSyncStatus(status, message) {
+            const statusElement = document.getElementById('syncStatus');
+            const statusText = document.getElementById('syncStatusText');
+
+            statusElement.classList.remove('synced', 'syncing', 'error');
+            statusElement.classList.add(status, 'show');
+            statusText.textContent = message;
+
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                statusElement.classList.remove('show');
+            }, 3000);
+        }
+
+        // Override the existing autoSave function to also save to Firestore
+        const originalAutoSave = autoSave;
+        autoSave = function() {
+            // Call original auto-save (saves to localStorage)
+            originalAutoSave();
+
+            // Also save to Firestore if signed in
+            if (currentUser && db) {
+                updateSyncStatus('syncing', '☁️ Syncing...');
+
+                // Debounce Firestore saves (don't save on every keystroke)
+                clearTimeout(window.firestoreSaveTimer);
+                window.firestoreSaveTimer = setTimeout(async () => {
+                    await saveToFirestore();
+                }, 3000); // Save to cloud 3 seconds after user stops typing
+            }
+        };
+
+        // Override manualSave to also save to Firestore
+        const originalManualSave = manualSave;
+        manualSave = async function() {
+            // Call original manual save (saves to localStorage)
+            originalManualSave();
+
+            // Also save to Firestore if signed in
+            if (currentUser && db) {
+                updateSyncStatus('syncing', '☁️ Syncing...');
+                await saveToFirestore();
+            }
+        };
+
     </script>
 </body>
 </html>

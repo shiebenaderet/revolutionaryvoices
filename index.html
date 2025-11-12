@@ -1063,8 +1063,35 @@
                     <span class="length"><i class="fas fa-ruler"></i> Target: 10-25 words (1-2 sentences)</span>
                 </div>
             </div>
+
+            <!-- SOLO INTRODUCTION -->
+            <div id="intro-solo" class="form-section" style="display: none;">
+                <div class="success-box">
+                    <h4><i class="fas fa-user"></i> Your Introduction</h4>
+                    <p>Introduce yourself and your podcast to your listeners!</p>
+                </div>
+
+                <label>
+                    Your Introduction - Introduce yourself and your podcast
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Welcome your listeners!"></i>
+                </label>
+                <textarea id="solo-intro" placeholder="e.g., Hi, I'm Alex, and welcome to Revolutionary Voices, where we uncover the hidden stories of the American Revolution." oninput="updateTimeEstimate(); countWords(this, 'solointro', 15, 35)"></textarea>
+                <div class="word-counter" id="solointro-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Say your name and welcome listeners to your podcast<br>
+                    <span class="length"><i class="fas fa-ruler"></i> Target: 15-35 words (1-2 sentences)</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb"></i> Tip: Be friendly and tell them what your podcast is about!</span>
+                </div>
+
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('solo-intro', 'Hi, I\'m [your name], and welcome to [podcast name], where ')"><i class="fas fa-hand-wave"></i> Hi, I'm...</button>
+                    <button class="starter-btn" onclick="insertStarter('solo-intro', 'Welcome to [podcast name]. I\'m [your name], and today ')"><i class="fas fa-microphone"></i> Welcome to...</button>
+                    <button class="starter-btn" onclick="insertStarter('solo-intro', 'I\'m [your name], your host on [podcast name]. ')"><i class="fas fa-user-circle"></i> I'm your host...</button>
+                    <button class="starter-btn" onclick="insertStarter('solo-intro', 'Thanks for joining me on [podcast name]. I\'m [your name], and ')"><i class="fas fa-headphones"></i> Thanks for joining...</button>
+                </div>
+            </div>
         </div>
-        
+
         <!-- CONTENT SECTION -->
         <div class="section section-content">
             <div class="step-indicator">
@@ -1148,6 +1175,8 @@
                 </div>
                 
                 <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('narrative-intro', 'Welcome to [podcast name]. I\'m [your name]. Today, let\'s step into the shoes of [subject] and hear this story in their own words.')"><i class="fas fa-microphone"></i> Welcome to...</button>
+                    <button class="starter-btn" onclick="insertStarter('narrative-intro', 'I\'m [your name], and on today\'s episode of [podcast name], we\'re going to hear directly from [subject].')"><i class="fas fa-user-circle"></i> I'm [name]...</button>
                     <button class="starter-btn" onclick="insertStarter('narrative-intro', 'Let\'s step into their shoes and hear this story in their own words.')"><i class="fas fa-walking"></i> Step into...</button>
                     <button class="starter-btn" onclick="insertStarter('narrative-intro', 'Now, let [subject] tell you their story.')"><i class="fas fa-user"></i> Let them tell...</button>
                     <button class="starter-btn" onclick="insertStarter('narrative-intro', 'Here\'s what [subject] might have said...')"><i class="fas fa-comment"></i> What they said...</button>
@@ -1299,9 +1328,11 @@
                 </div>
                 
                 <div class="starter-buttons">
-                    <button class="starter-btn" onclick="insertStarter('interview-intro', 'Today, we have the incredible opportunity to interview ')"><i class="fas fa-microphone"></i> Incredible opportunity...</button>
+                    <button class="starter-btn" onclick="insertStarter('interview-intro', 'Welcome to [podcast name]. I\'m [your name], and today I have the incredible opportunity to interview ')"><i class="fas fa-microphone"></i> Welcome to...</button>
+                    <button class="starter-btn" onclick="insertStarter('interview-intro', 'Hi, I\'m [your name], host of [podcast name]. Joining us today is ')"><i class="fas fa-user-circle"></i> Hi, I'm...</button>
+                    <button class="starter-btn" onclick="insertStarter('interview-intro', 'Today, we have the incredible opportunity to interview ')"><i class="fas fa-handshake"></i> Incredible opportunity...</button>
                     <button class="starter-btn" onclick="insertStarter('interview-intro', 'Joining us today is ')"><i class="fas fa-user-plus"></i> Joining us...</button>
-                    <button class="starter-btn" onclick="insertStarter('interview-intro', 'Welcome to the show, ')"><i class="fas fa-handshake"></i> Welcome...</button>
+                    <button class="starter-btn" onclick="insertStarter('interview-intro', 'Welcome to the show, ')"><i class="fas fa-hand-wave"></i> Welcome...</button>
                 </div>
                 
                 <div class="tip-box" style="margin: 20px 0;">
@@ -1413,6 +1444,7 @@
                 </div>
                 
                 <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('news-opening', 'This is [your name] for [podcast name], reporting live from ')"><i class="fas fa-microphone"></i> For [podcast]...</button>
                     <button class="starter-btn" onclick="insertStarter('news-opening', 'This is [name], reporting live from ')"><i class="fas fa-broadcast-tower"></i> Reporting live...</button>
                     <button class="starter-btn" onclick="insertStarter('news-opening', 'Good evening. I\'m standing here at ')"><i class="fas fa-map-marker-alt"></i> I'm standing here...</button>
                     <button class="starter-btn" onclick="insertStarter('news-opening', 'Breaking news from ')"><i class="fas fa-newspaper"></i> Breaking news...</button>
@@ -1483,6 +1515,8 @@
                 </div>
                 
                 <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('news-closing', 'For [podcast name], I\'m [your name], reporting from [location].')"><i class="fas fa-microphone"></i> For [podcast]...</button>
+                    <button class="starter-btn" onclick="insertStarter('news-closing', 'This has been [your name] for [podcast name]. ')"><i class="fas fa-user-circle"></i> This has been...</button>
                     <button class="starter-btn" onclick="insertStarter('news-closing', 'Reporting from [location], this is [name].')"><i class="fas fa-signature"></i> Reporting from...</button>
                     <button class="starter-btn" onclick="insertStarter('news-closing', 'This is [name], signing off from ')"><i class="fas fa-sign-out-alt"></i> Signing off...</button>
                     <button class="starter-btn" onclick="insertStarter('news-closing', 'We\'ll continue to follow this story as it develops.')"><i class="fas fa-forward"></i> Continue to follow...</button>
@@ -1529,7 +1563,14 @@
                     <strong>What to write:</strong> Set up the diary format<br>
                     <span class="length"><i class="fas fa-ruler"></i> Target: 15-35 words</span>
                 </div>
-                
+
+                <div class="starter-buttons">
+                    <button class="starter-btn" onclick="insertStarter('diary-intro', 'Welcome to [podcast name]. I\'m [your name]. Today, we\'re going to read the private diary entries of ')"><i class="fas fa-microphone"></i> Welcome to...</button>
+                    <button class="starter-btn" onclick="insertStarter('diary-intro', 'I\'m [your name], and on this episode of [podcast name], these are the diary entries of ')"><i class="fas fa-user-circle"></i> I'm [name]...</button>
+                    <button class="starter-btn" onclick="insertStarter('diary-intro', 'These are the private diary entries of ')"><i class="fas fa-book"></i> These are...</button>
+                    <button class="starter-btn" onclick="insertStarter('diary-intro', 'What follows are the words of ')"><i class="fas fa-pen"></i> What follows...</button>
+                </div>
+
                 <div class="tip-box" style="margin: 20px 0;">
                     <strong><i class="fas fa-lightbulb"></i> Diary Entry Tips:</strong>
                     <ul style="margin-left: 20px; margin-top: 10px;">
@@ -2173,13 +2214,16 @@
         function updateGroupOptions() {
             const size = document.getElementById('groupSize').value;
             const groupForm = document.getElementById('intro-group');
+            const soloForm = document.getElementById('intro-solo');
             const badge = document.getElementById('groupBadge');
             const tip = document.getElementById('groupTip');
-            
+
             if (size === '1') {
                 groupForm.style.display = 'none';
+                soloForm.style.display = 'block';
             } else {
                 groupForm.style.display = 'block';
+                soloForm.style.display = 'none';
                 badge.textContent = size + ' people';
                 if (size === '2') {
                     tip.innerHTML = '<strong>Pair Tips:</strong> One person can be the host/narrator, the other can voice the historical figure. Practice together!';
@@ -2332,9 +2376,18 @@
             script += 'Subject: ' + subject + '\n';
             script += '===============================================\n\n';
             
-            // GROUP INTRODUCTION (if applicable)
+            // SOLO OR GROUP INTRODUCTION (if applicable)
             const size = document.getElementById('groupSize').value;
-            if (size !== '1') {
+            if (size === '1') {
+                // Solo introduction
+                const soloIntro = document.getElementById('solo-intro').value;
+                if (soloIntro) {
+                    script += 'INTRODUCTION\n';
+                    script += '===============================================\n\n';
+                    script += 'HOST:\n' + soloIntro + '\n\n';
+                }
+            } else {
+                // Group introduction
                 script += 'GROUP INTRODUCTION\n';
                 script += '===============================================\n\n';
                 const groupIntro = document.getElementById('group-intro').value;

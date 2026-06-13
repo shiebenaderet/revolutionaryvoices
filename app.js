@@ -213,7 +213,9 @@
             
             // Update display
             if (totalWords > 0) {
-                document.getElementById('timeEstimator').style.display = 'block';
+                // Only surface the estimator on the Finish step (kept off the per-step screens).
+                const onFinish = (typeof wizCurrent !== 'number') || (typeof WIZ_LAST !== 'number') || (wizCurrent === WIZ_LAST);
+                document.getElementById('timeEstimator').style.display = onFinish ? 'block' : 'none';
                 document.getElementById('timeDisplay').textContent = totalMinutes + ':' + String(totalSeconds).padStart(2, '0');
                 document.getElementById('introTime').textContent = introMinutes + ':' + String(introSeconds).padStart(2, '0');
                 document.getElementById('contentTime').textContent = contentMinutes + ':' + String(contentSeconds).padStart(2, '0');
@@ -307,6 +309,12 @@
         function jumpToProblem(target) {
             const el = document.querySelector(target);
             if (!el) return;
+            // The field may live on a different wizard step that's currently hidden — switch to it.
+            const stepEl = el.closest('[data-step]');
+            if (stepEl && typeof showStep === 'function') {
+                const n = parseInt(stepEl.getAttribute('data-step'), 10);
+                if (!isNaN(n)) showStep(n);
+            }
             const sec = el.closest('.section');
             if (sec && sec.classList.contains('collapsed')) {
                 sec.classList.remove('collapsed');
@@ -504,6 +512,8 @@
             script = replaceTokens(script, { subject: subject, name: studentName });
 
             document.getElementById('scriptOutput').textContent = script;
+            wizGenerated = true;
+            if (typeof showStep === 'function') showStep(WIZ_LAST); // make sure we're on the Finish step
             document.getElementById('finalScript').style.display = 'block';
             updateProgress();
             warnLeftoverPlaceholders(script);
@@ -684,90 +694,14 @@
                 if (!writeStore(store)) return false;
                 refreshSlotMenu();
                 updateWorkName();
-                cloudPush(data); // also sync to the cloud if a class code is set
                 return true;
             } catch (e) { console.error('Error saving:', e); return false; }
         }
 
-        // ============================================
-        // CLOUD SYNC (optional — needs a class code + a deployed Worker)
-        // ============================================
-        // Set this to your Worker URL after you deploy it, e.g. "https://rv-sync.you.workers.dev"
-        const WORKER_URL = "https://rv-sync.shiebenaderet.workers.dev";
-
-        function getClassCode() {
-            // Normalize so capitalization/spacing typos don't split a class
-            const el = document.getElementById('classCode');
-            return el ? el.value.trim().toLowerCase() : '';
-        }
-        function cloudConfigured() {
-            return !!WORKER_URL && !!getClassCode() && !!slotNameSafe();
-        }
+        // The student's name, used to title their Google Doc backup and saved slots.
         function slotNameSafe() {
             const sn = document.getElementById('studentName');
             return sn ? sn.value.trim() : '';
-        }
-        function setCloudStatus(text) {
-            const el = document.getElementById('cloudStatus');
-            if (el) el.textContent = text || '';
-        }
-
-        let cloudTimer;
-        function cloudPush(data) {
-            if (!cloudConfigured()) return;
-            clearTimeout(cloudTimer);
-            cloudTimer = setTimeout(() => {
-                const payload = {
-                    classCode: getClassCode(),
-                    studentName: slotNameSafe(),
-                    slotName: slotName(),
-                    data: JSON.stringify((data && data.fields) ? data.fields : getAllFormData().fields)
-                };
-                fetch(WORKER_URL + '/save', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                }).then(r => {
-                    setCloudStatus(r.ok ? '☁ Saved online ' + new Date().toLocaleTimeString() : '⚠️ Cloud save failed');
-                }).catch(() => setCloudStatus('⚠️ Offline — saved on this computer only'));
-            }, 2500);
-        }
-
-        // Pull this student's scripts down from the cloud and add them as saved slots
-        function cloudPull() {
-            if (!WORKER_URL) { showToast('Cloud sync is not set up yet.'); return; }
-            const classCode = getClassCode();
-            const studentName = slotNameSafe();
-            if (!classCode || !studentName) { showToast('Enter your name and class code first.'); return; }
-            setCloudStatus('Checking the cloud…');
-            fetch(WORKER_URL + '/load?classCode=' + encodeURIComponent(classCode) + '&studentName=' + encodeURIComponent(studentName))
-                .then(r => r.ok ? r.json() : Promise.reject(r.status))
-                .then(out => {
-                    const scripts = out.scripts || [];
-                    if (!scripts.length) { setCloudStatus('No cloud work found for that name + code.'); return; }
-                    const store = readStore();
-                    let added = 0;
-                    scripts.forEach(s => {
-                        let fields = {};
-                        try { fields = JSON.parse(s.data); } catch (e) {}
-                        const id = 'cloud_' + s.slot_name.replace(/[^a-z0-9]+/gi, '_');
-                        store[id] = { id, name: s.slot_name || studentName, timestamp: s.updated_at || new Date().toISOString(), fields };
-                        added++;
-                    });
-                    writeStore(store);
-                    refreshSlotMenu();
-                    document.getElementById('restoreNotification').style.display = 'block';
-                    setCloudStatus('☁ Loaded ' + added + ' script(s) — open them from the "Open saved work…" menu.');
-                    showToast('☁ Loaded ' + added + ' script(s) from the cloud');
-                })
-                .catch(() => setCloudStatus('⚠️ Could not reach the cloud.'));
-        }
-
-        // Show the "Get cloud work" button only when a class code is present
-        function updateCloudUI() {
-            const btn = document.getElementById('cloudPullBtn');
-            if (btn) btn.style.display = (WORKER_URL && getClassCode()) ? '' : 'none';
-            if (!WORKER_URL && getClassCode()) setCloudStatus('(Cloud sync will turn on once your teacher finishes setup.)');
         }
 
         function autoSave() {
@@ -845,6 +779,7 @@
             applyData(slot);
             updateWorkName();
             document.getElementById('saveControls').style.display = 'flex';
+            if (typeof wizGoToFrontier === 'function') wizGoToFrontier();
             showSaveIndicator('✅ Opened "' + slot.name + '"', true);
         }
 
@@ -918,6 +853,7 @@
                     updateWorkName();
                     refreshSlotMenu();
                     document.getElementById('saveControls').style.display = 'flex';
+                    if (typeof wizGoToFrontier === 'function') wizGoToFrontier();
                     showToast('✅ Imported "' + name + '"');
                 } catch (err) {
                     console.error(err);
@@ -1038,6 +974,7 @@
             refreshSlotMenu();
             const sc = document.getElementById('saveControls'); if (sc) sc.style.display = 'flex';
             setResumeNote('✅ Restored! Your work is back. Keep saving to your Doc as you go.', 'ok');
+            if (typeof wizGoToFrontier === 'function') wizGoToFrontier();
             showToast('✅ Welcome back — your work is restored.');
             setTimeout(() => { const p = document.getElementById('resumePanel'); if (p) p.hidden = true; }, 1500);
         }
@@ -1052,10 +989,9 @@
             document.getElementById('saveControls').style.display = 'flex';
             updateWorkName();
 
-            // If other students have saved here, gently point to the Open menu
-            if (Object.keys(readStore()).length > 0) {
-                document.getElementById('restoreNotification').style.display = 'block';
-            }
+            // If saved work exists, the "Open saved work…" menu in the bar shows it.
+            const _rn = document.getElementById('restoreNotification');
+            if (_rn && Object.keys(readStore()).length > 0) { _rn.style.display = 'block'; }
 
             // Auto-save on every edit
             const inputs = document.querySelectorAll('input[type="text"], textarea, select, input[type="radio"]');
@@ -1070,12 +1006,332 @@
             wireUpAccessibility();
             wireUpStructure();
             wireUpLanguageSupports();
+            wireUpProgressiveHelp();
             updateProgress();
 
-            const cc = document.getElementById('classCode');
-            if (cc) cc.addEventListener('input', updateCloudUI);
-            updateCloudUI();
+            wizInit();
         });
+
+        // ============================================
+        // PROGRESSIVE HELP: start lean, expand on demand.
+        // Each field shows just its prompt + box; the detailed helper text,
+        // the rubric checklist, and the "quick check" reminders collapse
+        // behind a small toggle so the screen stays calm.
+        // ============================================
+        function collapseBehindToggle(el, showLabel, idx) {
+            if (!el || el.dataset.discWired) return;
+            el.dataset.discWired = '1';
+            el.hidden = true;
+            if (!el.id) el.id = 'disc_' + idx;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'help-toggle';
+            btn.setAttribute('aria-controls', el.id);
+            btn.setAttribute('aria-expanded', 'false');
+            const ic = '<i class="fas fa-question-circle" aria-hidden="true"></i> ';
+            btn.innerHTML = ic + showLabel;
+            btn.addEventListener('click', () => {
+                const opening = el.hidden;
+                el.hidden = !opening;
+                btn.setAttribute('aria-expanded', String(opening));
+                btn.innerHTML = ic + (opening ? 'Hide' : showLabel);
+            });
+            el.parentNode.insertBefore(btn, el);
+        }
+
+        function wireUpProgressiveHelp() {
+            let i = 0;
+            document.querySelectorAll('.helper-text').forEach(el => collapseBehindToggle(el, 'Show help', 'help' + (i++)));
+            document.querySelectorAll('.check-reminder').forEach(el => collapseBehindToggle(el, 'Quick check', 'chk' + (i++)));
+            document.querySelectorAll('.rubric-box').forEach(el => collapseBehindToggle(el, 'Show checklist', 'rub' + (i++)));
+        }
+
+        // ============================================
+        // WIZARD: one step on screen at a time.
+        // Guided forward (Next needs content); jump freely to any reached step.
+        // ============================================
+        const WIZ_NAMES = ['Basics', 'Research', 'Introduction', 'Content', 'Conclusion', 'Finish & Submit'];
+        const WIZ_LAST = 5;
+        const WIZ_RADIO = { 2: 'intro', 3: 'content', 4: 'conclusion' };
+        const WIZ_CLASS = { 2: 'section-intro', 3: 'section-content', 4: 'section-conclusion' };
+        let wizCurrent = 0;
+        let wizGenerated = false;
+
+        function wizEls(n) { return document.querySelectorAll('[data-step="' + n + '"]'); }
+
+        // A step is "done" enough to advance / to unlock later steps.
+        function wizStepDone(n) {
+            if (n === 0) {
+                return ['studentName', 'podcastName', 'subject'].every(id => {
+                    const el = document.getElementById(id); return el && el.value.trim().length > 0;
+                });
+            }
+            if (n === 1) {  // Research: a topic has been chosen (the subject dropdown)
+                const t = document.getElementById('subject');
+                return !!(t && t.value);
+            }
+            if (n === WIZ_LAST) return true;
+            const radio = WIZ_RADIO[n];
+            const cls = WIZ_CLASS[n];
+            if (!document.querySelector('input[name="' + radio + '"]:checked')) return false;
+            const sec = document.querySelector('.' + cls);
+            if (!sec) return false;
+            let any = false;
+            sec.querySelectorAll('.form-section.active textarea, .form-section.active input[type="text"]')
+               .forEach(f => { if (f.value.trim()) any = true; });
+            return any;
+        }
+
+        // First not-done step = how far a student may jump. Earlier steps stay unlocked.
+        function wizFrontier() {
+            for (let i = 0; i <= WIZ_LAST; i++) { if (!wizStepDone(i)) return i; }
+            return WIZ_LAST;
+        }
+
+        function showStep(n) {
+            n = Math.max(0, Math.min(WIZ_LAST, n));
+            wizCurrent = n;
+            for (let i = 0; i <= WIZ_LAST; i++) {
+                wizEls(i).forEach(el => el.classList.toggle('is-active', i === n));
+            }
+            const fs = document.getElementById('finalScript');
+            if (fs) fs.style.display = (n === WIZ_LAST && wizGenerated) ? 'block' : 'none';
+            const te = document.getElementById('timeEstimator');
+            if (te) { if (n === WIZ_LAST) { updateTimeEstimate(); } else { te.style.display = 'none'; } }
+            if (n === 1 && typeof rvSyncFromSelect === 'function') rvSyncFromSelect();
+            if (typeof rvRenderStepFacts === 'function') rvRenderStepFacts(n);
+            wizUpdateNav();
+            wizUpdateStepper();
+            const first = wizEls(n)[0];
+            if (first) {
+                const h = first.querySelector('h2, .step-indicator, h3');
+                if (h) { h.setAttribute('tabindex', '-1'); try { h.focus({ preventScroll: true }); } catch (e) { h.focus(); } }
+                scrollToEl(first);
+            }
+        }
+
+        function wizUpdateNav() {
+            const back = document.getElementById('wizBack');
+            const next = document.getElementById('wizNext');
+            const label = document.getElementById('wizLabel');
+            if (label) label.textContent = 'Step ' + (wizCurrent + 1) + ' of 6 · ' + WIZ_NAMES[wizCurrent];
+            if (back) back.disabled = (wizCurrent === 0);
+            if (next) {
+                if (wizCurrent >= WIZ_LAST) { next.style.display = 'none'; }
+                else {
+                    next.style.display = '';
+                    next.innerHTML = (wizCurrent === WIZ_LAST - 1 ? 'Finish ' : 'Next ') + '<i class="fas fa-arrow-right" aria-hidden="true"></i>';
+                }
+            }
+        }
+
+        function wizUpdateStepper() {
+            const frontier = wizFrontier();
+            for (let i = 0; i <= WIZ_LAST; i++) {
+                const chip = document.getElementById('wizChip' + i);
+                if (!chip) continue;
+                const done = wizStepDone(i);
+                chip.classList.toggle('active', i === wizCurrent);
+                chip.classList.toggle('completed', done && i !== wizCurrent);
+                const locked = i > frontier;
+                chip.classList.toggle('locked', locked);
+                chip.setAttribute('aria-current', i === wizCurrent ? 'step' : 'false');
+                chip.setAttribute('aria-disabled', locked ? 'true' : 'false');
+            }
+        }
+
+        function wizNext() {
+            if (wizCurrent >= WIZ_LAST) return;
+            if (!wizStepDone(wizCurrent)) { wizNudge(); return; }
+            showStep(wizCurrent + 1);
+        }
+        function wizBack() { if (wizCurrent > 0) showStep(wizCurrent - 1); }
+
+        function wizGoChip(i) {
+            if (i > wizFrontier()) { showToast('Add a little to the earlier steps first 🙂'); return; }
+            showStep(i);
+        }
+
+        function wizNudge() {
+            const n = wizCurrent;
+            let target = null;
+            if (n === 0) {
+                target = ['studentName', 'podcastName', 'subject'].map(id => document.getElementById(id)).find(el => el && !el.value.trim());
+            } else if (n === 1) {
+                showToast('Choose your topic on the Basics step first 📚');
+                showStep(0);
+                const s = document.getElementById('subject'); if (s) { try { s.focus(); } catch (e) {} }
+                return;
+            } else {
+                const radio = WIZ_RADIO[n];
+                const cls = WIZ_CLASS[n];
+                if (!document.querySelector('input[name="' + radio + '"]:checked')) {
+                    target = document.querySelector('.' + cls + ' input[type="radio"]');
+                } else {
+                    const sec = document.querySelector('.' + cls);
+                    target = sec && sec.querySelector('.form-section.active textarea');
+                }
+            }
+            showToast('Add a little here first, then tap Next ✏️');
+            if (target) { try { target.focus(); } catch (e) {} scrollToEl(target); }
+        }
+
+        // Called by generateScript() once the script is built (lives on the Finish step).
+        function wizMarkGenerated() { wizGenerated = true; if (wizCurrent !== WIZ_LAST) showStep(WIZ_LAST); else wizUpdateStepper(); }
+        // Called after restoring saved work — drop the student where they left off.
+        function wizGoToFrontier() { showStep(wizFrontier()); }
+
+        function wizInit() {
+            if (typeof rvInitResearch === 'function') rvInitResearch();
+            document.querySelectorAll('input[type="text"], textarea, input[type="radio"], select')
+                .forEach(el => {
+                    el.addEventListener('input', wizUpdateStepper);
+                    el.addEventListener('change', () => { wizUpdateStepper(); wizUpdateNav(); });
+                });
+            showStep(wizFrontier());
+        }
+
+        // ============================================
+        // RESEARCH STEP: topic picker + leveled reading + key facts by section.
+        // Reading content lives in readings.js (window.RV_READINGS / RV_TOPICS).
+        // ============================================
+        const RV_LEVEL_KEY = 'rvReadingLevel';
+        const RV_SECTION_LABEL = { hook: 'For your Hook (Introduction)', content: 'For your Content', conclusion: 'For your Conclusion' };
+        let rvLevelCur = (function () { try { return localStorage.getItem(RV_LEVEL_KEY) || 'standard'; } catch (e) { return 'standard'; } })();
+        function rvLevel() { return rvLevelCur; }
+        // Facts for a section at the current level. Supports either a leveled object
+        // { mostSupport:[…], …, challenge:[…] } or a single shared array.
+        function rvFactsFor(r, key) {
+            const f = r && r.keyFacts ? r.keyFacts[key] : null;
+            if (!f) return [];
+            if (Array.isArray(f)) return f;
+            return f[rvLevel()] || f.standard || [];
+        }
+        // The topic id for the currently selected subject (from the option's data-id).
+        function rvCurrentTopic() {
+            const s = document.getElementById('subject');
+            if (!s || s.selectedIndex < 0) return '';
+            const opt = s.options[s.selectedIndex];
+            return (opt && opt.dataset && opt.dataset.id) ? opt.dataset.id : '';
+        }
+
+        function rvInitResearch() {
+            const sel = document.getElementById('subject');
+            if (sel && !sel.dataset.filled && window.RV_TOPICS) {
+                sel.dataset.filled = '1';
+                let html = '<option value="">Choose your topic…</option>';
+                const groups = {};
+                window.RV_TOPICS.forEach(t => { (groups[t.group] = groups[t.group] || []).push(t); });
+                Object.keys(groups).forEach(g => {
+                    html += '<optgroup label="' + g + '">';
+                    groups[g].forEach(t => {
+                        const nm = t.name.replace(/"/g, '&quot;');
+                        html += '<option value="' + nm + '" data-id="' + t.id + '">' +
+                            t.name + (t.available ? '' : ' (reading coming soon)') + '</option>';
+                    });
+                    html += '</optgroup>';
+                });
+                sel.innerHTML = html;
+            }
+            // Build a "key facts" panel at the top of Intro / Content / Conclusion steps
+            [['section-intro', 'hook'], ['section-content', 'content'], ['section-conclusion', 'conclusion']].forEach(([cls, key]) => {
+                const sec = document.querySelector('.' + cls);
+                if (sec && !sec.querySelector('.step-facts')) {
+                    const box = document.createElement('div');
+                    box.className = 'step-facts';
+                    box.dataset.facts = key;
+                    const ind = sec.querySelector('.step-indicator');
+                    if (ind && ind.nextSibling) sec.insertBefore(box, ind.nextSibling);
+                    else sec.insertBefore(box, sec.firstChild);
+                }
+            });
+        }
+
+        // Render the Research viewer for whatever topic #subject currently holds.
+        function rvSyncFromSelect() {
+            const id = rvCurrentTopic();
+            const subj = document.getElementById('subject');
+            const chosenName = subj && subj.value ? subj.value : 'your topic';
+            const viewer = document.getElementById('readingViewer');
+            const note = document.getElementById('researchNote');
+            const nameEl = document.getElementById('researchTopicName');
+            if (nameEl) nameEl.textContent = chosenName;
+            const hasReading = id && window.RV_READINGS && window.RV_READINGS[id];
+            if (hasReading) {
+                if (viewer) viewer.hidden = false;
+                if (note) note.hidden = true;
+                rvRenderReading(id);
+            } else {
+                if (viewer) viewer.hidden = true;
+                if (note) {
+                    note.hidden = false;
+                    note.innerHTML = (subj && subj.value)
+                        ? 'The reading for <strong>' + chosenName + '</strong> is still being added. You can still build your script — use your class resources to research this topic.'
+                        : 'Go back to <strong>Basics</strong> and choose your topic to load a reading.';
+                }
+            }
+        }
+
+        // Subject changed (the topic dropdown lives on the Basics step): refresh everything.
+        function onTopicChange() {
+            updateTimeEstimate();
+            rvSyncFromSelect();
+            wizUpdateStepper(); wizUpdateNav();
+            autoSave();
+        }
+
+        function setReadingLevel(key) {
+            rvLevelCur = key;
+            try { localStorage.setItem(RV_LEVEL_KEY, key); } catch (e) {}
+            const id = rvCurrentTopic();
+            if (id) rvRenderReading(id);
+        }
+
+        function rvRenderReading(id) {
+            const r = window.RV_READINGS[id];
+            if (!r) return;
+            const level = rvLevel();
+            const set = (elId, html) => { const e = document.getElementById(elId); if (e) e.innerHTML = html; };
+            set('readingName', r.name);
+            set('readingTagline', r.tagline || '');
+            // Quick facts
+            set('readingQuickFacts', (r.quickFacts || []).map(f =>
+                '<span class="qf"><strong>' + f[0] + ':</strong> ' + f[1] + '</span>').join(''));
+            // Level pills active state
+            document.querySelectorAll('.level-pill').forEach(p =>
+                p.classList.toggle('active', p.dataset.level === level));
+            // Reading body
+            set('readingBody', (r.levels && r.levels[level]) || r.levels.standard || '');
+            // Key facts grouped by section
+            let facts = '<h4><i class="fas fa-key" aria-hidden="true"></i> Key facts to use in your script</h4>';
+            ['hook', 'content', 'conclusion'].forEach(k => {
+                const items = rvFactsFor(r, k);
+                if (!items.length) return;
+                facts += '<div class="facts-group"><h5>' + RV_SECTION_LABEL[k] + '</h5><ul>' +
+                    items.map(x => '<li>' + x + '</li>').join('') + '</ul></div>';
+            });
+            set('readingFacts', facts);
+            // Sources
+            const src = (r.sources || []).map(s =>
+                '<li><a href="' + s.url + '" target="_blank" rel="noopener">' + s.title + '</a></li>').join('');
+            set('readingSources', src ? '<h4><i class="fas fa-link" aria-hidden="true"></i> Where these facts come from</h4><ul>' + src + '</ul>' : '');
+        }
+
+        // Fill the "key facts for this part" panel on the Intro/Content/Conclusion steps
+        function rvRenderStepFacts(stepNum) {
+            const keyByStep = { 2: 'hook', 3: 'content', 4: 'conclusion' };
+            const key = keyByStep[stepNum];
+            if (!key) return;
+            const box = document.querySelector('[data-step="' + stepNum + '"] .step-facts');
+            if (!box) return;
+            const id = rvCurrentTopic();
+            const r = id && window.RV_READINGS ? window.RV_READINGS[id] : null;
+            const items = r ? rvFactsFor(r, key) : null;
+            if (!items || !items.length) { box.hidden = true; box.innerHTML = ''; return; }
+            box.hidden = false;
+            box.innerHTML = '<strong><i class="fas fa-key" aria-hidden="true"></i> Key facts about ' + r.name + ' for this part:</strong><ul>' +
+                items.map(x => '<li>' + x + '</li>').join('') + '</ul>';
+        }
 
         // ============================================
         // WAVE 3: language & equity supports
@@ -1333,24 +1589,7 @@
             document.querySelectorAll('input[type="text"], textarea, input[type="radio"], select')
                 .forEach(el => { el.addEventListener('input', updateProgress); el.addEventListener('change', updateProgress); });
 
-            // Add a collapse/expand control to each major section header.
-            // The main steps use a .step-indicator banner instead of an <h2>.
-            document.querySelectorAll('.section').forEach(section => {
-                if (section.querySelector('#scriptOutput')) return; // never collapse the result
-                const heading = section.querySelector('h2') || section.querySelector('.step-indicator');
-                if (!heading) return;
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'section-collapse-btn';
-                btn.setAttribute('aria-expanded', 'true');
-                btn.textContent = 'Hide';
-                btn.addEventListener('click', () => {
-                    const collapsed = section.classList.toggle('collapsed');
-                    btn.setAttribute('aria-expanded', String(!collapsed));
-                    btn.textContent = collapsed ? 'Show' : 'Hide';
-                });
-                heading.appendChild(btn);
-            });
+            // (Per-section collapse buttons removed — the wizard shows one step at a time.)
 
             // Build the view toolbar (Focus mode toggle) above the form
             const progress = document.querySelector('.progress-indicator');

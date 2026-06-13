@@ -19,12 +19,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Dark-mode ("after hours") toggle -->
-    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false"
-            onclick="(function(b){var h=document.documentElement;var d=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=d;try{localStorage.setItem('rvTheme',d);}catch(e){}b.setAttribute('aria-pressed',d==='dark');b.querySelector('span').textContent=d==='dark'?'Daytime':'After hours';b.querySelector('i').className=d==='dark'?'fas fa-sun':'fas fa-moon';})(this)">
-        <i class="fas fa-moon" aria-hidden="true"></i><span>After hours</span>
-    </button>
-
     <!-- Auto-Save Indicator -->
     <div class="auto-save-indicator" id="autoSaveIndicator" role="status" aria-live="polite">
         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -32,47 +26,51 @@
     </div>
     
     <div class="container">
-        <!-- Restore Notification -->
-        <div class="restore-notification" id="restoreNotification">
-            <h3><i class="fas fa-history" aria-hidden="true"></i> Saved work found on this computer</h3>
-            <p id="restoreList">Pick your name from the <strong>"Open saved work…"</strong> menu below to keep going, or just start typing to begin a new script.</p>
-            <button onclick="dismissRestore()"><i class="fas fa-check" aria-hidden="true"></i> Got it</button>
-        </div>
-
-        <!-- Save Controls -->
-        <div class="save-controls" id="saveControls" style="display: none;">
-            <div class="save-controls-info">
-                <strong><i class="fas fa-save" aria-hidden="true"></i> <span id="currentWorkName">New script</span></strong>
-                <div class="last-saved" id="lastSaved">Your work saves automatically on this computer</div>
-            </div>
-            <div class="save-controls-actions">
-                <label for="workSlot" class="sr-only">Open another saved script</label>
-                <select id="workSlot" onchange="switchSlot(this.value)" title="Open another saved script on this computer">
-                    <option value="">Open saved work…</option>
-                </select>
-                <button onclick="newSlot()" title="Start a fresh, blank script"><i class="fas fa-plus" aria-hidden="true"></i> New</button>
-                <button onclick="manualSave()"><i class="fas fa-save" aria-hidden="true"></i> Save Now</button>
-                <button onclick="exportToFile()" title="Download a backup file to keep or hand in"><i class="fas fa-download" aria-hidden="true"></i> Export</button>
-                <button onclick="document.getElementById('importFile').click()" title="Load a backup file"><i class="fas fa-upload" aria-hidden="true"></i> Import</button>
-                <button id="cloudPullBtn" onclick="cloudPull()" title="Get your work saved online (needs a class code)" style="display:none;"><i class="fas fa-cloud-download-alt" aria-hidden="true"></i> Get cloud work</button>
-                <button onclick="deleteSlot()" title="Delete this saved script"><i class="fas fa-trash" aria-hidden="true"></i> Delete</button>
-                <input type="file" id="importFile" accept="application/json,.json" style="display:none" onchange="importFromFile(event)">
-            </div>
-        </div>
-        <div class="header">
-            <div class="header-freq">
+        <header class="header studio">
+            <div class="studio-bar">
+                <h1 class="studio-brand"><i class="fas fa-microphone-alt" aria-hidden="true"></i> Revolutionary Voices <span class="brand-sub">Script Builder</span></h1>
                 <span class="on-air"><span class="dot"></span> On Air</span>
-                <span class="header-dial">FM &middot; 17.76 MHz</span>
+                <div class="studio-tools" id="saveControls">
+                    <span class="save-chip" title="Your work saves automatically on this computer"><i class="fas fa-check-circle" aria-hidden="true"></i> <span id="currentWorkName">New script</span></span>
+                    <span class="last-saved sr-only" id="lastSaved">Saves automatically</span>
+                    <label for="workSlot" class="sr-only">Open another saved script</label>
+                    <select id="workSlot" onchange="switchSlot(this.value)" title="Open saved work" aria-label="Open saved work">
+                        <option value="">Open work…</option>
+                    </select>
+                    <button class="icon-btn" onclick="newSlot()" title="Start a new script" aria-label="Start a new script"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                    <details class="more-actions">
+                        <summary class="icon-btn" title="More options" aria-label="More options"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></summary>
+                        <div class="more-actions-menu">
+                            <button onclick="manualSave()"><i class="fas fa-save" aria-hidden="true"></i> Save now</button>
+                            <button onclick="exportToFile()" title="Download a backup file"><i class="fas fa-download" aria-hidden="true"></i> Export backup file</button>
+                            <button onclick="document.getElementById('importFile').click()" title="Load a backup file"><i class="fas fa-upload" aria-hidden="true"></i> Import backup file</button>
+                            <button class="more-danger" onclick="deleteSlot()" title="Delete this saved script"><i class="fas fa-trash" aria-hidden="true"></i> Delete this script</button>
+                        </div>
+                    </details>
+                    <input type="file" id="importFile" accept="application/json,.json" style="display:none" onchange="importFromFile(event)">
+                    <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-pressed="false" title="Switch to dark mode"
+                            onclick="(function(b){var h=document.documentElement;var d=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=d;try{localStorage.setItem('rvTheme',d);}catch(e){}b.setAttribute('aria-pressed',d==='dark');b.setAttribute('title',d==='dark'?'Switch to daytime':'Switch to dark mode');b.querySelector('span').textContent=d==='dark'?'Daytime':'After hours';b.querySelector('i').className=d==='dark'?'fas fa-sun':'fas fa-moon';})(this)">
+                        <i class="fas fa-moon" aria-hidden="true"></i><span class="sr-only">After hours</span>
+                    </button>
+                </div>
             </div>
-            <h1><i class="fas fa-microphone-alt" aria-hidden="true"></i> Revolutionary Voices Script Builder</h1>
-            <p>Build your podcast script step-by-step with guidance, examples, and helpful tips!</p>
-            <div class="tuner" aria-hidden="true"></div>
-        </div>
+
+            <!-- TUNER DIAL = STEP NAVIGATION -->
+            <nav class="tuner-stepper" id="wizSteps" aria-label="Your steps">
+                <button type="button" class="tuner-mark" id="wizChip0" onclick="wizGoChip(0)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Basics</span></button>
+                <button type="button" class="tuner-mark" id="wizChip1" onclick="wizGoChip(1)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Research</span></button>
+                <button type="button" class="tuner-mark" id="wizChip2" onclick="wizGoChip(2)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Intro</span></button>
+                <button type="button" class="tuner-mark" id="wizChip3" onclick="wizGoChip(3)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Content</span></button>
+                <button type="button" class="tuner-mark" id="wizChip4" onclick="wizGoChip(4)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Conclusion</span></button>
+                <button type="button" class="tuner-mark" id="wizChip5" onclick="wizGoChip(5)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Finish</span></button>
+            </nav>
+        </header>
 
         <!-- SAFETY NET: GOOGLE DOC -->
-        <section class="docsafe" id="docSafe" aria-labelledby="docSafeHeading">
-            <h2 id="docSafeHeading"><i class="fas fa-shield-alt" aria-hidden="true"></i> Don't lose your work — keep a copy in Google Docs</h2>
-            <p class="docsafe-intro">This tool saves on this computer automatically, but a Google Doc is the safest backup because it lives in <strong>your</strong> Google Drive. Do these in order:</p>
+        <details class="docsafe" id="docSafe">
+            <summary class="docsafe-summary"><i class="fas fa-shield-alt" aria-hidden="true"></i> Keep a backup in Google Docs <span class="docsafe-sub">— set up, or pick up where you left off</span></summary>
+            <div class="docsafe-body">
+            <p class="docsafe-intro">A Google Doc in <strong>your</strong> Google Drive is the safest backup (this tool also saves on this computer). Do these in order:</p>
             <ol class="docsafe-steps">
                 <li>
                     <button type="button" class="btn btn-doc" onclick="openGoogleDoc()">
@@ -102,7 +100,8 @@
                 </div>
                 <p class="resume-note" id="resumeNote" role="status" aria-live="polite"></p>
             </div>
-        </section>
+            </div>
+        </details>
 
         <!-- TIME ESTIMATOR -->
         <div class="time-estimator" id="timeEstimator" style="display: none;">
@@ -116,15 +115,8 @@
             <p style="margin-top: 15px; font-size: 0.9em;"><strong><i class="fas fa-bullseye" aria-hidden="true"></i> Goal: 3-6 minutes</strong> | Estimate based on 130 words/min</p>
         </div>
         
-        <div class="progress-indicator">
-            <span class="progress-step" id="step1-indicator"><i class="fas fa-play" aria-hidden="true"></i> 1. Introduction</span>
-            <span class="progress-step" id="step2-indicator"><i class="fas fa-book" aria-hidden="true"></i> 2. Content</span>
-            <span class="progress-step" id="step3-indicator"><i class="fas fa-flag-checkered" aria-hidden="true"></i> 3. Conclusion</span>
-            <span class="progress-step" id="step4-indicator"><i class="fas fa-rocket" aria-hidden="true"></i> 4. Generate</span>
-        </div>
-        
         <!-- BASIC INFO -->
-        <div class="section section-basic">
+        <div class="section section-basic wizard-step" data-step="0">
             <h2><i class="fas fa-clipboard-list" aria-hidden="true"></i> Basic Information</h2>
             
             <label>
@@ -134,15 +126,6 @@
             <input type="text" id="studentName" placeholder="e.g., Maria G. and Alex P." oninput="updateTimeEstimate()">
             <div class="helper-text">
                 <strong>What to include:</strong> Use <strong>first name + last initial</strong> only (e.g., Maria G.). For groups, separate names with "and".
-            </div>
-
-            <label>
-                Class Code <span style="font-weight:normal;">(optional — to save to the cloud)</span>:
-                <i class="fas fa-info-circle info-icon" data-tooltip="Your teacher gives you this code. It lets your work save online so you can open it on any computer." tabindex="0" role="img" aria-label="Help: Your teacher gives you this code so your work saves online."></i>
-            </label>
-            <input type="text" id="classCode" placeholder="e.g., period3-fall" oninput="updateTimeEstimate()" autocomplete="off">
-            <div class="helper-text">
-                <strong><i class="fas fa-cloud" aria-hidden="true"></i> Cloud save:</strong> If your teacher gave you a class code, type it here and your work also saves online — open it later on any computer with the same code and name. <span id="cloudStatus" aria-live="polite"></span>
             </div>
 
             <label>
@@ -175,14 +158,15 @@
                 </div>
             </div>
             
-            <label>
+            <label for="subject">
                 Subject/Topic of Your Episode:
-                <i class="fas fa-info-circle info-icon" data-tooltip="Who or what is your episode about?" tabindex="0" role="img" aria-label="Help: Who or what is your episode about?"></i>
+                <i class="fas fa-info-circle info-icon" data-tooltip="Who or what is your episode about? Pick from the list." tabindex="0" role="img" aria-label="Help: Who or what is your episode about? Pick from the list."></i>
             </label>
-            <input type="text" id="subject" placeholder="e.g., Phillis Wheatley, Enslaved people in the war, Women soldiers" oninput="updateTimeEstimate()">
+            <select id="subject" onchange="onTopicChange()">
+                <option value="">Choose your topic…</option>
+            </select>
             <div class="helper-text">
-                <strong>Be specific:</strong> Name the person, group, or event you're focusing on<br>
-                <span class="length"><i class="fas fa-ruler" aria-hidden="true"></i> Length: 2-8 words</span>
+                <strong>Pick who or what your podcast is about.</strong> On the next step (Research) you'll read about them and get key facts for your script.
             </div>
 
             <label>
@@ -207,10 +191,36 @@
             </select>
         </div>
         
+        <!-- RESEARCH -->
+        <div class="section section-research wizard-step" data-step="1">
+            <h2><i class="fas fa-book-open" aria-hidden="true"></i> Read about your topic</h2>
+            <p class="research-intro">Here's the reading for <strong id="researchTopicName">your topic</strong>. Read it at the level that fits you, then use the <strong>key facts</strong> in each part of your script.</p>
+            <p class="research-note" id="researchNote" hidden>Go back to <strong>Basics</strong> and choose your topic to load a reading.</p>
+
+            <div class="reading-viewer" id="readingViewer" hidden>
+                <div class="reading-head">
+                    <div>
+                        <h3 id="readingName"></h3>
+                        <p class="reading-tagline" id="readingTagline"></p>
+                    </div>
+                    <div class="level-toggle" role="group" aria-label="Reading level">
+                        <button type="button" class="level-pill" data-level="mostSupport" onclick="setReadingLevel('mostSupport')" title="Most support">★<span class="level-word">Most support</span></button>
+                        <button type="button" class="level-pill" data-level="someSupport" onclick="setReadingLevel('someSupport')" title="Some support">★★<span class="level-word">Some support</span></button>
+                        <button type="button" class="level-pill" data-level="standard" onclick="setReadingLevel('standard')" title="Standard">★★★<span class="level-word">Standard</span></button>
+                        <button type="button" class="level-pill" data-level="challenge" onclick="setReadingLevel('challenge')" title="Challenge">★★★★<span class="level-word">Challenge</span></button>
+                    </div>
+                </div>
+                <div class="reading-quickfacts" id="readingQuickFacts"></div>
+                <article class="reading-body" id="readingBody" tabindex="-1" aria-live="polite"></article>
+                <div class="reading-facts" id="readingFacts"></div>
+                <div class="reading-sources" id="readingSources"></div>
+            </div>
+        </div>
+
         <!-- INTRODUCTION -->
-        <div class="section section-intro">
+        <div class="section section-intro wizard-step" data-step="2">
             <div class="step-indicator" role="heading" aria-level="2">
-                <i class="fas fa-play-circle" aria-hidden="true"></i> STEP 1 of 4: Choose Your Introduction Style
+                <i class="fas fa-play-circle" aria-hidden="true"></i> Step 3 of 6: Choose Your Introduction Style
             </div>
             
             <div class="info-box">
@@ -742,9 +752,9 @@
         </div>
         
         <!-- CONTENT SECTION -->
-        <div class="section section-content">
+        <div class="section section-content wizard-step" data-step="3">
             <div class="step-indicator" role="heading" aria-level="2">
-                <i class="fas fa-book-open" aria-hidden="true"></i> STEP 2 of 4: Choose Your Content Format
+                <i class="fas fa-book-open" aria-hidden="true"></i> Step 4 of 6: Choose Your Content Format
             </div>
             
             <div class="info-box">
@@ -1298,9 +1308,9 @@
         </div>
         
         <!-- CONCLUSION SECTION -->
-        <div class="section section-conclusion">
+        <div class="section section-conclusion wizard-step" data-step="4">
             <div class="step-indicator" role="heading" aria-level="2">
-                <i class="fas fa-flag-checkered" aria-hidden="true"></i> STEP 3 of 4: Choose Your Conclusion Style
+                <i class="fas fa-flag-checkered" aria-hidden="true"></i> Step 5 of 6: Choose Your Conclusion Style
             </div>
             
             <div class="info-box">
@@ -1739,13 +1749,19 @@
             </div>
         </div>
         
+        <!-- STEP 6: FINISH & SUBMIT -->
+        <div class="wizard-step section-finish" data-step="5">
+        <div class="finish-intro">
+            <h2><i class="fas fa-rocket" aria-hidden="true"></i> Finish &amp; Submit</h2>
+            <p>When your Introduction, Content, and Conclusion are filled in, build your script and hand it in on Canvas.</p>
+        </div>
         <!-- GENERATE SCRIPT BUTTON -->
-        <div style="text-align: center; margin: 40px 0;">
+        <div style="text-align: center; margin: 30px 0;">
             <button class="btn" onclick="generateScript()">
-                <i class="fas fa-magic" aria-hidden="true"></i> Generate My Script!
+                <i class="fas fa-magic" aria-hidden="true"></i> Build My Script
             </button>
         </div>
-        
+
         <!-- FINAL SCRIPT OUTPUT -->
         <div id="finalScript">
             <div class="section" role="region" aria-label="Your finished script" tabindex="-1" id="finalScriptRegion">
@@ -1785,9 +1801,18 @@
                 </div>
             </div>
         </div>
+        </div><!-- /step 5: finish -->
+
+        <!-- WIZARD NAV -->
+        <div class="wizard-nav" id="wizardNav">
+            <button type="button" class="btn btn-secondary" id="wizBack" onclick="wizBack()"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</button>
+            <span class="wizard-progress-label" id="wizLabel" aria-live="polite">Step 1 of 5</span>
+            <button type="button" class="btn" id="wizNext" onclick="wizNext()">Next <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
     </div>
-    
-    
+
+
+    <script src="readings.js"></script>
     <script src="app.js"></script>
     <script>
         // Sync the theme-toggle button to the saved theme on load

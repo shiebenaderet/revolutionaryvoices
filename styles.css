@@ -632,3 +632,32 @@
             .starter-btn { white-space: normal; }
             .btn { width: 100%; justify-content: center; margin: 6px 0; }
         }
+
+        /* ============================================
+           POST-REVIEW FIXES (blockers + quick wins)
+           ============================================ */
+
+        /* Clickable jump links inside the validation summary */
+        .validation-summary .jump-link {
+            background: none; border: none; padding: 0; margin: 0;
+            color: #b71c1c; font: inherit; font-weight: 600;
+            text-decoration: underline; cursor: pointer; text-align: left;
+        }
+        .validation-summary .jump-link:hover { color: #7f1010; }
+        .validation-summary li { margin: 4px 0; }
+
+        /* Verb-meaning caption (visible on focus/hover/tap) */
+        .verb-meaning {
+            margin-top: 10px; padding: 8px 10px; background: #ecfdf5;
+            border-left: 3px solid #0d9488; border-radius: 6px;
+            font-size: 0.95rem; color: #134e4a; min-height: 1.2em;
+        }
+
+        /* Two leftover purples the Wave-6 refresh missed */
+        #scriptOutput { border-color: var(--brand); }
+        #finalScript > .section > h2 { color: var(--brand) !important; }
+
+        /* Fallback glyphs for a few invalid Font Awesome names that rendered blank */
+        .fa-thinking::before, .fa-thought::before { content: '💭'; }
+        .fa-uncomfortable::before { content: '😬'; }
+        .fa-book-reader::before { content: '📖'; }

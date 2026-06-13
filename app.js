@@ -201,15 +201,15 @@
             
             totalWords = introWords + contentWords + conclusionWords;
             
-            // Convert to time (150 words per minute)
-            const totalMinutes = Math.floor(totalWords / 150);
-            const totalSeconds = Math.round((totalWords % 150) / 150 * 60);
-            const introMinutes = Math.floor(introWords / 150);
-            const introSeconds = Math.round((introWords % 150) / 150 * 60);
-            const contentMinutes = Math.floor(contentWords / 150);
-            const contentSeconds = Math.round((contentWords % 150) / 150 * 60);
-            const conclusionMinutes = Math.floor(conclusionWords / 150);
-            const conclusionSeconds = Math.round((conclusionWords % 150) / 150 * 60);
+            // Convert to time (130 words per minute)
+            const totalMinutes = Math.floor(totalWords / 130);
+            const totalSeconds = Math.round((totalWords % 130) / 130 * 60);
+            const introMinutes = Math.floor(introWords / 130);
+            const introSeconds = Math.round((introWords % 130) / 130 * 60);
+            const contentMinutes = Math.floor(contentWords / 130);
+            const contentSeconds = Math.round((contentWords % 130) / 130 * 60);
+            const conclusionMinutes = Math.floor(conclusionWords / 130);
+            const conclusionSeconds = Math.round((conclusionWords % 130) / 130 * 60);
             
             // Update display
             if (totalWords > 0) {
@@ -282,11 +282,40 @@
                     document.querySelector('.container').appendChild(box);
                 }
             }
-            box.innerHTML = '<span aria-hidden="true">⚠️</span> Before you can build your script, please finish these:' +
-                '<ul>' + problems.map(p => '<li>' + p.label + '</li>').join('') + '</ul>';
+            box.innerHTML = '<span aria-hidden="true">⚠️</span> Before you can build your script, please finish these:';
+            const ul = document.createElement('ul');
+            problems.forEach(p => {
+                const li = document.createElement('li');
+                if (p.target) {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'jump-link';
+                    btn.textContent = p.label;
+                    btn.addEventListener('click', () => jumpToProblem(p.target));
+                    li.appendChild(btn);
+                } else {
+                    li.textContent = p.label;
+                }
+                ul.appendChild(li);
+            });
+            box.appendChild(ul);
             box.style.display = 'block';
             box.focus();
             scrollToEl(box);
+        }
+        // Jump to (and reveal) the place a problem lives — even if collapsed or in Focus mode
+        function jumpToProblem(target) {
+            const el = document.querySelector(target);
+            if (!el) return;
+            const sec = el.closest('.section');
+            if (sec && sec.classList.contains('collapsed')) {
+                sec.classList.remove('collapsed');
+                const b = sec.querySelector('.section-collapse-btn');
+                if (b) { b.setAttribute('aria-expanded', 'true'); b.textContent = 'Hide'; }
+            }
+            scrollToEl(el);
+            const focusable = el.matches('input, textarea, select') ? el : el.querySelector('input, textarea, select');
+            if (focusable && focusable.focus) setTimeout(() => focusable.focus(), 60);
         }
         function clearValidationSummary() {
             const box = document.getElementById('validationSummary');
@@ -300,32 +329,33 @@
             const podcastName = document.getElementById('podcastName').value;
             const subject = document.getElementById('subject').value;
 
-            // Collect every problem so the student sees them all at once (no popup chain)
+            // Collect every problem so the student sees them all at once (no popup chain).
+            // Each problem carries a real `target` so its jump link lands on the right place.
             const problems = [];
             ['studentName', 'podcastName', 'subject'].forEach(clearFieldError);
-            if (!studentName) { problems.push({ label: 'Add your name', id: 'studentName' }); }
-            if (!podcastName) { problems.push({ label: 'Add your podcast name', id: 'podcastName' }); }
-            if (!subject) { problems.push({ label: 'Add your subject (who or what your podcast is about)', id: 'subject' }); }
+            if (!studentName) { problems.push({ label: 'Add your name', target: '#studentName', field: 'studentName' }); }
+            if (!podcastName) { problems.push({ label: 'Add your podcast name', target: '#podcastName', field: 'podcastName' }); }
+            if (!subject) { problems.push({ label: 'Add your subject (who or what your podcast is about)', target: '#subject', field: 'subject' }); }
             const introTypeCheck = document.querySelector('input[name="intro"]:checked');
-            if (!introTypeCheck) { problems.push({ label: 'Choose an introduction style', id: 'studentName' }); }
+            if (!introTypeCheck) { problems.push({ label: 'Choose an introduction style', target: '.section-intro' }); }
             const contentTypeCheck = document.querySelector('input[name="content"]:checked');
-            if (!contentTypeCheck) { problems.push({ label: 'Choose a content format', id: 'studentName' }); }
+            if (!contentTypeCheck) { problems.push({ label: 'Choose a content format', target: '.section-content' }); }
             const conclusionTypeCheck = document.querySelector('input[name="conclusion"]:checked');
-            if (!conclusionTypeCheck) { problems.push({ label: 'Choose a conclusion type', id: 'studentName' }); }
+            if (!conclusionTypeCheck) { problems.push({ label: 'Choose a conclusion type', target: '.section-conclusion' }); }
 
             // Catch a near-empty script: a style is chosen but nothing was written in it
             if (introTypeCheck && !sectionStarted('section-intro', 'intro')) {
-                problems.push({ label: 'Write something in your Introduction (it looks empty)', id: 'studentName' });
+                problems.push({ label: 'Write something in your Introduction (it looks empty)', target: '.section-intro' });
             }
             if (contentTypeCheck && !sectionStarted('section-content', 'content')) {
-                problems.push({ label: 'Write something in your Content section (it looks empty)', id: 'studentName' });
+                problems.push({ label: 'Write something in your Content section (it looks empty)', target: '.section-content' });
             }
             if (conclusionTypeCheck && !sectionStarted('section-conclusion', 'conclusion')) {
-                problems.push({ label: 'Write something in your Conclusion (it looks empty)', id: 'studentName' });
+                problems.push({ label: 'Write something in your Conclusion (it looks empty)', target: '.section-conclusion' });
             }
 
             if (problems.length) {
-                problems.forEach(p => { if (['studentName','podcastName','subject'].includes(p.id) && !document.getElementById(p.id).value) setFieldError(p.id, p.label); });
+                problems.forEach(p => { if (p.field && !document.getElementById(p.field).value) setFieldError(p.field, p.label); });
                 showValidationSummary(problems);
                 return;
             }
@@ -910,13 +940,28 @@
         const glossaryNotes = {}; // student's own words / home language (kept in memory)
 
         function wireUpLanguageSupports() {
-            // 1) Verb meanings on hover/focus
+            // 1) Verb meanings shown in a visible caption on focus / hover / tap
+            //    (works for keyboard and touchscreen users, not just mouse-hover).
+            document.querySelectorAll('.verb-bank-content').forEach(bank => {
+                if (bank.querySelector('.verb-meaning')) return;
+                const cap = document.createElement('div');
+                cap.className = 'verb-meaning';
+                cap.setAttribute('aria-live', 'polite');
+                cap.textContent = 'Tip: tap or move to a word to see what it means.';
+                bank.appendChild(cap);
+            });
             document.querySelectorAll('.verb-btn').forEach(btn => {
                 const word = btn.textContent.trim().toLowerCase();
-                if (VERB_DEFS[word]) {
-                    btn.title = word + ' = ' + VERB_DEFS[word];
-                    btn.setAttribute('aria-label', word + ', meaning: ' + VERB_DEFS[word]);
-                }
+                if (!VERB_DEFS[word]) return;
+                btn.title = word + ' = ' + VERB_DEFS[word];
+                const show = () => {
+                    const bank = btn.closest('.verb-bank-content');
+                    const cap = bank && bank.querySelector('.verb-meaning');
+                    if (cap) cap.textContent = word + ' — ' + VERB_DEFS[word];
+                };
+                btn.addEventListener('focus', show);
+                btn.addEventListener('mouseenter', show);
+                btn.addEventListener('click', show);
             });
 
             // 2) Difficulty badge on each format choice
@@ -966,9 +1011,13 @@
 
             panel.querySelector('#glossaryClose').addEventListener('click', closeGlossary);
             panel.querySelectorAll('.gloss-note').forEach(inp => {
-                inp.addEventListener('input', () => { glossaryNotes[inp.dataset.term] = inp.value; });
+                // These inputs have stable ids, so they save/restore with the slot like any field.
+                inp.addEventListener('input', () => { glossaryNotes[inp.dataset.term] = inp.value; autoSave(); });
             });
-            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGlossary(); });
+            document.addEventListener('keydown', e => {
+                const p = document.getElementById('glossaryPanel');
+                if (e.key === 'Escape' && p && p.classList.contains('open')) closeGlossary();
+            });
 
             // Toolbar button to open it
             const bar = document.querySelector('.view-toolbar');
@@ -982,17 +1031,32 @@
                 bar.appendChild(open);
             }
         }
+        function trapGlossaryTab(e) {
+            if (e.key !== 'Tab') return;
+            const p = document.getElementById('glossaryPanel');
+            const f = p.querySelectorAll('button, input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (!f.length) return;
+            const first = f[0], last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
         function openGlossary() {
             document.getElementById('glossaryOverlay').classList.add('open');
             const p = document.getElementById('glossaryPanel');
             p.classList.add('open');
+            // Make the rest of the page unreachable while the dialog is open
+            const c = document.querySelector('.container');
+            if (c) { c.setAttribute('aria-hidden', 'true'); c.inert = true; }
+            p.addEventListener('keydown', trapGlossaryTab);
             p.querySelector('.glossary-close').focus();
         }
         function closeGlossary() {
             const o = document.getElementById('glossaryOverlay');
             const p = document.getElementById('glossaryPanel');
             if (o) o.classList.remove('open');
-            if (p) p.classList.remove('open');
+            if (p) { p.classList.remove('open'); p.removeEventListener('keydown', trapGlossaryTab); }
+            const c = document.querySelector('.container');
+            if (c) { c.removeAttribute('aria-hidden'); c.inert = false; }
             const btn = document.getElementById('glossaryOpen');
             if (btn) btn.focus();
         }

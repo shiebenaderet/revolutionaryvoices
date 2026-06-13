@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- CONCEPT 3: Fresh Field — Bright-Energetic / accessibility-forward. Font: Lexend (reading-optimized) -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fresh Field — concept preview</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f9f4; --surface:#ffffff; --ink:#23302a; --muted:#5a6b62;
+    --primary:#2e9e6b; --accent:#3d7bd6; --violet:#7b61ff;
+    --code-basic:#7b61ff; --code-intro:#3d7bd6; --code-content:#2e9e6b; --code-conclusion:#e0892a;
+    --radius:16px; --shadow:0 2px 8px rgba(35,48,42,.06),0 12px 28px rgba(35,48,42,.07);
+    --font:'Lexend',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{font-family:var(--font);font-size:18px;line-height:1.65;color:var(--ink);
+       background:var(--bg);margin:0;padding:28px 20px;}
+  .wrap{max-width:740px;margin:0 auto;}
+  h1,h2,h3{line-height:1.2;margin:0;font-weight:700;}
+  .badge{position:fixed;top:12px;right:12px;background:var(--primary);color:#fff;
+         font:600 13px var(--font);padding:8px 13px;border-radius:999px;
+         box-shadow:0 6px 16px rgba(46,158,107,.4);z-index:99;}
+  .header{background:var(--surface);border-radius:22px;padding:30px 28px;margin-bottom:20px;
+          box-shadow:var(--shadow);position:relative;overflow:hidden;
+          border-top:6px solid var(--primary);}
+  .header::before{content:"";position:absolute;right:-40px;bottom:-50px;width:180px;height:180px;border-radius:50%;
+          background:radial-gradient(circle,rgba(123,97,255,.12),transparent 70%);}
+  .header .tag{display:inline-flex;align-items:center;gap:8px;background:#eaf6f0;color:var(--primary);
+          font-weight:600;font-size:.85rem;padding:6px 13px;border-radius:999px;margin-bottom:13px;}
+  .header h1{font-size:2.1rem;}
+  .header p{margin:9px 0 0;color:var(--muted);}
+  .estimator{background:#eef7f2;border-radius:var(--radius);padding:18px 22px;margin-bottom:20px;
+          display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+  .est-circle{width:74px;height:74px;border-radius:50%;background:#fff;display:grid;place-items:center;
+          box-shadow:var(--shadow);border:3px solid var(--primary);}
+  .est-circle b{font-size:1.25rem;color:var(--primary);}
+  .estimator h2{font-size:1.1rem;display:flex;align-items:center;gap:9px;}
+  .estimator p{margin:3px 0 0;font-size:.9rem;color:var(--muted);}
+  .steps{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px;}
+  .step{flex:1;min-width:130px;background:var(--surface);border-radius:14px;padding:12px 14px;
+        font-weight:600;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:9px;box-shadow:var(--shadow);}
+  .step.active{color:var(--primary);}
+  .step .n{width:26px;height:26px;border-radius:50%;background:#eef7f2;color:var(--primary);display:grid;place-items:center;font-size:.82rem;}
+  .step.active .n{background:var(--primary);color:#fff;}
+  .section{background:var(--surface);border-radius:var(--radius);padding:26px;margin-bottom:20px;
+        box-shadow:var(--shadow);border-left:6px solid var(--c,#ccc);}
+  .sec-basic{--c:var(--code-basic);} .sec-intro{--c:var(--code-intro);}
+  .section>h2{font-size:1.4rem;display:flex;align-items:center;gap:12px;margin-bottom:16px;color:var(--c);}
+  .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff;background:var(--c);font-size:1rem;}
+  .tagchip{margin-left:auto;font-size:.78rem;font-weight:600;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);
+        padding:5px 12px;border-radius:999px;}
+  label{display:flex;align-items:center;gap:8px;font-weight:600;margin:18px 0 6px;}
+  .info{color:var(--accent);cursor:help;font-size:.9em;}
+  input[type=text]{width:100%;padding:14px 16px;font:inherit;font-size:1rem;border:2px solid #e3ebe6;
+        border-radius:12px;background:#fbfdfb;transition:border-color .2s,box-shadow .2s;}
+  input[type=text]:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(46,158,107,.16);}
+  .helper{background:#f1f7f3;border-radius:12px;padding:13px 16px;margin-top:9px;font-size:.92rem;color:var(--muted);}
+  .helper strong{color:var(--ink);}
+  .exemplar{margin-top:16px;}
+  .ex-toggle{background:#eef2fc;color:var(--accent);font:600 .95rem var(--font);padding:12px 18px;border:none;
+        border-radius:12px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;transition:background .2s;}
+  .ex-toggle:hover{background:#e1e9fa;}
+  .ex-body{display:none;margin-top:12px;background:#fbfdfb;border:2px solid #eef4f0;border-radius:14px;padding:16px;}
+  .ex-body.open{display:block;}
+  .ex-body ul{margin:6px 0 0 18px;} .ex-body .why{font-style:italic;color:var(--muted);margin-top:10px;font-size:.9rem;}
+  .rubric{background:#eef7f2;border-radius:14px;padding:18px;margin:16px 0;}
+  .rubric h4{margin:0 0 12px;color:var(--code-content);display:flex;align-items:center;gap:8px;}
+  .rubric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .rubric-item{background:#fff;border-radius:10px;padding:11px;font-size:.88rem;box-shadow:var(--shadow);}
+  .rubric-item strong{display:block;color:var(--code-content);}
+  .choice{display:block;padding:15px 16px;margin:10px 0;background:#fbfdfb;border:2px solid #e3ebe6;
+        border-radius:14px;cursor:pointer;font-weight:500;transition:border-color .2s,background .2s,transform .15s;}
+  .choice:hover{border-color:var(--accent);background:#f3f7fe;}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;}
+  .btn{font:600 1rem var(--font);padding:14px 28px;border-radius:14px;border:none;cursor:pointer;
+        display:inline-flex;align-items:center;gap:9px;transition:transform .15s,box-shadow .2s,filter .2s;}
+  .btn-primary{background:var(--primary);color:#fff;box-shadow:0 6px 16px rgba(46,158,107,.3);}
+  .btn-primary:hover{filter:brightness(1.05);}
+  .btn-secondary{background:#eef7f2;color:var(--primary);}
+  .btn-secondary:hover{background:#e2f0e9;}
+  @media (prefers-reduced-motion: no-preference){
+    .btn:active{transform:translateY(1px);}
+    .choice:hover{transform:translateY(-2px);}
+    .section{animation:rise .4s ease-out both;}
+    .section:nth-child(5){animation-delay:.05s}.section:nth-child(6){animation-delay:.1s}
+    .ex-body.open{animation:rise .25s ease-out;}
+    @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body>
+<div class="badge">Fresh Field · bright, airy, ultra-readable</div>
+<div class="wrap">
+  <div class="header">
+    <span class="tag"><i class="fas fa-microphone-alt"></i> Podcast Workshop</span>
+    <h1>Revolutionary Voices Script Builder</h1>
+    <p>Build your podcast script step-by-step with guidance, examples, and helpful tips.</p>
+  </div>
+
+  <div class="estimator">
+    <div class="est-circle"><b>3:40</b></div>
+    <div>
+      <h2><i class="far fa-clock"></i> Estimated Script Time</h2>
+      <p>Goal: 3–6 minutes · based on 130 words/min</p>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step active"><span class="n">1</span> Introduction</div>
+    <div class="step"><span class="n">2</span> Content</div>
+    <div class="step"><span class="n">3</span> Conclusion</div>
+  </div>
+
+  <div class="section sec-basic">
+    <h2><span class="ic"><i class="fas fa-clipboard-list"></i></span> Basic Information <span class="tagchip">Step 1</span></h2>
+    <label>Podcast Name <i class="fas fa-info-circle info" title="Choose a catchy, memorable title"></i></label>
+    <input type="text" placeholder="e.g., Untold Voices, Hidden History">
+    <div class="helper"><strong>What makes a good name:</strong> Short, memorable, and hints at your topic. Try powerful words like “Untold,” “Hidden,” or “Chronicles.”</div>
+
+    <div class="exemplar">
+      <button class="ex-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+        <i class="fas fa-lightbulb"></i> See Examples of Great Podcast Names</button>
+      <div class="ex-body">
+        <strong>Examples:</strong>
+        <ul><li>“Voices of Resistance” — about people fighting back</li>
+            <li>“Hidden Patriots” — creates mystery and intrigue</li>
+            <li>“Untold Stories 1776” — specific and attention-grabbing</li></ul>
+        <div class="why"><i class="fas fa-check-circle"></i> Why these work: short, memorable, and they tell listeners what to expect.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section sec-intro">
+    <h2><span class="ic"><i class="fas fa-play"></i></span> Introduction <span class="tagchip">Step 2</span></h2>
+    <div class="rubric">
+      <h4><i class="fas fa-star"></i> What makes a strong intro</h4>
+      <div class="rubric-grid">
+        <div class="rubric-item"><strong>Hook</strong> Grab attention fast</div>
+        <div class="rubric-item"><strong>Topic</strong> Say what it's about</div>
+        <div class="rubric-item"><strong>Voice</strong> Sound like you</div>
+        <div class="rubric-item"><strong>Length</strong> 20–40 seconds</div>
+      </div>
+    </div>
+    <label>Pick an opening style:</label>
+    <label class="choice"><strong>Dramatic</strong> — “The year is 1776, and everything is about to change…”</label>
+    <label class="choice"><strong>Question</strong> — “What if the people history forgot could finally speak?”</label>
+    <div class="btn-row">
+      <button class="btn btn-primary"><i class="fas fa-arrow-right"></i> Next: Content</button>
+      <button class="btn btn-secondary"><i class="fas fa-save"></i> Save Now</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

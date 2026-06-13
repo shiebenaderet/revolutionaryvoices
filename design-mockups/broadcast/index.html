@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Broadcast — Refinement Round</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;margin:0;background:#0d1018;color:#e8edf4;line-height:1.6;padding:32px 22px 60px;}
+  .wrap{max-width:1100px;margin:0 auto;}
+  header.top{text-align:center;margin-bottom:32px;}
+  .eyebrow{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:#ff6b5e;font-weight:700;}
+  h1{font-size:2.1rem;font-weight:800;margin:8px 0 6px;}
+  header.top p{color:#9aa6b6;max-width:660px;margin:0 auto;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:18px;}
+  @media(max-width:920px){.grid{grid-template-columns:1fr;}}
+  .card{background:#161b25;border:1px solid #28313d;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .18s,border-color .2s;}
+  .card:hover{transform:translateY(-4px);border-color:#ff6b5e;}
+  .thumb{position:relative;height:300px;overflow:hidden;background:#0b0e1a;border-bottom:1px solid #28313d;}
+  .thumb iframe{position:absolute;top:0;left:0;width:1100px;height:1180px;border:0;transform:scale(.42);transform-origin:top left;pointer-events:none;}
+  .thumb a.cover{position:absolute;inset:0;z-index:2;}
+  .dm{position:absolute;bottom:10px;right:10px;z-index:3;background:rgba(8,11,20,.78);color:#cfe;font-size:.72rem;font-weight:600;padding:4px 9px;border-radius:999px;border:1px solid #2a3350;}
+  .meta{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .cname{font-size:1.25rem;font-weight:700;display:flex;align-items:center;gap:9px;}
+  .tag{margin-left:auto;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:4px 10px;border-radius:999px;}
+  .a .tag{background:#ff5a4d;color:#fff}.b .tag{background:#2fe6d6;color:#04121b}.c .tag{background:#e0a52e;color:#3a2a1a}
+  .promise{color:#9aa6b6;font-size:.92rem;}
+  .rat{font-size:.9rem;color:#c7d0dc;}
+  .verdict{font-size:.85rem;font-weight:600;margin-top:auto;padding-top:8px;}
+  .pass{color:#7be3b0;} .warn{color:#ffce6b;}
+  .open-btn{margin-top:10px;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#ff5a4d;color:#fff;
+        text-decoration:none;font-weight:600;padding:11px 16px;border-radius:10px;transition:background .2s;font-size:.95rem;}
+  .open-btn:hover{background:#e34a3e;}
+  .swatches{display:flex;gap:5px;margin-top:2px;}
+  .sw{width:18px;height:18px;border-radius:5px;border:1px solid rgba(255,255,255,.15);}
+  .note{background:#12161f;border:1px solid #28313d;border-radius:14px;padding:20px 24px;color:#9aa6b6;font-size:.92rem;margin-top:6px;}
+  .note b{color:#e8edf4;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Edu Design Team · Broadcast · Round 2</div>
+    <h1>Three takes on the studio look</h1>
+    <p>All three push the podcast theme further and ship with a <b>working dark-mode toggle</b> (top-right of each preview). Same components throughout — only the studio personality changes.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card a">
+      <div class="thumb"><iframe src="variation-a.html" title="Prime Time" scrolling="no"></iframe>
+        <a class="cover" href="variation-a.html" target="_blank" aria-label="Open Prime Time"></a>
+        <span class="dm">☾ dark toggle</span></div>
+      <div class="meta">
+        <div class="cname">Prime Time <span class="tag">A · light default</span></div>
+        <div class="promise">The polished, daytime broadcast — refined and classroom-ready.</div>
+        <div class="swatches"><span class="sw" style="background:#1b2236"></span><span class="sw" style="background:#ff5a4d"></span><span class="sw" style="background:#ffb020"></span><span class="sw" style="background:#2aa9e0"></span><span class="sw" style="background:#eef1f8"></span></div>
+        <div class="rat">Adds a “REC” cue, a live EQ in the header, and a now-playing <b>transport bar</b> for the time estimator. Reads as a real production tool while staying calm enough to work in. The safest bet for everyday class use.</div>
+        <div class="verdict pass">✅ Passes in both light &amp; dark — AA text, 48px buttons, reduced-motion respected.</div>
+        <a class="open-btn" href="variation-a.html" target="_blank">Open live preview →</a>
+      </div>
+    </div>
+
+    <div class="card b">
+      <div class="thumb"><iframe src="variation-b.html" title="Late Night" scrolling="no"></iframe>
+        <a class="cover" href="variation-b.html" target="_blank" aria-label="Open Late Night"></a>
+        <span class="dm">☀ light toggle</span></div>
+      <div class="meta">
+        <div class="cname">Late Night <span class="tag">B · dark default</span></div>
+        <div class="promise">The neon recording booth — dark-first, with a daytime toggle.</div>
+        <div class="swatches"><span class="sw" style="background:#0b0e1a"></span><span class="sw" style="background:#ff5e62"></span><span class="sw" style="background:#2fe6d6"></span><span class="sw" style="background:#9b7bff"></span><span class="sw" style="background:#34e3a4"></span></div>
+        <div class="rat">A glowing “On Air” sign, animated soundwave, and cyan accents on deep navy — the most cinematic and the most “cool.” Dark mode is the star here; the light toggle is the clean day version. Highest engagement, slightly more visual energy to manage.</div>
+        <div class="verdict warn">⚠️ Passes, with care — neon glow is decorative only; keep body text on solid panels (already done) so contrast stays AA.</div>
+        <a class="open-btn" href="variation-b.html" target="_blank">Open live preview →</a>
+      </div>
+    </div>
+
+    <div class="card c">
+      <div class="thumb"><iframe src="variation-c.html" title="On The Air" scrolling="no"></iframe>
+        <a class="cover" href="variation-c.html" target="_blank" aria-label="Open On The Air"></a>
+        <span class="dm">☾ after-hours</span></div>
+      <div class="meta">
+        <div class="cname">On The Air <span class="tag">C · retro</span></div>
+        <div class="promise">Vintage radio warmth — amber, cream, and a tuning dial.</div>
+        <div class="swatches"><span class="sw" style="background:#d4661a"></span><span class="sw" style="background:#1f7a6e"></span><span class="sw" style="background:#e0a52e"></span><span class="sw" style="background:#f5ead3"></span><span class="sw" style="background:#3a2a1a"></span></div>
+        <div class="rat">Trades sci-fi neon for a retro broadcast feel: a tuning-dial header (“FM 17.76”), monospace “transmission” labels, and tape-deck cards. Warm and distinctive — a strong fit for the <i>history</i> subject. Dark mode is a cozy “after hours” espresso.</div>
+        <div class="verdict pass">✅ Passes in both themes — warm palette still clears AA; monospace used only for short labels.</div>
+        <a class="open-btn" href="variation-c.html" target="_blank">Open live preview →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="note"><b>Pick one</b> — or mix (“Prime Time’s transport bar with On The Air’s warm palette”). Toggle dark mode inside each preview to check both. When you choose, the team applies it to your real <span style="font-family:monospace">styles.css</span> / <span style="font-family:monospace">index.html</span> with the dark-mode toggle wired in, backing up the originals first.</div>
+</div>
+</body>
+</html>

@@ -1,30 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Revolutionary Voices Script Builder - Enhanced</title>
-
-    <!-- Set saved theme before paint to avoid a flash -->
-    <script>try{var t=localStorage.getItem('rvTheme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
-
+    
     <!-- Font Awesome 6 CDN with fallback -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
-
-    <!-- On The Air theme fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    
+    
+    
+    
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Dark-mode ("after hours") toggle -->
-    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false"
-            onclick="(function(b){var h=document.documentElement;var d=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=d;try{localStorage.setItem('rvTheme',d);}catch(e){}b.setAttribute('aria-pressed',d==='dark');b.querySelector('span').textContent=d==='dark'?'Daytime':'After hours';b.querySelector('i').className=d==='dark'?'fas fa-sun':'fas fa-moon';})(this)">
-        <i class="fas fa-moon" aria-hidden="true"></i><span>After hours</span>
-    </button>
-
     <!-- Auto-Save Indicator -->
     <div class="auto-save-indicator" id="autoSaveIndicator" role="status" aria-live="polite">
         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -60,13 +49,8 @@
             </div>
         </div>
         <div class="header">
-            <div class="header-freq">
-                <span class="on-air"><span class="dot"></span> On Air</span>
-                <span class="header-dial">FM &middot; 17.76 MHz</span>
-            </div>
             <h1><i class="fas fa-microphone-alt" aria-hidden="true"></i> Revolutionary Voices Script Builder</h1>
             <p>Build your podcast script step-by-step with guidance, examples, and helpful tips!</p>
-            <div class="tuner" aria-hidden="true"></div>
         </div>
 
         <!-- SAFETY NET: GOOGLE DOC -->
@@ -1789,13 +1773,5 @@
     
     
     <script src="app.js"></script>
-    <script>
-        // Sync the theme-toggle button to the saved theme on load
-        (function(){var b=document.getElementById('themeToggle');if(!b)return;
-            var dark=document.documentElement.dataset.theme==='dark';
-            b.setAttribute('aria-pressed',dark);
-            b.querySelector('span').textContent=dark?'Daytime':'After hours';
-            b.querySelector('i').className=dark?'fas fa-sun':'fas fa-moon';})();
-    </script>
 </body>
 </html>

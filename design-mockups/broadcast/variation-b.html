@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<!-- BROADCAST · Variation B: Late Night — dark-first neon booth. Toggle to day studio. Fonts: Poppins / Inter -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Late Night — Broadcast variation</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root[data-theme="dark"]{
+    --bg:#0b0e1a; --surface:#141a2e; --surface-2:#0f1424; --ink:#eaf0ff; --muted:#94a0c4; --line:#27314f;
+    --primary:#ff5e62; --primary-press:#c8484b; --accent:#2fe6d6; --glow:0 0 22px;
+    --code-basic:#9b7bff; --code-intro:#33c9ff; --code-content:#34e3a4; --code-conclusion:#ffa04d;
+    --shadow:0 10px 30px rgba(0,0,0,.55); --radius:18px;
+    --font-head:'Poppins',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+  }
+  :root[data-theme="light"]{
+    --bg:#eef2fb; --surface:#ffffff; --surface-2:#f7f9ff; --ink:#16203a; --muted:#566089; --line:#dde4f5;
+    --primary:#e8474b; --primary-press:#c1383c; --accent:#0aa2a0; --glow:0 0 0;
+    --code-basic:#6d51e6; --code-intro:#1488c4; --code-content:#13a06f; --code-conclusion:#e07a1f;
+    --shadow:0 8px 24px rgba(22,32,58,.12); --radius:18px;
+    --font-head:'Poppins',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{font-family:var(--font-body);font-size:18px;line-height:1.6;color:var(--ink);background:var(--bg);
+       margin:0;padding:28px 20px;transition:background .3s,color .3s;
+       background-image:radial-gradient(700px 400px at 80% -5%,rgba(255,94,98,.10),transparent),radial-gradient(600px 400px at 0% 10%,rgba(47,230,214,.08),transparent);}
+  .wrap{max-width:780px;margin:0 auto;}
+  h1,h2,h3{font-family:var(--font-head);line-height:1.15;margin:0;}
+  .badge{position:fixed;top:12px;left:12px;background:var(--primary);color:#fff;font:700 13px var(--font-body);
+         padding:8px 13px;border-radius:999px;box-shadow:var(--glow) rgba(255,94,98,.6);z-index:99;}
+  .theme-toggle{position:fixed;top:12px;right:12px;z-index:99;background:var(--surface);color:var(--ink);border:1px solid var(--line);
+         font:600 13px var(--font-body);padding:9px 14px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow);min-height:40px;}
+  .header{background:linear-gradient(160deg,#101730,#0a0f20);color:var(--ink);padding:30px 28px 24px;border-radius:24px;margin-bottom:22px;
+          position:relative;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);}
+  :root[data-theme="light"] .header{background:linear-gradient(160deg,#1b2236,#232c45);color:#fff;}
+  .onair{display:inline-flex;align-items:center;gap:9px;color:var(--primary);font:800 14px var(--font-body);letter-spacing:.22em;
+         text-transform:uppercase;padding:6px 14px;border:1.5px solid var(--primary);border-radius:10px;box-shadow:var(--glow) rgba(255,94,98,.45);text-shadow:var(--glow) rgba(255,94,98,.6);}
+  .onair .dot{width:10px;height:10px;border-radius:50%;background:var(--primary);box-shadow:var(--glow) rgba(255,94,98,.9);}
+  .header h1{font-size:2.3rem;font-weight:800;margin-top:16px;}
+  .header p{margin:8px 0 0;opacity:.82;}
+  .wave{display:flex;gap:4px;align-items:center;height:40px;margin-top:18px;}
+  .wave span{width:5px;border-radius:3px;background:var(--accent);box-shadow:var(--glow) rgba(47,230,214,.55);height:14px;}
+  .estimator{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;margin-bottom:22px;
+        box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .estimator h2{font-size:1.05rem;display:flex;align-items:center;gap:9px;color:var(--accent);}
+  .est-time{font-family:var(--font-head);font-size:2.2rem;font-weight:800;color:var(--primary);text-shadow:var(--glow) rgba(255,94,98,.4);}
+  .steps{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;}
+  .step{flex:1;min-width:130px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:13px;font-weight:600;
+        font-size:.92rem;color:var(--muted);display:flex;align-items:center;gap:9px;}
+  .step.active{color:#04121b;background:var(--accent);border-color:transparent;box-shadow:var(--glow) rgba(47,230,214,.4);}
+  .step .n{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.08);display:grid;place-items:center;font-size:.82rem;}
+  .step.active .n{background:rgba(0,0,0,.18);}
+  .section{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;margin-bottom:22px;box-shadow:var(--shadow);}
+  .section>h2{font-size:1.5rem;display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+  .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#04121b;font-size:1.1rem;}
+  .pill{font:700 12px var(--font-body);text-transform:uppercase;letter-spacing:.06em;padding:5px 12px;border-radius:999px;color:#04121b;margin-left:auto;}
+  .sec-basic .ic,.sec-basic .pill{background:var(--code-basic);} .sec-basic>h2{color:var(--code-basic);}
+  .sec-intro .ic,.sec-intro .pill{background:var(--code-intro);} .sec-intro>h2{color:var(--code-intro);}
+  label{display:flex;align-items:center;gap:8px;font-weight:700;margin:18px 0 6px;}
+  .info{color:var(--code-intro);cursor:help;font-size:.9em;}
+  input[type=text]{width:100%;padding:14px 16px;font:inherit;font-size:1rem;border:2px solid var(--line);border-radius:12px;
+        background:var(--surface-2);color:var(--ink);transition:border-color .2s,box-shadow .2s;}
+  input[type=text]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(47,230,214,.22);}
+  .helper{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:13px 16px;margin-top:9px;font-size:.92rem;color:var(--muted);}
+  .helper strong{color:var(--ink);}
+  .exemplar{margin-top:16px;}
+  .ex-toggle{background:var(--primary);color:#fff;font:700 .95rem var(--font-body);padding:12px 18px;border:none;border-radius:12px;cursor:pointer;
+        display:inline-flex;align-items:center;gap:9px;box-shadow:var(--glow) rgba(255,94,98,.45);transition:transform .12s;min-height:44px;}
+  .ex-toggle:hover{transform:translateY(-1px);}
+  .ex-body{display:none;margin-top:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:16px;}
+  .ex-body.open{display:block;}
+  .ex-body ul{margin:6px 0 0 18px;} .ex-body .why{font-style:italic;color:var(--muted);margin-top:10px;font-size:.9rem;}
+  .rubric{background:var(--surface-2);border:1px solid color-mix(in srgb,var(--code-content) 40%,var(--surface-2));border-radius:14px;padding:18px;margin:16px 0;}
+  .rubric h4{margin:0 0 12px;color:var(--code-content);display:flex;align-items:center;gap:8px;}
+  .rubric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .rubric-item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px;font-size:.88rem;}
+  .rubric-item strong{display:block;color:var(--code-content);}
+  .choice{display:block;padding:15px 16px;margin:10px 0;background:var(--surface-2);border:2px solid var(--line);border-radius:14px;cursor:pointer;
+        font-weight:500;color:var(--ink);transition:transform .12s,border-color .2s;}
+  .choice:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;}
+  .btn{font:700 1rem var(--font-body);padding:15px 28px;border-radius:14px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:9px;
+        transition:transform .12s,box-shadow .12s;min-height:48px;}
+  .btn-primary{background:var(--primary);color:#fff;box-shadow:0 5px 0 var(--primary-press),var(--glow) rgba(255,94,98,.4);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-secondary{background:transparent;color:var(--accent);border:2px solid var(--accent);box-shadow:var(--glow) rgba(47,230,214,.3);}
+  .btn-secondary:hover{transform:translateY(-2px);}
+  @media (prefers-reduced-motion: no-preference){
+    .btn-primary:active{transform:translateY(2px);box-shadow:0 3px 0 var(--primary-press);}
+    .wave span{animation:bounce 1.1s ease-in-out infinite;}
+    .wave span:nth-child(2){animation-delay:.08s}.wave span:nth-child(3){animation-delay:.16s}.wave span:nth-child(4){animation-delay:.24s}
+    .wave span:nth-child(5){animation-delay:.32s}.wave span:nth-child(6){animation-delay:.12s}.wave span:nth-child(7){animation-delay:.2s}
+    .wave span:nth-child(8){animation-delay:.28s}.wave span:nth-child(9){animation-delay:.04s}.wave span:nth-child(10){animation-delay:.18s}
+    .onair .dot{animation:pulse 1.4s ease-in-out infinite;}
+    .ex-body.open{animation:pop .22s ease-out;}
+    @keyframes bounce{0%,100%{height:8px}50%{height:36px}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+    @keyframes pop{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body>
+<div class="badge">Late Night · neon booth</div>
+<button class="theme-toggle" onclick="const h=document.documentElement;h.dataset.theme=h.dataset.theme==='dark'?'light':'dark';this.querySelector('span').textContent=h.dataset.theme==='dark'?'Day studio':'Night studio';">
+  <i class="fas fa-sun"></i><span>Day studio</span></button>
+<div class="wrap">
+  <div class="header">
+    <span class="onair"><span class="dot"></span> On Air</span>
+    <h1>Revolutionary Voices Script Builder</h1>
+    <p>Build your podcast script step-by-step with guidance, examples, and helpful tips.</p>
+    <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="estimator">
+    <h2><i class="fas fa-headphones"></i> Estimated Script Time</h2>
+    <div class="est-time">3:40</div>
+  </div>
+
+  <div class="steps">
+    <div class="step active"><span class="n">1</span> Introduction</div>
+    <div class="step"><span class="n">2</span> Content</div>
+    <div class="step"><span class="n">3</span> Conclusion</div>
+  </div>
+
+  <div class="section sec-basic">
+    <h2><span class="ic"><i class="fas fa-clipboard-list"></i></span> Basic Information <span class="pill">Step 1</span></h2>
+    <label>Podcast Name <i class="fas fa-info-circle info" title="Choose a catchy, memorable title"></i></label>
+    <input type="text" placeholder="e.g., Untold Voices, Hidden History">
+    <div class="helper"><strong>What makes a good name:</strong> Short, memorable, and hints at your topic. Try powerful words like “Untold,” “Hidden,” or “Chronicles.”</div>
+    <div class="exemplar">
+      <button class="ex-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fas fa-lightbulb"></i> See Examples of Great Podcast Names</button>
+      <div class="ex-body"><strong>Examples:</strong>
+        <ul><li>“Voices of Resistance” — about people fighting back</li><li>“Hidden Patriots” — creates mystery and intrigue</li><li>“Untold Stories 1776” — specific and attention-grabbing</li></ul>
+        <div class="why"><i class="fas fa-check-circle"></i> Why these work: short, memorable, and they tell listeners what to expect.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section sec-intro">
+    <h2><span class="ic"><i class="fas fa-play"></i></span> Introduction <span class="pill">Step 2</span></h2>
+    <div class="rubric"><h4><i class="fas fa-star"></i> What makes a strong intro</h4>
+      <div class="rubric-grid">
+        <div class="rubric-item"><strong>Hook</strong> Grab attention fast</div>
+        <div class="rubric-item"><strong>Topic</strong> Say what it's about</div>
+        <div class="rubric-item"><strong>Voice</strong> Sound like you</div>
+        <div class="rubric-item"><strong>Length</strong> 20–40 seconds</div>
+      </div>
+    </div>
+    <label>Pick an opening style:</label>
+    <label class="choice"><strong>Dramatic</strong> — “The year is 1776, and everything is about to change…”</label>
+    <label class="choice"><strong>Question</strong> — “What if the people history forgot could finally speak?”</label>
+    <div class="btn-row">
+      <button class="btn btn-primary"><i class="fas fa-arrow-right"></i> Next: Content</button>
+      <button class="btn btn-secondary"><i class="fas fa-save"></i> Save Now</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

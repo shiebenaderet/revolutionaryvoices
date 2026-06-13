@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Team — Concept Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{font-family:'Inter',system-ui,sans-serif;margin:0;background:#11151c;color:#e8edf4;
+       line-height:1.6;padding:32px 22px 60px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  header.top{text-align:center;margin-bottom:34px;}
+  .eyebrow{font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:#7be3b0;font-weight:600;}
+  h1{font-size:2.1rem;font-weight:800;margin:8px 0 6px;}
+  header.top p{color:#9aa6b6;max-width:620px;margin:0 auto;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:18px;}
+  @media(max-width:900px){.grid{grid-template-columns:1fr;}}
+  .card{background:#1a2029;border:1px solid #28313d;border-radius:16px;overflow:hidden;
+        display:flex;flex-direction:column;transition:transform .18s,border-color .2s;}
+  .card:hover{transform:translateY(-4px);border-color:#3a93ff;}
+  .thumb{position:relative;height:300px;overflow:hidden;background:#fff;border-bottom:1px solid #28313d;}
+  .thumb iframe{position:absolute;top:0;left:0;width:1100px;height:1100px;border:0;
+        transform:scale(.42);transform-origin:top left;pointer-events:none;}
+  .thumb a.cover{position:absolute;inset:0;z-index:2;}
+  .card .meta{padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .cname{font-size:1.25rem;font-weight:700;display:flex;align-items:center;gap:9px;}
+  .num{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:.85rem;color:#11151c;}
+  .c1 .num{background:#b4541f}.c2 .num{background:#ff5a4d}.c3 .num{background:#2e9e6b}
+  .promise{color:#9aa6b6;font-size:.92rem;}
+  .rat{font-size:.9rem;color:#c7d0dc;}
+  .verdict{font-size:.85rem;font-weight:600;margin-top:auto;padding-top:8px;}
+  .pass{color:#7be3b0;} .warn{color:#ffce6b;}
+  .open-btn{margin-top:10px;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+        background:#3a93ff;color:#fff;text-decoration:none;font-weight:600;padding:11px 16px;border-radius:10px;
+        transition:background .2s;font-size:.95rem;}
+  .open-btn:hover{background:#2f7fe0;}
+  .note{background:#171c24;border:1px solid #28313d;border-radius:14px;padding:20px 24px;color:#9aa6b6;font-size:.92rem;}
+  .note b{color:#e8edf4;}
+  .specs{display:flex;gap:14px;flex-wrap:wrap;font-size:.78rem;color:#8b97a6;margin-top:4px;}
+  .specs span{background:#11161e;border:1px solid #28313d;border-radius:8px;padding:3px 9px;}
+  .swatches{display:flex;gap:5px;margin-top:2px;}
+  .sw{width:18px;height:18px;border-radius:5px;border:1px solid rgba(255,255,255,.15);}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Edu Design Team · Round 1</div>
+    <h1>Three directions for the Script Builder</h1>
+    <p>Each tile is a <b>live, scaled-down preview</b> — hover to see motion, click to open the full page. Same components in all three, so the only thing changing is the design.</p>
+  </header>
+
+  <div class="grid">
+    <!-- Concept 1 -->
+    <div class="card c1">
+      <div class="thumb"><iframe src="concept-1.html" title="Study Hall preview" scrolling="no"></iframe>
+        <a class="cover" href="concept-1.html" target="_blank" aria-label="Open Study Hall"></a></div>
+      <div class="meta">
+        <div class="cname"><span class="num">1</span> Study Hall</div>
+        <div class="promise">Calm, editorial, focused — feels like a sharp modern textbook.</div>
+        <div class="swatches"><span class="sw" style="background:#1f4d46"></span><span class="sw" style="background:#b4541f"></span><span class="sw" style="background:#f3ede1"></span><span class="sw" style="background:#6d4aa7"></span><span class="sw" style="background:#1f6f8b"></span></div>
+        <div class="specs"><span>Fraunces + Inter</span><span>warm paper bg</span><span>subtle motion</span></div>
+        <div class="rat">Warm off-white reduces glare for long reading; a serif display gives the history subject a credible, archival voice without feeling stuffy. The quietest, most grown-up option.</div>
+        <div class="verdict pass">✅ Accessibility &amp; pedagogy: passes — high contrast, calm focus states, low cognitive load.</div>
+        <a class="open-btn" href="concept-1.html" target="_blank">Open live preview →</a>
+      </div>
+    </div>
+
+    <!-- Concept 2 -->
+    <div class="card c2">
+      <div class="thumb"><iframe src="concept-2.html" title="Broadcast preview" scrolling="no"></iframe>
+        <a class="cover" href="concept-2.html" target="_blank" aria-label="Open Broadcast"></a></div>
+      <div class="meta">
+        <div class="cname"><span class="num">2</span> Broadcast</div>
+        <div class="promise">Bold, on-air podcast energy — confident and a little playful.</div>
+        <div class="swatches"><span class="sw" style="background:#1b2236"></span><span class="sw" style="background:#ff5a4d"></span><span class="sw" style="background:#ffb020"></span><span class="sw" style="background:#7c5cff"></span><span class="sw" style="background:#2aa9e0"></span></div>
+        <div class="specs"><span>Poppins + Inter</span><span>"on-air" header</span><span>chunky cards</span></div>
+        <div class="rat">Leans into the podcast theme: a dark studio header with an animated waveform, pill tags, and tactile press-down buttons. The most motivating for reluctant students — energetic but still structured.</div>
+        <div class="verdict warn">⚠️ Accessibility &amp; pedagogy: passes with one flag — keep the waveform gated behind reduced-motion (already done) and verify amber/coral on white at AA.</div>
+        <a class="open-btn" href="concept-2.html" target="_blank">Open live preview →</a>
+      </div>
+    </div>
+
+    <!-- Concept 3 -->
+    <div class="card c3">
+      <div class="thumb"><iframe src="concept-3.html" title="Fresh Field preview" scrolling="no"></iframe>
+        <a class="cover" href="concept-3.html" target="_blank" aria-label="Open Fresh Field"></a></div>
+      <div class="meta">
+        <div class="cname"><span class="num">3</span> Fresh Field</div>
+        <div class="promise">Bright, airy, ultra-readable — the accessibility-forward pick.</div>
+        <div class="swatches"><span class="sw" style="background:#2e9e6b"></span><span class="sw" style="background:#3d7bd6"></span><span class="sw" style="background:#7b61ff"></span><span class="sw" style="background:#e0892a"></span><span class="sw" style="background:#f6f9f4"></span></div>
+        <div class="specs"><span>Lexend (reading-optimized)</span><span>soft shadows</span><span>gentle reveals</span></div>
+        <div class="rat">Built on Lexend, a typeface designed to improve reading proficiency. Generous whitespace, soft cards, and gentle rise-in animation. The safest bet for mixed reading levels and the broadest range of students.</div>
+        <div class="verdict pass">✅ Accessibility &amp; pedagogy: strongest of the three — reading-optimized type, ample spacing, clear focus rings.</div>
+        <a class="open-btn" href="concept-3.html" target="_blank">Open live preview →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>How to use this:</b> open each live preview, then tell me which one to run with — or mix elements (e.g. “Concept 3’s typography with Concept 2’s header”). Once you pick, the team applies it to your real <span style="font-family:monospace">styles.css</span> / <span style="font-family:monospace">index.html</span>, backing up the originals first so nothing is lost.
+  </div>
+</div>
+</body>
+</html>

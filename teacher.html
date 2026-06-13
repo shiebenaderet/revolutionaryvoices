@@ -29,6 +29,11 @@
   .field { padding:8px 0; border-bottom:1px solid #f1f5f9; }
   .field .k { font-weight:700; color:var(--brand-dark); display:block; font-size:.85rem; text-transform:capitalize; }
   .field .v { white-space:pre-wrap; }
+  .script-actions { display:flex; flex-wrap:wrap; gap:8px; padding:12px 0 4px; }
+  .script-actions button { margin:0; padding:8px 14px; font-size:.9rem; }
+  .script-actions button.ghost { background:#eef2ff; color:var(--brand-dark); border:2px solid var(--brand); }
+  .script-text { white-space:pre-wrap; background:#fff; border:1px solid #e5e7eb; border-radius:8px;
+                 padding:16px; font-family:'Georgia','Times New Roman',serif; font-size:1rem; line-height:1.6; color:#1f2937; overflow-x:auto; }
   .msg { margin-top:14px; padding:12px 14px; border-radius:8px; }
   .msg.err { background:#fdecea; color:#b71c1c; border:1px solid #c62828; }
   .msg.ok { background:#ecfdf5; color:#065f46; border:1px solid #10b981; }
@@ -80,7 +85,7 @@
   if (!WORKER_URL) $("configWarn").style.display = "block";
 
   async function loadClass() {
-    const classCode = $("classCode").value.trim();
+    const classCode = $("classCode").value.trim().toLowerCase();
     const key = $("teacherKey").value;
     if (!WORKER_URL) { msg("Worker URL not set in this file yet.", "err"); return; }
     if (!classCode || !key) { msg("Enter both a class code and your teacher key.", "err"); return; }
@@ -101,9 +106,9 @@
     const box = $("results");
     box.innerHTML = "";
     if (!scripts.length) return;
-    scripts.forEach(s => {
+    scripts.forEach((s, i) => {
       let fields = {};
-      try { fields = JSON.parse(s.data).fields || JSON.parse(s.data) || {}; } catch (e) {}
+      try { const p = JSON.parse(s.data); fields = p.fields || p || {}; } catch (e) {}
       const det = document.createElement("details");
       det.className = "student";
       const when = s.updated_at ? new Date(s.updated_at).toLocaleString() : "";
@@ -112,16 +117,132 @@
         '</span><span class="meta">' + esc(when) + '</span></summary>';
       const body = document.createElement("div");
       body.className = "fields";
-      const keys = Object.keys(fields).filter(k => String(fields[k]).trim() !== "");
-      keys.sort((a,b) => (PRIORITY.indexOf(a)+1 || 99) - (PRIORITY.indexOf(b)+1 || 99));
-      if (!keys.length) body.innerHTML = '<p class="hint">No content saved yet.</p>';
-      keys.forEach(k => {
-        const label = LABELS[k] || k.replace(/[-_]/g, " ");
-        body.innerHTML += '<div class="field"><span class="k">' + esc(label) + '</span><span class="v">' + esc(fields[k]) + '</span></div>';
+
+      const scriptText = buildScript(fields);
+      const pre = document.createElement("pre");
+      pre.className = "script-text";
+      pre.id = "script-" + i;
+      pre.textContent = scriptText || "No content saved yet.";
+
+      const actions = document.createElement("div");
+      actions.className = "script-actions";
+      const printBtn = document.createElement("button");
+      printBtn.textContent = "🖨️ Print";
+      printBtn.addEventListener("click", () => printOne(scriptText, s.student_name));
+      const dlBtn = document.createElement("button");
+      dlBtn.textContent = "⬇️ Download .txt";
+      dlBtn.addEventListener("click", () => downloadText(scriptText, s.student_name));
+      const fieldsBtn = document.createElement("button");
+      fieldsBtn.textContent = "Show raw fields";
+      fieldsBtn.className = "ghost";
+      const fieldsDiv = document.createElement("div");
+      fieldsDiv.style.display = "none";
+      fieldsBtn.addEventListener("click", () => {
+        const open = fieldsDiv.style.display === "none";
+        fieldsDiv.style.display = open ? "block" : "none";
+        fieldsBtn.textContent = open ? "Hide raw fields" : "Show raw fields";
+        if (open && !fieldsDiv.dataset.built) { fieldsDiv.innerHTML = rawFields(fields); fieldsDiv.dataset.built = "1"; }
       });
+      actions.appendChild(printBtn); actions.appendChild(dlBtn); actions.appendChild(fieldsBtn);
+
+      body.appendChild(actions);
+      body.appendChild(pre);
+      body.appendChild(fieldsDiv);
       det.appendChild(body);
       box.appendChild(det);
     });
+  }
+
+  function rawFields(fields) {
+    const keys = Object.keys(fields).filter(k => String(fields[k]).trim() !== "");
+    keys.sort((a,b) => (PRIORITY.indexOf(a)+1 || 99) - (PRIORITY.indexOf(b)+1 || 99));
+    if (!keys.length) return '<p class="hint">No fields filled in.</p>';
+    return keys.map(k => '<div class="field"><span class="k">' + esc(LABELS[k] || k.replace(/[-_]/g, " ")) +
+      '</span><span class="v">' + esc(fields[k]) + '</span></div>').join("");
+  }
+
+  // Rebuild the formatted podcast script from saved fields (mirrors the student "Generate")
+  function buildScript(f) {
+    const g = id => (f[id] != null ? String(f[id]) : "");
+    const sub = g("subject");
+    if (!g("podcastName") && !sub && !g("intro") && !g("content")) return "";
+    let s = "===============================================\n";
+    s += "PODCAST SCRIPT: " + g("podcastName") + "\n";
+    s += "Created by: " + g("studentName") + "\n";
+    s += "Subject: " + sub + "\n";
+    s += "===============================================\n\n";
+
+    if (g("groupSize") && g("groupSize") !== "1") {
+      s += "GROUP INTRODUCTION\n===============================================\n\n";
+      if (g("group-intro")) s += g("group-intro") + "\n\n";
+      if (g("group-welcome")) s += g("group-welcome") + "\n\n";
+    }
+
+    s += "\nINTRODUCTION\n===============================================\n\n";
+    const intro = g("intro");
+    if (intro === "dramatic") { s += "HOST:\n" + g("dramatic-hook") + "\n\n" + g("dramatic-subject") + "\n\n" + g("dramatic-stakes") + "\n\n"; }
+    else if (intro === "fact") { s += "HOST:\n" + g("fact-statement") + "\n\n" + g("fact-significance") + "\n\n" + g("fact-subject") + "\n\n"; }
+    else if (intro === "question") { s += "HOST:\n" + g("question-hook") + "\n\n" + g("question-buildup") + "\n\n" + g("question-answer") + "\n\n"; }
+    else if (intro === "sound") {
+      if (g("sound-effects")) s += "[SOUND EFFECTS: " + g("sound-effects") + "]\n\n";
+      s += "NARRATOR:\n" + g("sound-setting") + "\n\n" + g("sound-subject") + "\n\n" + g("sound-conflict") + "\n\n";
+    }
+
+    s += "\nCONTENT SECTION\n===============================================\n\n";
+    const content = g("content");
+    if (content === "narrative") {
+      s += "NARRATOR:\n" + g("narrative-intro") + "\n\n";
+      s += "--- SCENE 1: BEFORE/EARLY IN THE WAR ---\n\nSUBJECT (as " + sub + "):\n" + g("narrative-scene1") + "\n\n";
+      s += "NARRATOR:\n" + g("narrative-trans1") + "\n\n";
+      s += "--- SCENE 2: THE TURNING POINT ---\n\nSUBJECT (as " + sub + "):\n" + g("narrative-scene2") + "\n\n";
+      s += "NARRATOR:\n" + g("narrative-trans2") + "\n\n";
+      s += "--- SCENE 3: THE IMPACT/AFTERMATH ---\n\nSUBJECT (as " + sub + "):\n" + g("narrative-scene3") + "\n\n";
+    } else if (content === "interview") {
+      s += "NARRATOR:\n" + g("interview-intro") + "\n\n";
+      for (let i = 1; i <= 5; i++) {
+        const q = g("q" + i), a = g("a" + i);
+        if (q && a) s += "INTERVIEWER:\n" + q + "\n\nSUBJECT (as " + sub + "):\n" + a + "\n\n";
+      }
+    } else if (content === "news") {
+      s += "REPORTER:\n" + g("news-opening") + "\n\n" + g("news-background") + "\n\n" + g("news-quote") + "\n\n" + g("news-turning") + "\n\n" + g("news-aftermath") + "\n\n";
+      s += "REPORTER (CLOSING):\n" + g("news-closing") + "\n\n";
+    } else if (content === "diary") {
+      s += "NARRATOR:\n" + g("diary-intro") + "\n\n";
+      s += "--- DIARY ENTRY 1: " + g("diary1-date") + " ---\n\nSUBJECT (as " + sub + "):\n" + g("diary1-content") + "\n\n";
+      s += "--- DIARY ENTRY 2: " + g("diary2-date") + " ---\n\nSUBJECT (as " + sub + "):\n" + g("diary2-content") + "\n\n";
+      s += "--- DIARY ENTRY 3: " + g("diary3-date") + " ---\n\nSUBJECT (as " + sub + "):\n" + g("diary3-content") + "\n\n";
+      s += "NARRATOR (CLOSING):\n" + g("diary-closing") + "\n\n";
+    }
+
+    s += "\nCONCLUSION\n===============================================\n\n";
+    const concl = g("conclusion");
+    if (concl === "significance") { s += "HOST:\n" + g("sig-what") + "\n\n" + g("sig-reveals") + "\n\n" + g("sig-why") + "\n\n" + g("sig-final") + "\n\n"; }
+    else if (concl === "today") { s += "HOST:\n" + g("today-lesson") + "\n\n" + g("today-parallel") + "\n\n" + g("today-specific") + "\n\n" + g("today-final") + "\n\n"; }
+    else if (concl === "challenge") { s += "HOST:\n" + g("challenge-standard") + "\n\n" + g("challenge-missing") + "\n\n" + g("challenge-why") + "\n\n" + g("challenge-lose") + "\n\n" + g("challenge-final") + "\n\n"; }
+    else if (concl === "legacy") { s += "HOST:\n" + g("legacy-impact") + "\n\n" + g("legacy-lesson") + "\n\n" + g("legacy-universal") + "\n\n" + g("legacy-honor") + "\n\n"; }
+
+    s += "===============================================\nEND OF SCRIPT\n===============================================\n";
+    const sources = g("researchSources").trim();
+    if (sources) s += "\n===============================================\nRESEARCH NOTES & SOURCES (not read aloud)\n===============================================\n" + sources + "\n";
+    // Swap [subject]/[name] tokens like the student app does
+    return s.replace(/\[subject\]/gi, sub).replace(/\[name\]/gi, g("studentName"));
+  }
+
+  function printOne(text, who) {
+    const w = window.open("", "_blank");
+    if (!w) { alert("Allow pop-ups to print."); return; }
+    w.document.write('<pre style="font-family:Georgia,serif;font-size:12pt;white-space:pre-wrap;padding:24px;">' + esc(text) + '</pre>');
+    w.document.title = "Script — " + who;
+    w.document.close(); w.focus(); w.print();
+  }
+  function downloadText(text, who) {
+    const safe = String(who || "script").replace(/[^a-z0-9]+/gi, "_").replace(/^_|_$/g, "") || "script";
+    const blob = new Blob([text], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = "Script_" + safe + ".txt";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 
   $("loadBtn").addEventListener("click", loadClass);

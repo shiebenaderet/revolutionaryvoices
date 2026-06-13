@@ -508,6 +508,9 @@
             updateProgress();
             warnLeftoverPlaceholders(script);
             scrollToEl(document.getElementById('finalScript'));
+            // Move focus to the finished script so screen-reader users land on the result
+            const region = document.getElementById('finalScriptRegion');
+            if (region) { try { region.focus({ preventScroll: true }); } catch (e) { region.focus(); } }
         }
 
         // Replace [subject] / [name] (any capitalization) with the student's real values
@@ -536,7 +539,7 @@
         }
         function copyScript() {
             const scriptText = document.getElementById('scriptOutput').textContent;
-            const ok = () => showToast('✅ Copied! Now paste into Google Docs (Ctrl+V or Cmd+V)');
+            const ok = () => showToast('✅ Copied! Now paste into Canvas (Ctrl+V or Cmd+V)');
             const fail = () => { selectScriptText(); showToast('Text selected — press Ctrl+C (or Cmd+C) to copy'); };
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(scriptText).then(ok).catch(fail);
@@ -567,8 +570,10 @@
         }
 
         function startOver() {
-            if (confirm('Are you sure you want to start over? All your work will be lost!')) {
-                clearSavedData();
+            // Non-destructive: keep the current work saved, then open a fresh blank script.
+            if (currentSlotId) saveCurrent();
+            if (confirm('Start a new, blank script?\n\nYour current work stays saved — you can reopen it anytime from the "Open saved work…" menu.')) {
+                currentSlotId = null;
                 location.reload();
             }
         }
@@ -691,8 +696,9 @@
         const WORKER_URL = "https://rv-sync.shiebenaderet.workers.dev";
 
         function getClassCode() {
+            // Normalize so capitalization/spacing typos don't split a class
             const el = document.getElementById('classCode');
-            return el ? el.value.trim() : '';
+            return el ? el.value.trim().toLowerCase() : '';
         }
         function cloudConfigured() {
             return !!WORKER_URL && !!getClassCode() && !!slotNameSafe();
@@ -925,6 +931,115 @@
         function dismissRestore() {
             const n = document.getElementById('restoreNotification');
             if (n) n.style.display = 'none';
+        }
+
+        // ============================================
+        // GOOGLE DOC SAFETY NET (no sign-in, no API — just open + copy/paste)
+        // ============================================
+        // Students keep a copy of their work in their own Google Doc. The copied text
+        // includes a hidden RESUME CODE so they can paste it back here and restore
+        // every field on any computer. Format: [[RV1:<base64-json>]]
+        const RESUME_RE = /\[\[RV1:([A-Za-z0-9+/=\s]+?)\]\]/;
+
+        // Encode/decode that survives emoji + accents (btoa is Latin1-only)
+        function encodeResume(obj) {
+            try { return btoa(unescape(encodeURIComponent(JSON.stringify(obj)))); }
+            catch (e) { console.error('encodeResume', e); return ''; }
+        }
+        function decodeResume(b64) {
+            try { return JSON.parse(decodeURIComponent(escape(atob(b64.replace(/\s+/g, ''))))); }
+            catch (e) { console.error('decodeResume', e); return null; }
+        }
+
+        // Open a brand-new Google Doc in a new tab (no login to THIS site required)
+        function openGoogleDoc() {
+            const name = slotNameSafe();
+            window.open('https://docs.new', '_blank', 'noopener');
+            const title = name ? ('Revolutionary Voices – ' + name) : 'Revolutionary Voices – Your Name';
+            showToast('📄 New Google Doc opened. Title it: "' + title + '"');
+        }
+
+        // Build a readable snapshot of the student's work + a hidden resume code
+        function buildDocText() {
+            const data = getAllFormData();
+            const f = data.fields || {};
+            const name = f.studentName || 'Your Name';
+            const lines = [];
+            lines.push('REVOLUTIONARY VOICES — MY WORK');
+            lines.push('Name: ' + name);
+            lines.push('Saved: ' + new Date().toLocaleString());
+            lines.push('');
+            // Include the human-readable script-so-far if it has been generated
+            const out = document.getElementById('scriptOutput');
+            if (out && out.textContent.trim()) {
+                lines.push('----- MY SCRIPT SO FAR -----');
+                lines.push(out.textContent.trim());
+                lines.push('');
+            }
+            lines.push('========================================');
+            lines.push('⚠️ RESUME CODE — do NOT delete or change this line.');
+            lines.push('To pick up where you left off, paste your whole Doc back into the tool.');
+            lines.push('[[RV1:' + encodeResume(data) + ']]');
+            lines.push('========================================');
+            return lines.join('\n');
+        }
+
+        function copyWorkToDoc() {
+            if (currentSlotId || slotNameSafe()) saveCurrent(); // keep local copy fresh too
+            const text = buildDocText();
+            const done = () => showToast('✅ Copied! Click your Google Doc tab and paste (Ctrl+V or Cmd+V).');
+            const fallback = () => {
+                // Old-browser fallback: drop it in the resume box so they can copy manually
+                const ta = document.getElementById('resumeText');
+                const panel = document.getElementById('resumePanel');
+                if (panel && ta) { panel.hidden = false; ta.value = text; ta.focus(); ta.select(); }
+                showToast('Press Ctrl+C to copy this text, then paste it into your Google Doc.');
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(done).catch(fallback);
+            } else { fallback(); }
+        }
+
+        function toggleResume() {
+            const panel = document.getElementById('resumePanel');
+            const btn = document.querySelector('.btn-doc-restore');
+            if (!panel) return;
+            const show = panel.hidden;
+            panel.hidden = !show;
+            if (btn) btn.setAttribute('aria-expanded', show ? 'true' : 'false');
+            if (show) { const ta = document.getElementById('resumeText'); if (ta) ta.focus(); }
+        }
+
+        function setResumeNote(msg, kind) {
+            const el = document.getElementById('resumeNote');
+            if (!el) return;
+            el.textContent = msg || '';
+            el.className = 'resume-note' + (kind ? ' ' + kind : '');
+        }
+
+        function doResume() {
+            const ta = document.getElementById('resumeText');
+            const raw = ta ? ta.value : '';
+            if (!raw.trim()) { setResumeNote('Paste your Google Doc text into the box first.', 'err'); return; }
+            const m = raw.match(RESUME_RE);
+            if (!m) { setResumeNote("Couldn't find your resume code. Make sure you copied your WHOLE Doc, including the part that starts with [[RV1.", 'err'); return; }
+            const data = decodeResume(m[1]);
+            if (!data || !data.fields) { setResumeNote('That resume code looks damaged. Try copying your whole Doc again.', 'err'); return; }
+            // Save into a fresh slot, then load it
+            const store = readStore();
+            const id = 'slot_' + Date.now();
+            const nm = data.fields.studentName || 'Restored work';
+            store[id] = { id, name: nm, timestamp: new Date().toISOString(), fields: data.fields };
+            writeStore(store);
+            currentSlotId = id;
+            resetFormFields();
+            applyData(data);
+            updateWorkName();
+            refreshSlotMenu();
+            const sc = document.getElementById('saveControls'); if (sc) sc.style.display = 'flex';
+            setResumeNote('✅ Restored! Your work is back. Keep saving to your Doc as you go.', 'ok');
+            showToast('✅ Welcome back — your work is restored.');
+            setTimeout(() => { const p = document.getElementById('resumePanel'); if (p) p.hidden = true; }, 1500);
         }
         
         // Initialize on page load

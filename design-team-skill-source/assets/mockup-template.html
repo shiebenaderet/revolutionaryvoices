@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- CONCEPT: __NAME__ — fonts: __FONT_HEADING__ / __FONT_BODY__ -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>__NAME__ — concept preview</title>
+<!-- swap in the concept's Google Fonts link -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="__GOOGLE_FONTS_URL__" rel="stylesheet">
+<style>
+  :root{
+    /* === design tokens — extract these in the Apply step === */
+    --bg:#__BG__; --surface:#fff; --ink:#__INK__; --muted:#__MUTED__;
+    --primary:#__PRIMARY__; --accent:#__ACCENT__;
+    --code-1:#__C1__; --code-2:#__C2__; --code-3:#__C3__; --code-4:#__C4__;
+    --radius:__RADIUS__px; --shadow:__SHADOW__;
+    --font-head:'__FONT_HEADING__',sans-serif; --font-body:'__FONT_BODY__',sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{font-family:var(--font-body);font-size:18px;line-height:1.6;color:var(--ink);
+       background:var(--bg);margin:0;padding:32px;}
+  .wrap{max-width:760px;margin:0 auto;}
+  h1,h2,h3{font-family:var(--font-head);line-height:1.2;}
+  /* representative components: header, section (color-coded), fields, buttons, callout */
+  /* ... fill per concept ... */
+  .badge{position:fixed;top:12px;right:12px;background:var(--ink);color:#fff;
+         font-family:var(--font-body);font-size:13px;padding:8px 12px;border-radius:999px;
+         box-shadow:0 2px 10px rgba(0,0,0,.25);z-index:99;}
+  @media (prefers-reduced-motion: no-preference){
+    /* concept's signature transitions/animations go here */
+  }
+</style>
+</head>
+<body>
+  <div class="badge">__NAME__ · __PROMISE__</div>
+  <div class="wrap">
+    <!-- header / section / fields / buttons / callout with REAL copy from the site -->
+  </div>
+</body>
+</html>

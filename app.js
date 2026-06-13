@@ -679,8 +679,89 @@
                 if (!writeStore(store)) return false;
                 refreshSlotMenu();
                 updateWorkName();
+                cloudPush(data); // also sync to the cloud if a class code is set
                 return true;
             } catch (e) { console.error('Error saving:', e); return false; }
+        }
+
+        // ============================================
+        // CLOUD SYNC (optional — needs a class code + a deployed Worker)
+        // ============================================
+        // Set this to your Worker URL after you deploy it, e.g. "https://rv-sync.you.workers.dev"
+        const WORKER_URL = "https://rv-sync.shiebenaderet.workers.dev";
+
+        function getClassCode() {
+            const el = document.getElementById('classCode');
+            return el ? el.value.trim() : '';
+        }
+        function cloudConfigured() {
+            return !!WORKER_URL && !!getClassCode() && !!slotNameSafe();
+        }
+        function slotNameSafe() {
+            const sn = document.getElementById('studentName');
+            return sn ? sn.value.trim() : '';
+        }
+        function setCloudStatus(text) {
+            const el = document.getElementById('cloudStatus');
+            if (el) el.textContent = text || '';
+        }
+
+        let cloudTimer;
+        function cloudPush(data) {
+            if (!cloudConfigured()) return;
+            clearTimeout(cloudTimer);
+            cloudTimer = setTimeout(() => {
+                const payload = {
+                    classCode: getClassCode(),
+                    studentName: slotNameSafe(),
+                    slotName: slotName(),
+                    data: JSON.stringify((data && data.fields) ? data.fields : getAllFormData().fields)
+                };
+                fetch(WORKER_URL + '/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).then(r => {
+                    setCloudStatus(r.ok ? '☁ Saved online ' + new Date().toLocaleTimeString() : '⚠️ Cloud save failed');
+                }).catch(() => setCloudStatus('⚠️ Offline — saved on this computer only'));
+            }, 2500);
+        }
+
+        // Pull this student's scripts down from the cloud and add them as saved slots
+        function cloudPull() {
+            if (!WORKER_URL) { showToast('Cloud sync is not set up yet.'); return; }
+            const classCode = getClassCode();
+            const studentName = slotNameSafe();
+            if (!classCode || !studentName) { showToast('Enter your name and class code first.'); return; }
+            setCloudStatus('Checking the cloud…');
+            fetch(WORKER_URL + '/load?classCode=' + encodeURIComponent(classCode) + '&studentName=' + encodeURIComponent(studentName))
+                .then(r => r.ok ? r.json() : Promise.reject(r.status))
+                .then(out => {
+                    const scripts = out.scripts || [];
+                    if (!scripts.length) { setCloudStatus('No cloud work found for that name + code.'); return; }
+                    const store = readStore();
+                    let added = 0;
+                    scripts.forEach(s => {
+                        let fields = {};
+                        try { fields = JSON.parse(s.data); } catch (e) {}
+                        const id = 'cloud_' + s.slot_name.replace(/[^a-z0-9]+/gi, '_');
+                        store[id] = { id, name: s.slot_name || studentName, timestamp: s.updated_at || new Date().toISOString(), fields };
+                        added++;
+                    });
+                    writeStore(store);
+                    refreshSlotMenu();
+                    document.getElementById('restoreNotification').style.display = 'block';
+                    setCloudStatus('☁ Loaded ' + added + ' script(s) — open them from the "Open saved work…" menu.');
+                    showToast('☁ Loaded ' + added + ' script(s) from the cloud');
+                })
+                .catch(() => setCloudStatus('⚠️ Could not reach the cloud.'));
+        }
+
+        // Show the "Get cloud work" button only when a class code is present
+        function updateCloudUI() {
+            const btn = document.getElementById('cloudPullBtn');
+            if (btn) btn.style.display = (WORKER_URL && getClassCode()) ? '' : 'none';
+            if (!WORKER_URL && getClassCode()) setCloudStatus('(Cloud sync will turn on once your teacher finishes setup.)');
         }
 
         function autoSave() {
@@ -875,6 +956,10 @@
             wireUpStructure();
             wireUpLanguageSupports();
             updateProgress();
+
+            const cc = document.getElementById('classCode');
+            if (cc) cc.addEventListener('input', updateCloudUI);
+            updateCloudUI();
         });
 
         // ============================================

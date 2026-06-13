@@ -661,3 +661,5 @@
         .fa-thinking::before, .fa-thought::before { content: '💭'; }
         .fa-uncomfortable::before { content: '😬'; }
         .fa-book-reader::before { content: '📖'; }
+        .fa-cloud::before { content: '☁️'; }
+        .fa-cloud-download-alt::before { content: '☁️'; }

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Revolutionary Voices — Teacher View</title>
+<style>
+  :root { --brand:#4f46e5; --brand-dark:#4338ca; --ink:#1f2937; --bg:#eef2f7; }
+  * { box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+         color:var(--ink); background:var(--bg); margin:0; font-size:17px; line-height:1.6; }
+  .wrap { max-width:900px; margin:0 auto; padding:24px; }
+  header { background:linear-gradient(135deg,var(--brand),#7c3aed); color:#fff; padding:28px 24px; border-radius:14px; }
+  header h1 { margin:0 0 6px; font-size:1.6rem; }
+  header p { margin:0; opacity:.92; }
+  .card { background:#fff; border-radius:12px; padding:20px; margin-top:20px; box-shadow:0 1px 3px rgba(15,23,42,.08); }
+  label { display:block; font-weight:700; color:var(--brand-dark); margin:12px 0 6px; }
+  input { width:100%; padding:11px; border:2px solid #ddd; border-radius:8px; font-size:16px; }
+  input:focus { outline:3px solid var(--brand); outline-offset:2px; border-color:var(--brand); }
+  button { background:var(--brand); color:#fff; border:none; border-radius:8px; padding:12px 22px;
+           font-size:1rem; font-weight:700; cursor:pointer; margin-top:16px; }
+  button:hover { background:var(--brand-dark); }
+  button:focus-visible { outline:3px solid #1a237e; outline-offset:2px; }
+  .student { border:1px solid #e5e7eb; border-radius:10px; margin-top:16px; overflow:hidden; }
+  .student > summary { cursor:pointer; padding:14px 16px; background:#f8fafc; font-weight:700; list-style:none; display:flex; justify-content:space-between; gap:10px; }
+  .student > summary::-webkit-details-marker { display:none; }
+  .student .meta { font-weight:400; color:#64748b; font-size:.9rem; }
+  .fields { padding:8px 16px 16px; }
+  .field { padding:8px 0; border-bottom:1px solid #f1f5f9; }
+  .field .k { font-weight:700; color:var(--brand-dark); display:block; font-size:.85rem; text-transform:capitalize; }
+  .field .v { white-space:pre-wrap; }
+  .msg { margin-top:14px; padding:12px 14px; border-radius:8px; }
+  .msg.err { background:#fdecea; color:#b71c1c; border:1px solid #c62828; }
+  .msg.ok { background:#ecfdf5; color:#065f46; border:1px solid #10b981; }
+  .hint { color:#64748b; font-size:.92rem; }
+  .config-warn { background:#fff7ed; border:1px solid #fb923c; color:#9a3412; padding:12px 14px; border-radius:8px; margin-top:16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Revolutionary Voices — Teacher View</h1>
+    <p>Enter a class code and your teacher key to see every student's saved script.</p>
+  </header>
+
+  <div class="card">
+    <div id="configWarn" class="config-warn" style="display:none;">
+      This page isn't connected to your sync Worker yet. Once the Worker is deployed, set its URL in the <code>WORKER_URL</code> line near the top of this file.
+    </div>
+    <label for="classCode">Class code</label>
+    <input id="classCode" placeholder="e.g., period3-fall" autocomplete="off">
+    <label for="teacherKey">Teacher key</label>
+    <input id="teacherKey" type="password" placeholder="your private passphrase" autocomplete="off">
+    <div>
+      <button id="loadBtn">Load class scripts</button>
+    </div>
+    <div id="message"></div>
+    <p class="hint" style="margin-top:14px;">Tip: only first name + last initial are stored for each student. Keep this page's URL and your teacher key private.</p>
+  </div>
+
+  <div id="results"></div>
+</div>
+
+<script>
+  // ====== SET THIS after you deploy the Worker ======
+  const WORKER_URL = "https://rv-sync.shiebenaderet.workers.dev"; // your deployed Worker
+  // ==================================================
+
+  // Friendly labels for the most important fields (others show by their id)
+  const LABELS = {
+    studentName: "Student", podcastName: "Podcast name", subject: "Subject",
+    researchSources: "Research notes & sources"
+  };
+  const PRIORITY = ["studentName","podcastName","subject","researchSources"];
+
+  const $ = id => document.getElementById(id);
+  function msg(text, kind) { $("message").innerHTML = text ? '<div class="msg ' + kind + '">' + text + '</div>' : ''; }
+  function esc(s){ return String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+
+  if (!WORKER_URL) $("configWarn").style.display = "block";
+
+  async function loadClass() {
+    const classCode = $("classCode").value.trim();
+    const key = $("teacherKey").value;
+    if (!WORKER_URL) { msg("Worker URL not set in this file yet.", "err"); return; }
+    if (!classCode || !key) { msg("Enter both a class code and your teacher key.", "err"); return; }
+    msg("Loading…", "ok");
+    try {
+      const r = await fetch(WORKER_URL + "/class?classCode=" + encodeURIComponent(classCode) + "&key=" + encodeURIComponent(key));
+      if (r.status === 401) { msg("Teacher key was not accepted.", "err"); return; }
+      if (!r.ok) { msg("Could not load (error " + r.status + ").", "err"); return; }
+      const out = await r.json();
+      render(out.scripts || []);
+      msg((out.scripts || []).length + " script(s) found.", "ok");
+    } catch (e) {
+      msg("Network error — check the Worker URL and that you're online.", "err");
+    }
+  }
+
+  function render(scripts) {
+    const box = $("results");
+    box.innerHTML = "";
+    if (!scripts.length) return;
+    scripts.forEach(s => {
+      let fields = {};
+      try { fields = JSON.parse(s.data).fields || JSON.parse(s.data) || {}; } catch (e) {}
+      const det = document.createElement("details");
+      det.className = "student";
+      const when = s.updated_at ? new Date(s.updated_at).toLocaleString() : "";
+      det.innerHTML = '<summary><span>' + esc(s.student_name) +
+        ' — ' + esc(s.slot_name || "Untitled") +
+        '</span><span class="meta">' + esc(when) + '</span></summary>';
+      const body = document.createElement("div");
+      body.className = "fields";
+      const keys = Object.keys(fields).filter(k => String(fields[k]).trim() !== "");
+      keys.sort((a,b) => (PRIORITY.indexOf(a)+1 || 99) - (PRIORITY.indexOf(b)+1 || 99));
+      if (!keys.length) body.innerHTML = '<p class="hint">No content saved yet.</p>';
+      keys.forEach(k => {
+        const label = LABELS[k] || k.replace(/[-_]/g, " ");
+        body.innerHTML += '<div class="field"><span class="k">' + esc(label) + '</span><span class="v">' + esc(fields[k]) + '</span></div>';
+      });
+      det.appendChild(body);
+      box.appendChild(det);
+    });
+  }
+
+  $("loadBtn").addEventListener("click", loadClass);
+</script>
+</body>
+</html>

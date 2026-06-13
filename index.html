@@ -43,6 +43,7 @@
                 <button onclick="manualSave()"><i class="fas fa-save" aria-hidden="true"></i> Save Now</button>
                 <button onclick="exportToFile()" title="Download a backup file to keep or hand in"><i class="fas fa-download" aria-hidden="true"></i> Export</button>
                 <button onclick="document.getElementById('importFile').click()" title="Load a backup file"><i class="fas fa-upload" aria-hidden="true"></i> Import</button>
+                <button id="cloudPullBtn" onclick="cloudPull()" title="Get your work saved online (needs a class code)" style="display:none;"><i class="fas fa-cloud-download-alt" aria-hidden="true"></i> Get cloud work</button>
                 <button onclick="deleteSlot()" title="Delete this saved script"><i class="fas fa-trash" aria-hidden="true"></i> Delete</button>
                 <input type="file" id="importFile" accept="application/json,.json" style="display:none" onchange="importFromFile(event)">
             </div>
@@ -79,11 +80,20 @@
                 Your Name(s):
                 <i class="fas fa-info-circle info-icon" data-tooltip="List everyone in your group" tabindex="0" role="img" aria-label="Help: List everyone in your group"></i>
             </label>
-            <input type="text" id="studentName" placeholder="e.g., Alex and Jordan" oninput="updateTimeEstimate()">
+            <input type="text" id="studentName" placeholder="e.g., Maria G. and Alex P." oninput="updateTimeEstimate()">
             <div class="helper-text">
-                <strong>What to include:</strong> First names of all group members separated by "and"
+                <strong>What to include:</strong> Use <strong>first name + last initial</strong> only (e.g., Maria G.). For groups, separate names with "and".
             </div>
-            
+
+            <label>
+                Class Code <span style="font-weight:normal;">(optional — to save to the cloud)</span>:
+                <i class="fas fa-info-circle info-icon" data-tooltip="Your teacher gives you this code. It lets your work save online so you can open it on any computer." tabindex="0" role="img" aria-label="Help: Your teacher gives you this code so your work saves online."></i>
+            </label>
+            <input type="text" id="classCode" placeholder="e.g., period3-fall" oninput="updateTimeEstimate()" autocomplete="off">
+            <div class="helper-text">
+                <strong><i class="fas fa-cloud" aria-hidden="true"></i> Cloud save:</strong> If your teacher gave you a class code, type it here and your work also saves online — open it later on any computer with the same code and name. <span id="cloudStatus" aria-live="polite"></span>
+            </div>
+
             <label>
                 Podcast Name:
                 <i class="fas fa-info-circle info-icon" data-tooltip="Choose a catchy, memorable title" tabindex="0" role="img" aria-label="Help: Choose a catchy, memorable title"></i>

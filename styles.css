@@ -1059,3 +1059,28 @@
         .step-facts ul { margin: 0 0 0 18px; padding: 0; }
         .step-facts li { margin: 3px 0; color: var(--ink); }
         :root[data-theme="dark"] .reading-viewer, :root[data-theme="dark"] .reading-quickfacts { background: var(--surface-2); }
+
+        /* ============================================
+           WAVE 13: HEADER NAV TIGHTEN
+           Group the toolbar to the right, cap the dropdown, calm the dial.
+           ============================================ */
+        .studio-bar { row-gap: 10px; column-gap: 12px; }
+        .studio-brand { font-size: 1.35em; }
+        /* The save/slots tools read as one tidy cluster pinned to the right */
+        .studio-tools { margin-left: auto; gap: 6px; padding: 6px 8px;
+            background: rgba(247,238,221,.06); border: 1px solid rgba(247,238,221,.14); border-radius: 12px; }
+        .studio-tools .save-chip { order: -1; }
+        .studio-tools select { max-width: 190px; text-overflow: ellipsis; }
+        .icon-btn { min-width: 36px; min-height: 36px; font-size: 14px; padding: 0 9px; }
+        .save-chip { padding: 4px 10px; }
+
+        /* Dial: a little more breathing room; locked steps read lighter */
+        .tuner-stepper { margin-top: 22px; }
+        .tuner-mark.locked { opacity: .38; }
+        .tuner-mark.locked .t-name::after { content: ' 🔒'; font-size: .75em; opacity: .8; }
+        .tuner-mark.locked .t-tick { background: rgba(247,238,221,.30); }
+
+        @media (max-width: 620px) {
+            .studio-tools { width: 100%; margin-left: 0; justify-content: flex-start; }
+            .studio-tools select { max-width: 150px; }
+        }

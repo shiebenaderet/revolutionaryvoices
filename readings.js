@@ -20,16 +20,16 @@ window.RV_TOPICS = [
   { id: 'molly-pitcher', name: 'Molly Pitcher', group: 'People', available: true },
   { id: 'nancy-hart', name: 'Nancy Hart', group: 'People', available: true },
   { id: 'benedict-arnold', name: 'Benedict Arnold', group: 'People', available: true },
-  { id: 'women', name: 'Women in the Revolutionary War', group: 'Groups & themes', available: false },
-  { id: 'african-americans', name: 'African Americans in the Revolutionary War', group: 'Groups & themes', available: false },
-  { id: 'native-americans', name: 'Native Americans in the Revolutionary War', group: 'Groups & themes', available: false },
-  { id: 'loyalists', name: 'Loyalists / Tories', group: 'Groups & themes', available: false },
-  { id: 'indentured-servants', name: 'Indentured Servants', group: 'Groups & themes', available: false },
-  { id: 'hessians', name: 'Hessian Soldiers', group: 'Groups & themes', available: false },
-  { id: 'camp-followers', name: 'Camp Followers', group: 'Groups & themes', available: false },
-  { id: 'young-soldiers', name: 'Young Soldiers & Teenage Patriots', group: 'Groups & themes', available: false },
-  { id: 'enslaved-british-freedom', name: 'The Paradox of Enslaved People & British Freedom', group: 'Groups & themes', available: false },
-  { id: 'womens-economic-agency', name: "Women's Economic Agency vs. Political Invisibility", group: 'Groups & themes', available: false }
+  { id: 'women', name: 'Women in the Revolutionary War', group: 'Groups & themes', available: true },
+  { id: 'african-americans', name: 'African Americans in the Revolutionary War', group: 'Groups & themes', available: true },
+  { id: 'native-americans', name: 'Native Americans in the Revolutionary War', group: 'Groups & themes', available: true },
+  { id: 'loyalists', name: 'Loyalists / Tories', group: 'Groups & themes', available: true },
+  { id: 'indentured-servants', name: 'Indentured Servants', group: 'Groups & themes', available: true },
+  { id: 'hessians', name: 'Hessian Soldiers', group: 'Groups & themes', available: true },
+  { id: 'camp-followers', name: 'Camp Followers', group: 'Groups & themes', available: true },
+  { id: 'young-soldiers', name: 'Young Soldiers & Teenage Patriots', group: 'Groups & themes', available: true },
+  { id: 'enslaved-british-freedom', name: 'The Paradox of Enslaved People & British Freedom', group: 'Groups & themes', available: true },
+  { id: 'womens-economic-agency', name: "Women's Economic Agency vs. Political Invisibility", group: 'Groups & themes', available: true }
 ];
 
 window.RV_READINGS = {
@@ -785,6 +785,583 @@ window.RV_READINGS = {
       { title: 'American Battlefield Trust — Benedict Arnold', url: 'https://www.battlefields.org/learn/biographies/benedict-arnold' },
       { title: "George Washington's Mount Vernon — Benedict Arnold", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/benedict-arnold/' },
       { title: 'American Battlefield Trust — Benedict Arnold\'s Treason', url: 'https://www.battlefields.org/learn/articles/benedict-arnold-and-his-treason' }
+    ]
+  },
+
+  'women': {
+    name: 'Women in the Revolutionary War',
+    tagline: 'Boycotters, farm managers, camp followers, nurses, spies — and a few soldiers in disguise',
+    quickFacts: [
+      ['Roles', 'Boycott organizers, "deputy husbands," camp followers, nurses, spies, rare disguised soldiers'],
+      ['Key idea', 'Women helped win a freedom they were then denied'],
+      ['Watch for', 'Coverture — a married woman had no separate legal identity'],
+      ['Voices to recover', 'Daughters of Liberty, Abigail Adams, camp followers']
+    ],
+    levels: {
+      mostSupport: `
+<p>Women did many important jobs in the Revolutionary War. But after the war, they did not get the same freedom they helped win.</p>
+<p>Before the war, women joined <strong>boycotts</strong> (refusing to buy something to protest). Women stopped buying British cloth and tea. They made their own cloth at "spinning bees." This hurt Britain's money.</p>
+<p>When men went to fight, women ran the farms, shops, and homes. This was a huge job.</p>
+<p>Some women followed the army. They cooked, washed clothes, and nursed hurt soldiers. A few women were spies. A very few even dressed as men to be soldiers.</p>
+<p>After the war, women still could not vote or own property the way men could. The law called this <strong>coverture</strong> — a wife had no rights apart from her husband.</p>
+<p>Women helped win the war. But they had to keep fighting for their own rights for many years.</p>`,
+      someSupport: `
+<p>Women played essential roles in the Revolutionary War — even though they were left out of the freedom they helped create.</p>
+<p>Before the fighting started, women led the boycotts of British goods. Groups called the Daughters of Liberty held "spinning bees" to make their own cloth instead of buying British fabric. In 1770, hundreds of Boston women signed a promise not to drink British tea. Because women made most household purchases, their choices put real economic pressure on Britain.</p>
+<p>When men marched off to war, women became "deputy husbands," running farms, shops, and households alone. Thousands of women also followed the army as camp followers, cooking, washing, and nursing the wounded. A few served as spies, and a very small number disguised themselves as men to fight.</p>
+<p>After the war, little changed for women legally. Under a system called coverture, a married woman had no legal identity separate from her husband. Women had helped win independence, but the new nation did not give them equal rights — a fight that would continue for generations.</p>`,
+      standard: `
+<p>Women were everywhere in the Revolution — organizing, managing, nursing, spying, occasionally fighting — yet they were excluded from the liberty they helped secure. Abigail Adams captured the irony in 1776 when she asked her husband to "Remember the Ladies," and he brushed her off.</p>
+<p>Their resistance began with economics. Because women made most household purchases, the boycotts of British goods depended on them. The Daughters of Liberty held "spinning bees" to produce homespun cloth, and in 1770 several hundred Boston women publicly pledged to give up British tea — turning shopping into political protest at a time when women were expected to stay out of politics. When the men left to fight, women became "deputy husbands," running farms, businesses, and finances; thousands more traveled with the army as camp followers who cooked, laundered, and nursed, sharing the soldiers' dangers. A handful spied, and a very few, like Deborah Sampson, enlisted in disguise.</p>
+<p>After the war, the legal world barely shifted. Under coverture, a married woman had no separate legal identity, could not vote, and had limited property rights. Women had been essential to victory, but the Revolution's promises of liberty and equality were not extended to them — a contradiction later activists would seize on, tracing the women's-rights movement back to this generation.</p>`,
+      challenge: `
+<p>The Revolution could not have been won without women, and it repaid them with exclusion — a paradox that makes their story a test of how broadly the era's ideals actually reached. Even before Lexington, women turned the household into a theater of resistance: since they controlled most consumer spending, the non-importation boycotts depended on them, and the Daughters of Liberty recast "women's work" as political action, spinning homespun and, in 1770, gathering several hundred Boston signatures pledging to forgo British tea.</p>
+<p>With husbands and sons at war, women became "deputy husbands," managing farms, shops, and ledgers in a legal system that normally barred them from such roles; thousands followed the army as camp followers — indispensable cooks, laundresses, and nurses whom officers alternately relied on and resented. A smaller number gathered intelligence, and a rare few, such as Deborah Sampson, crossed the ultimate line and soldiered in disguise. As the historian Carol Berkin has argued, this was among the first times American women acted collectively for political ends — experience that seeded later movements.</p>
+<p>Yet independence left the doctrine of coverture intact: a married woman remained legally absorbed into her husband, without the vote and with little property right. The most the Revolution offered was the ideal of "republican motherhood" — woman as educator of virtuous citizens — a real but circumscribed role. Abigail Adams's "Remember the Ladies," and John's laughing refusal, frame the central question a podcast can press: who, exactly, was included when Americans said "all men are created equal"?</p>`
+    },
+    keyFacts: {
+      hook: {
+        mostSupport: ['Women did many important jobs in the war.', 'They joined boycotts and stopped buying British goods.', 'But after the war they did not get equal rights.'],
+        someSupport: ['Women led the boycotts of British goods before the war.', "The Daughters of Liberty made their own cloth at 'spinning bees.'", 'They helped win a freedom they were then denied.'],
+        standard: ['Women organized, managed, nursed, spied, and occasionally fought — then were left out of the liberty they won.', "Abigail Adams's 1776 'Remember the Ladies' caught the irony.", 'Boycotts depended on women, who made most household purchases.'],
+        challenge: ["The Revolution couldn't have been won without women — and repaid them with exclusion.", 'Women turned the household into a theater of resistance.', "Their story tests how broadly the era's ideals actually reached."]
+      },
+      content: {
+        mostSupport: ["Women made their own cloth at 'spinning bees.'", 'When men left to fight, women ran the farms and shops.', 'Some followed the army to cook and nurse.', 'A few were spies or dressed as men to fight.'],
+        someSupport: ['In 1770, hundreds of Boston women pledged not to drink British tea.', "Women became 'deputy husbands,' running farms and businesses alone.", 'Thousands followed the army as camp followers.', 'A few spied; a very few fought in disguise.'],
+        standard: ['The Daughters of Liberty spun homespun; ~300 Boston women pledged off British tea (1770).', "Women became 'deputy husbands,' managing farms, shops, and finances.", 'Thousands were camp followers — cooking, laundering, nursing.', 'A handful spied; a few, like Deborah Sampson, enlisted in disguise.'],
+        challenge: ["Boycotts depended on women's control of household spending.", "'Deputy husbands' ran farms and ledgers a legal system normally barred them from.", 'Camp followers were indispensable yet resented by officers.', 'Carol Berkin: among the first times American women acted collectively for political ends.']
+      },
+      conclusion: {
+        mostSupport: ['After the war, women still could not vote.', 'The law (coverture) gave a wife no rights apart from her husband.', 'They kept fighting for their rights for many years.'],
+        someSupport: ['Little changed legally for women after the war.', 'Under coverture, a wife had no legal identity of her own.', "The fight for women's rights would continue for generations."],
+        standard: ['After the war, coverture left wives without the vote or full property rights.', "The Revolution's promises were not extended to women.", "Later activists traced the women's-rights movement back to this generation.", "The era offered mainly 'republican motherhood' — a real but limited role."],
+        challenge: ['Independence left coverture intact — wives legally absorbed into husbands.', "The era's main offer was 'republican motherhood,' circumscribed but real.", "'Remember the Ladies' and John's refusal frame who 'all men' included.", 'Their experience seeded later women\'s movements.']
+      }
+    },
+    sources: [
+      { title: 'American Battlefield Trust — Women in the American Revolution', url: 'https://www.battlefields.org/learn/articles/women-american-revolution' },
+      { title: 'Museum of the American Revolution — When Women Lost the Vote', url: 'https://www.amrevmuseum.org/womenandtheamericanrevolution' },
+      { title: "George Washington's Mount Vernon — Women in the Revolution", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/women-in-the-american-revolution' },
+      { title: "National Women's History Museum", url: 'https://www.womenshistory.org/' }
+    ]
+  },
+
+  'african-americans': {
+    name: 'African Americans in the Revolutionary War',
+    tagline: 'Enslaved and free Black people faced impossible choices — and sought freedom on both sides',
+    quickFacts: [
+      ['How many', '~500,000 African Americans in 1775 (~20% of the population; most enslaved)'],
+      ['The paradox', 'A nation declaring "all men are created equal" held people in slavery'],
+      ['Patriots', 'Roughly 5,000–9,000 served the American cause'],
+      ['British', "As many as 20,000 sought freedom behind British lines (Dunmore's Proclamation, 1775)"]
+    ],
+    levels: {
+      mostSupport: `
+<p>When the Revolution began, about 500,000 Black people lived in the colonies. That was about 1 in 5 people. Most were <strong>enslaved</strong> (owned and forced to work for no pay).</p>
+<p>This was a hard contradiction. White colonists said "all men are created equal" and fought for freedom. But they kept Black people enslaved.</p>
+<p>Black people had to make hard choices. Some fought for the Americans (the Patriots). They hoped to win freedom and respect. About 5,000 to 9,000 did this.</p>
+<p>Others ran to the British. In 1775, the British leader Lord Dunmore promised freedom to enslaved people who joined them. As many as 20,000 went to the British side.</p>
+<p>Black soldiers fought bravely on both sides. But after the war, slavery did not end in most places. Northern states slowly began to end it, but the South did not.</p>
+<p>Black Americans kept fighting for the freedom the Revolution had promised but not given.</p>`,
+      someSupport: `
+<p>About 500,000 African Americans lived in the colonies in 1775 — roughly one in five people. Most were enslaved, especially in the South. The Revolution put them in an impossible position: white colonists demanded liberty for themselves while denying it to Black people.</p>
+<p>Facing this paradox, African Americans made different choices. Thousands fought for the Patriots, hoping that helping win independence would also win them freedom and respect; an estimated 5,000 to 9,000 served the American cause, including men in the First Rhode Island Regiment. Others sided with the British, who offered freedom: in 1775, Lord Dunmore promised freedom to enslaved people who joined the British army, and as many as 20,000 sought freedom behind British lines.</p>
+<p>Black soldiers and laborers served bravely on both sides. But independence did not end slavery. Northern states began to abolish it gradually, while the South expanded it. About 3,000 Black Loyalists were evacuated to Nova Scotia. For most Black Americans, the Revolution's promise of liberty remained unfulfilled.</p>`,
+      standard: `
+<p>Roughly 500,000 African Americans lived in the colonies in 1775 — about a fifth of the population, the great majority enslaved. Their presence exposed the Revolution's central contradiction: a people proclaiming that "all men are created equal" while holding hundreds of thousands in bondage.</p>
+<p>African Americans responded by seeking freedom wherever it seemed most attainable. Thousands joined the Patriot cause — an estimated 5,000 to 9,000 served, among them the integrated First Rhode Island Regiment — hoping that shared sacrifice would translate into shared liberty. Many more looked to the British, who made the more concrete offer: Lord Dunmore's 1775 proclamation promised freedom to enslaved people who fled Patriot masters to join the British, and the 1779 Philipsburg Proclamation widened it. As many as 20,000 sought refuge behind British lines as "Black Loyalists."</p>
+<p>Bravery on both sides did not translate into freedom for most. The war did accelerate change in the North, where states began passing gradual-emancipation laws, but in the South slavery only deepened. At war's end the British evacuated about 3,000 Black Loyalists to Nova Scotia, though many met poverty and broken promises there. For the majority of African Americans, the Revolution's language of liberty remained a promise deferred — one their descendants would spend generations demanding be kept.</p>`,
+      challenge: `
+<p>No group exposed the Revolution's hypocrisy more starkly than the roughly 500,000 African Americans — about a fifth of the colonial population, overwhelmingly enslaved — in whose name no one claimed to fight. For them, "liberty" was not an abstraction but a calculation: which side offered the better odds of actual freedom?</p>
+<p>Many bet on the Patriots. Despite Washington's late-1775 order barring Black enlistment — reversed in part because Dunmore's offer was drawing enslaved men to the Crown — an estimated 5,000 to 9,000 African Americans served the American cause, including the famed First Rhode Island Regiment. But the British made the franker bargain: Lord Dunmore's 1775 proclamation and the 1779 Philipsburg Proclamation promised freedom to those who fled rebel masters, and perhaps 20,000 seized it, laboring and fighting as Black Loyalists. Their choice reframes the war: for tens of thousands, the path to freedom ran toward the British, not away from them.</p>
+<p>The aftermath was bitterly uneven. Northern states, their economies less dependent on slavery, began gradual abolition; the plantation South entrenched it. The British evacuated some 3,000 Black Loyalists to Nova Scotia — their names recorded in the "Book of Negroes" — where many found poverty rather than the promised land, some later sailing on to Sierra Leone. The Revolution thus both advanced and betrayed Black freedom at once, leaving a contradiction at the republic's foundation that would not be confronted until a far bloodier war four score years later.</p>`
+    },
+    keyFacts: {
+      hook: {
+        mostSupport: ['About 500,000 Black people lived in the colonies in 1775.', 'That was about 1 in 5 people. Most were enslaved.', 'The country fought for freedom but kept people enslaved.'],
+        someSupport: ['~500,000 African Americans lived in the colonies in 1775 — about 1 in 5.', 'Most were enslaved, especially in the South.', 'The Revolution demanded liberty while denying it to Black people.'],
+        standard: ['~500,000 African Americans (a fifth of the population), mostly enslaved, in 1775.', "Their presence exposed the Revolution's central contradiction.", "'All men are created equal' was written in a land of mass slavery."],
+        challenge: ['Roughly 500,000 African Americans — a fifth of the colonies — in whose name no one claimed to fight.', "For them 'liberty' was a calculation, not an abstraction.", "No group exposed the Revolution's hypocrisy more starkly."]
+      },
+      content: {
+        mostSupport: ['Some Black people fought for the Americans (Patriots).', 'About 5,000 to 9,000 did.', 'Lord Dunmore offered freedom to those who joined the British (1775).', 'As many as 20,000 went to the British side.'],
+        someSupport: ['An estimated 5,000–9,000 African Americans served the Patriots.', 'The integrated First Rhode Island Regiment was one example.', "Lord Dunmore's 1775 offer promised freedom to those who joined the British.", 'As many as 20,000 sought freedom behind British lines.'],
+        standard: ['~5,000–9,000 served the Patriots, including the First Rhode Island Regiment.', "Dunmore's 1775 proclamation (widened in 1779) promised freedom to those who fled rebel masters.", 'As many as 20,000 became "Black Loyalists."', 'Washington first barred, then allowed, Black enlistment.'],
+        challenge: ["Washington's late-1775 ban was reversed partly because Dunmore's offer drew enslaved men to the Crown.", '~5,000–9,000 served the Patriots (incl. the First Rhode Island Regiment).', 'Dunmore (1775) and the Philipsburg Proclamation (1779) drew perhaps 20,000 to the British.', 'For tens of thousands, freedom ran toward the British, not away.']
+      },
+      conclusion: {
+        mostSupport: ['After the war, slavery did not end in most places.', 'Northern states slowly began to end it; the South did not.', 'Black Americans kept fighting for freedom.'],
+        someSupport: ['The war did not end slavery.', 'Northern states began gradual abolition; the South expanded slavery.', 'About 3,000 Black Loyalists were evacuated to Nova Scotia.'],
+        standard: ['The North began gradual-emancipation laws; the South deepened slavery.', 'Britain evacuated ~3,000 Black Loyalists to Nova Scotia, where many met broken promises.', "For most, the Revolution's liberty was a promise deferred.", 'Their descendants would demand it be kept for generations.'],
+        challenge: ['Northern states began gradual abolition; the plantation South entrenched slavery.', '~3,000 Black Loyalists (recorded in the "Book of Negroes") went to Nova Scotia; some later to Sierra Leone.', 'The Revolution both advanced and betrayed Black freedom at once.', 'It left a contradiction unresolved until the Civil War.']
+      }
+    },
+    sources: [
+      { title: 'American Battlefield Trust — 10 Facts: Black Patriots', url: 'https://www.battlefields.org/learn/articles/10-facts-black-patriots-american-revolution' },
+      { title: 'Museum of the American Revolution — Black Patriots and Loyalists', url: 'https://www.amrevmuseum.org/read-the-revolution/black-patriots-and-loyalists' },
+      { title: "George Washington's Mount Vernon — African Americans in the Revolution", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/african-americans-in-the-revolutionary-war' },
+      { title: 'World History Encyclopedia — African Americans in the American Revolution', url: 'https://www.worldhistory.org/article/2449/african-americans-in-the-american-revolution/' }
+    ]
+  },
+
+  'native-americans': {
+    name: 'Native Americans in the Revolutionary War',
+    tagline: 'Sovereign nations forced to choose sides in a war over their own land',
+    quickFacts: [
+      ['The bind', 'Two groups fighting over Native land — neither asked permission'],
+      ['Most nations', 'Sided with Britain, which had tried to limit settlers (Proclamation of 1763)'],
+      ['The split', 'The Iroquois Confederacy fractured — Oneida & Tuscarora aided the Americans'],
+      ['The cost', 'Devastation regardless of side; the 1783 peace ignored Native allies']
+    ],
+    levels: {
+      mostSupport: `
+<p>Native American nations were put in a terrible spot during the Revolution. Two groups — the British and the American colonists — were fighting over land that belonged to Native peoples. Neither side asked their permission.</p>
+<p>Each nation had to choose: help the British, help the Americans, or try to stay <strong>neutral</strong> (out of it).</p>
+<p>Most Native nations helped the British. Why? In 1763, Britain had made a rule to stop colonists from moving onto Native land. The colonists wanted that land. So the British seemed like the safer choice.</p>
+<p>But the choice split nations apart. The Iroquois Confederacy had six nations. Some helped the British. Two — the Oneida and Tuscarora — helped the Americans.</p>
+<p>The war hurt Native people no matter which side they chose. American soldiers burned dozens of Native towns. And when the war ended, the peace treaty gave Native land to the United States without asking Native nations at all.</p>`,
+      someSupport: `
+<p>Native American nations faced an impossible choice during the Revolution. The British and the American colonists were fighting over land that had belonged to Native peoples for thousands of years — and neither side asked permission. Each nation had to decide whether to help the British, help the Americans, or try to stay neutral.</p>
+<p>Most Native nations sided with the British. This wasn't love of British rule — it was strategy. After 1763, Britain had drawn a line (the Proclamation of 1763) to keep colonists from settling west on Native land. The colonists ignored it and kept coming. So many nations judged that Britain was more likely to protect their land.</p>
+<p>The decision tore communities apart. The Iroquois Confederacy, united for centuries, split: most nations backed Britain, but the Oneida and Tuscarora helped the Americans. The war devastated Native peoples no matter their choice — in 1779 the Sullivan Expedition burned about 40 Iroquois towns. Worst of all, the 1783 Treaty of Paris that ended the war handed Native land to the United States without consulting the nations who lived there.</p>`,
+      standard: `
+<p>For Native American nations, the Revolution was a war fought over their homelands by two groups of outsiders, neither of which recognized their rights. They had to choose among bad options: ally with Britain, ally with the Americans, or attempt a neutrality both sides would violate.</p>
+<p>Most Native warriors who fought sided with Britain — a strategic judgment, not affection. After the Seven Years' War, the Proclamation of 1763 had drawn a line along the Appalachians barring colonial settlement to the west; though weakly enforced, it signaled at least nominal British respect for Native territory, while land-hungry colonists openly ignored it. The decision shattered alliances: the Iroquois Confederacy (Haudenosaunee), united for generations, split apart, with most nations backing Britain but the Oneida and Tuscarora aiding the Americans — even bringing food to Valley Forge.</p>
+<p>The war devastated Native communities regardless of allegiance. In 1779 the Sullivan Expedition, ordered by Washington, burned some forty Iroquois towns and their crops; in 1782 Pennsylvania militia massacred ninety-six peaceful, Christian Delaware (Lenape) at Gnadenhütten. And the betrayal was sealed at the end: the 1783 Treaty of Paris transferred vast Native homelands to the United States without consulting — or even mentioning — the Native nations who had lived there and fought in the war. For Native peoples, independence meant accelerating loss.</p>`,
+      challenge: `
+<p>To Native American nations, the American Revolution was someone else's civil war waged across their sovereign land — a contest in which both parties claimed territory that belonged to neither. Forced to wager their futures, most nations that took up arms sided with Britain, and the logic was coldly sound: the Crown's Proclamation of 1763 had at least drawn a line against westward settlement, whereas the colonists embodied the very land hunger that line was meant to restrain.</p>
+<p>The war fractured Native polities from within. The Haudenosaunee (Iroquois) Confederacy — a six-nation league of remarkable longevity — broke apart, with the Mohawk, Seneca, Cayuga, and Onondaga generally siding with Britain while the Oneida and Tuscarora supported the Americans, scouting for the Continental Army and carrying provisions to Valley Forge. Neutrality, attempted by nations like the Delaware, proved impossible to hold. And loyalty earned no protection: Washington's 1779 Sullivan Expedition torched roughly forty Iroquois towns to break the Confederacy's capacity to fight, and in 1782 Pennsylvania militia murdered ninety-six unarmed Christian Delaware at Gnadenhütten.</p>
+<p>The deepest betrayal was diplomatic: the 1783 Treaty of Paris ceded sovereignty over enormous Native homelands to the new United States without consulting, or even naming, the nations who inhabited them. For Native America, the Revolution did not extend liberty; it removed a check on expansion, opening a century of dispossession. A podcast that centers their experience reveals the Revolution's other face — independence for some, built on the coming conquest of others.</p>`
+    },
+    keyFacts: {
+      hook: {
+        mostSupport: ['Two groups were fighting over Native land.', 'Neither side asked Native peoples for permission.', 'Each nation had to choose a side or try to stay out.'],
+        someSupport: ['The British and colonists fought over land that belonged to Native peoples.', 'Neither side asked permission.', 'Each nation had to help the British, help the Americans, or stay neutral.'],
+        standard: ['The Revolution was a war fought over Native homelands by two groups of outsiders.', 'Neither recognized Native rights.', 'Nations had to choose among bad options — including a neutrality both sides violated.'],
+        challenge: ["To Native nations, it was someone else's war waged across their sovereign land.", 'Both parties claimed territory that belonged to neither.', 'Each nation had to wager its future on a bad bet.']
+      },
+      content: {
+        mostSupport: ['Most Native nations helped the British.', 'In 1763 Britain had tried to stop colonists from taking Native land.', 'The Iroquois Confederacy split apart.', 'The Oneida and Tuscarora helped the Americans.'],
+        someSupport: ['Most sided with Britain — a strategy, not love of British rule.', 'The Proclamation of 1763 had tried to limit settlers on Native land.', 'The Iroquois Confederacy split: most backed Britain; Oneida and Tuscarora helped the Americans.', 'Colonists kept settling Native land anyway.'],
+        standard: ['Most Native fighters sided with Britain as a strategic judgment.', 'The Proclamation of 1763 signaled limited British respect for Native land; colonists ignored it.', 'The Haudenosaunee split — most for Britain, the Oneida and Tuscarora for the Americans.', 'Oneida even brought food to Valley Forge.'],
+        challenge: ["Most who fought sided with Britain; the Crown's 1763 Proclamation checked settlement.", 'The six-nation Haudenosaunee Confederacy broke apart from within.', 'Oneida and Tuscarora scouted for the Continental Army and supplied Valley Forge.', 'Neutrality (e.g., the Delaware) proved impossible to hold.']
+      },
+      conclusion: {
+        mostSupport: ['The war hurt Native people no matter which side they chose.', 'American soldiers burned dozens of Native towns.', 'The peace treaty gave Native land to the U.S. without asking them.'],
+        someSupport: ['The war devastated Native peoples regardless of their choice.', 'In 1779 the Sullivan Expedition burned about 40 Iroquois towns.', 'The 1783 peace handed Native land to the U.S. without consulting them.'],
+        standard: ['The 1779 Sullivan Expedition burned ~40 Iroquois towns and crops.', 'In 1782 militia massacred 96 peaceful Christian Delaware at Gnadenhütten.', 'The 1783 Treaty of Paris gave away Native homelands without consulting the nations.', 'For Native peoples, independence meant accelerating loss.'],
+        challenge: ['Loyalty earned no protection: even Oneida allies lost their lands.', 'Sullivan (1779) torched ~40 towns; Gnadenhütten (1782) killed 96 unarmed Christian Delaware.', 'The 1783 treaty ceded Native homelands without naming the nations on them.', 'The Revolution removed a check on expansion, opening a century of dispossession.']
+      }
+    },
+    sources: [
+      { title: 'American Battlefield Trust — American Indians in the Revolutionary War', url: 'https://www.battlefields.org/learn/articles/american-indians-revolutionary-war' },
+      { title: 'Smithsonian — National Museum of the American Indian', url: 'https://americanindian.si.edu/' },
+      { title: "George Washington's Mount Vernon — Native Americans", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/native-americans' },
+      { title: 'Britannica — Native Americans and the American Revolution', url: 'https://www.britannica.com/topic/American-Revolution' }
+    ]
+  },
+
+  'loyalists': {
+    name: 'Loyalists / Tories',
+    tagline: 'The 15–20% of colonists who stayed loyal to Britain — and often lost everything for it',
+    quickFacts: [
+      ['How many', 'Roughly 15–20% of colonists (~400,000–500,000 people)'],
+      ['The slur', 'Patriots called them "Tories" as an insult'],
+      ['A civil war', 'Neighbors, friends, and families split over independence'],
+      ['The cost', '60,000–80,000 fled into exile; property confiscated']
+    ],
+    levels: {
+      mostSupport: `
+<p>Not everyone in America wanted to break away from Britain. About 15 to 20 out of every 100 colonists stayed loyal to the British king. They were called <strong>Loyalists</strong>. Patriots called them "Tories" as an insult.</p>
+<p>Loyalists were not cowards or traitors. They just made a different choice. Some were rich people who did well under British rule. Some were poor farmers who feared Patriot mobs. Some were enslaved people who joined the British because Britain promised them freedom.</p>
+<p>This made the Revolution a kind of civil war — neighbors and even families fighting each other.</p>
+<p>Patriots often treated Loyalists badly. They burned their homes, took their property, and even tarred and feathered some of them.</p>
+<p>Because of this, 60,000 to 80,000 Loyalists left America for good. They moved to Canada, Britain, or other places. Their side lost, so their stories are often left out of history.</p>`,
+      someSupport: `
+<p>Not all colonists wanted independence. Between 15 and 20 percent of Americans — roughly 400,000 to 500,000 people — stayed loyal to Britain during the Revolution. They were called Loyalists, and Patriots insulted them as "Tories."</p>
+<p>Loyalists weren't traitors or cowards; they made a different choice for different reasons. Some were wealthy people tied to British trade. Some were small farmers who feared Patriot mob violence more than British taxes. Some were enslaved people who sided with Britain because it promised them freedom. Others simply feared that revolution would bring chaos.</p>
+<p>This made the war a civil war as much as a war against Britain — neighbors, friends, and even families split apart. Patriots often persecuted Loyalists: they were threatened, tarred and feathered, and had their property confiscated. As a result, an estimated 60,000 to 80,000 Loyalists fled the country — one of the largest forced migrations in American history — resettling in Canada, Britain, and elsewhere. Because they lost, their stories were largely erased from American memory.</p>`,
+      standard: `
+<p>The American Revolution is usually told from the winners' side, but a sizable minority of colonists opposed independence: historians estimate 15 to 20 percent of Americans — perhaps 400,000 to 500,000 people — remained loyal to Britain. Patriots branded them "Tories," an insult that stuck.</p>
+<p>Loyalists were not simply villains or cowards; their reasons were varied and often understandable. Some were merchants and officials whose fortunes depended on British connections. Many were ordinary farmers who feared the violence of Patriot mobs more than distant taxes, or who believed revolution would unleash chaos. Tens of thousands were enslaved people for whom the British — not the Patriots — offered the credible promise of freedom. This diversity meant the Revolution was also a civil war, splitting neighbors, congregations, and families.</p>
+<p>Patriots treated Loyalists harshly: committees enforced loyalty oaths, crowds tarred and feathered the defiant, and state governments confiscated Loyalist property. Roughly 60,000 to 80,000 Loyalists ultimately fled — to Canada (especially the Maritimes and Ontario), Britain, the Caribbean, and beyond — in one of the largest forced migrations in American history. Because history is written by victors, their experience was long erased; recovering it reveals that "the American people" were never of one mind about independence.</p>`,
+      challenge: `
+<p>The tidy story of a united people rising against tyranny dissolves on contact with the Loyalists — the 15 to 20 percent of colonists, perhaps 400,000 to 500,000 people, who judged that their interests, consciences, or safety lay with the Crown. "Tory," the Patriots' epithet for them, has done lasting work in flattening a varied population into caricature.</p>
+<p>Their motives resist a single explanation. Some were officeholders and merchants bound to imperial networks; many more were farmers and frontier folk who feared revolutionary committees and mobs more than parliamentary taxes, or who, as religious pacifists or simple conservatives, dreaded the disorder a rebellion might unleash. Crucially, the largest group with the clearest stake in a British victory were enslaved people, for whom the Crown's proclamations made freedom a concrete offer the Patriots would not match. The Revolution was therefore also an American civil war, turning neighbor against neighbor and dividing families — Benjamin Franklin's own Loyalist son William among the casualties of that rupture.</p>
+<p>Patriots policed loyalty with oath laws, social ostracism, tarring and feathering, and the wholesale confiscation of estates; between 60,000 and 80,000 Loyalists eventually left, scattering to Nova Scotia, Ontario, Britain, and the Caribbean in one of the great forced migrations of the age. Their erasure from national memory is itself instructive: a revolution narrated only by its winners hides how contested, coercive, and genuinely civil-war-like the founding really was. To tell a Loyalist's story is to ask what we owe the people history's victors chose to forget.</p>`
+    },
+    keyFacts: {
+      hook: {
+        mostSupport: ['Not everyone wanted to leave Britain.', 'About 15–20 of every 100 colonists stayed loyal.', "Patriots called them 'Tories' as an insult."],
+        someSupport: ['Between 15 and 20 percent of colonists stayed loyal to Britain.', 'That was about 400,000–500,000 people.', "Patriots insulted them as 'Tories.'"],
+        standard: ['A sizable minority — 15–20% of colonists — opposed independence.', 'Perhaps 400,000–500,000 people remained loyal to Britain.', "Patriots branded them 'Tories.'"],
+        challenge: ['The story of a united people dissolves on contact with the Loyalists.', '15–20% of colonists (maybe 400,000–500,000) sided with the Crown.', "'Tory' flattened a varied population into caricature."]
+      },
+      content: {
+        mostSupport: ['Loyalists were not cowards or traitors.', 'Some were rich; some were poor farmers afraid of mobs.', 'Some were enslaved people the British promised to free.', 'It became a civil war between neighbors.'],
+        someSupport: ['Loyalists chose Britain for many reasons.', 'Some were wealthy traders; some feared Patriot mobs; some sought freedom from slavery.', 'The war became a civil war splitting neighbors and families.', 'Patriots tarred and feathered Loyalists and seized their property.'],
+        standard: ['Reasons varied: merchants tied to Britain, farmers fearing mobs, enslaved people seeking freedom.', 'The Revolution was also a civil war splitting neighbors and families.', 'Patriots used loyalty oaths, tar-and-feathering, and property confiscation.', 'Enslaved people had the clearest stake in a British victory.'],
+        challenge: ['Motives ranged from imperial officeholders to pacifists to frightened frontier farmers.', 'The largest group with a clear stake in British victory were enslaved people.', "It was an American civil war — even Franklin's Loyalist son William.", 'Patriots policed loyalty with oaths, ostracism, and confiscation.']
+      },
+      conclusion: {
+        mostSupport: ["Patriots burned Loyalists' homes and took their property.", '60,000 to 80,000 Loyalists left America for good.', 'Their side lost, so their stories are often left out.'],
+        someSupport: ['About 60,000–80,000 Loyalists fled the country.', 'They resettled in Canada, Britain, and elsewhere.', 'Because they lost, their stories were largely erased.'],
+        standard: ['States confiscated Loyalist property; crowds enforced loyalty by force.', 'Roughly 60,000–80,000 fled — to Canada, Britain, the Caribbean — a huge forced migration.', 'Because victors write history, their experience was long erased.', 'Recovering it shows Americans were never of one mind about independence.'],
+        challenge: ['60,000–80,000 left in one of the age\'s great forced migrations.', 'Their erasure hides how contested and coercive the founding was.', 'A revolution narrated only by winners conceals its civil-war character.', "Telling a Loyalist's story asks what we owe those history chose to forget."]
+      }
+    },
+    sources: [
+      { title: 'American Battlefield Trust — Loyalists', url: 'https://www.battlefields.org/learn/articles/loyalists-american-revolution' },
+      { title: 'Museum of the American Revolution', url: 'https://www.amrevmuseum.org/' },
+      { title: "George Washington's Mount Vernon — Loyalists", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/loyalists/' },
+      { title: 'Britannica — Loyalist', url: 'https://www.britannica.com/topic/loyalist' }
+    ]
+  },
+
+  'indentured-servants': {
+    name: 'Indentured Servants',
+    tagline: 'Bound laborers who lived a war for "liberty" while legally unfree',
+    quickFacts: [
+      ['Who', 'Mostly poor Europeans bound by contract to work years for a master'],
+      ['How many', '~50,000–60,000 during the Revolution (about 2% of the population)'],
+      ['The contract', 'Usually 4–7 years; no marriage, no property, could be bought and sold'],
+      ['Key tension', 'Caught in a war for "freedom" while not free themselves']
+    ],
+    levels: {
+      mostSupport: `
+<p>Indentured servants were workers who had to serve a master for several years. Most were poor people from Europe. They signed a <strong>contract</strong> (a written promise) to work — usually 4 to 7 years — to pay for their trip to America.</p>
+<p>During those years, they had almost no freedom. They could not marry without permission. They could not own land. They could even be bought and sold, a little like enslaved people. But their contract would end one day, and then they would be free.</p>
+<p>There were about 50,000 to 60,000 indentured servants during the Revolution.</p>
+<p>The war was about "freedom." But these workers were not free. They had to choose: stay and finish the contract, or risk running away to fight for freedom now. Some joined the American army for a promise of freedom. Some ran to the British, who also promised freedom.</p>
+<p>After the war, some gained freedom and even land. Others stayed poor. Their story shows that "freedom" did not mean the same thing for everyone.</p>`,
+      someSupport: `
+<p>Indentured servants were one of the Revolution's most overlooked groups. They were mostly poor Europeans who signed a contract (an "indenture") to work for a master for several years — usually 4 to 7 — in exchange for the cost of sailing to America.</p>
+<p>During their service, they had very limited freedom: they couldn't marry without permission, couldn't own property, and could be bought and sold, though their contracts would eventually end. By the time of the Revolution, an estimated 50,000 to 60,000 people were serving as indentured servants — about 2% of the colonial population.</p>
+<p>The war forced them into hard choices. Some stayed and finished their service. Others enlisted in the Continental Army — sometimes with a master's permission and a promise of freedom — while some ran away to the British, who also promised liberty. After the war, some gained their freedom and even land grants for their service; others struggled in poverty. Their story is a reminder that the Revolution's promise of "liberty" did not include everyone equally.</p>`,
+      standard: `
+<p>Among the people caught in the middle of a war fought for "liberty" were indentured servants — an estimated 50,000 to 60,000 of them, roughly two percent of the colonial population. Most were poor Europeans who had signed an indenture, a contract binding them to work for a master for a set term (commonly four to seven years) to repay the cost of their passage to America.</p>
+<p>Their condition was a kind of temporary bondage. Until their term ended, they could not marry without permission, could not own property, and could be bought and sold — yet, unlike enslaved people, they would one day go free. When war came in 1775, that distinction shaped impossible choices. Many enlisted in the Continental Army, sometimes serving as a master's substitute in exchange for an early release; others fled to British lines, drawn by promises of immediate freedom; still others, especially women, judged flight too dangerous and served out their terms.</p>
+<p>The war's outcomes for them were uneven. Some won their freedom through military service and even received land grants as veterans; some who reached the British were evacuated to Nova Scotia, free but impoverished; many simply returned to poverty and the bottom of colonial society. Their experience underscores a hard truth about the Revolution: its soaring language of freedom coexisted with everyday systems of unfreedom that bound poor whites as well as the enslaved.</p>`,
+      challenge: `
+<p>The Revolution's rhetoric of liberty rang strangely for indentured servants — perhaps 50,000 to 60,000 people, about two percent of the population, who lived in a contractually defined unfreedom. Most were poor Europeans (a system so common that, by some estimates, half to two-thirds of all white immigrants to the colonies had arrived as bound labor) who had mortgaged years of their lives — typically four to seven — against the price of an Atlantic passage.</p>
+<p>Theirs was a status that troubled the era's neat categories: not chattel slaves, since the indenture expired, but during its term subject to sale, denied marriage and property, and disciplined by their masters. War sharpened the contradiction into choice. Some servants enlisted in the Continental Army — frequently as substitutes their masters supplied in lieu of personal service — trading the indenture for the dangers of the ranks and a chance at freedom and a postwar land grant; others absconded to British lines that, like Dunmore's proclamation to the enslaved, dangled immediate liberty; the most constrained, often women alone, calculated that flight was a worse gamble than endurance.</p>
+<p>What their stories reveal is that "freedom" in 1776 was not a single condition but a spectrum, and that the Revolution rearranged the bottom of colonial society without abolishing its hierarchies. Some bound laborers climbed, through service, into landowning citizenship; others were evacuated, free but destitute, to Nova Scotia; most were simply reabsorbed into a laboring poor whose unfreedom the new republic left largely intact. To narrate their experience is to ask how wide the Revolution's liberty was ever meant to extend.</p>`
+    },
+    keyFacts: {
+      hook: {
+        mostSupport: ['Indentured servants worked for a master for several years.', 'Most were poor people from Europe.', 'They signed a contract to pay for their trip to America.'],
+        someSupport: ['Indentured servants were mostly poor Europeans bound by contract.', 'They worked 4 to 7 years to pay for their passage to America.', 'About 50,000–60,000 were serving during the Revolution.'],
+        standard: ["~50,000–60,000 indentured servants — about 2% of the population — were caught in a war for 'liberty.'", 'Most were poor Europeans bound by an indenture (a work contract).', 'Terms commonly ran 4–7 years to repay the cost of passage.'],
+        challenge: ['Perhaps 50,000–60,000 people lived in a contractually defined unfreedom.', 'Half to two-thirds of white immigrants had arrived as bound labor.', 'They mortgaged years of their lives against an Atlantic passage.']
+      },
+      content: {
+        mostSupport: ['They could not marry or own land during their contract.', 'They could even be bought and sold.', 'Some joined the American army for a promise of freedom.', 'Some ran to the British, who also promised freedom.'],
+        someSupport: ["During service they couldn't marry, own property, and could be sold.", 'Some enlisted in the Continental Army for a promise of freedom.', 'Some ran to the British, who promised liberty too.', 'Some, especially women, judged running too dangerous and stayed.'],
+        standard: ["Until their term ended they couldn't marry or own property and could be sold.", "Many enlisted, sometimes as a master's substitute, for an early release.", 'Others fled to British lines drawn by promises of immediate freedom.', 'Some, especially women, served out their terms instead.'],
+        challenge: ['Not chattel slaves (the indenture expired), but subject to sale, and denied marriage and property.', 'Many enlisted as substitutes their masters supplied in lieu of service.', "Others absconded to British lines that, like Dunmore's, offered immediate liberty.", 'The most constrained, often women alone, judged endurance the safer gamble.']
+      },
+      conclusion: {
+        mostSupport: ['After the war, some gained freedom and even land.', 'Others stayed poor.', '"Freedom" did not mean the same thing for everyone.'],
+        someSupport: ['Some gained freedom and land grants for their service.', 'Others struggled in poverty after the war.', "The Revolution's 'liberty' did not include everyone equally."],
+        standard: ['Some won freedom and veteran land grants through service.', 'Some who reached the British were evacuated to Nova Scotia, free but poor.', 'Many simply returned to poverty at society\'s bottom.', 'Soaring talk of freedom coexisted with everyday unfreedom.'],
+        challenge: ["'Freedom' in 1776 was a spectrum, not a single condition.", 'Some bound laborers climbed into landowning citizenship through service.', 'Others were evacuated, free but destitute, to Nova Scotia.', 'Most were reabsorbed into a laboring poor the republic left unfree.']
+      }
+    },
+    sources: [
+      { title: 'Britannica — Indentured Servitude', url: 'https://www.britannica.com/topic/indentured-servitude' },
+      { title: "George Washington's Mount Vernon — Indentured Servants", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/indentured-servants/' },
+      { title: 'Colonial Williamsburg — Indentured Servants', url: 'https://www.colonialwilliamsburg.org/learn/deep-dives/indentured-servants-in-colonial-virginia/' },
+      { title: 'Gilder Lehrman Institute — Indentured Servitude', url: 'https://www.gilderlehrman.org/history-resources/teaching-resource/historical-context-indentured-servitude' }
+    ]
+  },
+
+  'hessians': {
+    name: 'Hessian Soldiers',
+    tagline: '~30,000 German soldiers rented to fight for Britain — many of whom never went home',
+    quickFacts: [
+      ['Who', 'German soldiers, especially from Hesse-Kassel, hired out by their princes'],
+      ['How many', "About 30,000 crossed the Atlantic — nearly a third of Britain's force at times"],
+      ['Why "rented"', 'German rulers were paid subsidies to supply "subsidy troops"'],
+      ['The twist', 'As many as 40–50% never returned home — killed, or staying in America']
+    ],
+    levels: {
+      mostSupport: `
+<p>During the Revolution, not all of Britain's soldiers were British. About 30,000 of them were Germans. Americans called them "Hessians," because many came from a German area called Hesse-Kassel.</p>
+<p>In the 1700s, Germany was not one country. It was many small states. Some German rulers made money by renting out their soldiers to other countries. Britain paid them to send soldiers to fight in America.</p>
+<p>Many Hessians did not want to be there. Some were <strong>drafted</strong> (forced to serve). Others joined for money or adventure. They were well-trained soldiers.</p>
+<p>At the Battle of Trenton in 1776, Washington surprised the Hessians and captured about 900 of them.</p>
+<p>Many Hessians never went home. Some died in the war. Thousands chose to stay in America, often where other Germans lived. They started new lives as American farmers.</p>
+<p>Their story shows that the war pulled in people from far away.</p>`,
+      someSupport: `
+<p>Nearly a third of the soldiers fighting to keep America under British rule were not British at all — they were Germans. Americans called them "Hessians" because many came from the German state of Hesse-Kassel. About 30,000 German soldiers crossed the Atlantic to fight in America.</p>
+<p>In the 1700s, "Germany" was not one country but many small states. Some German rulers earned money by renting out their soldiers — called "subsidy troops" — to other nations, and Britain paid for tens of thousands of them. Hessians had different reasons for being there: some were career soldiers, some were drafted against their will, and some volunteered for the money or adventure. They were well-trained and fought in many battles.</p>
+<p>One famous moment came at the Battle of Trenton in December 1776, when Washington's surprise attack captured about 900 Hessians. By the war's end, as many as 40 to 50 percent of the German soldiers never returned home — some were killed, but thousands chose to stay in America, often settling among German-speaking communities and starting new lives.</p>`,
+      standard: `
+<p>When Americans pictured the enemy in the Revolution, they often pictured "Hessians" — German soldiers fighting for Britain. About 30,000 of them crossed the Atlantic, at times making up nearly a third of British land forces, a number roughly comparable to the entire Continental Army at its peak. Most were called Hessians after Hesse-Kassel, though they came from several German states.</p>
+<p>In the 1700s, "Germany" was a patchwork of small principalities, and some of their rulers made money by hiring out trained soldiers as "subsidy troops." Britain paid these princes to supply men, which is why Americans (and many since) have loosely called the Hessians "mercenaries" — though most were not freelance fighters but professional or conscripted soldiers sent by their states. Their reasons for being in America ranged from career duty to forced conscription to the lure of a signing bonus and adventure. They fought hard in many campaigns, from New York to the Carolinas.</p>
+<p>The Hessians' most famous moment was an American victory over them: on December 26, 1776, Washington crossed the Delaware and surprised the garrison at Trenton, capturing about 900. Over the course of the war, perhaps 40 to 50 percent of the German soldiers never went home — thousands died, and thousands more chose to remain in America, frequently settling among Pennsylvania's German-speaking communities, changing their names, and becoming farmers and citizens of the country they had been sent to subdue.</p>`,
+      challenge: `
+<p>The "Hessians" loom in American memory as the Revolution's faceless foreign menace, yet their story is among the war's most human studies in coercion, survival, and reinvention. Roughly 30,000 German soldiers — named for Hesse-Kassel, though drawn from several states — were shipped across the Atlantic to fight for George III, at times constituting nearly a third of his forces in America.</p>
+<p>The word "mercenary," long attached to them, misleads. The German lands were a mosaic of small polities, and several of their rulers — many tied by blood to the British crown — defrayed their treasuries by leasing regiments as "subsidy troops." The soldiers themselves rarely chose the bargain: some were career professionals, but many were conscripts swept up by their princes, fighting not for pay they kept but at the command of rulers who pocketed the British subsidies. That distinction matters, because it makes the Hessians less hired guns than men sold into a distant war. Their competence was real — disciplined troops who fought from Long Island to Guilford Courthouse — but so was their alienation.</p>
+<p>Nothing illustrates the latter like the aftermath of Trenton: Washington's Christmas-night crossing of the Delaware netted some 900 prisoners on December 26, 1776, many of whom were marched through the countryside and, tellingly, settled comfortably among Pennsylvania's Germans. By war's end, as much as 40 to 50 percent of the German contingent never returned — killed, or, in their thousands, choosing to vanish into America, anglicizing "Johann" to "John" and farming the land of their former enemies. Their quiet defection is its own verdict on a war they had been compelled to wage.</p>`
+    },
+    keyFacts: {
+      hook: {
+        mostSupport: ["Not all of Britain's soldiers were British.", 'About 30,000 were Germans called "Hessians."', 'Many came from a German area called Hesse-Kassel.'],
+        someSupport: ["Nearly a third of Britain's soldiers in America were German.", 'Americans called them "Hessians" after Hesse-Kassel.', 'About 30,000 crossed the Atlantic to fight.'],
+        standard: ['About 30,000 German soldiers fought for Britain — at times nearly a third of its army.', 'Americans called them "Hessians" after Hesse-Kassel.', 'That was roughly the size of the whole Continental Army at its peak.'],
+        challenge: ['The "Hessians" loom in memory as the war\'s faceless foreign menace.', 'Roughly 30,000 Germans, drawn from several states, fought for George III.', 'At times they were nearly a third of his forces in America.']
+      },
+      content: {
+        mostSupport: ['German rulers rented out their soldiers for money.', 'Some Hessians were drafted; some joined for money or adventure.', 'They were well-trained soldiers.', 'At Trenton in 1776, Washington captured about 900 of them.'],
+        someSupport: ['German rulers earned money renting out "subsidy troops."', 'Some Hessians were career soldiers; some were drafted; some volunteered.', 'They fought in many battles and were well-trained.', 'At Trenton (Dec 1776), Washington captured about 900 Hessians.'],
+        standard: ['German princes hired out trained "subsidy troops" for pay.', '"Mercenary" is loose — most were professional or conscripted, not freelance.', 'Reasons ranged from career duty to forced conscription to a signing bonus.', 'On Dec 26, 1776, Washington surprised Trenton and captured ~900 Hessians.'],
+        challenge: ['"Mercenary" misleads — rulers pocketed British subsidies for leased regiments.', 'Many soldiers were conscripts, not volunteers — men sold into a distant war.', 'They fought competently from Long Island to Guilford Courthouse.', 'Trenton (Dec 26, 1776) netted ~900 prisoners, many settled among Pennsylvania Germans.']
+      },
+      conclusion: {
+        mostSupport: ['Many Hessians never went home.', 'Some died; thousands chose to stay in America.', 'They became American farmers.'],
+        someSupport: ['As many as 40–50% never returned home.', 'Some died; thousands stayed in America.', 'Many settled where other Germans lived and started new lives.'],
+        standard: ['Perhaps 40–50% of the German soldiers never went home.', 'Thousands died; thousands more chose to stay in America.', 'Many settled among Pennsylvania Germans, changed their names, and farmed.', 'They became citizens of the country they were sent to subdue.'],
+        challenge: ['As much as 40–50% of the contingent never returned.', 'Thousands vanished into America, anglicizing "Johann" to "John."', 'Many farmed the land of their former enemies.', 'Their choice to stay is a quiet verdict on a war they were compelled to wage.']
+      }
+    },
+    sources: [
+      { title: 'American Battlefield Trust — Hessians', url: 'https://www.battlefields.org/learn/articles/hessians' },
+      { title: 'Journal of the American Revolution — 8 Fast Facts About Hessians', url: 'https://allthingsliberty.com/2014/08/8-fast-facts-about-hessians/' },
+      { title: "George Washington's Mount Vernon — Hessians", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/hessians/' },
+      { title: 'Britannica — Hessian', url: 'https://www.britannica.com/topic/Hessian-German-mercenary' }
+    ]
+  },
+
+  'camp-followers': {
+    name: 'Camp Followers',
+    tagline: 'The women and children who kept the army alive — and were written out of the story',
+    quickFacts: [
+      ['Who', 'Wives, children, laundresses, cooks, nurses, and sutlers who traveled with the army'],
+      ['How many', 'Estimates of 5,000–20,000 at times — about 1 for every 3–5 soldiers'],
+      ['At Valley Forge', '~3,000–4,000 alongside ~12,000 soldiers'],
+      ['The deal', 'Hard, essential work for half-rations — and little memory afterward']
+    ],
+    levels: {
+      mostSupport: `
+<p>Armies need more than soldiers. They need people to cook, wash clothes, and care for the sick and hurt. In the Revolution, these workers were called "camp followers."</p>
+<p>Most camp followers were women and children. Many were the wives and kids of soldiers. They traveled with the army from camp to camp.</p>
+<p>There were a lot of them — maybe 5,000 to 20,000 at different times. At Valley Forge, where about 12,000 soldiers stayed for the winter, there were about 3,000 to 4,000 camp followers too.</p>
+<p>Camp followers worked hard for very little. They often got only half the food a soldier got. They faced the same cold, hunger, and disease.</p>
+<p>Not all camp followers were treated the same. Officers' wives had tents and servants. Poor wives carried their children and marched all day. Enslaved women cooked for officers and got nothing.</p>
+<p>The army could not have survived without them. But their stories are often forgotten.</p>`,
+      someSupport: `
+<p>An army needs more than soldiers to survive. It needs people to cook, wash, mend clothes, and nurse the sick and wounded. During the Revolution, the civilians who did this work and traveled with the army were called "camp followers."</p>
+<p>Most were women and children — often the families of soldiers. Historians estimate there were anywhere from 5,000 to 20,000 camp followers at different points in the war, roughly one for every three to five soldiers. At Valley Forge in the winter of 1777–78, with about 12,000 soldiers, there were likely 3,000 to 4,000 camp followers enduring the same brutal conditions.</p>
+<p>Their work was essential but poorly rewarded — laundresses and cooks usually received only half-rations, and they faced the army's dangers of disease, cold, and hunger. Their experiences differed by class and race: officers' wives had tents and servants, poor soldiers' wives marched for miles carrying children, and enslaved women worked for officers with no pay at all. The army could not have functioned without camp followers, yet their contributions were largely erased from the way we remember the war.</p>`,
+      standard: `
+<p>For every soldier in the Continental Army, there were others marching alongside who never carried a musket: the "camp followers," the civilians — overwhelmingly women and children — who did the essential work that kept an army alive. They cooked, laundered, mended, nursed the sick and wounded, and sometimes carried water under fire.</p>
+<p>Their numbers were significant. Estimates range from about 5,000 to 20,000 at various times, perhaps one camp follower for every three to five soldiers; at Valley Forge during the winter of 1777–78, roughly 3,000 to 4,000 accompanied some 12,000 troops, suffering the same starvation, exposure, and disease. The army depended on them, and a few roles — like the official position of laundress — even came with formal recognition and rations, though usually at half a soldier's allowance.</p>
+<p>Camp followers were not a single class of people. An officer's wife might join winter quarters with a tent and servants and host dinners; a private's wife might march fifteen miles a day carrying a toddler and her possessions, working for half-rations; an enslaved woman brought along by a slaveholding officer might labor for no pay at all and see a promised freedom broken after the war. What unites them is how thoroughly they were written out of the story — remembered, if at all, as a footnote to a war their labor made possible.</p>`,
+      challenge: `
+<p>Behind the marching columns of the Continental Army moved a second army without muskets: the camp followers, the predominantly female civilian workforce whose labor was not an accessory to the war effort but a precondition of it. They cooked and laundered and nursed; they scavenged and mended and carried; and in their absence the eighteenth-century army — which provided almost no logistical support of this kind — could not have kept the field.</p>
+<p>Their scale has been obscured by their invisibility. Contemporary estimates and later reconstructions suggest anywhere from 5,000 to 20,000 followers at different moments, on the order of one for every three to five soldiers; at Valley Forge, perhaps 3,000 to 4,000 endured the encampment's privations alongside roughly 12,000 troops. The army's own ambivalence is telling: commanders complained that followers slowed the march and strained supplies, even as they formalized the role of laundress and doled out half-rations, tacitly admitting the work was indispensable. Followers were also a society in miniature, stratified by class and race — the officer's wife with a tent and servants at one pole, and at the other the enslaved woman who cooked for officers without pay or rations and whose promised freedom was, after the war, simply withheld.</p>
+<p>Their erasure from Revolutionary memory is not accidental but structural: a national myth built around citizen-soldiers and founding statesmen has little room for the unpaid, the female, the enslaved. To recover the camp followers is to recover the war's actual logistics — and to ask why the people who fed and tended an army of liberty were so easily forgotten by the nation it created.</p>`
+    },
+    keyFacts: {
+      hook: {
+        mostSupport: ['Armies need people to cook, wash, and care for the sick.', 'These workers were called "camp followers."', 'Most were women and children who traveled with the army.'],
+        someSupport: ['Camp followers were civilians who traveled with the army.', "Most were women and children, often soldiers' families.", 'They cooked, washed, mended, and nursed the wounded.'],
+        standard: ['For every soldier, others marched alongside without muskets — the "camp followers."', 'Overwhelmingly women and children, they did the work that kept the army alive.', 'They cooked, laundered, nursed, and sometimes carried water under fire.'],
+        challenge: ['Behind the army moved a second army without muskets: the camp followers.', 'Their predominantly female labor was a precondition of the war, not an accessory.', "The 18th-century army couldn't have kept the field without them."]
+      },
+      content: {
+        mostSupport: ['There were maybe 5,000 to 20,000 at different times.', 'At Valley Forge there were about 3,000 to 4,000.', "They often got only half a soldier's food.", 'They faced the same cold, hunger, and disease.'],
+        someSupport: ['Estimates range from 5,000 to 20,000 — about 1 for every 3–5 soldiers.', 'At Valley Forge (~12,000 soldiers), there were ~3,000–4,000 followers.', 'Cooks and laundresses usually got only half-rations.', 'They faced disease, cold, and hunger.'],
+        standard: ['Estimates: ~5,000–20,000 at times, perhaps 1 per 3–5 soldiers.', 'At Valley Forge (1777–78), ~3,000–4,000 with ~12,000 troops.', 'The role of laundress brought formal recognition — usually at half-rations.', 'They suffered the same starvation, exposure, and disease.'],
+        challenge: ['Estimates suggest 5,000–20,000 followers, ~1 per 3–5 soldiers.', 'At Valley Forge ~3,000–4,000 endured alongside ~12,000 troops.', 'Commanders complained they slowed the march — yet formalized the laundress role.', "The army's half-rations tacitly admitted the work was indispensable."]
+      },
+      conclusion: {
+        mostSupport: ["Officers' wives had tents and servants.", 'Poor wives marched all day carrying children.', 'Enslaved women cooked for officers and got nothing.', 'The army could not have survived without them.'],
+        someSupport: ['Their lives differed by class and race.', "Officers' wives had servants; poor wives marched for miles.", 'Enslaved women worked for officers with no pay.', 'Their contributions were largely erased from history.'],
+        standard: ['They were stratified by class and race, not one group.', 'An enslaved woman might labor for no pay and see freedom denied after the war.', 'The army depended on them, yet they were written out of the story.', 'They\'re remembered, if at all, as a footnote.'],
+        challenge: ["A society in miniature — from officers' wives with servants to unpaid enslaved women.", 'Their erasure is structural: a myth of citizen-soldiers has no room for them.', "Recovering them recovers the war's actual logistics.", 'Why were the people who fed an army of liberty so easily forgotten?']
+      }
+    },
+    sources: [
+      { title: 'American Battlefield Trust — Women in the American Revolution', url: 'https://www.battlefields.org/learn/articles/women-american-revolution' },
+      { title: 'Museum of the American Revolution — Camp Followers', url: 'https://www.amrevmuseum.org/' },
+      { title: "George Washington's Mount Vernon — Camp Followers", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/camp-followers/' },
+      { title: 'National Park Service — Valley Forge', url: 'https://www.nps.gov/vafo/learn/historyculture/index.htm' }
+    ]
+  },
+
+  'young-soldiers': {
+    name: 'Young Soldiers & Teenage Patriots',
+    tagline: 'Thousands of boys aged 10–18 served — as drummers, runners, powder monkeys, and soldiers',
+    quickFacts: [
+      ['Who', 'Boys roughly 10–18: drummers, fifers, message runners, powder monkeys, soldiers'],
+      ['How many', 'By some estimates, around a fifth of Continental soldiers were under 18'],
+      ['Famous example', 'A 13-year-old courier named Andrew Jackson — later president'],
+      ['Why it matters', 'The Revolution was fought, in part, by children']
+    ],
+    levels: {
+      mostSupport: `
+<p>Many soldiers in the Revolution were not grown men. Thousands of them were boys, ages 10 to 18.</p>
+<p>Some boys were <strong>drummers</strong>. They beat the drum to send orders to soldiers in battle. Some were fifers (they played a small flute). Some carried messages. On ships, some boys carried gunpowder — they were called "powder monkeys." Older boys carried guns and fought.</p>
+<p>Why did boys join? Some wanted adventure. Some needed money. Some believed in the cause. Some lied about their age to get in.</p>
+<p>War was hard and scary for them. They saw terrible things. They were cold and hungry at camps like Valley Forge.</p>
+<p>One famous boy was Andrew Jackson. At 13, he carried messages. The British captured him. When he refused to clean an officer's boots, the officer cut him with a sword. Jackson later became president.</p>
+<p>The Revolution was fought, in part, by children.</p>`,
+      someSupport: `
+<p>Not all soldiers in the Revolution were grown men — thousands were boys between about 10 and 18 years old. Military records suggest a large share of Continental soldiers were teenagers, and in some drummer and fifer companies, half or more were boys.</p>
+<p>Young people filled many roles. Drummers and fifers used music to send orders across noisy battlefields. Others ran messages, and on warships, boys called "powder monkeys" carried gunpowder to the cannons. Older teenagers shouldered muskets and fought beside adults.</p>
+<p>Boys joined for many reasons: adventure, money, belief in independence, or escape from a hard home. Many lied about their age. War marked them deeply — they faced combat, and froze and starved in winter camps. One famous example is Andrew Jackson, who at 13 carried messages, was captured, and was slashed by a British officer for refusing to clean his boots. Jackson later became president. Their stories remind us the Revolution was fought, in part, by children.</p>`,
+      standard: `
+<p>The popular image of the Continental Army is one of grown men, but a striking share of its soldiers were children and teenagers. By some estimates around a fifth of Continental soldiers were under eighteen, and in specialized units — drummer and fifer companies especially — boys could make up half or more.</p>
+<p>Their roles were real and often dangerous. Drummers and fifers were the army's communication system, signaling commands by music amid the chaos of battle; couriers carried messages through contested country; on naval vessels, "powder monkeys" ferried gunpowder to the guns; and older teenagers served as full soldiers. Boys enlisted for a tangle of reasons — patriotism, poverty, the promise of pay, the lure of adventure, or flight from difficult homes — and many simply lied about their age, since recordkeeping was loose.</p>
+<p>War aged them fast. They endured combat, capture, and the starvation and cold of encampments like Valley Forge. The memoirist Joseph Plumb Martin enlisted at fifteen and later wrote vividly of the hunger and fear; a thirteen-year-old courier named Andrew Jackson was captured and slashed by a British officer for refusing to clean his boots — a wound, and a grudge, he carried into the presidency. To study these young soldiers is to confront how total the Revolution was, reaching down even to children.</p>`,
+      challenge: `
+<p>The Continental Army that we picture as a body of yeomen farmers was, to a surprising degree, an army of adolescents. Though muster rolls are imperfect, historians estimate that on the order of a fifth of Continental soldiers were under eighteen, and in the drummer and fifer companies — whose music was the army's nervous system — the proportion of boys ran far higher. Childhood and soldiering, categories we now hold rigidly apart, overlapped freely in the 1770s.</p>
+<p>Their labor was indispensable and perilous. Field music transmitted commands no shouted voice could carry; couriers threaded enemy country; naval "powder monkeys," prized for their small size, carried charges to the guns amid the worst of a sea fight. Motivations were as mixed as the boys themselves — ideology and adventure for some, but for many the harder pressures of poverty, a bounty, or a broken household, and recordkeeping lax enough that lying about one's age was easy. The most articulate witness, Joseph Plumb Martin, enlisted at fifteen and left a memoir whose hunger and disillusion puncture every romantic image of the war.</p>
+<p>Their experience presses a question modern readers feel acutely: a cause that proclaimed natural rights was sustained partly by the bodies of children, some of whom — like the thirteen-year-old courier Andrew Jackson, scarred by a British officer's blade — carried the war's violence into the rest of American history. To recover the young soldiers is both to honor a forgotten service and to reckon with what a "people's war" actually demanded of its people.</p>`
+    },
+    keyFacts: {
+      hook: {
+        mostSupport: ['Many soldiers were boys, not grown men.', 'They were ages 10 to 18.', 'Some were drummers; some carried guns.'],
+        someSupport: ['Thousands of soldiers were boys between about 10 and 18.', 'Many Continental soldiers were teenagers.', 'In some drummer companies, half or more were boys.'],
+        standard: ['A striking share of Continental soldiers were children and teenagers.', 'By some estimates around a fifth were under 18.', 'In drummer and fifer companies, boys could be half or more.'],
+        challenge: ['The army we picture as yeomen farmers was, in part, an army of adolescents.', 'Roughly a fifth of Continental soldiers were under 18.', 'Childhood and soldiering overlapped freely in the 1770s.']
+      },
+      content: {
+        mostSupport: ['Drummers beat orders to soldiers in battle.', 'Some boys carried messages.', '"Powder monkeys" carried gunpowder on ships.', 'Older boys carried guns and fought.'],
+        someSupport: ['Drummers and fifers sent orders with music.', 'Couriers ran messages through dangerous country.', 'Naval "powder monkeys" carried gunpowder to the cannons.', 'Many boys lied about their age to enlist.'],
+        standard: ["Drummers and fifers were the army's communication system.", '"Powder monkeys" fed the naval guns; couriers carried messages.', 'Boys enlisted for patriotism, pay, adventure, or escape — and often lied about their age.', 'Older teenagers served as full soldiers.'],
+        challenge: ['Field music transmitted commands no shouted voice could carry.', '"Powder monkeys," prized for small size, carried charges amid sea fights.', 'Motives ranged from ideology to poverty, a bounty, or a broken home.', "Loose recordkeeping made lying about one's age easy."]
+      },
+      conclusion: {
+        mostSupport: ['War was hard and scary for these boys.', 'They were cold and hungry at camps like Valley Forge.', 'Andrew Jackson was a 13-year-old who later became president.'],
+        someSupport: ['War marked them deeply — combat, cold, and hunger.', 'Joseph Plumb Martin enlisted at 15 and wrote about it.', 'Andrew Jackson, captured at 13, was slashed for refusing to clean a boot.', 'The Revolution was fought, in part, by children.'],
+        standard: ['They endured combat, capture, and the cold of camps like Valley Forge.', 'Joseph Plumb Martin enlisted at 15 and left a vivid memoir.', 'A 13-year-old Andrew Jackson was slashed by a British officer and carried the grudge to the presidency.', 'Their service shows how total the Revolution was.'],
+        challenge: ["Joseph Plumb Martin's memoir punctures romantic images of the war.", "A cause of natural rights was sustained partly by children's bodies.", 'Andrew Jackson carried the war\'s violence into American history.', "Recovering them honors a forgotten service and reckons with a 'people's war.'"]
+      }
+    },
+    sources: [
+      { title: 'American Battlefield Trust — Joseph Plumb Martin', url: 'https://www.battlefields.org/learn/biographies/joseph-plumb-martin' },
+      { title: 'Museum of the American Revolution', url: 'https://www.amrevmuseum.org/' },
+      { title: "George Washington's Mount Vernon — Continental Army", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/the-continental-army' },
+      { title: 'Journal of the American Revolution', url: 'https://allthingsliberty.com/' }
+    ]
+  },
+
+  'enslaved-british-freedom': {
+    name: 'The Paradox of Enslaved People & British Freedom',
+    tagline: 'Both sides exploited enslaved labor while dangling "freedom" — the Revolution\'s deepest contradiction',
+    quickFacts: [
+      ['Central question', 'Two powers both used enslaved labor and both promised freedom — which to trust?'],
+      ['Scale', '~500,000 African Americans in 1775 (~20%); ~450,000 enslaved'],
+      ['The South', 'Enslaved people were 40% of Virginia and a ~60% majority in South Carolina'],
+      ['Note', 'An advanced "paradox" reading — heavier analysis at higher levels']
+    ],
+    levels: {
+      mostSupport: `
+<p>The Revolution had a deep contradiction. White leaders said "all men are created equal" and fought for freedom. But they kept about 450,000 Black people <strong>enslaved</strong> (owned and forced to work for no pay).</p>
+<p>In 1775, about 500,000 Black people lived in the colonies — about 1 in 5 people. Most lived in the South. In some places, like South Carolina, more than half the people were enslaved.</p>
+<p>Both sides wanted to use enslaved people's work. And both sides sometimes promised freedom to get their help.</p>
+<p>The British made the biggest offer. They said enslaved people who left their Patriot owners and joined the British could be free. Tens of thousands took the risk.</p>
+<p>But "freedom" was not simple. The British had made money from slavery too. Some promises were broken.</p>
+<p>This is the paradox: enslaved people were caught between two powers that both used them and both made promises. They had to find their own path to freedom.</p>`,
+      someSupport: `
+<p>At the heart of the Revolution was a painful contradiction: leaders declared that "all men are created equal" while holding about 450,000 people in slavery. In 1775, roughly 500,000 African Americans lived in the colonies — about 20% of the population — and most were enslaved in the South. In Virginia, enslaved people were 40% of the population; in South Carolina, they were a majority.</p>
+<p>Both the Americans and the British depended on enslaved people's labor, and both, at times, dangled the promise of freedom to win their help. The British made the bolder offer: proclamations in 1775 and 1779 promised freedom to enslaved people who left Patriot owners and joined the British. Tens of thousands risked everything to reach British lines.</p>
+<p>But the promise was tangled. Britain had profited from slavery for centuries, and many promises were broken — some who reached the British were re-enslaved or left in poverty. This is the paradox: enslaved people were caught between two powers that both exploited them and both promised liberty. They navigated this trap to seize whatever freedom they could.</p>`,
+      standard: `
+<p>The American Revolution rested on a contradiction so glaring that contemporaries noticed it: as Jefferson wrote that "all men are created equal," roughly 450,000 human beings were held in slavery in the new nation's midst. In 1775, about 500,000 African Americans made up some 20% of the colonial population — and in the South they were a huge presence, 40% of Virginia and an outright majority (about 60%) in South Carolina.</p>
+<p>The cruelty of the enslaved person's position was that both sides exploited their labor while both, when it suited them, promised freedom. The Patriots spoke of liberty yet largely defended slavery; the British offered emancipation as a war measure — Lord Dunmore's 1775 proclamation and the broader Philipsburg Proclamation of 1779 promised freedom to those who fled rebel masters — while Britain itself had built much of its wealth on the slave trade. Tens of thousands of enslaved people made the dangerous calculation that their best chance lay behind British lines.</p>
+<p>The results exposed the hollowness of both sides' rhetoric. Some who reached the British won real freedom and were evacuated as "Black Loyalists"; others were re-enslaved, abandoned, or died of disease in crowded camps. The Patriots' victory secured liberty for white Americans while leaving slavery intact and, in the cotton South, soon to expand. For the enslaved, the Revolution was less a war of liberation than a moment to be seized — a narrow, dangerous opening in a system neither side intended to dismantle.</p>`,
+      challenge: `
+<p>No fact indicts the American founding more sharply than this: the Declaration's "all men are created equal" was drafted in a society where roughly 450,000 of some 500,000 African Americans — a fifth of the population — were property, and where enslaved people formed 40% of Virginia and a 60% majority of South Carolina. The Revolution was not merely a war fought despite slavery; it was a war fought within and around it, and enslaved people read its contradictions with clear eyes.</p>
+<p>Theirs was a choice between exploiters. The Patriots proclaimed natural rights while their leading men enslaved hundreds — Jefferson among them — and the new state constitutions left bondage standing. The British, who had spent a century profiting from the Atlantic slave trade, nonetheless made the more concrete wartime offer: Dunmore's 1775 proclamation, then the 1779 Philipsburg Proclamation, promised freedom to those who abandoned rebel masters — not from principle but to weaken the rebellion. Liberty was a weapon both sides aimed at each other, with Black people as the contested ground. Tens of thousands fled to British lines anyway, calculating that the enemy's self-interest offered better odds than the patriots' professed ideals.</p>
+<p>The reckoning was brutal and instructive. The fortunate were carried off as Black Loyalists — some 3,000 recorded in the "Book of Negroes," bound for Nova Scotia and, for some, Sierra Leone; the unfortunate were re-enslaved by the very British who had promised otherwise, sold in the Caribbean, or buried in disease-ridden camps. Independence, meanwhile, entrenched slavery in the South even as the North began gradual abolition. The paradox is the point: a revolution that universalized the language of freedom narrowed its practice, leaving a contradiction that would be settled only by civil war — and arguably not even then.</p>`
+    },
+    keyFacts: {
+      hook: {
+        mostSupport: ['The Revolution had a deep contradiction.', 'Leaders fought for freedom but kept ~450,000 people enslaved.', 'About 1 in 5 people in the colonies were Black, and most were enslaved.'],
+        someSupport: ['Leaders said "all men are created equal" while holding ~450,000 in slavery.', '~500,000 African Americans (~20%) lived in the colonies in 1775.', 'In South Carolina, the enslaved were a majority.'],
+        standard: ['Jefferson wrote "all men are created equal" amid ~450,000 enslaved people.', 'African Americans were ~20% of the population — 40% of Virginia, ~60% of South Carolina.', 'The Revolution was fought within and around slavery.'],
+        challenge: ['The Declaration was drafted where ~450,000 of ~500,000 African Americans were property.', 'The enslaved were 40% of Virginia and a 60% majority in South Carolina.', "Enslaved people read the Revolution's contradictions with clear eyes."]
+      },
+      content: {
+        mostSupport: ["Both sides wanted to use enslaved people's work.", 'Both sides sometimes promised freedom.', 'The British offered freedom to those who left Patriot owners.', 'Tens of thousands took the risk.'],
+        someSupport: ['Both Americans and British depended on enslaved labor.', 'Both dangled freedom to win help.', 'British proclamations (1775, 1779) promised freedom to those who fled Patriot owners.', 'Tens of thousands risked everything to reach British lines.'],
+        standard: ['Both sides exploited enslaved labor while promising freedom when it suited them.', 'Patriots spoke of liberty yet largely defended slavery.', 'Dunmore (1775) and Philipsburg (1779) promised freedom — as a war measure.', 'Tens of thousands judged their best chance lay with the British.'],
+        challenge: ['It was a choice between exploiters, not between freedom and slavery.', 'Patriots proclaimed rights while enslaving hundreds (Jefferson among them).', 'Britain promised freedom not from principle but to weaken the rebellion.', 'Liberty was a weapon both sides aimed at each other, with Black people the contested ground.']
+      },
+      conclusion: {
+        mostSupport: ['"Freedom" was not simple — Britain had used slavery too.', 'Some promises were broken.', 'Enslaved people had to find their own path to freedom.'],
+        someSupport: ['Some who reached the British gained real freedom; others were betrayed.', 'Britain had profited from slavery for centuries.', 'Enslaved people navigated a trap to seize what freedom they could.'],
+        standard: ['Some won freedom as "Black Loyalists"; others were re-enslaved or died in camps.', "The Patriots' victory left slavery intact and soon expanding in the South.", 'For the enslaved, the Revolution was a dangerous opening, not a liberation.', 'Neither side intended to dismantle slavery.'],
+        challenge: ['~3,000 Black Loyalists (the "Book of Negroes") went to Nova Scotia, some to Sierra Leone.', 'Others were re-enslaved by the British, sold in the Caribbean, or died in camps.', 'Independence entrenched Southern slavery as the North began gradual abolition.', 'The contradiction would be settled only by civil war — and arguably not even then.']
+      }
+    },
+    sources: [
+      { title: 'Museum of the American Revolution — Black Patriots and Loyalists', url: 'https://www.amrevmuseum.org/read-the-revolution/black-patriots-and-loyalists' },
+      { title: "George Washington's Mount Vernon — Slavery & the Revolution", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/african-americans-in-the-revolutionary-war' },
+      { title: 'National Park Service — Dunmore\'s Proclamation', url: 'https://www.nps.gov/articles/000/lord-dunmore-s-proclamation.htm' },
+      { title: 'World History Encyclopedia — African Americans in the American Revolution', url: 'https://www.worldhistory.org/article/2449/african-americans-in-the-american-revolution/' }
+    ]
+  },
+
+  'womens-economic-agency': {
+    name: "Women's Economic Agency vs. Political Invisibility",
+    tagline: 'Women ran farms, shops, and boycotts — while the law treated a married woman as legally nonexistent',
+    quickFacts: [
+      ['The paradox', 'Real economic power, yet no legal or political identity'],
+      ['The doctrine', 'Coverture — a married woman was "covered" by her husband in law'],
+      ['Blackstone (1769)', '"the very being or legal existence of the woman is suspended" in marriage'],
+      ['Note', 'An advanced "paradox" reading — heavier analysis at higher levels']
+    ],
+    levels: {
+      mostSupport: `
+<p>Revolutionary women had a strange kind of power. They could do important work — but the law acted like married women did not exist.</p>
+<p>The law had a rule called <strong>coverture</strong>. When a woman married, she was "covered" by her husband. That meant a married woman could not own property, keep her own pay, sign contracts, or make a will. The law saw the husband and wife as one person — the husband.</p>
+<p>But women still did powerful things. They ran farms and shops when men were away. They led boycotts of British goods. Because women did most of the family shopping, their choices hurt Britain's money.</p>
+<p>So here is the paradox: women had real power in the home and the economy, but no power in the law or government. They could not vote.</p>
+<p>Women used the power they had. And they began to argue that the law should change — a fight that would last a long time.</p>`,
+      someSupport: `
+<p>Revolutionary women lived a paradox: they showed real economic power while the law treated married women as if they did not exist.</p>
+<p>The legal rule was called coverture. When a woman married, she became a "femme covert" — "a covered woman" — and her legal identity was absorbed into her husband's. A married woman could not own property, keep the wages she earned, sign contracts, sue, or make a will. Fathers, not mothers, controlled the children. In 1769, the famous legal writer Blackstone put it bluntly: in marriage, a woman's "legal existence" was "suspended."</p>
+<p>Yet women were far from powerless in daily life. They ran farms and family businesses, especially when men went to war. They organized the boycotts of British goods, and because women made most household purchases, their choices were a real economic weapon. The contradiction was stark: women had genuine economic influence but no political voice — they could not vote or hold office. Many began to argue that this had to change, planting seeds for later women's-rights movements.</p>`,
+      standard: `
+<p>Revolutionary America handed women a contradiction: real economic agency paired with near-total legal and political invisibility. The cause of the invisibility was a doctrine called coverture, imported from English law. When a woman married, she became a "femme covert," her legal identity folded into her husband's. As the influential jurist William Blackstone wrote in 1769, "the very being or legal existence of the woman is suspended during the marriage."</p>
+<p>In practice, coverture meant a married woman could not own property, keep her own wages, sign a contract, sue or be sued, or make a will, and had no custody rights over her children. And yet women exercised substantial economic power. They managed farms and ran shops — as "deputy husbands" when men were at war and, in some cases, as independent "she-merchants." Above all, they drove the boycotts of British goods: because women controlled most household purchasing, their collective refusal to buy British tea and cloth was among the Revolution's most effective forms of pressure.</p>
+<p>This gap between economic weight and legal nonexistence is the paradox at the heart of women's Revolutionary experience. Women demonstrably helped win the war and sustain the economy, yet the new nation granted them no vote and no political standing, leaving coverture intact. The contradiction did not go unnoticed — women like Abigail Adams pressed against it — and it became a foundation that later generations of women's-rights activists would build upon and, eventually, tear down.</p>`,
+      challenge: `
+<p>The Revolutionary era set a contradiction at the foundation of American womanhood: women wielded conspicuous economic power within a legal order that declared married women, quite literally, to have no independent existence. The doctrine was coverture, and its logic was total. "By marriage," William Blackstone wrote in his 1769 Commentaries, "the husband and wife are one person in law: that is, the very being or legal existence of the woman is suspended during the marriage" (Blackstone, 1769). A "femme covert" could not own property, retain her wages, contract, sue, devise a will, or claim her children; her economic self was, in law, her husband's.</p>
+<p>Against this erasure, women's actual economic agency stands out in sharp relief. They ran farms and businesses as "deputy husbands" when men marched off, and some operated as "she-merchants" or feme-sole traders under narrow exceptions; most consequentially, they made the consumer boycotts work. Because households ran on women's purchasing, the non-importation movements — the spinning of homespun, the renunciation of British tea — converted domestic decisions into political force, arguably the most broadly effective Patriot tactic before the shooting started. Women thus performed citizenship economically while being denied it legally.</p>
+<p>The unresolved tension is the historical payload. A revolution that justified itself by the natural rights of persons left half its population legally suspended in marriage and wholly excluded from the vote, offering at most the consolatory ideal of "republican motherhood." Yet the very women who had managed the war economy had also learned their own capacity — and figures like Abigail Adams turned that knowledge into demands. The paradox of agency without rights did not resolve in 1783; it became the seedbed of a women's movement that would spend the next century and a half insisting the Revolution's logic be carried to its conclusion.</p>`
+    },
+    keyFacts: {
+      hook: {
+        mostSupport: ['Women had a strange kind of power.', 'They did important work, but the law ignored married women.', 'The rule was called coverture.'],
+        someSupport: ['Women showed real economic power, but the law treated married women as invisible.', 'The rule was called coverture.', 'A married woman was "covered" by her husband in law.'],
+        standard: ['Women had real economic agency but near-total legal invisibility.', 'The cause was coverture, imported from English law.', "Blackstone (1769): a wife's 'legal existence is suspended during the marriage.'"],
+        challenge: ['Women wielded economic power within a law that denied married women any existence.', 'The doctrine was coverture, and its logic was total.', "Blackstone (1769): the wife's 'very being or legal existence' is 'suspended.'"]
+      },
+      content: {
+        mostSupport: ['A married woman could not own property or keep her own pay.', 'She could not sign contracts or make a will.', 'But women ran farms and shops when men were away.', 'Women led the boycotts of British goods.'],
+        someSupport: ["A 'femme covert' couldn't own property, keep wages, sign contracts, sue, or make a will.", 'Fathers, not mothers, controlled the children.', 'Women ran farms and businesses, especially during the war.', 'Women drove the boycotts, since they did most household shopping.'],
+        standard: ['Coverture barred wives from property, wages, contracts, lawsuits, wills, and custody.', "Women still ran farms and shops — as 'deputy husbands' and 'she-merchants.'", 'They drove the boycotts of British goods, a top form of pressure.', 'Women controlled most household purchasing — a real economic weapon.'],
+        challenge: ["A 'femme covert' could not own property, keep wages, contract, sue, or claim her children.", 'Women ran farms and businesses; some operated as feme-sole traders.', 'They made the consumer boycotts work — converting domestic choices into political force.', 'Women performed citizenship economically while denied it legally.']
+      },
+      conclusion: {
+        mostSupport: ['Women had power at home but none in the law.', 'They could not vote.', 'They began to argue the law should change.'],
+        someSupport: ['Women had economic influence but no political voice.', 'They could not vote or hold office.', 'Many argued this had to change, seeding later movements.'],
+        standard: ['Women helped win the war and run the economy but got no vote.', 'The new nation left coverture intact.', 'Abigail Adams and others pressed against it.', 'It became a foundation later activists would build on and tear down.'],
+        challenge: ['A revolution of natural rights left half its people legally suspended in marriage.', "It offered at most the ideal of 'republican motherhood.'", 'Women who ran the war economy learned their own capacity.', 'The paradox of agency without rights seeded a century-and-a-half women\'s movement.']
+      }
+    },
+    sources: [
+      { title: 'Museum of the American Revolution — When Women Lost the Vote', url: 'https://www.amrevmuseum.org/womenandtheamericanrevolution' },
+      { title: "National Women's History Museum", url: 'https://www.womenshistory.org/' },
+      { title: "George Washington's Mount Vernon — Women in the Revolution", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/women-in-the-american-revolution' },
+      { title: 'Gilder Lehrman Institute — Women in the American Revolution', url: 'https://www.gilderlehrman.org/history-resources/essays/women-american-revolution' }
     ]
   }
 };

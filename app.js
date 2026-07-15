@@ -1,4 +1,14 @@
-// Toggle exemplar display
+// Show secondary Step 1 fields once Name and Topic are both filled
+        function checkBasicsReveal() {
+            const name = document.getElementById('studentName');
+            const topic = document.getElementById('subject');
+            const more = document.getElementById('basicsMore');
+            if (!more) return;
+            const filled = name && name.value.trim().length > 0 && topic && topic.value.trim().length > 0;
+            more.classList.toggle('revealed', filled);
+        }
+
+        // Toggle exemplar display
         function toggleExemplar(id) {
             const element = document.getElementById(id);
             element.classList.toggle('show');
@@ -749,6 +759,8 @@
             });
             updateTimeEstimate();
             updateProgress();
+            checkBasicsReveal();
+            if (typeof updateRoleCard === 'function') updateRoleCard();
         }
 
         // Build the "Open saved work…" dropdown, newest first

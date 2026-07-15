@@ -448,6 +448,16 @@
 
         // Generate script
         function generateScript() {
+            if (practiceActive) {
+                practiceActive = false;
+                practiceLineIndex = 0;
+                var pb = document.getElementById('practiceBar');
+                if (pb) pb.classList.remove('active');
+                var pn = document.getElementById('practiceNav');
+                if (pn) pn.style.display = 'none';
+                var ptb = document.getElementById('practiceToggleBtn');
+                if (ptb) ptb.innerHTML = '<i class="fas fa-play" aria-hidden="true"></i> Start practice';
+            }
             clearValidationSummary();
             const studentName = document.getElementById('studentName').value;
             const podcastName = document.getElementById('podcastName').value;

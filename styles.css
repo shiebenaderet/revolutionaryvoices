@@ -167,7 +167,7 @@
         .btn-secondary:hover { background: #218838; }
         
         #finalScript { display: none; margin-top: 30px; }
-        #scriptOutput { background: white; padding: 30px; border-radius: 10px; border: 2px solid #667eea; white-space: pre-wrap; font-family: 'Courier New', monospace; max-height: 600px; overflow-y: auto; }
+        #scriptOutput { /* styles now handled by .script-doc */ }
         
         .info-box { background: #e3f2fd; border-left: 4px solid #1565c0; padding: 15px; margin: 20px 0; border-radius: 5px; }
         .tip-box { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 5px; }
@@ -525,13 +525,7 @@
         .fa-download::before { content: '⬇️'; }
         .fa-file-pdf::before { content: '📄'; }
 
-        /* Readable script output: proportional, roomy — easier than monospace for dyslexia */
-        #scriptOutput {
-            font-family: 'Lexend', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 1.05rem;
-            line-height: 1.7;
-            color: #1f2937;
-        }
+        /* Readable script output: styles now handled by .script-doc and .script-text */
 
         /* Print / Save-as-PDF: show only the finished script, cleanly */
         @media print {
@@ -547,10 +541,9 @@
             #finalScript .section { box-shadow: none; border: none; padding: 0; }
             #finalScript h2 { color: #000 !important; border: none; }
             #scriptOutput {
-                border: none; max-height: none; overflow: visible;
-                font-family: 'Georgia', 'Times New Roman', serif; font-size: 12pt; color: #000;
-                white-space: pre-wrap; page-break-inside: auto;
+                border: none; max-height: none; overflow: visible; page-break-inside: auto;
             }
+            .script-text { font-size: 12pt; color: #000; }
         }
 
         /* ============================================
@@ -694,7 +687,7 @@
         }
 
         /* Two leftover purples the Wave-6 refresh missed */
-        #scriptOutput { border-color: var(--brand); }
+        /* #scriptOutput border-color now handled by .script-doc */
         #finalScript > .section > h2 { color: var(--brand) !important; }
 
         /* Fallback glyphs for a few invalid Font Awesome names that rendered blank */
@@ -1289,7 +1282,7 @@
 .script-section-name {
     font-family: 'Space Mono', monospace;
     font-size: 0.6em;
-    color: #aaa;
+    color: #767676;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     white-space: nowrap;
@@ -1379,7 +1372,7 @@
 }
 .role-card-hint {
     font-size: 0.75em;
-    color: #777;
+    color: #595959;
     margin-top: 8px;
     display: flex;
     align-items: center;

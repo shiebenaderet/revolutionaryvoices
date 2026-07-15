@@ -1011,6 +1011,7 @@
             updateProgress();
             checkBasicsReveal();
             if (typeof updateRoleCard === 'function') updateRoleCard();
+            updateRoleChipPreviews();
         }
 
         // Build the "Open saved work…" dropdown, newest first

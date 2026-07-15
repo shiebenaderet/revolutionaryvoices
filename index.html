@@ -1764,6 +1764,28 @@
             <h2><i class="fas fa-rocket" aria-hidden="true"></i> Finish &amp; Submit</h2>
             <p>When your Introduction, Content, and Conclusion are filled in, build your script and hand it in on Canvas.</p>
         </div>
+        <!-- ROLE ASSIGNMENT CARD -->
+        <div class="role-card" id="roleCard">
+            <div class="role-card-title">
+                <i class="fas fa-users" aria-hidden="true"></i> Who's playing each part?
+            </div>
+            <div id="roleRowHost" class="role-row">
+                <span class="role-chip-preview chip-host" id="rolePreviewHost">HOST</span>
+                <input type="text" class="role-name-input" id="roleHost" placeholder="First name" maxlength="20" oninput="updateRoleChipPreviews()">
+            </div>
+            <div id="roleRowNarrator" class="role-row" style="display:none">
+                <span class="role-chip-preview chip-narrator" id="rolePreviewNarrator">NARRATOR</span>
+                <input type="text" class="role-name-input" id="roleNarrator" placeholder="First name" maxlength="20" oninput="updateRoleChipPreviews()">
+            </div>
+            <div id="roleRowSubject" class="role-row">
+                <span class="role-chip-preview chip-subject" id="rolePreviewSubject">SUBJECT</span>
+                <input type="text" class="role-name-input" id="roleSubject" placeholder="First name" maxlength="20" oninput="updateRoleChipPreviews()">
+            </div>
+            <div class="role-card-hint">
+                <i class="fas fa-lightbulb" aria-hidden="true"></i> Your names will appear on every line of the script. Leave blank to use role labels instead.
+            </div>
+        </div>
+
         <!-- GENERATE SCRIPT BUTTON -->
         <div style="text-align: center; margin: 30px 0;">
             <button class="btn" onclick="generateScript()">
@@ -1778,7 +1800,18 @@
                 <div class="success-box">
                     <strong><i class="fas fa-check-circle" aria-hidden="true"></i> Success!</strong> Your script is ready! You'll hand it in <strong>twice</strong>: first a <strong>draft</strong> for feedback, then a polished <strong>final</strong>.
                 </div>
-                <pre id="scriptOutput"></pre>
+                <div id="scriptOutput" class="script-doc" role="region" aria-label="Your finished script" tabindex="-1"></div>
+
+                <!-- PRACTICE MODE -->
+                <div class="practice-bar" id="practiceBar">
+                    <div class="practice-bar-label"><i class="fas fa-microphone" aria-hidden="true"></i> Practice mode - read aloud with your partner</div>
+                    <button type="button" class="practice-bar-btn" id="practiceToggleBtn" onclick="togglePracticeMode()"><i class="fas fa-play" aria-hidden="true"></i> Start practice</button>
+                </div>
+                <div class="practice-nav" id="practiceNav" style="display:none">
+                    <button type="button" class="practice-nav-btn" onclick="practiceMove(-1)"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev</button>
+                    <span class="practice-nav-count" id="practiceNavCount">Line 1 of 1</span>
+                    <button type="button" class="practice-nav-btn" onclick="practiceMove(1)">Next <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
 
                 <!-- TWO-STAGE SUBMISSION -->
                 <div class="submit-stages">
@@ -1816,6 +1849,7 @@
         <div class="wizard-nav" id="wizardNav">
             <button type="button" class="btn btn-secondary" id="wizBack" onclick="wizBack()"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</button>
             <span class="wizard-progress-label" id="wizLabel" aria-live="polite">Step 1 of 5</span>
+            <span class="time-badge time-badge-short" id="wizTimeBadge" style="display:none" aria-live="polite"><span class="time-dot"></span> <span id="wizTimeBadgeText">0:00</span></span>
             <button type="button" class="btn" id="wizNext" onclick="wizNext()">Next <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
         </div>
     </div>

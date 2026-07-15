@@ -1332,6 +1332,13 @@
         // Fill the "key facts for this part" panel on the Intro/Content/Conclusion steps
         function rvRenderStepFacts(stepNum) {
             const keyByStep = { 2: 'hook', 3: 'content', 4: 'conclusion' };
+            const sectionLabel = { 2: 'Introduction', 3: 'Content', 4: 'Conclusion' };
+            const levelLabel = {
+                mostSupport: 'Most support',
+                someSupport: 'Some support',
+                standard: 'Standard',
+                challenge: 'Challenge'
+            };
             const key = keyByStep[stepNum];
             if (!key) return;
             const box = document.querySelector('[data-step="' + stepNum + '"] .step-facts');
@@ -1339,10 +1346,25 @@
             const id = rvCurrentTopic();
             const r = id && window.RV_READINGS ? window.RV_READINGS[id] : null;
             const items = r ? rvFactsFor(r, key) : null;
+            if (!id || !r) {
+                box.hidden = false;
+                box.innerHTML = '<details class="step-facts-details"><summary><i class="fas fa-clipboard-list" aria-hidden="true"></i> Key facts for your ' + (sectionLabel[stepNum] || 'section') + '</summary><div class="step-facts-empty">Choose your topic on the Basics step to see key facts here.</div></details>';
+                return;
+            }
             if (!items || !items.length) { box.hidden = true; box.innerHTML = ''; return; }
+            const bullets = items.map(function(x, i) {
+                return '<li><span class="step-facts-bullet" aria-hidden="true">' + (i + 1) + '</span><span>' + x + '</span></li>';
+            }).join('');
             box.hidden = false;
-            box.innerHTML = '<strong><i class="fas fa-key" aria-hidden="true"></i> Key facts about ' + r.name + ' for this part:</strong><ul>' +
-                items.map(x => '<li>' + x + '</li>').join('') + '</ul>';
+            box.innerHTML =
+                '<details>' +
+                '<summary><i class="fas fa-clipboard-list" aria-hidden="true"></i> Key facts for your ' + sectionLabel[stepNum] + '</summary>' +
+                '<div class="step-facts-body">' +
+                '<div class="step-facts-level"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Showing facts at your reading level: <span class="step-facts-level-badge">' + (levelLabel[rvLevel()] || rvLevel()) + '</span></div>' +
+                '<ul class="step-facts-list">' + bullets + '</ul>' +
+                '<div class="step-facts-footer">Use these facts in your script - put them in your own voice, don\'t copy word-for-word.</div>' +
+                '</div>' +
+                '</details>';
         }
 
         // ============================================

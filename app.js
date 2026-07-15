@@ -8,6 +8,110 @@
             more.classList.toggle('revealed', filled);
         }
 
+        // Update role chip previews as students type their names
+        function updateRoleChipPreviews() {
+            ['Host', 'Narrator', 'Subject'].forEach(function(role) {
+                var input = document.getElementById('role' + role);
+                var preview = document.getElementById('rolePreview' + role);
+                if (!input || !preview) return;
+                preview.textContent = input.value.trim().toUpperCase() || role.toUpperCase();
+            });
+        }
+
+        // Get the display name for a role — falls back to the label if no name entered
+        function getRoleName(role) {
+            var input = document.getElementById('role' + role);
+            var v = input && input.value.trim();
+            return v ? v.toUpperCase() : role.toUpperCase();
+        }
+
+        // Show/hide role card rows based on group size
+        function updateRoleCard() {
+            var size = document.getElementById('groupSize') && document.getElementById('groupSize').value;
+            var card = document.getElementById('roleCard');
+            var narratorRow = document.getElementById('roleRowNarrator');
+            if (!card) return;
+            card.style.display = (size === '1') ? 'none' : 'block';
+            if (narratorRow) narratorRow.style.display = (size === '3') ? 'flex' : 'none';
+        }
+
+        // Render a formatted HTML script document into #scriptOutput
+        function renderFormattedScript(sections) {
+            // sections: [{label: 'INTRODUCTION', lines: [{role: 'host'|'narrator'|'subject', text: string}]}]
+            var totalWords = 0;
+            sections.forEach(function(s) { s.lines.forEach(function(l) {
+                totalWords += l.text.trim().split(/\s+/).filter(function(w){ return w.length > 0; }).length;
+            }); });
+            var mins = Math.floor(totalWords / 130);
+            var secs = Math.round((totalWords % 130) / 130 * 60);
+            var timeStr = mins + ':' + String(secs).padStart(2, '0');
+
+            var podcastName = document.getElementById('podcastName').value || 'Untitled';
+            var studentName = document.getElementById('studentName').value || '';
+            var subject = document.getElementById('subject').value || '';
+
+            var html = '<div class="script-doc-header">';
+            html += '<div class="script-doc-title">' + escHtml(podcastName) + '</div>';
+            if (studentName) html += '<div class="script-doc-meta">' + escHtml(studentName) + (subject ? ' &nbsp;&middot;&nbsp; ' + escHtml(subject) : '') + '</div>';
+            html += '<div class="script-doc-time"><i class="fas fa-clock" aria-hidden="true"></i> ~' + timeStr + ' estimated read time</div>';
+            html += '</div>';
+            html += '<div class="script-doc-body">';
+            sections.forEach(function(section) {
+                html += '<div class="script-section-divider"><hr><span class="script-section-name">' + escHtml(section.label) + '</span><hr></div>';
+                section.lines.forEach(function(line) {
+                    var chipClass = line.role === 'subject' ? 'chip-subject' : (line.role === 'narrator' ? 'chip-narrator' : 'chip-host');
+                    var chipText = line.role === 'subject' ? getRoleName('Subject') : (line.role === 'narrator' ? getRoleName('Narrator') : getRoleName('Host'));
+                    html += '<div class="script-line"><span class="speaker-chip ' + chipClass + '">' + escHtml(chipText) + '</span><span class="script-text">' + escHtml(line.text) + '</span></div>';
+                });
+            });
+            html += '</div>';
+            document.getElementById('scriptOutput').innerHTML = html;
+        }
+
+        function escHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        // Update the live time badge in the wizard nav bar
+        function updateWizTimeBadge() {
+            var badge = document.getElementById('wizTimeBadge');
+            var text = document.getElementById('wizTimeBadgeText');
+            if (!badge || !text) return;
+            // Only show on steps 2-5 (writing steps)
+            if (typeof wizCurrent === 'undefined' || wizCurrent < 2) { badge.style.display = 'none'; return; }
+            // Count all words across intro/content/conclusion fields
+            var fields = ['dramatic-hook','dramatic-subject','dramatic-stakes',
+                'fact-statement','fact-significance','fact-subject',
+                'question-hook','question-buildup','question-answer',
+                'sound-setting','sound-subject','sound-conflict',
+                'narrative-intro','narrative-scene1','narrative-trans1','narrative-scene2','narrative-trans2','narrative-scene3',
+                'interview-intro','q1','a1','q2','a2','q3','a3','q4','a4','q5','a5',
+                'news-opening','news-background','news-quote','news-turning','news-aftermath','news-closing',
+                'diary-intro','diary1-content','diary2-content','diary3-content','diary-closing',
+                'sig-what','sig-reveals','sig-why','sig-final',
+                'today-lesson','today-parallel','today-specific','today-final',
+                'challenge-standard','challenge-missing','challenge-why','challenge-lose','challenge-final',
+                'legacy-impact','legacy-lesson','legacy-universal','legacy-honor'];
+            var words = 0;
+            fields.forEach(function(id) { words += countFieldWords(id); });
+            if (words === 0) { badge.style.display = 'none'; return; }
+            badge.style.display = 'inline-flex';
+            var mins = Math.floor(words / 130);
+            var secs = Math.round((words % 130) / 130 * 60);
+            var timeStr = '~' + mins + ':' + String(secs).padStart(2, '0');
+            var label, cls;
+            var totalMins = words / 130;
+            if (totalMins < 3) { label = timeStr + ' - need more'; cls = 'time-badge-short'; }
+            else if (totalMins <= 6) { label = timeStr + ' - good length'; cls = 'time-badge-good'; }
+            else { label = timeStr + ' - too long'; cls = 'time-badge-long'; }
+            text.textContent = label;
+            badge.className = 'time-badge ' + cls;
+        }
+
         // Toggle exemplar display
         function toggleExemplar(id) {
             const element = document.getElementById(id);
@@ -112,8 +216,9 @@
                 }
             }
             updateTimeEstimate();
+            updateRoleCard();
         }
-        
+
         // Update time estimate
         function updateTimeEstimate() {
             // Count all words in the script
@@ -210,7 +315,7 @@
             }
             
             totalWords = introWords + contentWords + conclusionWords;
-            
+
             // Convert to time (130 words per minute)
             const totalMinutes = Math.floor(totalWords / 130);
             const totalSeconds = Math.round((totalWords % 130) / 130 * 60);
@@ -220,7 +325,7 @@
             const contentSeconds = Math.round((contentWords % 130) / 130 * 60);
             const conclusionMinutes = Math.floor(conclusionWords / 130);
             const conclusionSeconds = Math.round((conclusionWords % 130) / 130 * 60);
-            
+
             // Update display
             if (totalWords > 0) {
                 // Only surface the estimator on the Finish step (kept off the per-step screens).
@@ -231,6 +336,7 @@
                 document.getElementById('contentTime').textContent = contentMinutes + ':' + String(contentSeconds).padStart(2, '0');
                 document.getElementById('conclusionTime').textContent = conclusionMinutes + ':' + String(conclusionSeconds).padStart(2, '0');
             }
+            updateWizTimeBadge();
         }
         
         function countFieldWords(fieldId) {
@@ -521,7 +627,11 @@
             // Swap any leftover [subject]/[name] placeholders for the real values
             script = replaceTokens(script, { subject: subject, name: studentName });
 
-            document.getElementById('scriptOutput').textContent = script;
+            // Store plain text for copy/download
+            document.getElementById('scriptOutput').dataset.plainText = script;
+            // Render formatted HTML view
+            var scriptSections = buildScriptSections();
+            renderFormattedScript(scriptSections);
             wizGenerated = true;
             if (typeof showStep === 'function') showStep(WIZ_LAST); // make sure we're on the Finish step
             document.getElementById('finalScript').style.display = 'block';
@@ -531,6 +641,136 @@
             // Move focus to the finished script so screen-reader users land on the result
             const region = document.getElementById('finalScriptRegion');
             if (region) { try { region.focus({ preventScroll: true }); } catch (e) { region.focus(); } }
+        }
+
+        // Build the sections array for renderFormattedScript() from current form state
+        function buildScriptSections() {
+            var sections = [];
+            var subject = document.getElementById('subject').value || '';
+            var size = document.getElementById('groupSize').value;
+            var introType = document.querySelector('input[name="intro"]:checked');
+            var contentType = document.querySelector('input[name="content"]:checked');
+            var conclusionType = document.querySelector('input[name="conclusion"]:checked');
+            var v = function(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; };
+
+            // Group intro lines
+            var groupLines = [];
+            if (size !== '1') {
+                if (v('group-intro')) groupLines.push({ role: 'host', text: v('group-intro') });
+                if (v('group-welcome')) groupLines.push({ role: 'host', text: v('group-welcome') });
+            }
+
+            // Intro lines
+            var introLines = [];
+            if (introType) {
+                var it = introType.value;
+                if (it === 'dramatic') {
+                    ['dramatic-hook', 'dramatic-subject', 'dramatic-stakes'].forEach(function(id) { if (v(id)) introLines.push({ role: 'host', text: v(id) }); });
+                } else if (it === 'fact') {
+                    ['fact-statement', 'fact-significance', 'fact-subject'].forEach(function(id) { if (v(id)) introLines.push({ role: 'host', text: v(id) }); });
+                } else if (it === 'question') {
+                    ['question-hook', 'question-buildup', 'question-answer'].forEach(function(id) { if (v(id)) introLines.push({ role: 'host', text: v(id) }); });
+                } else if (it === 'sound') {
+                    if (v('sound-effects')) introLines.push({ role: 'narrator', text: '[SOUND EFFECTS: ' + v('sound-effects') + ']' });
+                    ['sound-setting', 'sound-subject', 'sound-conflict'].forEach(function(id) { if (v(id)) introLines.push({ role: 'narrator', text: v(id) }); });
+                }
+            }
+            var allIntroLines = groupLines.concat(introLines);
+            if (allIntroLines.length) sections.push({ label: 'INTRODUCTION', lines: allIntroLines });
+
+            // Content lines
+            var contentLines = [];
+            if (contentType) {
+                var ct = contentType.value;
+                if (ct === 'narrative') {
+                    if (v('narrative-intro')) contentLines.push({ role: 'narrator', text: v('narrative-intro') });
+                    ['narrative-scene1', 'narrative-trans1', 'narrative-scene2', 'narrative-trans2', 'narrative-scene3'].forEach(function(id, i) {
+                        if (v(id)) contentLines.push({ role: i % 2 === 0 ? 'subject' : 'narrator', text: v(id) });
+                    });
+                } else if (ct === 'interview') {
+                    if (v('interview-intro')) contentLines.push({ role: 'narrator', text: v('interview-intro') });
+                    for (var i = 1; i <= 5; i++) {
+                        if (v('q' + i)) contentLines.push({ role: 'host', text: v('q' + i) });
+                        if (v('a' + i)) contentLines.push({ role: 'subject', text: v('a' + i) });
+                    }
+                } else if (ct === 'news') {
+                    ['news-opening', 'news-background', 'news-quote', 'news-turning', 'news-aftermath', 'news-closing'].forEach(function(id) {
+                        if (v(id)) contentLines.push({ role: 'host', text: v(id) });
+                    });
+                } else if (ct === 'diary') {
+                    if (v('diary-intro')) contentLines.push({ role: 'narrator', text: v('diary-intro') });
+                    [1,2,3].forEach(function(n) {
+                        var dateVal = v('diary' + n + '-date');
+                        if (dateVal) contentLines.push({ role: 'narrator', text: '[Entry: ' + dateVal + ']' });
+                        if (v('diary' + n + '-content')) contentLines.push({ role: 'subject', text: v('diary' + n + '-content') });
+                    });
+                    if (v('diary-closing')) contentLines.push({ role: 'narrator', text: v('diary-closing') });
+                }
+            }
+            if (contentLines.length) sections.push({ label: 'CONTENT', lines: contentLines });
+
+            // Conclusion lines
+            var conclusionLines = [];
+            if (conclusionType) {
+                var concl = conclusionType.value;
+                var ids = {
+                    significance: ['sig-what', 'sig-reveals', 'sig-why', 'sig-final'],
+                    today: ['today-lesson', 'today-parallel', 'today-specific', 'today-final'],
+                    challenge: ['challenge-standard', 'challenge-missing', 'challenge-why', 'challenge-lose', 'challenge-final'],
+                    legacy: ['legacy-impact', 'legacy-lesson', 'legacy-universal', 'legacy-honor']
+                };
+                (ids[concl] || []).forEach(function(id) { if (v(id)) conclusionLines.push({ role: 'host', text: v(id) }); });
+            }
+            if (conclusionLines.length) sections.push({ label: 'CONCLUSION', lines: conclusionLines });
+
+            return sections;
+        }
+
+        var practiceActive = false;
+        var practiceLineIndex = 0;
+
+        function togglePracticeMode() {
+            practiceActive = !practiceActive;
+            var bar = document.getElementById('practiceBar');
+            var nav = document.getElementById('practiceNav');
+            var btn = document.getElementById('practiceToggleBtn');
+            if (!bar) return;
+            bar.classList.toggle('active', practiceActive);
+            if (nav) nav.style.display = practiceActive ? 'flex' : 'none';
+            if (btn) {
+                btn.innerHTML = practiceActive
+                    ? '<i class="fas fa-stop" aria-hidden="true"></i> Stop'
+                    : '<i class="fas fa-play" aria-hidden="true"></i> Start practice';
+            }
+            if (practiceActive) {
+                practiceLineIndex = 0;
+                applyPracticeHighlight();
+            } else {
+                clearPracticeHighlight();
+            }
+        }
+
+        function practiceMove(dir) {
+            var lines = document.querySelectorAll('#scriptOutput .script-line');
+            practiceLineIndex = Math.max(0, Math.min(lines.length - 1, practiceLineIndex + dir));
+            applyPracticeHighlight();
+        }
+
+        function applyPracticeHighlight() {
+            var lines = document.querySelectorAll('#scriptOutput .script-line');
+            var count = document.getElementById('practiceNavCount');
+            lines.forEach(function(line, i) {
+                line.classList.toggle('practice-active', i === practiceLineIndex);
+                line.classList.toggle('practice-dim', i !== practiceLineIndex);
+            });
+            if (count) count.textContent = 'Line ' + (practiceLineIndex + 1) + ' of ' + lines.length;
+            if (lines[practiceLineIndex]) lines[practiceLineIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function clearPracticeHighlight() {
+            document.querySelectorAll('#scriptOutput .script-line').forEach(function(line) {
+                line.classList.remove('practice-active', 'practice-dim');
+            });
         }
 
         // Replace [subject] / [name] (any capitalization) with the student's real values
@@ -558,7 +798,7 @@
             sel.addRange(range);
         }
         function copyScript() {
-            const scriptText = document.getElementById('scriptOutput').textContent;
+            const scriptText = document.getElementById('scriptOutput').dataset.plainText || document.getElementById('scriptOutput').textContent;
             const ok = () => showToast('✅ Copied! Now paste into Canvas (Ctrl+V or Cmd+V)');
             const fail = () => { selectScriptText(); showToast('Text selected — press Ctrl+C (or Cmd+C) to copy'); };
             if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -575,7 +815,7 @@
 
         // Download the script as a plain .txt file
         function downloadScript() {
-            const text = document.getElementById('scriptOutput').textContent || '';
+            const text = document.getElementById('scriptOutput').dataset.plainText || document.getElementById('scriptOutput').textContent || '';
             const name = (document.getElementById('studentName').value || 'script').replace(/[^a-z0-9]+/gi, '_').replace(/^_|_$/g, '') || 'script';
             const blob = new Blob([text], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
@@ -1120,6 +1360,7 @@
                 if (h) { h.setAttribute('tabindex', '-1'); try { h.focus({ preventScroll: true }); } catch (e) { h.focus(); } }
                 scrollToEl(first);
             }
+            updateWizTimeBadge();
         }
 
         function wizUpdateNav() {
@@ -1201,6 +1442,7 @@
                     el.addEventListener('change', () => { wizUpdateStepper(); wizUpdateNav(); });
                 });
             showStep(wizFrontier());
+            updateRoleCard();
         }
 
         // ============================================

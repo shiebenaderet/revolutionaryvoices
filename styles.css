@@ -1452,4 +1452,131 @@
     box-shadow: inset 3px 0 0 #667eea;
 }
 .practice-active .script-text { font-weight: 700; color: #1a1a3e; }
+
+/* ============================================================
+   LAYOUT POLISH - 2026-07-16
+   Targeted overrides to fix spacing, button sizing, and
+   typography hierarchy without touching wave layers.
+   ============================================================ */
+
+/* --- Buttons: right-size everything --- */
+.btn {
+    padding: 10px 22px;
+    font-size: 0.95em;
+    border-radius: 8px;
+    margin: 6px 4px;
+}
+/* CTA buttons (Build, Download) stay slightly larger */
+.btn.btn-cta,
+[onclick="generateScript()"],
+[onclick="downloadScript()"] {
+    padding: 12px 28px;
+    font-size: 1em;
+}
+/* Wizard nav Back/Next: tighter, navigation weight */
+.wizard-nav .btn {
+    padding: 9px 20px;
+    font-size: 0.9em;
+    min-width: 100px;
+}
+/* Exemplar/toggle buttons: secondary, smaller */
+.exemplar-toggle,
+.verb-bank-toggle {
+    padding: 8px 14px;
+    font-size: 0.85em;
+    border-radius: 6px;
+}
+
+/* --- Labels: reduce dead air between fields --- */
+label {
+    margin: 14px 0 4px;
+    font-size: 0.92em;
+}
+
+/* --- Section cards: reduce outer padding, tighten left border --- */
+.section {
+    padding: 22px 24px;
+    border-left-width: 5px;
+}
+.section h2 {
+    font-size: 1.15em;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+}
+
+/* --- Wizard nav: reduce the giant 48px bottom gap --- */
+.wizard-nav {
+    margin: 8px 0 20px;
+    padding: 10px 14px;
+    gap: 8px;
+}
+.wizard-progress-label {
+    font-size: 0.85em;
+}
+
+/* --- Typography: clearer hierarchy --- */
+.helper-text {
+    font-size: 0.84em;
+    padding: 10px;
+    margin-top: 6px;
+}
+.word-counter {
+    font-size: 0.8em;
+    margin-top: 3px;
+}
+.choice-option {
+    padding: 11px 14px;
+    margin: 7px 0;
+    font-size: 0.93em;
+}
+.form-section {
+    padding: 16px;
+    margin: 14px 0;
+}
+
+/* --- Form inputs: slightly more compact --- */
+input[type="text"],
+textarea,
+select {
+    padding: 10px 12px;
+    font-size: 0.93em;
+}
+
+/* --- Exemplar / rubric / check boxes: tighter --- */
+.exemplar-box,
+.rubric-box,
+.check-reminder,
+.comparison-box {
+    padding: 12px;
+    margin: 12px 0;
+}
+
+/* --- Progress indicator chips: compact --- */
+.progress-step {
+    padding: 7px 14px;
+    font-size: 0.82em;
+    margin: 3px;
+}
+
+/* --- Container: tighten header --- */
+.header {
+    padding: 28px 24px;
+    margin-bottom: 20px;
+}
+.header h1 {
+    font-size: 2em;
+    margin-bottom: 6px;
+}
+
+/* --- Mobile: tighten further on small screens --- */
+@media (max-width: 768px) {
+    .section { padding: 16px 14px; }
+    .btn { padding: 9px 16px; font-size: 0.88em; }
+    .wizard-nav .btn { min-width: 80px; }
+    .header { padding: 20px 16px; }
+    .header h1 { font-size: 1.5em; }
+    .role-card { padding: 12px 14px; }
+    .script-doc-body { padding: 10px 12px; }
+    .practice-bar { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
 .practice-dim { opacity: 0.22; }

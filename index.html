@@ -118,77 +118,86 @@
         <!-- BASIC INFO -->
         <div class="section section-basic wizard-step" data-step="0">
             <h2><i class="fas fa-clipboard-list" aria-hidden="true"></i> Basic Information</h2>
-            
+
             <label>
                 Your Name(s):
                 <i class="fas fa-info-circle info-icon" data-tooltip="List everyone in your group" tabindex="0" role="img" aria-label="Help: List everyone in your group"></i>
             </label>
-            <input type="text" id="studentName" placeholder="e.g., Maria G. and Alex P." oninput="updateTimeEstimate()">
+            <input type="text" id="studentName" placeholder="e.g., Maria G. and Alex P." oninput="updateTimeEstimate(); checkBasicsReveal()">
             <div class="helper-text">
                 <strong>What to include:</strong> Use <strong>first name + last initial</strong> only (e.g., Maria G.). For groups, separate names with "and".
             </div>
 
-            <label>
-                Podcast Name:
-                <i class="fas fa-info-circle info-icon" data-tooltip="Choose a catchy, memorable title" tabindex="0" role="img" aria-label="Help: Choose a catchy, memorable title"></i>
-            </label>
-            <input type="text" id="podcastName" placeholder="e.g., Untold Voices, Revolutionary Stories, Hidden History" oninput="updateTimeEstimate()">
-            <div class="helper-text">
-                <strong>What makes a good podcast name:</strong> Short, memorable, and hints at your topic<br>
-                <span class="tip"><i class="fas fa-lightbulb" aria-hidden="true"></i> Tip: Use powerful words like "Untold," "Hidden," "Voices," "Stories," or "Chronicles"</span>
-            </div>
-            
-            <div class="exemplar-box">
-                <button class="exemplar-toggle" onclick="toggleExemplar('podcast-name-example')">
-                    <i class="fas fa-lightbulb" aria-hidden="true"></i> See Examples of Great Podcast Names
-                </button>
-                <div id="podcast-name-example" class="exemplar-content">
-                    <div class="example">
-                        <strong>Examples:</strong>
-                        <ul style="margin-left: 20px; margin-top: 5px;">
-                            <li>"Voices of Resistance" - Shows your topic is about people fighting back</li>
-                            <li>"Hidden Patriots" - Creates mystery and intrigue</li>
-                            <li>"Revolutionary Chronicles" - Sounds professional and historical</li>
-                            <li>"Untold Stories 1776" - Specific and attention-grabbing</li>
-                        </ul>
-                    </div>
-                    <div class="why">
-                        <i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Why these work:</strong> They're short (2-3 words), easy to remember, and immediately tell listeners what to expect.
-                    </div>
-                </div>
-            </div>
-            
             <label for="subject">
                 Subject/Topic of Your Episode:
                 <i class="fas fa-info-circle info-icon" data-tooltip="Who or what is your episode about? Pick from the list." tabindex="0" role="img" aria-label="Help: Who or what is your episode about? Pick from the list."></i>
             </label>
-            <select id="subject" onchange="onTopicChange()">
-                <option value="">Choose your topic…</option>
+            <select id="subject" onchange="onTopicChange(); checkBasicsReveal()">
+                <option value="">Choose your topic...</option>
             </select>
             <div class="helper-text">
                 <strong>Pick who or what your podcast is about.</strong> On the next step (Research) you'll read about them and get key facts for your script.
             </div>
 
-            <label>
-                Research Notes &amp; Sources:
-                <i class="fas fa-info-circle info-icon" data-tooltip="Where did you learn these facts? List your sources." tabindex="0" role="img" aria-label="Help: Where did you learn these facts? List your sources."></i>
-            </label>
-            <textarea id="researchSources" placeholder="List 3-4 key facts and where you found them. Example:&#10;- Phillis Wheatley published a poetry book in 1773 (Britannica)&#10;- She was the first published African American woman poet (Library of Congress)" oninput="updateTimeEstimate()"></textarea>
-            <div class="helper-text">
-                <strong><i class="fas fa-flask" aria-hidden="true"></i> Historians use evidence.</strong> Before you write, jot down the real facts you'll use and where each one comes from. Your podcast can be dramatic, but the history should be true.
-                <span class="tip"><i class="fas fa-check-circle" aria-hidden="true"></i> Quick check: Can you point to a source for every fact in your script?</span>
-            </div>
+            <!-- Secondary fields: revealed once Name + Topic are both filled -->
+            <div class="basics-more" id="basicsMore">
+                <div class="basics-divider">
+                    <hr>
+                    <span>A few more details</span>
+                    <hr>
+                </div>
 
-            <label>
-                Group Size:
-                <i class="fas fa-info-circle info-icon" data-tooltip="This adjusts the script format for your group" tabindex="0" role="img" aria-label="Help: This adjusts the script format for your group"></i>
-            </label>
-            <select id="groupSize" onchange="updateGroupOptions()">
-                <option value="">Select your group size</option>
-                <option value="1">Solo (1 person)</option>
-                <option value="2">Pair (2 people)</option>
-                <option value="3">Group (3 people)</option>
-            </select>
+                <label>
+                    Podcast Name:
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Choose a catchy, memorable title" tabindex="0" role="img" aria-label="Help: Choose a catchy, memorable title"></i>
+                </label>
+                <input type="text" id="podcastName" placeholder="e.g., Untold Voices, Revolutionary Stories, Hidden History" oninput="updateTimeEstimate()">
+                <div class="helper-text">
+                    <strong>What makes a good podcast name:</strong> Short, memorable, and hints at your topic<br>
+                    <span class="tip"><i class="fas fa-lightbulb" aria-hidden="true"></i> Tip: Use powerful words like "Untold," "Hidden," "Voices," "Stories," or "Chronicles"</span>
+                </div>
+
+                <div class="exemplar-box">
+                    <button class="exemplar-toggle" onclick="toggleExemplar('podcast-name-example')">
+                        <i class="fas fa-lightbulb" aria-hidden="true"></i> See Examples of Great Podcast Names
+                    </button>
+                    <div id="podcast-name-example" class="exemplar-content">
+                        <div class="example">
+                            <strong>Examples:</strong>
+                            <ul style="margin-left: 20px; margin-top: 5px;">
+                                <li>"Voices of Resistance" - Shows your topic is about people fighting back</li>
+                                <li>"Hidden Patriots" - Creates mystery and intrigue</li>
+                                <li>"Revolutionary Chronicles" - Sounds professional and historical</li>
+                                <li>"Untold Stories 1776" - Specific and attention-grabbing</li>
+                            </ul>
+                        </div>
+                        <div class="why">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Why these work:</strong> They're short (2-3 words), easy to remember, and immediately tell listeners what to expect.
+                        </div>
+                    </div>
+                </div>
+
+                <label>
+                    Research Notes &amp; Sources (recommended):
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Where did you learn these facts? List your sources." tabindex="0" role="img" aria-label="Help: Where did you learn these facts? List your sources."></i>
+                </label>
+                <textarea id="researchSources" placeholder="List 3-4 key facts and where you found them. Example:&#10;- Phillis Wheatley published a poetry book in 1773 (Britannica)&#10;- She was the first published African American woman poet (Library of Congress)" oninput="updateTimeEstimate()"></textarea>
+                <div class="helper-text">
+                    <strong><i class="fas fa-flask" aria-hidden="true"></i> Historians use evidence.</strong> Before you write, jot down the real facts you'll use and where each one comes from. Your podcast can be dramatic, but the history should be true.
+                    <span class="tip"><i class="fas fa-check-circle" aria-hidden="true"></i> Quick check: Can you point to a source for every fact in your script?</span>
+                </div>
+
+                <label>
+                    Group Size:
+                    <i class="fas fa-info-circle info-icon" data-tooltip="This adjusts the script format for your group" tabindex="0" role="img" aria-label="Help: This adjusts the script format for your group"></i>
+                </label>
+                <select id="groupSize" onchange="updateGroupOptions()">
+                    <option value="">Select your group size</option>
+                    <option value="1">Solo (1 person)</option>
+                    <option value="2">Pair (2 people)</option>
+                    <option value="3">Group (3 people)</option>
+                </select>
+            </div>
         </div>
         
         <!-- RESEARCH -->

@@ -18,7 +18,7 @@
             });
         }
 
-        // Get the display name for a role — falls back to the label if no name entered
+        // Get the display name for a role - falls back to the label if no name entered
         function getRoleName(role) {
             var input = document.getElementById('role' + role);
             var v = input && input.value.trim();
@@ -87,7 +87,7 @@
             var fields = ['dramatic-hook','dramatic-subject','dramatic-stakes',
                 'fact-statement','fact-significance','fact-subject',
                 'question-hook','question-buildup','question-answer',
-                'sound-setting','sound-subject','sound-conflict',
+                'sound-effects','sound-setting','sound-subject','sound-conflict',
                 'narrative-intro','narrative-scene1','narrative-trans1','narrative-scene2','narrative-trans2','narrative-scene3',
                 'interview-intro','q1','a1','q2','a2','q3','a3','q4','a4','q5','a5',
                 'news-opening','news-background','news-quote','news-turning','news-aftermath','news-closing',

@@ -1084,3 +1084,379 @@
             .studio-tools { width: 100%; margin-left: 0; justify-content: flex-start; }
             .studio-tools select { max-width: 150px; }
         }
+
+/* ============================================================
+   TASK 1: Usability improvements — 2026-07-15
+   ============================================================ */
+
+/* --- 1. PROGRESSIVE REVEAL: basics secondary fields --- */
+.basics-more {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+.basics-more.revealed {
+    max-height: 2000px;
+    opacity: 1;
+}
+.basics-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0 16px;
+    color: #667eea;
+    font-size: 0.82em;
+    font-weight: 600;
+}
+.basics-divider hr {
+    flex: 1;
+    border: none;
+    border-top: 1.5px solid #dde0ef;
+}
+
+/* --- 2. KEY FACTS PANEL (details/summary chip) --- */
+.step-facts {
+    margin-bottom: 16px;
+}
+.step-facts details {
+    background: #fffbea;
+    border: 1.5px solid #f9a825;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.step-facts summary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    font-size: 0.88em;
+    font-weight: 700;
+    color: #7a5800;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+.step-facts summary::-webkit-details-marker { display: none; }
+.step-facts summary::after {
+    content: '▾';
+    margin-left: auto;
+    font-size: 0.9em;
+    color: #c8860a;
+    transition: transform 0.2s;
+}
+.step-facts details[open] summary::after {
+    transform: rotate(180deg);
+}
+.step-facts-body {
+    padding: 0 14px 10px;
+    border-top: 1px solid #f0d060;
+}
+.step-facts-level {
+    font-size: 0.72em;
+    color: #7a5800;
+    padding: 6px 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.step-facts-level-badge {
+    background: #f9a825;
+    color: #5a3e00;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75em;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 1px 6px;
+}
+.step-facts-list {
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.step-facts-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 0.83em;
+    color: #3d2e00;
+    line-height: 1.45;
+}
+.step-facts-bullet {
+    min-width: 20px;
+    height: 20px;
+    background: #f9a825;
+    color: #5a3e00;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.68em;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+.step-facts-footer {
+    border-top: 1px solid #f0d060;
+    padding: 6px 0 0;
+    font-size: 0.72em;
+    color: #7a5800;
+    font-style: italic;
+}
+.step-facts-empty {
+    padding: 8px 14px 10px;
+    font-size: 0.83em;
+    color: #7a5800;
+    font-style: italic;
+}
+
+/* --- 3a. TIME BADGE in wizard nav bar --- */
+.time-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78em;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 6px;
+}
+.time-badge .time-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.time-badge-short { background: #f0f2f8; color: #888; }
+.time-badge-short .time-dot { background: #bbb; }
+.time-badge-good { background: #e8f5e9; color: #2e7d32; }
+.time-badge-good .time-dot { background: #2e7d32; }
+.time-badge-long { background: #fff8e1; color: #c8860a; }
+.time-badge-long .time-dot { background: #c8860a; }
+
+/* --- 3b. FORMATTED SCRIPT DOCUMENT --- */
+.script-doc {
+    border: 1.5px solid #dde0ef;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+.script-doc-header {
+    background: linear-gradient(135deg, #2d2d4e, #1a1a3e);
+    padding: 14px 18px;
+    color: white;
+}
+.script-doc-title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+.script-doc-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68em;
+    color: #aab;
+    margin-bottom: 4px;
+}
+.script-doc-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7em;
+    color: #90ee90;
+}
+.script-doc-body {
+    padding: 14px 18px;
+}
+.script-section-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0 10px;
+}
+.script-section-divider hr {
+    flex: 1;
+    border: none;
+    border-top: 1.5px solid #eee;
+}
+.script-section-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6em;
+    color: #aaa;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.script-line {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: background 0.15s;
+}
+.speaker-chip {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6em;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 3px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
+    min-width: 62px;
+    max-width: 90px;
+    text-align: center;
+    margin-top: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+}
+.chip-host { background: #667eea; color: white; }
+.chip-narrator { background: #764ba2; color: white; }
+.chip-subject { background: #e65100; color: white; }
+.script-text {
+    font-size: 0.9em;
+    color: #222;
+    line-height: 1.6;
+}
+
+/* --- 3c. ROLE ASSIGNMENT CARD --- */
+.role-card {
+    background: #f8f9ff;
+    border: 1.5px solid #dde0ef;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+}
+.role-card-title {
+    font-size: 0.88em;
+    font-weight: 700;
+    color: #2d2d4e;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.role-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.role-chip-preview {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62em;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 4px;
+    white-space: nowrap;
+    min-width: 72px;
+    text-align: center;
+}
+.role-name-input {
+    flex: 1;
+    padding: 7px 10px;
+    border: 1.5px solid #dde0ef;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88em;
+    font-weight: 600;
+    color: #2d2d4e;
+    transition: border-color 0.2s;
+}
+.role-name-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+}
+.role-card-hint {
+    font-size: 0.75em;
+    color: #777;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* --- 3d. PRACTICE MODE --- */
+.practice-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #eef2ff;
+    border: 1.5px solid #667eea;
+    border-radius: 8px;
+    padding: 9px 14px;
+    margin-bottom: 12px;
+}
+.practice-bar.active {
+    background: #e8f5e9;
+    border-color: #2e7d32;
+}
+.practice-bar-label {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: #3d3d7a;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.practice-bar.active .practice-bar-label { color: #1b5e20; }
+.practice-bar-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 0.8em;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.2s;
+}
+.practice-bar.active .practice-bar-btn { background: #2e7d32; }
+.practice-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+.practice-nav-btn {
+    background: white;
+    border: 1.5px solid #667eea;
+    color: #667eea;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 0.8em;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.15s;
+}
+.practice-nav-btn:hover { background: #eef2ff; }
+.practice-nav-count {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78em;
+    color: #667eea;
+    min-width: 80px;
+    text-align: center;
+}
+.practice-active {
+    background: #eef2ff;
+    box-shadow: inset 3px 0 0 #667eea;
+}
+.practice-active .script-text { font-weight: 700; color: #1a1a3e; }
+.practice-dim { opacity: 0.22; }

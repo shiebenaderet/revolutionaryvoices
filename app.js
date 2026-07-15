@@ -1357,7 +1357,7 @@
             }).join('');
             box.hidden = false;
             box.innerHTML =
-                '<details>' +
+                '<details class="step-facts-details">' +
                 '<summary><i class="fas fa-clipboard-list" aria-hidden="true"></i> Key facts for your ' + sectionLabel[stepNum] + '</summary>' +
                 '<div class="step-facts-body">' +
                 '<div class="step-facts-level"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Showing facts at your reading level: <span class="step-facts-level-badge">' + (levelLabel[rvLevel()] || rvLevel()) + '</span></div>' +

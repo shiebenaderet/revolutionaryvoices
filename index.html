@@ -33,18 +33,18 @@
                 <div class="studio-tools" id="saveControls">
                     <span class="save-chip" title="Your work saves automatically on this computer"><i class="fas fa-check-circle" aria-hidden="true"></i> <span id="currentWorkName">New script</span></span>
                     <span class="last-saved sr-only" id="lastSaved">Saves automatically</span>
-                    <label for="workSlot" class="sr-only">Open another saved script</label>
-                    <select id="workSlot" onchange="switchSlot(this.value)" title="Open saved work" aria-label="Open saved work">
-                        <option value="">Open work…</option>
-                    </select>
-                    <button class="icon-btn" onclick="newSlot()" title="Start a new script" aria-label="Start a new script"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                    <button class="icon-btn" onclick="newSlot()" title="New script" aria-label="Start a new script"><i class="fas fa-plus" aria-hidden="true"></i></button>
                     <details class="more-actions">
                         <summary class="icon-btn" title="More options" aria-label="More options"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></summary>
                         <div class="more-actions-menu">
+                            <label for="workSlot" class="sr-only">Open another saved script</label>
+                            <select id="workSlot" onchange="switchSlot(this.value)" title="Open saved work" aria-label="Open saved work" style="width:100%;margin-bottom:6px;padding:6px 8px;border-radius:6px;border:1px solid #ccc;font-size:0.9em;">
+                                <option value="">Open saved work...</option>
+                            </select>
                             <button onclick="manualSave()"><i class="fas fa-save" aria-hidden="true"></i> Save now</button>
-                            <button onclick="exportToFile()" title="Download a backup file"><i class="fas fa-download" aria-hidden="true"></i> Export backup file</button>
-                            <button onclick="document.getElementById('importFile').click()" title="Load a backup file"><i class="fas fa-upload" aria-hidden="true"></i> Import backup file</button>
-                            <button class="more-danger" onclick="deleteSlot()" title="Delete this saved script"><i class="fas fa-trash" aria-hidden="true"></i> Delete this script</button>
+                            <button onclick="exportToFile()" title="Download a backup file"><i class="fas fa-download" aria-hidden="true"></i> Export backup</button>
+                            <button onclick="document.getElementById('importFile').click()" title="Load a backup file"><i class="fas fa-upload" aria-hidden="true"></i> Import backup</button>
+                            <button class="more-danger" onclick="deleteSlot()" title="Delete this saved script"><i class="fas fa-trash" aria-hidden="true"></i> Delete script</button>
                         </div>
                     </details>
                     <input type="file" id="importFile" accept="application/json,.json" style="display:none" onchange="importFromFile(event)">
@@ -103,41 +103,17 @@
             </div>
         </details>
 
-        <!-- TIME ESTIMATOR -->
-        <div class="time-estimator" id="timeEstimator" style="display: none;">
-            <h2><i class="fas fa-clock" aria-hidden="true"></i> Estimated Script Time</h2>
-            <div class="time-display" id="timeDisplay">0:00</div>
-            <div class="time-breakdown">
-                <div class="time-item"><strong>Intro:</strong> <span id="introTime">0:00</span></div>
-                <div class="time-item"><strong>Content:</strong> <span id="contentTime">0:00</span></div>
-                <div class="time-item"><strong>Conclusion:</strong> <span id="conclusionTime">0:00</span></div>
-            </div>
-            <p style="margin-top: 15px; font-size: 0.9em;"><strong><i class="fas fa-bullseye" aria-hidden="true"></i> Goal: 3-6 minutes</strong> | Estimate based on 130 words/min</p>
-        </div>
-        
         <!-- BASIC INFO -->
         <div class="section section-basic wizard-step" data-step="0">
             <h2><i class="fas fa-clipboard-list" aria-hidden="true"></i> Basic Information</h2>
 
-            <label>
-                Your Name(s):
-                <i class="fas fa-info-circle info-icon" data-tooltip="List everyone in your group" tabindex="0" role="img" aria-label="Help: List everyone in your group"></i>
-            </label>
-            <input type="text" id="studentName" placeholder="e.g., Maria G. and Alex P." oninput="updateTimeEstimate(); checkBasicsReveal()">
-            <div class="helper-text">
-                <strong>What to include:</strong> Use <strong>first name + last initial</strong> only (e.g., Maria G.). For groups, separate names with "and".
-            </div>
+            <label>Your Name(s):</label>
+            <input type="text" id="studentName" placeholder="e.g., Maria G. and Alex P. (first name + last initial)" oninput="updateTimeEstimate(); checkBasicsReveal()">
 
-            <label for="subject">
-                Subject/Topic of Your Episode:
-                <i class="fas fa-info-circle info-icon" data-tooltip="Who or what is your episode about? Pick from the list." tabindex="0" role="img" aria-label="Help: Who or what is your episode about? Pick from the list."></i>
-            </label>
+            <label for="subject">Subject/Topic of Your Episode:</label>
             <select id="subject" onchange="onTopicChange(); checkBasicsReveal()">
                 <option value="">Choose your topic...</option>
             </select>
-            <div class="helper-text">
-                <strong>Pick who or what your podcast is about.</strong> On the next step (Research) you'll read about them and get key facts for your script.
-            </div>
 
             <!-- Secondary fields: revealed once Name + Topic are both filled -->
             <div class="basics-more" id="basicsMore">
@@ -147,15 +123,8 @@
                     <hr>
                 </div>
 
-                <label>
-                    Podcast Name:
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Choose a catchy, memorable title" tabindex="0" role="img" aria-label="Help: Choose a catchy, memorable title"></i>
-                </label>
-                <input type="text" id="podcastName" placeholder="e.g., Untold Voices, Revolutionary Stories, Hidden History" oninput="updateTimeEstimate()">
-                <div class="helper-text">
-                    <strong>What makes a good podcast name:</strong> Short, memorable, and hints at your topic<br>
-                    <span class="tip"><i class="fas fa-lightbulb" aria-hidden="true"></i> Tip: Use powerful words like "Untold," "Hidden," "Voices," "Stories," or "Chronicles"</span>
-                </div>
+                <label>Podcast Name:</label>
+                <input type="text" id="podcastName" placeholder="e.g., Untold Voices, Hidden History, Revolutionary Chronicles" oninput="updateTimeEstimate()">
 
                 <div class="exemplar-box">
                     <button class="exemplar-toggle" onclick="toggleExemplar('podcast-name-example')">
@@ -177,20 +146,10 @@
                     </div>
                 </div>
 
-                <label>
-                    Research Notes &amp; Sources (recommended):
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Where did you learn these facts? List your sources." tabindex="0" role="img" aria-label="Help: Where did you learn these facts? List your sources."></i>
-                </label>
+                <label>Research Notes &amp; Sources (recommended):</label>
                 <textarea id="researchSources" placeholder="List 3-4 key facts and where you found them. Example:&#10;- Phillis Wheatley published a poetry book in 1773 (Britannica)&#10;- She was the first published African American woman poet (Library of Congress)" oninput="updateTimeEstimate()"></textarea>
-                <div class="helper-text">
-                    <strong><i class="fas fa-flask" aria-hidden="true"></i> Historians use evidence.</strong> Before you write, jot down the real facts you'll use and where each one comes from. Your podcast can be dramatic, but the history should be true.
-                    <span class="tip"><i class="fas fa-check-circle" aria-hidden="true"></i> Quick check: Can you point to a source for every fact in your script?</span>
-                </div>
 
-                <label>
-                    Group Size:
-                    <i class="fas fa-info-circle info-icon" data-tooltip="This adjusts the script format for your group" tabindex="0" role="img" aria-label="Help: This adjusts the script format for your group"></i>
-                </label>
+                <label>Group Size:</label>
                 <select id="groupSize" onchange="updateGroupOptions()">
                     <option value="">Select your group size</option>
                     <option value="1">Solo (1 person)</option>
@@ -371,15 +330,6 @@
                 </div>
                 
                 <!-- COMPARISON BOX -->
-                <div class="comparison-box">
-                    <h4><i class="fas fa-balance-scale" aria-hidden="true"></i> Strong vs. Weak Writing</h4>
-                    <div class="weak-example">The person did something important during the war.</div>
-                    <div class="strong-example">Her hands trembled as she loaded the musket, knowing that one wrong move could betray her disguise as a male soldier.</div>
-                    <div class="comparison-why">
-                        <strong>Why stronger?</strong> Uses specific action verb (trembled, loaded), sensory details, shows stakes, and creates tension. Paints a picture instead of just telling.
-                    </div>
-                </div>
-                
                 <div class="starter-category">
                     <div class="starter-category-label">
                         <i class="fas fa-magic" aria-hidden="true"></i> Clickable Starters - Beginner Friendly
@@ -445,16 +395,7 @@
                     <button class="starter-btn" onclick="insertStarter('dramatic-stakes', 'At stake was nothing less than ')"><i class="fas fa-flag" aria-hidden="true"></i> At stake was...</button>
                 </div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Introduction</h4>
-                    <ul>
-                        <li>Does your hook create drama or excitement?</li>
-                        <li>Did you clearly name your subject?</li>
-                        <li>Will listeners understand why this matters?</li>
-                        <li>Is it 60-110 words total? (30-45 seconds)</li>
-                    </ul>
                 </div>
-            </div>
             
             <!-- SHOCKING FACT -->
             <div id="intro-fact" class="form-section">
@@ -532,16 +473,7 @@
                     <button class="starter-btn" onclick="insertStarter('fact-subject', 'Their name was ')"><i class="fas fa-id-badge" aria-hidden="true"></i> Their name was...</button>
                 </div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Introduction</h4>
-                    <ul>
-                        <li>Is your fact truly surprising or little-known?</li>
-                        <li>Did you explain WHY it's shocking?</li>
-                        <li>Did you clearly connect it to your subject?</li>
-                        <li>Is it 55-105 words total? (30-45 seconds)</li>
-                    </ul>
                 </div>
-            </div>
             
             <!-- MYSTERY QUESTION -->
             <div id="intro-question" class="form-section">
@@ -620,16 +552,7 @@
                     <button class="starter-btn" onclick="insertStarter('question-answer', 'This is the story of ')"><i class="fas fa-book-open" aria-hidden="true"></i> This is the story...</button>
                 </div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Introduction</h4>
-                    <ul>
-                        <li>Do your questions create genuine curiosity?</li>
-                        <li>Did you avoid answering the questions too early?</li>
-                        <li>Did you hint at an interesting answer?</li>
-                        <li>Is it 55-110 words total? (30-45 seconds)</li>
-                    </ul>
                 </div>
-            </div>
             
             <!-- SOUND & SETTING -->
             <div id="intro-sound" class="form-section">
@@ -717,16 +640,7 @@
                     <button class="starter-btn" onclick="insertStarter('sound-conflict', 'The stakes could not be higher: ')"><i class="fas fa-fire" aria-hidden="true"></i> The stakes...</button>
                 </div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Introduction</h4>
-                    <ul>
-                        <li>Can listeners "see" the scene in their minds?</li>
-                        <li>Did you use sensory details (sights, sounds, feelings)?</li>
-                        <li>Did you introduce your subject and their challenge?</li>
-                        <li>Is it 50-100 words total? (30-45 seconds)</li>
-                    </ul>
                 </div>
-            </div>
             
             <!-- GROUP INTRODUCTION -->
             <div id="intro-group" class="form-section" style="display: none;">
@@ -870,15 +784,6 @@
                 </div>
                 
                 <!-- COMPARISON BOX #2 -->
-                <div class="comparison-box">
-                    <h4><i class="fas fa-balance-scale" aria-hidden="true"></i> Strong vs. Weak First-Person Writing</h4>
-                    <div class="weak-example">I was enslaved. I worked hard. It was bad. I wanted freedom.</div>
-                    <div class="strong-example">My name is James, though the Armistead family who owned me called me "property." Every morning, I woke before dawn to tend their horses, my hands raw from the cold. But in my heart, I dreamed of something they could never chain - my freedom.</div>
-                    <div class="comparison-why">
-                        <strong>Why stronger?</strong> Uses first person ("I," "my"), includes specific details (name, family, horses, dawn), shows sensory details (raw hands, cold), and reveals internal thoughts/emotions. Makes the person feel real, not just a summary.
-                    </div>
-                </div>
-                
                 <label>
                     Narrator Transition to Scene 2
                 </label>
@@ -951,16 +856,7 @@
                     <button class="starter-btn" onclick="insertStarter('narrative-scene3', 'Though I ')"><i class="fas fa-comment-dots" aria-hidden="true"></i> Though I...</button>
                 </div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Narrative</h4>
-                    <ul>
-                        <li>Did you write in FIRST PERSON (I, my, me)?</li>
-                        <li>Do all 3 scenes show change over time?</li>
-                        <li>Did you include specific details and emotions?</li>
-                        <li>Is the total 200-350 words? (Check word counters)</li>
-                    </ul>
                 </div>
-            </div>
             
             <!-- INTERVIEW FORMAT -->
             <div id="content-interview" class="form-section">
@@ -1064,16 +960,7 @@
                 <textarea id="a5" placeholder="Reflect on the meaning and legacy" oninput="updateTimeEstimate(); countWords(this, 'a5text', 40, 80)"></textarea>
                 <div class="word-counter" id="a5text-counter"></div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Interview</h4>
-                    <ul>
-                        <li>Are questions specific (not generic)?</li>
-                        <li>Do answers tell a story with details?</li>
-                        <li>Did you answer in FIRST PERSON?</li>
-                        <li>Is the total 300-500 words? (Check word counters)</li>
-                    </ul>
                 </div>
-            </div>
             
             <!-- NEWS REPORT FORMAT -->
             <div id="content-news" class="form-section">
@@ -1183,16 +1070,7 @@
                     <button class="starter-btn" onclick="insertStarter('news-closing', 'We\'ll continue to follow this story as it develops.')"><i class="fas fa-forward" aria-hidden="true"></i> Continue to follow...</button>
                 </div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your News Report</h4>
-                    <ul>
-                        <li>Did you use present tense to create immediacy?</li>
-                        <li>Did you include quotes or interviews?</li>
-                        <li>Does it sound like a real news report?</li>
-                        <li>Is it 205-405 words total? (Check word counters)</li>
-                    </ul>
                 </div>
-            </div>
             
             <!-- DIARY ENTRIES FORMAT -->
             <div id="content-diary" class="form-section">
@@ -1304,16 +1182,7 @@
                     <span class="length"><i class="fas fa-ruler" aria-hidden="true"></i> Target: 20-40 words</span>
                 </div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Diary Entries</h4>
-                    <ul>
-                        <li>Did you include specific dates for each entry?</li>
-                        <li>Do the entries show change over time?</li>
-                        <li>Did you include emotions and private thoughts?</li>
-                        <li>Is the total 215-395 words? (Check word counters)</li>
-                    </ul>
                 </div>
-            </div>
         </div>
         
         <!-- CONCLUSION SECTION -->
@@ -1451,16 +1320,7 @@
                     <button class="starter-btn" onclick="insertStarter('sig-final', 'That\'s the power of ')"><i class="fas fa-fire" aria-hidden="true"></i> The power of...</button>
                 </div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Conclusion</h4>
-                    <ul>
-                        <li>Did you explain WHY this matters to history?</li>
-                        <li>Did you connect to bigger themes?</li>
-                        <li>Will listeners remember your final thought?</li>
-                        <li>Is it 100-175 words? (Check word counters)</li>
-                    </ul>
                 </div>
-            </div>
             
             <!-- CONNECTION TO TODAY -->
             <div id="conclusion-today" class="form-section">
@@ -1540,16 +1400,7 @@
                     <button class="starter-btn" onclick="insertStarter('today-final', 'Understanding this history helps us ')"><i class="fas fa-hands-helping" aria-hidden="true"></i> Helps us...</button>
                 </div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Conclusion</h4>
-                    <ul>
-                        <li>Did you clearly connect past to present?</li>
-                        <li>Did you give specific modern examples?</li>
-                        <li>Is your conclusion relevant to students' lives?</li>
-                        <li>Is it 95-180 words? (Check word counters)</li>
-                    </ul>
                 </div>
-            </div>
             
             <!-- CHALLENGE THE NARRATIVE -->
             <div id="conclusion-challenge" class="form-section">
@@ -1651,16 +1502,7 @@
                     <button class="starter-btn" onclick="insertStarter('challenge-final', 'We owe it to ')"><i class="fas fa-hands-helping" aria-hidden="true"></i> We owe it...</button>
                 </div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Conclusion</h4>
-                    <ul>
-                        <li>Did you clearly identify what's missing from standard history?</li>
-                        <li>Did you explain WHY certain stories were hidden?</li>
-                        <li>Did you challenge listeners to think differently?</li>
-                        <li>Is it 120-220 words? (Check word counters)</li>
-                    </ul>
                 </div>
-            </div>
             
             <!-- LEGACY & LESSONS -->
             <div id="conclusion-legacy" class="form-section">
@@ -1746,16 +1588,7 @@
                     <button class="starter-btn" onclick="insertStarter('legacy-honor', 'Their spirit lives on when we ')"><i class="fas fa-fire" aria-hidden="true"></i> Spirit lives on...</button>
                 </div>
                 
-                <div class="check-reminder">
-                    <h4><i class="fas fa-tasks" aria-hidden="true"></i> Check Your Conclusion</h4>
-                    <ul>
-                        <li>Did you describe their lasting impact?</li>
-                        <li>Did you extract a universal lesson?</li>
-                        <li>Is your message personal and applicable?</li>
-                        <li>Is it 105-185 words? (Check word counters)</li>
-                    </ul>
                 </div>
-            </div>
         </div>
         
         <!-- STEP 6: FINISH & SUBMIT -->
@@ -1848,7 +1681,7 @@
         <!-- WIZARD NAV -->
         <div class="wizard-nav" id="wizardNav">
             <button type="button" class="btn btn-secondary" id="wizBack" onclick="wizBack()"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back</button>
-            <span class="wizard-progress-label" id="wizLabel" aria-live="polite">Step 1 of 5</span>
+            <span class="wizard-progress-label" id="wizLabel" aria-live="polite">Step 1 of 6</span>
             <span class="time-badge time-badge-short" id="wizTimeBadge" style="display:none" aria-live="polite"><span class="time-dot"></span> <span id="wizTimeBadgeText">0:00</span></span>
             <button type="button" class="btn" id="wizNext" onclick="wizNext()">Next <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
         </div>

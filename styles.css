@@ -1086,7 +1086,7 @@
         }
 
 /* ============================================================
-   TASK 1: Usability improvements — 2026-07-15
+   TASK 1: Usability improvements - 2026-07-15
    ============================================================ */
 
 /* --- 1. PROGRESSIVE REVEAL: basics secondary fields --- */
@@ -1230,8 +1230,8 @@
     border-radius: 50%;
     flex-shrink: 0;
 }
-.time-badge-short { background: #f0f2f8; color: #888; }
-.time-badge-short .time-dot { background: #bbb; }
+.time-badge-short { background: #f0f2f8; color: #595959; }
+.time-badge-short .time-dot { background: #767676; }
 .time-badge-good { background: #e8f5e9; color: #2e7d32; }
 .time-badge-good .time-dot { background: #2e7d32; }
 .time-badge-long { background: #fff8e1; color: #c8860a; }

@@ -751,7 +751,7 @@
         .header {
             background: linear-gradient(160deg, #3a2a1a, #52351c); color: #f7eedd;
             border: 2px solid rgba(224,165,46,.35); border-radius: 18px;
-            position: relative; overflow: hidden;
+            position: relative;
         }
         :root[data-theme="dark"] .header { background: linear-gradient(160deg, #120d09, #2a1c12); }
         .header h1 { font-family: var(--font-head); }
@@ -892,7 +892,7 @@
             font-family: var(--font-mono); display: inline-flex; align-items: center; gap: 8px; }
         .more-actions > summary::-webkit-details-marker { display: none; }
         .more-actions > summary:hover, .more-actions[open] > summary { border-color: var(--brand); }
-        .more-actions-menu { position: absolute; right: 0; top: calc(100% + 6px); z-index: 60; min-width: 230px;
+        .more-actions-menu { position: absolute; right: 0; top: calc(100% + 6px); z-index: 200; min-width: 230px;
             background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; box-shadow: var(--shadow);
             padding: 8px; display: flex; flex-direction: column; gap: 6px; }
         .more-actions-menu button { width: 100%; justify-content: flex-start; text-align: left; }

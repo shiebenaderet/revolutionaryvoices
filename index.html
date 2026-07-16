@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <a href="#wizardContent" class="skip-link">Skip to current step</a>
+    <div id="starterAnnounce" role="status" aria-live="polite" class="sr-only"></div>
     <!-- Auto-Save Indicator -->
     <div class="auto-save-indicator" id="autoSaveIndicator" role="status" aria-live="polite">
         <i class="fas fa-check-circle" aria-hidden="true"></i>
@@ -64,7 +66,7 @@
         </header>
 
         <!-- BASIC INFO -->
-        <div class="section section-basic wizard-step" data-step="0">
+        <div id="wizardContent" class="section section-basic wizard-step" data-step="0">
             <h2><i class="fas fa-clipboard-list" aria-hidden="true"></i> Basic Information</h2>
 
             <label>Your Name(s):</label>
@@ -223,7 +225,7 @@
                 
                 <label>
                     1. Opening Hook - Create tension or drama
-                    <i class="fas fa-info-circle info-icon" data-tooltip="What's the most dramatic moment of your story?" tabindex="0" role="img" aria-label="Help: What's the most dramatic moment of your story?"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="What's the most dramatic moment of your story?" tabindex="0" role="note" aria-label="Help: What's the most dramatic moment of your story?"></i>
                 </label>
                 <textarea id="dramatic-hook" oninput="updateTimeEstimate(); countWords(this, 'hook', 20, 40)"></textarea>
                 <div class="word-counter" id="hook-counter"></div>
@@ -308,7 +310,7 @@
                 
                 <label>
                     2. Reveal the Subject - Who is this story about?
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Introduce your subject and their importance" tabindex="0" role="img" aria-label="Help: Introduce your subject and their importance"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Introduce your subject and their importance" tabindex="0" role="note" aria-label="Help: Introduce your subject and their importance"></i>
                 </label>
                 <textarea id="dramatic-subject" oninput="updateTimeEstimate(); countWords(this, 'subject', 15, 30)"></textarea>
                 <div class="word-counter" id="subject-counter"></div>
@@ -327,7 +329,7 @@
                 
                 <label>
                     3. Set the Stakes - Why does this story matter?
-                    <i class="fas fa-info-circle info-icon" data-tooltip="What was at risk? What did they have to overcome?" tabindex="0" role="img" aria-label="Help: What was at risk? What did they have to overcome?"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="What was at risk? What did they have to overcome?" tabindex="0" role="note" aria-label="Help: What was at risk? What did they have to overcome?"></i>
                 </label>
                 <textarea id="dramatic-stakes" oninput="updateTimeEstimate(); countWords(this, 'stakes', 20, 40)"></textarea>
                 <div class="word-counter" id="stakes-counter"></div>
@@ -368,7 +370,7 @@
                 
                 <label>
                     1. The Shocking Fact - Start with something surprising
-                    <i class="fas fa-info-circle info-icon" data-tooltip="What fact will surprise your listeners?" tabindex="0" role="img" aria-label="Help: What fact will surprise your listeners?"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="What fact will surprise your listeners?" tabindex="0" role="note" aria-label="Help: What fact will surprise your listeners?"></i>
                 </label>
                 <textarea id="fact-statement" oninput="updateTimeEstimate(); countWords(this, 'factstatement', 15, 30)"></textarea>
                 <div class="word-counter" id="factstatement-counter"></div>
@@ -388,7 +390,7 @@
                 
                 <label>
                     2. Why It's Shocking - Explain why this matters
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Why should listeners care?" tabindex="0" role="img" aria-label="Help: Why should listeners care?"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Why should listeners care?" tabindex="0" role="note" aria-label="Help: Why should listeners care?"></i>
                 </label>
                 <textarea id="fact-significance" oninput="updateTimeEstimate(); countWords(this, 'factsig', 20, 35)"></textarea>
                 <div class="word-counter" id="factsig-counter"></div>
@@ -407,7 +409,7 @@
                 
                 <label>
                     3. Meet Your Subject - Introduce the person/group
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Who will we learn about?" tabindex="0" role="img" aria-label="Help: Who will we learn about?"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Who will we learn about?" tabindex="0" role="note" aria-label="Help: Who will we learn about?"></i>
                 </label>
                 <textarea id="fact-subject" oninput="updateTimeEstimate(); countWords(this, 'factsubj', 20, 40)"></textarea>
                 <div class="word-counter" id="factsubj-counter"></div>
@@ -446,7 +448,7 @@
                 
                 <label>
                     1. Opening Question - Create mystery
-                    <i class="fas fa-info-circle info-icon" data-tooltip="What question will hook your listeners?" tabindex="0" role="img" aria-label="Help: What question will hook your listeners?"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="What question will hook your listeners?" tabindex="0" role="note" aria-label="Help: What question will hook your listeners?"></i>
                 </label>
                 <textarea id="question-hook" oninput="updateTimeEstimate(); countWords(this, 'qhook', 10, 25)"></textarea>
                 <div class="word-counter" id="qhook-counter"></div>
@@ -466,7 +468,7 @@
                 
                 <label>
                     2. Building Questions - Add 2-3 more questions that deepen the mystery
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Each question should raise the stakes" tabindex="0" role="img" aria-label="Help: Each question should raise the stakes"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Each question should raise the stakes" tabindex="0" role="note" aria-label="Help: Each question should raise the stakes"></i>
                 </label>
                 <textarea id="question-buildup" oninput="updateTimeEstimate(); countWords(this, 'qbuild', 25, 50)"></textarea>
                 <div class="word-counter" id="qbuild-counter"></div>
@@ -485,7 +487,7 @@
                 
                 <label>
                     3. Answer Preview - Hint at the amazing answer
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Don't give it all away - just a teaser!" tabindex="0" role="img" aria-label="Help: Don't give it all away - just a teaser!"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Don't give it all away - just a teaser!" tabindex="0" role="note" aria-label="Help: Don't give it all away - just a teaser!"></i>
                 </label>
                 <textarea id="question-answer" oninput="updateTimeEstimate(); countWords(this, 'qans', 20, 35)"></textarea>
                 <div class="word-counter" id="qans-counter"></div>
@@ -526,7 +528,7 @@
                 
                 <label>
                     1. Sound Effects (Optional) - What sounds transport us to this moment?
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Describe sounds your reader/listener can imagine" tabindex="0" role="img" aria-label="Help: Describe sounds your reader/listener can imagine"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Describe sounds your reader/listener can imagine" tabindex="0" role="note" aria-label="Help: Describe sounds your reader/listener can imagine"></i>
                 </label>
                 <input type="text" id="sound-effects" placeholder="e.g., cannon fire, marching feet, whispered voices" oninput="updateTimeEstimate()">
                 <div class="helper-text">
@@ -537,7 +539,7 @@
                 
                 <label>
                     2. Set the Scene - When and where?
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Paint a picture with words" tabindex="0" role="img" aria-label="Help: Paint a picture with words"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Paint a picture with words" tabindex="0" role="note" aria-label="Help: Paint a picture with words"></i>
                 </label>
                 <textarea id="sound-setting" oninput="updateTimeEstimate(); countWords(this, 'ssetting', 20, 40)"></textarea>
                 <div class="word-counter" id="ssetting-counter"></div>
@@ -556,7 +558,7 @@
                 
                 <label>
                     3. Introduce Subject - Who is there?
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Bring your subject into this scene" tabindex="0" role="img" aria-label="Help: Bring your subject into this scene"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Bring your subject into this scene" tabindex="0" role="note" aria-label="Help: Bring your subject into this scene"></i>
                 </label>
                 <textarea id="sound-subject" oninput="updateTimeEstimate(); countWords(this, 'ssubject', 15, 30)"></textarea>
                 <div class="word-counter" id="ssubject-counter"></div>
@@ -574,7 +576,7 @@
                 
                 <label>
                     4. The Conflict - What challenge do they face?
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Set up the problem or tension" tabindex="0" role="img" aria-label="Help: Set up the problem or tension"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Set up the problem or tension" tabindex="0" role="note" aria-label="Help: Set up the problem or tension"></i>
                 </label>
                 <textarea id="sound-conflict" oninput="updateTimeEstimate(); countWords(this, 'sconflict', 15, 30)"></textarea>
                 <div class="word-counter" id="sconflict-counter"></div>
@@ -601,7 +603,7 @@
                 
                 <label>
                     Self-Introduction - Each person introduces themselves
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Who is on your team?" tabindex="0" role="img" aria-label="Help: Who is on your team?"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Who is on your team?" tabindex="0" role="note" aria-label="Help: Who is on your team?"></i>
                 </label>
                 <textarea id="group-intro" placeholder="e.g., 'Hi, I'm Alex, and I'll be your host today.' 'And I'm Jordan, bringing you the voices of history.'" oninput="updateTimeEstimate(); countWords(this, 'groupintro', 15, 40)"></textarea>
                 <div class="word-counter" id="groupintro-counter"></div>
@@ -613,7 +615,7 @@
                 
                 <label>
                     Welcome Your Listeners
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Greet your audience warmly" tabindex="0" role="img" aria-label="Help: Greet your audience warmly"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Greet your audience warmly" tabindex="0" role="note" aria-label="Help: Greet your audience warmly"></i>
                 </label>
                 <textarea id="group-welcome" placeholder="e.g., Welcome to Revolutionary Voices, where we uncover the hidden stories of America's founding." oninput="updateTimeEstimate(); countWords(this, 'gwelcome', 10, 25)"></textarea>
                 <div class="word-counter" id="gwelcome-counter"></div>
@@ -695,7 +697,7 @@
                 
                 <label>
                     Host sets up the story
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Transition from intro to the narrative" tabindex="0" role="img" aria-label="Help: Transition from intro to the narrative"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Transition from intro to the narrative" tabindex="0" role="note" aria-label="Help: Transition from intro to the narrative"></i>
                 </label>
                 <textarea id="narrative-intro" placeholder="e.g., Let's step into their shoes and hear this story in their own words..." oninput="updateTimeEstimate(); countWords(this, 'narrintro', 10, 25)"></textarea>
                 <div class="word-counter" id="narrintro-counter"></div>
@@ -713,7 +715,7 @@
                 <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-play" aria-hidden="true"></i> SCENE 1: Before / Early in the War</h4>
                 <label>
                     Subject Speaking (First Person) - What was life like before the major events?
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Write as if YOU are this person!" tabindex="0" role="img" aria-label="Help: Write as if YOU are this person!"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Write as if YOU are this person!" tabindex="0" role="note" aria-label="Help: Write as if YOU are this person!"></i>
                 </label>
                 <textarea id="narrative-scene1" placeholder="Start with: My name is... OR I remember when..." oninput="updateTimeEstimate(); countWords(this, 'narr1', 60, 100)"></textarea>
                 <div class="word-counter" id="narr1-counter"></div>
@@ -932,7 +934,7 @@
                 
                 <label>
                     1. News Opening - "On the scene" introduction
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Set the scene like a TV reporter" tabindex="0" role="img" aria-label="Help: Set the scene like a TV reporter"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Set the scene like a TV reporter" tabindex="0" role="note" aria-label="Help: Set the scene like a TV reporter"></i>
                 </label>
                 <textarea id="news-opening" placeholder="This is [your name], reporting live from..." oninput="updateTimeEstimate(); countWords(this, 'newsopen', 30, 60)"></textarea>
                 <div class="word-counter" id="newsopen-counter"></div>
@@ -1203,7 +1205,7 @@
                 
                 <label>
                     1. What Happened? - Summarize the key takeaway
-                    <i class="fas fa-info-circle info-icon" data-tooltip="What's the main point?" tabindex="0" role="img" aria-label="Help: What's the main point?"></i>
+                    <i class="fas fa-info-circle info-icon" data-tooltip="What's the main point?" tabindex="0" role="note" aria-label="Help: What's the main point?"></i>
                 </label>
                 <textarea id="sig-what" placeholder="So what happened with [subject]?" oninput="updateTimeEstimate(); countWords(this, 'sigwhat', 20, 40)"></textarea>
                 <div class="word-counter" id="sigwhat-counter"></div>
@@ -1549,15 +1551,15 @@
                 <i class="fas fa-users" aria-hidden="true"></i> Who's playing each part?
             </div>
             <div id="roleRowHost" class="role-row">
-                <span class="role-chip-preview chip-host" id="rolePreviewHost">HOST</span>
+                <label for="roleHost" class="role-label"><span class="role-chip-preview chip-host" id="rolePreviewHost" aria-hidden="true">HOST</span> Host name</label>
                 <input type="text" class="role-name-input" id="roleHost" placeholder="First name" maxlength="20" oninput="updateRoleChipPreviews()">
             </div>
             <div id="roleRowNarrator" class="role-row" style="display:none">
-                <span class="role-chip-preview chip-narrator" id="rolePreviewNarrator">NARRATOR</span>
+                <label for="roleNarrator" class="role-label"><span class="role-chip-preview chip-narrator" id="rolePreviewNarrator" aria-hidden="true">NARRATOR</span> Narrator name</label>
                 <input type="text" class="role-name-input" id="roleNarrator" placeholder="First name" maxlength="20" oninput="updateRoleChipPreviews()">
             </div>
             <div id="roleRowSubject" class="role-row">
-                <span class="role-chip-preview chip-subject" id="rolePreviewSubject">SUBJECT</span>
+                <label for="roleSubject" class="role-label"><span class="role-chip-preview chip-subject" id="rolePreviewSubject" aria-hidden="true">SUBJECT</span> Subject name</label>
                 <input type="text" class="role-name-input" id="roleSubject" placeholder="First name" maxlength="20" oninput="updateRoleChipPreviews()">
             </div>
             <div class="role-card-hint">
@@ -1579,7 +1581,7 @@
                 <div class="success-box">
                     <strong><i class="fas fa-check-circle" aria-hidden="true"></i> Success!</strong> Your script is ready! You'll hand it in <strong>twice</strong>: first a <strong>draft</strong> for feedback, then a polished <strong>final</strong>.
                 </div>
-                <div id="scriptOutput" class="script-doc" role="region" aria-label="Your finished script" tabindex="-1"></div>
+                <div id="scriptOutput" class="script-doc" tabindex="-1"></div>
 
                 <!-- PRACTICE MODE -->
                 <div class="practice-bar" id="practiceBar">

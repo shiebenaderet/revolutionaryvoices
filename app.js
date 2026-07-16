@@ -139,6 +139,8 @@
                 field.value += ' ' + text;
             }
             field.focus();
+            var announce = document.getElementById('starterAnnounce');
+            if (announce) { announce.textContent = 'Sentence starter added to your writing.'; setTimeout(function() { announce.textContent = ''; }, 1500); }
             updateTimeEstimate();
             const match = fieldId.match(/[a-zA-Z0-9-]+/);
             if (match) {

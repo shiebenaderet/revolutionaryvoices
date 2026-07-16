@@ -770,6 +770,8 @@
         @keyframes dialSweep { 0% { left: 14%; } 100% { left: 86%; } }
         .on-air .dot { animation: onAirPulse 1.4s ease-in-out infinite; }
         @keyframes onAirPulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+        @keyframes nudgePulse { 0%,100% { outline-color: transparent; } 20%,80% { outline-color: var(--focus); outline-width: 3px; } }
+        .nudge-pulse { animation: nudgePulse 1.2s ease-in-out; outline-style: solid; outline-offset: 2px; }
 
         /* Time estimator: a warm readout card (was a saturated gradient) */
         .time-estimator { background: var(--surface); color: var(--ink); border: 2px solid var(--line);
@@ -978,7 +980,7 @@
             border-radius: 8px; padding: 6px 10px; font-size: 13px; min-height: 38px; font-family: var(--font-body); }
         .studio-tools select option { color: #3a2a1a; background: #fffaf0; }
         .icon-btn { background: rgba(247,238,221,.10); color: #f7eedd; border: 1px solid rgba(247,238,221,.28);
-            border-radius: 8px; min-width: 38px; min-height: 38px; display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 8px; min-width: 40px; min-height: 40px; display: inline-flex; align-items: center; justify-content: center;
             cursor: pointer; font-size: 15px; padding: 0 10px; transition: background .2s, border-color .2s; }
         .icon-btn:hover { background: rgba(247,238,221,.22); border-color: #e0a52e; }
         /* Un-fix the dark-mode toggle now that it lives in the header */
@@ -1082,7 +1084,7 @@
             background: rgba(247,238,221,.06); border: 1px solid rgba(247,238,221,.14); border-radius: 12px; }
         .studio-tools .save-chip { order: -1; }
         .studio-tools select { max-width: 190px; text-overflow: ellipsis; }
-        .icon-btn { min-width: 36px; min-height: 36px; font-size: 14px; padding: 0 9px; }
+        .icon-btn { min-width: 40px; min-height: 40px; font-size: 14px; padding: 0 9px; }
         .save-chip { padding: 4px 10px; }
 
         /* Dial: a little more breathing room; locked steps read lighter */
@@ -1101,6 +1103,12 @@
    ============================================================ */
 
 /* --- 1. PROGRESSIVE REVEAL: basics secondary fields --- */
+.step-onboarding {
+    color: var(--muted);
+    font-size: 0.95em;
+    margin: 0 0 18px;
+    line-height: 1.5;
+}
 .basics-more {
     max-height: 0;
     overflow: hidden;
@@ -1422,12 +1430,13 @@
 }
 .practice-bar.active .practice-bar-label { color: #1b5e20; }
 .practice-bar-btn {
-    background: #667eea;
+    background: #d4661a;
     color: white;
     border: none;
     border-radius: 6px;
-    padding: 5px 12px;
-    font-size: 0.8em;
+    padding: 8px 14px;
+    min-height: 40px;
+    font-size: 0.85em;
     font-weight: 700;
     cursor: pointer;
     display: flex;
@@ -1435,7 +1444,7 @@
     gap: 5px;
     transition: background 0.2s;
 }
-.practice-bar.active .practice-bar-btn { background: #2e7d32; }
+.practice-bar.active .practice-bar-btn { background: #5b7d2a; }
 .practice-nav {
     display: flex;
     align-items: center;
@@ -1444,12 +1453,13 @@
     margin-bottom: 10px;
 }
 .practice-nav-btn {
-    background: white;
-    border: 1.5px solid #667eea;
-    color: #667eea;
+    background: var(--surface);
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
     border-radius: 6px;
-    padding: 5px 12px;
-    font-size: 0.8em;
+    padding: 8px 14px;
+    min-height: 40px;
+    font-size: 0.85em;
     font-weight: 700;
     cursor: pointer;
     display: flex;
@@ -1457,11 +1467,11 @@
     gap: 5px;
     transition: background 0.15s;
 }
-.practice-nav-btn:hover { background: #eef2ff; }
+.practice-nav-btn:hover { background: var(--surface-2); }
 .practice-nav-count {
     font-family: 'Space Mono', monospace;
     font-size: 0.78em;
-    color: #667eea;
+    color: var(--accent);
     min-width: 80px;
     text-align: center;
 }

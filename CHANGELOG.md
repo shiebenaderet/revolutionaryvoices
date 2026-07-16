@@ -6,6 +6,40 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.1.0] - 2026-07-16
+
+### Added
+
+- **Onboarding sentence** on Step 1: "Fill in your name and topic to get started. You'll write your script step by step."
+- **`nudge-pulse` animation**: empty required fields briefly pulse an orange outline when a student tries to skip ahead
+- **Skip link**: keyboard/screen reader shortcut to jump directly to the current wizard step
+- **Screen reader announcement** when a sentence starter is inserted (`aria-live="polite"`)
+- **Google Docs backup toast** shown after completing Step 1 (Basics), nudging students to back up early
+
+### Changed
+
+- Step navigator locked-step message now names the specific step to complete: "Finish Basics first to unlock this step"
+- **Copy updates**: "Subject/Topic of Your Episode" - "Your Episode Topic"; "Research Notes & Sources (recommended)" - "Notes from your reading (optional but helpful)"; Google Docs bar label - "Keep a copy in Google Docs (so you don't lose your work)"
+- **Storage-full message** rewritten in student-friendly language with actionable advice
+- **Style-switch toast** simplified: "Switch back anytime to see your original writing"
+- Practice bar and nav buttons: legacy indigo (`#667eea`) replaced with warm palette (`--accent`, `--brand`)
+- Touch targets bumped to 40px minimum height/width for icon buttons and practice controls (WCAG 2.5.5)
+- "Your Complete Script" h2 color: hardcoded `#667eea` replaced with `var(--accent)`
+- Back button styled as ghost (transparent background, muted border) to visually de-emphasize it vs. Next
+
+### Fixed (accessibility - WCAG AA)
+
+- **Color system overhaul**: replaced all legacy cold-palette hardcodes (indigo `#667eea`, purple `#764ba2`, cold blue `#1565c0`, cold green `#4caf50`, amber `#ff9800`) with the warm brand palette across ~30 rules in styles.css lines 92-200
+- **`--muted` token darkened** from `#7a6a58` to `#5c4f3d` (affects all muted-text consumers at once)
+- **`--callout-bg` token added** (`#fdf3d8`): unifies all callout/note backgrounds; replaced all cold callout colors (`#e3f2fd`, `#e8f5e9`, `#fff3cd`)
+- **Focus ring tokens**: `--focus: #d4661a` for page elements; `--focus-on-dark: #e0a52e` for header elements (dark-on-dark was previously invisible)
+- Info icon ARIA: 19 `role="img"` instances corrected to `role="note"` (non-interactive tooltip triggers)
+- Duplicate `role="region"` removed from `#scriptOutput`; kept on `#finalScriptRegion`
+- Role-name inputs now have explicit `<label>` elements with visible chip previews
+- Overflow menu rebuilt from `<details>` to `button + role="menu" div` with keyboard arrow nav, click-outside close, and Escape to dismiss (was: no keyboard nav, no ARIA menu semantics, contrast failure due to specificity battle)
+
+---
+
 ## [1.0.1] - 2026-07-16
 
 ### Fixed (accessibility)

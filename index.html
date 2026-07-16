@@ -69,10 +69,12 @@
         <div id="wizardContent" class="section section-basic wizard-step" data-step="0">
             <h2><i class="fas fa-clipboard-list" aria-hidden="true"></i> Basic Information</h2>
 
+            <p class="step-onboarding">Fill in your name and topic to get started. You'll write your script step by step.</p>
+
             <label>Your Name(s):</label>
             <input type="text" id="studentName" placeholder="e.g., Maria G. and Alex P. (first name + last initial)" oninput="updateTimeEstimate(); checkBasicsReveal()">
 
-            <label for="subject">Subject/Topic of Your Episode:</label>
+            <label for="subject">Your Episode Topic:</label>
             <select id="subject" onchange="onTopicChange(); checkBasicsReveal()">
                 <option value="">Choose your topic...</option>
             </select>
@@ -108,7 +110,7 @@
                     </div>
                 </div>
 
-                <label>Research Notes &amp; Sources (recommended):</label>
+                <label>Notes from your reading (optional but helpful):</label>
                 <textarea id="researchSources" placeholder="List 3-4 key facts and where you found them. Example:&#10;- Phillis Wheatley published a poetry book in 1773 (Britannica)&#10;- She was the first published African American woman poet (Library of Congress)" oninput="updateTimeEstimate()"></textarea>
 
                 <label>Group Size:</label>
@@ -1577,7 +1579,7 @@
         <!-- FINAL SCRIPT OUTPUT -->
         <div id="finalScript">
             <div class="section" role="region" aria-label="Your finished script" tabindex="-1" id="finalScriptRegion">
-                <h2 style="color: #667eea;"><i class="fas fa-file-alt" aria-hidden="true"></i> Your Complete Script</h2>
+                <h2 style="color: var(--accent);"><i class="fas fa-file-alt" aria-hidden="true"></i> Your Complete Script</h2>
                 <div class="success-box">
                     <strong><i class="fas fa-check-circle" aria-hidden="true"></i> Success!</strong> Your script is ready! You'll hand it in <strong>twice</strong>: first a <strong>draft</strong> for feedback, then a polished <strong>final</strong>.
                 </div>
@@ -1636,7 +1638,7 @@
 
         <!-- GOOGLE DOC BACKUP - quiet footer -->
         <details class="docsafe" id="docSafe">
-            <summary class="docsafe-summary"><i class="fas fa-shield-alt" aria-hidden="true"></i> Back up or restore your work in Google Docs</summary>
+            <summary class="docsafe-summary"><i class="fas fa-shield-alt" aria-hidden="true"></i> Keep a copy in Google Docs (so you don't lose your work)</summary>
             <div class="docsafe-body">
             <p class="docsafe-intro">A Google Doc in <strong>your</strong> Google Drive is the safest backup (this tool also saves on this computer). Do these in order:</p>
             <ol class="docsafe-steps">

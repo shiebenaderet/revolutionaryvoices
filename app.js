@@ -194,7 +194,7 @@
                 const hasContent = currentEl && Array.from(currentEl.querySelectorAll('textarea, input[type="text"]'))
                     .some(f => f.value.trim().length > 0);
                 if (hasContent) {
-                    showToast('Switching styles hides your writing - but it\'s still there if you switch back.');
+                    showToast('Switch back anytime to see your original writing.');
                 }
             }
             showFn(type);
@@ -977,7 +977,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '1.0.1';
+        const APP_VERSION = '1.1.0';
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION + (typeof BUILD_HASH !== 'undefined' ? ' (' + BUILD_HASH + ')' : ''); })();
         const OLD_KEY = 'revolutionaryVoicesScript';
@@ -1050,7 +1050,7 @@
 
         function manualSave() {
             if (saveCurrent()) showSaveIndicator('✅ Saved!', false);
-            else showToast('Could not save — your browser storage may be full or blocked.');
+            else showToast('Could not save - your browser may be out of storage. Try deleting old scripts you no longer need, or export a backup first.', 7000);
         }
 
         function showSaveIndicator(text = 'Work saved!', temporary = true) {
@@ -1486,13 +1486,32 @@
         function wizNext() {
             if (wizCurrent >= WIZ_LAST) return;
             if (!wizStepDone(wizCurrent)) { wizNudge(); return; }
+            const leaving = wizCurrent;
             showStep(wizCurrent + 1);
+            if (leaving === 0) {
+                setTimeout(function() {
+                    showToast('Step saved! Tip: back up your work in Google Docs so you don\'t lose it if you switch computers 💾', 6000);
+                }, 800);
+            }
         }
         function wizBack() { if (wizCurrent > 0) showStep(wizCurrent - 1); }
 
         function wizGoChip(i) {
-            if (i > wizFrontier()) { showToast('Add a little to the earlier steps first 🙂'); return; }
+            if (i > wizFrontier()) {
+                const stepNames = ['Basics', 'Research', 'Intro', 'Content', 'Conclusion', 'Finish'];
+                const needed = stepNames[wizFrontier()] || 'the current step';
+                showToast('Finish ' + needed + ' first to unlock this step 🔒');
+                return;
+            }
             showStep(i);
+        }
+
+        function wizNudgeField(target) {
+            if (!target) return;
+            target.classList.add('nudge-pulse');
+            setTimeout(function() { target.classList.remove('nudge-pulse'); }, 1200);
+            try { target.focus(); } catch (e) {}
+            scrollToEl(target);
         }
 
         function wizNudge() {
@@ -1503,7 +1522,7 @@
             } else if (n === 1) {
                 showToast('Choose your topic on the Basics step first 📚');
                 showStep(0);
-                const s = document.getElementById('subject'); if (s) { try { s.focus(); } catch (e) {} }
+                const s = document.getElementById('subject'); if (s) { wizNudgeField(s); }
                 return;
             } else {
                 const radio = WIZ_RADIO[n];
@@ -1516,7 +1535,7 @@
                 }
             }
             showToast('Add a little here first, then tap Next ✏️');
-            if (target) { try { target.focus(); } catch (e) {} scrollToEl(target); }
+            wizNudgeField(target);
         }
 
         // Called by generateScript() once the script is built (lives on the Finish step).

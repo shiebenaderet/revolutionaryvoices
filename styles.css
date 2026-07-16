@@ -897,7 +897,7 @@
             padding: 8px; display: flex; flex-direction: column; gap: 6px; }
         .more-actions-menu button { width: 100%; justify-content: flex-start; text-align: left;
             background: var(--surface); color: var(--ink); border-color: var(--line); }
-        .more-actions-menu select { color: var(--ink); background: var(--surface); }
+        .studio-tools .more-actions-menu select { color: var(--ink); background: var(--surface); border-color: var(--line); }
         .more-actions-menu .more-danger { color: #b91c1c; border-color: #e3b8b3; }
         .more-actions-menu .more-danger:hover { background: #b91c1c; color: #fff; border-color: #b91c1c; }
         :root[data-theme="dark"] .more-actions-menu .more-danger { color: #ff9b8f; border-color: #6b3a33; }

@@ -8,13 +8,11 @@
     <!-- Set saved theme before paint to avoid a flash -->
     <script>try{var t=localStorage.getItem('rvTheme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 
-    <!-- Font Awesome 6 CDN with fallback -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
+    <!-- Font Awesome 6 - self-hosted to avoid school CDN blocks -->
+    <link rel="stylesheet" href="fonts/fa-all.min.css">
 
-    <!-- On The Air theme fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600;700;800&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Theme fonts - self-hosted to avoid school CDN blocks -->
+    <link rel="stylesheet" href="fonts/fonts.css">
 
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -696,7 +694,7 @@
                 </div>
                 
                 <label>
-                    Narrator Introduction to Narrative
+                    Host sets up the story
                     <i class="fas fa-info-circle info-icon" data-tooltip="Transition from intro to the narrative" tabindex="0" role="img" aria-label="Help: Transition from intro to the narrative"></i>
                 </label>
                 <textarea id="narrative-intro" placeholder="e.g., Let's step into their shoes and hear this story in their own words..." oninput="updateTimeEstimate(); countWords(this, 'narrintro', 10, 25)"></textarea>
@@ -735,7 +733,7 @@
                 
                 <!-- COMPARISON BOX #2 -->
                 <label>
-                    Narrator Transition to Scene 2
+                    Host transition to Scene 2
                 </label>
                 <textarea id="narrative-trans1" placeholder="e.g., But then, everything changed..." oninput="updateTimeEstimate(); countWords(this, 'narrtrans1', 10, 25)"></textarea>
                 <div class="word-counter" id="narrtrans1-counter"></div>
@@ -771,7 +769,7 @@
                 </div>
                 
                 <label>
-                    Narrator Transition to Scene 3
+                    Host transition to Scene 3
                 </label>
                 <textarea id="narrative-trans2" placeholder="e.g., The aftermath of that decision would change history..." oninput="updateTimeEstimate(); countWords(this, 'narrtrans2', 10, 25)"></textarea>
                 <div class="word-counter" id="narrtrans2-counter"></div>
@@ -830,7 +828,7 @@
                 </div>
                 
                 <label>
-                    Narrator Introduction to Interview
+                    Host sets up the interview
                 </label>
                 <textarea id="interview-intro" placeholder="e.g., Today, we have the incredible opportunity to interview..." oninput="updateTimeEstimate(); countWords(this, 'intrintro', 15, 35)"></textarea>
                 <div class="word-counter" id="intrintro-counter"></div>
@@ -1044,7 +1042,7 @@
                 </div>
                 
                 <label>
-                    Narrator Introduction to Diary Entries
+                    Host sets up the diary entries
                 </label>
                 <textarea id="diary-intro" placeholder="e.g., These are the private diary entries of..." oninput="updateTimeEstimate(); countWords(this, 'diaryintro', 15, 35)"></textarea>
                 <div class="word-counter" id="diaryintro-counter"></div>
@@ -1123,7 +1121,7 @@
                 </div>
                 
                 <label>
-                    Narrator Closing - Wrap up the diary entries
+                    Host closing - wrap up the diary entries
                 </label>
                 <textarea id="diary-closing" placeholder="e.g., These entries reveal..." oninput="updateTimeEstimate(); countWords(this, 'diaryclose', 20, 40)"></textarea>
                 <div class="word-counter" id="diaryclose-counter"></div>

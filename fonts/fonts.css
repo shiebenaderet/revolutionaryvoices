@@ -1,0 +1,33 @@
+/* Self-hosted fonts - avoids school CDN/firewall blocks */
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('inter.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-style: normal;
+    font-weight: 600 800;
+    font-display: swap;
+    src: url('roboto-slab.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('space-mono-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('space-mono-bold.woff2') format('woff2');
+}

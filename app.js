@@ -390,15 +390,17 @@
             el.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
         }
         // Non-blocking status message, announced to screen readers
-        function showToast(text, kind) {
+        function showToast(text, durationOrKind) {
             const indicator = document.getElementById('autoSaveIndicator');
             const textSpan = document.getElementById('saveIndicatorText');
             if (!indicator || !textSpan) { return; }
             textSpan.textContent = text;
-            indicator.className = 'auto-save-indicator' + (kind === 'saving' ? ' saving' : '');
+            const isSaving = durationOrKind === 'saving';
+            const duration = (typeof durationOrKind === 'number') ? durationOrKind : 3000;
+            indicator.className = 'auto-save-indicator' + (isSaving ? ' saving' : '');
             indicator.style.display = 'block';
             clearTimeout(showToast._t);
-            showToast._t = setTimeout(() => { indicator.style.display = 'none'; }, 3000);
+            showToast._t = setTimeout(() => { indicator.style.display = 'none'; }, duration);
         }
         function clearFieldError(id) {
             const f = document.getElementById(id);
@@ -954,7 +956,15 @@
         }
         function writeStore(store) {
             try { localStorage.setItem(STORE_KEY, JSON.stringify(store)); return true; }
-            catch (e) { console.error('Error saving scripts:', e); return false; }
+            catch (e) {
+                console.error('Error saving scripts:', e);
+                const isQuota = e && (e.name === 'QuotaExceededError' || e.code === 22);
+                const msg = isQuota
+                    ? 'Storage full - your work could not save. Try deleting old scripts from the ... menu, or download a backup.'
+                    : 'Could not save your work. Try refreshing the page.';
+                showToast(msg, 6000);
+                return false;
+            }
         }
 
         // One-time migration from the old single-script format

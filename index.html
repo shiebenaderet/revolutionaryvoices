@@ -31,7 +31,6 @@
                 <h1 class="studio-brand"><i class="fas fa-microphone-alt" aria-hidden="true"></i> Revolutionary Voices <span class="brand-sub">Script Builder</span></h1>
                 <span class="on-air"><span class="dot"></span> On Air</span>
                 <div class="studio-tools" id="saveControls">
-                    <span class="save-chip" title="Your work saves automatically on this computer"><i class="fas fa-check-circle" aria-hidden="true"></i> <span id="currentWorkName">New script</span></span>
                     <span class="last-saved sr-only" id="lastSaved">Saves automatically</span>
                     <button class="icon-btn" onclick="newSlot()" title="New script" aria-label="Start a new script"><i class="fas fa-plus" aria-hidden="true"></i></button>
                     <details class="more-actions">
@@ -65,43 +64,6 @@
                 <button type="button" class="tuner-mark" id="wizChip5" onclick="wizGoChip(5)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Finish</span></button>
             </nav>
         </header>
-
-        <!-- SAFETY NET: GOOGLE DOC -->
-        <details class="docsafe" id="docSafe">
-            <summary class="docsafe-summary"><i class="fas fa-shield-alt" aria-hidden="true"></i> Keep a backup in Google Docs <span class="docsafe-sub">— set up, or pick up where you left off</span></summary>
-            <div class="docsafe-body">
-            <p class="docsafe-intro">A Google Doc in <strong>your</strong> Google Drive is the safest backup (this tool also saves on this computer). Do these in order:</p>
-            <ol class="docsafe-steps">
-                <li>
-                    <button type="button" class="btn btn-doc" onclick="openGoogleDoc()">
-                        <i class="fas fa-file-alt" aria-hidden="true"></i> 1. Open my Google Doc
-                    </button>
-                    <span class="docsafe-hint">A new tab opens. Title it: <strong>Revolutionary Voices – Your Name</strong></span>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-doc" onclick="copyWorkToDoc()">
-                        <i class="fas fa-copy" aria-hidden="true"></i> 2. Copy my work → paste in my Doc
-                    </button>
-                    <span class="docsafe-hint">Click your Doc tab and paste (<kbd>Ctrl</kbd>+<kbd>V</kbd>). Do this each time you finish a step.</span>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-doc btn-doc-restore" onclick="toggleResume()" aria-expanded="false" aria-controls="resumePanel">
-                        <i class="fas fa-history" aria-hidden="true"></i> Coming back? Pick up where I left off
-                    </button>
-                    <span class="docsafe-hint">Paste everything from your Doc back in to restore your work on any computer.</span>
-                </li>
-            </ol>
-            <div class="resume-panel" id="resumePanel" hidden>
-                <label for="resumeText"><strong>Paste your whole Google Doc here, then press Restore:</strong></label>
-                <textarea id="resumeText" rows="5" placeholder="Open your Google Doc, select all (Ctrl+A), copy (Ctrl+C), then paste here…"></textarea>
-                <div class="resume-actions">
-                    <button type="button" class="btn" onclick="doResume()"><i class="fas fa-rotate-left" aria-hidden="true"></i> Restore my work</button>
-                    <button type="button" class="btn btn-secondary" onclick="toggleResume()">Cancel</button>
-                </div>
-                <p class="resume-note" id="resumeNote" role="status" aria-live="polite"></p>
-            </div>
-            </div>
-        </details>
 
         <!-- BASIC INFO -->
         <div class="section section-basic wizard-step" data-step="0">
@@ -1685,6 +1647,43 @@
             <span class="time-badge time-badge-short" id="wizTimeBadge" style="display:none" aria-live="polite"><span class="time-dot"></span> <span id="wizTimeBadgeText">0:00</span></span>
             <button type="button" class="btn" id="wizNext" onclick="wizNext()">Next <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
         </div>
+
+        <!-- GOOGLE DOC BACKUP - quiet footer -->
+        <details class="docsafe" id="docSafe">
+            <summary class="docsafe-summary"><i class="fas fa-shield-alt" aria-hidden="true"></i> Back up or restore your work in Google Docs</summary>
+            <div class="docsafe-body">
+            <p class="docsafe-intro">A Google Doc in <strong>your</strong> Google Drive is the safest backup (this tool also saves on this computer). Do these in order:</p>
+            <ol class="docsafe-steps">
+                <li>
+                    <button type="button" class="btn btn-doc" onclick="openGoogleDoc()">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i> 1. Open my Google Doc
+                    </button>
+                    <span class="docsafe-hint">A new tab opens. Title it: <strong>Revolutionary Voices - Your Name</strong></span>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-doc" onclick="copyWorkToDoc()">
+                        <i class="fas fa-copy" aria-hidden="true"></i> 2. Copy my work - paste in my Doc
+                    </button>
+                    <span class="docsafe-hint">Click your Doc tab and paste (<kbd>Ctrl</kbd>+<kbd>V</kbd>). Do this each time you finish a step.</span>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-doc btn-doc-restore" onclick="toggleResume()" aria-expanded="false" aria-controls="resumePanel">
+                        <i class="fas fa-history" aria-hidden="true"></i> Coming back? Pick up where I left off
+                    </button>
+                    <span class="docsafe-hint">Paste everything from your Doc back in to restore your work on any computer.</span>
+                </li>
+            </ol>
+            <div class="resume-panel" id="resumePanel" hidden>
+                <label for="resumeText"><strong>Paste your whole Google Doc here, then press Restore:</strong></label>
+                <textarea id="resumeText" rows="5" placeholder="Open your Google Doc, select all (Ctrl+A), copy (Ctrl+C), then paste here..."></textarea>
+                <div class="resume-actions">
+                    <button type="button" class="btn" onclick="doResume()"><i class="fas fa-rotate-left" aria-hidden="true"></i> Restore my work</button>
+                    <button type="button" class="btn btn-secondary" onclick="toggleResume()">Cancel</button>
+                </div>
+                <p class="resume-note" id="resumeNote" role="status" aria-live="polite"></p>
+            </div>
+            </div>
+        </details>
     </div>
 
 

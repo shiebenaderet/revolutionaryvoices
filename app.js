@@ -944,6 +944,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
+        const APP_VERSION = '1.0.0';
         const STORE_KEY = 'rvScripts';
         const OLD_KEY = 'revolutionaryVoicesScript';
         let currentSlotId = null;

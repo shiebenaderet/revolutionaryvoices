@@ -1550,6 +1550,22 @@ select {
     margin: 12px 0;
 }
 
+/* Rubric collapsed by default via <details> */
+details.rubric-box > summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88em;
+    color: var(--muted, #666);
+    padding: 2px 0;
+}
+details.rubric-box > summary::-webkit-details-marker { display: none; }
+details.rubric-box > summary::after { content: ' - show'; font-size: 0.85em; }
+details.rubric-box[open] > summary::after { content: ' - hide'; }
+details.rubric-box > summary .rubric-box-toggle { font-weight: 600; }
+
 /* --- Google Docs safety bar: quiet, not dominant --- */
 .docsafe {
     border-color: var(--muted, #999);

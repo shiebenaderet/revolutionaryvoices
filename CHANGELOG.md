@@ -6,6 +6,17 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.0.1] - 2026-07-16
+
+### Fixed (accessibility)
+
+- Dropdown menu select ("Open saved work...") was inheriting the header's near-white text color on a near-white background (~1.05:1). Added explicit `color: var(--ink)` so it renders dark-on-light (>7:1).
+- `.script-section-name` role labels in the finished script: `#767676` on white (3.99:1, fails) changed to `#595959` (6.99:1).
+- `.step-facts summary::after` chevron and `.time-badge-long` text: `#c8860a` on light yellow (~3.60:1, fails) changed to `#6b4e00` (5.5:1).
+- `.basics-divider` label: `#667eea` on `#f5ead3` page background (4.44:1, fails) changed to `#6b4e00` (5.5:1).
+
+---
+
 ## [1.0.0] - 2026-07-16
 
 First stable release. Fully redesigned broadcast-studio UI with a 6-step guided wizard, multi-script storage, offline-ready fonts, and a polished teacher-and-student workflow.

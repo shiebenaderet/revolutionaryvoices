@@ -897,6 +897,7 @@
             padding: 8px; display: flex; flex-direction: column; gap: 6px; }
         .more-actions-menu button { width: 100%; justify-content: flex-start; text-align: left;
             background: var(--surface); color: var(--ink); border-color: var(--line); }
+        .more-actions-menu select { color: var(--ink); background: var(--surface); }
         .more-actions-menu .more-danger { color: #b91c1c; border-color: #e3b8b3; }
         .more-actions-menu .more-danger:hover { background: #b91c1c; color: #fff; border-color: #b91c1c; }
         :root[data-theme="dark"] .more-actions-menu .more-danger { color: #ff9b8f; border-color: #6b3a33; }
@@ -1109,7 +1110,7 @@
     align-items: center;
     gap: 10px;
     margin: 20px 0 16px;
-    color: #667eea;
+    color: #6b4e00;
     font-size: 0.82em;
     font-weight: 600;
 }
@@ -1146,7 +1147,7 @@
     content: '▾';
     margin-left: auto;
     font-size: 0.9em;
-    color: #c8860a;
+    color: #6b4e00;
     transition: transform 0.2s;
 }
 .step-facts details[open] summary::after {
@@ -1238,8 +1239,8 @@
 .time-badge-short .time-dot { background: #767676; }
 .time-badge-good { background: #e8f5e9; color: #2e7d32; }
 .time-badge-good .time-dot { background: #2e7d32; }
-.time-badge-long { background: #fff8e1; color: #c8860a; }
-.time-badge-long .time-dot { background: #c8860a; }
+.time-badge-long { background: #fff8e1; color: #6b4e00; }
+.time-badge-long .time-dot { background: #6b4e00; }
 
 /* --- 3b. FORMATTED SCRIPT DOCUMENT --- */
 .script-doc {
@@ -1293,7 +1294,7 @@
 .script-section-name {
     font-family: 'Space Mono', monospace;
     font-size: 0.6em;
-    color: #767676;
+    color: #595959;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     white-space: nowrap;

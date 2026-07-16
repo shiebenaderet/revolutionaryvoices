@@ -121,6 +121,18 @@
         // Insert starter text
         function insertStarter(fieldId, text) {
             const field = document.getElementById(fieldId);
+            if (!field) return;
+            // Substitute [subject] and [name] tokens with real values
+            const subjectEl = document.getElementById('subject');
+            const nameEl = document.getElementById('studentName');
+            const subjectVal = (subjectEl && subjectEl.value) ? subjectEl.value : 'your subject';
+            const nameVal = (nameEl && nameEl.value) ? nameEl.value.split(' ')[0] : 'your name';
+            text = text
+                .replace(/\[subject\]/gi, subjectVal)
+                .replace(/\[name\]/gi, nameVal)
+                .replace(/\[famous event\]/gi, 'a famous event')
+                .replace(/\[then\]/gi, 'then')
+                .replace(/\[location\]/gi, 'your location');
             if (field.value === '') {
                 field.value = text;
             } else {
@@ -128,13 +140,10 @@
             }
             field.focus();
             updateTimeEstimate();
-            // Trigger word count update
             const match = fieldId.match(/[a-zA-Z0-9-]+/);
             if (match) {
                 const baseId = match[0];
-                const counter = document.getElementById(baseId + '-counter');
-                if (counter) {
-                    const words = field.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+                if (document.getElementById(baseId + '-counter')) {
                     countWords(field, baseId, 0, 999);
                 }
             }

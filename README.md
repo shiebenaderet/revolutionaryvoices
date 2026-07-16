@@ -59,7 +59,7 @@ This project uses [Semantic Versioning](https://semver.org):
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
-Current version: **1.0.0**
+Current version: **1.0.1**
 
 ---
 

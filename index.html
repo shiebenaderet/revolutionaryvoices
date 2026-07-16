@@ -179,19 +179,19 @@
             
             <div class="choice-group">
                 <label class="choice-option">
-                    <input type="radio" name="intro" value="dramatic" onchange="showIntroForm('dramatic'); updateTimeEstimate()">
+                    <input type="radio" name="intro" value="dramatic" onchange="switchStyleWithWarning('intro-', ['dramatic','fact','question','sound'], 'dramatic', showIntroForm); updateTimeEstimate()">
                     <strong><i class="fas fa-bolt" aria-hidden="true"></i> Dramatic Hook</strong> - Start with tension, action, or a powerful moment
                 </label>
                 <label class="choice-option">
-                    <input type="radio" name="intro" value="fact" onchange="showIntroForm('fact'); updateTimeEstimate()">
+                    <input type="radio" name="intro" value="fact" onchange="switchStyleWithWarning('intro-', ['dramatic','fact','question','sound'], 'fact', showIntroForm); updateTimeEstimate()">
                     <strong><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Shocking Fact</strong> - Begin with a surprising statistic or truth
                 </label>
                 <label class="choice-option">
-                    <input type="radio" name="intro" value="question" onchange="showIntroForm('question'); updateTimeEstimate()">
+                    <input type="radio" name="intro" value="question" onchange="switchStyleWithWarning('intro-', ['dramatic','fact','question','sound'], 'question', showIntroForm); updateTimeEstimate()">
                     <strong><i class="fas fa-question-circle" aria-hidden="true"></i> Mystery Question</strong> - Hook listeners with an intriguing question
                 </label>
                 <label class="choice-option">
-                    <input type="radio" name="intro" value="sound" onchange="showIntroForm('sound'); updateTimeEstimate()">
+                    <input type="radio" name="intro" value="sound" onchange="switchStyleWithWarning('intro-', ['dramatic','fact','question','sound'], 'sound', showIntroForm); updateTimeEstimate()">
                     <strong><i class="fas fa-music" aria-hidden="true"></i> Sound & Setting</strong> - Immerse listeners in the time and place
                 </label>
             </div>
@@ -658,19 +658,19 @@
             
             <div class="choice-group">
                 <label class="choice-option">
-                    <input type="radio" name="content" value="narrative" onchange="showContentForm('narrative'); updateTimeEstimate()">
+                    <input type="radio" name="content" value="narrative" onchange="switchStyleWithWarning('content-', ['narrative','interview','news','diary'], 'narrative', showContentForm); updateTimeEstimate()">
                     <strong><i class="fas fa-book" aria-hidden="true"></i> First-Person Narrative</strong> - Tell the story as if you ARE the historical figure (3 scenes)
                 </label>
                 <label class="choice-option">
-                    <input type="radio" name="content" value="interview" onchange="showContentForm('interview'); updateTimeEstimate()">
+                    <input type="radio" name="content" value="interview" onchange="switchStyleWithWarning('content-', ['narrative','interview','news','diary'], 'interview', showContentForm); updateTimeEstimate()">
                     <strong><i class="fas fa-comments" aria-hidden="true"></i> Interview Format</strong> - Interview your historical figure with 5 questions
                 </label>
                 <label class="choice-option">
-                    <input type="radio" name="content" value="news" onchange="showContentForm('news'); updateTimeEstimate()">
+                    <input type="radio" name="content" value="news" onchange="switchStyleWithWarning('content-', ['narrative','interview','news','diary'], 'news', showContentForm); updateTimeEstimate()">
                     <strong><i class="fas fa-newspaper" aria-hidden="true"></i> News Report</strong> - Report on events as if you're a journalist at the time
                 </label>
                 <label class="choice-option">
-                    <input type="radio" name="content" value="diary" onchange="showContentForm('diary'); updateTimeEstimate()">
+                    <input type="radio" name="content" value="diary" onchange="switchStyleWithWarning('content-', ['narrative','interview','news','diary'], 'diary', showContentForm); updateTimeEstimate()">
                     <strong><i class="fas fa-pencil-alt" aria-hidden="true"></i> Diary Entries</strong> - Share 3 diary entries showing change over time
                 </label>
             </div>
@@ -1167,19 +1167,19 @@
             
             <div class="choice-group">
                 <label class="choice-option">
-                    <input type="radio" name="conclusion" value="significance" onchange="showConclusionForm('significance'); updateTimeEstimate()">
+                    <input type="radio" name="conclusion" value="significance" onchange="switchStyleWithWarning('conclusion-', ['significance','today','challenge','legacy'], 'significance', showConclusionForm); updateTimeEstimate()">
                     <strong><i class="fas fa-star" aria-hidden="true"></i> Historical Significance</strong> - Explain why this person/event matters to history
                 </label>
                 <label class="choice-option">
-                    <input type="radio" name="conclusion" value="today" onchange="showConclusionForm('today'); updateTimeEstimate()">
+                    <input type="radio" name="conclusion" value="today" onchange="switchStyleWithWarning('conclusion-', ['significance','today','challenge','legacy'], 'today', showConclusionForm); updateTimeEstimate()">
                     <strong><i class="fas fa-calendar-check" aria-hidden="true"></i> Connection to Today</strong> - Link the past to the present
                 </label>
                 <label class="choice-option">
-                    <input type="radio" name="conclusion" value="challenge" onchange="showConclusionForm('challenge'); updateTimeEstimate()">
+                    <input type="radio" name="conclusion" value="challenge" onchange="switchStyleWithWarning('conclusion-', ['significance','today','challenge','legacy'], 'challenge', showConclusionForm); updateTimeEstimate()">
                     <strong><i class="fas fa-question-circle" aria-hidden="true"></i> Challenge the Narrative</strong> - Question what's missing from standard history
                 </label>
                 <label class="choice-option">
-                    <input type="radio" name="conclusion" value="legacy" onchange="showConclusionForm('legacy'); updateTimeEstimate()">
+                    <input type="radio" name="conclusion" value="legacy" onchange="switchStyleWithWarning('conclusion-', ['significance','today','challenge','legacy'], 'legacy', showConclusionForm); updateTimeEstimate()">
                     <strong><i class="fas fa-monument" aria-hidden="true"></i> Legacy & Lessons</strong> - Reflect on lasting impact and what we can learn
                 </label>
             </div>

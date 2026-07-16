@@ -171,6 +171,33 @@
         }
         
         // Show intro form
+        function hasSectionContent(prefix, types) {
+            for (const t of types) {
+                const el = document.getElementById(prefix + t);
+                if (!el) continue;
+                const filled = Array.from(el.querySelectorAll('textarea, input[type="text"]'))
+                    .some(f => f.value.trim().length > 0);
+                if (filled) return true;
+            }
+            return false;
+        }
+
+        function switchStyleWithWarning(prefix, types, type, showFn) {
+            const currentActive = types.find(t => {
+                const el = document.getElementById(prefix + t);
+                return el && el.classList.contains('active');
+            });
+            if (currentActive && currentActive !== type) {
+                const currentEl = document.getElementById(prefix + currentActive);
+                const hasContent = currentEl && Array.from(currentEl.querySelectorAll('textarea, input[type="text"]'))
+                    .some(f => f.value.trim().length > 0);
+                if (hasContent) {
+                    showToast('Switching styles hides your writing - but it\'s still there if you switch back.');
+                }
+            }
+            showFn(type);
+        }
+
         function showIntroForm(type) {
             const forms = ['dramatic', 'fact', 'question', 'sound'];
             forms.forEach(f => {
@@ -181,8 +208,7 @@
             scrollToEl(sub);
             updateProgress();
         }
-        
-        // Show content form
+
         function showContentForm(type) {
             const forms = ['narrative', 'interview', 'news', 'diary'];
             forms.forEach(f => {
@@ -193,8 +219,7 @@
             scrollToEl(sub);
             updateProgress();
         }
-        
-        // Show conclusion form
+
         function showConclusionForm(type) {
             const forms = ['significance', 'today', 'challenge', 'legacy'];
             forms.forEach(f => {

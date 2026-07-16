@@ -902,8 +902,18 @@
         .more-actions-menu button { width: 100%; justify-content: flex-start; text-align: left;
             background: var(--surface); color: var(--ink); border-color: var(--line); min-height: 40px; }
         .more-actions-menu button:hover { background: var(--surface-2); }
-        .more-actions-menu select { color: var(--ink); background: var(--surface); border-color: var(--line);
-            width: 100%; margin-bottom: 2px; padding: 6px 8px; border-radius: 6px; font-size: 0.9em; min-height: 40px; }
+        .menu-section-label { font-size: 0.75em; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+            color: var(--muted); padding: 2px 6px 0; }
+        .menu-divider { border: none; border-top: 1px solid var(--line); margin: 2px 0; }
+        .slot-list { display: flex; flex-direction: column; gap: 3px; max-height: 180px; overflow-y: auto; }
+        .slot-empty { font-size: 0.85em; color: var(--muted); padding: 6px 8px; }
+        .slot-btn { width: 100%; display: flex; align-items: center; gap: 8px; text-align: left;
+            background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+            border-radius: 6px; padding: 6px 10px; font-size: 0.88em; min-height: 38px; cursor: pointer; }
+        .slot-btn:hover { background: var(--surface-2); }
+        .slot-btn-active { background: var(--surface-2); border-color: var(--accent); font-weight: 600; }
+        .slot-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .slot-date { font-size: 0.82em; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
         .more-actions-menu .more-danger { color: #b91c1c; border-color: #e3b8b3; }
         .more-actions-menu .more-danger:hover { background: #b91c1c; color: #fff; border-color: #b91c1c; }
         :root[data-theme="dark"] .more-actions-menu .more-danger { color: #ff9b8f; border-color: #6b3a33; }

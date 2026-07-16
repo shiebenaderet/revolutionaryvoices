@@ -36,10 +36,9 @@
                     <div class="more-actions" id="moreActionsWrap">
                         <button class="icon-btn" id="moreActionsBtn" aria-haspopup="true" aria-expanded="false" aria-controls="moreActionsMenu" title="More options" aria-label="More options" onclick="toggleMoreMenu()"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></button>
                         <div class="more-actions-menu" id="moreActionsMenu" role="menu" aria-label="Script options" hidden>
-                            <label for="workSlot" class="sr-only">Open another saved script</label>
-                            <select id="workSlot" onchange="switchSlot(this.value)" aria-label="Open saved work" role="menuitem">
-                                <option value="">Open saved work...</option>
-                            </select>
+                            <div class="menu-section-label">Saved scripts</div>
+                            <div id="slotList" class="slot-list" role="group" aria-label="Saved scripts"></div>
+                            <hr class="menu-divider">
                             <button role="menuitem" onclick="manualSave();closeMoreMenu()"><i class="fas fa-save" aria-hidden="true"></i> Save now</button>
                             <button role="menuitem" onclick="exportToFile();closeMoreMenu()"><i class="fas fa-download" aria-hidden="true"></i> Export backup</button>
                             <button role="menuitem" onclick="document.getElementById('importFile').click();closeMoreMenu()"><i class="fas fa-upload" aria-hidden="true"></i> Import backup</button>

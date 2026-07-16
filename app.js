@@ -1093,19 +1093,27 @@
             updateRoleChipPreviews();
         }
 
-        // Build the "Open saved work…" dropdown, newest first
+        // Build the saved-scripts list as buttons, newest first
         function refreshSlotMenu() {
-            const sel = document.getElementById('workSlot');
-            if (!sel) return;
+            const list = document.getElementById('slotList');
+            if (!list) return;
             const store = readStore();
             const slots = Object.values(store).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-            sel.innerHTML = '<option value="">Open saved work…</option>';
+            list.innerHTML = '';
+            if (!slots.length) {
+                const empty = document.createElement('div');
+                empty.className = 'slot-empty';
+                empty.textContent = 'No saved scripts yet.';
+                list.appendChild(empty);
+                return;
+            }
             slots.forEach(s => {
-                const opt = document.createElement('option');
-                opt.value = s.id;
-                opt.textContent = s.name + '  (' + new Date(s.timestamp).toLocaleDateString() + ')';
-                if (s.id === currentSlotId) opt.selected = true;
-                sel.appendChild(opt);
+                const btn = document.createElement('button');
+                btn.setAttribute('role', 'menuitem');
+                btn.className = 'slot-btn' + (s.id === currentSlotId ? ' slot-btn-active' : '');
+                btn.innerHTML = '<i class="fas fa-file-alt" aria-hidden="true"></i> <span class="slot-name">' + s.name + '</span><span class="slot-date">' + new Date(s.timestamp).toLocaleDateString() + '</span>';
+                btn.onclick = function() { switchSlot(s.id); closeMoreMenu(); };
+                list.appendChild(btn);
             });
         }
 
@@ -1115,7 +1123,7 @@
             const store = readStore();
             const slot = store[id];
             if (!slot) return;
-            if (!confirm('Open "' + slot.name + '"? Your current work stays saved separately.')) { refreshSlotMenu(); return; }
+            if (!confirm('Open "' + slot.name + '"? Your current work stays saved separately.')) return;
             currentSlotId = id;
             resetFormFields();
             applyData(slot);

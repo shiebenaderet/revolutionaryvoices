@@ -885,19 +885,17 @@
             border-radius: 8px; padding: 9px 14px; box-shadow: none; font-weight: 600; }
         .save-controls button:hover { background: var(--surface); border-color: var(--brand); transform: none; }
 
-        /* "More" disclosure */
+        /* "More" menu - proper button+div pattern replacing <details> */
         .more-actions { position: relative; display: inline-flex; width: fit-content; }
-        .more-actions > summary { list-style: none; cursor: pointer; background: var(--surface); color: var(--ink);
-            border: 1.5px solid var(--line); border-radius: 8px; padding: 9px 14px; min-height: 40px; font-weight: 700;
-            font-family: var(--font-mono); display: inline-flex; align-items: center; gap: 8px; }
-        .more-actions > summary::-webkit-details-marker { display: none; }
-        .more-actions > summary:hover, .more-actions[open] > summary { border-color: var(--brand); }
-        .more-actions-menu { position: absolute; right: 0; top: calc(100% + 6px); z-index: 200; min-width: 230px;
-            background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px; box-shadow: var(--shadow);
-            padding: 8px; display: flex; flex-direction: column; gap: 6px; }
+        .more-actions-menu { position: absolute; right: 0; top: calc(100% + 6px); z-index: 200; min-width: 240px;
+            background: var(--surface); color: var(--ink); border: 1.5px solid var(--line); border-radius: 10px;
+            box-shadow: var(--shadow); padding: 8px; display: flex; flex-direction: column; gap: 6px; }
+        .more-actions-menu[hidden] { display: none; }
         .more-actions-menu button { width: 100%; justify-content: flex-start; text-align: left;
-            background: var(--surface); color: var(--ink); border-color: var(--line); }
-        .studio-tools .more-actions-menu select { color: var(--ink); background: var(--surface); border-color: var(--line); }
+            background: var(--surface); color: var(--ink); border-color: var(--line); min-height: 40px; }
+        .more-actions-menu button:hover { background: var(--surface-2); }
+        .more-actions-menu select { color: var(--ink); background: var(--surface); border-color: var(--line);
+            width: 100%; margin-bottom: 2px; padding: 6px 8px; border-radius: 6px; font-size: 0.9em; min-height: 40px; }
         .more-actions-menu .more-danger { color: #b91c1c; border-color: #e3b8b3; }
         .more-actions-menu .more-danger:hover { background: #b91c1c; color: #fff; border-color: #b91c1c; }
         :root[data-theme="dark"] .more-actions-menu .more-danger { color: #ff9b8f; border-color: #6b3a33; }
@@ -972,9 +970,6 @@
             border-radius: 8px; min-width: 38px; min-height: 38px; display: inline-flex; align-items: center; justify-content: center;
             cursor: pointer; font-size: 15px; padding: 0 10px; transition: background .2s, border-color .2s; }
         .icon-btn:hover { background: rgba(247,238,221,.22); border-color: #e0a52e; }
-        .studio-tools .more-actions > summary { background: rgba(247,238,221,.10); color: #f7eedd;
-            border: 1px solid rgba(247,238,221,.28); }
-        .studio-tools .more-actions[open] > summary, .studio-tools .more-actions > summary:hover { border-color: #e0a52e; }
         /* Un-fix the dark-mode toggle now that it lives in the header */
         .studio-tools .theme-toggle { position: static; top: auto; left: auto; box-shadow: none; }
 

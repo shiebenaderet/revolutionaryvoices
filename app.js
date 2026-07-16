@@ -385,6 +385,37 @@
         function prefersReducedMotion() {
             return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         }
+        // ---- Overflow menu (replaces <details> for proper keyboard/ARIA support) ----
+        function toggleMoreMenu() {
+            const menu = document.getElementById('moreActionsMenu');
+            const btn = document.getElementById('moreActionsBtn');
+            if (!menu || !btn) return;
+            const opening = menu.hasAttribute('hidden');
+            if (opening) { menu.removeAttribute('hidden'); btn.setAttribute('aria-expanded', 'true'); }
+            else { closeMoreMenu(); }
+        }
+        function closeMoreMenu() {
+            const menu = document.getElementById('moreActionsMenu');
+            const btn = document.getElementById('moreActionsBtn');
+            if (menu) menu.setAttribute('hidden', '');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+        document.addEventListener('click', function(e) {
+            const wrap = document.getElementById('moreActionsWrap');
+            if (wrap && !wrap.contains(e.target)) closeMoreMenu();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeMoreMenu();
+            if (e.key === 'Tab') {
+                const menu = document.getElementById('moreActionsMenu');
+                if (menu && !menu.hasAttribute('hidden')) {
+                    const items = Array.from(menu.querySelectorAll('button, select'));
+                    const last = items[items.length - 1];
+                    if (document.activeElement === last && !e.shiftKey) closeMoreMenu();
+                }
+            }
+        });
+
         function scrollToEl(el) {
             if (!el || typeof el.scrollIntoView !== 'function') return;
             el.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });

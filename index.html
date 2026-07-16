@@ -31,19 +31,19 @@
                 <div class="studio-tools" id="saveControls">
                     <span class="last-saved sr-only" id="lastSaved">Saves automatically</span>
                     <button class="icon-btn" onclick="newSlot()" title="New script" aria-label="Start a new script"><i class="fas fa-plus" aria-hidden="true"></i></button>
-                    <details class="more-actions">
-                        <summary class="icon-btn" title="More options" aria-label="More options"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></summary>
-                        <div class="more-actions-menu">
+                    <div class="more-actions" id="moreActionsWrap">
+                        <button class="icon-btn" id="moreActionsBtn" aria-haspopup="true" aria-expanded="false" aria-controls="moreActionsMenu" title="More options" aria-label="More options" onclick="toggleMoreMenu()"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></button>
+                        <div class="more-actions-menu" id="moreActionsMenu" role="menu" aria-label="Script options" hidden>
                             <label for="workSlot" class="sr-only">Open another saved script</label>
-                            <select id="workSlot" onchange="switchSlot(this.value)" title="Open saved work" aria-label="Open saved work" style="width:100%;margin-bottom:6px;padding:6px 8px;border-radius:6px;border:1px solid #ccc;font-size:0.9em;">
+                            <select id="workSlot" onchange="switchSlot(this.value)" aria-label="Open saved work" role="menuitem">
                                 <option value="">Open saved work...</option>
                             </select>
-                            <button onclick="manualSave()"><i class="fas fa-save" aria-hidden="true"></i> Save now</button>
-                            <button onclick="exportToFile()" title="Download a backup file"><i class="fas fa-download" aria-hidden="true"></i> Export backup</button>
-                            <button onclick="document.getElementById('importFile').click()" title="Load a backup file"><i class="fas fa-upload" aria-hidden="true"></i> Import backup</button>
-                            <button class="more-danger" onclick="deleteSlot()" title="Delete this saved script"><i class="fas fa-trash" aria-hidden="true"></i> Delete script</button>
+                            <button role="menuitem" onclick="manualSave();closeMoreMenu()"><i class="fas fa-save" aria-hidden="true"></i> Save now</button>
+                            <button role="menuitem" onclick="exportToFile();closeMoreMenu()"><i class="fas fa-download" aria-hidden="true"></i> Export backup</button>
+                            <button role="menuitem" onclick="document.getElementById('importFile').click();closeMoreMenu()"><i class="fas fa-upload" aria-hidden="true"></i> Import backup</button>
+                            <button class="more-danger" role="menuitem" onclick="deleteSlot()"><i class="fas fa-trash" aria-hidden="true"></i> Delete script</button>
                         </div>
-                    </details>
+                    </div>
                     <input type="file" id="importFile" accept="application/json,.json" style="display:none" onchange="importFromFile(event)">
                     <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-pressed="false" title="Switch to dark mode"
                             onclick="(function(b){var h=document.documentElement;var d=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=d;try{localStorage.setItem('rvTheme',d);}catch(e){}b.setAttribute('aria-pressed',d==='dark');b.setAttribute('title',d==='dark'?'Switch to daytime':'Switch to dark mode');b.querySelector('span').textContent=d==='dark'?'Daytime':'After hours';b.querySelector('i').className=d==='dark'?'fas fa-sun':'fas fa-moon';})(this)">

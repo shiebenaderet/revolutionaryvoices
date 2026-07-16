@@ -979,6 +979,7 @@
         .tuner-mark:hover .t-name { color: #f7eedd; }
         .tuner-mark.completed .t-tick { background: #5dcaa5; }
         .tuner-mark.completed .t-name { color: #bfe9da; }
+        .tuner-mark.completed .t-name::before { content: '✓ '; font-size: 0.9em; }
         .tuner-mark.active .t-tick { background: #e0a52e; height: 24px; box-shadow: 0 0 12px #e0a52e; }
         .tuner-mark.active .t-name { color: #fff; font-weight: 700; }
         .tuner-mark.active::before { content: ''; position: absolute; top: -7px; left: 50%; transform: translateX(-50%);

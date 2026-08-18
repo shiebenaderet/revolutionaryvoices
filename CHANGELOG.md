@@ -6,6 +6,55 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.2.2] - 2026-08-18
+
+### Changed
+
+- Writing prompts are wired to their text boxes, so tapping a label focuses the field
+- Interview, scene, and diary headings use the same warm green as the rest of Content
+- Leftover indigo and Material-green CSS (including dead time-estimator styles) now follow the On The Air tokens
+- The footer shows the shipped version on first paint, then adds the build hash
+
+---
+
+## [1.2.1] - 2026-08-18
+
+### Changed
+
+- Most Support and Some Support readings gloss or replace hard academic words (for example, *contradiction*, *coverture*, *proclamation*) instead of leaving them undefined
+- Taglines and quick facts, which show at every reading level, use plainer language so students who need the most support can read the research header
+
+---
+
+## [1.2.0] - 2026-08-18
+
+### Added
+
+- **Help me write** on each writing field: sentence starters, verb banks, and helper text stay collapsed until asked for
+- **Copy to Google Doc** in the header (and ... menu), plus **Restore from Google Doc**
+- **I read this and I'm ready to write** checkbox on the Research step
+- Podcast name is suggested from the chosen topic and can still be edited
+
+### Changed
+
+- Step 1 only requires name and topic to continue; research notes moved to the Research step
+- Live time badge counts only the active intro, content, and conclusion styles
+- Pair/group introductions appear at the top of the Intro step
+- Role labels ask for the student voicing each part, not the historical figure
+- Reading controls use language labels (Easier language / Harder language) instead of stars
+- Shorter topic names for two group themes; old saved names still load
+- Conclusion frame "What's Usually Left Out" replaces the harder editorial example
+- Model examples note that they are someone else's story
+- Tuner steps use numbers on small screens
+
+### Fixed
+
+- Restore copy no longer points to a control "at the top"
+- Help icons open on tap as well as hover
+- Rubrics are no longer wrapped in a second Show checklist toggle
+
+---
+
 ## [1.1.0] - 2026-07-16
 
 ### Added

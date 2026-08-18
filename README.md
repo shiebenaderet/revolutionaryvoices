@@ -29,20 +29,22 @@ Students follow a 6-step wizard to build a radio-drama script in which a Host in
 - **No login required** - all work saved in the browser's `localStorage`
 - **Multi-script storage** - students can save multiple drafts and switch between them
 - **Export/import** - download a JSON backup to hand work between computers
-- **Google Docs integration** - optional copy-to-Doc button for cross-device backup
-- **Dark mode** - toggle in the top-right corner, preference persisted
-- **Leveled reading** - 22 historical topics, 4 reading levels, with cited sources
+- **Google Docs backup** - Copy to Google Doc and Restore live in the header (shared Chromebooks wipe local storage)
+- **Dark mode** - toggle in the header, preference persisted
+- **Leveled reading** - 22 historical topics, 4 language levels, same facts; hard words are glossed on Most Support
 - **Practice mode** - timed read-aloud panel on the Finish step
+- **Help me write** - examples, starters, and verb banks stay collapsed until a student asks
 
 ---
 
 ## File structure
 
 ```
-index.html      Main app (HTML + embedded CSS/JS in one file for easy school deployment)
-app.js          Core JavaScript (wizard logic, storage, script generation)
-styles.css      All styles
+index.html      Page structure (wizard steps and writing fields)
+app.js          Wizard logic, storage, script generation
+styles.css      On The Air theme and layout
 readings.js     Leveled reading library (22 topics, 4 levels, facts, sources)
+version.js      Build hash (updated by the pre-commit hook)
 fonts/          Self-hosted Inter, Roboto Slab, Space Mono, Font Awesome CSS
 webfonts/       Font Awesome icon font files (woff2)
 ```
@@ -59,7 +61,7 @@ This project uses [Semantic Versioning](https://semver.org):
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
-Current version: **1.1.0**
+Current version: **1.2.2**
 
 ---
 

@@ -76,28 +76,104 @@
                 .replace(/"/g, '&quot;');
         }
 
-        // Update the live time badge in the wizard nav bar
+        function countScriptWords() {
+            let introWords = 0;
+            let contentWords = 0;
+            let conclusionWords = 0;
+
+            const introType = document.querySelector('input[name="intro"]:checked')?.value;
+            if (introType === 'dramatic') {
+                introWords += countFieldWords('dramatic-hook');
+                introWords += countFieldWords('dramatic-subject');
+                introWords += countFieldWords('dramatic-stakes');
+            } else if (introType === 'fact') {
+                introWords += countFieldWords('fact-statement');
+                introWords += countFieldWords('fact-significance');
+                introWords += countFieldWords('fact-subject');
+            } else if (introType === 'question') {
+                introWords += countFieldWords('question-hook');
+                introWords += countFieldWords('question-buildup');
+                introWords += countFieldWords('question-answer');
+            } else if (introType === 'sound') {
+                introWords += countFieldWords('sound-effects');
+                introWords += countFieldWords('sound-setting');
+                introWords += countFieldWords('sound-subject');
+                introWords += countFieldWords('sound-conflict');
+            }
+
+            const size = document.getElementById('groupSize') && document.getElementById('groupSize').value;
+            if (size === '2' || size === '3') {
+                introWords += countFieldWords('group-intro');
+                introWords += countFieldWords('group-welcome');
+            }
+
+            const contentType = document.querySelector('input[name="content"]:checked')?.value;
+            if (contentType === 'narrative') {
+                contentWords += countFieldWords('narrative-intro');
+                contentWords += countFieldWords('narrative-scene1');
+                contentWords += countFieldWords('narrative-trans1');
+                contentWords += countFieldWords('narrative-scene2');
+                contentWords += countFieldWords('narrative-trans2');
+                contentWords += countFieldWords('narrative-scene3');
+            } else if (contentType === 'interview') {
+                contentWords += countFieldWords('interview-intro');
+                for (let i = 1; i <= 5; i++) {
+                    contentWords += countFieldWords('q' + i);
+                    contentWords += countFieldWords('a' + i);
+                }
+            } else if (contentType === 'news') {
+                contentWords += countFieldWords('news-opening');
+                contentWords += countFieldWords('news-background');
+                contentWords += countFieldWords('news-quote');
+                contentWords += countFieldWords('news-turning');
+                contentWords += countFieldWords('news-aftermath');
+                contentWords += countFieldWords('news-closing');
+            } else if (contentType === 'diary') {
+                contentWords += countFieldWords('diary-intro');
+                contentWords += countFieldWords('diary1-content');
+                contentWords += countFieldWords('diary2-content');
+                contentWords += countFieldWords('diary3-content');
+                contentWords += countFieldWords('diary-closing');
+            }
+
+            const conclusionType = document.querySelector('input[name="conclusion"]:checked')?.value;
+            if (conclusionType === 'significance') {
+                conclusionWords += countFieldWords('sig-what');
+                conclusionWords += countFieldWords('sig-reveals');
+                conclusionWords += countFieldWords('sig-why');
+                conclusionWords += countFieldWords('sig-final');
+            } else if (conclusionType === 'today') {
+                conclusionWords += countFieldWords('today-lesson');
+                conclusionWords += countFieldWords('today-parallel');
+                conclusionWords += countFieldWords('today-specific');
+                conclusionWords += countFieldWords('today-final');
+            } else if (conclusionType === 'challenge') {
+                conclusionWords += countFieldWords('challenge-standard');
+                conclusionWords += countFieldWords('challenge-missing');
+                conclusionWords += countFieldWords('challenge-why');
+                conclusionWords += countFieldWords('challenge-lose');
+                conclusionWords += countFieldWords('challenge-final');
+            } else if (conclusionType === 'legacy') {
+                conclusionWords += countFieldWords('legacy-impact');
+                conclusionWords += countFieldWords('legacy-lesson');
+                conclusionWords += countFieldWords('legacy-universal');
+                conclusionWords += countFieldWords('legacy-honor');
+            }
+
+            return {
+                intro: introWords,
+                content: contentWords,
+                conclusion: conclusionWords,
+                total: introWords + contentWords + conclusionWords
+            };
+        }
+
         function updateWizTimeBadge() {
             var badge = document.getElementById('wizTimeBadge');
             var text = document.getElementById('wizTimeBadgeText');
             if (!badge || !text) return;
-            // Only show on steps 2-5 (writing steps)
             if (typeof wizCurrent === 'undefined' || wizCurrent < 2) { badge.style.display = 'none'; return; }
-            // Count all words across intro/content/conclusion fields
-            var fields = ['dramatic-hook','dramatic-subject','dramatic-stakes',
-                'fact-statement','fact-significance','fact-subject',
-                'question-hook','question-buildup','question-answer',
-                'sound-effects','sound-setting','sound-subject','sound-conflict',
-                'narrative-intro','narrative-scene1','narrative-trans1','narrative-scene2','narrative-trans2','narrative-scene3',
-                'interview-intro','q1','a1','q2','a2','q3','a3','q4','a4','q5','a5',
-                'news-opening','news-background','news-quote','news-turning','news-aftermath','news-closing',
-                'diary-intro','diary1-content','diary2-content','diary3-content','diary-closing',
-                'sig-what','sig-reveals','sig-why','sig-final',
-                'today-lesson','today-parallel','today-specific','today-final',
-                'challenge-standard','challenge-missing','challenge-why','challenge-lose','challenge-final',
-                'legacy-impact','legacy-lesson','legacy-universal','legacy-honor'];
-            var words = 0;
-            fields.forEach(function(id) { words += countFieldWords(id); });
+            var words = countScriptWords().total;
             if (words === 0) { badge.style.display = 'none'; return; }
             badge.style.display = 'inline-flex';
             var mins = Math.floor(words / 130);
@@ -239,16 +315,14 @@
             const groupForm = document.getElementById('intro-group');
             const badge = document.getElementById('groupBadge');
             const tip = document.getElementById('groupTip');
-            
-            if (size === '1') {
-                groupForm.style.display = 'none';
-            } else {
-                groupForm.style.display = 'block';
+            const isGroup = size === '2' || size === '3';
+            if (groupForm) groupForm.hidden = !isGroup;
+            if (isGroup && badge && tip) {
                 badge.textContent = size + ' people';
                 if (size === '2') {
-                    tip.innerHTML = '<strong>Pair Tips:</strong> One person can be the host/narrator, the other can voice the historical figure. Practice together!';
+                    tip.textContent = 'Pair tips: one person can host, the other can voice the historical figure. Practice together!';
                 } else {
-                    tip.innerHTML = '<strong>Group Tips:</strong> Divide roles: host, narrator, historical figure. Everyone should have speaking parts!';
+                    tip.textContent = 'Group tips: divide roles (host, narrator, historical figure). Everyone should have speaking parts.';
                 }
             }
             updateTimeEstimate();
@@ -257,100 +331,11 @@
 
         // Update time estimate
         function updateTimeEstimate() {
-            // Count all words in the script
-            let totalWords = 0;
-            let introWords = 0;
-            let contentWords = 0;
-            let conclusionWords = 0;
-            
-            // Basic info words
-            totalWords += countFieldWords('podcastName');
-            totalWords += countFieldWords('subject');
-            
-            // Intro words
-            const introType = document.querySelector('input[name="intro"]:checked')?.value;
-            if (introType === 'dramatic') {
-                introWords += countFieldWords('dramatic-hook');
-                introWords += countFieldWords('dramatic-subject');
-                introWords += countFieldWords('dramatic-stakes');
-            } else if (introType === 'fact') {
-                introWords += countFieldWords('fact-statement');
-                introWords += countFieldWords('fact-significance');
-                introWords += countFieldWords('fact-subject');
-            } else if (introType === 'question') {
-                introWords += countFieldWords('question-hook');
-                introWords += countFieldWords('question-buildup');
-                introWords += countFieldWords('question-answer');
-            } else if (introType === 'sound') {
-                introWords += countFieldWords('sound-effects');
-                introWords += countFieldWords('sound-setting');
-                introWords += countFieldWords('sound-subject');
-                introWords += countFieldWords('sound-conflict');
-            }
-            
-            // Group intro if applicable
-            const size = document.getElementById('groupSize').value;
-            if (size !== '1') {
-                introWords += countFieldWords('group-intro');
-                introWords += countFieldWords('group-welcome');
-            }
-            
-            // Content words
-            const contentType = document.querySelector('input[name="content"]:checked')?.value;
-            if (contentType === 'narrative') {
-                contentWords += countFieldWords('narrative-intro');
-                contentWords += countFieldWords('narrative-scene1');
-                contentWords += countFieldWords('narrative-trans1');
-                contentWords += countFieldWords('narrative-scene2');
-                contentWords += countFieldWords('narrative-trans2');
-                contentWords += countFieldWords('narrative-scene3');
-            } else if (contentType === 'interview') {
-                contentWords += countFieldWords('interview-intro');
-                for (let i = 1; i <= 5; i++) {
-                    contentWords += countFieldWords('q' + i);
-                    contentWords += countFieldWords('a' + i);
-                }
-            } else if (contentType === 'news') {
-                contentWords += countFieldWords('news-opening');
-                contentWords += countFieldWords('news-background');
-                contentWords += countFieldWords('news-quote');
-                contentWords += countFieldWords('news-turning');
-                contentWords += countFieldWords('news-aftermath');
-                contentWords += countFieldWords('news-closing');
-            } else if (contentType === 'diary') {
-                contentWords += countFieldWords('diary-intro');
-                contentWords += countFieldWords('diary1-content');
-                contentWords += countFieldWords('diary2-content');
-                contentWords += countFieldWords('diary3-content');
-                contentWords += countFieldWords('diary-closing');
-            }
-            
-            // Conclusion words
-            const conclusionType = document.querySelector('input[name="conclusion"]:checked')?.value;
-            if (conclusionType === 'significance') {
-                conclusionWords += countFieldWords('sig-what');
-                conclusionWords += countFieldWords('sig-reveals');
-                conclusionWords += countFieldWords('sig-why');
-                conclusionWords += countFieldWords('sig-final');
-            } else if (conclusionType === 'today') {
-                conclusionWords += countFieldWords('today-lesson');
-                conclusionWords += countFieldWords('today-parallel');
-                conclusionWords += countFieldWords('today-specific');
-                conclusionWords += countFieldWords('today-final');
-            } else if (conclusionType === 'challenge') {
-                conclusionWords += countFieldWords('challenge-standard');
-                conclusionWords += countFieldWords('challenge-missing');
-                conclusionWords += countFieldWords('challenge-why');
-                conclusionWords += countFieldWords('challenge-lose');
-                conclusionWords += countFieldWords('challenge-final');
-            } else if (conclusionType === 'legacy') {
-                conclusionWords += countFieldWords('legacy-impact');
-                conclusionWords += countFieldWords('legacy-lesson');
-                conclusionWords += countFieldWords('legacy-universal');
-                conclusionWords += countFieldWords('legacy-honor');
-            }
-            
-            totalWords = introWords + contentWords + conclusionWords;
+            const counts = countScriptWords();
+            const introWords = counts.intro;
+            const contentWords = counts.content;
+            const conclusionWords = counts.conclusion;
+            const totalWords = counts.total;
 
             // Convert to time (130 words per minute)
             const totalMinutes = Math.floor(totalWords / 130);
@@ -364,13 +349,14 @@
 
             // Update display
             if (totalWords > 0) {
-                // Only surface the estimator on the Finish step (kept off the per-step screens).
                 const onFinish = (typeof wizCurrent !== 'number') || (typeof WIZ_LAST !== 'number') || (wizCurrent === WIZ_LAST);
-                document.getElementById('timeEstimator').style.display = onFinish ? 'block' : 'none';
-                document.getElementById('timeDisplay').textContent = totalMinutes + ':' + String(totalSeconds).padStart(2, '0');
-                document.getElementById('introTime').textContent = introMinutes + ':' + String(introSeconds).padStart(2, '0');
-                document.getElementById('contentTime').textContent = contentMinutes + ':' + String(contentSeconds).padStart(2, '0');
-                document.getElementById('conclusionTime').textContent = conclusionMinutes + ':' + String(conclusionSeconds).padStart(2, '0');
+                const te = document.getElementById('timeEstimator');
+                if (te) te.style.display = onFinish ? 'block' : 'none';
+                const setTxt = function(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; };
+                setTxt('timeDisplay', totalMinutes + ':' + String(totalSeconds).padStart(2, '0'));
+                setTxt('introTime', introMinutes + ':' + String(introSeconds).padStart(2, '0'));
+                setTxt('contentTime', contentMinutes + ':' + String(contentSeconds).padStart(2, '0'));
+                setTxt('conclusionTime', conclusionMinutes + ':' + String(conclusionSeconds).padStart(2, '0'));
             }
             updateWizTimeBadge();
         }
@@ -529,6 +515,7 @@
             }
             clearValidationSummary();
             const studentName = document.getElementById('studentName').value;
+            suggestPodcastName();
             const podcastName = document.getElementById('podcastName').value;
             const subject = document.getElementById('subject').value;
 
@@ -968,6 +955,9 @@
             radios.forEach(radio => {
                 data.fields[radio.name] = radio.value;
             });
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                if (cb.id) data.fields[cb.id] = cb.checked ? '1' : '';
+            });
             
             return data;
         }
@@ -977,7 +967,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '1.1.0';
+        const APP_VERSION = '1.2.2'; // keep in sync with index.html footer and CHANGELOG
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION + (typeof BUILD_HASH !== 'undefined' ? ' (' + BUILD_HASH + ')' : ''); })();
         const OLD_KEY = 'revolutionaryVoicesScript';
@@ -1073,7 +1063,22 @@
             if (!data || !data.fields) return;
             Object.keys(data.fields).forEach(key => {
                 const element = document.getElementById(key);
-                if (element && element.type !== 'radio') element.value = data.fields[key];
+                if (!element) return;
+                if (element.type === 'checkbox') {
+                    element.checked = data.fields[key] === '1' || data.fields[key] === true || data.fields[key] === 'true';
+                    return;
+                }
+                if (element.type === 'radio') return;
+                if (key === 'subject' && element.tagName === 'SELECT') {
+                    element.value = data.fields[key];
+                    if (element.value !== data.fields[key]) {
+                        const want = data.fields[key];
+                        const match = Array.from(element.options).find(o => (o.dataset.alias || '').split('|').indexOf(want) !== -1);
+                        if (match) element.value = match.value;
+                    }
+                    return;
+                }
+                element.value = data.fields[key];
             });
             ['intro', 'content', 'conclusion'].forEach(radioName => {
                 if (data.fields[radioName]) {
@@ -1091,6 +1096,15 @@
             checkBasicsReveal();
             if (typeof updateRoleCard === 'function') updateRoleCard();
             updateRoleChipPreviews();
+            if (typeof updateGroupOptions === 'function') updateGroupOptions();
+            const pn = document.getElementById('podcastName');
+            if (pn && pn.value.trim()) pn.dataset.userEdited = '1';
+            updateExemplarNotes();
+            const read = document.getElementById('researchRead');
+            if (read && !read.checked && (data.fields.intro || data.fields.content || data.fields.conclusion)) {
+                read.checked = true;
+            }
+            if (typeof rvSyncFromSelect === 'function') rvSyncFromSelect();
         }
 
         // Build the saved-scripts list as buttons, newest first
@@ -1161,9 +1175,11 @@
         }
 
         function resetFormFields() {
-            document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+            document.querySelectorAll('input[type="text"], textarea').forEach(el => { el.value = ''; delete el.dataset.userEdited; });
             document.querySelectorAll('select').forEach(el => el.selectedIndex = 0);
             document.querySelectorAll('input[type="radio"]').forEach(el => el.checked = false);
+            document.querySelectorAll('input[type="checkbox"]').forEach(el => el.checked = false);
+            if (typeof updateGroupOptions === 'function') updateGroupOptions();
         }
 
         // ---- Export / Import to a real file ----
@@ -1273,7 +1289,7 @@
         function copyWorkToDoc() {
             if (currentSlotId || slotNameSafe()) saveCurrent(); // keep local copy fresh too
             const text = buildDocText();
-            const done = () => showToast('✅ Copied! Click your Google Doc tab and paste (Ctrl+V or Cmd+V).');
+            const done = () => showToast('Copied. Open your Google Doc and paste (Ctrl+V or Cmd+V).');
             const fallback = () => {
                 // Old-browser fallback: drop it in the resume box so they can copy manually
                 const ta = document.getElementById('resumeText');
@@ -1284,6 +1300,24 @@
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(text).then(done).catch(fallback);
             } else { fallback(); }
+        }
+
+        function backupToGoogleDoc() {
+            copyWorkToDoc();
+        }
+
+        function openRestoreFromHeader() {
+            const box = document.getElementById('docSafe');
+            if (box) box.open = true;
+            const panel = document.getElementById('resumePanel');
+            if (panel) panel.hidden = false;
+            const btn = document.querySelector('.btn-doc-restore');
+            if (btn) btn.setAttribute('aria-expanded', 'true');
+            if (box) {
+                try { box.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' }); } catch (e) {}
+            }
+            const ta = document.getElementById('resumeText');
+            if (ta) setTimeout(function() { try { ta.focus(); } catch (e) {} }, 60);
         }
 
         function toggleResume() {
@@ -1344,7 +1378,7 @@
             if (_rn && Object.keys(readStore()).length > 0) { _rn.style.display = 'block'; }
 
             // Auto-save on every edit
-            const inputs = document.querySelectorAll('input[type="text"], textarea, select, input[type="radio"]');
+            const inputs = document.querySelectorAll('input[type="text"], textarea, select, input[type="radio"], input[type="checkbox"]');
             inputs.forEach(input => {
                 input.addEventListener('input', autoSave);
                 input.addEventListener('change', autoSave);
@@ -1356,44 +1390,98 @@
             wireUpAccessibility();
             wireUpStructure();
             wireUpLanguageSupports();
-            wireUpProgressiveHelp();
+            wireUpWriteHelp();
+            wireUpTooltips();
             updateProgress();
 
             wizInit();
         });
 
         // ============================================
-        // PROGRESSIVE HELP: start lean, expand on demand.
-        // Each field shows just its prompt + box; the detailed helper text,
-        // the rubric checklist, and the "quick check" reminders collapse
-        // behind a small toggle so the screen stays calm.
+        // WRITE HELP: prompt + box on screen; examples, starters, verbs
+        // behind one "Help me write" disclosure per field.
         // ============================================
-        function collapseBehindToggle(el, showLabel, idx) {
-            if (!el || el.dataset.discWired) return;
-            el.dataset.discWired = '1';
-            el.hidden = true;
-            if (!el.id) el.id = 'disc_' + idx;
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'help-toggle';
-            btn.setAttribute('aria-controls', el.id);
-            btn.setAttribute('aria-expanded', 'false');
-            const ic = '<i class="fas fa-question-circle" aria-hidden="true"></i> ';
-            btn.innerHTML = ic + showLabel;
-            btn.addEventListener('click', () => {
-                const opening = el.hidden;
-                el.hidden = !opening;
-                btn.setAttribute('aria-expanded', String(opening));
-                btn.innerHTML = ic + (opening ? 'Hide' : showLabel);
+        function wireUpWriteHelp() {
+            document.querySelectorAll('.form-section, .group-intro-panel').forEach(function(sec) {
+                if (sec.dataset.writeHelpWired) return;
+                sec.dataset.writeHelpWired = '1';
+                sec.querySelectorAll(':scope > .exemplar-box').forEach(function(box) {
+                    const d = document.createElement('details');
+                    d.className = 'write-help write-help-example';
+                    const sum = document.createElement('summary');
+                    sum.className = 'write-help-summary';
+                    sum.innerHTML = '<i class="fas fa-lightbulb" aria-hidden="true"></i> See an example';
+                    const note = document.createElement('p');
+                    note.className = 'exemplar-topic-note';
+                    d.appendChild(sum);
+                    d.appendChild(note);
+                    box.parentNode.insertBefore(d, box);
+                    d.appendChild(box);
+                });
+                sec.querySelectorAll('textarea').forEach(function(ta) {
+                    const helpNodes = [];
+                    let el = ta.nextElementSibling;
+                    while (el) {
+                        if (el.classList.contains('word-counter')) { el = el.nextElementSibling; continue; }
+                        if (el.classList.contains('helper-text') || el.classList.contains('starter-buttons') || el.classList.contains('verb-bank') || el.classList.contains('tip-box')) {
+                            helpNodes.push(el);
+                            el = el.nextElementSibling;
+                            continue;
+                        }
+                        break;
+                    }
+                    if (!helpNodes.length) return;
+                    const d = document.createElement('details');
+                    d.className = 'write-help';
+                    const sum = document.createElement('summary');
+                    sum.className = 'write-help-summary';
+                    sum.textContent = 'Help me write';
+                    const body = document.createElement('div');
+                    body.className = 'write-help-body';
+                    helpNodes.forEach(function(n) { body.appendChild(n); });
+                    d.appendChild(sum);
+                    d.appendChild(body);
+                    let after = ta.nextElementSibling;
+                    if (after && after.classList.contains('word-counter')) {
+                        after.parentNode.insertBefore(d, after.nextSibling);
+                    } else {
+                        ta.parentNode.insertBefore(d, ta.nextSibling);
+                    }
+                });
             });
-            el.parentNode.insertBefore(btn, el);
+            updateExemplarNotes();
         }
 
-        function wireUpProgressiveHelp() {
-            let i = 0;
-            document.querySelectorAll('.helper-text').forEach(el => collapseBehindToggle(el, 'Show help', 'help' + (i++)));
-            document.querySelectorAll('.check-reminder').forEach(el => collapseBehindToggle(el, 'Quick check', 'chk' + (i++)));
-            document.querySelectorAll('.rubric-box').forEach(el => collapseBehindToggle(el, 'Show checklist', 'rub' + (i++)));
+        function updateExemplarNotes() {
+            const topicEl = document.getElementById('subject');
+            const topic = topicEl && topicEl.value ? topicEl.value.trim() : '';
+            document.querySelectorAll('.exemplar-topic-note').forEach(function(el) {
+                el.textContent = topic
+                    ? 'This example is about someone else. Use the same approach for ' + topic + ' - do not copy this story.'
+                    : 'This is a model of the style, not a script to copy. Pick your topic first.';
+            });
+        }
+
+        function wireUpTooltips() {
+            document.querySelectorAll('.info-icon').forEach(function(icon) {
+                icon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const open = icon.classList.contains('tip-open');
+                    document.querySelectorAll('.info-icon.tip-open').forEach(function(i) { i.classList.remove('tip-open'); });
+                    if (!open) icon.classList.add('tip-open');
+                });
+                icon.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        icon.click();
+                    }
+                    if (e.key === 'Escape') icon.classList.remove('tip-open');
+                });
+            });
+            document.addEventListener('click', function() {
+                document.querySelectorAll('.info-icon.tip-open').forEach(function(i) { i.classList.remove('tip-open'); });
+            });
         }
 
         // ============================================
@@ -1412,13 +1500,18 @@
         // A step is "done" enough to advance / to unlock later steps.
         function wizStepDone(n) {
             if (n === 0) {
-                return ['studentName', 'podcastName', 'subject'].every(id => {
+                return ['studentName', 'subject'].every(id => {
                     const el = document.getElementById(id); return el && el.value.trim().length > 0;
                 });
             }
-            if (n === 1) {  // Research: a topic has been chosen (the subject dropdown)
+            if (n === 1) {
                 const t = document.getElementById('subject');
-                return !!(t && t.value);
+                const read = document.getElementById('researchRead');
+                if (!(t && t.value)) return false;
+                if (read && read.checked) return true;
+                return !!(document.querySelector('input[name="intro"]:checked') ||
+                    document.querySelector('input[name="content"]:checked') ||
+                    document.querySelector('input[name="conclusion"]:checked'));
             }
             if (n === WIZ_LAST) return true;
             const radio = WIZ_RADIO[n];
@@ -1450,6 +1543,7 @@
             if (te) { if (n === WIZ_LAST) { updateTimeEstimate(); } else { te.style.display = 'none'; } }
             if (n === 1 && typeof rvSyncFromSelect === 'function') rvSyncFromSelect();
             if (typeof rvRenderStepFacts === 'function') rvRenderStepFacts(n);
+            if (typeof updateExemplarNotes === 'function') updateExemplarNotes();
             wizUpdateNav();
             wizUpdateStepper();
             const first = wizEls(n)[0];
@@ -1498,7 +1592,7 @@
             showStep(wizCurrent + 1);
             if (leaving === 0) {
                 setTimeout(function() {
-                    showToast('Step saved! Tip: back up your work in Google Docs so you don\'t lose it if you switch computers 💾', 6000);
+                    showToast('Saved on this computer. On a shared Chromebook, tap Copy to Google Doc in the top right.', 6000);
                 }, 800);
             }
         }
@@ -1526,11 +1620,18 @@
             const n = wizCurrent;
             let target = null;
             if (n === 0) {
-                target = ['studentName', 'podcastName', 'subject'].map(id => document.getElementById(id)).find(el => el && !el.value.trim());
+                target = ['studentName', 'subject'].map(id => document.getElementById(id)).find(el => el && !el.value.trim());
             } else if (n === 1) {
-                showToast('Choose your topic on the Basics step first 📚');
-                showStep(0);
-                const s = document.getElementById('subject'); if (s) { wizNudgeField(s); }
+                const t = document.getElementById('subject');
+                if (!t || !t.value) {
+                    showToast('Choose your topic on the Basics step first');
+                    showStep(0);
+                    if (t) wizNudgeField(t);
+                    return;
+                }
+                const read = document.getElementById('researchRead');
+                showToast('Read the piece, then check I read this and I\'m ready to write');
+                wizNudgeField(read);
                 return;
             } else {
                 const radio = WIZ_RADIO[n];
@@ -1553,13 +1654,15 @@
 
         function wizInit() {
             if (typeof rvInitResearch === 'function') rvInitResearch();
-            document.querySelectorAll('input[type="text"], textarea, input[type="radio"], select')
+            document.querySelectorAll('input[type="text"], textarea, input[type="radio"], input[type="checkbox"], select')
                 .forEach(el => {
                     el.addEventListener('input', wizUpdateStepper);
                     el.addEventListener('change', () => { wizUpdateStepper(); wizUpdateNav(); });
                 });
             showStep(wizFrontier());
             updateRoleCard();
+            updateGroupOptions();
+            if (typeof rvSyncFromSelect === 'function') rvSyncFromSelect();
         }
 
         // ============================================
@@ -1597,7 +1700,9 @@
                     html += '<optgroup label="' + g + '">';
                     groups[g].forEach(t => {
                         const nm = t.name.replace(/"/g, '&quot;');
-                        html += '<option value="' + nm + '" data-id="' + t.id + '">' +
+                        const alias = (t.aliases || []).join('|').replace(/"/g, '&quot;');
+                        html += '<option value="' + nm + '" data-id="' + t.id + '"' +
+                            (alias ? ' data-alias="' + alias + '"' : '') + '>' +
                             t.name + (t.available ? '' : ' (reading coming soon)') + '</option>';
                     });
                     html += '</optgroup>';
@@ -1645,9 +1750,31 @@
 
         // Subject changed (the topic dropdown lives on the Basics step): refresh everything.
         function onTopicChange() {
+            suggestPodcastName();
+            updateExemplarNotes();
             updateTimeEstimate();
             rvSyncFromSelect();
             wizUpdateStepper(); wizUpdateNav();
+            autoSave();
+        }
+
+        function markPodcastNameEdited() {
+            const name = document.getElementById('podcastName');
+            if (name) name.dataset.userEdited = name.value.trim() ? '1' : '';
+        }
+
+        function suggestPodcastName() {
+            const topic = document.getElementById('subject');
+            const name = document.getElementById('podcastName');
+            if (!topic || !name) return;
+            if (name.dataset.userEdited === '1') return;
+            if (!topic.value.trim()) return;
+            name.value = 'Voices of ' + topic.value;
+        }
+
+        function onResearchReadyChange() {
+            wizUpdateStepper();
+            wizUpdateNav();
             autoSave();
         }
 
@@ -1693,10 +1820,10 @@
             const keyByStep = { 2: 'hook', 3: 'content', 4: 'conclusion' };
             const sectionLabel = { 2: 'Introduction', 3: 'Content', 4: 'Conclusion' };
             const levelLabel = {
-                mostSupport: 'Most support',
-                someSupport: 'Some support',
+                mostSupport: 'Easier language',
+                someSupport: 'A bit easier',
                 standard: 'Standard',
-                challenge: 'Challenge'
+                challenge: 'Harder language'
             };
             const key = keyByStep[stepNum];
             if (!key) return;
@@ -1719,7 +1846,7 @@
                 '<details class="step-facts-details">' +
                 '<summary><i class="fas fa-clipboard-list" aria-hidden="true"></i> Key facts for your ' + sectionLabel[stepNum] + '</summary>' +
                 '<div class="step-facts-body">' +
-                '<div class="step-facts-level"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Showing facts at your reading level: <span class="step-facts-level-badge">' + (levelLabel[rvLevel()] || rvLevel()) + '</span></div>' +
+                '<div class="step-facts-level">Showing facts in: <span class="step-facts-level-badge">' + (levelLabel[rvLevel()] || rvLevel()) + '</span></div>' +
                 '<ul class="step-facts-list">' + bullets + '</ul>' +
                 '<div class="step-facts-footer">Use these facts in your script - put them in your own voice, don\'t copy word-for-word.</div>' +
                 '</div>' +

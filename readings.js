@@ -28,8 +28,8 @@ window.RV_TOPICS = [
   { id: 'hessians', name: 'Hessian Soldiers', group: 'Groups & themes', available: true },
   { id: 'camp-followers', name: 'Camp Followers', group: 'Groups & themes', available: true },
   { id: 'young-soldiers', name: 'Young Soldiers & Teenage Patriots', group: 'Groups & themes', available: true },
-  { id: 'enslaved-british-freedom', name: 'The Paradox of Enslaved People & British Freedom', group: 'Groups & themes', available: true },
-  { id: 'womens-economic-agency', name: "Women's Economic Agency vs. Political Invisibility", group: 'Groups & themes', available: true }
+  { id: 'enslaved-british-freedom', name: 'Enslaved People and British Freedom Offers', group: 'Groups & themes', available: true, aliases: ['The Paradox of Enslaved People & British Freedom'] },
+  { id: 'womens-economic-agency', name: "Women's Work and Political Voice", group: 'Groups & themes', available: true, aliases: ["Women's Economic Agency vs. Political Invisibility"] }
 ];
 
 window.RV_READINGS = {
@@ -39,7 +39,7 @@ window.RV_READINGS = {
     quickFacts: [
       ['Born', 'Around 1753, West Africa (Senegal/Gambia region)'],
       ['Died', 'December 5, 1784, Boston (about age 31)'],
-      ['Role', 'Enslaved poet and published author; Patriot supporter'],
+      ['Role', 'Enslaved poet whose book was printed; she supported American freedom'],
       ['Famous for', 'First African American woman to publish a book of poetry (1773)']
     ],
     levels: {
@@ -154,12 +154,12 @@ window.RV_READINGS = {
 
   'crispus-attucks': {
     name: 'Crispus Attucks',
-    tagline: 'Sailor of African and Native American descent, remembered as the first to fall in the Boston Massacre',
+    tagline: 'Sailor of African and Native American family, remembered as the first to die in the Boston Massacre',
     quickFacts: [
       ['Born', 'Around 1723, probably Massachusetts'],
       ['Died', 'March 5, 1770, Boston (the Boston Massacre)'],
-      ['Role', 'Sailor and ropemaker; of African and Native American descent'],
-      ['Famous for', 'First of five killed at the Boston Massacre; later a symbol of Black patriotism']
+      ['Role', 'Sailor and ropemaker; African and Native American family'],
+      ['Famous for', 'First of five killed at the Boston Massacre; later remembered as a Black patriot']
     ],
     levels: {
       mostSupport: `
@@ -167,7 +167,7 @@ window.RV_READINGS = {
 <p>He may have been born a <strong>slave</strong> (a person who is owned and made to work for no pay). He ran away and lived free. He worked on ships and made rope.</p>
 <p>On March 5, 1770, British soldiers stood in a Boston street. A crowd was angry at them. People yelled and threw snowballs and ice.</p>
 <p>Crispus was at the front of the crowd. The soldiers fired their guns. Crispus was shot and died. He was the first of five men to die that night.</p>
-<p>This night is called the <strong>Boston Massacre</strong>. It made many colonists want to be free from Britain.</p>
+<p>This night is called the <strong>Boston Massacre</strong> (when soldiers killed people in a crowd). It made many colonists want to be free from Britain.</p>
 <p>For a long time, people forgot Crispus. Later, people who fought to end slavery told his story again. Today we remember him as one of the first to die for American freedom.</p>`,
       someSupport: `
 <p>Crispus Attucks was a sailor and ropemaker in Boston. He had both African and Native American ancestors and was born around 1723. He may have been born enslaved — a 1750 newspaper ad searched for a runaway who matched him. Either way, he lived his adult life as a free man, working on ships.</p>
@@ -212,12 +212,12 @@ window.RV_READINGS = {
 
   'james-armistead': {
     name: 'James Armistead Lafayette',
-    tagline: 'Enslaved double agent whose intelligence helped trap the British at Yorktown',
+    tagline: 'Enslaved spy whose secrets helped trap the British at Yorktown',
     quickFacts: [
       ['Born', 'Around 1748, Virginia (enslaved)'],
       ['Died', 'August 9, 1830 (about age 82)'],
-      ['Role', 'Spy and double agent for the Continental Army under Lafayette'],
-      ['Famous for', 'Intelligence that helped win the Battle of Yorktown; freed by Virginia in 1786–87']
+      ['Role', 'Spy who pretended to help the British while helping the Americans'],
+      ['Famous for', 'Secrets that helped win the Battle of Yorktown; freed by Virginia in 1786–87']
     ],
     levels: {
       mostSupport: `
@@ -271,12 +271,12 @@ window.RV_READINGS = {
 
   'deborah-sampson': {
     name: 'Deborah Sampson',
-    tagline: 'Disguised herself as a man to serve in the Continental Army',
+    tagline: 'Disguised herself as a man to serve in the American army',
     quickFacts: [
       ['Born', 'December 17, 1760, Plympton, Massachusetts'],
       ['Died', 'April 29, 1827 (age 66)'],
-      ['Role', 'Continental Army soldier under the name "Robert Shurtliff"'],
-      ['Famous for', 'Serving ~17 months disguised as a man; among the first women to earn a military pension']
+      ['Role', 'American soldier under the name "Robert Shurtliff"'],
+      ['Famous for', 'Serving about 17 months disguised as a man; among the first women to get army pay']
     ],
     levels: {
       mostSupport: `
@@ -334,11 +334,11 @@ window.RV_READINGS = {
       ['Born', 'Around 1750, Framingham, Massachusetts (enslaved)'],
       ['Died', 'August 16, 1816 (about age 66)'],
       ['Role', 'Continental Army soldier'],
-      ['Famous for', 'Credited by tradition with shooting British Major Pitcairn at Bunker Hill; long service']
+      ['Famous for', 'People say he shot British Major Pitcairn at Bunker Hill; he served a long time']
     ],
     levels: {
       mostSupport: `
-<p>Peter Salem was born a <strong>slave</strong> (a person who is owned and made to work for no pay) in Massachusetts around 1750. His enslaver freed him so he could join the army.</p>
+<p>Peter Salem was born a <strong>slave</strong> (a person who is owned and made to work for no pay) in Massachusetts around 1750. The family who owned him freed him so he could join the army.</p>
 <p>Peter became a soldier in the American army. He was one of thousands of Black men who fought in the Revolution.</p>
 <p>He fought at the Battle of Bunker Hill in 1775. People say Peter shot a British leader named Major Pitcairn. (We are not fully sure who fired the shot.)</p>
 <p>Peter kept fighting for years. Being a Black soldier was hard. Some white soldiers did not want him there. But Peter was brave and kept serving.</p>
@@ -387,12 +387,12 @@ window.RV_READINGS = {
 
   'sybil-ludington': {
     name: 'Sybil Ludington',
-    tagline: 'Patriot teenager famous for a legendary midnight ride that historians now question',
+    tagline: 'Patriot teenager famous for a midnight ride that historians now question',
     quickFacts: [
       ['Born', 'April 5, 1761, Fredericksburg (Ludingtonville), New York'],
       ['Died', 'February 26, 1839 (age 77)'],
       ['Role', 'Daughter of a Patriot militia commander'],
-      ['Famous for', 'A celebrated 1777 "midnight ride" — a beloved story with little contemporary evidence']
+      ['Famous for', 'A famous 1777 "midnight ride": a beloved story with little evidence from that year']
     ],
     levels: {
       mostSupport: `
@@ -445,20 +445,20 @@ window.RV_READINGS = {
 
   'joseph-brant': {
     name: 'Joseph Brant (Thayendanegea)',
-    tagline: 'Mohawk war chief and diplomat who allied with Britain to defend Haudenosaunee land',
+    tagline: 'Mohawk leader who allied with Britain to protect Native land',
     quickFacts: [
       ['Born', '1743, Ohio Country'],
       ['Died', 'November 24, 1807, Burlington, Upper Canada (about age 64)'],
-      ['Role', 'Mohawk leader, military leader, and diplomat'],
-      ['Famous for', 'Leading Mohawk forces with the British; defending Mohawk land; bridging two worlds']
+      ['Role', 'Mohawk leader who fought and spoke for his people'],
+      ['Famous for', 'Leading Mohawk fighters with the British; protecting Mohawk land']
     ],
     levels: {
       mostSupport: `
 <p>Joseph Brant was a <strong>Mohawk</strong> leader. The Mohawk are a Native American nation. His Mohawk name was Thayendanegea.</p>
-<p>He was born in 1743. As a boy he learned to read and write English and went to a colonial school. He also stayed close to his Mohawk people.</p>
+<p>He was born in 1743. As a boy he learned to read and write English and went to a school run by colonists (people from Britain living in America). He also stayed close to his Mohawk people.</p>
 <p>When the Revolutionary War came, Native nations had to choose a side. Joseph and many Mohawk chose to help the British. They thought the British would protect their land from American settlers.</p>
-<p>Joseph led Mohawk warriors in the war. He was a strong leader. He also tried to protect prisoners and stop needless cruelty.</p>
-<p>The war split the Iroquois nations apart. American soldiers burned many Native towns.</p>
+<p>Joseph led Mohawk fighters in the war. He was a strong leader. He also tried to protect prisoners and stop people from being hurt for no reason.</p>
+<p>The war split the Iroquois (a group of Native nations who had worked together) apart. American soldiers burned many Native towns.</p>
 <p>After the war, Joseph led his people to new land in Canada. He died in 1807. He spent his life trying to protect the Mohawk.</p>`,
       someSupport: `
 <p>Joseph Brant — Mohawk name Thayendanegea — was born in 1743. The Mohawk were one of the six nations of the Iroquois Confederacy (also called the Haudenosaunee). As a boy, Joseph learned English and attended a colonial school, but he stayed deeply connected to his people.</p>
@@ -475,13 +475,13 @@ window.RV_READINGS = {
     },
     keyFacts: {
       hook: {
-        mostSupport: ['Joseph Brant was a Mohawk leader.', 'His Mohawk name was Thayendanegea.', 'He learned English and went to a colonial school.'],
+        mostSupport: ['Joseph Brant was a Mohawk leader.', 'His Mohawk name was Thayendanegea.', 'He learned English and went to a school run by colonists.'],
         someSupport: ['Joseph Brant (Thayendanegea) was a Mohawk leader born in 1743.', 'The Mohawk were part of the six-nation Iroquois Confederacy.', 'He learned English and lived between Native and European worlds.'],
         standard: ['Mohawk leader Thayendanegea, born 1743 in the Ohio Country.', "Through his sister Molly's tie to Sir William Johnson, he gained a colonial education.", 'He moved between Native and European worlds while leading his people.'],
         challenge: ["Thayendanegea ('two sticks bound together'), born 1743, lived athwart two worlds.", 'Schooled by Eleazar Wheelock; helped translate scripture into Mohawk; met King George III.', 'Tied to British power through his sister Molly Brant and Sir William Johnson.']
       },
       content: {
-        mostSupport: ['Native nations had to choose a side in the war.', 'Joseph and many Mohawk helped the British.', 'They hoped Britain would protect their land.', 'Joseph led Mohawk warriors and tried to protect prisoners.'],
+        mostSupport: ['Native nations had to choose a side in the war.', 'Joseph and many Mohawk helped the British.', 'They hoped Britain would protect their land.', 'Joseph led Mohawk fighters and tried to protect prisoners.'],
         someSupport: ['He sided with the British to protect Native land from settlers.', 'His choice split the Iroquois Confederacy apart.', 'He led raids but often tried to spare prisoners and civilians.', 'He met King George III in London in 1775–76.'],
         standard: ['Allied with Britain, judging the Crown likelier to protect Haudenosaunee land.', 'The choice fractured the Confederacy — the Oneida sided with the Americans.', "Led Mohawk and Loyalist raids in New York and Pennsylvania; feared as 'Monster Brant.'", 'Often worked to spare prisoners and civilians.'],
         challenge: ["His alliance was calculation, not loyalty: the Crown's 1763 Proclamation tried to limit settler expansion.", 'The choice set Mohawk against Oneida and shattered Confederacy unity.', "Demonized as 'Monster Brant,' he in fact often restrained violence (e.g., saving prisoner John McKinstry).", 'He led devastating but disciplined frontier campaigns.']
@@ -503,21 +503,21 @@ window.RV_READINGS = {
 
   'abigail-adams': {
     name: 'Abigail Adams',
-    tagline: 'Patriot advisor and letter-writer who urged the founders to "Remember the Ladies"',
+    tagline: 'Letter-writer who urged the founders to "Remember the Ladies"',
     quickFacts: [
       ['Born', 'November 22, 1744, Weymouth, Massachusetts'],
       ['Died', 'October 28, 1818 (age 73)'],
-      ['Role', 'Advisor, farm manager, political thinker; second First Lady'],
-      ['Famous for', '"Remember the Ladies" letter (1776); 1,100+ letters; opposing slavery']
+      ['Role', 'Letter-writer who ran the farm; later the president\'s wife'],
+      ['Famous for', '"Remember the Ladies" letter (1776); more than 1,100 letters; opposing slavery']
     ],
     levels: {
       mostSupport: `
 <p>Abigail Adams was born in Massachusetts in 1744. Girls did not go to school then. But Abigail taught herself by reading many books.</p>
-<p>She married John Adams, a leader in the fight for independence. They talked about everything, even politics.</p>
+<p>She married John Adams, a leader in the fight for <strong>independence</strong> (America becoming its own country). They talked about everything, even <strong>politics</strong> (government and laws).</p>
 <p>During the war, John was away for a long time. Abigail ran the farm and the money and raised the children all by herself. She did it very well.</p>
 <p>Abigail wrote a famous letter in 1776. She told John to "Remember the Ladies." She wanted the new country to give women rights too.</p>
 <p>Abigail also said slavery was wrong.</p>
-<p>Later, John became president, and Abigail was the First Lady. She died in 1818. People still read her letters today.</p>`,
+<p>Later, John became president, and Abigail was the <strong>First Lady</strong> (the president's wife). She died in 1818. People still read her letters today.</p>`,
       someSupport: `
 <p>Abigail Adams was born on November 22, 1744, in Weymouth, Massachusetts. In the 1700s most girls did not go to school, but Abigail taught herself by reading books in her father's library. She became one of the best-educated women of her time.</p>
 <p>She married John Adams, a lawyer and leader of the independence movement. During the Revolutionary War, John was often away serving in the Continental Congress. Abigail managed the farm, the money, and the children on her own — and kept the family secure.</p>
@@ -533,7 +533,7 @@ window.RV_READINGS = {
     },
     keyFacts: {
       hook: {
-        mostSupport: ['Girls did not go to school then.', 'Abigail taught herself by reading many books.', 'She married John Adams, a leader for independence.'],
+        mostSupport: ['Girls did not go to school then.', 'Abigail taught herself by reading many books.', 'She married John Adams, a leader for independence (America becoming its own country).'],
         someSupport: ['Born in 1744, when most girls did not go to school.', "She taught herself by reading in her father's library.", 'She married John Adams, a leader of the independence movement.'],
         standard: ['Born 1744; self-educated because girls were denied formal schooling.', 'Became one of the most learned women of her era.', 'Married John Adams at 19 and became his political partner.'],
         challenge: ['Born 1744 to a Weymouth minister; turned a denied education into a self-directed one.', "Married John Adams in 1764, beginning one of history's great correspondences.", "Emerged as a sharp political mind among the founding generation's women."]
@@ -545,7 +545,7 @@ window.RV_READINGS = {
         challenge: ['Managed the Adams farm through war, inoculation, and inflation — work women rarely controlled.', "Her 1776 letter pressed natural-rights logic into the household: 'Remember the Ladies.'", "John's jocular dismissal showed the Revolution's rights talk stopped at the home's door.", "She corresponded as John's trusted political counselor."]
       },
       conclusion: {
-        mostSupport: ['Abigail said slavery was wrong.', 'Later she was the First Lady.', 'People still read her letters today.'],
+        mostSupport: ['Abigail said slavery was wrong.', 'Later she was the First Lady (the president\'s wife).', 'People still read her letters today.'],
         someSupport: ['She also spoke out against slavery.', 'She later became the second First Lady.', "Women's-rights leaders later quoted her famous letter."],
         standard: ['She condemned slavery as a betrayal of American liberty.', "She served as the nation's second First Lady and died in 1818.", 'Later women\'s-rights advocates invoked her words as proof their demand was as old as the country.'],
         challenge: ["She denounced slavery as hypocrisy and defended a free Black youth's right to school (1797).", 'Her power lies in the standard she set, not any law she changed.', "Suffragists quoted 'Remember the Ladies' for generations.", 'She died in 1818 as the second First Lady.']
@@ -561,19 +561,19 @@ window.RV_READINGS = {
 
   'mercy-otis-warren': {
     name: 'Mercy Otis Warren',
-    tagline: 'Patriot satirist and the first woman to publish a history of the Revolution',
+    tagline: 'A writer who made fun of British leaders, and the first woman to publish a history of the war',
     quickFacts: [
       ['Born', 'September 25, 1728, Barnstable, Massachusetts'],
       ['Died', 'October 19, 1814 (age 86)'],
-      ['Role', 'Playwright, political writer, historian, advisor'],
-      ['Famous for', 'Satirical plays attacking British officials; her 1805 history of the Revolution']
+      ['Role', 'Playwright, writer, historian, advisor'],
+      ['Famous for', 'Plays that made fun of British leaders; her 1805 history of the Revolution']
     ],
     levels: {
       mostSupport: `
-<p>Mercy Otis Warren was born in Massachusetts in 1728. Most girls did not get much schooling then. But Mercy's father let her learn with her brothers' tutors. She loved books and big ideas.</p>
+<p>Mercy Otis Warren was born in Massachusetts in 1728. Most girls did not get much schooling then. But Mercy's father let her learn with her brothers' <strong>tutors</strong> (teachers who teach at home). She loved books and big ideas.</p>
 <p>She married James Warren and had five sons. She cared a lot about the rights of the colonists.</p>
 <p>Mercy used writing as her weapon. She wrote plays that made fun of British leaders. People read them in newspapers. The plays helped colonists see Britain as unfair.</p>
-<p>Women were not supposed to write about politics. So Mercy often left her name off her work. But Patriot leaders knew it was her, and they listened to her ideas.</p>
+<p>Women were not supposed to write about <strong>politics</strong> (government and laws). So Mercy often left her name off her work. But Patriot leaders knew it was her, and they listened to her ideas.</p>
 <p>After the war, Mercy wrote a long history of the Revolution. She was the first woman to do this.</p>
 <p>Mercy died in 1814. She showed that words can be powerful.</p>`,
       someSupport: `
@@ -591,13 +591,13 @@ window.RV_READINGS = {
     },
     keyFacts: {
       hook: {
-        mostSupport: ['Girls did not get much school then.', "Mercy learned with her brothers' tutors.", 'She used writing to fight for the colonists.'],
+        mostSupport: ['Girls did not get much school then.', "Mercy learned with her brothers' home teachers.", 'She used writing to fight for the colonists.'],
         someSupport: ["Born in 1728; she studied with her brothers' tutors, which was rare for a girl.", 'Her brother James Otis Jr. was an early leader against British taxes.', 'She used her writing as a weapon for the Patriot cause.'],
         standard: ['Born 1728 into the politically active Otis family of Massachusetts.', 'Brother James Otis Jr. helped lead the early fight against British taxes.', "Unusually for a girl, she was educated alongside her brothers' tutors."],
         challenge: ['Born 1728 into the Otis family; educated informally with her brothers.', "Brother James Otis Jr. popularized the cry against 'taxation without representation.'", 'She mastered a public, political world that barred women.']
       },
       content: {
-        mostSupport: ['She wrote plays that made fun of British leaders.', 'People read the plays in newspapers.', "She left her name off because women weren't supposed to write about politics.", 'Patriot leaders still knew it was her.'],
+        mostSupport: ['She wrote plays that made fun of British leaders.', 'People read the plays in newspapers.', "She left her name off because women weren't supposed to write about politics (government and laws).", 'Patriot leaders still knew it was her.'],
         someSupport: ['Her plays mocked British officials like Governor Thomas Hutchinson.', 'They were printed in newspapers and turned colonists against Britain.', 'She published anonymously because politics was off-limits to women.', 'John and Abigail Adams were her friends and valued her ideas.'],
         standard: ['Her plays — The Adulateur (1772), The Group (1775) — lampooned royal officials.', 'They were published, not staged, and spread Patriot ideas.', 'She wrote under anonymity or pen names because politics excluded women.', 'She traded political ideas with John and Abigail Adams.'],
         challenge: ["She wielded the 'closet drama' — plays meant to be read — as political artillery.", 'The Adulateur (1772) and The Group (1775) cast Crown officials as venal grotesques.', 'Anonymity shielded a woman from the impropriety of open partisanship.', 'Her letters reveal fluency in republican theory.']
@@ -619,17 +619,17 @@ window.RV_READINGS = {
 
   'molly-pitcher': {
     name: 'Molly Pitcher',
-    tagline: 'A legendary "water carrier and cannoneer" likely based on real women such as Mary Ludwig Hays',
+    tagline: 'A famous water-carrier story, likely based on real women such as Mary Ludwig Hays',
     quickFacts: [
-      ['Who', '"Molly Pitcher" — a legend likely based on real women, especially Mary Ludwig Hays (c. 1744)'],
-      ['Battle', 'Monmouth, June 28, 1778 (a brutally hot day)'],
+      ['Who', '"Molly Pitcher" is a legend likely based on real women, especially Mary Ludwig Hays (around 1744)'],
+      ['Battle', 'Monmouth, June 28, 1778 (a very hot day)'],
       ['Role', 'Camp follower who carried water to soldiers'],
       ['Famous for', 'The story of taking over a cannon when her husband fell']
     ],
     levels: {
       mostSupport: `
 <p>"Molly Pitcher" is a famous Revolutionary War story. It may not be about just one real person. It is probably based on real women who helped soldiers in battle.</p>
-<p>The woman most linked to the name is Mary Ludwig Hays. Like many wives, she followed the army and helped the soldiers. Women who did this were called <strong>camp followers</strong>.</p>
+<p>The woman most linked to the name is Mary Ludwig Hays. Like many wives, she followed the army and helped the soldiers. Women who did this were called <strong>camp followers</strong> (people who traveled with the army to cook, wash, and help).</p>
 <p>On June 28, 1778, there was a battle at Monmouth, New Jersey. It was a very hot day. Soldiers were thirsty. Women carried water to them. Soldiers may have shouted "Molly! Pitcher!" for water.</p>
 <p>The famous story says that when one woman's husband fell at his cannon, she took his place and kept firing. Real women did help at cannons in the war. But some parts of the "Molly Pitcher" story are <strong>legend</strong> (a story that may not be fully true).</p>
 <p>Mary Ludwig Hays later got money from the state of Pennsylvania for her war service. The story reminds us that many women helped win the war.</p>`,
@@ -676,20 +676,20 @@ window.RV_READINGS = {
 
   'nancy-hart': {
     name: 'Nancy Hart',
-    tagline: 'Georgia frontier Patriot whose famous exploits are mostly legend',
+    tagline: 'Georgia Patriot whose famous stories are mostly legend',
     quickFacts: [
       ['Born', 'Around 1735 (North Carolina or Pennsylvania)'],
       ['Died', 'Around 1830'],
-      ['Role', 'Frontier woman and Patriot in Georgia'],
-      ['Famous for', 'The legend of capturing Loyalist soldiers in her cabin; namesake of Hart County, Georgia']
+      ['Role', 'Woman living on the edge of settled land in Georgia; Patriot'],
+      ['Famous for', 'The legend of capturing Loyalist soldiers in her cabin; Hart County, Georgia, is named for her']
     ],
     levels: {
       mostSupport: `
-<p>Nancy Hart was a frontier woman in Georgia during the Revolutionary War. She was tall and known as a great shot with a rifle.</p>
+<p>Nancy Hart was a <strong>frontier</strong> woman (living at the edge of settled land) in Georgia during the Revolutionary War. She was tall and known as a great shot with a rifle.</p>
 <p>There is a famous story about her. The story says some <strong>Loyalist</strong> soldiers (men who supported the British king) came to her cabin and made her cook for them.</p>
 <p>The story says Nancy was clever. While the men ate and drank, she slid their guns out through a crack in the wall, one by one. Then she grabbed a gun and held them until help came.</p>
 <p>Here is the important part: most of Nancy's story cannot be proven. It was written down many years later. She was likely a real person, but her famous deeds are mostly <strong>legend</strong> (a story that may not be fully true).</p>
-<p>A county in Georgia is named after her. Her story shows how tough frontier women had to be.</p>`,
+<p>A county in Georgia is named after her. Her story shows how tough women living on the edge of settled land had to be.</p>`,
       someSupport: `
 <p>Nancy Hart lived on the Georgia frontier during the Revolutionary War. Stories describe her as tall, red-haired, and an excellent shot with a rifle. In Georgia the war was also a civil war, with Patriot and Loyalist neighbors fighting each other.</p>
 <p>Her most famous story says that several Loyalist soldiers came to her cabin and demanded a meal. While they ate and drank, Nancy secretly slipped their muskets out through a gap in the cabin wall. When the men noticed, she held them at gunpoint until help arrived.</p>
@@ -705,7 +705,7 @@ window.RV_READINGS = {
     },
     keyFacts: {
       hook: {
-        mostSupport: ['Nancy Hart lived on the Georgia frontier.', 'She was tall and a great shot with a rifle.', 'There is a famous story about her capturing enemy soldiers.'],
+        mostSupport: ['Nancy Hart lived on the edge of settled land in Georgia.', 'She was tall and a great shot with a rifle.', 'There is a famous story about her capturing enemy soldiers.'],
         someSupport: ['Nancy Hart was a frontier woman in Revolutionary Georgia.', 'Stories call her tall, red-haired, and a crack shot.', 'In Georgia the war was also a civil war between neighbors.'],
         standard: ["Georgia's most famous Revolutionary heroine — and most legendary.", 'By tradition a tall, sharp-shooting Patriot on the Broad River frontier.', 'The Georgia backcountry war was a vicious Patriot-vs-Loyalist civil war.'],
         challenge: ['A figure on the border between history and folklore.', 'Records support little beyond a real Hart family on the Broad River frontier.', 'The backcountry war was brutal neighbor-against-neighbor violence.']
@@ -733,7 +733,7 @@ window.RV_READINGS = {
 
   'benedict-arnold': {
     name: 'Benedict Arnold',
-    tagline: 'Brilliant Patriot general whose betrayal made his name a synonym for "traitor"',
+    tagline: 'Brave American general whose betrayal made his name mean "traitor"',
     quickFacts: [
       ['Born', 'January 14, 1741, Norwich, Connecticut'],
       ['Died', 'June 14, 1801, London (age 60)'],
@@ -790,11 +790,11 @@ window.RV_READINGS = {
 
   'women': {
     name: 'Women in the Revolutionary War',
-    tagline: 'Boycotters, farm managers, camp followers, nurses, spies — and a few soldiers in disguise',
+    tagline: 'Women ran boycotts, farms, and army camps. After the war they still did not have equal rights',
     quickFacts: [
-      ['Roles', 'Boycott organizers, "deputy husbands," camp followers, nurses, spies, rare disguised soldiers'],
+      ['Roles', 'Boycotts, running farms, cooking and nursing for the army, spying; a few dressed as soldiers'],
       ['Key idea', 'Women helped win a freedom they were then denied'],
-      ['Watch for', 'Coverture — a married woman had no separate legal identity'],
+      ['Watch for', 'Coverture: a married woman had no legal rights apart from her husband'],
       ['Voices to recover', 'Daughters of Liberty, Abigail Adams, camp followers']
     ],
     levels: {
@@ -803,13 +803,13 @@ window.RV_READINGS = {
 <p>Before the war, women joined <strong>boycotts</strong> (refusing to buy something to protest). Women stopped buying British cloth and tea. They made their own cloth at "spinning bees." This hurt Britain's money.</p>
 <p>When men went to fight, women ran the farms, shops, and homes. This was a huge job.</p>
 <p>Some women followed the army. They cooked, washed clothes, and nursed hurt soldiers. A few women were spies. A very few even dressed as men to be soldiers.</p>
-<p>After the war, women still could not vote or own property the way men could. The law called this <strong>coverture</strong> — a wife had no rights apart from her husband.</p>
+<p>After the war, women still could not vote or own <strong>property</strong> (land, houses, and things they owned) the way men could. The law called this <strong>coverture</strong> (a wife had no rights apart from her husband).</p>
 <p>Women helped win the war. But they had to keep fighting for their own rights for many years.</p>`,
       someSupport: `
 <p>Women played essential roles in the Revolutionary War — even though they were left out of the freedom they helped create.</p>
 <p>Before the fighting started, women led the boycotts of British goods. Groups called the Daughters of Liberty held "spinning bees" to make their own cloth instead of buying British fabric. In 1770, hundreds of Boston women signed a promise not to drink British tea. Because women made most household purchases, their choices put real economic pressure on Britain.</p>
-<p>When men marched off to war, women became "deputy husbands," running farms, shops, and households alone. Thousands of women also followed the army as camp followers, cooking, washing, and nursing the wounded. A few served as spies, and a very small number disguised themselves as men to fight.</p>
-<p>After the war, little changed for women legally. Under a system called coverture, a married woman had no legal identity separate from her husband. Women had helped win independence, but the new nation did not give them equal rights — a fight that would continue for generations.</p>`,
+<p>When men marched off to war, women became "deputy husbands" (they ran the farm or shop in the husband's place). Thousands of women also followed the army as camp followers, cooking, washing, and nursing the wounded. A few served as spies, and a very small number disguised themselves as men to fight.</p>
+<p>After the war, little changed for women legally. Under a system called <strong>coverture</strong> (a wife had no legal identity apart from her husband), they still could not vote or own property of their own. Women had helped win independence, but the new nation did not give them equal rights. That fight would continue for generations.</p>`,
       standard: `
 <p>Women were everywhere in the Revolution — organizing, managing, nursing, spying, occasionally fighting — yet they were excluded from the liberty they helped secure. Abigail Adams captured the irony in 1776 when she asked her husband to "Remember the Ladies," and he brushed her off.</p>
 <p>Their resistance began with economics. Because women made most household purchases, the boycotts of British goods depended on them. The Daughters of Liberty held "spinning bees" to produce homespun cloth, and in 1770 several hundred Boston women publicly pledged to give up British tea — turning shopping into political protest at a time when women were expected to stay out of politics. When the men left to fight, women became "deputy husbands," running farms, businesses, and finances; thousands more traveled with the army as camp followers who cooked, laundered, and nursed, sharing the soldiers' dangers. A handful spied, and a very few, like Deborah Sampson, enlisted in disguise.</p>
@@ -828,13 +828,13 @@ window.RV_READINGS = {
       },
       content: {
         mostSupport: ["Women made their own cloth at 'spinning bees.'", 'When men left to fight, women ran the farms and shops.', 'Some followed the army to cook and nurse.', 'A few were spies or dressed as men to fight.'],
-        someSupport: ['In 1770, hundreds of Boston women pledged not to drink British tea.', "Women became 'deputy husbands,' running farms and businesses alone.", 'Thousands followed the army as camp followers.', 'A few spied; a very few fought in disguise.'],
+        someSupport: ['In 1770, hundreds of Boston women pledged not to drink British tea.', "Women became 'deputy husbands' (they ran the farm or shop in the husband's place).", 'Thousands followed the army as camp followers.', 'A few spied; a very few fought in disguise.'],
         standard: ['The Daughters of Liberty spun homespun; ~300 Boston women pledged off British tea (1770).', "Women became 'deputy husbands,' managing farms, shops, and finances.", 'Thousands were camp followers — cooking, laundering, nursing.', 'A handful spied; a few, like Deborah Sampson, enlisted in disguise.'],
         challenge: ["Boycotts depended on women's control of household spending.", "'Deputy husbands' ran farms and ledgers a legal system normally barred them from.", 'Camp followers were indispensable yet resented by officers.', 'Carol Berkin: among the first times American women acted collectively for political ends.']
       },
       conclusion: {
-        mostSupport: ['After the war, women still could not vote.', 'The law (coverture) gave a wife no rights apart from her husband.', 'They kept fighting for their rights for many years.'],
-        someSupport: ['Little changed legally for women after the war.', 'Under coverture, a wife had no legal identity of her own.', "The fight for women's rights would continue for generations."],
+        mostSupport: ['After the war, women still could not vote.', 'The law of coverture (a wife had no rights apart from her husband) stayed in place.', 'They kept fighting for their rights for many years.'],
+        someSupport: ['Little changed legally for women after the war.', 'Under coverture, a wife had no legal identity of her own (no rights apart from her husband).', "The fight for women's rights would continue for generations."],
         standard: ['After the war, coverture left wives without the vote or full property rights.', "The Revolution's promises were not extended to women.", "Later activists traced the women's-rights movement back to this generation.", "The era offered mainly 'republican motherhood' — a real but limited role."],
         challenge: ['Independence left coverture intact — wives legally absorbed into husbands.', "The era's main offer was 'republican motherhood,' circumscribed but real.", "'Remember the Ladies' and John's refusal frame who 'all men' included.", 'Their experience seeded later women\'s movements.']
       }
@@ -849,25 +849,25 @@ window.RV_READINGS = {
 
   'african-americans': {
     name: 'African Americans in the Revolutionary War',
-    tagline: 'Enslaved and free Black people faced impossible choices — and sought freedom on both sides',
+    tagline: 'Enslaved and free Black people faced impossible choices, and sought freedom on both sides',
     quickFacts: [
       ['How many', '~500,000 African Americans in 1775 (~20% of the population; most enslaved)'],
-      ['The paradox', 'A nation declaring "all men are created equal" held people in slavery'],
+      ['The problem', 'A nation saying "all men are created equal" still held people in slavery'],
       ['Patriots', 'Roughly 5,000–9,000 served the American cause'],
-      ['British', "As many as 20,000 sought freedom behind British lines (Dunmore's Proclamation, 1775)"]
+      ['British', 'As many as 20,000 sought freedom with the British (Lord Dunmore promised freedom in 1775)']
     ],
     levels: {
       mostSupport: `
 <p>When the Revolution began, about 500,000 Black people lived in the colonies. That was about 1 in 5 people. Most were <strong>enslaved</strong> (owned and forced to work for no pay).</p>
-<p>This was a hard contradiction. White colonists said "all men are created equal" and fought for freedom. But they kept Black people enslaved.</p>
+<p>This was a hard <strong>contradiction</strong> (when people say one thing and do the opposite). White colonists said "all men are created equal" and fought for freedom. But they kept Black people enslaved.</p>
 <p>Black people had to make hard choices. Some fought for the Americans (the Patriots). They hoped to win freedom and respect. About 5,000 to 9,000 did this.</p>
 <p>Others ran to the British. In 1775, the British leader Lord Dunmore promised freedom to enslaved people who joined them. As many as 20,000 went to the British side.</p>
 <p>Black soldiers fought bravely on both sides. But after the war, slavery did not end in most places. Northern states slowly began to end it, but the South did not.</p>
 <p>Black Americans kept fighting for the freedom the Revolution had promised but not given.</p>`,
       someSupport: `
 <p>About 500,000 African Americans lived in the colonies in 1775 — roughly one in five people. Most were enslaved, especially in the South. The Revolution put them in an impossible position: white colonists demanded liberty for themselves while denying it to Black people.</p>
-<p>Facing this paradox, African Americans made different choices. Thousands fought for the Patriots, hoping that helping win independence would also win them freedom and respect; an estimated 5,000 to 9,000 served the American cause, including men in the First Rhode Island Regiment. Others sided with the British, who offered freedom: in 1775, Lord Dunmore promised freedom to enslaved people who joined the British army, and as many as 20,000 sought freedom behind British lines.</p>
-<p>Black soldiers and laborers served bravely on both sides. But independence did not end slavery. Northern states began to abolish it gradually, while the South expanded it. About 3,000 Black Loyalists were evacuated to Nova Scotia. For most Black Americans, the Revolution's promise of liberty remained unfulfilled.</p>`,
+<p>Facing this hard puzzle, African Americans made different choices. Thousands fought for the Patriots, hoping that helping win independence would also win them freedom and respect; an estimated 5,000 to 9,000 served the American cause, including men in the First Rhode Island Regiment. Others sided with the British, who offered freedom: in 1775, Lord Dunmore promised freedom to enslaved people who joined the British army, and as many as 20,000 sought freedom behind British lines.</p>
+<p>Black soldiers and laborers served bravely on both sides. But independence did not end slavery. Northern states began to end it slowly, while the South expanded it. About 3,000 Black Loyalists were taken by ship to Nova Scotia (in Canada). For most Black Americans, the Revolution's promise of liberty remained unfulfilled.</p>`,
       standard: `
 <p>Roughly 500,000 African Americans lived in the colonies in 1775 — about a fifth of the population, the great majority enslaved. Their presence exposed the Revolution's central contradiction: a people proclaiming that "all men are created equal" while holding hundreds of thousands in bondage.</p>
 <p>African Americans responded by seeking freedom wherever it seemed most attainable. Thousands joined the Patriot cause — an estimated 5,000 to 9,000 served, among them the integrated First Rhode Island Regiment — hoping that shared sacrifice would translate into shared liberty. Many more looked to the British, who made the more concrete offer: Lord Dunmore's 1775 proclamation promised freedom to enslaved people who fled Patriot masters to join the British, and the 1779 Philipsburg Proclamation widened it. As many as 20,000 sought refuge behind British lines as "Black Loyalists."</p>
@@ -892,7 +892,7 @@ window.RV_READINGS = {
       },
       conclusion: {
         mostSupport: ['After the war, slavery did not end in most places.', 'Northern states slowly began to end it; the South did not.', 'Black Americans kept fighting for freedom.'],
-        someSupport: ['The war did not end slavery.', 'Northern states began gradual abolition; the South expanded slavery.', 'About 3,000 Black Loyalists were evacuated to Nova Scotia.'],
+        someSupport: ['The war did not end slavery.', 'Northern states began to end slavery slowly; the South expanded slavery.', 'About 3,000 Black Loyalists were taken by ship to Nova Scotia (in Canada).'],
         standard: ['The North began gradual-emancipation laws; the South deepened slavery.', 'Britain evacuated ~3,000 Black Loyalists to Nova Scotia, where many met broken promises.', "For most, the Revolution's liberty was a promise deferred.", 'Their descendants would demand it be kept for generations.'],
         challenge: ['Northern states began gradual abolition; the plantation South entrenched slavery.', '~3,000 Black Loyalists (recorded in the "Book of Negroes") went to Nova Scotia; some later to Sierra Leone.', 'The Revolution both advanced and betrayed Black freedom at once.', 'It left a contradiction unresolved until the Civil War.']
       }
@@ -907,23 +907,23 @@ window.RV_READINGS = {
 
   'native-americans': {
     name: 'Native Americans in the Revolutionary War',
-    tagline: 'Sovereign nations forced to choose sides in a war over their own land',
+    tagline: 'Native nations had to pick a side in a war over their own land',
     quickFacts: [
-      ['The bind', 'Two groups fighting over Native land — neither asked permission'],
-      ['Most nations', 'Sided with Britain, which had tried to limit settlers (Proclamation of 1763)'],
-      ['The split', 'The Iroquois Confederacy fractured — Oneida & Tuscarora aided the Americans'],
-      ['The cost', 'Devastation regardless of side; the 1783 peace ignored Native allies']
+      ['The bind', 'Two groups fighting over Native land. Neither asked permission.'],
+      ['Most nations', 'Helped Britain, which in 1763 had tried to stop settlers taking Native land'],
+      ['The split', 'The Iroquois (six Native nations) split. The Oneida and Tuscarora helped the Americans.'],
+      ['The cost', 'The war hurt Native people on every side. The 1783 peace deal ignored Native allies.']
     ],
     levels: {
       mostSupport: `
 <p>Native American nations were put in a terrible spot during the Revolution. Two groups — the British and the American colonists — were fighting over land that belonged to Native peoples. Neither side asked their permission.</p>
 <p>Each nation had to choose: help the British, help the Americans, or try to stay <strong>neutral</strong> (out of it).</p>
 <p>Most Native nations helped the British. Why? In 1763, Britain had made a rule to stop colonists from moving onto Native land. The colonists wanted that land. So the British seemed like the safer choice.</p>
-<p>But the choice split nations apart. The Iroquois Confederacy had six nations. Some helped the British. Two — the Oneida and Tuscarora — helped the Americans.</p>
-<p>The war hurt Native people no matter which side they chose. American soldiers burned dozens of Native towns. And when the war ended, the peace treaty gave Native land to the United States without asking Native nations at all.</p>`,
+<p>But the choice split nations apart. The <strong>Iroquois Confederacy</strong> was six Native nations who had agreed to work together. Some helped the British. Two, the Oneida and Tuscarora, helped the Americans.</p>
+<p>The war hurt Native people no matter which side they chose. American soldiers burned dozens of Native towns. And when the war ended, the <strong>peace treaty</strong> (the written deal that ended the war) gave Native land to the United States without asking Native nations at all.</p>`,
       someSupport: `
 <p>Native American nations faced an impossible choice during the Revolution. The British and the American colonists were fighting over land that had belonged to Native peoples for thousands of years — and neither side asked permission. Each nation had to decide whether to help the British, help the Americans, or try to stay neutral.</p>
-<p>Most Native nations sided with the British. This wasn't love of British rule — it was strategy. After 1763, Britain had drawn a line (the Proclamation of 1763) to keep colonists from settling west on Native land. The colonists ignored it and kept coming. So many nations judged that Britain was more likely to protect their land.</p>
+<p>Most Native nations sided with the British. This wasn't love of British rule — it was strategy. After 1763, Britain had drawn a line (an official rule called the Proclamation of 1763) to keep colonists from settling west on Native land. The colonists ignored it and kept coming. So many nations judged that Britain was more likely to protect their land.</p>
 <p>The decision tore communities apart. The Iroquois Confederacy, united for centuries, split: most nations backed Britain, but the Oneida and Tuscarora helped the Americans. The war devastated Native peoples no matter their choice — in 1779 the Sullivan Expedition burned about 40 Iroquois towns. Worst of all, the 1783 Treaty of Paris that ended the war handed Native land to the United States without consulting the nations who lived there.</p>`,
       standard: `
 <p>For Native American nations, the Revolution was a war fought over their homelands by two groups of outsiders, neither of which recognized their rights. They had to choose among bad options: ally with Britain, ally with the Americans, or attempt a neutrality both sides would violate.</p>
@@ -942,13 +942,13 @@ window.RV_READINGS = {
         challenge: ["To Native nations, it was someone else's war waged across their sovereign land.", 'Both parties claimed territory that belonged to neither.', 'Each nation had to wager its future on a bad bet.']
       },
       content: {
-        mostSupport: ['Most Native nations helped the British.', 'In 1763 Britain had tried to stop colonists from taking Native land.', 'The Iroquois Confederacy split apart.', 'The Oneida and Tuscarora helped the Americans.'],
+        mostSupport: ['Most Native nations helped the British.', 'In 1763 Britain had tried to stop colonists from taking Native land.', 'The Iroquois Confederacy (six Native nations working together) split apart.', 'The Oneida and Tuscarora helped the Americans.'],
         someSupport: ['Most sided with Britain — a strategy, not love of British rule.', 'The Proclamation of 1763 had tried to limit settlers on Native land.', 'The Iroquois Confederacy split: most backed Britain; Oneida and Tuscarora helped the Americans.', 'Colonists kept settling Native land anyway.'],
         standard: ['Most Native fighters sided with Britain as a strategic judgment.', 'The Proclamation of 1763 signaled limited British respect for Native land; colonists ignored it.', 'The Haudenosaunee split — most for Britain, the Oneida and Tuscarora for the Americans.', 'Oneida even brought food to Valley Forge.'],
         challenge: ["Most who fought sided with Britain; the Crown's 1763 Proclamation checked settlement.", 'The six-nation Haudenosaunee Confederacy broke apart from within.', 'Oneida and Tuscarora scouted for the Continental Army and supplied Valley Forge.', 'Neutrality (e.g., the Delaware) proved impossible to hold.']
       },
       conclusion: {
-        mostSupport: ['The war hurt Native people no matter which side they chose.', 'American soldiers burned dozens of Native towns.', 'The peace treaty gave Native land to the U.S. without asking them.'],
+        mostSupport: ['The war hurt Native people no matter which side they chose.', 'American soldiers burned dozens of Native towns.', 'The peace deal gave Native land to the U.S. without asking them.'],
         someSupport: ['The war devastated Native peoples regardless of their choice.', 'In 1779 the Sullivan Expedition burned about 40 Iroquois towns.', 'The 1783 peace handed Native land to the U.S. without consulting them.'],
         standard: ['The 1779 Sullivan Expedition burned ~40 Iroquois towns and crops.', 'In 1782 militia massacred 96 peaceful Christian Delaware at Gnadenhütten.', 'The 1783 Treaty of Paris gave away Native homelands without consulting the nations.', 'For Native peoples, independence meant accelerating loss.'],
         challenge: ['Loyalty earned no protection: even Oneida allies lost their lands.', 'Sullivan (1779) torched ~40 towns; Gnadenhütten (1782) killed 96 unarmed Christian Delaware.', 'The 1783 treaty ceded Native homelands without naming the nations on them.', 'The Revolution removed a check on expansion, opening a century of dispossession.']
@@ -964,22 +964,22 @@ window.RV_READINGS = {
 
   'loyalists': {
     name: 'Loyalists / Tories',
-    tagline: 'The 15–20% of colonists who stayed loyal to Britain — and often lost everything for it',
+    tagline: 'About 15 to 20 of every 100 colonists stayed with Britain, and many lost everything',
     quickFacts: [
-      ['How many', 'Roughly 15–20% of colonists (~400,000–500,000 people)'],
-      ['The slur', 'Patriots called them "Tories" as an insult'],
-      ['A civil war', 'Neighbors, friends, and families split over independence'],
-      ['The cost', '60,000–80,000 fled into exile; property confiscated']
+      ['How many', 'About 15 to 20 of every 100 colonists (about 400,000 to 500,000 people)'],
+      ['The insult', 'Patriots called them "Tories"'],
+      ['A civil war', 'Neighbors, friends, and families fought each other'],
+      ['The cost', '60,000 to 80,000 left America. Homes and land were taken.']
     ],
     levels: {
       mostSupport: `
-<p>Not everyone in America wanted to break away from Britain. About 15 to 20 out of every 100 colonists stayed loyal to the British king. They were called <strong>Loyalists</strong>. Patriots called them "Tories" as an insult.</p>
-<p>Loyalists were not cowards or traitors. They just made a different choice. Some were rich people who did well under British rule. Some were poor farmers who feared Patriot mobs. Some were enslaved people who joined the British because Britain promised them freedom.</p>
-<p>This made the Revolution a kind of civil war — neighbors and even families fighting each other.</p>
-<p>Patriots often treated Loyalists badly. They burned their homes, took their property, and even tarred and feathered some of them.</p>
+<p>Not everyone in America wanted to break away from Britain. About 15 to 20 out of every 100 colonists stayed loyal to the British king. They were called <strong>Loyalists</strong> (people who stayed with the king). Patriots called them "Tories" as an insult.</p>
+<p>Loyalists were not cowards or <strong>traitors</strong> (people who turn against their own country). They just made a different choice. Some were rich people who did well under British rule. Some were poor farmers who feared Patriot mobs. Some were enslaved people who joined the British because Britain promised them freedom.</p>
+<p>This made the Revolution a kind of <strong>civil war</strong> (a war between people of the same country). Neighbors and even families fought each other.</p>
+<p>Patriots often treated Loyalists badly. They burned their homes, took their land and belongings, and even <strong>tarred and feathered</strong> some of them (poured hot tar on them and stuck on feathers as a punishment).</p>
 <p>Because of this, 60,000 to 80,000 Loyalists left America for good. They moved to Canada, Britain, or other places. Their side lost, so their stories are often left out of history.</p>`,
       someSupport: `
-<p>Not all colonists wanted independence. Between 15 and 20 percent of Americans — roughly 400,000 to 500,000 people — stayed loyal to Britain during the Revolution. They were called Loyalists, and Patriots insulted them as "Tories."</p>
+<p>Not all colonists wanted independence (America becoming its own country). Between 15 and 20 percent of Americans — roughly 400,000 to 500,000 people — stayed loyal to Britain during the Revolution. They were called Loyalists, and Patriots insulted them as "Tories."</p>
 <p>Loyalists weren't traitors or cowards; they made a different choice for different reasons. Some were wealthy people tied to British trade. Some were small farmers who feared Patriot mob violence more than British taxes. Some were enslaved people who sided with Britain because it promised them freedom. Others simply feared that revolution would bring chaos.</p>
 <p>This made the war a civil war as much as a war against Britain — neighbors, friends, and even families split apart. Patriots often persecuted Loyalists: they were threatened, tarred and feathered, and had their property confiscated. As a result, an estimated 60,000 to 80,000 Loyalists fled the country — one of the largest forced migrations in American history — resettling in Canada, Britain, and elsewhere. Because they lost, their stories were largely erased from American memory.</p>`,
       standard: `
@@ -999,13 +999,13 @@ window.RV_READINGS = {
         challenge: ['The story of a united people dissolves on contact with the Loyalists.', '15–20% of colonists (maybe 400,000–500,000) sided with the Crown.', "'Tory' flattened a varied population into caricature."]
       },
       content: {
-        mostSupport: ['Loyalists were not cowards or traitors.', 'Some were rich; some were poor farmers afraid of mobs.', 'Some were enslaved people the British promised to free.', 'It became a civil war between neighbors.'],
+        mostSupport: ['Loyalists were not cowards or traitors.', 'Some were rich; some were poor farmers afraid of mobs.', 'Some were enslaved people the British promised to free.', 'It became a civil war (neighbors fighting neighbors).'],
         someSupport: ['Loyalists chose Britain for many reasons.', 'Some were wealthy traders; some feared Patriot mobs; some sought freedom from slavery.', 'The war became a civil war splitting neighbors and families.', 'Patriots tarred and feathered Loyalists and seized their property.'],
         standard: ['Reasons varied: merchants tied to Britain, farmers fearing mobs, enslaved people seeking freedom.', 'The Revolution was also a civil war splitting neighbors and families.', 'Patriots used loyalty oaths, tar-and-feathering, and property confiscation.', 'Enslaved people had the clearest stake in a British victory.'],
         challenge: ['Motives ranged from imperial officeholders to pacifists to frightened frontier farmers.', 'The largest group with a clear stake in British victory were enslaved people.', "It was an American civil war — even Franklin's Loyalist son William.", 'Patriots policed loyalty with oaths, ostracism, and confiscation.']
       },
       conclusion: {
-        mostSupport: ["Patriots burned Loyalists' homes and took their property.", '60,000 to 80,000 Loyalists left America for good.', 'Their side lost, so their stories are often left out.'],
+        mostSupport: ["Patriots burned Loyalists' homes and took their land and belongings.", '60,000 to 80,000 Loyalists left America for good.', 'Their side lost, so their stories are often left out.'],
         someSupport: ['About 60,000–80,000 Loyalists fled the country.', 'They resettled in Canada, Britain, and elsewhere.', 'Because they lost, their stories were largely erased.'],
         standard: ['States confiscated Loyalist property; crowds enforced loyalty by force.', 'Roughly 60,000–80,000 fled — to Canada, Britain, the Caribbean — a huge forced migration.', 'Because victors write history, their experience was long erased.', 'Recovering it shows Americans were never of one mind about independence.'],
         challenge: ['60,000–80,000 left in one of the age\'s great forced migrations.', 'Their erasure hides how contested and coercive the founding was.', 'A revolution narrated only by winners conceals its civil-war character.', "Telling a Loyalist's story asks what we owe those history chose to forget."]
@@ -1021,16 +1021,16 @@ window.RV_READINGS = {
 
   'indentured-servants': {
     name: 'Indentured Servants',
-    tagline: 'Bound laborers who lived a war for "liberty" while legally unfree',
+    tagline: 'Workers who had signed a contract to serve, living through a war about freedom while they were not free',
     quickFacts: [
-      ['Who', 'Mostly poor Europeans bound by contract to work years for a master'],
-      ['How many', '~50,000–60,000 during the Revolution (about 2% of the population)'],
-      ['The contract', 'Usually 4–7 years; no marriage, no property, could be bought and sold'],
+      ['Who', 'Mostly poor people from Europe who signed a contract to work for years'],
+      ['How many', 'About 50,000 to 60,000 during the Revolution (about 2 of every 100 people)'],
+      ['The contract', 'Usually 4 to 7 years; no marriage, no land, could be bought and sold'],
       ['Key tension', 'Caught in a war for "freedom" while not free themselves']
     ],
     levels: {
       mostSupport: `
-<p>Indentured servants were workers who had to serve a master for several years. Most were poor people from Europe. They signed a <strong>contract</strong> (a written promise) to work — usually 4 to 7 years — to pay for their trip to America.</p>
+<p><strong>Indentured servants</strong> were workers who signed a deal to work for a master for several years. Most were poor people from Europe. They signed a <strong>contract</strong> (a written promise) to work — usually 4 to 7 years — to pay for their trip to America.</p>
 <p>During those years, they had almost no freedom. They could not marry without permission. They could not own land. They could even be bought and sold, a little like enslaved people. But their contract would end one day, and then they would be free.</p>
 <p>There were about 50,000 to 60,000 indentured servants during the Revolution.</p>
 <p>The war was about "freedom." But these workers were not free. They had to choose: stay and finish the contract, or risk running away to fight for freedom now. Some joined the American army for a promise of freedom. Some ran to the British, who also promised freedom.</p>
@@ -1050,7 +1050,7 @@ window.RV_READINGS = {
     },
     keyFacts: {
       hook: {
-        mostSupport: ['Indentured servants worked for a master for several years.', 'Most were poor people from Europe.', 'They signed a contract to pay for their trip to America.'],
+        mostSupport: ['Indentured servants (workers who signed a deal to work for years) served a master.', 'Most were poor people from Europe.', 'They signed a contract to pay for their trip to America.'],
         someSupport: ['Indentured servants were mostly poor Europeans bound by contract.', 'They worked 4 to 7 years to pay for their passage to America.', 'About 50,000–60,000 were serving during the Revolution.'],
         standard: ["~50,000–60,000 indentured servants — about 2% of the population — were caught in a war for 'liberty.'", 'Most were poor Europeans bound by an indenture (a work contract).', 'Terms commonly ran 4–7 years to repay the cost of passage.'],
         challenge: ['Perhaps 50,000–60,000 people lived in a contractually defined unfreedom.', 'Half to two-thirds of white immigrants had arrived as bound labor.', 'They mortgaged years of their lives against an Atlantic passage.']
@@ -1078,16 +1078,16 @@ window.RV_READINGS = {
 
   'hessians': {
     name: 'Hessian Soldiers',
-    tagline: '~30,000 German soldiers rented to fight for Britain — many of whom never went home',
+    tagline: 'About 30,000 German soldiers were paid to fight for Britain. Many never went home.',
     quickFacts: [
-      ['Who', 'German soldiers, especially from Hesse-Kassel, hired out by their princes'],
-      ['How many', "About 30,000 crossed the Atlantic — nearly a third of Britain's force at times"],
-      ['Why "rented"', 'German rulers were paid subsidies to supply "subsidy troops"'],
-      ['The twist', 'As many as 40–50% never returned home — killed, or staying in America']
+      ['Who', 'German soldiers, many from Hesse-Kassel, sent by their rulers'],
+      ['How many', "About 30,000 crossed the ocean. At times they were nearly 1 in 3 of Britain's soldiers."],
+      ['Why "rented"', 'Britain paid German rulers to send soldiers'],
+      ['The twist', 'As many as 40 to 50 of every 100 never went home. Some died. Some stayed in America.']
     ],
     levels: {
       mostSupport: `
-<p>During the Revolution, not all of Britain's soldiers were British. About 30,000 of them were Germans. Americans called them "Hessians," because many came from a German area called Hesse-Kassel.</p>
+<p>During the Revolution, not all of Britain's soldiers were British. About 30,000 of them were Germans. Americans called them <strong>Hessians</strong> (German soldiers fighting for Britain), because many came from a German area called Hesse-Kassel.</p>
 <p>In the 1700s, Germany was not one country. It was many small states. Some German rulers made money by renting out their soldiers to other countries. Britain paid them to send soldiers to fight in America.</p>
 <p>Many Hessians did not want to be there. Some were <strong>drafted</strong> (forced to serve). Others joined for money or adventure. They were well-trained soldiers.</p>
 <p>At the Battle of Trenton in 1776, Washington surprised the Hessians and captured about 900 of them.</p>
@@ -1114,7 +1114,7 @@ window.RV_READINGS = {
         challenge: ['The "Hessians" loom in memory as the war\'s faceless foreign menace.', 'Roughly 30,000 Germans, drawn from several states, fought for George III.', 'At times they were nearly a third of his forces in America.']
       },
       content: {
-        mostSupport: ['German rulers rented out their soldiers for money.', 'Some Hessians were drafted; some joined for money or adventure.', 'They were well-trained soldiers.', 'At Trenton in 1776, Washington captured about 900 of them.'],
+        mostSupport: ['German rulers rented out their soldiers for money.', 'Some Hessians were drafted (forced to serve); some joined for money or adventure.', 'They were well-trained soldiers.', 'At Trenton in 1776, Washington captured about 900 of them.'],
         someSupport: ['German rulers earned money renting out "subsidy troops."', 'Some Hessians were career soldiers; some were drafted; some volunteered.', 'They fought in many battles and were well-trained.', 'At Trenton (Dec 1776), Washington captured about 900 Hessians.'],
         standard: ['German princes hired out trained "subsidy troops" for pay.', '"Mercenary" is loose — most were professional or conscripted, not freelance.', 'Reasons ranged from career duty to forced conscription to a signing bonus.', 'On Dec 26, 1776, Washington surprised Trenton and captured ~900 Hessians.'],
         challenge: ['"Mercenary" misleads — rulers pocketed British subsidies for leased regiments.', 'Many soldiers were conscripts, not volunteers — men sold into a distant war.', 'They fought competently from Long Island to Guilford Courthouse.', 'Trenton (Dec 26, 1776) netted ~900 prisoners, many settled among Pennsylvania Germans.']
@@ -1136,16 +1136,16 @@ window.RV_READINGS = {
 
   'camp-followers': {
     name: 'Camp Followers',
-    tagline: 'The women and children who kept the army alive — and were written out of the story',
+    tagline: 'The women and children who kept the army alive, and were left out of the story',
     quickFacts: [
-      ['Who', 'Wives, children, laundresses, cooks, nurses, and sutlers who traveled with the army'],
-      ['How many', 'Estimates of 5,000–20,000 at times — about 1 for every 3–5 soldiers'],
-      ['At Valley Forge', '~3,000–4,000 alongside ~12,000 soldiers'],
-      ['The deal', 'Hard, essential work for half-rations — and little memory afterward']
+      ['Who', 'Wives, children, cooks, washers, and nurses who traveled with the army'],
+      ['How many', 'About 5,000 to 20,000 at times: about 1 for every 3 to 5 soldiers'],
+      ['At Valley Forge', 'About 3,000 to 4,000 alongside about 12,000 soldiers'],
+      ['The deal', "Hard, needed work for half a soldier's food, and little memory afterward"]
     ],
     levels: {
       mostSupport: `
-<p>Armies need more than soldiers. They need people to cook, wash clothes, and care for the sick and hurt. In the Revolution, these workers were called "camp followers."</p>
+<p>Armies need more than soldiers. They need people to cook, wash clothes, and care for the sick and hurt. In the Revolution, these workers were called <strong>camp followers</strong> (people who traveled with the army to cook, wash, and help).</p>
 <p>Most camp followers were women and children. Many were the wives and kids of soldiers. They traveled with the army from camp to camp.</p>
 <p>There were a lot of them — maybe 5,000 to 20,000 at different times. At Valley Forge, where about 12,000 soldiers stayed for the winter, there were about 3,000 to 4,000 camp followers too.</p>
 <p>Camp followers worked hard for very little. They often got only half the food a soldier got. They faced the same cold, hunger, and disease.</p>
@@ -1194,18 +1194,18 @@ window.RV_READINGS = {
 
   'young-soldiers': {
     name: 'Young Soldiers & Teenage Patriots',
-    tagline: 'Thousands of boys aged 10–18 served — as drummers, runners, powder monkeys, and soldiers',
+    tagline: 'Thousands of boys aged 10 to 18 served as drummers, messengers, powder carriers, and soldiers',
     quickFacts: [
-      ['Who', 'Boys roughly 10–18: drummers, fifers, message runners, powder monkeys, soldiers'],
-      ['How many', 'By some estimates, around a fifth of Continental soldiers were under 18'],
-      ['Famous example', 'A 13-year-old courier named Andrew Jackson — later president'],
+      ['Who', 'Boys about 10 to 18: drummers, fifers (small flute), messengers, powder carriers, soldiers'],
+      ['How many', 'By some estimates, around 1 in 5 American soldiers were under 18'],
+      ['Famous example', 'A 13-year-old messenger named Andrew Jackson, later president'],
       ['Why it matters', 'The Revolution was fought, in part, by children']
     ],
     levels: {
       mostSupport: `
 <p>Many soldiers in the Revolution were not grown men. Thousands of them were boys, ages 10 to 18.</p>
 <p>Some boys were <strong>drummers</strong>. They beat the drum to send orders to soldiers in battle. Some were fifers (they played a small flute). Some carried messages. On ships, some boys carried gunpowder — they were called "powder monkeys." Older boys carried guns and fought.</p>
-<p>Why did boys join? Some wanted adventure. Some needed money. Some believed in the cause. Some lied about their age to get in.</p>
+<p>Why did boys join? Some wanted adventure. Some needed money. Some believed in the fight for American freedom. Some lied about their age to get in.</p>
 <p>War was hard and scary for them. They saw terrible things. They were cold and hungry at camps like Valley Forge.</p>
 <p>One famous boy was Andrew Jackson. At 13, he carried messages. The British captured him. When he refused to clean an officer's boots, the officer cut him with a sword. Jackson later became president.</p>
 <p>The Revolution was fought, in part, by children.</p>`,
@@ -1251,26 +1251,26 @@ window.RV_READINGS = {
   },
 
   'enslaved-british-freedom': {
-    name: 'The Paradox of Enslaved People & British Freedom',
-    tagline: 'Both sides exploited enslaved labor while dangling "freedom" — the Revolution\'s deepest contradiction',
+    name: 'Enslaved People and British Freedom Offers',
+    tagline: 'Leaders talked about freedom while keeping people enslaved. Britain offered freedom as a way to win the war.',
     quickFacts: [
-      ['Central question', 'Two powers both used enslaved labor and both promised freedom — which to trust?'],
-      ['Scale', '~500,000 African Americans in 1775 (~20%); ~450,000 enslaved'],
-      ['The South', 'Enslaved people were 40% of Virginia and a ~60% majority in South Carolina'],
-      ['Note', 'An advanced "paradox" reading — heavier analysis at higher levels']
+      ['The problem', 'Both sides used enslaved people\'s work. Both sometimes promised freedom.'],
+      ['How many', 'About 500,000 Black people in 1775 (about 1 in 5). About 450,000 were enslaved.'],
+      ['The South', 'Enslaved people were about 40 of every 100 people in Virginia, and more than half in South Carolina'],
+      ['Harder levels', 'Higher reading levels add more names, dates, and harder words']
     ],
     levels: {
       mostSupport: `
-<p>The Revolution had a deep contradiction. White leaders said "all men are created equal" and fought for freedom. But they kept about 450,000 Black people <strong>enslaved</strong> (owned and forced to work for no pay).</p>
-<p>In 1775, about 500,000 Black people lived in the colonies — about 1 in 5 people. Most lived in the South. In some places, like South Carolina, more than half the people were enslaved.</p>
+<p>The Revolution had a deep <strong>contradiction</strong> (when people say one thing and do the opposite). White leaders said "all men are created equal" and fought for freedom. But they kept about 450,000 Black people <strong>enslaved</strong> (owned and forced to work for no pay).</p>
+<p>In 1775, about 500,000 Black people lived in the colonies. That was about 1 in 5 people. Most lived in the South. In some places, like South Carolina, more than half the people were enslaved.</p>
 <p>Both sides wanted to use enslaved people's work. And both sides sometimes promised freedom to get their help.</p>
-<p>The British made the biggest offer. They said enslaved people who left their Patriot owners and joined the British could be free. Tens of thousands took the risk.</p>
+<p>The British made the biggest offer. They said enslaved people who left their American (<strong>Patriot</strong>) owners and joined the British could be free. Tens of thousands took the risk.</p>
 <p>But "freedom" was not simple. The British had made money from slavery too. Some promises were broken.</p>
-<p>This is the paradox: enslaved people were caught between two powers that both used them and both made promises. They had to find their own path to freedom.</p>`,
+<p>Here is the hard part: enslaved people were stuck between two sides that both used them and both made promises. They had to find their own path to freedom.</p>`,
       someSupport: `
-<p>At the heart of the Revolution was a painful contradiction: leaders declared that "all men are created equal" while holding about 450,000 people in slavery. In 1775, roughly 500,000 African Americans lived in the colonies — about 20% of the population — and most were enslaved in the South. In Virginia, enslaved people were 40% of the population; in South Carolina, they were a majority.</p>
-<p>Both the Americans and the British depended on enslaved people's labor, and both, at times, dangled the promise of freedom to win their help. The British made the bolder offer: proclamations in 1775 and 1779 promised freedom to enslaved people who left Patriot owners and joined the British. Tens of thousands risked everything to reach British lines.</p>
-<p>But the promise was tangled. Britain had profited from slavery for centuries, and many promises were broken — some who reached the British were re-enslaved or left in poverty. This is the paradox: enslaved people were caught between two powers that both exploited them and both promised liberty. They navigated this trap to seize whatever freedom they could.</p>`,
+<p>At the heart of the Revolution was a painful <strong>contradiction</strong> (when words and actions do not match): leaders declared that "all men are created equal" while holding about 450,000 people in slavery. In 1775, roughly 500,000 African Americans lived in the colonies, about 20% of the population, and most were enslaved in the South. In Virginia, enslaved people were 40% of the population; in South Carolina, they were a majority.</p>
+<p>Both the Americans and the British depended on enslaved people's labor, and both, at times, offered freedom to win their help. The British made the bolder offer: official promises in 1775 and 1779 said enslaved people who left Patriot owners and joined the British could be free. Tens of thousands risked everything to reach British lines.</p>
+<p>But the promise was messy. Britain had made money from slavery for centuries, and many promises were broken. Some who reached the British were enslaved again or left poor. This is the hard puzzle: enslaved people were caught between two powers that both used them and both promised liberty. They had to find whatever freedom they could.</p>`,
       standard: `
 <p>The American Revolution rested on a contradiction so glaring that contemporaries noticed it: as Jefferson wrote that "all men are created equal," roughly 450,000 human beings were held in slavery in the new nation's midst. In 1775, about 500,000 African Americans made up some 20% of the colonial population — and in the South they were a huge presence, 40% of Virginia and an outright majority (about 60%) in South Carolina.</p>
 <p>The cruelty of the enslaved person's position was that both sides exploited their labor while both, when it suited them, promised freedom. The Patriots spoke of liberty yet largely defended slavery; the British offered emancipation as a war measure — Lord Dunmore's 1775 proclamation and the broader Philipsburg Proclamation of 1779 promised freedom to those who fled rebel masters — while Britain itself had built much of its wealth on the slave trade. Tens of thousands of enslaved people made the dangerous calculation that their best chance lay behind British lines.</p>
@@ -1282,20 +1282,20 @@ window.RV_READINGS = {
     },
     keyFacts: {
       hook: {
-        mostSupport: ['The Revolution had a deep contradiction.', 'Leaders fought for freedom but kept ~450,000 people enslaved.', 'About 1 in 5 people in the colonies were Black, and most were enslaved.'],
+        mostSupport: ['The Revolution had a deep contradiction: leaders said one thing and did the opposite.', 'Leaders fought for freedom but kept about 450,000 people enslaved.', 'About 1 in 5 people in the colonies were Black, and most were enslaved.'],
         someSupport: ['Leaders said "all men are created equal" while holding ~450,000 in slavery.', '~500,000 African Americans (~20%) lived in the colonies in 1775.', 'In South Carolina, the enslaved were a majority.'],
         standard: ['Jefferson wrote "all men are created equal" amid ~450,000 enslaved people.', 'African Americans were ~20% of the population — 40% of Virginia, ~60% of South Carolina.', 'The Revolution was fought within and around slavery.'],
         challenge: ['The Declaration was drafted where ~450,000 of ~500,000 African Americans were property.', 'The enslaved were 40% of Virginia and a 60% majority in South Carolina.', "Enslaved people read the Revolution's contradictions with clear eyes."]
       },
       content: {
         mostSupport: ["Both sides wanted to use enslaved people's work.", 'Both sides sometimes promised freedom.', 'The British offered freedom to those who left Patriot owners.', 'Tens of thousands took the risk.'],
-        someSupport: ['Both Americans and British depended on enslaved labor.', 'Both dangled freedom to win help.', 'British proclamations (1775, 1779) promised freedom to those who fled Patriot owners.', 'Tens of thousands risked everything to reach British lines.'],
+        someSupport: ['Both Americans and British depended on enslaved labor.', 'Both dangled freedom to win help.', 'British official promises (1775, 1779) said enslaved people who fled Patriot owners could be free.', 'Tens of thousands risked everything to reach British lines.'],
         standard: ['Both sides exploited enslaved labor while promising freedom when it suited them.', 'Patriots spoke of liberty yet largely defended slavery.', 'Dunmore (1775) and Philipsburg (1779) promised freedom — as a war measure.', 'Tens of thousands judged their best chance lay with the British.'],
         challenge: ['It was a choice between exploiters, not between freedom and slavery.', 'Patriots proclaimed rights while enslaving hundreds (Jefferson among them).', 'Britain promised freedom not from principle but to weaken the rebellion.', 'Liberty was a weapon both sides aimed at each other, with Black people the contested ground.']
       },
       conclusion: {
         mostSupport: ['"Freedom" was not simple — Britain had used slavery too.', 'Some promises were broken.', 'Enslaved people had to find their own path to freedom.'],
-        someSupport: ['Some who reached the British gained real freedom; others were betrayed.', 'Britain had profited from slavery for centuries.', 'Enslaved people navigated a trap to seize what freedom they could.'],
+        someSupport: ['Some who reached the British gained real freedom; others were betrayed.', 'Britain had profited from slavery for centuries.', 'Enslaved people had to find a path through a trap to seize what freedom they could.'],
         standard: ['Some won freedom as "Black Loyalists"; others were re-enslaved or died in camps.', "The Patriots' victory left slavery intact and soon expanding in the South.", 'For the enslaved, the Revolution was a dangerous opening, not a liberation.', 'Neither side intended to dismantle slavery.'],
         challenge: ['~3,000 Black Loyalists (the "Book of Negroes") went to Nova Scotia, some to Sierra Leone.', 'Others were re-enslaved by the British, sold in the Caribbean, or died in camps.', 'Independence entrenched Southern slavery as the North began gradual abolition.', 'The contradiction would be settled only by civil war — and arguably not even then.']
       }
@@ -1309,25 +1309,25 @@ window.RV_READINGS = {
   },
 
   'womens-economic-agency': {
-    name: "Women's Economic Agency vs. Political Invisibility",
-    tagline: 'Women ran farms, shops, and boycotts — while the law treated a married woman as legally nonexistent',
+    name: "Women's Work and Political Voice",
+    tagline: 'Women ran farms, shops, and boycotts. The law still treated a married woman as if she did not exist.',
     quickFacts: [
-      ['The paradox', 'Real economic power, yet no legal or political identity'],
-      ['The doctrine', 'Coverture — a married woman was "covered" by her husband in law'],
-      ['Blackstone (1769)', '"the very being or legal existence of the woman is suspended" in marriage'],
-      ['Note', 'An advanced "paradox" reading — heavier analysis at higher levels']
+      ['The puzzle', 'Women did important work, but married women had almost no rights in court'],
+      ['The rule', 'Coverture: a married woman was "covered" by her husband in law'],
+      ['A lawyer in 1769', 'Wrote that a married woman\'s legal self was "paused," as if she were not there'],
+      ['Harder levels', 'Higher reading levels add more names, dates, and harder words']
     ],
     levels: {
       mostSupport: `
-<p>Revolutionary women had a strange kind of power. They could do important work — but the law acted like married women did not exist.</p>
-<p>The law had a rule called <strong>coverture</strong>. When a woman married, she was "covered" by her husband. That meant a married woman could not own property, keep her own pay, sign contracts, or make a will. The law saw the husband and wife as one person — the husband.</p>
-<p>But women still did powerful things. They ran farms and shops when men were away. They led boycotts of British goods. Because women did most of the family shopping, their choices hurt Britain's money.</p>
-<p>So here is the paradox: women had real power in the home and the economy, but no power in the law or government. They could not vote.</p>
-<p>Women used the power they had. And they began to argue that the law should change — a fight that would last a long time.</p>`,
+<p>Revolutionary women had a strange kind of power. They could do important work, but the law acted like married women did not exist.</p>
+<p>The law had a rule called <strong>coverture</strong> (when a wife had no legal rights apart from her husband). When a woman married, she was "covered" by her husband. That meant a married woman could not own <strong>property</strong> (land or money of her own), keep her own pay, sign a <strong>contract</strong> (a written deal), or make a <strong>will</strong> (a paper that says who gets your things after you die). The law saw the husband and wife as one person: the husband.</p>
+<p>But women still did powerful things. They ran farms and shops when men were away. They led <strong>boycotts</strong> (refusing to buy something as a protest) of British goods. Because women did most of the family shopping, their choices hurt Britain's money.</p>
+<p>So here is the hard part: women had real power at home and in shops, but no power in the law or government. They could not vote.</p>
+<p>Women used the power they had. And they began to argue that the law should change. That fight would last a long time.</p>`,
       someSupport: `
-<p>Revolutionary women lived a paradox: they showed real economic power while the law treated married women as if they did not exist.</p>
-<p>The legal rule was called coverture. When a woman married, she became a "femme covert" — "a covered woman" — and her legal identity was absorbed into her husband's. A married woman could not own property, keep the wages she earned, sign contracts, sue, or make a will. Fathers, not mothers, controlled the children. In 1769, the famous legal writer Blackstone put it bluntly: in marriage, a woman's "legal existence" was "suspended."</p>
-<p>Yet women were far from powerless in daily life. They ran farms and family businesses, especially when men went to war. They organized the boycotts of British goods, and because women made most household purchases, their choices were a real economic weapon. The contradiction was stark: women had genuine economic influence but no political voice — they could not vote or hold office. Many began to argue that this had to change, planting seeds for later women's-rights movements.</p>`,
+<p>Revolutionary women lived a hard puzzle: they showed real power in work and shopping, while the law treated married women as if they did not exist.</p>
+<p>The legal rule was called <strong>coverture</strong> (a wife had no legal identity apart from her husband). When a woman married, she became a "femme covert" ("a covered woman"), and the law treated her as part of her husband. A married woman could not own property, keep the wages she earned, sign contracts, sue, or make a will. Fathers, not mothers, controlled the children. In 1769, the famous legal writer Blackstone put it bluntly: in marriage, a woman's "legal existence" was "suspended" (paused, as if she were not there).</p>
+<p>Yet women were far from powerless in daily life. They ran farms and family businesses, especially when men went to war. They organized the boycotts of British goods, and because women made most household purchases, their choices were a real economic weapon. The contradiction (words and rights that did not match their real work) was clear: women had genuine economic influence but no political voice. They could not vote or hold office. Many began to argue that this had to change, planting seeds for later women's-rights movements.</p>`,
       standard: `
 <p>Revolutionary America handed women a contradiction: real economic agency paired with near-total legal and political invisibility. The cause of the invisibility was a doctrine called coverture, imported from English law. When a woman married, she became a "femme covert," her legal identity folded into her husband's. As the influential jurist William Blackstone wrote in 1769, "the very being or legal existence of the woman is suspended during the marriage."</p>
 <p>In practice, coverture meant a married woman could not own property, keep her own wages, sign a contract, sue or be sued, or make a will, and had no custody rights over her children. And yet women exercised substantial economic power. They managed farms and ran shops — as "deputy husbands" when men were at war and, in some cases, as independent "she-merchants." Above all, they drove the boycotts of British goods: because women controlled most household purchasing, their collective refusal to buy British tea and cloth was among the Revolution's most effective forms of pressure.</p>
@@ -1339,13 +1339,13 @@ window.RV_READINGS = {
     },
     keyFacts: {
       hook: {
-        mostSupport: ['Women had a strange kind of power.', 'They did important work, but the law ignored married women.', 'The rule was called coverture.'],
+        mostSupport: ['Women had a strange kind of power.', 'They did important work, but the law ignored married women.', 'The rule was called coverture: a wife had no legal rights apart from her husband.'],
         someSupport: ['Women showed real economic power, but the law treated married women as invisible.', 'The rule was called coverture.', 'A married woman was "covered" by her husband in law.'],
         standard: ['Women had real economic agency but near-total legal invisibility.', 'The cause was coverture, imported from English law.', "Blackstone (1769): a wife's 'legal existence is suspended during the marriage.'"],
         challenge: ['Women wielded economic power within a law that denied married women any existence.', 'The doctrine was coverture, and its logic was total.', "Blackstone (1769): the wife's 'very being or legal existence' is 'suspended.'"]
       },
       content: {
-        mostSupport: ['A married woman could not own property or keep her own pay.', 'She could not sign contracts or make a will.', 'But women ran farms and shops when men were away.', 'Women led the boycotts of British goods.'],
+        mostSupport: ['A married woman could not own property (land or money of her own) or keep her own pay.', 'She could not sign contracts or make a will.', 'But women ran farms and shops when men were away.', 'Women led the boycotts of British goods.'],
         someSupport: ["A 'femme covert' couldn't own property, keep wages, sign contracts, sue, or make a will.", 'Fathers, not mothers, controlled the children.', 'Women ran farms and businesses, especially during the war.', 'Women drove the boycotts, since they did most household shopping.'],
         standard: ['Coverture barred wives from property, wages, contracts, lawsuits, wills, and custody.', "Women still ran farms and shops — as 'deputy husbands' and 'she-merchants.'", 'They drove the boycotts of British goods, a top form of pressure.', 'Women controlled most household purchasing — a real economic weapon.'],
         challenge: ["A 'femme covert' could not own property, keep wages, contract, sue, or claim her children.", 'Women ran farms and businesses; some operated as feme-sole traders.', 'They made the consumer boycotts work — converting domestic choices into political force.', 'Women performed citizenship economically while denied it legally.']

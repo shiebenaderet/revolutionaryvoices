@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revolutionary Voices Script Builder - Enhanced</title>
+    <title>Revolutionary Voices Script Builder</title>
 
     <!-- Set saved theme before paint to avoid a flash -->
     <script>try{var t=localStorage.getItem('rvTheme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
@@ -33,6 +33,7 @@
                 <div class="studio-tools" id="saveControls">
                     <span class="last-saved sr-only" id="lastSaved">Saves automatically</span>
                     <button class="icon-btn" onclick="newSlot()" title="New script" aria-label="Start a new script"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                    <button class="icon-btn" type="button" onclick="backupToGoogleDoc()" title="Copy to Google Doc" aria-label="Copy work to Google Doc"><i class="fas fa-file-alt" aria-hidden="true"></i></button>
                     <div class="more-actions" id="moreActionsWrap">
                         <button class="icon-btn" id="moreActionsBtn" aria-haspopup="true" aria-expanded="false" aria-controls="moreActionsMenu" title="More options" aria-label="More options" onclick="toggleMoreMenu()"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></button>
                         <div class="more-actions-menu" id="moreActionsMenu" role="menu" aria-label="Script options" hidden>
@@ -42,6 +43,8 @@
                             <button role="menuitem" onclick="manualSave();closeMoreMenu()"><i class="fas fa-save" aria-hidden="true"></i> Save now</button>
                             <button role="menuitem" onclick="exportToFile();closeMoreMenu()"><i class="fas fa-download" aria-hidden="true"></i> Export backup</button>
                             <button role="menuitem" onclick="document.getElementById('importFile').click();closeMoreMenu()"><i class="fas fa-upload" aria-hidden="true"></i> Import backup</button>
+                            <button role="menuitem" onclick="backupToGoogleDoc();closeMoreMenu()"><i class="fas fa-file-alt" aria-hidden="true"></i> Copy to Google Doc</button>
+                            <button role="menuitem" onclick="openRestoreFromHeader();closeMoreMenu()"><i class="fas fa-history" aria-hidden="true"></i> Restore from Google Doc</button>
                             <button class="more-danger" role="menuitem" onclick="deleteSlot()"><i class="fas fa-trash" aria-hidden="true"></i> Delete script</button>
                         </div>
                     </div>
@@ -55,12 +58,12 @@
 
             <!-- TUNER DIAL = STEP NAVIGATION -->
             <nav class="tuner-stepper" id="wizSteps" aria-label="Your steps">
-                <button type="button" class="tuner-mark" id="wizChip0" onclick="wizGoChip(0)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Basics</span></button>
-                <button type="button" class="tuner-mark" id="wizChip1" onclick="wizGoChip(1)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Research</span></button>
-                <button type="button" class="tuner-mark" id="wizChip2" onclick="wizGoChip(2)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Intro</span></button>
-                <button type="button" class="tuner-mark" id="wizChip3" onclick="wizGoChip(3)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Content</span></button>
-                <button type="button" class="tuner-mark" id="wizChip4" onclick="wizGoChip(4)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Conclusion</span></button>
-                <button type="button" class="tuner-mark" id="wizChip5" onclick="wizGoChip(5)"><span class="t-tick" aria-hidden="true"></span><span class="t-name">Finish</span></button>
+                <button type="button" class="tuner-mark" id="wizChip0" onclick="wizGoChip(0)" aria-label="Basics"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Basics</span><span class="t-short" aria-hidden="true">1</span></span></button>
+                <button type="button" class="tuner-mark" id="wizChip1" onclick="wizGoChip(1)" aria-label="Research"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Research</span><span class="t-short" aria-hidden="true">2</span></span></button>
+                <button type="button" class="tuner-mark" id="wizChip2" onclick="wizGoChip(2)" aria-label="Intro"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Intro</span><span class="t-short" aria-hidden="true">3</span></span></button>
+                <button type="button" class="tuner-mark" id="wizChip3" onclick="wizGoChip(3)" aria-label="Content"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Content</span><span class="t-short" aria-hidden="true">4</span></span></button>
+                <button type="button" class="tuner-mark" id="wizChip4" onclick="wizGoChip(4)" aria-label="Conclusion"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Conclusion</span><span class="t-short" aria-hidden="true">5</span></span></button>
+                <button type="button" class="tuner-mark" id="wizChip5" onclick="wizGoChip(5)" aria-label="Finish"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Finish</span><span class="t-short" aria-hidden="true">6</span></span></button>
             </nav>
         </header>
 
@@ -70,7 +73,7 @@
 
             <p class="step-onboarding">Fill in your name and topic to get started. You'll write your script step by step.</p>
 
-            <label>Your Name(s):</label>
+            <label for="studentName">Your Name(s):</label>
             <input type="text" id="studentName" placeholder="e.g., Maria G. and Alex P. (first name + last initial)" oninput="updateTimeEstimate(); checkBasicsReveal()">
 
             <label for="subject">Your Episode Topic:</label>
@@ -86,8 +89,8 @@
                     <hr>
                 </div>
 
-                <label>Podcast Name:</label>
-                <input type="text" id="podcastName" placeholder="e.g., Untold Voices, Hidden History, Revolutionary Chronicles" oninput="updateTimeEstimate()">
+                <label for="podcastName">Podcast Name (you can change this):</label>
+                <input type="text" id="podcastName" placeholder="e.g., Untold Voices, Hidden History, Revolutionary Chronicles" oninput="markPodcastNameEdited(); updateTimeEstimate()">
 
                 <div class="exemplar-box">
                     <button class="exemplar-toggle" onclick="toggleExemplar('podcast-name-example')">
@@ -109,10 +112,7 @@
                     </div>
                 </div>
 
-                <label>Notes from your reading (optional but helpful):</label>
-                <textarea id="researchSources" placeholder="List 3-4 key facts and where you found them. Example:&#10;- Phillis Wheatley published a poetry book in 1773 (Britannica)&#10;- She was the first published African American woman poet (Library of Congress)" oninput="updateTimeEstimate()"></textarea>
-
-                <label>Group Size:</label>
+                <label for="groupSize">Group Size:</label>
                 <select id="groupSize" onchange="updateGroupOptions()">
                     <option value="">Select your group size</option>
                     <option value="1">Solo (1 person)</option>
@@ -125,7 +125,7 @@
         <!-- RESEARCH -->
         <div class="section section-research wizard-step" data-step="1">
             <h2><i class="fas fa-book-open" aria-hidden="true"></i> Read about your topic</h2>
-            <p class="research-intro">Here's the reading for <strong id="researchTopicName">your topic</strong>. Read it at the level that fits you, then use the <strong>key facts</strong> in each part of your script.</p>
+            <p class="research-intro">Here's the reading for <strong id="researchTopicName">your topic</strong>. Read it at the level that fits you, then jot a few facts before you write.</p>
             <p class="research-note" id="researchNote" hidden>Go back to <strong>Basics</strong> and choose your topic to load a reading.</p>
 
             <div class="reading-viewer" id="readingViewer" hidden>
@@ -134,11 +134,11 @@
                         <h3 id="readingName"></h3>
                         <p class="reading-tagline" id="readingTagline"></p>
                     </div>
-                    <div class="level-toggle" role="group" aria-label="Reading level">
-                        <button type="button" class="level-pill" data-level="mostSupport" onclick="setReadingLevel('mostSupport')" title="Most support">★<span class="level-word">Most support</span></button>
-                        <button type="button" class="level-pill" data-level="someSupport" onclick="setReadingLevel('someSupport')" title="Some support">★★<span class="level-word">Some support</span></button>
-                        <button type="button" class="level-pill" data-level="standard" onclick="setReadingLevel('standard')" title="Standard">★★★<span class="level-word">Standard</span></button>
-                        <button type="button" class="level-pill" data-level="challenge" onclick="setReadingLevel('challenge')" title="Challenge">★★★★<span class="level-word">Challenge</span></button>
+                    <div class="level-toggle" role="group" aria-label="Reading language">
+                        <button type="button" class="level-pill" data-level="mostSupport" onclick="setReadingLevel('mostSupport')" title="Easier language">Easier language</button>
+                        <button type="button" class="level-pill" data-level="someSupport" onclick="setReadingLevel('someSupport')" title="A bit easier">A bit easier</button>
+                        <button type="button" class="level-pill" data-level="standard" onclick="setReadingLevel('standard')" title="Standard">Standard</button>
+                        <button type="button" class="level-pill" data-level="challenge" onclick="setReadingLevel('challenge')" title="Harder language">Harder language</button>
                     </div>
                 </div>
                 <div class="reading-quickfacts" id="readingQuickFacts"></div>
@@ -146,6 +146,14 @@
                 <div class="reading-facts" id="readingFacts"></div>
                 <div class="reading-sources" id="readingSources"></div>
             </div>
+
+            <label for="researchSources">Notes from this reading (optional but helpful):</label>
+            <textarea id="researchSources" placeholder="List 3-4 key facts you want to use. Example:&#10;- Phillis Wheatley published a poetry book in 1773 (Britannica)&#10;- She was the first published African American woman poet (Library of Congress)"></textarea>
+
+            <label class="ready-read" for="researchRead">
+                <input type="checkbox" id="researchRead" onchange="onResearchReadyChange()">
+                I read this and I'm ready to write
+            </label>
         </div>
 
         <!-- INTRODUCTION -->
@@ -177,6 +185,36 @@
                     </div>
                 </div>
 </details>
+
+            <div id="intro-group" class="group-intro-panel" hidden>
+                <div class="success-box">
+                    <h4><i class="fas fa-users" aria-hidden="true"></i> Group Introduction <span class="group-size-badge" id="groupBadge"></span></h4>
+                    <p id="groupTip"></p>
+                </div>
+
+                <label for="group-intro">
+                    Self-Introduction - Each person introduces themselves
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Who is on your team?" tabindex="0" role="note" aria-label="Help: Who is on your team?"></i>
+                </label>
+                <textarea id="group-intro" placeholder="e.g., 'Hi, I'm Alex, and I'll be your host today.' 'And I'm Jordan, bringing you the voices of history.'" oninput="updateTimeEstimate(); countWords(this, 'groupintro', 15, 40)"></textarea>
+                <div class="word-counter" id="groupintro-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Each person says their name and role (host, narrator, interviewer, etc.)<br>
+                    <span class="length"><i class="fas fa-ruler" aria-hidden="true"></i> Target: 15-40 words total</span><br>
+                    <span class="tip"><i class="fas fa-lightbulb" aria-hidden="true"></i> Tip: Keep it friendly and welcoming!</span>
+                </div>
+
+                <label for="group-welcome">
+                    Welcome Your Listeners
+                    <i class="fas fa-info-circle info-icon" data-tooltip="Greet your audience warmly" tabindex="0" role="note" aria-label="Help: Greet your audience warmly"></i>
+                </label>
+                <textarea id="group-welcome" placeholder="e.g., Welcome to Revolutionary Voices, where we uncover the hidden stories of America's founding." oninput="updateTimeEstimate(); countWords(this, 'gwelcome', 10, 25)"></textarea>
+                <div class="word-counter" id="gwelcome-counter"></div>
+                <div class="helper-text">
+                    <strong>What to write:</strong> Welcome listeners and tell them what your podcast is about<br>
+                    <span class="length"><i class="fas fa-ruler" aria-hidden="true"></i> Target: 10-25 words (1-2 sentences)</span>
+                </div>
+            </div>
             
             <div class="choice-group">
                 <label class="choice-option">
@@ -197,6 +235,8 @@
                 </label>
             </div>
             
+            <!-- Writing fields: label for=id, textarea, word-counter, then Help me write.
+                 Repeated per style so this stays a static school page (no build step). -->
             <!-- DRAMATIC HOOK -->
             <div id="intro-dramatic" class="form-section">
                 <h3><i class="fas fa-bolt" aria-hidden="true"></i> Dramatic Hook Introduction</h3>
@@ -224,7 +264,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="dramatic-hook">
                     1. Opening Hook - Create tension or drama
                     <i class="fas fa-info-circle info-icon" data-tooltip="What's the most dramatic moment of your story?" tabindex="0" role="note" aria-label="Help: What's the most dramatic moment of your story?"></i>
                 </label>
@@ -309,7 +349,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="dramatic-subject">
                     2. Reveal the Subject - Who is this story about?
                     <i class="fas fa-info-circle info-icon" data-tooltip="Introduce your subject and their importance" tabindex="0" role="note" aria-label="Help: Introduce your subject and their importance"></i>
                 </label>
@@ -328,7 +368,7 @@
                     <button class="starter-btn" onclick="insertStarter('dramatic-subject', 'Their name was ')"><i class="fas fa-id-badge" aria-hidden="true"></i> Their name was...</button>
                 </div>
                 
-                <label>
+                <label for="dramatic-stakes">
                     3. Set the Stakes - Why does this story matter?
                     <i class="fas fa-info-circle info-icon" data-tooltip="What was at risk? What did they have to overcome?" tabindex="0" role="note" aria-label="Help: What was at risk? What did they have to overcome?"></i>
                 </label>
@@ -369,7 +409,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="fact-statement">
                     1. The Shocking Fact - Start with something surprising
                     <i class="fas fa-info-circle info-icon" data-tooltip="What fact will surprise your listeners?" tabindex="0" role="note" aria-label="Help: What fact will surprise your listeners?"></i>
                 </label>
@@ -389,7 +429,7 @@
                     <button class="starter-btn" onclick="insertStarter('fact-statement', 'The textbooks won\'t tell you this, but ')"><i class="fas fa-book" aria-hidden="true"></i> The textbooks won't...</button>
                 </div>
                 
-                <label>
+                <label for="fact-significance">
                     2. Why It's Shocking - Explain why this matters
                     <i class="fas fa-info-circle info-icon" data-tooltip="Why should listeners care?" tabindex="0" role="note" aria-label="Help: Why should listeners care?"></i>
                 </label>
@@ -408,7 +448,7 @@
                     <button class="starter-btn" onclick="insertStarter('fact-significance', 'Yet this story has been left out of ')"><i class="fas fa-book" aria-hidden="true"></i> Yet this story...</button>
                 </div>
                 
-                <label>
+                <label for="fact-subject">
                     3. Meet Your Subject - Introduce the person/group
                     <i class="fas fa-info-circle info-icon" data-tooltip="Who will we learn about?" tabindex="0" role="note" aria-label="Help: Who will we learn about?"></i>
                 </label>
@@ -447,7 +487,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="question-hook">
                     1. Opening Question - Create mystery
                     <i class="fas fa-info-circle info-icon" data-tooltip="What question will hook your listeners?" tabindex="0" role="note" aria-label="Help: What question will hook your listeners?"></i>
                 </label>
@@ -467,7 +507,7 @@
                     <button class="starter-btn" onclick="insertStarter('question-hook', 'Can you imagine ')"><i class="fas fa-lightbulb" aria-hidden="true"></i> Can you imagine...</button>
                 </div>
                 
-                <label>
+                <label for="question-buildup">
                     2. Building Questions - Add 2-3 more questions that deepen the mystery
                     <i class="fas fa-info-circle info-icon" data-tooltip="Each question should raise the stakes" tabindex="0" role="note" aria-label="Help: Each question should raise the stakes"></i>
                 </label>
@@ -486,7 +526,7 @@
                     <button class="starter-btn" onclick="insertStarter('question-buildup', 'What would make ')"><i class="fas fa-fire" aria-hidden="true"></i> What would make...</button>
                 </div>
                 
-                <label>
+                <label for="question-answer">
                     3. Answer Preview - Hint at the amazing answer
                     <i class="fas fa-info-circle info-icon" data-tooltip="Don't give it all away - just a teaser!" tabindex="0" role="note" aria-label="Help: Don't give it all away - just a teaser!"></i>
                 </label>
@@ -527,7 +567,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="sound-effects">
                     1. Sound Effects (Optional) - What sounds transport us to this moment?
                     <i class="fas fa-info-circle info-icon" data-tooltip="Describe sounds your reader/listener can imagine" tabindex="0" role="note" aria-label="Help: Describe sounds your reader/listener can imagine"></i>
                 </label>
@@ -538,7 +578,7 @@
                     <span class="tip"><i class="fas fa-lightbulb" aria-hidden="true"></i> Tip: Think about what someone would HEAR if they were there</span>
                 </div>
                 
-                <label>
+                <label for="sound-setting">
                     2. Set the Scene - When and where?
                     <i class="fas fa-info-circle info-icon" data-tooltip="Paint a picture with words" tabindex="0" role="note" aria-label="Help: Paint a picture with words"></i>
                 </label>
@@ -557,7 +597,7 @@
                     <button class="starter-btn" onclick="insertStarter('sound-setting', 'Close your eyes and imagine ')"><i class="fas fa-eye" aria-hidden="true"></i> Close your eyes...</button>
                 </div>
                 
-                <label>
+                <label for="sound-subject">
                     3. Introduce Subject - Who is there?
                     <i class="fas fa-info-circle info-icon" data-tooltip="Bring your subject into this scene" tabindex="0" role="note" aria-label="Help: Bring your subject into this scene"></i>
                 </label>
@@ -575,7 +615,7 @@
                     <button class="starter-btn" onclick="insertStarter('sound-subject', 'Among them was ')"><i class="fas fa-users" aria-hidden="true"></i> Among them was...</button>
                 </div>
                 
-                <label>
+                <label for="sound-conflict">
                     4. The Conflict - What challenge do they face?
                     <i class="fas fa-info-circle info-icon" data-tooltip="Set up the problem or tension" tabindex="0" role="note" aria-label="Help: Set up the problem or tension"></i>
                 </label>
@@ -594,37 +634,6 @@
                 </div>
                 
                 </div>
-            
-            <!-- GROUP INTRODUCTION -->
-            <div id="intro-group" class="form-section" style="display: none;">
-                <div class="success-box">
-                    <h4><i class="fas fa-users" aria-hidden="true"></i> Group Introduction <span class="group-size-badge" id="groupBadge"></span></h4>
-                    <p id="groupTip"></p>
-                </div>
-                
-                <label>
-                    Self-Introduction - Each person introduces themselves
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Who is on your team?" tabindex="0" role="note" aria-label="Help: Who is on your team?"></i>
-                </label>
-                <textarea id="group-intro" placeholder="e.g., 'Hi, I'm Alex, and I'll be your host today.' 'And I'm Jordan, bringing you the voices of history.'" oninput="updateTimeEstimate(); countWords(this, 'groupintro', 15, 40)"></textarea>
-                <div class="word-counter" id="groupintro-counter"></div>
-                <div class="helper-text">
-                    <strong>What to write:</strong> Each person says their name and role (host, narrator, interviewer, etc.)<br>
-                    <span class="length"><i class="fas fa-ruler" aria-hidden="true"></i> Target: 15-40 words total</span><br>
-                    <span class="tip"><i class="fas fa-lightbulb" aria-hidden="true"></i> Tip: Keep it friendly and welcoming!</span>
-                </div>
-                
-                <label>
-                    Welcome Your Listeners
-                    <i class="fas fa-info-circle info-icon" data-tooltip="Greet your audience warmly" tabindex="0" role="note" aria-label="Help: Greet your audience warmly"></i>
-                </label>
-                <textarea id="group-welcome" placeholder="e.g., Welcome to Revolutionary Voices, where we uncover the hidden stories of America's founding." oninput="updateTimeEstimate(); countWords(this, 'gwelcome', 10, 25)"></textarea>
-                <div class="word-counter" id="gwelcome-counter"></div>
-                <div class="helper-text">
-                    <strong>What to write:</strong> Welcome listeners and tell them what your podcast is about<br>
-                    <span class="length"><i class="fas fa-ruler" aria-hidden="true"></i> Target: 10-25 words (1-2 sentences)</span>
-                </div>
-            </div>
         </div>
         
         <!-- CONTENT SECTION -->
@@ -696,7 +705,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="narrative-intro">
                     Host sets up the story
                     <i class="fas fa-info-circle info-icon" data-tooltip="Transition from intro to the narrative" tabindex="0" role="note" aria-label="Help: Transition from intro to the narrative"></i>
                 </label>
@@ -713,8 +722,8 @@
                     <button class="starter-btn" onclick="insertStarter('narrative-intro', 'Here\'s what [subject] might have said...')"><i class="fas fa-comment" aria-hidden="true"></i> What they said...</button>
                 </div>
                 
-                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-play" aria-hidden="true"></i> SCENE 1: Before / Early in the War</h4>
-                <label>
+                <h4 class="scene-heading"><i class="fas fa-play" aria-hidden="true"></i> SCENE 1: Before / Early in the War</h4>
+                <label for="narrative-scene1">
                     Subject Speaking (First Person) - What was life like before the major events?
                     <i class="fas fa-info-circle info-icon" data-tooltip="Write as if YOU are this person!" tabindex="0" role="note" aria-label="Help: Write as if YOU are this person!"></i>
                 </label>
@@ -735,7 +744,7 @@
                 </div>
                 
                 <!-- COMPARISON BOX #2 -->
-                <label>
+                <label for="narrative-trans1">
                     Host transition to Scene 2
                 </label>
                 <textarea id="narrative-trans1" placeholder="e.g., But then, everything changed..." oninput="updateTimeEstimate(); countWords(this, 'narrtrans1', 10, 25)"></textarea>
@@ -751,8 +760,8 @@
                     <button class="starter-btn" onclick="insertStarter('narrative-trans1', 'Months later, ')"><i class="fas fa-forward" aria-hidden="true"></i> Months later...</button>
                 </div>
                 
-                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> SCENE 2: The Turning Point</h4>
-                <label>
+                <h4 class="scene-heading"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> SCENE 2: The Turning Point</h4>
+                <label for="narrative-scene2">
                     Subject Speaking - What was the major challenge or turning point?
                 </label>
                 <textarea id="narrative-scene2" placeholder="Describe the crisis, decision, or major event..." oninput="updateTimeEstimate(); countWords(this, 'narr2', 60, 120)"></textarea>
@@ -771,7 +780,7 @@
                     <button class="starter-btn" onclick="insertStarter('narrative-scene2', 'The danger was real: ')"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> The danger was...</button>
                 </div>
                 
-                <label>
+                <label for="narrative-trans2">
                     Host transition to Scene 3
                 </label>
                 <textarea id="narrative-trans2" placeholder="e.g., The aftermath of that decision would change history..." oninput="updateTimeEstimate(); countWords(this, 'narrtrans2', 10, 25)"></textarea>
@@ -787,8 +796,8 @@
                     <button class="starter-btn" onclick="insertStarter('narrative-trans2', 'Looking back now, ')"><i class="fas fa-eye" aria-hidden="true"></i> Looking back...</button>
                 </div>
                 
-                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-flag-checkered" aria-hidden="true"></i> SCENE 3: The Impact / Aftermath</h4>
-                <label>
+                <h4 class="scene-heading"><i class="fas fa-flag-checkered" aria-hidden="true"></i> SCENE 3: The Impact / Aftermath</h4>
+                <label for="narrative-scene3">
                     Subject Speaking - What happened as a result? How did things change?
                 </label>
                 <textarea id="narrative-scene3" placeholder="Describe the outcome and what it meant..." oninput="updateTimeEstimate(); countWords(this, 'narr3', 60, 100)"></textarea>
@@ -830,7 +839,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="interview-intro">
                     Host sets up the interview
                 </label>
                 <textarea id="interview-intro" placeholder="e.g., Today, we have the incredible opportunity to interview..." oninput="updateTimeEstimate(); countWords(this, 'intrintro', 15, 35)"></textarea>
@@ -857,8 +866,8 @@
                     </ul>
                 </div>
                 
-                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-question" aria-hidden="true"></i> Question 1: Background/Introduction</h4>
-                <label>Question (Interviewer):</label>
+                <h4 class="scene-heading"><i class="fas fa-question" aria-hidden="true"></i> Question 1: Background/Introduction</h4>
+                <label for="q1">Question (Interviewer):</label>
                 <textarea id="q1" placeholder="Ask about their background, identity, or situation" oninput="updateTimeEstimate(); countWords(this, 'q1text', 10, 25)"></textarea>
                 <div class="word-counter" id="q1text-counter"></div>
                 <div class="helper-text">
@@ -871,7 +880,7 @@
                     <button class="starter-btn" onclick="insertStarter('q1', 'How did you first become involved in ')"><i class="fas fa-play-circle" aria-hidden="true"></i> First involved...</button>
                 </div>
                 
-                <label>Answer (Subject):</label>
+                <label for="a1">Answer (Subject):</label>
                 <textarea id="a1" placeholder="Answer in first person, with details and emotion" oninput="updateTimeEstimate(); countWords(this, 'a1text', 40, 80)"></textarea>
                 <div class="word-counter" id="a1text-counter"></div>
                 <div class="helper-text">
@@ -879,35 +888,35 @@
                     <span class="tip"><i class="fas fa-lightbulb" aria-hidden="true"></i> Remember: Answer as the historical figure (use "I")!</span>
                 </div>
                 
-                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-question" aria-hidden="true"></i> Question 2: The Challenge/Conflict</h4>
-                <label>Question (Interviewer):</label>
+                <h4 class="scene-heading"><i class="fas fa-question" aria-hidden="true"></i> Question 2: The Challenge/Conflict</h4>
+                <label for="q2">Question (Interviewer):</label>
                 <textarea id="q2" placeholder="Ask about challenges, obstacles, or dangers they faced" oninput="updateTimeEstimate(); countWords(this, 'q2text', 10, 25)"></textarea>
                 <div class="word-counter" id="q2text-counter"></div>
-                <label>Answer (Subject):</label>
+                <label for="a2">Answer (Subject):</label>
                 <textarea id="a2" placeholder="Describe the challenge with specific details" oninput="updateTimeEstimate(); countWords(this, 'a2text', 40, 80)"></textarea>
                 <div class="word-counter" id="a2text-counter"></div>
                 
-                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-question" aria-hidden="true"></i> Question 3: The Key Decision/Action</h4>
-                <label>Question (Interviewer):</label>
+                <h4 class="scene-heading"><i class="fas fa-question" aria-hidden="true"></i> Question 3: The Key Decision/Action</h4>
+                <label for="q3">Question (Interviewer):</label>
                 <textarea id="q3" placeholder="Ask about a crucial decision or action they took" oninput="updateTimeEstimate(); countWords(this, 'q3text', 10, 25)"></textarea>
                 <div class="word-counter" id="q3text-counter"></div>
-                <label>Answer (Subject):</label>
+                <label for="a3">Answer (Subject):</label>
                 <textarea id="a3" placeholder="Explain what you did and why" oninput="updateTimeEstimate(); countWords(this, 'a3text', 40, 80)"></textarea>
                 <div class="word-counter" id="a3text-counter"></div>
                 
-                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-question" aria-hidden="true"></i> Question 4: The Turning Point/Impact</h4>
-                <label>Question (Interviewer):</label>
+                <h4 class="scene-heading"><i class="fas fa-question" aria-hidden="true"></i> Question 4: The Turning Point/Impact</h4>
+                <label for="q4">Question (Interviewer):</label>
                 <textarea id="q4" placeholder="Ask about the outcome or impact of their actions" oninput="updateTimeEstimate(); countWords(this, 'q4text', 10, 25)"></textarea>
                 <div class="word-counter" id="q4text-counter"></div>
-                <label>Answer (Subject):</label>
+                <label for="a4">Answer (Subject):</label>
                 <textarea id="a4" placeholder="Describe what happened as a result" oninput="updateTimeEstimate(); countWords(this, 'a4text', 40, 80)"></textarea>
                 <div class="word-counter" id="a4text-counter"></div>
                 
-                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-question" aria-hidden="true"></i> Question 5: Reflection/Legacy</h4>
-                <label>Question (Interviewer):</label>
+                <h4 class="scene-heading"><i class="fas fa-question" aria-hidden="true"></i> Question 5: Reflection/Legacy</h4>
+                <label for="q5">Question (Interviewer):</label>
                 <textarea id="q5" placeholder="Ask about lessons learned or what they want people to remember" oninput="updateTimeEstimate(); countWords(this, 'q5text', 10, 25)"></textarea>
                 <div class="word-counter" id="q5text-counter"></div>
-                <label>Answer (Subject):</label>
+                <label for="a5">Answer (Subject):</label>
                 <textarea id="a5" placeholder="Reflect on the meaning and legacy" oninput="updateTimeEstimate(); countWords(this, 'a5text', 40, 80)"></textarea>
                 <div class="word-counter" id="a5text-counter"></div>
                 
@@ -933,7 +942,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="news-opening">
                     1. News Opening - "On the scene" introduction
                     <i class="fas fa-info-circle info-icon" data-tooltip="Set the scene like a TV reporter" tabindex="0" role="note" aria-label="Help: Set the scene like a TV reporter"></i>
                 </label>
@@ -952,7 +961,7 @@
                     <button class="starter-btn" onclick="insertStarter('news-opening', 'We\'re on the scene where ')"><i class="fas fa-video" aria-hidden="true"></i> On the scene...</button>
                 </div>
                 
-                <label>
+                <label for="news-background">
                     2. Background Information - What led to this event?
                 </label>
                 <textarea id="news-background" placeholder="Provide context about what happened before..." oninput="updateTimeEstimate(); countWords(this, 'newsbg', 40, 80)"></textarea>
@@ -968,7 +977,7 @@
                     <button class="starter-btn" onclick="insertStarter('news-background', 'According to witnesses, ')"><i class="fas fa-users" aria-hidden="true"></i> According to...</button>
                 </div>
                 
-                <label>
+                <label for="news-quote">
                     3. Interview/Quote - Include words from the subject or witnesses
                 </label>
                 <textarea id="news-quote" placeholder="We spoke with... OR In their words..." oninput="updateTimeEstimate(); countWords(this, 'newsquote', 40, 80)"></textarea>
@@ -985,7 +994,7 @@
                     <button class="starter-btn" onclick="insertStarter('news-quote', 'One witness described ')"><i class="fas fa-eye" aria-hidden="true"></i> Witness described...</button>
                 </div>
                 
-                <label>
+                <label for="news-turning">
                     4. The Turning Point - What was the crucial moment?
                 </label>
                 <textarea id="news-turning" placeholder="Describe the key action or decision..." oninput="updateTimeEstimate(); countWords(this, 'newsturn', 40, 80)"></textarea>
@@ -995,7 +1004,7 @@
                     <span class="length"><i class="fas fa-ruler" aria-hidden="true"></i> Target: 40-80 words</span>
                 </div>
                 
-                <label>
+                <label for="news-aftermath">
                     5. The Aftermath - What happened next?
                 </label>
                 <textarea id="news-aftermath" placeholder="Report on consequences and reactions..." oninput="updateTimeEstimate(); countWords(this, 'newsafter', 40, 80)"></textarea>
@@ -1005,7 +1014,7 @@
                     <span class="length"><i class="fas fa-ruler" aria-hidden="true"></i> Target: 40-80 words</span>
                 </div>
                 
-                <label>
+                <label for="news-closing">
                     6. Closing Statement - Sign off like a news reporter
                 </label>
                 <textarea id="news-closing" placeholder="Reporting from [location], this is [name]..." oninput="updateTimeEstimate(); countWords(this, 'newsclose', 15, 35)"></textarea>
@@ -1044,7 +1053,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="diary-intro">
                     Host sets up the diary entries
                 </label>
                 <textarea id="diary-intro" placeholder="e.g., These are the private diary entries of..." oninput="updateTimeEstimate(); countWords(this, 'diaryintro', 15, 35)"></textarea>
@@ -1065,11 +1074,11 @@
                     </ul>
                 </div>
                 
-                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-book" aria-hidden="true"></i> DIARY ENTRY 1: Before / Early</h4>
-                <label>Date of First Entry:</label>
+                <h4 class="scene-heading"><i class="fas fa-book" aria-hidden="true"></i> DIARY ENTRY 1: Before / Early</h4>
+                <label for="diary1-date">Date of First Entry:</label>
                 <input type="text" id="diary1-date" placeholder="e.g., March 15, 1775 OR Summer 1776" oninput="updateTimeEstimate()">
                 
-                <label>First Diary Entry Content:</label>
+                <label for="diary1-content">First Diary Entry Content:</label>
                 <textarea id="diary1-content" placeholder="Dear Diary,..." oninput="updateTimeEstimate(); countWords(this, 'diary1', 60, 100)"></textarea>
                 <div class="word-counter" id="diary1-counter"></div>
                 <div class="helper-text">
@@ -1085,11 +1094,11 @@
                     <button class="starter-btn" onclick="insertStarter('diary1-content', 'I must record what happened today: ')"><i class="fas fa-pen" aria-hidden="true"></i> Must record...</button>
                 </div>
                 
-                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-book" aria-hidden="true"></i> DIARY ENTRY 2: The Challenge</h4>
-                <label>Date of Second Entry:</label>
+                <h4 class="scene-heading"><i class="fas fa-book" aria-hidden="true"></i> DIARY ENTRY 2: The Challenge</h4>
+                <label for="diary2-date">Date of Second Entry:</label>
                 <input type="text" id="diary2-date" placeholder="e.g., September 28, 1776" oninput="updateTimeEstimate()">
                 
-                <label>Second Diary Entry Content:</label>
+                <label for="diary2-content">Second Diary Entry Content:</label>
                 <textarea id="diary2-content" placeholder="Dear Diary,..." oninput="updateTimeEstimate(); countWords(this, 'diary2', 60, 120)"></textarea>
                 <div class="word-counter" id="diary2-counter"></div>
                 <div class="helper-text">
@@ -1104,11 +1113,11 @@
                     <button class="starter-btn" onclick="insertStarter('diary2-content', 'Today was the hardest day: ')"><i class="fas fa-frown" aria-hidden="true"></i> Hardest day...</button>
                 </div>
                 
-                <h4 style="color: #4caf50; margin-top: 25px;"><i class="fas fa-book" aria-hidden="true"></i> DIARY ENTRY 3: The Resolution</h4>
-                <label>Date of Third Entry:</label>
+                <h4 class="scene-heading"><i class="fas fa-book" aria-hidden="true"></i> DIARY ENTRY 3: The Resolution</h4>
+                <label for="diary3-date">Date of Third Entry:</label>
                 <input type="text" id="diary3-date" placeholder="e.g., January 3, 1778" oninput="updateTimeEstimate()">
                 
-                <label>Third Diary Entry Content:</label>
+                <label for="diary3-content">Third Diary Entry Content:</label>
                 <textarea id="diary3-content" placeholder="Dear Diary,..." oninput="updateTimeEstimate(); countWords(this, 'diary3', 60, 100)"></textarea>
                 <div class="word-counter" id="diary3-counter"></div>
                 <div class="helper-text">
@@ -1123,7 +1132,7 @@
                     <button class="starter-btn" onclick="insertStarter('diary3-content', 'I am not the same person who ')"><i class="fas fa-user" aria-hidden="true"></i> Not the same...</button>
                 </div>
                 
-                <label>
+                <label for="diary-closing">
                     Host closing - wrap up the diary entries
                 </label>
                 <textarea id="diary-closing" placeholder="e.g., These entries reveal..." oninput="updateTimeEstimate(); countWords(this, 'diaryclose', 20, 40)"></textarea>
@@ -1177,7 +1186,7 @@
                 </label>
                 <label class="choice-option">
                     <input type="radio" name="conclusion" value="challenge" onchange="switchStyleWithWarning('conclusion-', ['significance','today','challenge','legacy'], 'challenge', showConclusionForm); updateTimeEstimate()">
-                    <strong><i class="fas fa-question-circle" aria-hidden="true"></i> Challenge the Narrative</strong> - Question what's missing from standard history
+                    <strong><i class="fas fa-question-circle" aria-hidden="true"></i> What's Usually Left Out</strong> - Ask what typical history skips, and why that matters
                 </label>
                 <label class="choice-option">
                     <input type="radio" name="conclusion" value="legacy" onchange="switchStyleWithWarning('conclusion-', ['significance','today','challenge','legacy'], 'legacy', showConclusionForm); updateTimeEstimate()">
@@ -1204,7 +1213,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="sig-what">
                     1. What Happened? - Summarize the key takeaway
                     <i class="fas fa-info-circle info-icon" data-tooltip="What's the main point?" tabindex="0" role="note" aria-label="Help: What's the main point?"></i>
                 </label>
@@ -1221,7 +1230,7 @@
                     <button class="starter-btn" onclick="insertStarter('sig-what', 'Here\'s what we learned: ')"><i class="fas fa-graduation-cap" aria-hidden="true"></i> What we learned...</button>
                 </div>
                 
-                <label>
+                <label for="sig-reveals">
                     2. What Does This Reveal? - Explain the bigger picture
                 </label>
                 <textarea id="sig-reveals" placeholder="But this story reveals something bigger..." oninput="updateTimeEstimate(); countWords(this, 'sigrev', 30, 50)"></textarea>
@@ -1237,7 +1246,7 @@
                     <button class="starter-btn" onclick="insertStarter('sig-reveals', 'This challenges our understanding of ')"><i class="fas fa-brain" aria-hidden="true"></i> Challenges understanding...</button>
                 </div>
                 
-                <label>
+                <label for="sig-why">
                     3. Why Should We Care? - Make it matter
                 </label>
                 <textarea id="sig-why" placeholder="Why does this matter?" oninput="updateTimeEstimate(); countWords(this, 'sigwhy', 30, 50)"></textarea>
@@ -1253,7 +1262,7 @@
                     <button class="starter-btn" onclick="insertStarter('sig-why', 'Their story reminds us that ')"><i class="fas fa-lightbulb" aria-hidden="true"></i> Story reminds us...</button>
                 </div>
                 
-                <label>
+                <label for="sig-final">
                     4. Final Thought - End with impact
                 </label>
                 <textarea id="sig-final" placeholder="Powerful final statement..." oninput="updateTimeEstimate(); countWords(this, 'sigfinal', 20, 35)"></textarea>
@@ -1290,7 +1299,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="today-lesson">
                     1. The Lesson - What should we learn from this story?
                 </label>
                 <textarea id="today-lesson" placeholder="The lesson here is..." oninput="updateTimeEstimate(); countWords(this, 'todaylesson', 20, 40)"></textarea>
@@ -1306,7 +1315,7 @@
                     <button class="starter-btn" onclick="insertStarter('today-lesson', 'This story teaches us that ')"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> This teaches...</button>
                 </div>
                 
-                <label>
+                <label for="today-parallel">
                     2. Modern Parallel - How do we see this today?
                 </label>
                 <textarea id="today-parallel" placeholder="Just like [historical example], today we see..." oninput="updateTimeEstimate(); countWords(this, 'todaypar', 30, 60)"></textarea>
@@ -1323,7 +1332,7 @@
                     <button class="starter-btn" onclick="insertStarter('today-parallel', 'Sound familiar? That\'s because ')"><i class="fas fa-lightbulb" aria-hidden="true"></i> Sound familiar...</button>
                 </div>
                 
-                <label>
+                <label for="today-specific">
                     3. Specific Example - Give a concrete present-day example
                 </label>
                 <textarea id="today-specific" placeholder="For example, we can see this when..." oninput="updateTimeEstimate(); countWords(this, 'todayspec', 25, 45)"></textarea>
@@ -1333,7 +1342,7 @@
                     <span class="length"><i class="fas fa-ruler" aria-hidden="true"></i> Target: 25-45 words</span>
                 </div>
                 
-                <label>
+                <label for="today-final">
                     4. Final Connection - Why this matters now
                 </label>
                 <textarea id="today-final" placeholder="That's why this story still matters..." oninput="updateTimeEstimate(); countWords(this, 'todayfinal', 20, 35)"></textarea>
@@ -1353,7 +1362,7 @@
             
             <!-- CHALLENGE THE NARRATIVE -->
             <div id="conclusion-challenge" class="form-section">
-                <h3><i class="fas fa-question-circle" aria-hidden="true"></i> Challenge the Narrative Conclusion</h3>
+                <h3><i class="fas fa-question-circle" aria-hidden="true"></i> What's Usually Left Out</h3>
                 
                 <div class="exemplar-box">
                     <button class="exemplar-toggle" onclick="toggleExemplar('challenge-example')">
@@ -1362,15 +1371,15 @@
                     <div id="challenge-example" class="exemplar-content">
                         <div class="example">
                             <strong>Example for African Americans in the Revolution:</strong><br>
-                            "We all learn about Washington, Jefferson, and Paul Revere. But what about the thousands of Black Americans who fought on both sides of this war? Their names don't appear in most textbooks. Their stories were deliberately erased because they complicate the simple narrative of white Founding Fathers creating freedom. Why were these stories hidden? Because acknowledging that enslaved people fought for American independence while being denied their own freedom exposes the hypocrisy at our nation's founding. When we leave these voices out of history, we lose the full truth. We lose the complexity. We lose the real people who shaped this country. And that matters because you can't understand America without understanding ALL Americans who built it."
+                            "We all learn about Washington, Jefferson, and Paul Revere. Thousands of Black Americans also fought in this war, on both sides, and their names are often missing from textbooks. That is not because they did not matter. It is because the full story is harder: some people fought for American independence while still being denied freedom. When we skip those voices, we get a simpler story, not the whole one. A better history includes all the people who shaped this country."
                         </div>
                         <div class="why">
-                            <i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Why this works:</strong> Questions what's missing, explains WHY it's missing, shows consequences of incomplete history, and makes it urgent and relevant.
+                            <i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Why this works:</strong> Names the usual story, points to who is missing, and explains why the fuller story is harder but more true.
                         </div>
                     </div>
                 </div>
                 
-                <label>
+                <label for="challenge-standard">
                     1. The Standard Story - What do most people learn?
                 </label>
                 <textarea id="challenge-standard" placeholder="We all learn about..." oninput="updateTimeEstimate(); countWords(this, 'chalstand', 20, 40)"></textarea>
@@ -1386,7 +1395,7 @@
                     <button class="starter-btn" onclick="insertStarter('challenge-standard', 'Most people think ')"><i class="fas fa-users" aria-hidden="true"></i> Most people...</button>
                 </div>
                 
-                <label>
+                <label for="challenge-missing">
                     2. What's Missing? - Point out the gap
                 </label>
                 <textarea id="challenge-missing" placeholder="But what about...?" oninput="updateTimeEstimate(); countWords(this, 'chalmiss', 25, 45)"></textarea>
@@ -1402,7 +1411,7 @@
                     <button class="starter-btn" onclick="insertStarter('challenge-missing', 'The history books leave out ')"><i class="fas fa-book" aria-hidden="true"></i> Books leave out...</button>
                 </div>
                 
-                <label>
+                <label for="challenge-why">
                     3. Why Was This Hidden? - Explain the reason
                 </label>
                 <textarea id="challenge-why" placeholder="Why were these stories hidden?" oninput="updateTimeEstimate(); countWords(this, 'chalwhy', 30, 55)"></textarea>
@@ -1419,7 +1428,7 @@
                     <button class="starter-btn" onclick="insertStarter('challenge-why', 'The reason is uncomfortable: ')"><i class="fas fa-circle-exclamation" aria-hidden="true"></i> Reason uncomfortable...</button>
                 </div>
                 
-                <label>
+                <label for="challenge-lose">
                     4. What Do We Lose? - Show the consequences
                 </label>
                 <textarea id="challenge-lose" placeholder="When we leave these voices out..." oninput="updateTimeEstimate(); countWords(this, 'challose', 25, 45)"></textarea>
@@ -1435,7 +1444,7 @@
                     <button class="starter-btn" onclick="insertStarter('challenge-lose', 'This matters because ')"><i class="fas fa-exclamation-circle" aria-hidden="true"></i> This matters...</button>
                 </div>
                 
-                <label>
+                <label for="challenge-final">
                     5. Call to Action - Challenge listeners
                 </label>
                 <textarea id="challenge-final" placeholder="So ask yourself..." oninput="updateTimeEstimate(); countWords(this, 'chalfinal', 20, 35)"></textarea>
@@ -1472,7 +1481,7 @@
                     </div>
                 </div>
                 
-                <label>
+                <label for="legacy-impact">
                     1. The Impact - What did they accomplish or change?
                 </label>
                 <textarea id="legacy-impact" placeholder="[Subject]'s impact was..." oninput="updateTimeEstimate(); countWords(this, 'legimp', 30, 50)"></textarea>
@@ -1488,7 +1497,7 @@
                     <button class="starter-btn" onclick="insertStarter('legacy-impact', 'Their legacy lived on in ')"><i class="fas fa-monument" aria-hidden="true"></i> Legacy lived on...</button>
                 </div>
                 
-                <label>
+                <label for="legacy-lesson">
                     2. The Lesson - What can WE learn from this?
                 </label>
                 <textarea id="legacy-lesson" placeholder="The lesson? ..." oninput="updateTimeEstimate(); countWords(this, 'legless', 25, 45)"></textarea>
@@ -1505,7 +1514,7 @@
                     <button class="starter-btn" onclick="insertStarter('legacy-lesson', 'This teaches us that ')"><i class="fas fa-chalkboard-teacher" aria-hidden="true"></i> This teaches...</button>
                 </div>
                 
-                <label>
+                <label for="legacy-universal">
                     3. Universal Message - How does this apply to everyone?
                 </label>
                 <textarea id="legacy-universal" placeholder="No matter who you are..." oninput="updateTimeEstimate(); countWords(this, 'leguniv', 25, 45)"></textarea>
@@ -1521,7 +1530,7 @@
                     <button class="starter-btn" onclick="insertStarter('legacy-universal', 'You don\'t have to be ')"><i class="fas fa-user" aria-hidden="true"></i> Don't have to...</button>
                 </div>
                 
-                <label>
+                <label for="legacy-honor">
                     4. How We Honor Them - What should we do now?
                 </label>
                 <textarea id="legacy-honor" placeholder="We honor [subject] by..." oninput="updateTimeEstimate(); countWords(this, 'leghon', 25, 45)"></textarea>
@@ -1552,19 +1561,19 @@
                 <i class="fas fa-users" aria-hidden="true"></i> Who's playing each part?
             </div>
             <div id="roleRowHost" class="role-row">
-                <label for="roleHost" class="role-label"><span class="role-chip-preview chip-host" id="rolePreviewHost" aria-hidden="true">HOST</span> Host name</label>
+                <label for="roleHost" class="role-label"><span class="role-chip-preview chip-host" id="rolePreviewHost" aria-hidden="true">HOST</span> Student hosting</label>
                 <input type="text" class="role-name-input" id="roleHost" placeholder="First name" maxlength="20" oninput="updateRoleChipPreviews()">
             </div>
             <div id="roleRowNarrator" class="role-row" style="display:none">
-                <label for="roleNarrator" class="role-label"><span class="role-chip-preview chip-narrator" id="rolePreviewNarrator" aria-hidden="true">NARRATOR</span> Narrator name</label>
+                <label for="roleNarrator" class="role-label"><span class="role-chip-preview chip-narrator" id="rolePreviewNarrator" aria-hidden="true">NARRATOR</span> Student narrating</label>
                 <input type="text" class="role-name-input" id="roleNarrator" placeholder="First name" maxlength="20" oninput="updateRoleChipPreviews()">
             </div>
             <div id="roleRowSubject" class="role-row">
-                <label for="roleSubject" class="role-label"><span class="role-chip-preview chip-subject" id="rolePreviewSubject" aria-hidden="true">SUBJECT</span> Subject name</label>
+                <label for="roleSubject" class="role-label"><span class="role-chip-preview chip-subject" id="rolePreviewSubject" aria-hidden="true">SUBJECT</span> Student voicing the historical figure</label>
                 <input type="text" class="role-name-input" id="roleSubject" placeholder="First name" maxlength="20" oninput="updateRoleChipPreviews()">
             </div>
             <div class="role-card-hint">
-                <i class="fas fa-lightbulb" aria-hidden="true"></i> Your names will appear on every line of the script. Leave blank to use role labels instead.
+                <i class="fas fa-lightbulb" aria-hidden="true"></i> Type the student first names, not the historical figure. Leave blank to use HOST / NARRATOR / SUBJECT.
             </div>
         </div>
 
@@ -1609,7 +1618,7 @@
                     </div>
                     <div class="submit-stage submit-stage-final">
                         <h3><span class="stage-num">2</span> Later: turn in your FINAL</h3>
-                        <p>After you get feedback, come back, use <strong>"Pick up where I left off"</strong> at the top if needed, improve your script, then re-generate and hand in your polished final on Canvas.</p>
+                        <p>After you get feedback, come back on this computer (your work is saved here). If you switched computers, use <strong>Restore from Google Doc</strong> in the <strong>...</strong> menu at the top, paste your Doc, then improve your script and hand in your polished final on Canvas.</p>
                         <div class="stage-actions">
                             <button class="btn btn-secondary" onclick="copyScript()"><i class="fas fa-copy" aria-hidden="true"></i> Copy final script</button>
                             <button class="btn" onclick="printScript()"><i class="fas fa-print" aria-hidden="true"></i> Print / Save as PDF</button>
@@ -1639,25 +1648,25 @@
         <details class="docsafe" id="docSafe">
             <summary class="docsafe-summary"><i class="fas fa-shield-alt" aria-hidden="true"></i> Keep a copy in Google Docs (so you don't lose your work)</summary>
             <div class="docsafe-body">
-            <p class="docsafe-intro">A Google Doc in <strong>your</strong> Google Drive is the safest backup (this tool also saves on this computer). Do these in order:</p>
+            <p class="docsafe-intro">This computer saves your work. Shared Chromebooks get wiped. Keep a copy in <strong>your</strong> Google Doc.</p>
             <ol class="docsafe-steps">
                 <li>
-                    <button type="button" class="btn btn-doc" onclick="openGoogleDoc()">
-                        <i class="fas fa-file-alt" aria-hidden="true"></i> 1. Open my Google Doc
+                    <button type="button" class="btn btn-doc" onclick="backupToGoogleDoc()">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i> Copy to Google Doc
                     </button>
-                    <span class="docsafe-hint">A new tab opens. Title it: <strong>Revolutionary Voices - Your Name</strong></span>
+                    <span class="docsafe-hint">Copies your work. Paste it into a Google Doc in <strong>your</strong> Drive (<kbd>Ctrl</kbd>+<kbd>V</kbd>). Do this when you finish a step.</span>
                 </li>
                 <li>
-                    <button type="button" class="btn btn-doc" onclick="copyWorkToDoc()">
-                        <i class="fas fa-copy" aria-hidden="true"></i> 2. Copy my work - paste in my Doc
+                    <button type="button" class="btn btn-doc" onclick="openGoogleDoc()">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i> Open a new Google Doc
                     </button>
-                    <span class="docsafe-hint">Click your Doc tab and paste (<kbd>Ctrl</kbd>+<kbd>V</kbd>). Do this each time you finish a step.</span>
+                    <span class="docsafe-hint">Need a blank Doc? A new tab opens. Title it: <strong>Revolutionary Voices - Your Name</strong></span>
                 </li>
                 <li>
                     <button type="button" class="btn btn-doc btn-doc-restore" onclick="toggleResume()" aria-expanded="false" aria-controls="resumePanel">
-                        <i class="fas fa-history" aria-hidden="true"></i> Coming back? Pick up where I left off
+                        <i class="fas fa-history" aria-hidden="true"></i> Restore from Google Doc
                     </button>
-                    <span class="docsafe-hint">Paste everything from your Doc back in to restore your work on any computer.</span>
+                    <span class="docsafe-hint">On a new computer, paste your whole Doc here to get your work back.</span>
                 </li>
             </ol>
             <div class="resume-panel" id="resumePanel" hidden>
@@ -1677,7 +1686,7 @@
     <footer class="site-footer">
         <span>Revolutionary Voices Script Builder</span>
         <span class="footer-sep">-</span>
-        <span id="footerVersion">v1.0.0</span>
+        <span id="footerVersion">v1.2.2</span>
         <span class="footer-sep">-</span>
         <span>voices.mrbsocialstudies.org</span>
     </footer>

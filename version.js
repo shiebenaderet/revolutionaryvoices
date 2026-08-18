@@ -1,1 +1,1 @@
-const BUILD_HASH = '4c8bf42';
+const BUILD_HASH = 'b3066dc';

@@ -6,6 +6,14 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.3.0] - 2026-08-18
+
+### Added
+
+- **Your reading** drawer on Intro, Content, and Conclusion: the leveled source stays next to the script. Closed by default. Language pills match the Research step. On a laptop the script shifts over so students can type while they read; on a narrow screen it opens as a bottom sheet. Esc or Close dismisses it.
+
+---
+
 ## [1.2.2] - 2026-08-18
 
 ### Changed

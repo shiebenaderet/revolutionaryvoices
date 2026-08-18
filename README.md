@@ -8,18 +8,18 @@ A browser-based tool that guides 8th-grade students through writing a podcast-st
 
 ## What it does
 
-Students follow a 6-step wizard to build a radio-drama script in which a Host introduces a historical figure, a Narrator provides context, and the Subject (the historical figure) speaks in first person. The tool provides leveled research reading, sentence starters, verb banks, and a rubric at each step. A finished script includes a word count, estimated run time, and a practice read-aloud mode.
+Students follow a 6-step wizard to build a radio-drama script in which a Host introduces a historical figure, a Narrator provides context, and the Subject (the historical figure) speaks in first person. The tool provides leveled research reading (available again while writing), sentence starters, verb banks, and a rubric at each step. A finished script includes a word count, estimated run time, and a practice read-aloud mode.
 
 ### Steps
 
 | # | Step | What students do |
 |---|------|-----------------|
-| 1 | Basics | Enter their name, choose a topic and reading level, assign group roles |
-| 2 | Research | Read leveled source material and pull key facts |
-| 3 | Intro | Write the Host's dramatic hook and subject introduction |
-| 4 | Content | Write the Narrator's scene-setting and the Subject's dialogue |
-| 5 | Conclusion | Write the Narrator's wrap-up and Host's closing |
-| 6 | Finish | Preview the finished script, practice reading aloud, export or submit |
+| 1 | Basics | Enter their name and choose a topic. Podcast name is suggested. Group size is optional. |
+| 2 | Research | Read the leveled source, optionally jot notes, then check that they are ready to write |
+| 3 | Intro | Write the Host's hook. Open **Your reading** to keep the source on screen. |
+| 4 | Content | Write the Narrator's scene-setting and the Subject's dialogue. Reading drawer stays available. |
+| 5 | Conclusion | Write the wrap-up. Reading drawer stays available. |
+| 6 | Finish | Preview the script, practice reading aloud, copy to a Google Doc, or submit |
 
 ---
 
@@ -34,6 +34,11 @@ Students follow a 6-step wizard to build a radio-drama script in which a Host in
 - **Leveled reading** - 22 historical topics, 4 language levels, same facts; hard words are glossed on Most Support
 - **Practice mode** - timed read-aloud panel on the Finish step
 - **Help me write** - examples, starters, and verb banks stay collapsed until a student asks
+- **Reading drawer** - on Intro, Content, and Conclusion, **Your reading** opens the leveled source beside the script (bottom sheet on a narrow screen). Language level stays in sync with Research. Closed by default.
+
+### Classroom notes
+
+Typed notes on the Research step are optional. Many classes use a paper handout for notes from the reading and from other sources. The in-app drawer is the source text while students write, not a second worksheet.
 
 ---
 
@@ -61,7 +66,7 @@ This project uses [Semantic Versioning](https://semver.org):
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
-Current version: **1.2.2**
+Current version: **1.3.0**
 
 ---
 
@@ -69,7 +74,7 @@ Current version: **1.2.2**
 
 Pure static site - no build step. Edit `index.html`, `app.js`, `styles.css`, or `readings.js` directly and open `index.html` in a browser.
 
-To add a new reading topic, add an entry to `readings.js` following the existing schema: `{ id, title, levels: { 1: { intro, sections: [{heading, body, facts}] } } }`.
+To add a new reading topic, add an entry to `window.RV_READINGS` in `readings.js` (and a matching row in `window.RV_TOPICS`). Each topic needs `name`, `tagline`, `quickFacts`, four `levels` (`mostSupport`, `someSupport`, `standard`, `challenge`), `keyFacts` for hook/content/conclusion, and `sources`. Use the same facts at every level; gloss hard words on Most Support.
 
 Deployed via GitHub Pages with a custom domain (`CNAME` file). Push to `main` to deploy.
 

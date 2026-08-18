@@ -967,7 +967,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '1.2.2'; // keep in sync with index.html footer and CHANGELOG
+        const APP_VERSION = '1.3.0'; // keep in sync with index.html footer and CHANGELOG
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION + (typeof BUILD_HASH !== 'undefined' ? ' (' + BUILD_HASH + ')' : ''); })();
         const OLD_KEY = 'revolutionaryVoicesScript';
@@ -1544,6 +1544,7 @@
             if (n === 1 && typeof rvSyncFromSelect === 'function') rvSyncFromSelect();
             if (typeof rvRenderStepFacts === 'function') rvRenderStepFacts(n);
             if (typeof updateExemplarNotes === 'function') updateExemplarNotes();
+            if (typeof closeReadingDrawer === 'function' && (n < 2 || n > 4)) closeReadingDrawer(false);
             wizUpdateNav();
             wizUpdateStepper();
             const first = wizEls(n)[0];
@@ -1654,6 +1655,7 @@
 
         function wizInit() {
             if (typeof rvInitResearch === 'function') rvInitResearch();
+            if (typeof rvInitReadingDrawer === 'function') rvInitReadingDrawer();
             document.querySelectorAll('input[type="text"], textarea, input[type="radio"], input[type="checkbox"], select')
                 .forEach(el => {
                     el.addEventListener('input', wizUpdateStepper);
@@ -1712,12 +1714,28 @@
             // Build a "key facts" panel at the top of Intro / Content / Conclusion steps
             [['section-intro', 'hook'], ['section-content', 'content'], ['section-conclusion', 'conclusion']].forEach(([cls, key]) => {
                 const sec = document.querySelector('.' + cls);
-                if (sec && !sec.querySelector('.step-facts')) {
+                if (!sec) return;
+                if (!sec.querySelector('.reading-peek')) {
+                    const peek = document.createElement('div');
+                    peek.className = 'reading-peek';
+                    peek.innerHTML =
+                        '<button type="button" class="reading-peek-btn" aria-expanded="false" aria-controls="readingDrawerPanel">' +
+                        '<i class="fas fa-book-open" aria-hidden="true"></i> Your reading</button>' +
+                        '<span class="reading-peek-hint">Open the source while you write</span>';
+                    const h2 = sec.querySelector('h2');
+                    if (h2 && h2.nextSibling) sec.insertBefore(peek, h2.nextSibling);
+                    else sec.insertBefore(peek, sec.firstChild);
+                    peek.querySelector('.reading-peek-btn').addEventListener('click', function() {
+                        toggleReadingDrawer(this);
+                    });
+                }
+                if (!sec.querySelector('.step-facts')) {
                     const box = document.createElement('div');
                     box.className = 'step-facts';
                     box.dataset.facts = key;
-                    const ind = sec.querySelector('.step-indicator');
-                    if (ind && ind.nextSibling) sec.insertBefore(box, ind.nextSibling);
+                    const peek = sec.querySelector('.reading-peek');
+                    if (peek && peek.nextSibling) sec.insertBefore(box, peek.nextSibling);
+                    else if (peek) peek.after(box);
                     else sec.insertBefore(box, sec.firstChild);
                 }
             });
@@ -1742,9 +1760,13 @@
                 if (note) {
                     note.hidden = false;
                     note.innerHTML = (subj && subj.value)
-                        ? 'The reading for <strong>' + chosenName + '</strong> is still being added. You can still build your script — use your class resources to research this topic.'
+                        ? 'The reading for <strong>' + chosenName + '</strong> is still being added. You can still build your script. Use your class resources to research this topic.'
                         : 'Go back to <strong>Basics</strong> and choose your topic to load a reading.';
                 }
+                const emptyMsg = (subj && subj.value)
+                    ? 'The reading for this topic is still being added. Use your notes and class resources.'
+                    : 'Choose your topic on the Basics step to see the reading here.';
+                rvShowDrawerReading(false, emptyMsg);
             }
         }
 
@@ -1789,30 +1811,40 @@
             const r = window.RV_READINGS[id];
             if (!r) return;
             const level = rvLevel();
-            const set = (elId, html) => { const e = document.getElementById(elId); if (e) e.innerHTML = html; };
-            set('readingName', r.name);
-            set('readingTagline', r.tagline || '');
-            // Quick facts
-            set('readingQuickFacts', (r.quickFacts || []).map(f =>
-                '<span class="qf"><strong>' + f[0] + ':</strong> ' + f[1] + '</span>').join(''));
-            // Level pills active state
-            document.querySelectorAll('.level-pill').forEach(p =>
-                p.classList.toggle('active', p.dataset.level === level));
-            // Reading body
-            set('readingBody', (r.levels && r.levels[level]) || r.levels.standard || '');
-            // Key facts grouped by section
+            const set = function(elId, html) {
+                const e = document.getElementById(elId);
+                if (e) e.innerHTML = html;
+            };
+            const setBoth = function(a, b, html) { set(a, html); set(b, html); };
+            setBoth('readingName', 'drawerReadingName', r.name);
+            setBoth('readingTagline', 'drawerReadingTagline', r.tagline || '');
+            const qf = (r.quickFacts || []).map(function(f) {
+                return '<span class="qf"><strong>' + f[0] + ':</strong> ' + f[1] + '</span>';
+            }).join('');
+            setBoth('readingQuickFacts', 'drawerReadingQuickFacts', qf);
+            const qfEl = document.getElementById('drawerReadingQuickFacts');
+            if (qfEl) qfEl.hidden = !qf;
+            document.querySelectorAll('.level-pill').forEach(function(p) {
+                p.classList.toggle('active', p.dataset.level === level);
+            });
+            const body = (r.levels && r.levels[level]) || r.levels.standard || '';
+            setBoth('readingBody', 'drawerReadingBody', body);
             let facts = '<h4><i class="fas fa-key" aria-hidden="true"></i> Key facts to use in your script</h4>';
-            ['hook', 'content', 'conclusion'].forEach(k => {
+            ['hook', 'content', 'conclusion'].forEach(function(k) {
                 const items = rvFactsFor(r, k);
                 if (!items.length) return;
                 facts += '<div class="facts-group"><h5>' + RV_SECTION_LABEL[k] + '</h5><ul>' +
-                    items.map(x => '<li>' + x + '</li>').join('') + '</ul></div>';
+                    items.map(function(x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>';
             });
             set('readingFacts', facts);
-            // Sources
-            const src = (r.sources || []).map(s =>
-                '<li><a href="' + s.url + '" target="_blank" rel="noopener">' + s.title + '</a></li>').join('');
-            set('readingSources', src ? '<h4><i class="fas fa-link" aria-hidden="true"></i> Where these facts come from</h4><ul>' + src + '</ul>' : '');
+            const srcItems = (r.sources || []).map(function(s) {
+                return '<li><a href="' + s.url + '" target="_blank" rel="noopener">' + s.title + '</a></li>';
+            }).join('');
+            set('readingSources', srcItems ? '<h4><i class="fas fa-link" aria-hidden="true"></i> Where these facts come from</h4><ul>' + srcItems + '</ul>' : '');
+            set('drawerReadingSources', srcItems ? '<ul>' + srcItems + '</ul>' : '');
+            const srcWrap = document.getElementById('drawerSourcesWrap');
+            if (srcWrap) srcWrap.hidden = !srcItems;
+            rvShowDrawerReading(true);
         }
 
         // Fill the "key facts for this part" panel on the Intro/Content/Conclusion steps
@@ -1851,6 +1883,116 @@
                 '<div class="step-facts-footer">Use these facts in your script - put them in your own voice, don\'t copy word-for-word.</div>' +
                 '</div>' +
                 '</details>';
+        }
+
+        // ============================================
+        // READING DRAWER: source text beside Intro / Content / Conclusion
+        // Desktop: pushes the script over (students can still type).
+        // Narrow screens: bottom sheet with a scrim.
+        // ============================================
+        let readingDrawerOpener = null;
+
+        function rvNarrowDrawer() {
+            return window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+        }
+
+        function rvShowDrawerReading(hasReading, emptyMsg) {
+            const empty = document.getElementById('drawerReadingEmpty');
+            const content = document.getElementById('drawerReadingContent');
+            if (empty) {
+                empty.hidden = !!hasReading;
+                if (!hasReading) empty.textContent = emptyMsg || 'Choose your topic on the Basics step to see the reading here.';
+            }
+            if (content) content.hidden = !hasReading;
+        }
+
+        function rvSetDrawerOpen(open) {
+            const root = document.getElementById('readingDrawer');
+            const panel = document.getElementById('readingDrawerPanel');
+            const scrim = document.getElementById('readingDrawerScrim');
+            if (!root || !panel) return;
+            root.classList.toggle('is-open', open);
+            panel.classList.toggle('is-open', open);
+            document.body.classList.toggle('reading-drawer-open', open);
+            document.querySelectorAll('.reading-peek-btn').forEach(function(btn) {
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            const narrow = rvNarrowDrawer();
+            if (panel) {
+                panel.setAttribute('aria-modal', narrow && open ? 'true' : 'false');
+                panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+                panel.inert = !open;
+            }
+            if (scrim) {
+                if (narrow && open) scrim.removeAttribute('hidden');
+                else scrim.setAttribute('hidden', '');
+            }
+        }
+
+        function readingDrawerIsOpen() {
+            const root = document.getElementById('readingDrawer');
+            return !!(root && root.classList.contains('is-open'));
+        }
+
+        function openReadingDrawer(opener) {
+            if (typeof closeGlossary === 'function') {
+                try { closeGlossary(); } catch (e) {}
+            }
+            readingDrawerOpener = opener || null;
+            const id = rvCurrentTopic();
+            if (id && window.RV_READINGS && window.RV_READINGS[id]) rvRenderReading(id);
+            else {
+                const subj = document.getElementById('subject');
+                rvShowDrawerReading(false, (subj && subj.value)
+                    ? 'The reading for this topic is still being added. Use your notes and class resources.'
+                    : 'Choose your topic on the Basics step to see the reading here.');
+            }
+            rvSetDrawerOpen(true);
+            const closeBtn = document.getElementById('readingDrawerClose');
+            if (closeBtn) {
+                try { closeBtn.focus({ preventScroll: true }); } catch (e) { closeBtn.focus(); }
+            }
+        }
+
+        function closeReadingDrawer(restoreFocus) {
+            if (!readingDrawerIsOpen()) {
+                rvSetDrawerOpen(false);
+                return;
+            }
+            rvSetDrawerOpen(false);
+            if (restoreFocus !== false && readingDrawerOpener) {
+                try { readingDrawerOpener.focus({ preventScroll: true }); } catch (e) {
+                    try { readingDrawerOpener.focus(); } catch (err) {}
+                }
+            }
+            readingDrawerOpener = null;
+        }
+
+        function toggleReadingDrawer(btn) {
+            if (readingDrawerIsOpen()) closeReadingDrawer();
+            else openReadingDrawer(btn);
+        }
+
+        function rvInitReadingDrawer() {
+            const panel = document.getElementById('readingDrawerPanel');
+            if (panel) {
+                panel.setAttribute('aria-hidden', 'true');
+                panel.inert = true;
+            }
+            const closeBtn = document.getElementById('readingDrawerClose');
+            const scrim = document.getElementById('readingDrawerScrim');
+            if (closeBtn) closeBtn.addEventListener('click', function() { closeReadingDrawer(); });
+            if (scrim) scrim.addEventListener('click', function() { closeReadingDrawer(); });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && readingDrawerIsOpen()) {
+                    e.preventDefault();
+                    closeReadingDrawer();
+                }
+            });
+            window.addEventListener('resize', function() {
+                if (!readingDrawerIsOpen()) return;
+                rvSetDrawerOpen(true);
+            });
         }
 
         // ============================================

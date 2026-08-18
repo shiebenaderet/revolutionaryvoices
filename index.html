@@ -1686,10 +1686,37 @@
     <footer class="site-footer">
         <span>Revolutionary Voices Script Builder</span>
         <span class="footer-sep">-</span>
-        <span id="footerVersion">v1.2.2</span>
+        <span id="footerVersion">v1.3.0</span>
         <span class="footer-sep">-</span>
         <span>voices.mrbsocialstudies.org</span>
     </footer>
+
+    <div id="readingDrawer" class="reading-drawer">
+        <div class="reading-drawer-scrim" id="readingDrawerScrim" hidden></div>
+        <aside id="readingDrawerPanel" class="reading-drawer-panel" role="dialog" aria-modal="false" aria-labelledby="drawerTitle">
+            <div class="reading-drawer-head">
+                <h2 id="drawerTitle"><i class="fas fa-book-open" aria-hidden="true"></i> Your reading</h2>
+                <button type="button" class="reading-drawer-close" id="readingDrawerClose">Close</button>
+            </div>
+            <p id="drawerReadingEmpty" class="reading-drawer-empty" hidden></p>
+            <div id="drawerReadingContent" hidden>
+                <h3 id="drawerReadingName"></h3>
+                <p class="reading-tagline" id="drawerReadingTagline"></p>
+                <div class="level-toggle" role="group" aria-label="Reading language">
+                    <button type="button" class="level-pill" data-level="mostSupport" onclick="setReadingLevel('mostSupport')" title="Easier language">Easier language</button>
+                    <button type="button" class="level-pill" data-level="someSupport" onclick="setReadingLevel('someSupport')" title="A bit easier">A bit easier</button>
+                    <button type="button" class="level-pill" data-level="standard" onclick="setReadingLevel('standard')" title="Standard">Standard</button>
+                    <button type="button" class="level-pill" data-level="challenge" onclick="setReadingLevel('challenge')" title="Harder language">Harder language</button>
+                </div>
+                <div class="reading-quickfacts" id="drawerReadingQuickFacts"></div>
+                <article class="reading-body" id="drawerReadingBody" tabindex="0"></article>
+                <details class="reading-drawer-sources" id="drawerSourcesWrap" hidden>
+                    <summary>Where these facts come from</summary>
+                    <div id="drawerReadingSources"></div>
+                </details>
+            </div>
+        </aside>
+    </div>
 
     <script src="readings.js"></script>
     <script src="version.js"></script>

@@ -6,6 +6,14 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.5.0] - 2026-08-24
+
+### Added
+
+- **Vocabulary support at every level**: Some Support, Standard, and Challenge readings now gloss difficult words, not just Most Support (87 new glosses). The support scales with the level - academic words at Some Support, lower-frequency terms at Standard (*elegy*, *acquitted*, *principalities*), technical and period terms at Challenge (*attestation*, *redoubt*, *feme-sole traders*). On the standalone reading pages the definitions are tap-to-reveal; in the app they show as parentheticals, matching the existing Most Support style. Every topic now has glossed vocabulary at all four levels.
+
+---
+
 ## [1.4.0] - 2026-08-24
 
 ### Added

@@ -31,7 +31,7 @@ Students follow a 6-step wizard to build a radio-drama script in which a Host in
 - **Export/import** - download a JSON backup to hand work between computers
 - **Google Docs backup** - Copy to Google Doc and Restore live in the header (shared Chromebooks wipe local storage)
 - **Dark mode** - toggle in the header, preference persisted
-- **Leveled reading** - 22 historical topics, 4 language levels, same facts; hard words are glossed on Most Support
+- **Leveled reading** - 22 historical topics, 4 language levels, same facts; hard words are glossed at every level (tap-to-reveal on the standalone reading pages, parenthetical in the app)
 - **Practice mode** - timed read-aloud panel on the Finish step
 - **Help me write** - examples, starters, and verb banks stay collapsed until a student asks
 - **Reading drawer** - on Intro, Content, and Conclusion, **Your reading** opens the leveled source beside the script (bottom sheet on a narrow screen). Language level stays in sync with Research. Closed by default.

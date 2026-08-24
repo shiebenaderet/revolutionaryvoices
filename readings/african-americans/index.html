@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>African Americans in the Revolutionary War — Revolutionary Voices</title>
+<meta name="description" content="Enslaved and free Black people faced impossible choices, and sought freedom on both sides">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/african-americans/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-head:'Roboto Slab',Georgia,serif;
+  --font-mono:'Space Mono',ui-monospace,monospace;
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--brand); margin:0; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill .level-word { font-size:.8em; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+</style>
+<noscript><style>
+.level-panel[hidden]{display:block}.level-toggle{display:none}
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · Reading</p>
+    <button type="button" class="theme-toggle">Dark / light</button>
+  </div>
+
+  <article class="reading-viewer">
+    <header class="reading-head">
+      <div>
+        <h1>African Americans in the Revolutionary War</h1>
+        <p class="reading-tagline">Enslaved and free Black people faced impossible choices, and sought freedom on both sides</p>
+      </div>
+      <div class="level-toggle" role="group" aria-label="Reading level">
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+      </div>
+    </header>
+
+    <div class="reading-quickfacts">
+        <span class="qf"><strong>How many:</strong> ~500,000 African Americans in 1775 (~20% of the population; most enslaved)</span>
+        <span class="qf"><strong>The problem:</strong> A nation saying &quot;all men are created equal&quot; still held people in slavery</span>
+        <span class="qf"><strong>Patriots:</strong> Roughly 5,000–9,000 served the American cause</span>
+        <span class="qf"><strong>British:</strong> As many as 20,000 sought freedom with the British (Lord Dunmore promised freedom in 1775)</span>
+    </div>
+
+      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+        <div class="reading-body"><p>When the Revolution began, about 500,000 Black people lived in the colonies. That was about 1 in 5 people. Most were <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">enslaved</button><span class="gloss-def" hidden> (owned and forced to work for no pay)</span></span>.</p>
+<p>This was a hard <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">contradiction</button><span class="gloss-def" hidden> (when people say one thing and do the opposite)</span></span>. White colonists said "all men are created equal" and fought for freedom. But they kept Black people enslaved.</p>
+<p>Black people had to make hard choices. Some fought for the Americans (the Patriots). They hoped to win freedom and respect. About 5,000 to 9,000 did this.</p>
+<p>Others ran to the British. In 1775, the British leader Lord Dunmore promised freedom to enslaved people who joined them. As many as 20,000 went to the British side.</p>
+<p>Black soldiers fought bravely on both sides. But after the war, slavery did not end in most places. Northern states slowly began to end it, but the South did not.</p>
+<p>Black Americans kept fighting for the freedom the Revolution had promised but not given.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>About 500,000 Black people lived in the colonies in 1775.</li><li>That was about 1 in 5 people. Most were enslaved.</li><li>The country fought for freedom but kept people enslaved.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Some Black people fought for the Americans (Patriots).</li><li>About 5,000 to 9,000 did.</li><li>Lord Dunmore offered freedom to those who joined the British (1775).</li><li>As many as 20,000 went to the British side.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>After the war, slavery did not end in most places.</li><li>Northern states slowly began to end it; the South did not.</li><li>Black Americans kept fighting for freedom.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+        <div class="reading-body"><p>About 500,000 African Americans lived in the colonies in 1775 — roughly one in five people. Most were enslaved, especially in the South. The Revolution put them in an impossible position: white colonists demanded liberty for themselves while denying it to Black people.</p>
+<p>Facing this hard puzzle, African Americans made different choices. Thousands fought for the Patriots, hoping that helping win independence would also win them freedom and respect; an estimated 5,000 to 9,000 served the American cause, including men in the First Rhode Island Regiment. Others sided with the British, who offered freedom: in 1775, Lord Dunmore promised freedom to enslaved people who joined the British army, and as many as 20,000 sought freedom behind British lines.</p>
+<p>Black soldiers and laborers served bravely on both sides. But independence did not end slavery. Northern states began to end it slowly, while the South expanded it. About 3,000 Black Loyalists were taken by ship to Nova Scotia (in Canada). For most Black Americans, the Revolution's promise of liberty remained unfulfilled.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>~500,000 African Americans lived in the colonies in 1775 — about 1 in 5.</li><li>Most were enslaved, especially in the South.</li><li>The Revolution demanded liberty while denying it to Black people.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>An estimated 5,000–9,000 African Americans served the Patriots.</li><li>The integrated First Rhode Island Regiment was one example.</li><li>Lord Dunmore's 1775 offer promised freedom to those who joined the British.</li><li>As many as 20,000 sought freedom behind British lines.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>The war did not end slavery.</li><li>Northern states began to end slavery slowly; the South expanded slavery.</li><li>About 3,000 Black Loyalists were taken by ship to Nova Scotia (in Canada).</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="standard" data-level-word="Standard">
+        <div class="reading-body"><p>Roughly 500,000 African Americans lived in the colonies in 1775 — about a fifth of the population, the great majority enslaved. Their presence exposed the Revolution's central contradiction: a people proclaiming that "all men are created equal" while holding hundreds of thousands in bondage.</p>
+<p>African Americans sought freedom wherever it seemed most attainable. Thousands joined the Patriot cause, hoping that shared sacrifice would translate into shared liberty. An estimated 5,000 to 9,000 served, among them the integrated First Rhode Island Regiment. Many more looked to the British, who made the more concrete offer. Lord Dunmore's 1775 proclamation promised freedom to enslaved people who fled Patriot masters to join the British, and the 1779 Philipsburg Proclamation widened the offer. As many as 20,000 sought refuge behind British lines as "Black Loyalists."</p>
+<p>Bravery on both sides did not translate into freedom for most. The war did accelerate change in the North, where states began passing gradual-emancipation laws. In the South, slavery only deepened. At war's end the British evacuated about 3,000 Black Loyalists to Nova Scotia, though many met poverty and broken promises there. For most African Americans, the Revolution's language of liberty remained a promise deferred — one their descendants would spend generations demanding be kept.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>~500,000 African Americans (a fifth of the population), mostly enslaved, in 1775.</li><li>Their presence exposed the Revolution's central contradiction.</li><li>'All men are created equal' was written in a land of mass slavery.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>~5,000–9,000 served the Patriots, including the First Rhode Island Regiment.</li><li>Dunmore's 1775 proclamation (widened in 1779) promised freedom to those who fled rebel masters.</li><li>As many as 20,000 became &quot;Black Loyalists.&quot;</li><li>Washington first barred, then allowed, Black enlistment.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>The North began gradual-emancipation laws; the South deepened slavery.</li><li>Britain evacuated ~3,000 Black Loyalists to Nova Scotia, where many met broken promises.</li><li>For most, the Revolution's liberty was a promise deferred.</li><li>Their descendants would demand it be kept for generations.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+        <div class="reading-body"><p>No group exposed the Revolution's hypocrisy more starkly than the roughly 500,000 African Americans — about a fifth of the colonial population, overwhelmingly enslaved — in whose name no one claimed to fight. For them, "liberty" was not an abstraction but a calculation: which side offered the better odds of actual freedom?</p>
+<p>Many bet on the Patriots. Despite Washington's late-1775 order barring Black enlistment — reversed in part because Dunmore's offer was drawing enslaved men to the Crown — an estimated 5,000 to 9,000 African Americans served the American cause, including the famed First Rhode Island Regiment. But the British made the franker bargain: Lord Dunmore's 1775 proclamation and the 1779 Philipsburg Proclamation promised freedom to those who fled rebel masters, and perhaps 20,000 seized it, laboring and fighting as Black Loyalists. Their choice reframes the war: for tens of thousands, the path to freedom ran toward the British, not away from them.</p>
+<p>The aftermath was bitterly uneven. Northern states, their economies less dependent on slavery, began gradual abolition; the plantation South entrenched it. The British evacuated some 3,000 Black Loyalists to Nova Scotia — their names recorded in the "Book of Negroes" — where many found poverty rather than the promised land, some later sailing on to Sierra Leone. The Revolution thus both advanced and betrayed Black freedom at once, leaving a contradiction at the republic's foundation that would not be confronted until a far bloodier war four score years later.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Roughly 500,000 African Americans — a fifth of the colonies — in whose name no one claimed to fight.</li><li>For them 'liberty' was a calculation, not an abstraction.</li><li>No group exposed the Revolution's hypocrisy more starkly.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Washington's late-1775 ban was reversed partly because Dunmore's offer drew enslaved men to the Crown.</li><li>~5,000–9,000 served the Patriots (incl. the First Rhode Island Regiment).</li><li>Dunmore (1775) and the Philipsburg Proclamation (1779) drew perhaps 20,000 to the British.</li><li>For tens of thousands, freedom ran toward the British, not away.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Northern states began gradual abolition; the plantation South entrenched slavery.</li><li>~3,000 Black Loyalists (recorded in the &quot;Book of Negroes&quot;) went to Nova Scotia; some later to Sierra Leone.</li><li>The Revolution both advanced and betrayed Black freedom at once.</li><li>It left a contradiction unresolved until the Civil War.</li></ul>
+          </div>
+        </section>
+      </div>
+
+        <section class="reading-sources">
+          <h2>Where these facts come from</h2>
+          <ul>
+            <li><a href="https://www.battlefields.org/learn/articles/10-facts-black-patriots-american-revolution" target="_blank" rel="noopener">American Battlefield Trust — 10 Facts: Black Patriots</a></li>
+            <li><a href="https://www.amrevmuseum.org/read-the-revolution/black-patriots-and-loyalists" target="_blank" rel="noopener">Museum of the American Revolution — Black Patriots and Loyalists</a></li>
+            <li><a href="https://www.mountvernon.org/george-washington/the-revolutionary-war/african-americans-in-the-revolutionary-war" target="_blank" rel="noopener">George Washington's Mount Vernon — African Americans in the Revolution</a></li>
+            <li><a href="https://www.worldhistory.org/article/2449/african-americans-in-the-american-revolution/" target="_blank" rel="noopener">World History Encyclopedia — African Americans in the American Revolution</a></li>
+          </ul>
+        </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    Same facts at every level — only the language changes.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    try {
+      var t = localStorage.getItem('rvTheme');
+      if (t) root.setAttribute('data-theme', t);
+    } catch (e) {}
+    toggle.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark'
+        || (!root.hasAttribute('data-theme')
+            && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('rvTheme', next); } catch (e) {}
+    });
+  }
+})();</script>
+</body>
+</html>

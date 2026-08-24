@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phillis Wheatley — Revolutionary Voices</title>
+<meta name="description" content="Enslaved poet who became the first African American woman to publish a book of poetry">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/phillis-wheatley/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-head:'Roboto Slab',Georgia,serif;
+  --font-mono:'Space Mono',ui-monospace,monospace;
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--brand); margin:0; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill .level-word { font-size:.8em; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+</style>
+<noscript><style>
+.level-panel[hidden]{display:block}.level-toggle{display:none}
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · Reading</p>
+    <button type="button" class="theme-toggle">Dark / light</button>
+  </div>
+
+  <article class="reading-viewer">
+    <header class="reading-head">
+      <div>
+        <h1>Phillis Wheatley</h1>
+        <p class="reading-tagline">Enslaved poet who became the first African American woman to publish a book of poetry</p>
+      </div>
+      <div class="level-toggle" role="group" aria-label="Reading level">
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+      </div>
+    </header>
+
+    <div class="reading-quickfacts">
+        <span class="qf"><strong>Born:</strong> Around 1753, West Africa (Senegal/Gambia region)</span>
+        <span class="qf"><strong>Died:</strong> December 5, 1784, Boston (about age 31)</span>
+        <span class="qf"><strong>Role:</strong> Enslaved poet whose book was printed; she supported American freedom</span>
+        <span class="qf"><strong>Famous for:</strong> First African American woman to publish a book of poetry (1773)</span>
+    </div>
+
+      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+        <div class="reading-body"><p>Phillis Wheatley was a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">poet</button><span class="gloss-def" hidden> (a person who writes poems)</span></span>.</p>
+<p>She was born in West Africa around 1753. As a child she was <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">kidnapped</button><span class="gloss-def" hidden> (taken away by force)</span></span>. She was put on a ship and brought to Boston in 1761. She was made a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">slave</button><span class="gloss-def" hidden> (a person who is owned and forced to work for no pay)</span></span>.</p>
+<p>A family named Wheatley bought her. They named her Phillis, after the ship.</p>
+<p>Most enslaved people were not taught to read. But Phillis was. She learned very fast. She read hard books. She even learned Latin, an old language.</p>
+<p>Phillis wrote poems. People loved them. In 1773 she made a book of her poems. She was the first African American woman to <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">publish</button><span class="gloss-def" hidden> (print for many people to read)</span></span> a book of poems.</p>
+<p>Phillis believed in freedom. She wrote a poem for George Washington and met him in 1776. In 1773 the Wheatleys set her free.</p>
+<p>Later, life was hard and she was poor. She died in 1784. She was only about 31.</p>
+<p>Today we remember Phillis. She showed the world that Black people are smart and full of talent.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>She was taken from her home in West Africa when she was about 7.</li><li>She came to Boston on a slave ship in 1761.</li><li>She was named Phillis, after the ship.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>The Wheatley family taught her to read. This was rare for enslaved people.</li><li>She learned fast. She read hard books and even Latin.</li><li>In 1773 she published a book of poems.</li><li>She was set free in 1773.</li><li>She met George Washington in 1776.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>She showed that Black people are smart and full of talent.</li><li>She used her poems to speak up for freedom.</li><li>She helped later Black writers.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+        <div class="reading-body"><p>Phillis Wheatley was born in West Africa around 1753. When she was about seven or eight years old, she was kidnapped and brought to America on a slave ship. In 1761 she was sold in Boston to John and Susanna Wheatley. They named her Phillis, after the ship that carried her.</p>
+<p>Most enslaved people were not allowed to learn to read, but the Wheatleys taught Phillis. She learned so quickly that she was soon reading hard books and even Latin. As a teenager she began writing poems. In 1770 a poem she wrote about a famous preacher made her well known. In 1773 she traveled to London, where her book of poems was printed. It made her the first African American woman to publish a book of poetry. Soon after she came home that fall, the Wheatleys freed her.</p>
+<p>Phillis supported the American fight for freedom. She wrote a poem for George Washington and met him in 1776. In 1778 she married John Peters. Life was hard, and she died poor in 1784 at about age 31. Still, Phillis proved that enslaved people were just as smart and talented as anyone — and she used her poems to speak out for freedom.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>She was kidnapped from West Africa around age 7–8 and brought to Boston on a slave ship in 1761.</li><li>She was sold at a Boston slave market.</li><li>She was named &quot;Phillis&quot; after the ship that carried her.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>The Wheatleys’ daughter Mary taught her to read; she learned the Bible and Latin very fast.</li><li>In 1770, a poem about a famous preacher made her well known.</li><li>In 1773 she went to London and published her book of poems — the first by an African American woman.</li><li>The Wheatleys freed her in October 1773.</li><li>She wrote a poem for George Washington (1775) and met him (1776); she married John Peters in 1778.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>She proved that enslaved people were just as smart and talented as anyone.</li><li>She used poetry to speak out against slavery and for freedom.</li><li>She opened doors for later African American writers.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="standard" data-level-word="Standard">
+        <div class="reading-body"><p>Phillis Wheatley was born around 1753 in West Africa, in the region of present-day Senegal or Gambia. Around age seven or eight she was captured and carried across the Atlantic on a slave ship. In 1761 she was sold in Boston to John and Susanna Wheatley, who named her after the ship that had brought her. The Wheatleys' daughter Mary taught Phillis to read and write. That was unusual for the time — teaching an enslaved person to read was discouraged and in some places illegal. Phillis learned with remarkable speed, studying the Bible, English poetry, and even Latin.</p>
+<p>By her teens, Wheatley was writing poetry of her own. An elegy she wrote in 1770 on the death of the famous preacher George Whitefield brought her wide attention. In 1773 she sailed to London, where her collection <em>Poems on Various Subjects, Religious and Moral</em> was published. It made her the first African American woman to publish a book of poetry. Soon after she returned to Boston that fall, the Wheatleys granted her freedom. She supported the Patriot cause, wrote a poem honoring George Washington in 1775, and met him in 1776.</p>
+<p>Freedom, however, did not bring security. Wheatley married John Peters in 1778, struggled with poverty during and after the war, and died in 1784 at about age thirty-one. Her life carried a sharp contradiction: a nation demanding liberty still held her and millions of others in slavery. Yet her writing argued, quietly but unmistakably, that Black people possessed the same intellect, soul, and right to freedom as anyone. Her success opened doors for the African American writers who followed.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Kidnapped from West Africa around age 7–8 and carried to Boston on a slave ship (1761); sold at a Boston slave market.</li><li>Renamed &quot;Phillis&quot; after the very ship that brought her across the ocean.</li><li>An enslaved teenager whose talent was doubted — Boston men signed a statement swearing she wrote her own poems.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Taught to read by the Wheatleys’ daughter Mary; read scripture and Latin within about 16 months.</li><li>1770: her elegy for the preacher George Whitefield made her famous across the colonies.</li><li>1773: published Poems on Various Subjects, Religious and Moral — the first book of poetry by an African American woman.</li><li>Freed by the Wheatleys in October 1773, soon after returning from London.</li><li>Wrote to George Washington (1775), met him (1776); married John Peters (1778); died poor Dec 5, 1784, about age 31.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Proved Black people’s intellectual and artistic equality at a time when many denied it.</li><li>Used poetry as a quiet but pointed weapon against slavery and for freedom.</li><li>Exposed the contradiction of a nation demanding liberty while holding people enslaved.</li><li>Opened doors for later African American writers.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+        <div class="reading-body"><p>Phillis Wheatley — born around 1753 in West Africa and trafficked to Boston around 1761 aboard the schooner <em>Phillis</em>, whose name she was given — became the first African American woman to publish a book of poetry, <em>Poems on Various Subjects, Religious and Moral</em> (London, 1773). Taught to read by the family that enslaved her, she absorbed scripture, the English poets, and classical Latin so quickly that her authorship was doubted: the 1773 volume opens with an attestation signed by eighteen prominent Boston men vouching that an enslaved young woman had truly written the poems — a reminder that for Wheatley, proving her humanity was a precondition of being read.</p>
+<p>Her verse often wears a pious, restrained surface, yet it presses a radical claim. In "On Being Brought from Africa to America" she writes, "Remember, Christians, Negros, black as Cain, / May be refin'd, and join th' angelic train" (Wheatley, 1773) — insisting on spiritual equality before an audience that denied her social equality. She was blunter in private: in a 1774 letter to the Mohegan minister Samson Occom she condemned the "strange Absurdity" of colonists who cried for liberty while holding others in bondage — naming the very contradiction at the heart of the Revolution.</p>
+<p>Freed in the autumn of 1773, Wheatley supported the Patriot cause, addressed a poem to George Washington in 1775, and met him the following year; she married John Peters in 1778 and died in poverty in 1784, roughly thirty-one years old, a second manuscript of poems never published. Historians caution against the older image of Wheatley as a grateful, assimilated exception: read closely, her work is an early and deliberate argument for Black intellectual and political equality, and her example armed later abolitionists who pointed to her, simply, as proof.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Trafficked from West Africa around 1761 aboard the schooner Phillis — the ship whose name she was given.</li><li>Sold in a Boston slave market as a child of about seven or eight.</li><li>Her authorship was so doubted that her 1773 book opens with an attestation signed by 18 prominent Boston men swearing an enslaved young woman truly wrote the poems.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Educated in scripture, the English poets, and classical Latin by the family that enslaved her, with unusual speed.</li><li>Her 1770 elegy for the revivalist George Whitefield brought transatlantic fame; in 1773 she published Poems on Various Subjects, Religious and Moral in London.</li><li>Manumitted in the autumn of 1773, soon after returning from England.</li><li>Addressed a poem to George Washington (1775) and met him (1776); married John Peters (1778).</li><li>Died in poverty on Dec 5, 1784, about 31, with a second poetry manuscript never published.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Her work reads as an early, deliberate argument for Black intellectual and political equality — not the grateful exception older accounts described.</li><li>In a 1774 letter to the minister Samson Occom she named the &quot;strange Absurdity&quot; of colonists crying for liberty while holding others in bondage.</li><li>Abolitionists later pointed to her as living proof against claims of Black inferiority.</li><li>Her reputation faded in her own lifetime but is now central to early American literature.</li></ul>
+          </div>
+        </section>
+      </div>
+
+        <section class="reading-sources">
+          <h2>Where these facts come from</h2>
+          <ul>
+            <li><a href="https://www.britannica.com/biography/Phillis-Wheatley" target="_blank" rel="noopener">Britannica — Phillis Wheatley</a></li>
+            <li><a href="https://www.masshist.org/features/endofslavery/wheatley" target="_blank" rel="noopener">Massachusetts Historical Society — Phillis Wheatley</a></li>
+            <li><a href="https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/phillis-wheatley" target="_blank" rel="noopener">George Washington's Mount Vernon — Phillis Wheatley</a></li>
+            <li><a href="https://www.battlefields.org/learn/biographies/phillis-wheatley" target="_blank" rel="noopener">American Battlefield Trust — Phillis Wheatley</a></li>
+            <li><a href="https://www.poetryfoundation.org/poets/phillis-wheatley" target="_blank" rel="noopener">Poetry Foundation — Phillis Wheatley</a></li>
+          </ul>
+        </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    Same facts at every level — only the language changes.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    try {
+      var t = localStorage.getItem('rvTheme');
+      if (t) root.setAttribute('data-theme', t);
+    } catch (e) {}
+    toggle.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark'
+        || (!root.hasAttribute('data-theme')
+            && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('rvTheme', next); } catch (e) {}
+    });
+  }
+})();</script>
+</body>
+</html>

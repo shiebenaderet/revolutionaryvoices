@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercy Otis Warren — Revolutionary Voices</title>
+<meta name="description" content="A writer who made fun of British leaders, and the first woman to publish a history of the war">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/mercy-otis-warren/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-head:'Roboto Slab',Georgia,serif;
+  --font-mono:'Space Mono',ui-monospace,monospace;
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--brand); margin:0; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill .level-word { font-size:.8em; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+</style>
+<noscript><style>
+.level-panel[hidden]{display:block}.level-toggle{display:none}
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · Reading</p>
+    <button type="button" class="theme-toggle">Dark / light</button>
+  </div>
+
+  <article class="reading-viewer">
+    <header class="reading-head">
+      <div>
+        <h1>Mercy Otis Warren</h1>
+        <p class="reading-tagline">A writer who made fun of British leaders, and the first woman to publish a history of the war</p>
+      </div>
+      <div class="level-toggle" role="group" aria-label="Reading level">
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+      </div>
+    </header>
+
+    <div class="reading-quickfacts">
+        <span class="qf"><strong>Born:</strong> September 25, 1728, Barnstable, Massachusetts</span>
+        <span class="qf"><strong>Died:</strong> October 19, 1814 (age 86)</span>
+        <span class="qf"><strong>Role:</strong> Playwright, writer, historian, advisor</span>
+        <span class="qf"><strong>Famous for:</strong> Plays that made fun of British leaders; her 1805 history of the Revolution</span>
+    </div>
+
+      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+        <div class="reading-body"><p>Mercy Otis Warren was born in Massachusetts in 1728. Most girls did not get much schooling then. But Mercy's father let her learn with her brothers' <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">tutors</button><span class="gloss-def" hidden> (teachers who teach at home)</span></span>. She loved books and big ideas.</p>
+<p>She married James Warren and had five sons. She cared a lot about the rights of the colonists.</p>
+<p>Mercy used writing as her weapon. She wrote plays that made fun of British leaders. People read them in newspapers. The plays helped colonists see Britain as unfair.</p>
+<p>Women were not supposed to write about <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">politics</button><span class="gloss-def" hidden> (government and laws)</span></span>. So Mercy often left her name off her work. But Patriot leaders knew it was her, and they listened to her ideas.</p>
+<p>After the war, Mercy wrote a long history of the Revolution. She was the first woman to do this.</p>
+<p>Mercy died in 1814. She showed that words can be powerful.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Girls did not get much school then.</li><li>Mercy learned with her brothers' home teachers.</li><li>She used writing to fight for the colonists.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>She wrote plays that made fun of British leaders.</li><li>People read the plays in newspapers.</li><li>She left her name off because women weren't supposed to write about politics (government and laws).</li><li>Patriot leaders still knew it was her.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>After the war she wrote a long history of the Revolution.</li><li>She was the first woman to do this.</li><li>She showed that words can be powerful.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+        <div class="reading-body"><p>Mercy Otis Warren was born on September 25, 1728, in Barnstable, Massachusetts. In the 1700s, most girls got little education, but Mercy's father let her study with her brothers' tutors. Her brother James Otis Jr. became an early leader against British taxes.</p>
+<p>Mercy married James Warren and raised five sons, but she never stopped reading and writing about politics. In the early 1770s she began writing plays that mocked British officials like Governor Thomas Hutchinson. These plays — such as The Adulateur (1772) and The Group (1775) — were printed in newspapers and helped turn colonists against Britain.</p>
+<p>Because women were not supposed to write about politics, Mercy published anonymously or under a pen name. But Patriot leaders, including her friends John and Abigail Adams, knew her work and valued her ideas. After the war, in 1805, she published a three-volume history of the Revolution — the first written by a woman. She died in 1814.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Born in 1728; she studied with her brothers' tutors, which was rare for a girl.</li><li>Her brother James Otis Jr. was an early leader against British taxes.</li><li>She used her writing as a weapon for the Patriot cause.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Her plays mocked British officials like Governor Thomas Hutchinson.</li><li>They were printed in newspapers and turned colonists against Britain.</li><li>She published anonymously because politics was off-limits to women.</li><li>John and Abigail Adams were her friends and valued her ideas.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>In 1805 she published a three-volume history of the Revolution — the first by a woman.</li><li>She also criticized the new Constitution in 1788.</li><li>She died in 1814, having shaped opinion with her pen.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="standard" data-level-word="Standard">
+        <div class="reading-body"><p>Mercy Otis Warren was born September 25, 1728, in Barnstable, Massachusetts, into a politically active family. Her brother James Otis Jr. was among the first to challenge British taxation. Unusually for a girl of her time, she was allowed to study alongside her brothers' tutors. She became one of the most formidable political writers of the Revolution.</p>
+<p>In the early 1770s, Warren turned satire into a weapon. Her plays — The Adulateur (1772), The Defeat (1773), and The Group (1775) — were published rather than staged. They lampooned royal officials such as Governor Thomas Hutchinson, casting them as greedy and corrupt. Politics was considered no place for a woman, so she published anonymously or under pen names. Patriot leaders knew exactly who she was, though. She corresponded with John Adams and was a close friend of Abigail Adams, trading ideas about republican government and the role of women.</p>
+<p>Warren's influence outlasted the war. In 1788 she published an Anti-Federalist critique of the proposed Constitution. In 1805 she completed a three-volume History of the Rise, Progress and Termination of the American Revolution — the first history of the conflict written by a woman. Her frank portrait of John Adams strained their friendship for years before they reconciled. She died in 1814, having proven that a woman's pen could shape a revolution.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Born 1728 into the politically active Otis family of Massachusetts.</li><li>Brother James Otis Jr. helped lead the early fight against British taxes.</li><li>Unusually for a girl, she was educated alongside her brothers' tutors.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Her plays — The Adulateur (1772), The Group (1775) — lampooned royal officials.</li><li>They were published, not staged, and spread Patriot ideas.</li><li>She wrote under anonymity or pen names because politics excluded women.</li><li>She traded political ideas with John and Abigail Adams.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>In 1788 she published an Anti-Federalist critique of the Constitution.</li><li>Her 1805 three-volume history was the first of the Revolution written by a woman.</li><li>Her frank portrait of John Adams strained their friendship before they reconciled.</li><li>She died in 1814.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+        <div class="reading-body"><p>Mercy Otis Warren — born in 1728 into the politically charged Otis family of Massachusetts — became the Revolution's sharpest female satirist and, ultimately, one of its first historians, all while barred by custom from the public sphere she so plainly mastered. Educated informally alongside her brothers (among them James Otis Jr., who popularized the cry against "taxation without representation"), she wielded the closet drama — plays meant to be read, not performed — as political artillery.</p>
+<p>Works like The Adulateur (1772) and The Group (1775) skewered Crown officials as venal grotesques, circulating in newspapers under an anonymity that shielded a woman from the impropriety of open partisanship even as Boston's leaders knew their author. Her correspondence with John and Abigail Adams reveals a thinker fluent in republican theory; in 1788 she published, as "A Columbian Patriot," Observations on the new Constitution, a substantial Anti-Federalist warning that the document lacked a bill of rights.</p>
+<p>Her magnum opus, the three-volume History of the Rise, Progress and Termination of the American Revolution (1805), was the first full history of the war by a woman — and no mere chronicle: its candid assessment of John Adams's vanity ruptured their long friendship until a reconciliation late in life. Warren's career poses a pointed question about the Revolution's limits: a woman could help define the nation's political language and still be denied a formal voice in its governance. She died in 1814.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Born 1728 into the Otis family; educated informally with her brothers.</li><li>Brother James Otis Jr. popularized the cry against 'taxation without representation.'</li><li>She mastered a public, political world that barred women.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>She wielded the 'closet drama' — plays meant to be read — as political artillery.</li><li>The Adulateur (1772) and The Group (1775) cast Crown officials as venal grotesques.</li><li>Anonymity shielded a woman from the impropriety of open partisanship.</li><li>Her letters reveal fluency in republican theory.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>As 'A Columbian Patriot' (1788) she warned the Constitution lacked a bill of rights.</li><li>Her 1805 History was the first full account of the war by a woman.</li><li>Its candor about John Adams's vanity ruptured their friendship for years.</li><li>Her career exposes the Revolution's limits on women's public voice.</li></ul>
+          </div>
+        </section>
+      </div>
+
+        <section class="reading-sources">
+          <h2>Where these facts come from</h2>
+          <ul>
+            <li><a href="https://www.britannica.com/biography/Mercy-Otis-Warren" target="_blank" rel="noopener">Britannica — Mercy Otis Warren</a></li>
+            <li><a href="https://www.womenshistory.org/education-resources/biographies/mercy-otis-warren" target="_blank" rel="noopener">National Women's History Museum — Mercy Otis Warren</a></li>
+            <li><a href="https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/mercy-otis-warren/" target="_blank" rel="noopener">George Washington's Mount Vernon — Mercy Otis Warren</a></li>
+            <li><a href="https://www.masshist.org/publications/warren-adams/" target="_blank" rel="noopener">Massachusetts Historical Society — Warren-Adams Letters</a></li>
+          </ul>
+        </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    Same facts at every level — only the language changes.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    try {
+      var t = localStorage.getItem('rvTheme');
+      if (t) root.setAttribute('data-theme', t);
+    } catch (e) {}
+    toggle.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark'
+        || (!root.hasAttribute('data-theme')
+            && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('rvTheme', next); } catch (e) {}
+    });
+  }
+})();</script>
+</body>
+</html>

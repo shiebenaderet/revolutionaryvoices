@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Young Soldiers &amp; Teenage Patriots — Revolutionary Voices</title>
+<meta name="description" content="Thousands of boys aged 10 to 18 served as drummers, messengers, powder carriers, and soldiers">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/young-soldiers/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-head:'Roboto Slab',Georgia,serif;
+  --font-mono:'Space Mono',ui-monospace,monospace;
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--brand); margin:0; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill .level-word { font-size:.8em; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+</style>
+<noscript><style>
+.level-panel[hidden]{display:block}.level-toggle{display:none}
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · Reading</p>
+    <button type="button" class="theme-toggle">Dark / light</button>
+  </div>
+
+  <article class="reading-viewer">
+    <header class="reading-head">
+      <div>
+        <h1>Young Soldiers &amp; Teenage Patriots</h1>
+        <p class="reading-tagline">Thousands of boys aged 10 to 18 served as drummers, messengers, powder carriers, and soldiers</p>
+      </div>
+      <div class="level-toggle" role="group" aria-label="Reading level">
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+      </div>
+    </header>
+
+    <div class="reading-quickfacts">
+        <span class="qf"><strong>Who:</strong> Boys about 10 to 18: drummers, fifers (small flute), messengers, powder carriers, soldiers</span>
+        <span class="qf"><strong>How many:</strong> By some estimates, around 1 in 5 American soldiers were under 18</span>
+        <span class="qf"><strong>Famous example:</strong> A 13-year-old messenger named Andrew Jackson, later president</span>
+        <span class="qf"><strong>Why it matters:</strong> The Revolution was fought, in part, by children</span>
+    </div>
+
+      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+        <div class="reading-body"><p>Many soldiers in the Revolution were not grown men. Thousands of them were boys, ages 10 to 18.</p>
+<p>Some boys were <strong>drummers</strong>. They beat the drum to send orders to soldiers in battle. Some were fifers (they played a small flute). Some carried messages. On ships, some boys carried gunpowder — they were called "powder monkeys." Older boys carried guns and fought.</p>
+<p>Why did boys join? Some wanted adventure. Some needed money. Some believed in the fight for American freedom. Some lied about their age to get in.</p>
+<p>War was hard and scary for them. They saw terrible things. They were cold and hungry at camps like Valley Forge.</p>
+<p>One famous boy was Andrew Jackson. At 13, he carried messages. The British captured him. When he refused to clean an officer's boots, the officer cut him with a sword. Jackson later became president.</p>
+<p>The Revolution was fought, in part, by children.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Many soldiers were boys, not grown men.</li><li>They were ages 10 to 18.</li><li>Some were drummers; some carried guns.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Drummers beat orders to soldiers in battle.</li><li>Some boys carried messages.</li><li>&quot;Powder monkeys&quot; carried gunpowder on ships.</li><li>Older boys carried guns and fought.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>War was hard and scary for these boys.</li><li>They were cold and hungry at camps like Valley Forge.</li><li>Andrew Jackson was a 13-year-old who later became president.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+        <div class="reading-body"><p>Not all soldiers in the Revolution were grown men — thousands were boys between about 10 and 18 years old. Military records suggest a large share of Continental soldiers were teenagers, and in some drummer and fifer companies, half or more were boys.</p>
+<p>Young people filled many roles. Drummers and fifers used music to send orders across noisy battlefields. Others ran messages, and on warships, boys called "powder monkeys" carried gunpowder to the cannons. Older teenagers shouldered muskets and fought beside adults.</p>
+<p>Boys joined for many reasons: adventure, money, belief in independence, or escape from a hard home. Many lied about their age. War marked them deeply — they faced combat, and froze and starved in winter camps. One famous example is Andrew Jackson, who at 13 carried messages, was captured, and was slashed by a British officer for refusing to clean his boots. Jackson later became president. Their stories remind us the Revolution was fought, in part, by children.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Thousands of soldiers were boys between about 10 and 18.</li><li>Many Continental soldiers were teenagers.</li><li>In some drummer companies, half or more were boys.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Drummers and fifers sent orders with music.</li><li>Couriers ran messages through dangerous country.</li><li>Naval &quot;powder monkeys&quot; carried gunpowder to the cannons.</li><li>Many boys lied about their age to enlist.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>War marked them deeply — combat, cold, and hunger.</li><li>Joseph Plumb Martin enlisted at 15 and wrote about it.</li><li>Andrew Jackson, captured at 13, was slashed for refusing to clean a boot.</li><li>The Revolution was fought, in part, by children.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="standard" data-level-word="Standard">
+        <div class="reading-body"><p>The popular image of the Continental Army is one of grown men. In fact, a striking share of its soldiers were children and teenagers. By some estimates, around a fifth of Continental soldiers were under eighteen. In specialized units — drummer and fifer companies especially — boys could make up half or more.</p>
+<p>Their roles were real and often dangerous. Drummers and fifers were the army's communication system, signaling commands by music amid the chaos of battle. Couriers carried messages through contested country. On naval vessels, "powder monkeys" ferried gunpowder to the guns. Older teenagers served as full soldiers. Boys enlisted for a tangle of reasons: patriotism, poverty, the promise of pay, the lure of adventure, or flight from difficult homes. Many simply lied about their age, since recordkeeping was loose.</p>
+<p>War aged them fast. They endured combat, capture, and the starvation and cold of encampments like Valley Forge. The memoirist Joseph Plumb Martin enlisted at fifteen and later wrote vividly of the hunger and fear. A thirteen-year-old courier named Andrew Jackson was captured and slashed by a British officer for refusing to clean his boots — a wound, and a grudge, he carried into the presidency. To study these young soldiers is to confront how total the Revolution was, reaching down even to children.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>A striking share of Continental soldiers were children and teenagers.</li><li>By some estimates around a fifth were under 18.</li><li>In drummer and fifer companies, boys could be half or more.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Drummers and fifers were the army's communication system.</li><li>&quot;Powder monkeys&quot; fed the naval guns; couriers carried messages.</li><li>Boys enlisted for patriotism, pay, adventure, or escape — and often lied about their age.</li><li>Older teenagers served as full soldiers.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>They endured combat, capture, and the cold of camps like Valley Forge.</li><li>Joseph Plumb Martin enlisted at 15 and left a vivid memoir.</li><li>A 13-year-old Andrew Jackson was slashed by a British officer and carried the grudge to the presidency.</li><li>Their service shows how total the Revolution was.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+        <div class="reading-body"><p>The Continental Army that we picture as a body of yeomen farmers was, to a surprising degree, an army of adolescents. Though muster rolls are imperfect, historians estimate that on the order of a fifth of Continental soldiers were under eighteen, and in the drummer and fifer companies — whose music was the army's nervous system — the proportion of boys ran far higher. Childhood and soldiering, categories we now hold rigidly apart, overlapped freely in the 1770s.</p>
+<p>Their labor was indispensable and perilous. Field music transmitted commands no shouted voice could carry; couriers threaded enemy country; naval "powder monkeys," prized for their small size, carried charges to the guns amid the worst of a sea fight. Motivations were as mixed as the boys themselves — ideology and adventure for some, but for many the harder pressures of poverty, a bounty, or a broken household, and recordkeeping lax enough that lying about one's age was easy. The most articulate witness, Joseph Plumb Martin, enlisted at fifteen and left a memoir whose hunger and disillusion puncture every romantic image of the war.</p>
+<p>Their experience presses a question modern readers feel acutely: a cause that proclaimed natural rights was sustained partly by the bodies of children, some of whom — like the thirteen-year-old courier Andrew Jackson, scarred by a British officer's blade — carried the war's violence into the rest of American history. To recover the young soldiers is both to honor a forgotten service and to reckon with what a "people's war" actually demanded of its people.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>The army we picture as yeomen farmers was, in part, an army of adolescents.</li><li>Roughly a fifth of Continental soldiers were under 18.</li><li>Childhood and soldiering overlapped freely in the 1770s.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Field music transmitted commands no shouted voice could carry.</li><li>&quot;Powder monkeys,&quot; prized for small size, carried charges amid sea fights.</li><li>Motives ranged from ideology to poverty, a bounty, or a broken home.</li><li>Loose recordkeeping made lying about one's age easy.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Joseph Plumb Martin's memoir punctures romantic images of the war.</li><li>A cause of natural rights was sustained partly by children's bodies.</li><li>Andrew Jackson carried the war's violence into American history.</li><li>Recovering them honors a forgotten service and reckons with a 'people's war.'</li></ul>
+          </div>
+        </section>
+      </div>
+
+        <section class="reading-sources">
+          <h2>Where these facts come from</h2>
+          <ul>
+            <li><a href="https://www.battlefields.org/learn/biographies/joseph-plumb-martin" target="_blank" rel="noopener">American Battlefield Trust — Joseph Plumb Martin</a></li>
+            <li><a href="https://en.wikisource.org/wiki/The_Adventures_Of_A_Revolutionary_Soldier" target="_blank" rel="noopener">Joseph Plumb Martin, A Narrative of a Revolutionary Soldier (1830) — his own words</a></li>
+            <li><a href="https://www.mountvernon.org/george-washington/the-revolutionary-war/the-continental-army" target="_blank" rel="noopener">George Washington's Mount Vernon — Continental Army</a></li>
+            <li><a href="https://archive.org/details/revolutionaryadv00foxe" target="_blank" rel="noopener">Ebenezer Fox, The Revolutionary Adventures of Ebenezer Fox (1847)</a></li>
+            <li><a href="https://www.nps.gov/vafo/learn/historyculture/soldierlife.htm" target="_blank" rel="noopener">National Park Service — Valley Forge: Life of a Soldier</a></li>
+          </ul>
+        </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    Same facts at every level — only the language changes.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    try {
+      var t = localStorage.getItem('rvTheme');
+      if (t) root.setAttribute('data-theme', t);
+    } catch (e) {}
+    toggle.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark'
+        || (!root.hasAttribute('data-theme')
+            && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('rvTheme', next); } catch (e) {}
+    });
+  }
+})();</script>
+</body>
+</html>

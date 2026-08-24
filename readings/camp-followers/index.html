@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Camp Followers — Revolutionary Voices</title>
+<meta name="description" content="The women and children who kept the army alive, and were left out of the story">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/camp-followers/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-head:'Roboto Slab',Georgia,serif;
+  --font-mono:'Space Mono',ui-monospace,monospace;
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--brand); margin:0; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill .level-word { font-size:.8em; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+</style>
+<noscript><style>
+.level-panel[hidden]{display:block}.level-toggle{display:none}
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · Reading</p>
+    <button type="button" class="theme-toggle">Dark / light</button>
+  </div>
+
+  <article class="reading-viewer">
+    <header class="reading-head">
+      <div>
+        <h1>Camp Followers</h1>
+        <p class="reading-tagline">The women and children who kept the army alive, and were left out of the story</p>
+      </div>
+      <div class="level-toggle" role="group" aria-label="Reading level">
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+      </div>
+    </header>
+
+    <div class="reading-quickfacts">
+        <span class="qf"><strong>Who:</strong> Wives, children, cooks, washers, and nurses who traveled with the army</span>
+        <span class="qf"><strong>How many:</strong> About 5,000 to 20,000 at times: about 1 for every 3 to 5 soldiers</span>
+        <span class="qf"><strong>At Valley Forge:</strong> About 3,000 to 4,000 alongside about 12,000 soldiers</span>
+        <span class="qf"><strong>The deal:</strong> Hard, needed work for half a soldier's food, and little memory afterward</span>
+    </div>
+
+      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+        <div class="reading-body"><p>Armies need more than soldiers. They need people to cook, wash clothes, and care for the sick and hurt. In the Revolution, these workers were called <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">camp followers</button><span class="gloss-def" hidden> (people who traveled with the army to cook, wash, and help)</span></span>.</p>
+<p>Most camp followers were women and children. Many were the wives and kids of soldiers. They traveled with the army from camp to camp.</p>
+<p>There were a lot of them — maybe 5,000 to 20,000 at different times. At Valley Forge, where about 12,000 soldiers stayed for the winter, there were about 3,000 to 4,000 camp followers too.</p>
+<p>Camp followers worked hard for very little. They often got only half the food a soldier got. They faced the same cold, hunger, and disease.</p>
+<p>Not all camp followers were treated the same. Officers' wives had tents and servants. Poor wives carried their children and marched all day. Enslaved women cooked for officers and got nothing.</p>
+<p>The army could not have survived without them. But their stories are often forgotten.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Armies need people to cook, wash, and care for the sick.</li><li>These workers were called &quot;camp followers.&quot;</li><li>Most were women and children who traveled with the army.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>There were maybe 5,000 to 20,000 at different times.</li><li>At Valley Forge there were about 3,000 to 4,000.</li><li>They often got only half a soldier's food.</li><li>They faced the same cold, hunger, and disease.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Officers' wives had tents and servants.</li><li>Poor wives marched all day carrying children.</li><li>Enslaved women cooked for officers and got nothing.</li><li>The army could not have survived without them.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+        <div class="reading-body"><p>An army needs more than soldiers to survive. It needs people to cook, wash, mend clothes, and nurse the sick and wounded. During the Revolution, the civilians who did this work and traveled with the army were called "camp followers."</p>
+<p>Most were women and children — often the families of soldiers. Historians estimate there were anywhere from 5,000 to 20,000 camp followers at different points in the war, roughly one for every three to five soldiers. At Valley Forge in the winter of 1777–78, with about 12,000 soldiers, there were likely 3,000 to 4,000 camp followers enduring the same brutal conditions.</p>
+<p>Their work was essential but poorly rewarded — laundresses and cooks usually received only half-rations, and they faced the army's dangers of disease, cold, and hunger. Their experiences differed by class and race: officers' wives had tents and servants, poor soldiers' wives marched for miles carrying children, and enslaved women worked for officers with no pay at all. The army could not have functioned without camp followers, yet their contributions were largely erased from the way we remember the war.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Camp followers were civilians who traveled with the army.</li><li>Most were women and children, often soldiers' families.</li><li>They cooked, washed, mended, and nursed the wounded.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Estimates range from 5,000 to 20,000 — about 1 for every 3–5 soldiers.</li><li>At Valley Forge (~12,000 soldiers), there were ~3,000–4,000 followers.</li><li>Cooks and laundresses usually got only half-rations.</li><li>They faced disease, cold, and hunger.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Their lives differed by class and race.</li><li>Officers' wives had servants; poor wives marched for miles.</li><li>Enslaved women worked for officers with no pay.</li><li>Their contributions were largely erased from history.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="standard" data-level-word="Standard">
+        <div class="reading-body"><p>For every soldier in the Continental Army, there were others marching alongside who never carried a musket. These were the "camp followers": the civilians — overwhelmingly women and children — who did the essential work that kept an army alive. They cooked, laundered, mended, nursed the sick and wounded, and sometimes carried water under fire.</p>
+<p>Their numbers were significant. Estimates range from about 5,000 to 20,000 at various times — perhaps one camp follower for every three to five soldiers. At Valley Forge during the winter of 1777–78, roughly 3,000 to 4,000 accompanied some 12,000 troops, suffering the same starvation, exposure, and disease. The army depended on them. A few roles, like the official position of laundress, even came with formal recognition and rations, though usually at half a soldier's allowance.</p>
+<p>Camp followers were not a single class of people. An officer's wife might join winter quarters with a tent and servants and host dinners. A private's wife might march fifteen miles a day carrying a toddler and her possessions, working for half-rations. An enslaved woman brought along by a slaveholding officer might labor for no pay at all — and see a promised freedom broken after the war. What unites them is how thoroughly they were written out of the story. They are remembered, if at all, as a footnote to a war their labor made possible.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>For every soldier, others marched alongside without muskets — the &quot;camp followers.&quot;</li><li>Overwhelmingly women and children, they did the work that kept the army alive.</li><li>They cooked, laundered, nursed, and sometimes carried water under fire.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Estimates: ~5,000–20,000 at times, perhaps 1 per 3–5 soldiers.</li><li>At Valley Forge (1777–78), ~3,000–4,000 with ~12,000 troops.</li><li>The role of laundress brought formal recognition — usually at half-rations.</li><li>They suffered the same starvation, exposure, and disease.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>They were stratified by class and race, not one group.</li><li>An enslaved woman might labor for no pay and see freedom denied after the war.</li><li>The army depended on them, yet they were written out of the story.</li><li>They're remembered, if at all, as a footnote.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+        <div class="reading-body"><p>Behind the marching columns of the Continental Army moved a second army without muskets: the camp followers, the predominantly female civilian workforce whose labor was not an accessory to the war effort but a precondition of it. They cooked and laundered and nursed; they scavenged and mended and carried; and in their absence the eighteenth-century army — which provided almost no logistical support of this kind — could not have kept the field.</p>
+<p>Their scale has been obscured by their invisibility. Contemporary estimates and later reconstructions suggest anywhere from 5,000 to 20,000 followers at different moments, on the order of one for every three to five soldiers; at Valley Forge, perhaps 3,000 to 4,000 endured the encampment's privations alongside roughly 12,000 troops. The army's own ambivalence is telling: commanders complained that followers slowed the march and strained supplies, even as they formalized the role of laundress and doled out half-rations, tacitly admitting the work was indispensable. Followers were also a society in miniature, stratified by class and race — the officer's wife with a tent and servants at one pole, and at the other the enslaved woman who cooked for officers without pay or rations and whose promised freedom was, after the war, simply withheld.</p>
+<p>Their erasure from Revolutionary memory is not accidental but structural: a national myth built around citizen-soldiers and founding statesmen has little room for the unpaid, the female, the enslaved. To recover the camp followers is to recover the war's actual logistics — and to ask why the people who fed and tended an army of liberty were so easily forgotten by the nation it created.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Behind the army moved a second army without muskets: the camp followers.</li><li>Their predominantly female labor was a precondition of the war, not an accessory.</li><li>The 18th-century army couldn't have kept the field without them.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Estimates suggest 5,000–20,000 followers, ~1 per 3–5 soldiers.</li><li>At Valley Forge ~3,000–4,000 endured alongside ~12,000 troops.</li><li>Commanders complained they slowed the march — yet formalized the laundress role.</li><li>The army's half-rations tacitly admitted the work was indispensable.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>A society in miniature — from officers' wives with servants to unpaid enslaved women.</li><li>Their erasure is structural: a myth of citizen-soldiers has no room for them.</li><li>Recovering them recovers the war's actual logistics.</li><li>Why were the people who fed an army of liberty so easily forgotten?</li></ul>
+          </div>
+        </section>
+      </div>
+
+        <section class="reading-sources">
+          <h2>Where these facts come from</h2>
+          <ul>
+            <li><a href="https://www.battlefields.org/learn/articles/women-american-revolution" target="_blank" rel="noopener">American Battlefield Trust — Women in the American Revolution</a></li>
+            <li><a href="https://revwarapps.org/w4558.pdf" target="_blank" rel="noopener">Sarah Osborn Benjamin — pension deposition (1837), a camp follower in her own words</a></li>
+            <li><a href="https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/camp-followers/" target="_blank" rel="noopener">George Washington's Mount Vernon — Camp Followers</a></li>
+            <li><a href="https://www.nps.gov/articles/000/women-of-the-army.htm" target="_blank" rel="noopener">National Park Service — Women of the Continental Army</a></li>
+            <li><a href="https://www.nps.gov/vafo/learn/historyculture/index.htm" target="_blank" rel="noopener">National Park Service — Valley Forge</a></li>
+          </ul>
+        </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    Same facts at every level — only the language changes.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    try {
+      var t = localStorage.getItem('rvTheme');
+      if (t) root.setAttribute('data-theme', t);
+    } catch (e) {}
+    toggle.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark'
+        || (!root.hasAttribute('data-theme')
+            && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('rvTheme', next); } catch (e) {}
+    });
+  }
+})();</script>
+</body>
+</html>

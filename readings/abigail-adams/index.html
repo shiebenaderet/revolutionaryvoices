@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abigail Adams — Revolutionary Voices</title>
+<meta name="description" content="Letter-writer who urged the founders to &quot;Remember the Ladies&quot;">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/abigail-adams/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-head:'Roboto Slab',Georgia,serif;
+  --font-mono:'Space Mono',ui-monospace,monospace;
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--brand); margin:0; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill .level-word { font-size:.8em; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+</style>
+<noscript><style>
+.level-panel[hidden]{display:block}.level-toggle{display:none}
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · Reading</p>
+    <button type="button" class="theme-toggle">Dark / light</button>
+  </div>
+
+  <article class="reading-viewer">
+    <header class="reading-head">
+      <div>
+        <h1>Abigail Adams</h1>
+        <p class="reading-tagline">Letter-writer who urged the founders to &quot;Remember the Ladies&quot;</p>
+      </div>
+      <div class="level-toggle" role="group" aria-label="Reading level">
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+      </div>
+    </header>
+
+    <div class="reading-quickfacts">
+        <span class="qf"><strong>Born:</strong> November 22, 1744, Weymouth, Massachusetts</span>
+        <span class="qf"><strong>Died:</strong> October 28, 1818 (age 73)</span>
+        <span class="qf"><strong>Role:</strong> Letter-writer who ran the farm; later the president's wife</span>
+        <span class="qf"><strong>Famous for:</strong> &quot;Remember the Ladies&quot; letter (1776); more than 1,100 letters; opposing slavery</span>
+    </div>
+
+      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+        <div class="reading-body"><p>Abigail Adams was born in Massachusetts in 1744. Girls did not go to school then. But Abigail taught herself by reading many books.</p>
+<p>She married John Adams, a leader in the fight for <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">independence</button><span class="gloss-def" hidden> (America becoming its own country)</span></span>. They talked about everything, even <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">politics</button><span class="gloss-def" hidden> (government and laws)</span></span>.</p>
+<p>During the war, John was away for a long time. Abigail ran the farm and the money and raised the children all by herself. She did it very well.</p>
+<p>Abigail wrote a famous letter in 1776. She told John to "Remember the Ladies." She wanted the new country to give women rights too.</p>
+<p>Abigail also said slavery was wrong.</p>
+<p>Later, John became president, and Abigail was the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">First Lady</button><span class="gloss-def" hidden> (the president's wife)</span></span>. She died in 1818. People still read her letters today.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Girls did not go to school then.</li><li>Abigail taught herself by reading many books.</li><li>She married John Adams, a leader for independence (America becoming its own country).</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>John was away a long time during the war.</li><li>Abigail ran the farm, the money, and the children alone.</li><li>In 1776 she wrote to 'Remember the Ladies.'</li><li>She wanted women to have rights too.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Abigail said slavery was wrong.</li><li>Later she was the First Lady (the president's wife).</li><li>People still read her letters today.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+        <div class="reading-body"><p>Abigail Adams was born on November 22, 1744, in Weymouth, Massachusetts. In the 1700s most girls did not go to school, but Abigail taught herself by reading books in her father's library. She became one of the best-educated women of her time.</p>
+<p>She married John Adams, a lawyer and leader of the independence movement. During the Revolutionary War, John was often away serving in the Continental Congress. Abigail managed the farm, the money, and the children on her own — and kept the family secure.</p>
+<p>Abigail and John wrote each other more than 1,100 letters. In her most famous letter, written March 31, 1776, she asked John to "Remember the Ladies" and not give husbands all the power. She believed the new nation should treat women more fairly. Abigail also spoke out against slavery. Later she became the second First Lady. She died in 1818, and her letters are still read today.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Born in 1744, when most girls did not go to school.</li><li>She taught herself by reading in her father's library.</li><li>She married John Adams, a leader of the independence movement.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>While John served in Congress, Abigail managed the farm and finances alone.</li><li>She and John wrote over 1,100 letters.</li><li>On March 31, 1776, she asked John to 'Remember the Ladies.'</li><li>She wanted the new nation to treat women more fairly.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>She also spoke out against slavery.</li><li>She later became the second First Lady.</li><li>Women's-rights leaders later quoted her famous letter.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="standard" data-level-word="Standard">
+        <div class="reading-body"><p>Abigail Adams was born Abigail Smith on November 22, 1744, in Weymouth, Massachusetts. Like most girls of her era, she had no formal schooling. Instead she read voraciously in her father's library and became one of the most learned women of her time. At nineteen she married John Adams. The two formed a genuine intellectual partnership, debating politics as equals in person and on paper.</p>
+<p>The Revolution took John to the Continental Congress for months at a time. While he was away, Abigail ran the family farm and finances, navigated wartime shortages and disease, and kept the household solvent. That was work women of her day rarely controlled. She and John exchanged more than 1,100 letters, now among the richest records of the era. In her most famous, dated March 31, 1776, she urged him: "Remember the Ladies, and be more generous and favourable to them than your ancestors… Remember all Men would be tyrants if they could." John brushed the plea aside. But Abigail had named a contradiction the Revolution left unresolved.</p>
+<p>Abigail also condemned slavery as a betrayal of the liberty Americans claimed — at a time when many founders enslaved people. She later served as the nation's second First Lady and died in 1818. Generations of women's-rights advocates would invoke her words as proof that the demand for women's equality was as old as the country itself.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Born 1744; self-educated because girls were denied formal schooling.</li><li>Became one of the most learned women of her era.</li><li>Married John Adams at 19 and became his political partner.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Ran the family farm and finances through wartime shortages while John served in Congress.</li><li>She and John exchanged 1,100+ letters, now key historical records.</li><li>Her March 31, 1776 letter urged: 'Remember the Ladies… all Men would be tyrants if they could.'</li><li>John dismissed the plea, but it named an unresolved contradiction.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>She condemned slavery as a betrayal of American liberty.</li><li>She served as the nation's second First Lady and died in 1818.</li><li>Later women's-rights advocates invoked her words as proof their demand was as old as the country.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+        <div class="reading-body"><p>Abigail Adams — born Abigail Smith in 1744, daughter of a Weymouth minister — turned the denial of a formal education into a lifelong, self-directed one, emerging as perhaps the most incisive political mind among the founding generation's women. Her marriage to John Adams in 1764 produced not only a family but one of history's great correspondences: more than a thousand letters in which she analyzed war, governance, and the moral stakes of independence as his trusted counselor.</p>
+<p>Her best-known intervention came on March 31, 1776, as Congress edged toward independence: "I desire you would Remember the Ladies… Do not put such unlimited power into the hands of the Husbands. Remember all Men would be tyrants if they could" (Adams, 1776). John's reply was jocular dismissal — he "cannot but laugh" at her "saucy" code — and the laughter is itself instructive: the Revolution's language of natural rights stopped, by design, at the household door. Abigail pressed further than many peers, denouncing slavery as plain hypocrisy and, in one 1797 episode, defending a free Black youth's right to attend evening school.</p>
+<p>She managed the Adams farm through war, inoculation, and inflation; she became the second First Lady; she died in 1818. Her enduring power lies less in any law she changed — she changed none directly — than in the standard she set: nineteenth- and twentieth-century suffragists would quote "Remember the Ladies" as evidence that American women had demanded equality from the republic's first breath.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Born 1744 to a Weymouth minister; turned a denied education into a self-directed one.</li><li>Married John Adams in 1764, beginning one of history's great correspondences.</li><li>Emerged as a sharp political mind among the founding generation's women.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Managed the Adams farm through war, inoculation, and inflation — work women rarely controlled.</li><li>Her 1776 letter pressed natural-rights logic into the household: 'Remember the Ladies.'</li><li>John's jocular dismissal showed the Revolution's rights talk stopped at the home's door.</li><li>She corresponded as John's trusted political counselor.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>She denounced slavery as hypocrisy and defended a free Black youth's right to school (1797).</li><li>Her power lies in the standard she set, not any law she changed.</li><li>Suffragists quoted 'Remember the Ladies' for generations.</li><li>She died in 1818 as the second First Lady.</li></ul>
+          </div>
+        </section>
+      </div>
+
+        <section class="reading-sources">
+          <h2>Where these facts come from</h2>
+          <ul>
+            <li><a href="https://www.britannica.com/biography/Abigail-Adams" target="_blank" rel="noopener">Britannica — Abigail Adams</a></li>
+            <li><a href="https://www.womenshistory.org/education-resources/biographies/abigail-adams" target="_blank" rel="noopener">National Women's History Museum — Abigail Adams</a></li>
+            <li><a href="https://www.whitehousehistory.org/bios/abigail-adams" target="_blank" rel="noopener">White House Historical Association — Abigail Adams</a></li>
+            <li><a href="https://www.masshist.org/digitaladams/" target="_blank" rel="noopener">Massachusetts Historical Society — Adams Family Papers</a></li>
+          </ul>
+        </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    Same facts at every level — only the language changes.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    try {
+      var t = localStorage.getItem('rvTheme');
+      if (t) root.setAttribute('data-theme', t);
+    } catch (e) {}
+    toggle.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark'
+        || (!root.hasAttribute('data-theme')
+            && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('rvTheme', next); } catch (e) {}
+    });
+  }
+})();</script>
+</body>
+</html>

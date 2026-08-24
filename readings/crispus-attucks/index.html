@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crispus Attucks — Revolutionary Voices</title>
+<meta name="description" content="Sailor of African and Native American family, remembered as the first to die in the Boston Massacre">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/crispus-attucks/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-head:'Roboto Slab',Georgia,serif;
+  --font-mono:'Space Mono',ui-monospace,monospace;
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--brand); margin:0; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill .level-word { font-size:.8em; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+</style>
+<noscript><style>
+.level-panel[hidden]{display:block}.level-toggle{display:none}
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · Reading</p>
+    <button type="button" class="theme-toggle">Dark / light</button>
+  </div>
+
+  <article class="reading-viewer">
+    <header class="reading-head">
+      <div>
+        <h1>Crispus Attucks</h1>
+        <p class="reading-tagline">Sailor of African and Native American family, remembered as the first to die in the Boston Massacre</p>
+      </div>
+      <div class="level-toggle" role="group" aria-label="Reading level">
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+      </div>
+    </header>
+
+    <div class="reading-quickfacts">
+        <span class="qf"><strong>Born:</strong> Around 1723, probably Massachusetts</span>
+        <span class="qf"><strong>Died:</strong> March 5, 1770, Boston (the Boston Massacre)</span>
+        <span class="qf"><strong>Role:</strong> Sailor and ropemaker; African and Native American family</span>
+        <span class="qf"><strong>Famous for:</strong> First of five killed at the Boston Massacre; later remembered as a Black patriot</span>
+    </div>
+
+      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+        <div class="reading-body"><p>Crispus Attucks was a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">sailor</button><span class="gloss-def" hidden> (a person who works on ships)</span></span> in Boston. He had African and Native American family. He was born around 1723.</p>
+<p>He may have been born a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">slave</button><span class="gloss-def" hidden> (a person who is owned and made to work for no pay)</span></span>. He ran away and lived free. He worked on ships and made rope.</p>
+<p>On March 5, 1770, British soldiers stood in a Boston street. A crowd was angry at them. People yelled and threw snowballs and ice.</p>
+<p>Crispus was at the front of the crowd. The soldiers fired their guns. Crispus was shot and died. He was the first of five men to die that night.</p>
+<p>This night is called the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Boston Massacre</button><span class="gloss-def" hidden> (when soldiers killed people in a crowd)</span></span>. It made many colonists want to be free from Britain.</p>
+<p>For a long time, people forgot Crispus. Later, people who fought to end slavery told his story again. Today we remember him as one of the first to die for American freedom.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>He was a sailor in Boston.</li><li>He had African and Native American family.</li><li>He was shot first on the night of the Boston Massacre.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>A crowd threw snowballs and ice at the soldiers.</li><li>The soldiers fired. Crispus was shot and died.</li><li>He was the first of five men killed.</li><li>People called it the Boston Massacre.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>His death made more people want to be free from Britain.</li><li>People who fought to end slavery told his story again.</li><li>Today he stands for people of all backgrounds in the fight for freedom.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+        <div class="reading-body"><p>Crispus Attucks was a sailor and ropemaker in Boston. He had both African and Native American ancestors and was born around 1723. He may have been born enslaved — a 1750 newspaper ad searched for a runaway who matched him. Either way, he lived his adult life as a free man, working on ships.</p>
+<p>By 1770, many people in Boston were angry that British soldiers were stationed in their city. On the night of March 5, 1770, a crowd surrounded some soldiers and threw snowballs, ice, and rocks. Attucks was near the front. The soldiers fired into the crowd, and he was shot and killed. He was the first of five men to die that night, in what became known as the Boston Massacre.</p>
+<p>The killings turned many colonists against Britain. The soldiers were later put on trial and mostly found not guilty — their lawyer was John Adams. Attucks's name faded for a while, but people fighting to end slavery later honored him, and in 1888 a monument to the victims was placed on Boston Common. Today he is remembered as one of the first to die for American independence.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>A Boston sailor of African and Native American descent, born around 1723.</li><li>He may have escaped slavery and lived free, working on ships.</li><li>On March 5, 1770, he stood at the front of an angry crowd facing British soldiers.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>The crowd threw snowballs, ice, and rocks at the soldiers.</li><li>When the soldiers fired, Attucks was one of the first hit; five men died.</li><li>Patriots called it the Boston Massacre and used it to turn people against Britain.</li><li>The soldiers were tried; John Adams defended them and most were found not guilty.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>His death pushed many colonists toward independence.</li><li>Abolitionists later honored him as proof Black Americans fought from the start.</li><li>In 1888 a monument to the victims was placed on Boston Common.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="standard" data-level-word="Standard">
+        <div class="reading-body"><p>Crispus Attucks was born around 1723. He was a Boston sailor and ropemaker of African and Native American (likely Wampanoag or Natick) descent. He may have been born enslaved — a 1750 advertisement sought a runaway matching his description. But he spent his adult life free, working aboard ships, where a man's skill mattered more than his background.</p>
+<p>By 1770, Bostonians deeply resented the British soldiers sent to enforce unpopular laws. On the night of March 5, 1770, a crowd confronted soldiers outside the Custom House, hurling insults, snowballs, and ice. Attucks stood near the front. When the soldiers opened fire, he was one of the first to fall. He was one of five colonists killed in what Patriots quickly named the Boston Massacre. The event pushed many colonists toward independence. Paul Revere's famous engraving spread the story, though it left out that Attucks was a man of color.</p>
+<p>The night was genuinely chaotic, not a simple ambush. The soldiers were tried for murder and, defended by John Adams, mostly acquitted. Attucks's name faded after the war. But nineteenth-century abolitionists reclaimed him as proof that Black Americans had bled for the nation from the start. In 1888 a monument to the victims rose on Boston Common.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>A Boston sailor and ropemaker of African and Native American descent (born ~1723).</li><li>Likely escaped slavery — a 1750 runaway ad matches his description.</li><li>Stood at the front when soldiers fired outside the Custom House on March 5, 1770.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Hit when the soldiers fired; one of five colonists killed that night.</li><li>Patriots named it the 'Boston Massacre' and spread Paul Revere's engraving (which omitted his race).</li><li>The soldiers were tried for murder; defended by John Adams, most were acquitted.</li><li>Buried with the other victims in a large public funeral.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>His death helped move colonists toward independence.</li><li>Nineteenth-century abolitionists reclaimed him as a Black patriot.</li><li>A monument to the victims rose on Boston Common in 1888 — the city's first honoring a Black American.</li><li>He symbolizes that the Revolution involved people of every background.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+        <div class="reading-body"><p>Crispus Attucks — born around 1723, of African and Native American (probably Wampanoag or Natick) descent — worked the Boston waterfront as a sailor and ropemaker, likely after escaping slavery; a 1750 runaway advertisement describing a man of his name and appearance is the strongest trace of his early life. On the night of March 5, 1770, he stood near the front of the crowd that taunted British regulars outside the Custom House, and when the soldiers fired he became one of five men killed in the "Boston Massacre."</p>
+<p>The label itself was propaganda: Patriot leaders such as Samuel Adams seized on the deaths, and Paul Revere's engraving dramatized the scene while quietly omitting Attucks's race. The courtroom told a messier story — John Adams, defending the soldiers, called the crowd "a motley rabble of saucy boys, negroes and molattoes, Irish teagues and out landish jack tarrs" (Adams, 1770), and most of the soldiers were acquitted. Whether Attucks was a heroic protester or, as the defense charged, a leader of the mob remains contested.</p>
+<p>What is not contested is his afterlife as a symbol. Largely forgotten for decades, Attucks was reclaimed by nineteenth-century abolitionists, who began holding "Crispus Attucks Day" in 1858, and in 1888 secured a monument on Boston Common — the city's first to honor a Black American. To call him simply "the first to die for American freedom" flattens a more interesting truth: a man at the margins of colonial society became, by turns, a casualty, a courtroom villain, and a lasting emblem of who the Revolution was really for.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Of African and Wampanoag/Natick descent; the clearest record of his early life is a 1750 runaway-slave advertisement.</li><li>A free sailor on the Boston waterfront, where origins mattered less than skill.</li><li>On March 5, 1770, he was at the front of the crowd taunting British regulars outside the Custom House.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>One of five killed; the event was rapidly turned into Patriot propaganda by Samuel Adams and others.</li><li>Paul Revere's engraving dramatized the scene and omitted Attucks's race.</li><li>At trial John Adams called the crowd a 'motley rabble,' and most soldiers were acquitted — the night was chaotic, not clear-cut.</li><li>Buried alongside the other victims in one of Boston's largest funerals.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Forgotten for decades, then reclaimed: abolitionists launched 'Crispus Attucks Day' in 1858.</li><li>The 1888 Boston Common monument was the city's first to honor a Black American.</li><li>Calling him simply 'first to die for freedom' flattens a contested, more interesting story.</li><li>He endures as an emblem of who the Revolution was really for.</li></ul>
+          </div>
+        </section>
+      </div>
+
+        <section class="reading-sources">
+          <h2>Where these facts come from</h2>
+          <ul>
+            <li><a href="https://www.britannica.com/biography/Crispus-Attucks" target="_blank" rel="noopener">Britannica — Crispus Attucks</a></li>
+            <li><a href="https://www.battlefields.org/learn/biographies/crispus-attucks" target="_blank" rel="noopener">American Battlefield Trust — Crispus Attucks</a></li>
+            <li><a href="https://www.nps.gov/people/crispus-attucks.htm" target="_blank" rel="noopener">National Park Service — Crispus Attucks</a></li>
+            <li><a href="https://www.masshist.org/features/boston-massacre" target="_blank" rel="noopener">Massachusetts Historical Society — Boston Massacre</a></li>
+          </ul>
+        </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    Same facts at every level — only the language changes.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    try {
+      var t = localStorage.getItem('rvTheme');
+      if (t) root.setAttribute('data-theme', t);
+    } catch (e) {}
+    toggle.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark'
+        || (!root.hasAttribute('data-theme')
+            && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('rvTheme', next); } catch (e) {}
+    });
+  }
+})();</script>
+</body>
+</html>

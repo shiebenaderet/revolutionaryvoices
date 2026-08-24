@@ -45,14 +45,28 @@ Typed notes on the Research step are optional. Many classes use a paper handout 
 ## File structure
 
 ```
-index.html      Page structure (wizard steps and writing fields)
-app.js          Wizard logic, storage, script generation
-styles.css      On The Air theme and layout
-readings.js     Leveled reading library (22 topics, 4 levels, facts, sources)
-version.js      Build hash (updated by the pre-commit hook)
-fonts/          Self-hosted Inter, Roboto Slab, Space Mono, Font Awesome CSS
-webfonts/       Font Awesome icon font files (woff2)
+index.html         Page structure (wizard steps and writing fields)
+app.js             Wizard logic, storage, script generation
+styles.css         On The Air theme and layout
+readings.js        Leveled reading library (22 topics, 4 levels, facts, sources)
+build-readings.js  Generates readings/ from readings.js (node build-readings.js)
+readings/          GENERATED standalone reading pages, one clean URL per topic
+                   (/readings/<topic>/) — edit readings.js, then rebuild
+version.js         Build hash (updated by the pre-commit hook)
+fonts/             Self-hosted Inter, Roboto Slab, Space Mono, Font Awesome CSS
+webfonts/          Font Awesome icon font files (woff2)
 ```
+
+### Standalone reading pages
+
+`node build-readings.js` renders every topic in `readings.js` to a
+self-contained page at `readings/<topic>/index.html`, so each reading has a
+clean link (e.g. `/readings/phillis-wheatley/`). Pages inherit the On The Air
+theme (light + dark), keep the four-level switcher, and share the
+`rvReadingLevel` localStorage key with the app. Vocabulary glosses are
+tap-to-reveal (hidden until requested); printing or disabling JS shows all
+levels with glosses expanded as parentheticals. Regenerate after any edit to
+`readings.js` — the pages are build output, not source.
 
 ---
 

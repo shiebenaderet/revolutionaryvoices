@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nancy Hart — Revolutionary Voices</title>
+<meta name="description" content="Georgia Patriot whose famous stories are mostly legend">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/nancy-hart/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-head:'Roboto Slab',Georgia,serif;
+  --font-mono:'Space Mono',ui-monospace,monospace;
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--brand); margin:0; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill .level-word { font-size:.8em; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+</style>
+<noscript><style>
+.level-panel[hidden]{display:block}.level-toggle{display:none}
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · Reading</p>
+    <button type="button" class="theme-toggle">Dark / light</button>
+  </div>
+
+  <article class="reading-viewer">
+    <header class="reading-head">
+      <div>
+        <h1>Nancy Hart</h1>
+        <p class="reading-tagline">Georgia Patriot whose famous stories are mostly legend</p>
+      </div>
+      <div class="level-toggle" role="group" aria-label="Reading level">
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+      </div>
+    </header>
+
+    <div class="reading-quickfacts">
+        <span class="qf"><strong>Born:</strong> Around 1735 (North Carolina or Pennsylvania)</span>
+        <span class="qf"><strong>Died:</strong> Around 1830</span>
+        <span class="qf"><strong>Role:</strong> Woman living on the edge of settled land in Georgia; Patriot</span>
+        <span class="qf"><strong>Famous for:</strong> The legend of capturing Loyalist soldiers in her cabin; Hart County, Georgia, is named for her</span>
+    </div>
+
+      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+        <div class="reading-body"><p>Nancy Hart was a <strong>frontier</strong> woman (living at the edge of settled land) in Georgia during the Revolutionary War. She was tall and known as a great shot with a rifle.</p>
+<p>There is a famous story about her. The story says some <strong>Loyalist</strong> soldiers (men who supported the British king) came to her cabin and made her cook for them.</p>
+<p>The story says Nancy was clever. While the men ate and drank, she slid their guns out through a crack in the wall, one by one. Then she grabbed a gun and held them until help came.</p>
+<p>Here is the important part: most of Nancy's story cannot be proven. It was written down many years later. She was likely a real person, but her famous deeds are mostly <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">legend</button><span class="gloss-def" hidden> (a story that may not be fully true)</span></span>.</p>
+<p>A county in Georgia is named after her. Her story shows how tough women living on the edge of settled land had to be.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Nancy Hart lived on the edge of settled land in Georgia.</li><li>She was tall and a great shot with a rifle.</li><li>There is a famous story about her capturing enemy soldiers.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>The story says Loyalist soldiers made her cook for them.</li><li>She slid their guns out through a crack in the wall.</li><li>Then she held them with a gun until help came.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Most of Nancy's story cannot be proven.</li><li>She was likely a real person, but her deeds are mostly legend.</li><li>A Georgia county is named after her.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+        <div class="reading-body"><p>Nancy Hart lived on the Georgia frontier during the Revolutionary War. Stories describe her as tall, red-haired, and an excellent shot with a rifle. In Georgia the war was also a civil war, with Patriot and Loyalist neighbors fighting each other.</p>
+<p>Her most famous story says that several Loyalist soldiers came to her cabin and demanded a meal. While they ate and drank, Nancy secretly slipped their muskets out through a gap in the cabin wall. When the men noticed, she held them at gunpoint until help arrived.</p>
+<p>Here is the key point: there is very little real evidence for Nancy's adventures. The stories were written down decades later and grew more dramatic with each retelling. She was probably a real frontier woman — land records place her family in the area — but her famous exploits are mostly legend. Georgia later named a county after her, the only one named for a woman. Her story shows how frontier families lived through a dangerous, divided war.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Nancy Hart was a frontier woman in Revolutionary Georgia.</li><li>Stories call her tall, red-haired, and a crack shot.</li><li>In Georgia the war was also a civil war between neighbors.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>The story says Loyalist soldiers demanded a meal at her cabin.</li><li>She secretly slipped their muskets out through a gap in the wall.</li><li>She held them at gunpoint until neighbors arrived.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>There is little real evidence for her adventures.</li><li>She was probably real, but her exploits are mostly legend.</li><li>Georgia named a county for her — the only one named for a woman.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="standard" data-level-word="Standard">
+        <div class="reading-body"><p>Nancy Hart is Georgia's most famous Revolutionary heroine — and one of its most legendary. Tradition describes her as a tall, red-haired frontier woman on the Broad River and a crack shot who supported the Patriot cause. In the Georgia backcountry, the Revolution was also a vicious civil war between Patriot and Loyalist neighbors.</p>
+<p>Her signature story tells of Loyalist soldiers who forced their way into her cabin and demanded a meal. As they ate and drank, Hart quietly passed their stacked muskets out through a gap in the wall. When they realized it, she held them at gunpoint until her neighbors arrived, shooting one man who rushed her. The captives were then hanged. Other tales cast her as a spy who slipped into British camps disguised as a man.</p>
+<p>Historians treat these exploits with caution. The stories were not written down until decades after the war, and they grew more elaborate with each retelling. A 1955 scholarly study traced how the legend expanded over time. There is a kernel of fact: land and family records indicate a real Hart family on the Georgia frontier. There is also an intriguing piece of physical evidence. In 1912, railroad workers near the cabin site reportedly unearthed a row of six skeletons, some with broken necks. It proves nothing for certain, but it kept the legend alive. Georgia named Hart County for her — the only county in the state named for a woman.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Georgia's most famous Revolutionary heroine — and most legendary.</li><li>By tradition a tall, sharp-shooting Patriot on the Broad River frontier.</li><li>The Georgia backcountry war was a vicious Patriot-vs-Loyalist civil war.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>By the story, Loyalists forced into her cabin demanded a meal.</li><li>She passed their muskets out through a wall gap, then held them at gunpoint.</li><li>She reportedly shot one who rushed her; the captives were later hanged.</li><li>Other tales cast her as a spy in disguise.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Her exploits weren't written down until decades later and grew over time.</li><li>A real Hart family did live on the Georgia frontier.</li><li>Georgia named Hart County for her — its only county named for a woman.</li><li>Her tale shows how communities turn frontier women into heroines.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+        <div class="reading-body"><p>Nancy Hart occupies the borderland between history and folklore, a figure whose fame far outruns the evidence for it. The documentary record supports little more than her existence: land and family records place a Hart family on Georgia's Broad River frontier during the Revolution, in a backcountry where the war devolved into brutal neighbor-against-neighbor violence between Patriots and Loyalists.</p>
+<p>The celebrated cabin episode — Hart serving a meal to intruding Tories, smuggling their muskets out through a chinked wall, shooting one and holding the rest for hanging — appears in no contemporary account; it was first published well into the nineteenth century and, as the historian E. Merton Coulter showed in a 1955 Georgia Historical Quarterly study, accreted dramatic detail with each retelling. The legend gained a frisson of confirmation in 1912, when railroad graders near the old cabin site reportedly uncovered six skeletons, a few with broken necks — suggestive, but far from proof.</p>
+<p>What makes Hart worth studying is precisely this gap. A real frontier woman became, in regional memory, "the War Woman": a vehicle for Georgia's pride, for ideas about female toughness, and for the way communities canonize their own. For a podcast, the honest move is to tell the rousing story and then ask what it would take to know whether it happened — and why a young nation needed such a heroine on its southern frontier.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>A figure on the border between history and folklore.</li><li>Records support little beyond a real Hart family on the Broad River frontier.</li><li>The backcountry war was brutal neighbor-against-neighbor violence.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>The cabin episode appears in no contemporary account.</li><li>It was first published decades later and grew with each retelling (Coulter, 1955).</li><li>In 1912 railroad workers reportedly found six skeletons near the cabin — suggestive, not proof.</li><li>Other tales (spying in disguise) are equally undocumented.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Her fame far outruns the evidence for it.</li><li>She became 'the War Woman' of Georgia memory — a vehicle for regional pride.</li><li>The honest move is to tell the story and ask how we'd know it was true.</li><li>Her legend shows why a young nation needed frontier heroines.</li></ul>
+          </div>
+        </section>
+      </div>
+
+        <section class="reading-sources">
+          <h2>Where these facts come from</h2>
+          <ul>
+            <li><a href="https://www.georgiaencyclopedia.org/articles/history-archaeology/nancy-hart-ca-1735-1830/" target="_blank" rel="noopener">New Georgia Encyclopedia — Nancy Hart</a></li>
+            <li><a href="https://www.georgiahistory.com/marker-monday-nancy-hart/" target="_blank" rel="noopener">Georgia Historical Society — Nancy Hart</a></li>
+            <li><a href="https://www.britannica.com/biography/Nancy-Hart" target="_blank" rel="noopener">Britannica — Nancy Hart</a></li>
+            <li><a href="https://dlg.usg.edu/record/nge_ngen_nancy-hart-ca-1735-1830" target="_blank" rel="noopener">Digital Library of Georgia — Nancy Hart</a></li>
+          </ul>
+        </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    Same facts at every level — only the language changes.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    try {
+      var t = localStorage.getItem('rvTheme');
+      if (t) root.setAttribute('data-theme', t);
+    } catch (e) {}
+    toggle.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark'
+        || (!root.hasAttribute('data-theme')
+            && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('rvTheme', next); } catch (e) {}
+    });
+  }
+})();</script>
+</body>
+</html>

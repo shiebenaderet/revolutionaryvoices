@@ -6,6 +6,20 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.4.0] - 2026-08-24
+
+### Added
+
+- **Standalone reading pages**: every topic now has its own link, like `/readings/phillis-wheatley/`. Pages are generated from `readings.js` by `build-readings.js`, inherit the On The Air theme (light and dark), keep the four-level switcher, and share the reading-level preference with the app. An index of all 22 lives at `/readings/`.
+- **Tap-to-reveal vocabulary**: on the standalone pages, glossed words show a dotted underline; tapping reveals the definition next to the word (hidden until requested, per the DIG/SHEG glossing guidance). Printing or browsing without JavaScript shows definitions as plain parentheticals, and print shows all four levels with headings.
+
+### Changed
+
+- **Standard readings now sit at 8th grade**: all 22 Standard-level texts were rewritten from roughly college-level sentence complexity (avg 23 words per sentence) to on-grade (avg 14.5). Same facts, names, dates, and analytical voice - shorter sentences. Verified mechanically that every year, number, and proper noun survived.
+- The Native Americans reading defines *neutral* as "not taking either side" instead of the slangy "out of it"
+
+---
+
 ## [1.3.0] - 2026-08-18
 
 ### Added

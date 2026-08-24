@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Women's Work and Political Voice — Revolutionary Voices</title>
+<meta name="description" content="Women ran farms, shops, and boycotts. The law still treated a married woman as if she did not exist.">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/womens-economic-agency/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-head:'Roboto Slab',Georgia,serif;
+  --font-mono:'Space Mono',ui-monospace,monospace;
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--brand); margin:0; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill .level-word { font-size:.8em; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+</style>
+<noscript><style>
+.level-panel[hidden]{display:block}.level-toggle{display:none}
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · Reading</p>
+    <button type="button" class="theme-toggle">Dark / light</button>
+  </div>
+
+  <article class="reading-viewer">
+    <header class="reading-head">
+      <div>
+        <h1>Women's Work and Political Voice</h1>
+        <p class="reading-tagline">Women ran farms, shops, and boycotts. The law still treated a married woman as if she did not exist.</p>
+      </div>
+      <div class="level-toggle" role="group" aria-label="Reading level">
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+      </div>
+    </header>
+
+    <div class="reading-quickfacts">
+        <span class="qf"><strong>The puzzle:</strong> Women did important work, but married women had almost no rights in court</span>
+        <span class="qf"><strong>The rule:</strong> Coverture: a married woman was &quot;covered&quot; by her husband in law</span>
+        <span class="qf"><strong>A lawyer in 1769:</strong> Wrote that a married woman's legal self was &quot;paused,&quot; as if she were not there</span>
+        <span class="qf"><strong>Harder levels:</strong> Higher reading levels add more names, dates, and harder words</span>
+    </div>
+
+      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+        <div class="reading-body"><p>Revolutionary women had a strange kind of power. They could do important work, but the law acted like married women did not exist.</p>
+<p>The law had a rule called <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">coverture</button><span class="gloss-def" hidden> (when a wife had no legal rights apart from her husband)</span></span>. When a woman married, she was "covered" by her husband. That meant a married woman could not own <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">property</button><span class="gloss-def" hidden> (land or money of her own)</span></span>, keep her own pay, sign a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">contract</button><span class="gloss-def" hidden> (a written deal)</span></span>, or make a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">will</button><span class="gloss-def" hidden> (a paper that says who gets your things after you die)</span></span>. The law saw the husband and wife as one person: the husband.</p>
+<p>But women still did powerful things. They ran farms and shops when men were away. They led <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">boycotts</button><span class="gloss-def" hidden> (refusing to buy something as a protest)</span></span> of British goods. Because women did most of the family shopping, their choices hurt Britain's money.</p>
+<p>So here is the hard part: women had real power at home and in shops, but no power in the law or government. They could not vote.</p>
+<p>Women used the power they had. And they began to argue that the law should change. That fight would last a long time.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Women had a strange kind of power.</li><li>They did important work, but the law ignored married women.</li><li>The rule was called coverture: a wife had no legal rights apart from her husband.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>A married woman could not own property (land or money of her own) or keep her own pay.</li><li>She could not sign contracts or make a will.</li><li>But women ran farms and shops when men were away.</li><li>Women led the boycotts of British goods.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Women had power at home but none in the law.</li><li>They could not vote.</li><li>They began to argue the law should change.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+        <div class="reading-body"><p>Revolutionary women lived a hard puzzle: they showed real power in work and shopping, while the law treated married women as if they did not exist.</p>
+<p>The legal rule was called <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">coverture</button><span class="gloss-def" hidden> (a wife had no legal identity apart from her husband)</span></span>. When a woman married, she became a "femme covert" ("a covered woman"), and the law treated her as part of her husband. A married woman could not own property, keep the wages she earned, sign contracts, sue, or make a will. Fathers, not mothers, controlled the children. In 1769, the famous legal writer Blackstone put it bluntly: in marriage, a woman's "legal existence" was "suspended" (paused, as if she were not there).</p>
+<p>Yet women were far from powerless in daily life. They ran farms and family businesses, especially when men went to war. They organized the boycotts of British goods, and because women made most household purchases, their choices were a real economic weapon. The contradiction (words and rights that did not match their real work) was clear: women had genuine economic influence but no political voice. They could not vote or hold office. Many began to argue that this had to change, planting seeds for later women's-rights movements.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Women showed real economic power, but the law treated married women as invisible.</li><li>The rule was called coverture.</li><li>A married woman was &quot;covered&quot; by her husband in law.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>A 'femme covert' couldn't own property, keep wages, sign contracts, sue, or make a will.</li><li>Fathers, not mothers, controlled the children.</li><li>Women ran farms and businesses, especially during the war.</li><li>Women drove the boycotts, since they did most household shopping.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Women had economic influence but no political voice.</li><li>They could not vote or hold office.</li><li>Many argued this had to change, seeding later movements.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="standard" data-level-word="Standard">
+        <div class="reading-body"><p>Revolutionary America handed women a contradiction: real economic power paired with near-total legal and political invisibility. The invisibility came from a doctrine called coverture, imported from English law. When a woman married, she became a "femme covert," and her legal identity folded into her husband's. As the influential jurist William Blackstone wrote in 1769, "the very being or legal existence of the woman is suspended during the marriage."</p>
+<p>In practice, coverture meant a married woman could not own property, keep her own wages, sign a contract, sue or be sued, or make a will. She had no custody rights over her children. And yet women exercised substantial economic power. They managed farms and ran shops — as "deputy husbands" when men were at war, and in some cases as independent "she-merchants." Above all, they drove the boycotts of British goods. Women controlled most household purchasing, so their collective refusal to buy British tea and cloth was among the Revolution's most effective forms of pressure.</p>
+<p>This gap between economic weight and legal nonexistence is the paradox at the heart of women's Revolutionary experience. Women demonstrably helped win the war and sustain the economy. Yet the new nation granted them no vote and no political standing, and it left coverture intact. The contradiction did not go unnoticed — women like Abigail Adams pressed against it. Later generations of women's-rights activists would build on that foundation and, eventually, tear coverture down.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Women had real economic agency but near-total legal invisibility.</li><li>The cause was coverture, imported from English law.</li><li>Blackstone (1769): a wife's 'legal existence is suspended during the marriage.'</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Coverture barred wives from property, wages, contracts, lawsuits, wills, and custody.</li><li>Women still ran farms and shops — as 'deputy husbands' and 'she-merchants.'</li><li>They drove the boycotts of British goods, a top form of pressure.</li><li>Women controlled most household purchasing — a real economic weapon.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Women helped win the war and run the economy but got no vote.</li><li>The new nation left coverture intact.</li><li>Abigail Adams and others pressed against it.</li><li>It became a foundation later activists would build on and tear down.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+        <div class="reading-body"><p>The Revolutionary era set a contradiction at the foundation of American womanhood: women wielded conspicuous economic power within a legal order that declared married women, quite literally, to have no independent existence. The doctrine was coverture, and its logic was total. "By marriage," William Blackstone wrote in his 1769 Commentaries, "the husband and wife are one person in law: that is, the very being or legal existence of the woman is suspended during the marriage" (Blackstone, 1769). A "femme covert" could not own property, retain her wages, contract, sue, devise a will, or claim her children; her economic self was, in law, her husband's.</p>
+<p>Against this erasure, women's actual economic agency stands out in sharp relief. They ran farms and businesses as "deputy husbands" when men marched off, and some operated as "she-merchants" or feme-sole traders under narrow exceptions; most consequentially, they made the consumer boycotts work. Because households ran on women's purchasing, the non-importation movements — the spinning of homespun, the renunciation of British tea — converted domestic decisions into political force, arguably the most broadly effective Patriot tactic before the shooting started. Women thus performed citizenship economically while being denied it legally.</p>
+<p>The unresolved tension is the historical payload. A revolution that justified itself by the natural rights of persons left half its population legally suspended in marriage and wholly excluded from the vote, offering at most the consolatory ideal of "republican motherhood." Yet the very women who had managed the war economy had also learned their own capacity — and figures like Abigail Adams turned that knowledge into demands. The paradox of agency without rights did not resolve in 1783; it became the seedbed of a women's movement that would spend the next century and a half insisting the Revolution's logic be carried to its conclusion.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Women wielded economic power within a law that denied married women any existence.</li><li>The doctrine was coverture, and its logic was total.</li><li>Blackstone (1769): the wife's 'very being or legal existence' is 'suspended.'</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>A 'femme covert' could not own property, keep wages, contract, sue, or claim her children.</li><li>Women ran farms and businesses; some operated as feme-sole traders.</li><li>They made the consumer boycotts work — converting domestic choices into political force.</li><li>Women performed citizenship economically while denied it legally.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>A revolution of natural rights left half its people legally suspended in marriage.</li><li>It offered at most the ideal of 'republican motherhood.'</li><li>Women who ran the war economy learned their own capacity.</li><li>The paradox of agency without rights seeded a century-and-a-half women's movement.</li></ul>
+          </div>
+        </section>
+      </div>
+
+        <section class="reading-sources">
+          <h2>Where these facts come from</h2>
+          <ul>
+            <li><a href="https://www.amrevmuseum.org/womenandtheamericanrevolution" target="_blank" rel="noopener">Museum of the American Revolution — When Women Lost the Vote</a></li>
+            <li><a href="https://avalon.law.yale.edu/18th_century/blackstone_bk1ch15.asp" target="_blank" rel="noopener">Blackstone on coverture — the law that made married women legally invisible (Avalon Project, Yale)</a></li>
+            <li><a href="https://www.loc.gov/item/90898138/" target="_blank" rel="noopener">&quot;Sentiments of an American Woman&quot; (1780) — Library of Congress</a></li>
+            <li><a href="https://www.mountvernon.org/george-washington/the-revolutionary-war/women-in-the-american-revolution" target="_blank" rel="noopener">George Washington's Mount Vernon — Women in the Revolution</a></li>
+            <li><a href="https://www.gilderlehrman.org/history-resources/essays/women-american-revolution" target="_blank" rel="noopener">Gilder Lehrman Institute — Women in the American Revolution</a></li>
+          </ul>
+        </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    Same facts at every level — only the language changes.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    try {
+      var t = localStorage.getItem('rvTheme');
+      if (t) root.setAttribute('data-theme', t);
+    } catch (e) {}
+    toggle.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark'
+        || (!root.hasAttribute('data-theme')
+            && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('rvTheme', next); } catch (e) {}
+    });
+  }
+})();</script>
+</body>
+</html>

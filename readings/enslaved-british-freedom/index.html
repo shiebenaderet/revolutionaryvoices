@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enslaved People and British Freedom Offers — Revolutionary Voices</title>
+<meta name="description" content="Leaders talked about freedom while keeping people enslaved. Britain offered freedom as a way to win the war.">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/enslaved-british-freedom/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-head:'Roboto Slab',Georgia,serif;
+  --font-mono:'Space Mono',ui-monospace,monospace;
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--brand); margin:0; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill .level-word { font-size:.8em; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+</style>
+<noscript><style>
+.level-panel[hidden]{display:block}.level-toggle{display:none}
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · Reading</p>
+    <button type="button" class="theme-toggle">Dark / light</button>
+  </div>
+
+  <article class="reading-viewer">
+    <header class="reading-head">
+      <div>
+        <h1>Enslaved People and British Freedom Offers</h1>
+        <p class="reading-tagline">Leaders talked about freedom while keeping people enslaved. Britain offered freedom as a way to win the war.</p>
+      </div>
+      <div class="level-toggle" role="group" aria-label="Reading level">
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+      </div>
+    </header>
+
+    <div class="reading-quickfacts">
+        <span class="qf"><strong>The problem:</strong> Both sides used enslaved people's work. Both sometimes promised freedom.</span>
+        <span class="qf"><strong>How many:</strong> About 500,000 Black people in 1775 (about 1 in 5). About 450,000 were enslaved.</span>
+        <span class="qf"><strong>The South:</strong> Enslaved people were about 40 of every 100 people in Virginia, and more than half in South Carolina</span>
+        <span class="qf"><strong>Harder levels:</strong> Higher reading levels add more names, dates, and harder words</span>
+    </div>
+
+      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+        <div class="reading-body"><p>The Revolution had a deep <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">contradiction</button><span class="gloss-def" hidden> (when people say one thing and do the opposite)</span></span>. White leaders said "all men are created equal" and fought for freedom. But they kept about 450,000 Black people <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">enslaved</button><span class="gloss-def" hidden> (owned and forced to work for no pay)</span></span>.</p>
+<p>In 1775, about 500,000 Black people lived in the colonies. That was about 1 in 5 people. Most lived in the South. In some places, like South Carolina, more than half the people were enslaved.</p>
+<p>Both sides wanted to use enslaved people's work. And both sides sometimes promised freedom to get their help.</p>
+<p>The British made the biggest offer. They said enslaved people who left their American (<strong>Patriot</strong>) owners and joined the British could be free. Tens of thousands took the risk.</p>
+<p>But "freedom" was not simple. The British had made money from slavery too. Some promises were broken.</p>
+<p>Here is the hard part: enslaved people were stuck between two sides that both used them and both made promises. They had to find their own path to freedom.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>The Revolution had a deep contradiction: leaders said one thing and did the opposite.</li><li>Leaders fought for freedom but kept about 450,000 people enslaved.</li><li>About 1 in 5 people in the colonies were Black, and most were enslaved.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Both sides wanted to use enslaved people's work.</li><li>Both sides sometimes promised freedom.</li><li>The British offered freedom to those who left Patriot owners.</li><li>Tens of thousands took the risk.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>&quot;Freedom&quot; was not simple — Britain had used slavery too.</li><li>Some promises were broken.</li><li>Enslaved people had to find their own path to freedom.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+        <div class="reading-body"><p>At the heart of the Revolution was a painful <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">contradiction</button><span class="gloss-def" hidden> (when words and actions do not match)</span></span>: leaders declared that "all men are created equal" while holding about 450,000 people in slavery. In 1775, roughly 500,000 African Americans lived in the colonies, about 20% of the population, and most were enslaved in the South. In Virginia, enslaved people were 40% of the population; in South Carolina, they were a majority.</p>
+<p>Both the Americans and the British depended on enslaved people's labor, and both, at times, offered freedom to win their help. The British made the bolder offer: official promises in 1775 and 1779 said enslaved people who left Patriot owners and joined the British could be free. Tens of thousands risked everything to reach British lines.</p>
+<p>But the promise was messy. Britain had made money from slavery for centuries, and many promises were broken. Some who reached the British were enslaved again or left poor. This is the hard puzzle: enslaved people were caught between two powers that both used them and both promised liberty. They had to find whatever freedom they could.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Leaders said &quot;all men are created equal&quot; while holding ~450,000 in slavery.</li><li>~500,000 African Americans (~20%) lived in the colonies in 1775.</li><li>In South Carolina, the enslaved were a majority.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Both Americans and British depended on enslaved labor.</li><li>Both dangled freedom to win help.</li><li>British official promises (1775, 1779) said enslaved people who fled Patriot owners could be free.</li><li>Tens of thousands risked everything to reach British lines.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Some who reached the British gained real freedom; others were betrayed.</li><li>Britain had profited from slavery for centuries.</li><li>Enslaved people had to find a path through a trap to seize what freedom they could.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="standard" data-level-word="Standard">
+        <div class="reading-body"><p>The American Revolution rested on a contradiction so glaring that people at the time noticed it. As Jefferson wrote that "all men are created equal," roughly 450,000 human beings were held in slavery in the new nation. In 1775, about 500,000 African Americans made up some 20% of the colonial population. In the South they were a huge presence: 40% of Virginia, and an outright majority (about 60%) of South Carolina.</p>
+<p>The cruelty of the enslaved person's position was that both sides exploited their labor, and both promised freedom when it suited them. The Patriots spoke of liberty yet largely defended slavery. The British offered emancipation as a war measure: Lord Dunmore's 1775 proclamation and the broader Philipsburg Proclamation of 1779 promised freedom to those who fled rebel masters. Yet Britain itself had built much of its wealth on the slave trade. Tens of thousands of enslaved people made the dangerous calculation that their best chance lay behind British lines.</p>
+<p>The results exposed the hollowness of both sides' rhetoric. Some who reached the British won real freedom and were evacuated as "Black Loyalists." Others were re-enslaved, abandoned, or died of disease in crowded camps. The Patriots' victory secured liberty for white Americans while leaving slavery intact — and in the cotton South, soon to expand. For the enslaved, the Revolution was less a war of liberation than a moment to be seized: a narrow, dangerous opening in a system neither side intended to dismantle.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>Jefferson wrote &quot;all men are created equal&quot; amid ~450,000 enslaved people.</li><li>African Americans were ~20% of the population — 40% of Virginia, ~60% of South Carolina.</li><li>The Revolution was fought within and around slavery.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>Both sides exploited enslaved labor while promising freedom when it suited them.</li><li>Patriots spoke of liberty yet largely defended slavery.</li><li>Dunmore (1775) and Philipsburg (1779) promised freedom — as a war measure.</li><li>Tens of thousands judged their best chance lay with the British.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>Some won freedom as &quot;Black Loyalists&quot;; others were re-enslaved or died in camps.</li><li>The Patriots' victory left slavery intact and soon expanding in the South.</li><li>For the enslaved, the Revolution was a dangerous opening, not a liberation.</li><li>Neither side intended to dismantle slavery.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+        <div class="reading-body"><p>No fact indicts the American founding more sharply than this: the Declaration's "all men are created equal" was drafted in a society where roughly 450,000 of some 500,000 African Americans — a fifth of the population — were property, and where enslaved people formed 40% of Virginia and a 60% majority of South Carolina. The Revolution was not merely a war fought despite slavery; it was a war fought within and around it, and enslaved people read its contradictions with clear eyes.</p>
+<p>Theirs was a choice between exploiters. The Patriots proclaimed natural rights while their leading men enslaved hundreds — Jefferson among them — and the new state constitutions left bondage standing. The British, who had spent a century profiting from the Atlantic slave trade, nonetheless made the more concrete wartime offer: Dunmore's 1775 proclamation, then the 1779 Philipsburg Proclamation, promised freedom to those who abandoned rebel masters — not from principle but to weaken the rebellion. Liberty was a weapon both sides aimed at each other, with Black people as the contested ground. Tens of thousands fled to British lines anyway, calculating that the enemy's self-interest offered better odds than the patriots' professed ideals.</p>
+<p>The reckoning was brutal and instructive. The fortunate were carried off as Black Loyalists — some 3,000 recorded in the "Book of Negroes," bound for Nova Scotia and, for some, Sierra Leone; the unfortunate were re-enslaved by the very British who had promised otherwise, sold in the Caribbean, or buried in disease-ridden camps. Independence, meanwhile, entrenched slavery in the South even as the North began gradual abolition. The paradox is the point: a revolution that universalized the language of freedom narrowed its practice, leaving a contradiction that would be settled only by civil war — and arguably not even then.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook (Introduction)</h3>
+            <ul><li>The Declaration was drafted where ~450,000 of ~500,000 African Americans were property.</li><li>The enslaved were 40% of Virginia and a 60% majority in South Carolina.</li><li>Enslaved people read the Revolution's contradictions with clear eyes.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Content</h3>
+            <ul><li>It was a choice between exploiters, not between freedom and slavery.</li><li>Patriots proclaimed rights while enslaving hundreds (Jefferson among them).</li><li>Britain promised freedom not from principle but to weaken the rebellion.</li><li>Liberty was a weapon both sides aimed at each other, with Black people the contested ground.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Conclusion</h3>
+            <ul><li>~3,000 Black Loyalists (the &quot;Book of Negroes&quot;) went to Nova Scotia, some to Sierra Leone.</li><li>Others were re-enslaved by the British, sold in the Caribbean, or died in camps.</li><li>Independence entrenched Southern slavery as the North began gradual abolition.</li><li>The contradiction would be settled only by civil war — and arguably not even then.</li></ul>
+          </div>
+        </section>
+      </div>
+
+        <section class="reading-sources">
+          <h2>Where these facts come from</h2>
+          <ul>
+            <li><a href="https://www.amrevmuseum.org/read-the-revolution/black-patriots-and-loyalists" target="_blank" rel="noopener">Museum of the American Revolution — Black Patriots and Loyalists</a></li>
+            <li><a href="https://www.mountvernon.org/george-washington/the-revolutionary-war/african-americans-in-the-revolutionary-war" target="_blank" rel="noopener">George Washington's Mount Vernon — Slavery &amp; the Revolution</a></li>
+            <li><a href="https://www.nps.gov/articles/000/lord-dunmore-s-proclamation.htm" target="_blank" rel="noopener">National Park Service — Dunmore's Proclamation</a></li>
+            <li><a href="https://www.worldhistory.org/article/2449/african-americans-in-the-american-revolution/" target="_blank" rel="noopener">World History Encyclopedia — African Americans in the American Revolution</a></li>
+          </ul>
+        </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    Same facts at every level — only the language changes.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    try {
+      var t = localStorage.getItem('rvTheme');
+      if (t) root.setAttribute('data-theme', t);
+    } catch (e) {}
+    toggle.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark'
+        || (!root.hasAttribute('data-theme')
+            && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = dark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('rvTheme', next); } catch (e) {}
+    });
+  }
+})();</script>
+</body>
+</html>

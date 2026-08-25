@@ -71,10 +71,9 @@ Proclamation vs. the Book of Negroes ledger). Text handling is OCR repair
 only - wording, spelling, and punctuation stay period. Every excerpt
 passes `node check-sources.js` (enforced by the pre-commit hook), and
 period language is framed at the point of encounter, not warned about.
-Topics so far (13 of 22): Wheatley, Ludington, Peter Salem, Deborah
-Sampson, Mercy Otis Warren, Crispus Attucks, James Armistead, Benedict
-Arnold, Nancy Hart, Molly Pitcher, camp followers, young soldiers,
-enslaved people & British freedom.
+Topics so far (20 of 22): every topic except Joseph Brant (deferred
+until an authentic first-person Brant text is verified) and Loyalists
+(no strong period voice on hand yet).
 
 ### Standalone reading pages
 

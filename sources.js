@@ -16,6 +16,130 @@
 
 window.RV_SOURCES = {
 
+  'women': {
+    spotlight: {
+      doc: 'The Sentiments of an American Woman — a broadside',
+      date: 'Philadelphia, summer 1780',
+      context: 'A broadside — a printed sheet posted and passed hand to hand — appeared in Philadelphia in 1780, almost certainly written by Esther de Berdt Reed. It launched the biggest women’s fundraising campaign of the war: going door to door, the Ladies Association collected some 300,000 paper dollars for Washington’s soldiers. This is how it begins — an argument that patriotism does not belong to men.',
+      text: `<p>On the commencement of actual war, the Women of America <dfn data-def="clearly showed">manifested</dfn> a firm resolution to contribute as much as could depend on them, to the deliverance of their country. Animated by the purest patriotism, they are sensible of sorrow at this day, in not offering more than <dfn data-def="empty; producing nothing">barren</dfn> wishes for the success of so glorious a Revolution. [&hellip;]</p>
+<p>Born for liberty, <dfn data-def="refusing with pride">disdaining</dfn> to bear the irons of a <dfn data-def="unjustly harsh, like a tyrant">tyrannic</dfn> Government, we associate ourselves to the grandeur of those Sovereigns, cherished and revered, who have held with so much splendour the scepter of the greatest States.</p>`,
+      cite: '"The Sentiments of an American Woman" (Philadelphia, 1780), attributed to Esther de Berdt Reed',
+      url: 'https://www.loc.gov/item/90898138/',
+      task: '"Born for liberty" — the writer claims the Revolution for women. Put her argument into one sentence your Host could say on air. Then add what the campaign actually DID, so listeners hear action, not just words.'
+    },
+    voices: [
+      { q: 'the Women of America manifested a firm resolution to contribute as much as could depend on them, to the deliverance of their country', who: 'Sentiments of an American Woman, 1780', s: ['hook', 'content'] },
+      { q: 'Born for liberty, disdaining to bear the irons of a tyrannic Government', who: 'Sentiments of an American Woman, 1780', s: ['hook', 'content'] },
+      { q: 'not offering more than barren wishes', who: 'Sentiments, 1780 — wishes were not enough', s: ['content', 'conclusion'] }
+    ]
+  },
+
+  'womens-economic-agency': {
+    spotlight: {
+      doc: 'Blackstone on coverture — the actual 1769 text',
+      date: 'Commentaries on the Laws of England, 1769',
+      context: 'This is the legal rule that made married women invisible, in the original spelling. Printers of the 1700s used the "long s" (ſ), which looks like an f — read "hufband" as "husband" and you can decode any eighteenth-century page. Blackstone’s Commentaries taught this law to every American lawyer of the founding generation.',
+      text: `<p>By marriage, the hufband and wife are one perfon in law: that is, the very being or legal exiftence of the woman is <dfn data-def="suspended — paused, as if she were not there">fufpended</dfn> during the marriage, or at leaft is incorporated and <dfn data-def="consolidated — merged into one">confolidated</dfn> into that of the hufband: under whofe wing, protection, and cover, fhe performs every thing; and is therefore called in our <dfn data-def="the old French used in English law courts">law-french</dfn> a <dfn data-def="a 'covered woman' — a married woman in law">feme-covert</dfn>; is faid to be covert-baron, or under the protection and influence of her hufband, her baron, or lord; and her condition during her marriage is called her coverture.</p>`,
+      cite: 'William Blackstone, Commentaries on the Laws of England, Book I, ch. 15 (1769) — Avalon Project, Yale Law School',
+      url: 'https://avalon.law.yale.edu/18th_century/blackstone_bk1ch15.asp',
+      task: 'First, decode it: rewrite the passage in modern spelling. Then translate it into plain English. Finally — say what this one sentence meant for a married woman who ran a farm or a shop.'
+    },
+    voices: [
+      { q: 'the hufband and wife are one perfon in law', who: 'Blackstone, 1769 (original spelling)', s: ['hook', 'content'] },
+      { q: 'the very being or legal exiftence of the woman is fufpended during the marriage', who: 'Blackstone, 1769', s: ['content'] },
+      { q: 'her condition during her marriage is called her coverture', who: 'Blackstone, 1769', s: ['content', 'conclusion'] }
+    ]
+  },
+
+  'abigail-adams': {
+    spotlight: {
+      doc: '"Remember the Ladies" — the letter itself',
+      date: 'Braintree, March 31, 1776',
+      context: 'Three months before the Declaration, Abigail Adams writes to John at the Continental Congress. The spelling is hers — "Laidies," "Rebelion" — because letters between the Adamses were fast, private, and honest. John wrote back that he "cannot but laugh" at her "saucy" letter. Read what she actually threatened.',
+      text: `<p>I long to hear that you have declared an independancy &mdash; and by the way in the new <dfn data-def="the new nation's system of laws">Code of Laws</dfn> which I suppose it will be necessary for you to make I desire you would Remember the Ladies, and be more generous and favourable to them than your ancestors. Do not put such unlimited power into the hands of the Husbands. Remember all Men would be tyrants if they could. If perticuliar care and attention is not paid to the Laidies we are determined to <dfn data-def="stir up">foment</dfn> a Rebelion, and will not hold ourselves bound by any Laws in which we have no voice, or <dfn data-def="having a say in government — the Revolution's own demand">Representation</dfn>.</p>`,
+      cite: 'Abigail Adams to John Adams, March 31, 1776 (Adams Family Papers, Massachusetts Historical Society)',
+      url: 'https://www.masshist.org/digitaladams/archive/doc?id=L17760331aa',
+      task: 'Abigail turns the Patriots’ own slogan — no laws without representation — back on them. Say her threat in your own words. Then: why do you think John laughed, and what does that laugh tell you?'
+    },
+    voices: [
+      { q: 'Remember the Ladies, and be more generous and favourable to them than your ancestors', who: 'Abigail Adams, March 31, 1776', s: ['hook', 'content'] },
+      { q: 'Remember all Men would be tyrants if they could.', who: 'Abigail Adams, 1776', s: ['content'] },
+      { q: 'we are determined to foment a Rebelion', who: 'Abigail Adams, 1776 — her spelling, her threat', s: ['content'] },
+      { q: 'any Laws in which we have no voice, or Representation', who: 'Abigail Adams, 1776', s: ['conclusion'] }
+    ]
+  },
+
+  'african-americans': {
+    spotlight: {
+      doc: 'The petition of "A Great Number of Blackes"',
+      date: 'Massachusetts, January 13, 1777',
+      context: 'Six months after the Declaration of Independence, eight Black men — Prince Hall among them — petitioned the Massachusetts legislature to free every enslaved person in the state. The spelling is the manuscript’s own: men denied schooling, wielding the Revolution’s exact logic. Their last argument turns the Patriots’ own words against them.',
+      text: `<p>The petition of A Great Number of Blackes detained in a State of Slavery in the Bowels of a free &amp; christian Country Humbly <dfn data-def="old legal word ('showeth') — respectfully states">shuwith</dfn> that your Petitioners Apprehend that Thay have in Common with all other men a Natural and <dfn data-def="unalienable — impossible to take away">Unaliable</dfn> Right to that freedom which the Grat Parent of the Unavese hath Bestowed equalley on all menkind and which they have Never forfuted by Any <dfn data-def="agreement or contract">Compact</dfn> or Agreement whatever &mdash; but thay wher Unjustly Dragged by the hand of cruel Power from their Derest frinds [&hellip;] Brough hear Either to Be sold Like Beast of Burthen &amp; Like them Condemnd to Slavery for Life [&hellip;]</p>
+<p>they therfor humble Beseech your Honours [&hellip;] cause an act of the Legislatur to be past Wherby they may Be Restored to the Enjoyments of that Which is the Naturel Right of all men [&hellip;] so may the Inhabitance of thes State No longer chargeable with the <dfn data-def="inconsistency — saying one thing and doing another">inconsistancey</dfn> of acting themselves the part which thay condem and oppose in Others [&hellip;]</p>`,
+      cite: 'Petition for freedom to the Massachusetts Council and House of Representatives, January 13, 1777 (Massachusetts Historical Society)',
+      url: 'https://www.masshist.org/database/557',
+      task: 'The last line is one of the sharpest arguments of the whole Revolution: Massachusetts is "acting the part it condemns in Others." Put the petition into two modern sentences — the claim, and the demand.'
+    },
+    voices: [
+      { q: 'a Natural and Unaliable Right to that freedom which the Grat Parent of the Unavese hath Bestowed equalley on all menkind', who: 'Petition of "A Great Number of Blackes," 1777', s: ['hook', 'content'] },
+      { q: 'Unjustly Dragged by the hand of cruel Power from their Derest frinds', who: 'Petition, 1777', s: ['content'] },
+      { q: 'the inconsistancey of acting themselves the part which thay condem and oppose in Others', who: 'Petition, 1777 — the Revolution’s contradiction, named', s: ['content', 'conclusion'] }
+    ]
+  },
+
+  'native-americans': {
+    spotlight: {
+      doc: 'The Continental Congress addresses the Six Nations',
+      date: '1775',
+      context: 'In the summer of 1775 the Continental Congress sent this address to the Six Nations, asking them to stay out of the war. Hold the promise in your hand while you remember what the reading tells you happened next: in 1779 Washington sent the Sullivan Expedition to burn some forty Iroquois towns, and the 1783 peace treaty gave away Native homelands without consulting the nations at all.',
+      text: `<p>We desire you will hear and receive what we have now told you, and that you will open a good ear, and listen to what we are now going to say. This is a family quarrel between us and Old England. You Indians are not concerned in it. We do not wish you to take up the <dfn data-def="'taking up the hatchet' meant joining the war">hatchet</dfn> against the King's troops. We desire you to remain at home, and not join on either side, but keep the hatchet buried deep. [&hellip;]</p>
+<p>Let us both be cautious in our behaviour toward each other at this critical state of affairs. This island now trembles: the wind whistles from almost every quarter [&hellip;] If any thing disagreeable should ever fall out between us, the Twelve United Colonies, and you, the Six Nations, to wound our peace, let us immediately seek measures for healing the <dfn data-def="a break in friendship or peace">breach</dfn>.</p>`,
+      cite: "Address of the Continental Congress to the Six Nations, 1775, as printed in Stone's Life of Joseph Brant (1838)",
+      url: 'https://www.gutenberg.org/ebooks/52072',
+      task: 'Congress asks for neutrality and promises to "heal the breach." Speaking as your Narrator, set this 1775 promise next to 1779 and 1783 — in your own words, what happened to it?'
+    },
+    voices: [
+      { q: 'This is a family quarrel between us and Old England. You Indians are not concerned in it.', who: 'Continental Congress to the Six Nations, 1775', s: ['hook', 'content'] },
+      { q: 'keep the hatchet buried deep', who: 'Continental Congress, 1775', s: ['content'] },
+      { q: 'This island now trembles: the wind whistles from almost every quarter', who: 'Continental Congress, 1775', s: ['hook'] },
+      { q: 'let us immediately seek measures for healing the breach', who: 'Continental Congress, 1775 — the promise, before Sullivan', s: ['conclusion'] }
+    ]
+  },
+
+  'hessians': {
+    spotlight: {
+      doc: 'Baroness von Riedesel’s journal — the cellar at Saratoga',
+      date: 'October 1777; translated 1867',
+      context: 'Frederika von Riedesel followed her husband — commander of the German troops — across the ocean with three small daughters. At Saratoga she sheltered in a cellar full of wounded men while American guns hammered the house above. Her journal is the war from the German side — and from a mother’s eye level.',
+      text: `<p>We were finally <dfn data-def="forced">obliged</dfn> to take refuge in a cellar, in which I laid myself down in a corner not far from the door. My children laid down on the earth with their heads upon my lap, and in this manner we passed the entire night. [&hellip;] Eleven cannon balls went through the house, and we could plainly hear them rolling over our heads. One poor soldier, whose leg they were about to <dfn data-def="surgically remove">amputate</dfn>, having been laid upon a table for this purpose, had the other leg taken off by another cannon ball, in the very middle of the operation.</p>`,
+      cite: 'Baroness Frederika von Riedesel, Letters and Journals (trans. William L. Stone, 1867) — the retreat to Saratoga',
+      url: 'https://archive.org/details/lettersjournalsr00ried',
+      task: 'The "Hessians" were the enemy — and this is a mother in a cellar. Retell one moment from her account, then answer: how does hearing the German side change the way your podcast tells Saratoga or Trenton?'
+    },
+    voices: [
+      { q: 'My children laid down on the earth with their heads upon my lap, and in this manner we passed the entire night.', who: 'Baroness von Riedesel, Saratoga, 1777', s: ['hook', 'content'] },
+      { q: 'Eleven cannon balls went through the house, and we could plainly hear them rolling over our heads.', who: 'Baroness von Riedesel, 1777', s: ['content'] }
+    ]
+  },
+
+  'indentured-servants': {
+    spotlight: {
+      doc: 'Mittelberger — the ship becomes a market',
+      date: 'Philadelphia, 1750; published 1756',
+      context: 'Gottlieb Mittelberger crossed from Germany in 1750 and watched what happened when a ship full of poor immigrants reached Philadelphia. He went home and published a warning to anyone thinking of making the voyage. This scene — human beings bargained for on a ship’s deck — is the system the Revolution’s language of liberty never touched.',
+      text: `<p>Every day Englishmen, Dutchmen and <dfn data-def="German-speaking">High-German</dfn> people come from the city of Philadelphia and other places [&hellip;] and select among the healthy persons such as they <dfn data-def="judge; consider">deem</dfn> suitable for their business, and bargain with them how long they will serve for their passage [&hellip;] Adult persons serve 3, 4, 5 or 6 years for the amount due by them, according to their age and strength. But very young people, from 10 to 15 years, must serve till they are 21 years old.</p>
+<p>Many parents must sell and trade away their children like so many head of cattle; for if their children take the debt upon themselves, the parents can leave the ship free and <dfn data-def="free to go">unrestrained</dfn>. [&hellip;] it often happens that such parents and children, after leaving the ship, do not see each other again for many years, perhaps no more in all their lives.</p>`,
+      cite: 'Gottlieb Mittelberger, Journey to Pennsylvania in the Year 1750 (published 1756; trans. 1898)',
+      url: 'https://history.hanover.edu/courses/excerpts/144mittelberger.html',
+      task: 'Mittelberger wrote this as a WARNING to people thinking of emigrating. In your own words: what exactly happens on that ship’s deck — and who pays the highest price?'
+    },
+    voices: [
+      { q: 'bargain with them how long they will serve for their passage', who: 'Mittelberger, 1750', s: ['content'] },
+      { q: 'Many parents must sell and trade away their children like so many head of cattle', who: 'Mittelberger, 1750', s: ['hook', 'content'] },
+      { q: 'do not see each other again for many years, perhaps no more in all their lives', who: 'Mittelberger, 1750', s: ['conclusion'] }
+    ]
+  },
+
   'camp-followers': {
     spotlight: {
       doc: 'Pension deposition of Sarah Osborn Benjamin',

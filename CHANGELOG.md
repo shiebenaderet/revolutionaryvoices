@@ -6,6 +6,22 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.9.0] - 2026-08-25
+
+### Added
+
+- **Seven more primary sources (20 of 22 topics covered)**:
+  - **Women** - "The Sentiments of an American Woman" (1780): "Born for liberty," the broadside that launched the Ladies Association's 300,000-dollar campaign
+  - **Women's work & political voice** - Blackstone on coverture in the actual 1769 long-s spelling ("the hufband and wife are one perfon in law"), with decoding as part of the task
+  - **Abigail Adams** - the "Remember the Ladies" letter in her own spelling ("Laidies," "foment a Rebelion"), from the MHS transcription
+  - **African Americans** - the January 1777 petition of "A Great Number of Blackes" (Prince Hall among the signers), manuscript spelling preserved: Massachusetts charged with "the inconsistancey of acting themselves the part which thay condem and oppose in Others"
+  - **Native Americans** - the Continental Congress's 1775 address to the Six Nations ("a family quarrel... keep the hatchet buried deep"), framed against Sullivan 1779 and the 1783 treaty
+  - **Hessians** - Baroness von Riedesel's cellar at Saratoga: the war from the German side, at a mother's eye level
+  - **Indentured servants** - Mittelberger's 1750 account of the ship-deck market where "parents must sell and trade away their children"
+- Remaining: Joseph Brant (no authentic first-person text verified yet in Stone) and Loyalists (no strong period voice on hand). Stone's Sullivan-campaign narration was considered and rejected for the Native Americans pairing - perpetrator-viewpoint violence the research says needs teacher-level framing.
+
+---
+
 ## [1.8.0] - 2026-08-25
 
 ### Added

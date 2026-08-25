@@ -6,6 +6,21 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.8.0] - 2026-08-25
+
+### Added
+
+- **Six more primary sources** (13 of 22 topics now covered):
+  - **Mercy Otis Warren** - her 1805 answer, in her own voice, to the claim that politics "lay out of the road of female life," with the long-s printing explained as an artifact
+  - **Crispus Attucks** - the 1851 petition by seven Black Bostonians for an Attucks monument, and the legislature's refusal, as printed by Nell (the monument came in 1888)
+  - **James Armistead** - Lafayette's 1784 certificate in his own imperfect English, the paper James carried to freedom
+  - **Benedict Arnold** - Sparks's 1835 reconstruction of the moment Washington learns of the treason: "Whom can we trust now?"
+  - **Nancy Hart** - Ellet's 1848 chapter, framed as the legend's vector: praise and mockery in the same breath
+  - **Molly Pitcher** - Joseph Plumb Martin's Monmouth eyewitness account, with a task built on everything the legend adds that the eyewitness never says
+- Attucks note: Nell's Botta quotation was passed over for the period term it contains; the monument petition is the cleaner and stronger document. Joseph Brant is deferred until an authentic first-person Brant text is located in Stone - no weak excerpt ships.
+
+---
+
 ## [1.7.0] - 2026-08-25
 
 ### Added

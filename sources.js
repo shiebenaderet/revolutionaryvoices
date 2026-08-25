@@ -98,6 +98,117 @@ window.RV_SOURCES = {
     ]
   },
 
+  'mercy-otis-warren': {
+    spotlight: {
+      doc: 'Warren, History of the American Revolution — the opening address',
+      date: 'Published 1805',
+      context: 'Mercy Otis Warren published her three-volume history in 1805 — the first history of the Revolution written by a woman. In its opening pages she answers, in her own voice, the claim that politics "lay out of the road of female life." One artifact to know: in the original printing, most letter s’s appear as the old "long s" (ſ), so the page literally reads "aſſigned to each ſex." We have modernized those letters; the words are hers.',
+      text: `<p>The solemnity that covered every countenance, when contemplating the sword uplifted, and the horrors of civil war rushing to habitations not <dfn data-def="hardened by experience; used to">inured</dfn> to scenes of <dfn data-def="violent robbery and destruction">rapine</dfn> and misery; even to the quiet cottage, where only concord and affection had reigned; stimulated to observation a mind that had not yielded to the assertion, that all political attentions lay out of the road of female life.</p>
+<p>It is true there are certain appropriate duties assigned to each sex; and doubtless it is the more peculiar <dfn data-def="special area of duty">province</dfn> of masculine strength, not only to repel the bold invader of the rights of his country and of mankind, but in the nervous style of manly eloquence, to describe the blood-stained field, and relate the story of slaughtered armies.</p>
+<p>Sensible of this, the trembling heart has recoiled at the magnitude of the undertaking, and the hand often shrunk back from the task; yet, recollecting that every domestic enjoyment depends on the unimpaired possession of civil and religious liberty [&hellip;] the work was not <dfn data-def="given up; abandoned">relinquished</dfn>.</p>`,
+      cite: 'Mercy Otis Warren, History of the Rise, Progress and Termination of the American Revolution, vol. 1 (Boston, 1805), "An Address to the Inhabitants of the United States"',
+      url: 'https://archive.org/details/historyofrisepro01warr',
+      task: 'Warren names the objection to her book — then answers it. Put her argument in your own words: why does she say a woman may write the history of a war?'
+    },
+    voices: [
+      { q: 'all political attentions lay out of the road of female life', who: 'Warren, 1805 — the claim she rejected', s: ['hook'] },
+      { q: 'the trembling heart has recoiled at the magnitude of the undertaking, and the hand often shrunk back from the task', who: 'Warren, 1805', s: ['content'] },
+      { q: 'to describe the blood-stained field, and relate the story of slaughtered armies', who: 'Warren, 1805', s: ['content'] },
+      { q: 'the work was not relinquished', who: 'Warren, 1805', s: ['conclusion'] }
+    ]
+  },
+
+  'crispus-attucks': {
+    spotlight: {
+      doc: 'The 1851 petition for an Attucks monument — and the refusal',
+      date: 'Petition 1851; printed by Nell, 1855',
+      context: 'Eighty-one years after Attucks fell, seven Black Bostonians — the historian William C. Nell among them — asked Massachusetts to build him a monument. The state said no. Nell printed both the petition and the refusal in his 1855 book. The monument finally rose in 1888, thirty-seven years after this ask. Watch how public memory gets made — and refused.',
+      text: `<p>To the Honorable the Senate and House of Representatives of the State of Massachusetts; in General Court assembled: The undersigned, citizens of Boston, respectfully ask that an <dfn data-def="money set aside by a government">appropriation</dfn> of fifteen hundred dollars may be made by your Honorable Body, for a monument to be erected to the memory of Crispus Attucks, the first martyr of the American Revolution.</p>
+<p>WILLIAM C. NELL, CHARLES LENOX REMOND, HENRY WEEDEN, LEWIS HAYDEN, FREDERICK G. BARBADOES, JOSHUA B. SMITH, LEMUEL BURR. Boston, Feb. 22d, 1851.</p>
+<p><em>Nell then records what happened:</em> This petition was referred to the Committee on Military Affairs, who granted a hearing to the petitioners [&hellip;] but finally submitted an <dfn data-def="against; unfavorable">adverse</dfn> report, on the ground that a boy, Christopher Snyder, was previously killed. Admitting this fact [&hellip;] it does not offset the claims of Attucks, and those who made the 5th of March famous in our <dfn data-def="the historical record">annals</dfn> &mdash; the day which history selects as the dawn of the American Revolution.</p>`,
+      cite: 'William C. Nell, The Colored Patriots of the American Revolution (Boston, 1855)',
+      url: 'https://docsouth.unc.edu/neh/nell/nell.html',
+      task: 'Massachusetts said no in 1851; the monument went up in 1888. Retell this fight over memory in your own words — and say why Nell thought a monument to Attucks mattered enough to petition for.'
+    },
+    voices: [
+      { q: 'a monument to be erected to the memory of Crispus Attucks, the first martyr of the American Revolution', who: 'Petition of seven Black Bostonians, 1851', s: ['hook', 'content'] },
+      { q: 'Be not afraid; they dare not fire', who: 'Words attributed to Attucks in Botta’s history, quoted by Nell', s: ['content'] },
+      { q: 'the day which history selects as the dawn of the American Revolution', who: 'Nell, 1855, on the 5th of March', s: ['conclusion'] },
+      { q: 'an adverse report', who: 'The legislature’s answer, 1851 — no monument', s: ['content', 'conclusion'] }
+    ]
+  },
+
+  'james-armistead': {
+    spotlight: {
+      doc: "Lafayette's certificate for James",
+      date: 'Richmond, November 21, 1784',
+      context: 'In 1784 Lafayette learned that the spy who helped win Yorktown was still enslaved. He wrote this certificate in his own imperfect English — the capital letters and French spellings are his. James carried the paper for two years and attached it to his petition for freedom; Virginia’s Assembly freed him by an act finalized in January 1787, and he took the name James Armistead Lafayette.',
+      text: `<p>This is to Certify that the <dfn data-def="the person carrying this paper">Bearer</dfn> By the Name of James Has done Essential Services to Me While I Had the Honour to Command in this State. His Intelligence from the Ennemy's Camp were Industriously Collected and Most faithfully deliver'd. He perfectly Acquitted Himself With Some Important <dfn data-def="assigned tasks or missions">Commissions</dfn> I Gave Him and Appears to me Entitled to Every Reward his <dfn data-def="Lafayette's careful word for James's enslavement">Situation</dfn> Can Admit of.</p>
+<p>Done under my hand, Richmond, November 21st, 1784. &mdash; LAFAYETTE.</p>`,
+      cite: "Lafayette's testimonial for James, November 21, 1784 (Library of Virginia)",
+      url: 'https://encyclopediavirginia.org/entries/lafayette-james-ca-1748-1830/',
+      task: '"Entitled to Every Reward his Situation Can Admit of." What is Lafayette carefully not saying with the word "Situation"? Explain, in your own words, what this one paragraph of paper could do for James — and what it could not do by itself.'
+    },
+    voices: [
+      { q: 'Has done Essential Services to Me While I Had the Honour to Command in this State', who: "Lafayette's certificate, 1784", s: ['hook', 'content'] },
+      { q: "His Intelligence from the Ennemy's Camp were Industriously Collected and Most faithfully deliver'd", who: "Lafayette's certificate, 1784", s: ['content'] },
+      { q: 'Entitled to Every Reward his Situation Can Admit of', who: "Lafayette's certificate, 1784", s: ['conclusion'] }
+    ]
+  },
+
+  'benedict-arnold': {
+    spotlight: {
+      doc: 'The moment Washington learns of the treason',
+      date: 'September 25, 1780; written by Sparks, 1835',
+      context: 'Dispatches reach headquarters revealing that Benedict Arnold — trusted commander of West Point — has sold out to the British. The historian Jared Sparks, working from eyewitness letters, reconstructed the scene in 1835. Watch what Washington says — and what he refuses to let anyone see.',
+      text: `<p>The mystery was here solved, and the whole extent of the plot was made <dfn data-def="plainly visible; obvious">manifest</dfn>. No uncertainty now existed as to the course Arnold had taken. It was clear that he had gone to the enemy. Hamilton was immediately ordered to mount a horse and ride to Verplanck's Point, that preparation might be made for stopping him [&hellip;] Washington called Lafayette and Knox, to whom he told what had happened, and showed the papers. He was perfectly calm, and only said to Lafayette, "Whom can we trust now?"</p>
+<p>For a considerable time no other persons were acquainted with the secret, nor did Washington betray in his actions or <dfn data-def="the expression on a face">countenance</dfn> any symptoms of anxiety or excitement. When dinner was announced, he said to those around him, "Come, Gentlemen; since Mrs. Arnold is unwell, and the General is absent, let us sit down without ceremony." The same <dfn data-def="calm control of oneself">self-possession</dfn> and apparent unconcern continued through the dinner.</p>`,
+      cite: 'Jared Sparks, The Life and Treason of Benedict Arnold (Boston, 1835), ch. XIV',
+      url: 'https://www.gutenberg.org/ebooks/49500',
+      task: 'Two sentences of dialogue carry this whole scene. Retell the moment in your own words — then decide which line your podcast should quote, and what your Narrator must explain around it.'
+    },
+    voices: [
+      { q: 'Whom can we trust now?', who: 'Washington to Lafayette, September 25, 1780', s: ['hook', 'content'] },
+      { q: 'It was clear that he had gone to the enemy.', who: 'Sparks, 1835', s: ['content'] },
+      { q: 'Come, Gentlemen; since Mrs. Arnold is unwell, and the General is absent, let us sit down without ceremony.', who: 'Washington, keeping the secret at dinner', s: ['content', 'conclusion'] }
+    ]
+  },
+
+  'nancy-hart': {
+    spotlight: {
+      doc: 'Ellet, The Women of the American Revolution — the Hart chapter',
+      date: 'Published 1848 — 65 years after the war',
+      context: 'Elizabeth Ellet’s 1848 best-seller is the book that made Nancy Hart famous, built from stories neighbors told decades later. Notice the voice: Ellet mocks Hart’s looks, class, and manners even while celebrating her courage. This is how a real frontier woman became a legend. Ask of each detail: how could anyone in 1848 verify this?',
+      text: `<p>This person was NANCY HART, a woman entirely uneducated, and ignorant of all the conventional civilities of life, but a zealous lover of liberty and of the "liberty boys," as she called the <dfn data-def="supporters of the Revolution — the Patriots">whigs</dfn>. [&hellip;] This vulgar and illiterate, but hospitable and <dfn data-def="brave">valorous</dfn> female patriot could boast no share of beauty; a fact she would herself have readily acknowledged, had she ever enjoyed an opportunity of looking in a mirror.</p>
+<p>She was cross-eyed, with a broad, angular mouth &mdash; ungainly in figure, rude in speech, and awkward in manners &mdash; but having a woman's heart for her friends, though that of a tigress [&hellip;] for the enemies of her country. She was well known to the tories, who stood somewhat in fear of her vengeance for any grievance or aggressive act; though they let pass no opportunity of teasing and annoying her, when they could do so with <dfn data-def="without fear of punishment">impunity</dfn>.</p>`,
+      cite: 'Elizabeth F. Ellet, The Women of the American Revolution, vol. 2 (New York, 1848), ch. XLIII',
+      url: 'https://www.gutenberg.org/ebooks/49412',
+      task: 'Ellet praises Hart and insults her in the same breath. Pick one line that does both at once, and rewrite it the way a fair historian would — keeping only what someone in 1848 could actually know.'
+    },
+    voices: [
+      { q: 'a zealous lover of liberty and of the "liberty boys," as she called the whigs', who: 'Ellet, 1848', s: ['hook'] },
+      { q: "having a woman's heart for her friends, though that of a tigress for the enemies of her country", who: 'Ellet, 1848', s: ['content'] },
+      { q: 'the tories, who stood somewhat in fear of her vengeance', who: 'Ellet, 1848', s: ['content', 'conclusion'] }
+    ]
+  },
+
+  'molly-pitcher': {
+    spotlight: {
+      doc: 'Joseph Plumb Martin — the eyewitness at Monmouth',
+      date: 'The battle: June 28, 1778; published 1830',
+      context: 'Martin fought at Monmouth and published his memoir in 1830. This is the only eyewitness account of a woman serving a cannon in that battle — the seed at the center of the "Molly Pitcher" story. Read it beside the famous legend and notice everything Martin does NOT say: no name, no fallen husband, no taking his place at the gun.',
+      text: `<p>One little incident happened, during the heat of the <dfn data-def="heavy cannon fire">cannonade</dfn>, which I was eye-witness to, and which I think would be unpardonable not to mention. A woman whose husband belonged to the Artillery, and who was then attached to a <dfn data-def="a cannon">piece</dfn> in the engagement, attended with her husband at the piece the whole time; while in the act of reaching a <dfn data-def="a bundle of gunpowder for one shot">cartridge</dfn> and having one of her feet as far before the other as she could step, a cannon shot from the enemy passed directly between her legs without doing any other damage than carrying away all the lower part of her petticoat, &mdash; looking at it with apparent unconcern, she observed, that it was lucky it did not pass a little higher, for in that case it might have carried away something else, and continued her occupation.</p>`,
+      cite: 'Joseph Plumb Martin, A Narrative of a Revolutionary Soldier (1830), ch. IV — the Battle of Monmouth',
+      url: 'https://en.wikisource.org/wiki/The_Adventures_Of_A_Revolutionary_Soldier',
+      task: 'List what the famous legend adds that this eyewitness never says. Then decide what you can responsibly put in your script — and how your Host will signal the difference between "an eyewitness saw" and "the story goes."'
+    },
+    voices: [
+      { q: 'One little incident happened, during the heat of the cannonade, which I was eye-witness to', who: 'Joseph Plumb Martin, 1830', s: ['hook'] },
+      { q: 'attended with her husband at the piece the whole time', who: 'Martin, eyewitness at Monmouth', s: ['content'] },
+      { q: 'looking at it with apparent unconcern … continued her occupation', who: 'Martin, on the unnamed woman at the gun', s: ['content', 'conclusion'] }
+    ]
+  },
+
   'deborah-sampson': {
     spotlight: {
       doc: 'Massachusetts Resolve on the petition of Deborah Gannett',

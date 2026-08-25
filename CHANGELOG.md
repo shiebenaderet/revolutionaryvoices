@@ -6,6 +6,14 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.5.1] - 2026-08-25
+
+### Changed
+
+- **Some Support readings sit clearly below Standard again**: after the 1.4.0 Standard rewrite, eight Some Support texts read as hard as - or harder than - their Standard versions. Those eight (indentured servants, camp followers, African Americans, Hessians, Molly Pitcher, Native Americans, enslaved people & British freedom, Nancy Hart) were simplified by splitting long sentences. Same facts and glosses. The four levels now step cleanly: roughly grades 5 / 7.5 / 9.5 / college.
+
+---
+
 ## [1.5.0] - 2026-08-24
 
 ### Added

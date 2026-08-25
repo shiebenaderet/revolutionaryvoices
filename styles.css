@@ -1873,3 +1873,54 @@ details.rubric-box > summary .rubric-box-toggle { font-weight: 600; }
         transition: none;
     }
 }
+        /* ============================================
+           Primary sources: Source Spotlight, Voice Bank,
+           Two Sources (sources.js / DESIGN-DECISIONS.md)
+           ============================================ */
+        .source-spotlight { margin-top: 18px; border: 2px solid var(--line); border-radius: var(--radius);
+            background: var(--surface); box-shadow: var(--shadow); }
+        .source-spotlight > summary { cursor: pointer; padding: 14px 18px; font-family: var(--font-head);
+            font-weight: 700; color: var(--brand-deep); font-size: 1.05em;
+            display: flex; align-items: center; gap: 10px; flex-wrap: wrap; min-height: 44px; }
+        .source-spotlight > summary:hover { color: var(--brand); }
+        .source-spotlight .spotlight-date { font-family: var(--font-mono); font-weight: 400;
+            font-size: .78em; color: var(--muted); letter-spacing: .04em; margin-left: auto; }
+        .spotlight-body { padding: 0 18px 18px; }
+        .spotlight-doc { margin: 0 0 6px; color: var(--brand-deep); font-size: 1.1em; }
+        .spotlight-context { color: var(--muted); margin: 0 0 12px; }
+        .period-text { background: var(--surface-2); border: 1px solid var(--line);
+            border-left: 4px solid var(--gold); border-radius: 10px; padding: 14px 16px;
+            font-family: Georgia, 'Times New Roman', serif; line-height: 1.8; color: var(--ink); }
+        .period-text p { margin: 0 0 10px; }
+        .period-text p:last-child { margin-bottom: 0; }
+        .period-text ul.ts-ledger { margin: 8px 0 0 18px; padding: 0; font-family: var(--font-mono); font-size: .92em; }
+        .period-text ul.ts-ledger li { margin: 4px 0; }
+        dfn[data-def] { font-style: normal; font-weight: 700; color: var(--brand-deep); cursor: pointer;
+            text-decoration: underline dotted var(--gold) 2px; text-underline-offset: 3px; }
+        dfn[data-def]:hover, dfn[data-def][aria-expanded="true"] { background: var(--surface); border-radius: 4px; }
+        .dfn-def { color: var(--muted); font-style: italic; font-family: var(--font-body); font-size: .95em; }
+        .spotlight-gloss-hint { font-size: .85em; color: var(--muted); margin: 8px 0 0; }
+        .spotlight-task { margin: 14px 0 0; background: var(--surface-2); border: 1px dashed var(--gold);
+            border-radius: 10px; padding: 12px 14px; color: var(--ink); }
+        .spotlight-task strong { color: var(--brand-deep); }
+        .spotlight-cite { font-size: .85em; color: var(--muted); margin: 10px 0 0; }
+        .spotlight-cite a { color: var(--accent); }
+
+        .two-sources { margin-top: 18px; border-top: 2px dashed var(--line); padding-top: 14px; }
+        .two-sources h4 { color: var(--accent); margin: 0 0 8px; display: flex; align-items: center; gap: 8px; }
+        .ts-question { color: var(--ink); margin: 0 0 12px; }
+        .ts-pair { display: flex; flex-direction: column; gap: 12px; }
+        .ts-card h5 { margin: 0 0 8px; color: var(--code-conclusion); font-size: .95em;
+            font-family: var(--font-mono); letter-spacing: .04em; }
+
+        .voice-bank { margin-top: 14px; border: 2px solid var(--line); border-radius: 10px;
+            background: var(--surface); }
+        .voice-bank > summary { cursor: pointer; padding: 10px 14px; font-weight: 700;
+            color: var(--brand-deep); display: flex; align-items: center; gap: 8px; min-height: 44px; }
+        .voice-bank-for { font-family: var(--font-mono); font-weight: 400; font-size: .78em;
+            color: var(--muted); }
+        .voice-bank-hint { font-size: .85em; color: var(--muted); margin: 0; padding: 0 14px 8px; }
+        .voice-line { margin: 0; padding: 10px 14px; border-top: 1px solid var(--line); }
+        .voice-line p { margin: 0 0 4px; font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic; color: var(--ink); line-height: 1.6; }
+        .voice-line footer { font-size: .8em; color: var(--muted); font-family: var(--font-mono); }

@@ -1543,6 +1543,7 @@
             if (te) { if (n === WIZ_LAST) { updateTimeEstimate(); } else { te.style.display = 'none'; } }
             if (n === 1 && typeof rvSyncFromSelect === 'function') rvSyncFromSelect();
             if (typeof rvRenderStepFacts === 'function') rvRenderStepFacts(n);
+            if (typeof rvRenderVoiceBank === 'function') rvRenderVoiceBank(rvCurrentTopic());
             if (typeof updateExemplarNotes === 'function') updateExemplarNotes();
             if (typeof closeReadingDrawer === 'function' && (n < 2 || n > 4)) closeReadingDrawer(false);
             wizUpdateNav();
@@ -1767,6 +1768,8 @@
                     ? 'The reading for this topic is still being added. Use your notes and class resources.'
                     : 'Choose your topic on the Basics step to see the reading here.';
                 rvShowDrawerReading(false, emptyMsg);
+                if (typeof rvRenderSpotlight === 'function') rvRenderSpotlight(null);
+                if (typeof rvRenderVoiceBank === 'function') rvRenderVoiceBank(null);
             }
         }
 
@@ -1844,8 +1847,120 @@
             set('drawerReadingSources', srcItems ? '<ul>' + srcItems + '</ul>' : '');
             const srcWrap = document.getElementById('drawerSourcesWrap');
             if (srcWrap) srcWrap.hidden = !srcItems;
+            rvRenderSpotlight(id);
+            rvRenderVoiceBank(id);
             rvShowDrawerReading(true);
         }
+
+        // ============================================
+        // Primary sources (window.RV_SOURCES, sources.js)
+        // A: Source Spotlight on Research. B: Voice Bank in the
+        // drawer, filtered by step. C: Two Sources, One Story.
+        // Design: research/DESIGN-DECISIONS.md.
+        // ============================================
+        function rvSourceFor(id) {
+            return (id && window.RV_SOURCES && window.RV_SOURCES[id]) || null;
+        }
+
+        function rvRenderSpotlight(id) {
+            const box = document.getElementById('sourceSpotlight');
+            if (!box) return;
+            const src = rvSourceFor(id);
+            if (!src || !src.spotlight) { box.hidden = true; box.innerHTML = ''; return; }
+            const s = src.spotlight;
+            let html =
+                '<details class="source-spotlight">' +
+                '<summary><i class="fas fa-scroll" aria-hidden="true"></i> Source Spotlight — read the real thing <span class="spotlight-date">' + s.date + '</span></summary>' +
+                '<div class="spotlight-body">' +
+                '<h4 class="spotlight-doc">' + s.doc + '</h4>' +
+                '<p class="spotlight-context">' + s.context + '</p>' +
+                '<div class="period-text">' + s.text + '</div>' +
+                '<p class="spotlight-gloss-hint">Tap a <dfn data-def="like this — tap again to hide">dotted word</dfn> for its meaning.</p>' +
+                '<div class="spotlight-task"><strong>Make it yours:</strong> ' + s.task + '</div>' +
+                '<p class="spotlight-cite">' + s.cite +
+                (s.url ? ' — <a href="' + s.url + '" target="_blank" rel="noopener">see the source</a>' : '') + '</p>';
+            if (src.twoSources) {
+                const t = src.twoSources;
+                html +=
+                    '<div class="two-sources">' +
+                    '<h4><i class="fas fa-balance-scale" aria-hidden="true"></i> ' + (t.heading || 'Two sources, one story') + '</h4>' +
+                    '<p class="ts-question">' + t.question + '</p>' +
+                    '<div class="ts-pair">' +
+                    '<div class="ts-card"><h5>' + t.a.label + '</h5><div class="period-text">' + t.a.text + '</div><p class="spotlight-cite">' + t.a.cite + '</p></div>' +
+                    '<div class="ts-card"><h5>' + t.b.label + '</h5><div class="period-text">' + t.b.text + '</div><p class="spotlight-cite">' + t.b.cite + '</p></div>' +
+                    '</div></div>';
+            }
+            html += '</div></details>';
+            box.innerHTML = html;
+            box.hidden = false;
+        }
+
+        // Which script section the current step feeds (same map as step facts).
+        function rvVoiceSection() {
+            const map = { 2: 'hook', 3: 'content', 4: 'conclusion' };
+            return map[wizCurrent] || null;
+        }
+
+        function rvRenderVoiceBank(id) {
+            const box = document.getElementById('drawerVoiceBank');
+            if (!box) return;
+            const src = rvSourceFor(id);
+            const voices = src && src.voices ? src.voices : [];
+            if (!voices.length) { box.hidden = true; box.innerHTML = ''; return; }
+            const section = rvVoiceSection();
+            let list = section ? voices.filter(function (v) { return (v.s || []).indexOf(section) !== -1; }) : voices;
+            let note = '';
+            if (section && !list.length) { list = voices; }
+            else if (section) { note = ' <span class="voice-bank-for">for this step</span>'; }
+            const items = list.map(function (v) {
+                return '<blockquote class="voice-line"><p>&ldquo;' + v.q + '&rdquo;</p>' +
+                    (v.who ? '<footer>' + v.who + '</footer>' : '') + '</blockquote>';
+            }).join('');
+            box.innerHTML =
+                '<details class="voice-bank">' +
+                '<summary><i class="fas fa-quote-left" aria-hidden="true"></i> Voice Bank — real period words' + note + '</summary>' +
+                '<p class="voice-bank-hint">Lines from real documents. Quote one, or put it in your own words — and let your listeners know where it came from.</p>' +
+                items + '</details>';
+            box.hidden = false;
+        }
+
+        // Tap-to-reveal gloss on period text: <dfn data-def="..."> toggles an
+        // adjacent definition span. Hidden until requested (the verified
+        // glossing pattern). Delegated so re-renders keep working; Enter and
+        // Space work because the dfn is focusable via tabindex.
+        (function () {
+            function toggleDfn(d) {
+                let def = d.nextElementSibling;
+                if (def && def.classList.contains('dfn-def')) {
+                    def.remove();
+                    d.setAttribute('aria-expanded', 'false');
+                    return;
+                }
+                def = document.createElement('span');
+                def.className = 'dfn-def';
+                def.textContent = ' (' + d.getAttribute('data-def') + ')';
+                d.insertAdjacentElement('afterend', def);
+                d.setAttribute('aria-expanded', 'true');
+            }
+            document.addEventListener('click', function (e) {
+                const d = e.target.closest && e.target.closest('dfn[data-def]');
+                if (d) toggleDfn(d);
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key !== 'Enter' && e.key !== ' ') return;
+                const d = e.target.closest && e.target.closest('dfn[data-def]');
+                if (d) { e.preventDefault(); toggleDfn(d); }
+            });
+            // Make dfns keyboard-reachable whenever new ones land in the DOM.
+            const mo = new MutationObserver(function () {
+                document.querySelectorAll('dfn[data-def]:not([tabindex])').forEach(function (d) {
+                    d.setAttribute('tabindex', '0');
+                    d.setAttribute('role', 'button');
+                    d.setAttribute('aria-expanded', 'false');
+                });
+            });
+            mo.observe(document.documentElement, { childList: true, subtree: true });
+        })();
 
         // Fill the "key facts for this part" panel on the Intro/Content/Conclusion steps
         function rvRenderStepFacts(stepNum) {

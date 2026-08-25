@@ -147,6 +147,8 @@
                 <div class="reading-sources" id="readingSources"></div>
             </div>
 
+            <div id="sourceSpotlight" hidden></div>
+
             <label for="researchSources">Notes from this reading (optional but helpful):</label>
             <textarea id="researchSources" placeholder="List 3-4 key facts you want to use. Example:&#10;- Phillis Wheatley published a poetry book in 1773 (Britannica)&#10;- She was the first published African American woman poet (Library of Congress)"></textarea>
 
@@ -1714,11 +1716,13 @@
                     <summary>Where these facts come from</summary>
                     <div id="drawerReadingSources"></div>
                 </details>
+                <div id="drawerVoiceBank" hidden></div>
             </div>
         </aside>
     </div>
 
     <script src="readings.js"></script>
+    <script src="sources.js"></script>
     <script src="version.js"></script>
     <script src="app.js"></script>
     <script>

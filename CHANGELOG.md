@@ -6,6 +6,18 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.6.0] - 2026-08-25
+
+### Added
+
+- **Primary sources for six topics** (`sources.js`), implementing the approved design from the research phase:
+  - **Source Spotlight** (Research step): a real period document - Sarah Osborn's 1837 deposition, Joseph Plumb Martin's enlistment scene, Wheatley's 1773 attestation, the 1907 Ludington memoir (framed as the legend's origin), Nell's 1855 Bunker Hill passage with the erased-engraving footnote, and Dunmore's Proclamation. 150-250 words, period spelling intact, tap-to-reveal glosses, and a "Make it yours" paraphrase task - the paraphrase is the student's work, never supplied.
+  - **Voice Bank** (writing drawer, Intro/Content/Conclusion): short quoted period lines filtered to the current step, with attribution.
+  - **Two Sources, One Story**: Dunmore's 1775 freedom promise beside the 1783 Book of Negroes ledger naming real people who sailed with the British.
+- `check-sources.js`: every excerpt passes a mechanical slur check, enforced by the pre-commit hook. Period racial language that remains (e.g. in the attestation and proclamation) is framed at the point of encounter, per the archival-practice research.
+
+---
+
 ## [1.5.1] - 2026-08-25
 
 ### Changed

@@ -49,6 +49,8 @@ index.html         Page structure (wizard steps and writing fields)
 app.js             Wizard logic, storage, script generation
 styles.css         On The Air theme and layout
 readings.js        Leveled reading library (22 topics, 4 levels, facts, sources)
+sources.js         Primary-source library (Source Spotlight, Voice Bank, Two Sources)
+check-sources.js   Mechanical slur check for excerpts (runs in pre-commit)
 build-readings.js  Generates readings/ from readings.js (node build-readings.js)
 readings/          GENERATED standalone reading pages, one clean URL per topic
                    (/readings/<topic>/) — edit readings.js, then rebuild
@@ -56,6 +58,21 @@ version.js         Build hash (updated by the pre-commit hook)
 fonts/             Self-hosted Inter, Roboto Slab, Space Mono, Font Awesome CSS
 webfonts/          Font Awesome icon font files (woff2)
 ```
+
+### Primary sources
+
+Six topics carry real period documents (`sources.js`), per the approved
+design in the research notes: **Source Spotlight** on the Research step
+shows a 150-250 word period excerpt alone - paraphrase is the student's
+task, never supplied - with tap-to-reveal glosses; **Voice Bank** in the
+writing drawer offers short quoted lines filtered to the current step;
+**Two Sources, One Story** pairs excerpts in tension (currently Dunmore's
+Proclamation vs. the Book of Negroes ledger). Text handling is OCR repair
+only - wording, spelling, and punctuation stay period. Every excerpt
+passes `node check-sources.js` (enforced by the pre-commit hook), and
+period language is framed at the point of encounter, not warned about.
+Starter topics: Wheatley, Ludington, Peter Salem, camp followers,
+young soldiers, enslaved people & British freedom.
 
 ### Standalone reading pages
 

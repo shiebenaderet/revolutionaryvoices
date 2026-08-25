@@ -32,6 +32,7 @@ Students follow a 6-step wizard to build a radio-drama script in which a Host in
 - **Google Docs backup** - Copy to Google Doc and Restore live in the header (shared Chromebooks wipe local storage)
 - **Dark mode** - toggle in the header, preference persisted
 - **Leveled reading** - 22 historical topics, 4 language levels, same facts; hard words are glossed at every level (tap-to-reveal on the standalone reading pages, parenthetical in the app)
+- **Primary sources** - every topic carries a real period document: a Source Spotlight on the Research step, a Voice Bank of quotable period lines in the writing drawer, and paired sources in tension where the record supports it
 - **Practice mode** - timed read-aloud panel on the Finish step
 - **Help me write** - examples, starters, and verb banks stay collapsed until a student asks
 - **Reading drawer** - on Intro, Content, and Conclusion, **Your reading** opens the leveled source beside the script (bottom sheet on a narrow screen). Language level stays in sync with Research. Closed by default.
@@ -71,9 +72,9 @@ Proclamation vs. the Book of Negroes ledger). Text handling is OCR repair
 only - wording, spelling, and punctuation stay period. Every excerpt
 passes `node check-sources.js` (enforced by the pre-commit hook), and
 period language is framed at the point of encounter, not warned about.
-Topics so far (20 of 22): every topic except Joseph Brant (deferred
-until an authentic first-person Brant text is verified) and Loyalists
-(no strong period voice on hand yet).
+All 22 topics are covered - from Sarah Osborn's pension deposition and
+Brant's own letters to the 1777 petition of "A Great Number of
+Blackes" and Blackstone's coverture in the original long-s spelling.
 
 ### Standalone reading pages
 

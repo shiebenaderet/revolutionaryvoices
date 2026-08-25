@@ -6,6 +6,21 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [2.0.0] - 2026-08-25
+
+### Milestone: every topic now carries a primary source
+
+The primary-source design from the research phase is fully implemented -
+all 22 topics have a Source Spotlight and Voice Bank; nothing shipped
+without a verified period text and a passing slur check.
+
+### Added
+
+- **Joseph Brant** - his own letter to Colonel James Monroe (1784-85): "we have been a generous enemy to you during the war... no double faces at war," with his own aside about writing "a letter half English half Indian." The primary evidence behind the Monster-Brant rebuttal.
+- **Loyalists** - Samuel Seabury's 1774 "Westchester Farmer" pamphlets: "if I must be enslaved, let it be by a King at least, and not by a parcel of upstart, lawless committee-men" - the Loyalist argument in its own words, framed with the era's shared irony about crying "slavery."
+
+---
+
 ## [1.9.0] - 2026-08-25
 
 ### Added

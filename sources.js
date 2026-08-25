@@ -16,6 +16,47 @@
 
 window.RV_SOURCES = {
 
+  'joseph-brant': {
+    spotlight: {
+      doc: 'Brant writes to an American colonel',
+      date: 'Winter 1784–85',
+      context: 'Americans called him "Monster Brant." Here is Brant himself, after the war, writing to the American colonel James Monroe — the future president. English was his second or third language, and he says so himself. Read what he claims about how the Mohawk fought, and how he closes: looking toward the Grand River, his people’s new home in Canada.',
+      text: `<p>[We] have during the war always favored the prisoners, especially women and children; and likewise did push the matter forward since, to promote peace, and to renew the friendship with you again as we formerly had, in honestly manner. We mean to go through with it and be done with it, that every body should mind their own business and be happy. This is our customs and manners of the <dfn data-def="Brant's spelling of Mohawks">Mohocks</dfn>, whenever engaged any thing. They are all-ways active and true; &mdash; no double faces at war, or any other business. [&hellip;] we have been a generous enemy to you during the war [&hellip;]</p>
+<p>It would relieve me many points if you would be so kind as to answer me this letter, as far as you will understand my English [&hellip;] If I could see you, and talk with you, I could explain myself better than a letter half English half Indian. [&hellip;] early in the Spring I shall leave this, and go to my new country at Grand River.</p>
+<p>I am your well-wisher, And humble servant, JOS. BRANT, or Thayendanegea.</p>`,
+      cite: "Joseph Brant (Thayendanegea) to Colonel James Monroe, winter 1784–85, printed in Stone's Life of Joseph Brant (1838)",
+      url: 'https://www.gutenberg.org/ebooks/53353',
+      task: 'Set this letter against the nickname "Monster Brant." What does Brant claim about how the Mohawk fought — and what in his own words makes the claim believable or not? Notice what he says about his English: what does that detail add to your picture of him?'
+    },
+    voices: [
+      { q: 'we have been a generous enemy to you during the war', who: 'Brant to Colonel Monroe, 1784–85', s: ['hook', 'content'] },
+      { q: 'always favored the prisoners, especially women and children', who: 'Brant to Monroe, 1784–85', s: ['content'] },
+      { q: 'no double faces at war, or any other business', who: 'Brant on the Mohawk way, 1784–85', s: ['content'] },
+      { q: 'a letter half English half Indian', who: 'Brant, on his own words', s: ['hook', 'content'] },
+      { q: 'early in the Spring I shall leave this, and go to my new country at Grand River', who: 'Brant to Monroe, 1784–85', s: ['conclusion'] },
+      { q: 'through their encroaching disposition, we have found they pay little regard to engagements', who: 'Brant to Lord Sidney, London, 1786 — on American land promises', s: ['content', 'conclusion'] }
+    ]
+  },
+
+  'loyalists': {
+    spotlight: {
+      doc: 'The Westchester Farmer pamphlets',
+      date: 'New York, late 1774',
+      context: 'Before the shooting started, an Anglican minister in Westchester, New York — Samuel Seabury, signing himself "A Westchester Farmer" — published furious pamphlets against the Patriot committees enforcing the boycott. Patriots answered by destroying his pamphlets and later jailing him. Notice the irony both sides shared: white writers cried "slavery" about taxes and committees while actual slavery surrounded them. Here is the Loyalist argument, in its own words.',
+      text: `<p>No, if I must be enslaved, let it be by a King at least, and not by a parcel of upstart, lawless <dfn data-def="members of the local Patriot committees that enforced the boycott">committee-men</dfn>. If I must be devoured, let me be devoured by the jaws of a lion, and not gnawed to death by rats and vermin. [&hellip;]</p>
+<p>No, my house is my castle; as such I will consider it, as such I will defend it, while I have breath. [&hellip;] Give me the steady, uniform, <dfn data-def="fair; not taking sides">unbiassed</dfn> influence of the courts of justice. [&hellip;]</p>
+<p><em>And on what the boycott would cost:</em> When a trading people carelessly neglect, or wilfully give up any branch of their trade, it is seldom in their power to recover it.</p>`,
+      cite: 'Samuel Seabury ("A Westchester Farmer"), Free Thoughts on the Proceedings of the Continental Congress and related pamphlets (New York, 1774)',
+      url: 'https://anglicanhistory.org/usa/seabury/bio1908/11.html',
+      task: 'Seabury is against the Revolution — but list the two things he says he is FOR. Then answer: does this sound like a villain, or like a neighbor who disagrees? How should that change the way your podcast presents Loyalists?'
+    },
+    voices: [
+      { q: 'if I must be enslaved, let it be by a King at least, and not by a parcel of upstart, lawless committee-men', who: 'Seabury, "A Westchester Farmer," 1774', s: ['hook', 'content'] },
+      { q: 'my house is my castle; as such I will consider it, as such I will defend it, while I have breath', who: 'Seabury, 1774', s: ['content'] },
+      { q: 'Give me the steady, uniform, unbiassed influence of the courts of justice', who: 'Seabury, 1774 — what the Loyalist wanted kept', s: ['content', 'conclusion'] }
+    ]
+  },
+
   'women': {
     spotlight: {
       doc: 'The Sentiments of an American Woman — a broadside',

@@ -71,8 +71,8 @@ Proclamation vs. the Book of Negroes ledger). Text handling is OCR repair
 only - wording, spelling, and punctuation stay period. Every excerpt
 passes `node check-sources.js` (enforced by the pre-commit hook), and
 period language is framed at the point of encounter, not warned about.
-Starter topics: Wheatley, Ludington, Peter Salem, camp followers,
-young soldiers, enslaved people & British freedom.
+Topics so far: Wheatley, Ludington, Peter Salem, Deborah Sampson,
+camp followers, young soldiers, enslaved people & British freedom.
 
 ### Standalone reading pages
 

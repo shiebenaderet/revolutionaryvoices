@@ -6,6 +6,19 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [1.7.0] - 2026-08-25
+
+### Added
+
+- **Deborah Sampson primary source**: the 1792 Massachusetts Resolve granting "Deborah Gannett" her back pay - a government document confirming, in writing, that a woman "did actually perform the duty of a soldier" under the name Robert Shurtliff. Spotlight, glosses, and Voice Bank lines.
+- Three sources added from the research reading list: Dunmore's Proclamation full text and the Book of Negroes ledger plus Boston King's 1798 memoir (enslaved people & British freedom), and Baroness von Riedesel's Letters and Journals - the first first-person Hessian-side voice in that topic's sources.
+
+### Fixed
+
+- Verified the new Source Spotlight and Voice Bank at narrow width: no horizontal overflow, and the reading drawer's bottom-sheet mode renders correctly with the Voice Bank inside.
+
+---
+
 ## [1.6.0] - 2026-08-25
 
 ### Added

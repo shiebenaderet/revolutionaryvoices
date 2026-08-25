@@ -1132,6 +1132,7 @@ window.RV_READINGS = {
     sources: [
       { title: 'American Battlefield Trust — Hessians', url: 'https://www.battlefields.org/learn/articles/hessians' },
       { title: 'Journal of the American Revolution — 8 Fast Facts About Hessians', url: 'https://allthingsliberty.com/2014/08/8-fast-facts-about-hessians/' },
+      { title: 'Baroness von Riedesel, Letters and Journals (1867) — a first-person voice from the German side', url: 'https://archive.org/details/lettersjournalsr00ried' },
       { title: "George Washington's Mount Vernon — Hessians", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/hessians/' },
       { title: 'Britannica — Hessian', url: 'https://www.britannica.com/topic/Hessian-German-mercenary' }
     ]
@@ -1309,6 +1310,9 @@ window.RV_READINGS = {
       { title: 'Museum of the American Revolution — Black Patriots and Loyalists', url: 'https://www.amrevmuseum.org/read-the-revolution/black-patriots-and-loyalists' },
       { title: "George Washington's Mount Vernon — Slavery & the Revolution", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/african-americans-in-the-revolutionary-war' },
       { title: 'National Park Service — Dunmore\'s Proclamation', url: 'https://www.nps.gov/articles/000/lord-dunmore-s-proclamation.htm' },
+      { title: "Dunmore's Proclamation (1775) — the full text", url: 'https://en.wikisource.org/wiki/Dunmore%27s_Proclamation' },
+      { title: 'The Book of Negroes (1783) — searchable ledger of 3,000 Black Loyalists (Nova Scotia Archives)', url: 'https://archives.novascotia.ca/africanns/book-of-negroes/' },
+      { title: 'Boston King, Memoirs (1798) — an enslaved man who took the British offer, in his own words', url: 'https://blackloyalist.com/cdc/documents/diaries/king-memoirs.htm' },
       { title: 'World History Encyclopedia — African Americans in the American Revolution', url: 'https://www.worldhistory.org/article/2449/african-americans-in-the-american-revolution/' }
     ]
   },

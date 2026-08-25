@@ -98,6 +98,27 @@ window.RV_SOURCES = {
     ]
   },
 
+  'deborah-sampson': {
+    spotlight: {
+      doc: 'Massachusetts Resolve on the petition of Deborah Gannett',
+      date: 'January 20, 1792',
+      context: 'After the war, Deborah Sampson (married name Gannett) <dfn data-def="formally asked the government in writing">petitioned</dfn> Massachusetts for the soldier’s pay she was never given. This is the state’s official answer — reprinted by the Black abolitionist historian William C. Nell in 1855. It is the strongest single piece of evidence that her service really happened. Notice exactly what a government document chooses to praise.',
+      text: `<p>XXIII. &mdash; Resolve on the petition of Deborah Gannett, granting her &pound;34 for services in the Continental Army. January 20, 1792.</p>
+<p><dfn data-def="a legal word meaning 'since it is true that'">Whereas</dfn>, it appears to this Court that the said Deborah Gannett enlisted, under the name of Robert Shurtliff, in Capt. Webb's company, in the 4th Massachusetts Regiment, on May 20th, 1782, and did actually perform the duty of a soldier, in the late army of the United States, to the 23d day of October, 1783, for which she has received no <dfn data-def="payment owed for work or service">compensation</dfn>; and, whereas, it further appears that the said Deborah exhibited an extraordinary instance of female heroism, by discharging the duties of a faithful, gallant soldier, and at the same time preserving the virtue and <dfn data-def="proper behavior by the era's strict rules for women">chastity</dfn> of her sex unsuspected and unblemished, and was discharged from the service with a fair and honorable character; therefore,</p>
+<p><dfn data-def="officially decided">Resolved</dfn>, That the Treasurer of this <dfn data-def="the state of Massachusetts">Commonwealth</dfn> be, and he hereby is, directed to issue his note to the said Deborah for the sum of thirty four pounds, bearing interest from Oct. 23, 1783.</p>`,
+      cite: 'Resolves of the General Court of Massachusetts, January 20, 1792; reprinted in William C. Nell, The Colored Patriots of the American Revolution (1855)',
+      url: 'https://docsouth.unc.edu/neh/nell/nell.html',
+      task: 'This is a government admitting, in writing, that a woman served as a soldier. Put the "Whereas" section in your own words. The state praises her for TWO different things — what are they, and what does that pair tell you about her world?'
+    },
+    voices: [
+      { q: 'enlisted, under the name of Robert Shurtliff … and did actually perform the duty of a soldier', who: 'Massachusetts Resolve, 1792', s: ['hook', 'content'] },
+      { q: 'an extraordinary instance of female heroism', who: 'Massachusetts Resolve, 1792', s: ['hook'] },
+      { q: 'discharging the duties of a faithful, gallant soldier', who: 'Massachusetts Resolve, 1792', s: ['content'] },
+      { q: 'discharged from the service with a fair and honorable character', who: 'Massachusetts Resolve, 1792', s: ['conclusion'] },
+      { q: 'the sum of thirty four pounds, bearing interest from Oct. 23, 1783', who: 'Massachusetts Resolve, 1792 — pay, nine years late', s: ['conclusion'] }
+    ]
+  },
+
   'peter-salem': {
     spotlight: {
       doc: 'Nell, The Colored Patriots of the American Revolution',

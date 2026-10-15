@@ -6,6 +6,102 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.2.2] - 2026-10-15
+
+### Changed
+
+- **Readings re-leveled so each level measures the same as across the course.** Quick, Clear, Full and Deep now follow one definition shared by every course site and handout (`READING-LEVELS.md`). Fifteen readings that measured outside their level were rewritten: four Quick (Abigail Adams, Native Americans, Loyalists, Hessians), nine Clear (James Armistead, Peter Salem, Joseph Brant, Mercy Otis Warren, Benedict Arnold, African Americans, Loyalists, Young Soldiers, Women's Work) and two Full (African Americans, Women's Work). Only the language changed: long sentences were split, rare words swapped for plain ones, and side details moved into their own sentences. Every fact, year, name, glossed term and quote stays. Flesch-Kincaid grade, before and after:
+
+  | Level | Before (average, range) | After (average, range) | Limit |
+  |---|---|---|---|
+  | Quick | 4.2 (2.0-6.7) | 3.9 (2.0-4.9) | 5.0 |
+  | Clear | 7.3 (4.8-9.4) | 6.4 (4.8-7.4) | 7.5 |
+  | Full | 9.3 (7.3-11.8) | 9.0 (7.3-10.4) | 10.5 |
+  | Deep | 15.6 (12.6-19.5) | 15.6 (12.6-19.5) | above that topic's Full |
+
+  Every topic now steps up Quick < Clear < Full < Deep (Joseph Brant's Clear and Full had measured the same).
+
+### Added
+
+- `check-levels.js`: measures every reading with the shared formula, prints the table, and fails on any reading over its level's limit, any topic whose levels do not step up, or any level name or blurb in `app.js` or `build-readings.js` that differs from `READING-LEVELS.md`. Run `node check-levels.js` after editing `readings.js`.
+
+---
+
+## [3.2.1] - 2026-10-15
+
+### Changed
+
+- The masthead fits on one row: title, On Air and Listen / Font / My Work share a line, with less space around the step dial. On a phone it is two tight rows.
+
+---
+
+## [3.2.0] - 2026-10-15
+
+### Changed
+
+- **Handout in the studio.** The handout structure stays (square boxes, ruled lines, one face, no clutter) and the radio warmth comes back: a walnut desk, a dark station masthead with the tuning-dial step row and the current step in gold, a warm cream sheet with brown ink and rules, one rust accent for every action (buttons, selected choices, links), and a colored stripe on each voice label (the word stays, so color is never the only cue). Each step heading has a short rust marker. Dark mode is the same studio at night. Reading pages match. Paper copies stay black and white for the copier.
+- **The On Air light** in the masthead lights up while Listen is reading aloud.
+
+---
+
+## [3.1.0] - 2026-10-15
+
+### Added
+
+- **My Lines** (crew step, between Group Doc and Practice). Each student builds the lines for the voice they perform on their own Chromebook, one box at a time, with help that starts at their reading level and can be changed anytime:
+  - **Quick:** short sentence frames (at most two blanks, at most twelve printed words) filled by tapping a word bank drawn only from the topic's reading. Only the frame being worked shows its word bank, and frames are optional ("Pick the frames that fit"). Each box has a worked example about a different person with the last frame left blank, and a printed goal ("Aim for 2 or 3 sentences"). Students can change the assembled lines or type their own words in any blank.
+  - **Clear:** the question, optional **Stuck?** starters, ruled lines.
+  - **Full:** the question and ruled lines.
+  - **Deep:** the question, ruled lines, and one "go further" move.
+  - **Copy my lines** gives "Name: line" blocks to paste into the Group Doc. **Print my lines sheet** prints the same frames, word bank and ruled lines on paper.
+- `builder-banks.js`: word banks for all 22 topics (703 phrases). Every year and proper noun is checked against that topic's own reading text, and phrases are written to read correctly after "I", "she" or "he", and a group name. Legends are worded as legends ("may have", "became a legend").
+
+### Changed
+
+- **The site looks like a handout.** It is black on white with one face, square boxes with thin black rules, text fields as lines to write on, and writing boxes ruled like paper (0.35in). There are no tints, shadows, gradients, rounded cards or decorative icons. Selection shows by inverting or a heavier rule, never by color alone. The page sits like a sheet on a desk. The step row, buttons, checkboxes and voice labels all follow the same print style, so the Group Doc paper copy and the My Lines sheet match the screen. Dark mode is the same sheet inverted. The standalone reading pages match.
+- Voices are shown as a word in a box (and H / N / S on the style diagrams), not by color.
+
+---
+
+## [3.0.0] - 2026-10-15
+
+### Workflow restructure: crews plan here and write together in a Google Doc
+
+Groups now plan on this site and write the script together in a Google Doc. Solo students still write the whole script here. Built for Unit 2, Weeks 9 and 10 (launch Oct 26, script builder Oct 30, writing days Nov 2 and 3).
+
+### Added
+
+- **Two paths, chosen on the first step.** Solo: Start, Read, Hook, Story, Wrap, Finish. Crew of 2 to 4: Start, Read, Plan, Group Doc, Practice. The step bar is built from whichever path applies.
+- **Your crew** on Start: every student gets a job (Researcher, Lead Scriptwriter, Chief Editor) and a voice (Host, Narrator, Subject). These are checkboxes, so one student can take two jobs and two students can split one. A live line says which jobs or voices are still open. "What does each job do?" explains each one, before writing and in the Doc.
+- **Fact Bank** on Read: six rows (up to ten) of fact plus source, replacing the free-text notes box. It feeds the Group Doc.
+- **Working thesis** on Read, matching the unit plan's research days.
+- **First-pick reading cards:** the first visit shows the first sentence of the chosen topic at each level, so students pick by reading rather than by label.
+- **Plan the Episode** (crew): an episode map (Hook, Story, Wrap, with time targets), style cards with a small diagram of each style's boxes, and one line to fill per box, each labeled with the voice and the crew member who speaks it.
+- **Group Doc** (crew): **Copy the frame** puts a formatted frame on the clipboard as rich text (crew table, thesis, Fact Bank, one box per beat with guidance, starter and plan line, Editor's Checklist, who does what), ready to paste into a new Google Doc. **Print a paper copy** prints the same frame with ruled writing lines, to the print standard. The frame says plainly that students can change it or make their own version.
+- **Practice** (crew): paste the finished script back in ("Maria: ...") to see the read-aloud time and rehearse line by line with each speaker's name.
+- **Listen and Font** on every screen and every reading page (ported from colonial-unrest's `reader-tools.js`): sentence-by-sentence read-aloud with highlighting, and a Font menu with Atkinson Hyperlegible Next, Lexend, OpenDyslexic and Verdana, text size, wider spacing, and Light / Dark. The menu is called "Font", not "dyslexia": it is a comfort setting, not an accommodation. Lexend and OpenDyslexic are bundled. Nothing loads from Google Fonts.
+
+### Changed
+
+- **Reading levels are named Quick, Clear, Full, Deep** (formerly "Easier language / A bit easier / Standard / Harder language", and on the reading pages stars plus "Most support ... Challenge"). The names describe the text, never the reader. The keys and the saved preference are unchanged.
+- **One typeface:** Atkinson Hyperlegible Next everywhere. Inter, Roboto Slab and Space Mono are removed. No letter-spaced capitals, no italics for running text, nothing a student reads under 15px, and inputs at 17px.
+- **Step bar** at 16px and full contrast, numbered. Locked steps get a dashed underline instead of fading to near-invisible.
+- **Menus consolidated:** the header has three labeled buttons (Listen, Font, My Work) in place of four icon-only buttons. My Work holds your scripts, a new script, **Back up my work**, **Restore my work** and delete. One dialog covers both backup methods (copy to a Google Doc, or a file). The duplicate Google Doc controls, the "Keep a copy in Google Docs" bar under every step, "Save now" and the separate dark-mode button are gone.
+- Steps renamed for a podcast: Hook / Story / Wrap, not Introduction / Content / Conclusion.
+- Coming back to the site reopens your most recent script instead of a blank form.
+- News Report: the "In their own words" quote is voiced by the Subject.
+- Contrast fixes found in an audit of every step in both themes: primary buttons (white on orange was 3.67:1), link teal, key-fact headings, length targets, and several dark-mode panels.
+
+### Removed
+
+- The "Easy start / Medium" badges on the script formats. Like the old level names, they labeled the student by the choice.
+
+### Fixed
+
+- Leaving or reloading an untouched page no longer saves an empty "Untitled script".
+
+---
+
 ## [2.0.0] - 2026-08-25
 
 ### Milestone: every topic now carries a primary source

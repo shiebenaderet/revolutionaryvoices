@@ -1,33 +1,18 @@
-/* Self-hosted fonts - avoids school CDN/firewall blocks */
+/* Self-hosted fonts - school filters block font CDNs, and a blocked font falls
+   back silently. Every face is SIL Open Font License 1.1 (see the *-OFL.txt files).
 
-@font-face {
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400 700;
-    font-display: swap;
-    src: url('inter.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Roboto Slab';
-    font-style: normal;
-    font-weight: 600 800;
-    font-display: swap;
-    src: url('roboto-slab.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Space Mono';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('space-mono-regular.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: 'Space Mono';
-    font-style: normal;
-    font-weight: 700;
-    font-display: swap;
-    src: url('space-mono-bold.woff2') format('woff2');
-}
+   Atkinson Hyperlegible Next is the one face for the whole site (Braille Institute;
+   variable, weights 200-800). Lexend and OpenDyslexic are only for the Font menu,
+   which loads nothing from the network. */
+@font-face{font-family:'Atkinson Hyperlegible Next';font-style:normal;font-weight:200 800;font-display:swap;
+  src:url('AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');}
+@font-face{font-family:'Atkinson Hyperlegible Next';font-style:italic;font-weight:200 800;font-display:swap;
+  src:url('AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');}
+@font-face{font-family:'Lexend';font-style:normal;font-weight:100 900;font-display:swap;
+  src:url('Lexend-Variable.woff2') format('woff2');}
+@font-face{font-family:'OpenDyslexic';font-style:normal;font-weight:400;font-display:swap;
+  src:url('OpenDyslexic-Regular.woff2') format('woff2');}
+@font-face{font-family:'OpenDyslexic';font-style:normal;font-weight:700;font-display:swap;
+  src:url('OpenDyslexic-Bold.woff2') format('woff2');}
+@font-face{font-family:'OpenDyslexic';font-style:italic;font-weight:400;font-display:swap;
+  src:url('OpenDyslexic-Italic.woff2') format('woff2');}

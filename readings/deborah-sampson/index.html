@@ -15,16 +15,17 @@
   --code-conclusion:#c2701a;
   --focus:#d4661a; --radius:14px;
   --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --font-head:'Roboto Slab',Georgia,serif;
-  --font-mono:'Space Mono',ui-monospace,monospace;
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
 }
 :root[data-theme="dark"] {
   --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
   --ink:#f3e6cf; --page-bg:#1f1611;
   --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
   --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-  --code-conclusion:#e8985a;
+  --code-conclusion:#e8985a; --edge:#a8987a;
   --focus:#f0bf57;
   --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
 }
@@ -34,19 +35,21 @@
     --ink:#f3e6cf; --page-bg:#1f1611;
     --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
     --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-    --code-conclusion:#e8985a;
+    --code-conclusion:#e8985a; --edge:#a8987a;
     --focus:#f0bf57;
     --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
   }
 }
 
-@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
   font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
-  font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight:400; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
   font-weight:700; font-display:swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -58,8 +61,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 
 .page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
   justify-content:space-between; margin-bottom:18px; }
-.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--brand); margin:0; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
 .theme-toggle { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
   cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
@@ -75,9 +80,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
 .level-pill { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
-  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
   display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
-.level-pill .level-word { font-size:.8em; }
+.level-pill { min-width:64px; }
 .level-pill:hover { border-color:var(--gold); }
 .level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
   border-color:var(--gold); font-weight:700; }
@@ -137,6 +142,31 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
   .gloss-def[hidden] { display:inline; }
   .gloss-word { text-decoration:none; padding:0; margin:0; }
 }
+/* Handout in the studio (3.2.0): matches the script builder. A warm cream
+   sheet on a walnut desk, brown ink and rules, square boxes, one rust accent. */
+:root { --brand:#a8431a; --brand-dark:#a8431a; --brand-deep:#2a1d12; --ink:#2a1d12; --page-bg:#3b2a1c;
+  --surface:#fffaf0; --surface-2:#fffaf0; --line:#3a2a1a; --muted:#5a4a38; --accent:#a8431a; --gold:#e0a52e;
+  --code-conclusion:#2a1d12; --edge:#3a2a1a; --radius:0; --shadow:none; }
+:root[data-theme="dark"] { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf; --ink:#f3e6cf; --page-bg:#0d0906;
+  --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a; --gold:#f0bf57;
+  --code-conclusion:#f3e6cf; --edge:#e6d4b4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf;
+  --ink:#f3e6cf; --page-bg:#0d0906; --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a;
+  --gold:#f0bf57; --code-conclusion:#f3e6cf; --edge:#e6d4b4; } }
+.wrap { background:var(--surface); margin-top:16px; border-top:4px solid var(--gold); }
+.reading-viewer { border:1.5px solid var(--line) !important; border-radius:0 !important; box-shadow:none !important; }
+.wrap * { border-radius:0 !important; box-shadow:none !important; }
+.level-pill { background:var(--surface) !important; color:var(--ink) !important; border:2px solid var(--line) !important; }
+.level-pill[aria-pressed="true"] { background:var(--accent) !important; color:var(--surface) !important; border-color:var(--accent) !important; }
+.reading-quickfacts { background:var(--surface) !important; border:1.5px solid var(--line) !important; }
+.facts-group h3, .reading-head h1 { color:var(--ink) !important; }
+.eyebrow { color:var(--accent) !important; }
+.wrap a { color:var(--accent) !important; }
+#rtools .rt-btn { background:var(--surface); }
+#rtools .rt-btn.rt-primary { background:var(--gold); color:#1a1208 !important; border-color:var(--gold); }
+#rtools .rt-btn.rt-primary * { color:#1a1208 !important; }
+#rtools .rt-btn svg { display:none; }
+
 </style>
 <noscript><style>
 .level-panel[hidden]{display:block}.level-toggle{display:none}
@@ -148,20 +178,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 <div class="wrap">
   <div class="page-head">
     <p class="eyebrow">Revolutionary Voices · Reading</p>
-    <button type="button" class="theme-toggle">Dark / light</button>
+    <div id="rtools"></div>
   </div>
 
-  <article class="reading-viewer">
+  <article class="reading-viewer" data-listen>
     <header class="reading-head">
       <div>
         <h1>Deborah Sampson</h1>
         <p class="reading-tagline">Disguised herself as a man to serve in the American army</p>
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
-          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
-          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
-          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
-          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false" title="Plain words, a little more detail.">Clear</button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true" title="The grade-level reading.">Full</button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false" title="Adds real quotes from the time and what historians argue.">Deep</button>
       </div>
     </header>
 
@@ -172,7 +202,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <span class="qf"><strong>Famous for:</strong> Serving about 17 months disguised as a man; among the first women to get army pay</span>
     </div>
 
-      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+      <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
         <div class="reading-body"><p>Deborah Sampson was born in Massachusetts in 1760. Her family was poor. As a girl she was an <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">indentured servant</button><span class="gloss-def" hidden> (someone who works for years to pay off a debt)</span></span>. The hard farm work made her strong and tall.</p>
 <p>Deborah wanted to be a soldier. But women were not allowed to be soldiers.</p>
 <p>So in 1782 she cut her hair and put on men's clothes. She joined the army using a man's name: Robert Shurtliff.</p>
@@ -182,75 +212,75 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Women were not allowed to be soldiers.</li><li>Deborah cut her hair and wore men's clothes.</li><li>She joined the army as a man named Robert Shurtliff.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>She marched and fought like the other soldiers.</li><li>She was hurt in a fight but hid that she was a woman.</li><li>She kept her secret for over a year.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>A doctor found out she was a woman.</li><li>The army let her leave with honor in 1783.</li><li>She showed that women could be brave soldiers.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+      <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
         <div class="reading-body"><p>Deborah Sampson was born on December 17, 1760, in Plympton, Massachusetts. Her family was poor, and as a child she became an indentured servant, working for years without pay. The hard farm labor made her tall and strong. She also taught herself to read.</p>
 <p>Deborah wanted to serve in the Revolutionary War, but women were not allowed to be soldiers. So in 1782 she cut her hair, made men's clothes, and enlisted in the Continental Army under the name "Robert Shurtliff." She joined the 4th Massachusetts Regiment and served for about a year and a half. She marched, scouted, and fought in <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">skirmishes</button><span class="gloss-def" hidden> (small, quick battles)</span></span>, and she was wounded in the leg.</p>
 <p>In 1783 Deborah became very ill with a fever in Philadelphia. A doctor discovered she was a woman. Instead of punishing her, the army gave her an <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">honorable discharge</button><span class="gloss-def" hidden> (an official, respectful release from the army)</span></span>. After the war she married, raised a family, and gave public talks about her service — unusual for a woman then. She became one of the first women to receive a military pension. She died in 1827.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Women were barred from the army, but Deborah wanted to serve.</li><li>In 1782 she disguised herself as a man and enlisted as 'Robert Shurtliff.'</li><li>She was tall and strong from years of hard farm work.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>She served about a year and a half, scouting and fighting in skirmishes.</li><li>She was wounded in the leg near Tarrytown, New York.</li><li>By the popular story, she removed the musket ball herself to keep her secret.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>A fever in Philadelphia led a doctor to discover she was a woman.</li><li>The army gave her an honorable discharge in 1783 instead of a punishment.</li><li>She later lectured about her service and won a military pension.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="standard" data-level-word="Standard">
+      <div class="level-panel" data-level="standard" data-level-word="Full">
         <div class="reading-body"><p>Deborah Sampson was born on December 17, 1760, in Plympton, Massachusetts, into a poor family. After her father abandoned them, she was bound out as an <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">indentured servant</button><span class="gloss-def" hidden> (a worker bound by contract for a set term)</span></span>. Years of hard farm labor left her unusually tall and strong. She taught herself to read and later worked briefly as a teacher.</p>
 <p>Women were barred from the army, but Sampson was determined to join the Revolutionary cause. In 1782 she enlisted in the Continental Army under the name "Robert Shurtliff." She served in the 4th Massachusetts Regiment, a light-infantry unit that did dangerous scouting and raiding. She served roughly seventeen months and was wounded in a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">skirmish</button><span class="gloss-def" hidden> (a small, quick fight)</span></span> near Tarrytown, New York. By the traditional account, she even removed a musket ball from her own leg rather than let a doctor discover her secret.</p>
 <p>Her identity finally came out in 1783, when she fell seriously ill in Philadelphia. A physician, Dr. Barnabas Binney, learned she was a woman. The army gave her an honorable discharge rather than a punishment. After the war she married Benjamin Gannett and raised a family. In 1802 she became one of the first American women to tour as a public lecturer, sometimes performing military drills in uniform. She was among the first women to receive a military pension. After her death in 1827, her husband became the first man to receive a pension based on a wife's service.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Barred from the army as a woman, she enlisted in 1782 as 'Robert Shurtliff.'</li><li>Years of indentured farm labor had made her unusually tall and strong.</li><li>She served in the 4th Massachusetts Regiment, a dangerous light-infantry unit.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Served roughly 17 months in a light-infantry unit doing scouting and raids.</li><li>Wounded in a skirmish near Tarrytown, New York.</li><li>By the traditional account she dug the musket ball out herself rather than risk discovery.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>A 1783 illness led Dr. Barnabas Binney to discover her sex; she got an honorable discharge.</li><li>In 1802 she became one of the first American women to tour as a public lecturer.</li><li>She was among the first women to receive a military pension.</li><li>Her husband later became the first man to get a pension based on a wife's service.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+      <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
         <div class="reading-body"><p>Deborah Sampson — born December 17, 1760, in Plympton, Massachusetts — turned the rigid gender rules of her era into the cover for a remarkable enlistment. Bound out as an indentured servant after her father deserted the family, she grew tall and strong from farm labor, taught herself to read, and in 1782 enlisted in the Continental Army as "Robert Shurtliff," serving in the 4th Massachusetts Regiment for roughly seventeen months.</p>
 <p>The most dramatic episodes of her story — digging a musket ball out of her own thigh near Tarrytown to avoid a doctor's examination, carrying secret messages — come largely from Herman Mann's 1797 biography "The Female Review" and from her own lecture tour, and historians caution that Mann <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">embellished</button><span class="gloss-def" hidden> (added invented details)</span></span>; surviving military records confirm her service and a wound but not every flourish. What is documented is striking enough: she lived and fought among men undetected until a fever in Philadelphia led Dr. Barnabas Binney to discover her sex, after which the army granted her an honorable discharge in 1783 rather than a punishment.</p>
 <p>Sampson's afterlife was as pioneering as her service. In 1802 she became one of the first American women to lecture publicly for pay, appearing in uniform to perform the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">manual of arms</button><span class="gloss-def" hidden> (the formal musket drill)</span></span>; with support from Paul Revere she petitioned for the back pay and pension the state and federal governments had withheld, and won a military pension in her own right. After her death in 1827, her husband Benjamin Gannett successfully petitioned Congress for a pension as the spouse of a soldier — the first man to do so. Her case forced a young republic to put on paper that a woman had, in fact, been a soldier.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>She turned rigid gender rules into a disguise, enlisting in 1782 as 'Robert Shurtliff.'</li><li>Indentured servitude and farm labor had left her tall, strong, and self-taught.</li><li>She joined the 4th Massachusetts Regiment's light infantry.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Served ~17 months undetected among men in the 4th Massachusetts.</li><li>Wounded near Tarrytown; the self-surgery detail traces largely to Herman Mann's embellished 1797 biography.</li><li>Records confirm her service and wound, but not every dramatic flourish.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Discovered only when illness forced a medical exam; discharged honorably in 1783.</li><li>With Paul Revere's help she won the back pay and pension governments had withheld.</li><li>In 1802 she lectured in uniform, performing the manual of arms.</li><li>Her case forced the republic to record on paper that a woman had been a soldier.</li></ul>
           </div>
         </section>
@@ -311,21 +341,12 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     });
   });
 
-  var toggle = document.querySelector('.theme-toggle');
-  if (toggle) {
-    try {
-      var t = localStorage.getItem('rvTheme');
-      if (t) root.setAttribute('data-theme', t);
-    } catch (e) {}
-    toggle.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark'
-        || (!root.hasAttribute('data-theme')
-            && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('rvTheme', next); } catch (e) {}
-    });
-  }
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
 })();</script>
+<script src="../../reader-tools.js"></script>
 </body>
 </html>

@@ -15,16 +15,17 @@
   --code-conclusion:#c2701a;
   --focus:#d4661a; --radius:14px;
   --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --font-head:'Roboto Slab',Georgia,serif;
-  --font-mono:'Space Mono',ui-monospace,monospace;
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
 }
 :root[data-theme="dark"] {
   --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
   --ink:#f3e6cf; --page-bg:#1f1611;
   --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
   --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-  --code-conclusion:#e8985a;
+  --code-conclusion:#e8985a; --edge:#a8987a;
   --focus:#f0bf57;
   --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
 }
@@ -34,19 +35,21 @@
     --ink:#f3e6cf; --page-bg:#1f1611;
     --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
     --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-    --code-conclusion:#e8985a;
+    --code-conclusion:#e8985a; --edge:#a8987a;
     --focus:#f0bf57;
     --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
   }
 }
 
-@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
   font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
-  font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight:400; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
   font-weight:700; font-display:swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -58,8 +61,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 
 .page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
   justify-content:space-between; margin-bottom:18px; }
-.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--brand); margin:0; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
 .theme-toggle { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
   cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
@@ -75,9 +80,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
 .level-pill { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
-  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
   display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
-.level-pill .level-word { font-size:.8em; }
+.level-pill { min-width:64px; }
 .level-pill:hover { border-color:var(--gold); }
 .level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
   border-color:var(--gold); font-weight:700; }
@@ -137,6 +142,31 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
   .gloss-def[hidden] { display:inline; }
   .gloss-word { text-decoration:none; padding:0; margin:0; }
 }
+/* Handout in the studio (3.2.0): matches the script builder. A warm cream
+   sheet on a walnut desk, brown ink and rules, square boxes, one rust accent. */
+:root { --brand:#a8431a; --brand-dark:#a8431a; --brand-deep:#2a1d12; --ink:#2a1d12; --page-bg:#3b2a1c;
+  --surface:#fffaf0; --surface-2:#fffaf0; --line:#3a2a1a; --muted:#5a4a38; --accent:#a8431a; --gold:#e0a52e;
+  --code-conclusion:#2a1d12; --edge:#3a2a1a; --radius:0; --shadow:none; }
+:root[data-theme="dark"] { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf; --ink:#f3e6cf; --page-bg:#0d0906;
+  --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a; --gold:#f0bf57;
+  --code-conclusion:#f3e6cf; --edge:#e6d4b4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf;
+  --ink:#f3e6cf; --page-bg:#0d0906; --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a;
+  --gold:#f0bf57; --code-conclusion:#f3e6cf; --edge:#e6d4b4; } }
+.wrap { background:var(--surface); margin-top:16px; border-top:4px solid var(--gold); }
+.reading-viewer { border:1.5px solid var(--line) !important; border-radius:0 !important; box-shadow:none !important; }
+.wrap * { border-radius:0 !important; box-shadow:none !important; }
+.level-pill { background:var(--surface) !important; color:var(--ink) !important; border:2px solid var(--line) !important; }
+.level-pill[aria-pressed="true"] { background:var(--accent) !important; color:var(--surface) !important; border-color:var(--accent) !important; }
+.reading-quickfacts { background:var(--surface) !important; border:1.5px solid var(--line) !important; }
+.facts-group h3, .reading-head h1 { color:var(--ink) !important; }
+.eyebrow { color:var(--accent) !important; }
+.wrap a { color:var(--accent) !important; }
+#rtools .rt-btn { background:var(--surface); }
+#rtools .rt-btn.rt-primary { background:var(--gold); color:#1a1208 !important; border-color:var(--gold); }
+#rtools .rt-btn.rt-primary * { color:#1a1208 !important; }
+#rtools .rt-btn svg { display:none; }
+
 </style>
 <noscript><style>
 .level-panel[hidden]{display:block}.level-toggle{display:none}
@@ -148,20 +178,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 <div class="wrap">
   <div class="page-head">
     <p class="eyebrow">Revolutionary Voices · Reading</p>
-    <button type="button" class="theme-toggle">Dark / light</button>
+    <div id="rtools"></div>
   </div>
 
-  <article class="reading-viewer">
+  <article class="reading-viewer" data-listen>
     <header class="reading-head">
       <div>
         <h1>Enslaved People and British Freedom Offers</h1>
         <p class="reading-tagline">Leaders talked about freedom while keeping people enslaved. Britain offered freedom as a way to win the war.</p>
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
-          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
-          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
-          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
-          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false" title="Plain words, a little more detail.">Clear</button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true" title="The grade-level reading.">Full</button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false" title="Adds real quotes from the time and what historians argue.">Deep</button>
       </div>
     </header>
 
@@ -172,7 +202,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <span class="qf"><strong>Harder levels:</strong> Higher reading levels add more names, dates, and harder words</span>
     </div>
 
-      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+      <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
         <div class="reading-body"><p>The Revolution had a deep <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">contradiction</button><span class="gloss-def" hidden> (when people say one thing and do the opposite)</span></span>. White leaders said "all men are created equal" and fought for freedom. But they kept about 450,000 Black people <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">enslaved</button><span class="gloss-def" hidden> (owned and forced to work for no pay)</span></span>.</p>
 <p>In 1775, about 500,000 Black people lived in the colonies. That was about 1 in 5 people. Most lived in the South. In some places, like South Carolina, more than half the people were enslaved.</p>
 <p>Both sides wanted to use enslaved people's work. And both sides sometimes promised freedom to get their help.</p>
@@ -182,75 +212,75 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>The Revolution had a deep contradiction: leaders said one thing and did the opposite.</li><li>Leaders fought for freedom but kept about 450,000 people enslaved.</li><li>About 1 in 5 people in the colonies were Black, and most were enslaved.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Both sides wanted to use enslaved people's work.</li><li>Both sides sometimes promised freedom.</li><li>The British offered freedom to those who left Patriot owners.</li><li>Tens of thousands took the risk.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>&quot;Freedom&quot; was not simple — Britain had used slavery too.</li><li>Some promises were broken.</li><li>Enslaved people had to find their own path to freedom.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+      <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
         <div class="reading-body"><p>At the heart of the Revolution was a painful <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">contradiction</button><span class="gloss-def" hidden> (when words and actions do not match)</span></span>. Leaders declared that "all men are created equal" while holding about 450,000 people in slavery. In 1775, roughly 500,000 African Americans lived in the colonies — about 20% of the population. Most were enslaved in the South. In Virginia, enslaved people were 40% of the population. In South Carolina, they were a majority.</p>
 <p>Both the Americans and the British depended on enslaved people's labor. And both, at times, offered freedom to win their help. The British made the bolder offer. Official promises in 1775 and 1779 said enslaved people who left Patriot owners and joined the British could be free. Tens of thousands risked everything to reach <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">British lines</button><span class="gloss-def" hidden> (the area controlled by the British army)</span></span>.</p>
 <p>But the promise was messy. Britain had made money from slavery for centuries, and many promises were broken. Some who reached the British were enslaved again or left poor. This is the hard puzzle: enslaved people were caught between two powers that both used them and both promised liberty. They had to find whatever freedom they could.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Leaders said &quot;all men are created equal&quot; while holding ~450,000 in slavery.</li><li>~500,000 African Americans (~20%) lived in the colonies in 1775.</li><li>In South Carolina, the enslaved were a majority.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Both Americans and British depended on enslaved labor.</li><li>Both dangled freedom to win help.</li><li>British official promises (1775, 1779) said enslaved people who fled Patriot owners could be free.</li><li>Tens of thousands risked everything to reach British lines.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Some who reached the British gained real freedom; others were betrayed.</li><li>Britain had profited from slavery for centuries.</li><li>Enslaved people had to find a path through a trap to seize what freedom they could.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="standard" data-level-word="Standard">
+      <div class="level-panel" data-level="standard" data-level-word="Full">
         <div class="reading-body"><p>The American Revolution rested on a contradiction so glaring that people at the time noticed it. As Jefferson wrote that "all men are created equal," roughly 450,000 human beings were held in slavery in the new nation. In 1775, about 500,000 African Americans made up some 20% of the colonial population. In the South they were a huge presence: 40% of Virginia, and an outright majority (about 60%) of South Carolina.</p>
 <p>The cruelty of the enslaved person's position was that both sides exploited their labor, and both promised freedom when it suited them. The Patriots spoke of liberty yet largely defended slavery. The British offered <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">emancipation</button><span class="gloss-def" hidden> (freedom from slavery)</span></span> as a war measure: Lord Dunmore's 1775 proclamation and the broader Philipsburg Proclamation of 1779 promised freedom to those who fled rebel masters. Yet Britain itself had built much of its wealth on the slave trade. Tens of thousands of enslaved people made the dangerous calculation that their best chance lay behind British lines.</p>
 <p>The results exposed the hollowness of both sides' <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">rhetoric</button><span class="gloss-def" hidden> (grand persuasive language)</span></span>. Some who reached the British won real freedom and were evacuated as "Black Loyalists." Others were re-enslaved, abandoned, or died of disease in crowded camps. The Patriots' victory secured liberty for white Americans while leaving slavery intact — and in the cotton South, soon to expand. For the enslaved, the Revolution was less a war of liberation than a moment to be seized: a narrow, dangerous opening in a system neither side intended to dismantle.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Jefferson wrote &quot;all men are created equal&quot; amid ~450,000 enslaved people.</li><li>African Americans were ~20% of the population — 40% of Virginia, ~60% of South Carolina.</li><li>The Revolution was fought within and around slavery.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Both sides exploited enslaved labor while promising freedom when it suited them.</li><li>Patriots spoke of liberty yet largely defended slavery.</li><li>Dunmore (1775) and Philipsburg (1779) promised freedom — as a war measure.</li><li>Tens of thousands judged their best chance lay with the British.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Some won freedom as &quot;Black Loyalists&quot;; others were re-enslaved or died in camps.</li><li>The Patriots' victory left slavery intact and soon expanding in the South.</li><li>For the enslaved, the Revolution was a dangerous opening, not a liberation.</li><li>Neither side intended to dismantle slavery.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+      <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
         <div class="reading-body"><p>No fact <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">indicts</button><span class="gloss-def" hidden> (accuses; condemns)</span></span> the American founding more sharply than this: the Declaration's "all men are created equal" was drafted in a society where roughly 450,000 of some 500,000 African Americans — a fifth of the population — were property, and where enslaved people formed 40% of Virginia and a 60% majority of South Carolina. The Revolution was not merely a war fought despite slavery; it was a war fought within and around it, and enslaved people read its contradictions with clear eyes.</p>
 <p>Theirs was a choice between exploiters. The Patriots proclaimed natural rights while their leading men enslaved hundreds — Jefferson among them — and the new state constitutions left bondage standing. The British, who had spent a century profiting from the Atlantic slave trade, nonetheless made the more concrete wartime offer: Dunmore's 1775 proclamation, then the 1779 Philipsburg Proclamation, promised freedom to those who abandoned rebel masters — not from principle but to weaken the rebellion. Liberty was a weapon both sides aimed at each other, with Black people as the contested ground. Tens of thousands fled to British lines anyway, calculating that the enemy's self-interest offered better odds than the patriots' professed ideals.</p>
 <p>The reckoning was brutal and instructive. The fortunate were carried off as Black Loyalists — some 3,000 recorded in the "Book of Negroes," bound for Nova Scotia and, for some, Sierra Leone; the unfortunate were re-enslaved by the very British who had promised otherwise, sold in the Caribbean, or buried in disease-ridden camps. Independence, meanwhile, <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">entrenched</button><span class="gloss-def" hidden> (locked firmly in place)</span></span> slavery in the South even as the North began gradual abolition. The paradox is the point: a revolution that universalized the language of freedom narrowed its practice, leaving a contradiction that would be settled only by civil war — and arguably not even then.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>The Declaration was drafted where ~450,000 of ~500,000 African Americans were property.</li><li>The enslaved were 40% of Virginia and a 60% majority in South Carolina.</li><li>Enslaved people read the Revolution's contradictions with clear eyes.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>It was a choice between exploiters, not between freedom and slavery.</li><li>Patriots proclaimed rights while enslaving hundreds (Jefferson among them).</li><li>Britain promised freedom not from principle but to weaken the rebellion.</li><li>Liberty was a weapon both sides aimed at each other, with Black people the contested ground.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>~3,000 Black Loyalists (the &quot;Book of Negroes&quot;) went to Nova Scotia, some to Sierra Leone.</li><li>Others were re-enslaved by the British, sold in the Caribbean, or died in camps.</li><li>Independence entrenched Southern slavery as the North began gradual abolition.</li><li>The contradiction would be settled only by civil war — and arguably not even then.</li></ul>
           </div>
         </section>
@@ -314,21 +344,12 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     });
   });
 
-  var toggle = document.querySelector('.theme-toggle');
-  if (toggle) {
-    try {
-      var t = localStorage.getItem('rvTheme');
-      if (t) root.setAttribute('data-theme', t);
-    } catch (e) {}
-    toggle.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark'
-        || (!root.hasAttribute('data-theme')
-            && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('rvTheme', next); } catch (e) {}
-    });
-  }
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
 })();</script>
+<script src="../../reader-tools.js"></script>
 </body>
 </html>

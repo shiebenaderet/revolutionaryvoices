@@ -15,16 +15,17 @@
   --code-conclusion:#c2701a;
   --focus:#d4661a; --radius:14px;
   --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --font-head:'Roboto Slab',Georgia,serif;
-  --font-mono:'Space Mono',ui-monospace,monospace;
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
 }
 :root[data-theme="dark"] {
   --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
   --ink:#f3e6cf; --page-bg:#1f1611;
   --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
   --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-  --code-conclusion:#e8985a;
+  --code-conclusion:#e8985a; --edge:#a8987a;
   --focus:#f0bf57;
   --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
 }
@@ -34,19 +35,21 @@
     --ink:#f3e6cf; --page-bg:#1f1611;
     --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
     --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-    --code-conclusion:#e8985a;
+    --code-conclusion:#e8985a; --edge:#a8987a;
     --focus:#f0bf57;
     --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
   }
 }
 
-@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
   font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
-  font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight:400; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
   font-weight:700; font-display:swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -58,8 +61,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 
 .page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
   justify-content:space-between; margin-bottom:18px; }
-.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--brand); margin:0; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
 .theme-toggle { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
   cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
@@ -75,9 +80,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
 .level-pill { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
-  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
   display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
-.level-pill .level-word { font-size:.8em; }
+.level-pill { min-width:64px; }
 .level-pill:hover { border-color:var(--gold); }
 .level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
   border-color:var(--gold); font-weight:700; }
@@ -137,6 +142,31 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
   .gloss-def[hidden] { display:inline; }
   .gloss-word { text-decoration:none; padding:0; margin:0; }
 }
+/* Handout in the studio (3.2.0): matches the script builder. A warm cream
+   sheet on a walnut desk, brown ink and rules, square boxes, one rust accent. */
+:root { --brand:#a8431a; --brand-dark:#a8431a; --brand-deep:#2a1d12; --ink:#2a1d12; --page-bg:#3b2a1c;
+  --surface:#fffaf0; --surface-2:#fffaf0; --line:#3a2a1a; --muted:#5a4a38; --accent:#a8431a; --gold:#e0a52e;
+  --code-conclusion:#2a1d12; --edge:#3a2a1a; --radius:0; --shadow:none; }
+:root[data-theme="dark"] { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf; --ink:#f3e6cf; --page-bg:#0d0906;
+  --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a; --gold:#f0bf57;
+  --code-conclusion:#f3e6cf; --edge:#e6d4b4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf;
+  --ink:#f3e6cf; --page-bg:#0d0906; --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a;
+  --gold:#f0bf57; --code-conclusion:#f3e6cf; --edge:#e6d4b4; } }
+.wrap { background:var(--surface); margin-top:16px; border-top:4px solid var(--gold); }
+.reading-viewer { border:1.5px solid var(--line) !important; border-radius:0 !important; box-shadow:none !important; }
+.wrap * { border-radius:0 !important; box-shadow:none !important; }
+.level-pill { background:var(--surface) !important; color:var(--ink) !important; border:2px solid var(--line) !important; }
+.level-pill[aria-pressed="true"] { background:var(--accent) !important; color:var(--surface) !important; border-color:var(--accent) !important; }
+.reading-quickfacts { background:var(--surface) !important; border:1.5px solid var(--line) !important; }
+.facts-group h3, .reading-head h1 { color:var(--ink) !important; }
+.eyebrow { color:var(--accent) !important; }
+.wrap a { color:var(--accent) !important; }
+#rtools .rt-btn { background:var(--surface); }
+#rtools .rt-btn.rt-primary { background:var(--gold); color:#1a1208 !important; border-color:var(--gold); }
+#rtools .rt-btn.rt-primary * { color:#1a1208 !important; }
+#rtools .rt-btn svg { display:none; }
+
 </style>
 <noscript><style>
 .level-panel[hidden]{display:block}.level-toggle{display:none}
@@ -148,20 +178,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 <div class="wrap">
   <div class="page-head">
     <p class="eyebrow">Revolutionary Voices · Reading</p>
-    <button type="button" class="theme-toggle">Dark / light</button>
+    <div id="rtools"></div>
   </div>
 
-  <article class="reading-viewer">
+  <article class="reading-viewer" data-listen>
     <header class="reading-head">
       <div>
         <h1>Molly Pitcher</h1>
         <p class="reading-tagline">A famous water-carrier story, likely based on real women such as Mary Ludwig Hays</p>
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
-          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
-          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
-          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
-          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false" title="Plain words, a little more detail.">Clear</button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true" title="The grade-level reading.">Full</button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false" title="Adds real quotes from the time and what historians argue.">Deep</button>
       </div>
     </header>
 
@@ -172,7 +202,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <span class="qf"><strong>Famous for:</strong> The story of taking over a cannon when her husband fell</span>
     </div>
 
-      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+      <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
         <div class="reading-body"><p>"Molly Pitcher" is a famous Revolutionary War story. It may not be about just one real person. It is probably based on real women who helped soldiers in battle.</p>
 <p>The woman most linked to the name is Mary Ludwig Hays. Like many wives, she followed the army and helped the soldiers. Women who did this were called <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">camp followers</button><span class="gloss-def" hidden> (people who traveled with the army to cook, wash, and help)</span></span>.</p>
 <p>On June 28, 1778, there was a battle at Monmouth, New Jersey. It was a very hot day. Soldiers were thirsty. Women carried water to them. Soldiers may have shouted "Molly! Pitcher!" for water.</p>
@@ -181,75 +211,75 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>&quot;Molly Pitcher&quot; may not be one real person.</li><li>It is probably based on real women who helped soldiers.</li><li>The woman most linked to it is Mary Ludwig Hays.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Women carried water to thirsty soldiers in battle.</li><li>The Battle of Monmouth (1778) was very hot.</li><li>The story says a woman fired a cannon when her husband fell.</li><li>Real women did help at cannons.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Some parts of the story are legend.</li><li>Mary Ludwig Hays later got money from Pennsylvania for her service.</li><li>The story reminds us many women helped win the war.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+      <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
         <div class="reading-body"><p>"Molly Pitcher" is one of the most famous stories of the Revolutionary War. But historians think it is a legend based on more than one real woman, not a single person. The woman most often connected to the name is Mary Ludwig Hays.</p>
 <p>Mary was a camp follower. Like thousands of women, she traveled with the army, cooking, washing, nursing, and carrying water. On June 28, 1778, the Battle of Monmouth was fought in New Jersey. It was a day over 100 degrees. Women carried pitchers of water to the overheated soldiers. The nickname "Molly Pitcher" may have come from soldiers calling out for water.</p>
 <p>The most famous part of the legend says a woman's husband collapsed at his cannon. She took his place and helped fire it. Real women did serve at cannons. Margaret Corbin did so at Fort Washington in 1776 and was badly wounded. Some details of "Molly Pitcher" are hard to prove. But the heart of the story is true: women shared the army's dangers. In 1822, Pennsylvania gave Mary Ludwig Hays a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">pension</button><span class="gloss-def" hidden> (money paid regularly for past service)</span></span> for her Revolutionary War service.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>&quot;Molly Pitcher&quot; is a legend likely based on more than one woman.</li><li>The woman most linked to it is Mary Ludwig Hays, a camp follower.</li><li>Camp followers traveled with the army and helped the soldiers.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>At Monmouth (June 28, 1778), women carried water on a 100-degree day.</li><li>The nickname may come from soldiers calling &quot;Molly! Pitcher!&quot;</li><li>The legend says a woman took over her husband's cannon.</li><li>Margaret Corbin really did serve a cannon and was wounded (1776).</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Some details are hard to prove, but the heart is true: women shared the dangers.</li><li>Pennsylvania gave Mary Ludwig Hays a pension in 1822.</li><li>Margaret Corbin was the first woman to get a U.S. military pension (1779).</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="standard" data-level-word="Standard">
+      <div class="level-panel" data-level="standard" data-level-word="Full">
         <div class="reading-body"><p>"Molly Pitcher" is among the most beloved figures of the Revolution — and one of the least certain. Historians generally treat her as a legend: a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">composite</button><span class="gloss-def" hidden> (a blend of several people)</span></span> of several real women rather than one documented person. The figure is most often identified with Mary Ludwig Hays (born around 1744), a camp follower who traveled with the Continental Army.</p>
 <p>Camp followers were essential. Thousands of women cooked, laundered, nursed, and hauled water for the troops, sharing their hardships and dangers. The Battle of Monmouth was fought on June 28, 1778, in temperatures topping 100 degrees. Women carried pitchers of water to soldiers collapsing from the heat, and the nickname likely arose from cries of "Molly! Pitcher!" The story's dramatic climax has a woman taking over her fallen husband's cannon and continuing to fire.</p>
 <p>That cannon scene blurs history and folklore. We know women genuinely served <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">artillery</button><span class="gloss-def" hidden> (large guns like cannons)</span></span>. Margaret Corbin took her husband's place at a gun during the 1776 defense of Fort Washington and was badly wounded. In 1779 she became the first woman to receive a U.S. military pension. Mary Hays was recognized too: Pennsylvania granted her a pension in 1822 for her service. "Molly Pitcher," then, is best understood not as a single heroine but as a name that gathered up the very real contributions of women at war.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>&quot;Molly Pitcher&quot; is generally treated as a legend — a composite of several real women.</li><li>She is most often identified with camp follower Mary Ludwig Hays (b. ~1744).</li><li>No contemporary record actually names a &quot;Molly Pitcher.&quot;</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Camp followers cooked, nursed, laundered, and hauled water for the troops.</li><li>At Monmouth (June 28, 1778), in 100-degree heat, water-carrying was vital.</li><li>The legend's climax has a woman taking over her fallen husband's cannon.</li><li>Margaret Corbin did serve a gun at Fort Washington (1776) and was wounded.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>The cannon scene blends history and folklore.</li><li>Pennsylvania granted Mary Hays a pension in 1822; Margaret Corbin got the first U.S. military pension to a woman (1779).</li><li>&quot;Molly Pitcher&quot; gathered up the real contributions of many women.</li><li>She is best seen as a symbol, not a single heroine.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+      <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
         <div class="reading-body"><p>"Molly Pitcher" is less a person than a vessel — a folk name into which generations poured the real but poorly documented service of Revolutionary women. No contemporary record names a "Molly Pitcher"; the figure crystallized in nineteenth-century retellings and is now generally read as a composite, most often anchored to Mary Ludwig Hays (c. 1744) and overlapping with Margaret Corbin.</p>
 <p>The setting is solid history. Thousands of women followed the Continental Army as cooks, nurses, laundresses, and water carriers, and the Battle of Monmouth (June 28, 1778) was fought in lethal heat that made water-bearing genuinely vital. The legend's centerpiece — a wife stepping to her stricken husband's cannon — has a documented <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">analogue</button><span class="gloss-def" hidden> (a matching real-life example)</span></span> in Margaret Corbin, who was maimed serving a gun at Fort Washington in 1776 and in 1779 became the first woman granted a U.S. military pension; the soldier-memoirist Joseph Plumb Martin also recalled a woman at Monmouth working a cannon as an enemy shot passed between her legs. Mary Hays's own service earned her a Pennsylvania pension in 1822.</p>
 <p>The <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">historiographical</button><span class="gloss-def" hidden> (about how history is written)</span></span> lesson is the point: the "Molly Pitcher" legend compressed many women into one quotable heroine, and in doing so both honored and obscured them. For a podcast, the richer story is the whole system of female labor that sustained the army — and the way memory turns collective, unrecorded contribution into a single, tidy name.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>&quot;Molly Pitcher&quot; is a folk name, not a documented individual.</li><li>It crystallized in 19th-century retellings, anchored to Mary Ludwig Hays and Margaret Corbin.</li><li>No contemporary source names her.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Thousands of women sustained the army as cooks, nurses, and water carriers.</li><li>Monmouth's lethal heat made water-bearing genuinely vital.</li><li>Joseph Plumb Martin's memoir recalled a woman working a cannon at Monmouth.</li><li>Margaret Corbin (Fort Washington, 1776) is the documented analogue to the cannon legend.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>The legend compressed many women into one quotable heroine — honoring and obscuring them.</li><li>Corbin's 1779 pension and Hays's 1822 pension show the real service behind the myth.</li><li>The richer story is the system of female labor that sustained the army.</li><li>Memory turned collective, unrecorded work into a single tidy name.</li></ul>
           </div>
         </section>
@@ -310,21 +340,12 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     });
   });
 
-  var toggle = document.querySelector('.theme-toggle');
-  if (toggle) {
-    try {
-      var t = localStorage.getItem('rvTheme');
-      if (t) root.setAttribute('data-theme', t);
-    } catch (e) {}
-    toggle.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark'
-        || (!root.hasAttribute('data-theme')
-            && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('rvTheme', next); } catch (e) {}
-    });
-  }
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
 })();</script>
+<script src="../../reader-tools.js"></script>
 </body>
 </html>

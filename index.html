@@ -29,104 +29,86 @@
         <header class="header studio">
             <div class="studio-bar">
                 <h1 class="studio-brand"><i class="fas fa-microphone-alt" aria-hidden="true"></i> Revolutionary Voices <span class="brand-sub">Script Builder</span></h1>
-                <span class="on-air"><span class="dot"></span> On Air</span>
+                <span class="on-air-light" aria-hidden="true"><span class="on-air-dot"></span>On Air</span>
                 <div class="studio-tools" id="saveControls">
                     <span class="last-saved sr-only" id="lastSaved">Saves automatically</span>
-                    <button class="icon-btn" onclick="newSlot()" title="New script" aria-label="Start a new script"><i class="fas fa-plus" aria-hidden="true"></i></button>
-                    <button class="icon-btn" type="button" onclick="backupToGoogleDoc()" title="Copy to Google Doc" aria-label="Copy work to Google Doc"><i class="fas fa-file-alt" aria-hidden="true"></i></button>
+                    <!-- Listen and Font buttons are added here by reader-tools.js -->
+                    <div id="rtools"></div>
                     <div class="more-actions" id="moreActionsWrap">
-                        <button class="icon-btn" id="moreActionsBtn" aria-haspopup="true" aria-expanded="false" aria-controls="moreActionsMenu" title="More options" aria-label="More options" onclick="toggleMoreMenu()"><i class="fas fa-ellipsis-h" aria-hidden="true"></i></button>
-                        <div class="more-actions-menu" id="moreActionsMenu" role="menu" aria-label="Script options" hidden>
-                            <div class="menu-section-label">Saved scripts</div>
-                            <div id="slotList" class="slot-list" role="group" aria-label="Saved scripts"></div>
+                        <button class="hdr-btn" id="moreActionsBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="moreActionsMenu" onclick="toggleMoreMenu()"><i class="fas fa-folder-open" aria-hidden="true"></i> <span>My Work</span> <span class="hdr-caret" aria-hidden="true">▾</span></button>
+                        <div class="more-actions-menu" id="moreActionsMenu" role="menu" aria-label="My Work" hidden>
+                            <p class="menu-status" id="menuSaveStatus">Saved on this computer as you type.</p>
+                            <div class="menu-section-label" id="slotListLabel">My scripts</div>
+                            <div id="slotList" class="slot-list" role="group" aria-labelledby="slotListLabel"></div>
+                            <button role="menuitem" type="button" onclick="newSlot()"><i class="fas fa-plus" aria-hidden="true"></i> Start a new script</button>
                             <hr class="menu-divider">
-                            <button role="menuitem" onclick="manualSave();closeMoreMenu()"><i class="fas fa-save" aria-hidden="true"></i> Save now</button>
-                            <button role="menuitem" onclick="exportToFile();closeMoreMenu()"><i class="fas fa-download" aria-hidden="true"></i> Export backup</button>
-                            <button role="menuitem" onclick="document.getElementById('importFile').click();closeMoreMenu()"><i class="fas fa-upload" aria-hidden="true"></i> Import backup</button>
-                            <button role="menuitem" onclick="backupToGoogleDoc();closeMoreMenu()"><i class="fas fa-file-alt" aria-hidden="true"></i> Copy to Google Doc</button>
-                            <button role="menuitem" onclick="openRestoreFromHeader();closeMoreMenu()"><i class="fas fa-history" aria-hidden="true"></i> Restore from Google Doc</button>
-                            <button class="more-danger" role="menuitem" onclick="deleteSlot()"><i class="fas fa-trash" aria-hidden="true"></i> Delete script</button>
+                            <button role="menuitem" type="button" onclick="openBackupPanel('backup');closeMoreMenu()"><i class="fas fa-shield-alt" aria-hidden="true"></i> Back up my work</button>
+                            <button role="menuitem" type="button" onclick="openBackupPanel('restore');closeMoreMenu()"><i class="fas fa-rotate-left" aria-hidden="true"></i> Restore my work</button>
+                            <hr class="menu-divider">
+                            <button class="more-danger" role="menuitem" type="button" onclick="deleteSlot()"><i class="fas fa-trash" aria-hidden="true"></i> Delete this script</button>
                         </div>
                     </div>
                     <input type="file" id="importFile" accept="application/json,.json" style="display:none" onchange="importFromFile(event)">
-                    <button class="icon-btn theme-toggle" id="themeToggle" type="button" aria-pressed="false" title="Switch to dark mode"
-                            onclick="(function(b){var h=document.documentElement;var d=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=d;try{localStorage.setItem('rvTheme',d);}catch(e){}b.setAttribute('aria-pressed',d==='dark');b.setAttribute('title',d==='dark'?'Switch to daytime':'Switch to dark mode');b.querySelector('span').textContent=d==='dark'?'Daytime':'After hours';b.querySelector('i').className=d==='dark'?'fas fa-sun':'fas fa-moon';})(this)">
-                        <i class="fas fa-moon" aria-hidden="true"></i><span class="sr-only">After hours</span>
-                    </button>
                 </div>
             </div>
 
-            <!-- TUNER DIAL = STEP NAVIGATION -->
-            <nav class="tuner-stepper" id="wizSteps" aria-label="Your steps">
-                <button type="button" class="tuner-mark" id="wizChip0" onclick="wizGoChip(0)" aria-label="Basics"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Basics</span><span class="t-short" aria-hidden="true">1</span></span></button>
-                <button type="button" class="tuner-mark" id="wizChip1" onclick="wizGoChip(1)" aria-label="Research"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Research</span><span class="t-short" aria-hidden="true">2</span></span></button>
-                <button type="button" class="tuner-mark" id="wizChip2" onclick="wizGoChip(2)" aria-label="Intro"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Intro</span><span class="t-short" aria-hidden="true">3</span></span></button>
-                <button type="button" class="tuner-mark" id="wizChip3" onclick="wizGoChip(3)" aria-label="Content"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Content</span><span class="t-short" aria-hidden="true">4</span></span></button>
-                <button type="button" class="tuner-mark" id="wizChip4" onclick="wizGoChip(4)" aria-label="Conclusion"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Conclusion</span><span class="t-short" aria-hidden="true">5</span></span></button>
-                <button type="button" class="tuner-mark" id="wizChip5" onclick="wizGoChip(5)" aria-label="Finish"><span class="t-tick" aria-hidden="true"></span><span class="t-name"><span class="t-full">Finish</span><span class="t-short" aria-hidden="true">6</span></span></button>
-            </nav>
+            <!-- Step navigation. Built by app.js from the path (solo or crew). -->
+            <nav class="tuner-stepper" id="wizSteps" aria-label="Your steps"></nav>
         </header>
 
-        <!-- BASIC INFO -->
+        <!-- START: who is making this, and about whom -->
         <div id="wizardContent" class="section section-basic wizard-step" data-step="0">
-            <h2><i class="fas fa-clipboard-list" aria-hidden="true"></i> Basic Information</h2>
+            <h2><i class="fas fa-users" aria-hidden="true"></i> Start</h2>
 
-            <p class="step-onboarding">Fill in your name and topic to get started. You'll write your script step by step.</p>
+            <label for="groupSize">How many people are making this podcast?</label>
+            <select id="groupSize" onchange="updateGroupOptions(); checkBasicsReveal()">
+                <option value="">Choose…</option>
+                <option value="1">Just me</option>
+                <option value="2">2 people</option>
+                <option value="3">3 people</option>
+                <option value="4">4 people</option>
+            </select>
+            <p class="field-hint" id="pathHint">Groups plan here, then write together in a Google Doc. If you are working alone, you write your whole script here.</p>
 
-            <label for="studentName">Your Name(s):</label>
-            <input type="text" id="studentName" placeholder="e.g., Maria G. and Alex P. (first name + last initial)" oninput="updateTimeEstimate(); checkBasicsReveal()">
+            <!-- Solo: one name -->
+            <div id="soloNameWrap" hidden>
+                <label for="studentName">Your name</label>
+                <input type="text" id="studentName" placeholder="First name and last initial, like Maria G." oninput="updateTimeEstimate(); checkBasicsReveal()">
+            </div>
 
-            <label for="subject">Your Episode Topic:</label>
+            <!-- Crew: everyone gets a job and a voice. Built by crew.js. -->
+            <div id="crewWrap" hidden>
+                <h3 class="crew-title">Your crew</h3>
+                <p class="field-hint">Everyone gets a job and a voice. You can share a job or take more than one. In a pair, or when someone is out, one person does two jobs.</p>
+                <div id="crewRows"></div>
+                <p class="crew-check" id="crewCheck" role="status" aria-live="polite"></p>
+                <details class="crew-jobs">
+                    <summary>What does each job do?</summary>
+                    <div class="crew-jobs-body" id="crewJobsBody"></div>
+                </details>
+            </div>
+
+            <label for="subject">Who is your episode about?</label>
             <select id="subject" onchange="onTopicChange(); checkBasicsReveal()">
-                <option value="">Choose your topic...</option>
+                <option value="">Choose your topic…</option>
             </select>
 
-            <!-- Secondary fields: revealed once Name + Topic are both filled -->
             <div class="basics-more" id="basicsMore">
-                <div class="basics-divider">
-                    <hr>
-                    <span>A few more details</span>
-                    <hr>
-                </div>
-
-                <label for="podcastName">Podcast Name (you can change this):</label>
-                <input type="text" id="podcastName" placeholder="e.g., Untold Voices, Hidden History, Revolutionary Chronicles" oninput="markPodcastNameEdited(); updateTimeEstimate()">
-
-                <div class="exemplar-box">
-                    <button class="exemplar-toggle" onclick="toggleExemplar('podcast-name-example')">
-                        <i class="fas fa-lightbulb" aria-hidden="true"></i> See Examples of Great Podcast Names
-                    </button>
-                    <div id="podcast-name-example" class="exemplar-content">
-                        <div class="example">
-                            <strong>Examples:</strong>
-                            <ul style="margin-left: 20px; margin-top: 5px;">
-                                <li>"Voices of Resistance" - Shows your topic is about people fighting back</li>
-                                <li>"Hidden Patriots" - Creates mystery and intrigue</li>
-                                <li>"Revolutionary Chronicles" - Sounds professional and historical</li>
-                                <li>"Untold Stories 1776" - Specific and attention-grabbing</li>
-                            </ul>
-                        </div>
-                        <div class="why">
-                            <i class="fas fa-check-circle" aria-hidden="true"></i> <strong>Why these work:</strong> They're short (2-3 words), easy to remember, and immediately tell listeners what to expect.
-                        </div>
-                    </div>
-                </div>
-
-                <label for="groupSize">Group Size:</label>
-                <select id="groupSize" onchange="updateGroupOptions()">
-                    <option value="">Select your group size</option>
-                    <option value="1">Solo (1 person)</option>
-                    <option value="2">Pair (2 people)</option>
-                    <option value="3">Group (3 people)</option>
-                </select>
+                <label for="podcastName">Podcast name (you can change it)</label>
+                <input type="text" id="podcastName" placeholder="Like Untold Voices or Hidden History" oninput="markPodcastNameEdited(); updateTimeEstimate()">
             </div>
+
+            <p class="restore-link" id="restoreLink"><button type="button" class="link-btn" onclick="openBackupPanel('restore')">Coming back on a different computer? Restore your work.</button></p>
         </div>
-        
+
         <!-- RESEARCH -->
         <div class="section section-research wizard-step" data-step="1">
-            <h2><i class="fas fa-book-open" aria-hidden="true"></i> Read about your topic</h2>
-            <p class="research-intro">Here's the reading for <strong id="researchTopicName">your topic</strong>. Read it at the level that fits you, then jot a few facts before you write.</p>
-            <p class="research-note" id="researchNote" hidden>Go back to <strong>Basics</strong> and choose your topic to load a reading.</p>
+            <h2><i class="fas fa-book-open" aria-hidden="true"></i> Read</h2>
+            <p class="research-intro">Here's the reading for <strong id="researchTopicName">your topic</strong>. Everyone reads, each at the level that fits. Then build your Fact Bank and your working thesis.</p>
+            <p class="research-note" id="researchNote" hidden>Go back to <strong>Start</strong> and choose your topic to load a reading.</p>
+
+            <!-- First visit: pick a level by reading the same sentence at each one. Built by crew.js. -->
+            <fieldset class="level-pick" id="levelPick" hidden></fieldset>
 
             <div class="reading-viewer" id="readingViewer" hidden>
                 <div class="reading-head">
@@ -134,11 +116,11 @@
                         <h3 id="readingName"></h3>
                         <p class="reading-tagline" id="readingTagline"></p>
                     </div>
-                    <div class="level-toggle" role="group" aria-label="Reading language">
-                        <button type="button" class="level-pill" data-level="mostSupport" onclick="setReadingLevel('mostSupport')" title="Easier language">Easier language</button>
-                        <button type="button" class="level-pill" data-level="someSupport" onclick="setReadingLevel('someSupport')" title="A bit easier">A bit easier</button>
-                        <button type="button" class="level-pill" data-level="standard" onclick="setReadingLevel('standard')" title="Standard">Standard</button>
-                        <button type="button" class="level-pill" data-level="challenge" onclick="setReadingLevel('challenge')" title="Harder language">Harder language</button>
+                    <div class="level-toggle" role="group" aria-label="Reading level">
+                        <button type="button" class="level-pill" data-level="mostSupport" onclick="setReadingLevel('mostSupport')">Quick</button>
+                        <button type="button" class="level-pill" data-level="someSupport" onclick="setReadingLevel('someSupport')">Clear</button>
+                        <button type="button" class="level-pill" data-level="standard" onclick="setReadingLevel('standard')">Full</button>
+                        <button type="button" class="level-pill" data-level="challenge" onclick="setReadingLevel('challenge')">Deep</button>
                     </div>
                 </div>
                 <div class="reading-quickfacts" id="readingQuickFacts"></div>
@@ -149,8 +131,20 @@
 
             <div id="sourceSpotlight" hidden></div>
 
-            <label for="researchSources">Notes from this reading (optional but helpful):</label>
-            <textarea id="researchSources" placeholder="List 3-4 key facts you want to use. Example:&#10;- Phillis Wheatley published a poetry book in 1773 (Britannica)&#10;- She was the first published African American woman poet (Library of Congress)"></textarea>
+            <!-- Fact Bank: rows built by crew.js -->
+            <section class="fact-bank" aria-labelledby="factBankTitle">
+                <h3 id="factBankTitle"><i class="fas fa-clipboard-list" aria-hidden="true"></i> Fact Bank</h3>
+                <p class="field-hint" id="factBankHint">Put each fact in your own words and say where it came from. Aim for six. Every fact in your script should trace back to one of these.</p>
+                <div id="factRows"></div>
+                <button type="button" class="link-btn" id="factMore" onclick="addFactRow()"><i class="fas fa-plus" aria-hidden="true"></i> Add another fact</button>
+            </section>
+
+            <section class="thesis-box" aria-labelledby="thesisTitle">
+                <h3 id="thesisTitle"><i class="fas fa-bullseye" aria-hidden="true"></i> Your working thesis</h3>
+                <label for="workingThesis">In one or two sentences: why does this person's story matter, and what does it show about the Revolution?</label>
+                <textarea id="workingThesis" rows="3" placeholder="[Name] mattered because… Their story shows that…"></textarea>
+                <p class="field-hint">It's a working thesis, so it can change as you write.</p>
+            </section>
 
             <label class="ready-read" for="researchRead">
                 <input type="checkbox" id="researchRead" onchange="onResearchReadyChange()">
@@ -160,14 +154,14 @@
 
         <!-- INTRODUCTION -->
         <div class="section section-intro wizard-step" data-step="2">
-            <h2><i class="fas fa-play-circle" aria-hidden="true"></i> Choose Your Introduction Style</h2>
+            <h2><i class="fas fa-play-circle" aria-hidden="true"></i> The Hook</h2>
             
             <div class="info-box">
-                <strong><i class="fas fa-bullseye" aria-hidden="true"></i> Goal:</strong> Hook your listeners in the first 30-45 seconds! Your introduction should make people WANT to keep listening.
+                <strong><i class="fas fa-bullseye" aria-hidden="true"></i> Goal:</strong> Hook your listeners in the first 30 to 45 seconds, so they want to keep listening. Pick a style.
             </div>
             
             <details class="rubric-box">
-<summary><span class="rubric-box-toggle"><i class="fas fa-star" aria-hidden="true"></i> What Makes an Excellent Introduction?</span></summary>
+<summary><span class="rubric-box-toggle"><i class="fas fa-star" aria-hidden="true"></i> What Makes an Excellent Hook?</span></summary>
 <div class="rubric-items">
                     <div class="rubric-item">
                         <strong><i class="fas fa-check" aria-hidden="true"></i> Grabs attention immediately</strong>
@@ -640,14 +634,14 @@
         
         <!-- CONTENT SECTION -->
         <div class="section section-content wizard-step" data-step="3">
-            <h2><i class="fas fa-book-open" aria-hidden="true"></i> Choose Your Content Format</h2>
+            <h2><i class="fas fa-book-open" aria-hidden="true"></i> The Story</h2>
             
             <div class="info-box">
-                <strong><i class="fas fa-bullseye" aria-hidden="true"></i> Goal:</strong> This is the main body of your podcast (2-4 minutes). Choose a format that best tells your subject's story!
+                <strong><i class="fas fa-bullseye" aria-hidden="true"></i> Goal:</strong> This is the main part of your podcast, 2 to 4 minutes. Pick the format that tells your person's story best.
             </div>
             
             <details class="rubric-box">
-<summary><span class="rubric-box-toggle"><i class="fas fa-star" aria-hidden="true"></i> What Makes Excellent Content?</span></summary>
+<summary><span class="rubric-box-toggle"><i class="fas fa-star" aria-hidden="true"></i> What Makes an Excellent Story?</span></summary>
 <div class="rubric-items">
                     <div class="rubric-item">
                         <strong><i class="fas fa-check" aria-hidden="true"></i> Shows change over time</strong>
@@ -1149,14 +1143,14 @@
         
         <!-- CONCLUSION SECTION -->
         <div class="section section-conclusion wizard-step" data-step="4">
-            <h2><i class="fas fa-flag-checkered" aria-hidden="true"></i> Choose Your Conclusion Style</h2>
+            <h2><i class="fas fa-flag-checkered" aria-hidden="true"></i> The Wrap</h2>
             
             <div class="info-box">
-                <strong><i class="fas fa-bullseye" aria-hidden="true"></i> Goal:</strong> End with impact! Your conclusion should leave listeners thinking about why this story matters (45-60 seconds).
+                <strong><i class="fas fa-bullseye" aria-hidden="true"></i> Goal:</strong> In 45 to 60 seconds, leave listeners thinking about why this story matters. Pick a style.
             </div>
             
             <details class="rubric-box">
-<summary><span class="rubric-box-toggle"><i class="fas fa-star" aria-hidden="true"></i> What Makes an Excellent Conclusion?</span></summary>
+<summary><span class="rubric-box-toggle"><i class="fas fa-star" aria-hidden="true"></i> What Makes an Excellent Wrap?</span></summary>
 <div class="rubric-items">
                     <div class="rubric-item">
                         <strong><i class="fas fa-check" aria-hidden="true"></i> Connects to bigger ideas</strong>
@@ -1554,8 +1548,8 @@
         <!-- STEP 6: FINISH & SUBMIT -->
         <div class="wizard-step section-finish" data-step="5">
         <div class="finish-intro">
-            <h2><i class="fas fa-rocket" aria-hidden="true"></i> Finish &amp; Submit</h2>
-            <p>When your Introduction, Content, and Conclusion are filled in, build your script and hand it in on Canvas.</p>
+            <h2><i class="fas fa-rocket" aria-hidden="true"></i> Finish</h2>
+            <p>When your Hook, Story, and Wrap are written, build your script, practice it out loud, and hand it in on Canvas.</p>
         </div>
         <!-- ROLE ASSIGNMENT CARD -->
         <div class="role-card" id="roleCard">
@@ -1601,9 +1595,9 @@
                     <button type="button" class="practice-bar-btn" id="practiceToggleBtn" onclick="togglePracticeMode()"><i class="fas fa-play" aria-hidden="true"></i> Start practice</button>
                 </div>
                 <div class="practice-nav" id="practiceNav" style="display:none">
-                    <button type="button" class="practice-nav-btn" onclick="practiceMove(-1)"><i class="fas fa-arrow-left" aria-hidden="true"></i> Prev</button>
+                    <button type="button" class="practice-nav-btn" onclick="practiceMove(-1)"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back a line</button>
                     <span class="practice-nav-count" id="practiceNavCount">Line 1 of 1</span>
-                    <button type="button" class="practice-nav-btn" onclick="practiceMove(1)">Next <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                    <button type="button" class="practice-nav-btn" onclick="practiceMove(1)">Next line <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
                 </div>
 
                 <!-- TWO-STAGE SUBMISSION -->
@@ -1614,13 +1608,13 @@
                         <div class="stage-actions">
                             <button class="btn btn-secondary" onclick="copyScript()"><i class="fas fa-copy" aria-hidden="true"></i> Copy script</button>
                             <button class="btn" onclick="downloadScript()"><i class="fas fa-download" aria-hidden="true"></i> Download (.txt)</button>
-                            <button class="btn btn-doc" onclick="copyWorkToDoc()"><i class="fas fa-file-alt" aria-hidden="true"></i> Save to my Google Doc</button>
+                            <button class="btn btn-doc" onclick="openBackupPanel('backup')"><i class="fas fa-shield-alt" aria-hidden="true"></i> Back up my work</button>
                         </div>
                         <p class="stage-hint">Then go to Canvas and submit your draft.</p>
                     </div>
                     <div class="submit-stage submit-stage-final">
                         <h3><span class="stage-num">2</span> Later: turn in your FINAL</h3>
-                        <p>After you get feedback, come back on this computer (your work is saved here). If you switched computers, use <strong>Restore from Google Doc</strong> in the <strong>...</strong> menu at the top, paste your Doc, then improve your script and hand in your polished final on Canvas.</p>
+                        <p>After you get feedback, come back on this computer (your work is saved here). If you switched computers, open <strong>My Work</strong> at the top and choose <strong>Restore my work</strong>. Then improve your script and hand in your polished final on Canvas.</p>
                         <div class="stage-actions">
                             <button class="btn btn-secondary" onclick="copyScript()"><i class="fas fa-copy" aria-hidden="true"></i> Copy final script</button>
                             <button class="btn" onclick="printScript()"><i class="fas fa-print" aria-hidden="true"></i> Print / Save as PDF</button>
@@ -1632,11 +1626,86 @@
                     <button class="btn btn-danger" onclick="startOver()" title="Start a fresh script. Your current work stays saved and can be reopened.">
                         <i class="fas fa-redo" aria-hidden="true"></i> Start a new script
                     </button>
-                    <div style="font-size: 0.85em; color: #666; margin-top: 6px;">Your current work stays saved on this computer - reopen it anytime from the <strong>...</strong> menu at the top right.</div>
+                    <div style="font-size: 0.85em; color: #666; margin-top: 6px;">Your current work stays saved on this computer - reopen it anytime from <strong>My Work</strong> at the top.</div>
                 </div>
             </div>
         </div>
         </div><!-- /step 5: finish -->
+
+        <!-- CREW STEP: PLAN THE EPISODE (crew path only). Built by crew.js. -->
+        <div class="section section-plan wizard-step" data-step="6">
+            <h2><i class="fas fa-map" aria-hidden="true"></i> Plan the Episode</h2>
+            <p class="step-lead">Every episode has three parts. Pick a style for each one, then write one line for each box: what happens there. Not full sentences yet. You'll write the script together in your Google Doc.</p>
+            <div class="episode-map" id="episodeMap"></div>
+            <div id="planParts"></div>
+        </div>
+
+        <!-- CREW STEP: GROUP DOC (crew path only). Built by crew.js. -->
+        <div class="section section-doc wizard-step" data-step="7">
+            <h2><i class="fas fa-file-alt" aria-hidden="true"></i> Your Group Doc</h2>
+            <p class="step-lead">This is a frame to start from. Change anything: add boxes, cut boxes, move them around, or build your own version. Just keep a Hook, a Story, and a Wrap, and cite your facts.</p>
+            <ol class="doc-steps">
+                <li><strong>One person</strong> taps <strong>Copy the frame</strong>, then <strong>Open a new Google Doc</strong>, and pastes (<kbd>Ctrl</kbd>+<kbd>V</kbd>).</li>
+                <li>Name the Doc <strong id="docTitleHint">Podcast name - your names</strong>.</li>
+                <li>Tap <strong>Share</strong>. Add everyone in your crew as an Editor, and Mr. B.</li>
+            </ol>
+            <div class="doc-actions">
+                <button type="button" class="btn" onclick="copyGroupDoc()"><i class="fas fa-copy" aria-hidden="true"></i> Copy the frame</button>
+                <button type="button" class="btn btn-secondary" onclick="openGoogleDoc()"><i class="fas fa-file-alt" aria-hidden="true"></i> Open a new Google Doc</button>
+                <button type="button" class="btn btn-secondary" onclick="printGroupDoc()"><i class="fas fa-print" aria-hidden="true"></i> Print a paper copy</button>
+            </div>
+            <details class="doc-jobs">
+                <summary>Who does what in the Doc</summary>
+                <div id="docJobs"></div>
+            </details>
+            <label class="ready-read" for="docShared">
+                <input type="checkbox" id="docShared" onchange="wizUpdateStepper(); autoSave()">
+                Our Doc is made and shared with everyone
+            </label>
+            <h3 class="doc-preview-title">Your frame</h3>
+            <div class="doc-preview" id="docPreview" aria-label="Preview of your Group Doc frame"></div>
+        </div>
+
+        <!-- CREW STEP: MY LINES (crew path). Each student builds the lines for their own voice. Built by lines.js. -->
+        <div class="section section-lines wizard-step" data-step="9">
+            <h2>My Lines</h2>
+            <p class="step-lead">Build the lines for the voice you will perform. Then copy them into your Group Doc.</p>
+            <div class="lines-who" id="linesWho"></div>
+            <div class="lines-help" id="linesHelp"></div>
+            <div id="linesStyles"></div>
+            <div id="linesBeats"></div>
+            <div class="doc-actions lines-actions">
+                <button type="button" class="btn" onclick="copyMyLines()">Copy my lines</button>
+                <button type="button" class="btn btn-secondary" onclick="printMyLines()">Print my lines sheet</button>
+            </div>
+            <p class="field-hint">Paste your lines into the matching boxes in your Group Doc. Your crew can change them together.</p>
+            <textarea id="linesState" hidden aria-hidden="true" tabindex="-1"></textarea>
+        </div>
+
+        <!-- CREW STEP: PRACTICE (crew path only). -->
+        <div class="section section-practice wizard-step" data-step="8">
+            <h2><i class="fas fa-microphone" aria-hidden="true"></i> Practice</h2>
+            <p class="step-lead">When your script is written, paste it here to time it and practice it out loud, one line at a time.</p>
+            <label for="practiceScript">Paste your script from your Google Doc</label>
+            <textarea id="practiceScript" rows="8" placeholder="Start each line with who says it and a colon, like:&#10;MARIA: Welcome to Hidden History.&#10;ALEX: Today we meet a poet who..."></textarea>
+            <p class="field-hint">Start each line with who says it and a colon. Lines without a name stay with the person before them.</p>
+            <div class="doc-actions">
+                <button type="button" class="btn" onclick="showPastedScript()"><i class="fas fa-play" aria-hidden="true"></i> Show my script</button>
+            </div>
+            <div class="practice-wrap" id="pastedScriptWrap" hidden>
+                <div class="script-doc" id="pastedScriptOutput" tabindex="-1"></div>
+                <div class="practice-bar">
+                    <div class="practice-bar-label"><i class="fas fa-microphone" aria-hidden="true"></i> Practice: read it aloud together</div>
+                    <button type="button" class="practice-bar-btn" onclick="togglePracticeMode()"><i class="fas fa-play" aria-hidden="true"></i> Start practice</button>
+                </div>
+                <div class="practice-nav" style="display:none">
+                    <button type="button" class="practice-nav-btn" onclick="practiceMove(-1)"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back a line</button>
+                    <span class="practice-nav-count">Line 1 of 1</span>
+                    <button type="button" class="practice-nav-btn" onclick="practiceMove(1)">Next line <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                </div>
+                <p class="field-hint">Hand in your script the way Mr. B asks on Canvas.</p>
+            </div>
+        </div>
 
         <!-- WIZARD NAV -->
         <div class="wizard-nav" id="wizardNav">
@@ -1646,49 +1715,38 @@
             <button type="button" class="btn" id="wizNext" onclick="wizNext()">Next <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
         </div>
 
-        <!-- GOOGLE DOC BACKUP - quiet footer -->
-        <details class="docsafe" id="docSafe">
-            <summary class="docsafe-summary"><i class="fas fa-shield-alt" aria-hidden="true"></i> Keep a copy in Google Docs (so you don't lose your work)</summary>
-            <div class="docsafe-body">
-            <p class="docsafe-intro">This computer saves your work. Shared Chromebooks get wiped. Keep a copy in <strong>your</strong> Google Doc.</p>
-            <ol class="docsafe-steps">
-                <li>
-                    <button type="button" class="btn btn-doc" onclick="backupToGoogleDoc()">
-                        <i class="fas fa-file-alt" aria-hidden="true"></i> Copy to Google Doc
-                    </button>
-                    <span class="docsafe-hint">Copies your work. Paste it into a Google Doc in <strong>your</strong> Drive (<kbd>Ctrl</kbd>+<kbd>V</kbd>). Do this when you finish a step.</span>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-doc" onclick="openGoogleDoc()">
-                        <i class="fas fa-file-alt" aria-hidden="true"></i> Open a new Google Doc
-                    </button>
-                    <span class="docsafe-hint">Need a blank Doc? A new tab opens. Title it: <strong>Revolutionary Voices - Your Name</strong></span>
-                </li>
-                <li>
-                    <button type="button" class="btn btn-doc btn-doc-restore" onclick="toggleResume()" aria-expanded="false" aria-controls="resumePanel">
-                        <i class="fas fa-history" aria-hidden="true"></i> Restore from Google Doc
-                    </button>
-                    <span class="docsafe-hint">On a new computer, paste your whole Doc here to get your work back.</span>
-                </li>
-            </ol>
-            <div class="resume-panel" id="resumePanel" hidden>
-                <label for="resumeText"><strong>Paste your whole Google Doc here, then press Restore:</strong></label>
-                <textarea id="resumeText" rows="5" placeholder="Open your Google Doc, select all (Ctrl+A), copy (Ctrl+C), then paste here..."></textarea>
+        <!-- BACK UP / RESTORE: one dialog, opened from My Work -->
+        <dialog class="backup-dialog" id="backupDialog" aria-labelledby="backupTitle">
+            <div class="backup-head">
+                <h2 id="backupTitle">Back up my work</h2>
+                <button type="button" class="link-btn" onclick="closeBackupPanel()">Close</button>
+            </div>
+            <div id="backupPane">
+                <p>Your work saves on this computer as you type. If you might use a different Chromebook, keep a backup in your Google Drive.</p>
+                <ol class="backup-steps">
+                    <li><button type="button" class="btn" onclick="copyWorkToDoc()"><i class="fas fa-copy" aria-hidden="true"></i> Copy my work</button>
+                        <span class="field-hint">Paste it into a Google Doc of your own (<kbd>Ctrl</kbd>+<kbd>V</kbd>). Paste a new copy when you finish a step.</span></li>
+                    <li><button type="button" class="btn btn-secondary" onclick="openGoogleDoc()"><i class="fas fa-file-alt" aria-hidden="true"></i> Open a new Google Doc</button></li>
+                </ol>
+                <p class="field-hint">Or <button type="button" class="link-btn" onclick="exportToFile()">download a backup file</button> instead.</p>
+            </div>
+            <div id="restorePane" hidden>
+                <label for="resumeText">Open your backup Google Doc, select everything (<kbd>Ctrl</kbd>+<kbd>A</kbd>), copy it, and paste it here:</label>
+                <textarea id="resumeText" rows="5" placeholder="Paste your whole backup Doc here"></textarea>
                 <div class="resume-actions">
                     <button type="button" class="btn" onclick="doResume()"><i class="fas fa-rotate-left" aria-hidden="true"></i> Restore my work</button>
-                    <button type="button" class="btn btn-secondary" onclick="toggleResume()">Cancel</button>
+                    <button type="button" class="btn btn-secondary" onclick="document.getElementById('importFile').click()"><i class="fas fa-upload" aria-hidden="true"></i> Load a backup file</button>
                 </div>
                 <p class="resume-note" id="resumeNote" role="status" aria-live="polite"></p>
             </div>
-            </div>
-        </details>
+        </dialog>
     </div>
 
 
     <footer class="site-footer">
         <span>Revolutionary Voices Script Builder</span>
         <span class="footer-sep">-</span>
-        <span id="footerVersion">v1.3.0</span>
+        <span id="footerVersion">v3.2.2</span>
         <span class="footer-sep">-</span>
         <span>voices.mrbsocialstudies.org</span>
     </footer>
@@ -1704,11 +1762,11 @@
             <div id="drawerReadingContent" hidden>
                 <h3 id="drawerReadingName"></h3>
                 <p class="reading-tagline" id="drawerReadingTagline"></p>
-                <div class="level-toggle" role="group" aria-label="Reading language">
-                    <button type="button" class="level-pill" data-level="mostSupport" onclick="setReadingLevel('mostSupport')" title="Easier language">Easier language</button>
-                    <button type="button" class="level-pill" data-level="someSupport" onclick="setReadingLevel('someSupport')" title="A bit easier">A bit easier</button>
-                    <button type="button" class="level-pill" data-level="standard" onclick="setReadingLevel('standard')" title="Standard">Standard</button>
-                    <button type="button" class="level-pill" data-level="challenge" onclick="setReadingLevel('challenge')" title="Harder language">Harder language</button>
+                <div class="level-toggle" role="group" aria-label="Reading level">
+                    <button type="button" class="level-pill" data-level="mostSupport" onclick="setReadingLevel('mostSupport')">Quick</button>
+                    <button type="button" class="level-pill" data-level="someSupport" onclick="setReadingLevel('someSupport')">Clear</button>
+                    <button type="button" class="level-pill" data-level="standard" onclick="setReadingLevel('standard')">Full</button>
+                    <button type="button" class="level-pill" data-level="challenge" onclick="setReadingLevel('challenge')">Deep</button>
                 </div>
                 <div class="reading-quickfacts" id="drawerReadingQuickFacts"></div>
                 <article class="reading-body" id="drawerReadingBody" tabindex="0"></article>
@@ -1725,13 +1783,9 @@
     <script src="sources.js"></script>
     <script src="version.js"></script>
     <script src="app.js"></script>
-    <script>
-        // Sync the theme-toggle button to the saved theme on load
-        (function(){var b=document.getElementById('themeToggle');if(!b)return;
-            var dark=document.documentElement.dataset.theme==='dark';
-            b.setAttribute('aria-pressed',dark);
-            b.querySelector('span').textContent=dark?'Daytime':'After hours';
-            b.querySelector('i').className=dark?'fas fa-sun':'fas fa-moon';})();
-    </script>
+    <script src="builder-banks.js"></script>
+    <script src="crew.js"></script>
+    <script src="lines.js"></script>
+    <script src="reader-tools.js"></script>
 </body>
 </html>

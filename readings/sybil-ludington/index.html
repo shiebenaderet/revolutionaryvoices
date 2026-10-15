@@ -15,16 +15,17 @@
   --code-conclusion:#c2701a;
   --focus:#d4661a; --radius:14px;
   --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --font-head:'Roboto Slab',Georgia,serif;
-  --font-mono:'Space Mono',ui-monospace,monospace;
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
 }
 :root[data-theme="dark"] {
   --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
   --ink:#f3e6cf; --page-bg:#1f1611;
   --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
   --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-  --code-conclusion:#e8985a;
+  --code-conclusion:#e8985a; --edge:#a8987a;
   --focus:#f0bf57;
   --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
 }
@@ -34,19 +35,21 @@
     --ink:#f3e6cf; --page-bg:#1f1611;
     --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
     --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-    --code-conclusion:#e8985a;
+    --code-conclusion:#e8985a; --edge:#a8987a;
     --focus:#f0bf57;
     --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
   }
 }
 
-@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
   font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
-  font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight:400; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
   font-weight:700; font-display:swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -58,8 +61,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 
 .page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
   justify-content:space-between; margin-bottom:18px; }
-.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--brand); margin:0; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
 .theme-toggle { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
   cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
@@ -75,9 +80,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
 .level-pill { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
-  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
   display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
-.level-pill .level-word { font-size:.8em; }
+.level-pill { min-width:64px; }
 .level-pill:hover { border-color:var(--gold); }
 .level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
   border-color:var(--gold); font-weight:700; }
@@ -137,6 +142,31 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
   .gloss-def[hidden] { display:inline; }
   .gloss-word { text-decoration:none; padding:0; margin:0; }
 }
+/* Handout in the studio (3.2.0): matches the script builder. A warm cream
+   sheet on a walnut desk, brown ink and rules, square boxes, one rust accent. */
+:root { --brand:#a8431a; --brand-dark:#a8431a; --brand-deep:#2a1d12; --ink:#2a1d12; --page-bg:#3b2a1c;
+  --surface:#fffaf0; --surface-2:#fffaf0; --line:#3a2a1a; --muted:#5a4a38; --accent:#a8431a; --gold:#e0a52e;
+  --code-conclusion:#2a1d12; --edge:#3a2a1a; --radius:0; --shadow:none; }
+:root[data-theme="dark"] { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf; --ink:#f3e6cf; --page-bg:#0d0906;
+  --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a; --gold:#f0bf57;
+  --code-conclusion:#f3e6cf; --edge:#e6d4b4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf;
+  --ink:#f3e6cf; --page-bg:#0d0906; --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a;
+  --gold:#f0bf57; --code-conclusion:#f3e6cf; --edge:#e6d4b4; } }
+.wrap { background:var(--surface); margin-top:16px; border-top:4px solid var(--gold); }
+.reading-viewer { border:1.5px solid var(--line) !important; border-radius:0 !important; box-shadow:none !important; }
+.wrap * { border-radius:0 !important; box-shadow:none !important; }
+.level-pill { background:var(--surface) !important; color:var(--ink) !important; border:2px solid var(--line) !important; }
+.level-pill[aria-pressed="true"] { background:var(--accent) !important; color:var(--surface) !important; border-color:var(--accent) !important; }
+.reading-quickfacts { background:var(--surface) !important; border:1.5px solid var(--line) !important; }
+.facts-group h3, .reading-head h1 { color:var(--ink) !important; }
+.eyebrow { color:var(--accent) !important; }
+.wrap a { color:var(--accent) !important; }
+#rtools .rt-btn { background:var(--surface); }
+#rtools .rt-btn.rt-primary { background:var(--gold); color:#1a1208 !important; border-color:var(--gold); }
+#rtools .rt-btn.rt-primary * { color:#1a1208 !important; }
+#rtools .rt-btn svg { display:none; }
+
 </style>
 <noscript><style>
 .level-panel[hidden]{display:block}.level-toggle{display:none}
@@ -148,20 +178,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 <div class="wrap">
   <div class="page-head">
     <p class="eyebrow">Revolutionary Voices · Reading</p>
-    <button type="button" class="theme-toggle">Dark / light</button>
+    <div id="rtools"></div>
   </div>
 
-  <article class="reading-viewer">
+  <article class="reading-viewer" data-listen>
     <header class="reading-head">
       <div>
         <h1>Sybil Ludington</h1>
         <p class="reading-tagline">Patriot teenager famous for a midnight ride that historians now question</p>
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
-          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
-          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
-          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
-          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false" title="Plain words, a little more detail.">Clear</button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true" title="The grade-level reading.">Full</button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false" title="Adds real quotes from the time and what historians argue.">Deep</button>
       </div>
     </header>
 
@@ -172,7 +202,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <span class="qf"><strong>Famous for:</strong> A famous 1777 &quot;midnight ride&quot;: a beloved story with little evidence from that year</span>
     </div>
 
-      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+      <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
         <div class="reading-body"><p>Sybil Ludington was born in New York in 1761. Her father was a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Patriot</button><span class="gloss-def" hidden> (someone who wanted America to be free)</span></span> leader who commanded local soldiers.</p>
 <p>There is a famous story about Sybil. People say that in April 1777, when she was 16, British soldiers burned the town of Danbury. The story says Sybil rode her horse all night to wake up her father's soldiers.</p>
 <p>The story says she rode about 40 miles in the dark and rain. That is twice as far as Paul Revere's famous ride.</p>
@@ -181,20 +211,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>She was born in New York in 1761.</li><li>Her father led Patriot soldiers.</li><li>There is a famous story that she rode all night on her horse.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>The story says British soldiers burned Danbury in 1777.</li><li>The story says Sybil rode in the dark and rain to wake her father's men.</li><li>About 400 men are said to have gathered.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Sybil was a real person who lived to be 77.</li><li>Her famous ride may be more story than history.</li><li>Her story shows how we like to remember heroes.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+      <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
         <div class="reading-body"><p>Sybil Ludington was born on April 5, 1761, in New York. Her father, Colonel Henry Ludington, led a group of Patriot <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">militia</button><span class="gloss-def" hidden> (local citizen-soldiers)</span></span>.</p>
 <p>The famous story says that on the night of April 26, 1777, British troops burned Danbury, Connecticut, where the Americans kept supplies. The militia were scattered at their farms. According to the story, 16-year-old Sybil rode about 40 miles through the dark and rain to wake them — twice as far as Paul Revere's ride — and about 400 men gathered.</p>
 <p>But here is the important part: there is very little real proof the ride happened. No records or letters from 1777 mention it. The story did not appear in print until 1880, and a 1907 book about it was paid for by her family. Today many historians doubt the ride happened the way the story says.</p>
@@ -202,55 +232,55 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Born in 1761 to a Patriot militia leader, Colonel Henry Ludington.</li><li>The famous story says she rode 40 miles one night in 1777 to wake the soldiers.</li><li>That would be twice as far as Paul Revere's ride.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>The story says she rode through towns banging on doors to call out the militia.</li><li>She is said to have gathered about 400 men.</li><li>Important: no records from 1777 mention the ride.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Sybil married in 1784 and died in 1839.</li><li>Her midnight ride is a beloved story, but we cannot prove it.</li><li>Her tale shows how legends about heroes can grow over time.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="standard" data-level-word="Standard">
+      <div class="level-panel" data-level="standard" data-level-word="Full">
         <div class="reading-body"><p>Sybil Ludington was born on April 5, 1761, in Fredericksburg (today Ludingtonville), New York. She was the eldest child of Colonel Henry Ludington, a Patriot militia commander. That much is well documented. So is the event her legend attaches to: in late April 1777, British forces raided and burned Danbury, Connecticut, where Continental supplies were stored.</p>
 <p>The famous story says that on the night of April 26, 1777, the 16-year-old rode some 40 miles alone through the dark and rain — twice the distance of Paul Revere's ride. Her mission was to summon her father's scattered militia, and she is said to have gathered around 400 men. For generations this tale has made her a symbol of young women's courage in the Revolution.</p>
 <p>But historians now treat the ride with real caution. No <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">contemporary</button><span class="gloss-def" hidden> (from that same time)</span></span> record from 1777 — no militia roster, letter, or diary — mentions it. The story first appeared in print in 1880, more than a century later. A 1907 account was commissioned by Ludington's own descendants, and a 2015 scholarly study found no reliable evidence the ride happened as told. Sybil was certainly a real person from a real Patriot family. She married Edmond Ogden in 1784 and died in 1839. Her midnight ride, however, is better understood as a cherished legend than a documented fact.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Born 1761, eldest child of Patriot militia commander Col. Henry Ludington.</li><li>Legend says that on April 26, 1777, the 16-year-old rode ~40 miles to summon the militia after the British burned Danbury.</li><li>The story casts her as a 'female Paul Revere.'</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>By the story she rode alone ~40 miles through dark and rain, rousing ~400 men.</li><li>No contemporary record — roster, letter, or diary — mentions the ride.</li><li>It first appeared in print in 1880; a 1907 account was paid for by her family.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Sybil was real — married Edmond Ogden (1784), died 1839 — but her ride is best called a cherished legend.</li><li>It became popular long after her death, partly to provide a 'female Paul Revere.'</li><li>Her story is a lesson in checking where history comes from.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+      <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
         <div class="reading-body"><p>Sybil Ludington occupies an unusual place in Revolutionary memory: a heroine whose fame rests almost entirely on a story no contemporary source records. The verifiable facts are modest — she was born in 1761 to Colonel Henry Ludington, a genuine Patriot militia officer in Dutchess County, New York, and the British did raid and burn Danbury, Connecticut, in late April 1777.</p>
 <p>The celebrated ride — 40 miles through the night of April 26, 1777, rousing some 400 militiamen, "twice as far as Paul Revere" — appears nowhere in the documentary record of the period: not in militia rosters, pension files, newspapers, or family letters of the 1770s. It surfaced only in 1880, in Martha Lamb's history of New York, with no source cited, and was elaborated in a 1907 biography of Henry Ludington <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">commissioned</button><span class="gloss-def" hidden> (ordered and paid for)</span></span> by his descendants. In a 2015 New England Quarterly article, historian Paula D. Hunt traced how the legend grew, concluding there is no reliable evidence the ride occurred — even Sybil's own name is spelled inconsistently across records.</p>
 <p>None of this makes Sybil Ludington unimportant; it makes her a case study in how nations build heroes. Embraced by a 1975 U.S. postage stamp, statues, and textbooks, her ride filled a real need — a young woman's counterpart to Paul Revere — even as the evidence stayed thin. For a podcast, the honest and more interesting question is not only "what did she do?" but "why do we so want this story to be true?"</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>A real girl from a real Patriot family — born 1761 to militia officer Col. Henry Ludington.</li><li>Her fame rests on a dramatic night ride (April 26, 1777) that no 1770s source records.</li><li>The British raid on Danbury that the story attaches to did happen.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>The ride appears in no militia roster, pension file, newspaper, or letter of the 1770s.</li><li>It surfaced in 1880 (Martha Lamb, no source) and grew in a 1907 family-commissioned biography.</li><li>A 2015 New England Quarterly study found no reliable evidence it happened as told.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Embraced by a 1975 stamp, statues, and textbooks, her ride filled a real cultural need.</li><li>She is a case study in how nations build heroes from thin evidence.</li><li>The richer question is why we want the story to be true.</li><li>Honoring her can mean honoring real women whose deeds went unrecorded.</li></ul>
           </div>
         </section>
@@ -311,21 +341,12 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     });
   });
 
-  var toggle = document.querySelector('.theme-toggle');
-  if (toggle) {
-    try {
-      var t = localStorage.getItem('rvTheme');
-      if (t) root.setAttribute('data-theme', t);
-    } catch (e) {}
-    toggle.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark'
-        || (!root.hasAttribute('data-theme')
-            && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('rvTheme', next); } catch (e) {}
-    });
-  }
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
 })();</script>
+<script src="../../reader-tools.js"></script>
 </body>
 </html>

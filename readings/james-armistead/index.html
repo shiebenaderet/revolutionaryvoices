@@ -15,16 +15,17 @@
   --code-conclusion:#c2701a;
   --focus:#d4661a; --radius:14px;
   --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --font-head:'Roboto Slab',Georgia,serif;
-  --font-mono:'Space Mono',ui-monospace,monospace;
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
 }
 :root[data-theme="dark"] {
   --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
   --ink:#f3e6cf; --page-bg:#1f1611;
   --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
   --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-  --code-conclusion:#e8985a;
+  --code-conclusion:#e8985a; --edge:#a8987a;
   --focus:#f0bf57;
   --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
 }
@@ -34,19 +35,21 @@
     --ink:#f3e6cf; --page-bg:#1f1611;
     --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
     --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-    --code-conclusion:#e8985a;
+    --code-conclusion:#e8985a; --edge:#a8987a;
     --focus:#f0bf57;
     --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
   }
 }
 
-@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
   font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
-  font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight:400; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
   font-weight:700; font-display:swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -58,8 +61,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 
 .page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
   justify-content:space-between; margin-bottom:18px; }
-.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--brand); margin:0; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
 .theme-toggle { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
   cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
@@ -75,9 +80,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
 .level-pill { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
-  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
   display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
-.level-pill .level-word { font-size:.8em; }
+.level-pill { min-width:64px; }
 .level-pill:hover { border-color:var(--gold); }
 .level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
   border-color:var(--gold); font-weight:700; }
@@ -137,6 +142,31 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
   .gloss-def[hidden] { display:inline; }
   .gloss-word { text-decoration:none; padding:0; margin:0; }
 }
+/* Handout in the studio (3.2.0): matches the script builder. A warm cream
+   sheet on a walnut desk, brown ink and rules, square boxes, one rust accent. */
+:root { --brand:#a8431a; --brand-dark:#a8431a; --brand-deep:#2a1d12; --ink:#2a1d12; --page-bg:#3b2a1c;
+  --surface:#fffaf0; --surface-2:#fffaf0; --line:#3a2a1a; --muted:#5a4a38; --accent:#a8431a; --gold:#e0a52e;
+  --code-conclusion:#2a1d12; --edge:#3a2a1a; --radius:0; --shadow:none; }
+:root[data-theme="dark"] { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf; --ink:#f3e6cf; --page-bg:#0d0906;
+  --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a; --gold:#f0bf57;
+  --code-conclusion:#f3e6cf; --edge:#e6d4b4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf;
+  --ink:#f3e6cf; --page-bg:#0d0906; --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a;
+  --gold:#f0bf57; --code-conclusion:#f3e6cf; --edge:#e6d4b4; } }
+.wrap { background:var(--surface); margin-top:16px; border-top:4px solid var(--gold); }
+.reading-viewer { border:1.5px solid var(--line) !important; border-radius:0 !important; box-shadow:none !important; }
+.wrap * { border-radius:0 !important; box-shadow:none !important; }
+.level-pill { background:var(--surface) !important; color:var(--ink) !important; border:2px solid var(--line) !important; }
+.level-pill[aria-pressed="true"] { background:var(--accent) !important; color:var(--surface) !important; border-color:var(--accent) !important; }
+.reading-quickfacts { background:var(--surface) !important; border:1.5px solid var(--line) !important; }
+.facts-group h3, .reading-head h1 { color:var(--ink) !important; }
+.eyebrow { color:var(--accent) !important; }
+.wrap a { color:var(--accent) !important; }
+#rtools .rt-btn { background:var(--surface); }
+#rtools .rt-btn.rt-primary { background:var(--gold); color:#1a1208 !important; border-color:var(--gold); }
+#rtools .rt-btn.rt-primary * { color:#1a1208 !important; }
+#rtools .rt-btn svg { display:none; }
+
 </style>
 <noscript><style>
 .level-panel[hidden]{display:block}.level-toggle{display:none}
@@ -148,20 +178,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 <div class="wrap">
   <div class="page-head">
     <p class="eyebrow">Revolutionary Voices · Reading</p>
-    <button type="button" class="theme-toggle">Dark / light</button>
+    <div id="rtools"></div>
   </div>
 
-  <article class="reading-viewer">
+  <article class="reading-viewer" data-listen>
     <header class="reading-head">
       <div>
         <h1>James Armistead Lafayette</h1>
         <p class="reading-tagline">Enslaved spy whose secrets helped trap the British at Yorktown</p>
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
-          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
-          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
-          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
-          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false" title="Plain words, a little more detail.">Clear</button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true" title="The grade-level reading.">Full</button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false" title="Adds real quotes from the time and what historians argue.">Deep</button>
       </div>
     </header>
 
@@ -172,7 +202,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <span class="qf"><strong>Famous for:</strong> Secrets that helped win the Battle of Yorktown; freed by Virginia in 1786–87</span>
     </div>
 
-      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+      <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
         <div class="reading-body"><p>James Armistead was born a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">slave</button><span class="gloss-def" hidden> (a person who is owned and made to work for no pay)</span></span> in Virginia around 1748.</p>
 <p>In 1781 he became a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">spy</button><span class="gloss-def" hidden> (a person who secretly gathers information)</span></span> for the American army.</p>
 <p>James pretended to help the British. They believed him. He even worked for a British general named Cornwallis.</p>
@@ -183,75 +213,75 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>He was born a slave in Virginia.</li><li>He became a spy in the war.</li><li>He tricked the British by pretending to help them.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>He listened to British plans and told the American general, Lafayette.</li><li>He gave the British false news.</li><li>The British did not think a Black man could be a spy.</li><li>His secrets helped win the battle at Yorktown in 1781.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>He helped win freedom for America but was still a slave.</li><li>Years later, in 1786–87, Virginia set him free.</li><li>He took the name Lafayette and lived as a free farmer.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
-        <div class="reading-body"><p>James Armistead was born into slavery in Virginia around 1748. In 1781, with his enslaver's permission, he volunteered to spy for the Continental Army under the Marquis de Lafayette, a French general helping the Americans.</p>
-<p>James pretended to be a runaway who wanted to help the British. They believed him, and the British general Lord Cornwallis even used James as a spy. But James was a double agent: he was really working for the Americans. He listened to British plans and reported them to Lafayette, while feeding the British false information. The British never suspected him — partly because they wrongly assumed an enslaved Black man could not be a spy.</p>
-<p>James's information helped the Americans and French trap Cornwallis at Yorktown, Virginia. Cornwallis <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">surrendered</button><span class="gloss-def" hidden> (gave up the fight)</span></span> on October 19, 1781, ending most of the fighting. Even so, James was not freed. With a 1784 letter of praise from Lafayette, he asked Virginia for his freedom, and the state freed him in 1786–87. He added "Lafayette" to his name, became a farmer, later received a veteran's <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">pension</button><span class="gloss-def" hidden> (regular payments for past service)</span></span>, and reunited with Lafayette in 1824. He died in 1830.</p></div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
+        <div class="reading-body"><p>James Armistead was born into slavery in Virginia around 1748. In 1781, with his enslaver's permission, James volunteered to spy for the Continental Army. He worked under the Marquis de Lafayette, a French general helping the Americans.</p>
+<p>James pretended to be a runaway who wanted to help the British. They believed him. The British general Lord Cornwallis even used James as a spy. But James was a double agent: he was really working for the Americans. He listened to British plans and told them to Lafayette. At the same time, he fed the British false information. The British never suspected him. Part of the reason was that they wrongly thought an enslaved Black man could not be a spy.</p>
+<p>James's reports helped the Americans and French trap Cornwallis at Yorktown, Virginia. Cornwallis <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">surrendered</button><span class="gloss-def" hidden> (gave up the fight)</span></span> on October 19, 1781. That ended most of the fighting. Even so, James was not freed. In 1784, Lafayette wrote a letter praising him. With that letter, James asked Virginia for his freedom, and the state freed him in 1786–87. He added "Lafayette" to his name and became a farmer. Later he got a veteran's <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">pension</button><span class="gloss-def" hidden> (regular payments for past service)</span></span>. He and Lafayette met again in 1824. He died in 1830.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Born into slavery in Virginia around 1748.</li><li>In 1781 he volunteered to spy for the American army.</li><li>He pretended to be a runaway helping the British — but he was really helping the Americans.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>He memorized British troop numbers and plans and carried them to Lafayette.</li><li>He fed the British false information at the same time.</li><li>Cornwallis surrendered at Yorktown on October 19, 1781.</li><li>James's spying helped make that victory possible.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>He risked his life for a country that kept him enslaved.</li><li>With Lafayette's help he asked Virginia for freedom and was freed in 1786–87.</li><li>He added 'Lafayette' to his name and later won a veteran's pension.</li><li>He and Lafayette reunited in 1824.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="standard" data-level-word="Standard">
+      <div class="level-panel" data-level="standard" data-level-word="Full">
         <div class="reading-body"><p>James Armistead was born into slavery in Virginia around 1748, enslaved by William Armistead. In 1781, with his enslaver's permission, he volunteered to spy for the Continental Army under the Marquis de Lafayette. His plan was bold. He posed as a runaway eager to serve the British — and they trusted him so completely that Lord Cornwallis used him to gather <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">intelligence</button><span class="gloss-def" hidden> (secret military information)</span></span> on the Americans.</p>
 <p>In reality, James was a double agent. He moved through British camps, memorized troop numbers, positions, and plans, and carried them to Lafayette. At the same time, he fed the British carefully chosen false information. The British never suspected him. They assumed an enslaved Black man could not be an effective spy — a prejudice James turned into his advantage. His reports proved vital as American and French forces trapped Cornwallis at Yorktown, where the British surrendered on October 19, 1781.</p>
 <p>Freedom did not follow victory. James returned to slavery. Armed with a 1784 <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">testimonial</button><span class="gloss-def" hidden> (a written statement of praise)</span></span> from Lafayette, he petitioned the Virginia Assembly, which passed an act freeing him in late 1786, finalized in January 1787. He took the name James Armistead Lafayette, farmed his own land, and eventually won a veteran's pension. In 1824 he shared an emotional reunion with Lafayette during the general's farewell tour. He died in 1830.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Born into slavery in Virginia (~1748), enslaved by William Armistead.</li><li>In 1781 he posed as a runaway eager to help the British.</li><li>Cornwallis trusted him as a scout — never guessing he was an American double agent.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Moved through British camps memorizing troop numbers, positions, and plans for Lafayette.</li><li>Passed the British carefully chosen false information.</li><li>His reports helped trap Cornwallis at Yorktown; the British surrendered October 19, 1781.</li><li>The British underestimated him because he was enslaved and Black — his advantage.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Victory did not free him; he returned to slavery after the war.</li><li>A 1784 testimonial from Lafayette helped him win freedom from Virginia in 1786–87.</li><li>He took the name James Armistead Lafayette and farmed his own land.</li><li>He won a pension in 1818 and reunited with Lafayette in 1824.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+      <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
         <div class="reading-body"><p>James Armistead — born into slavery in Virginia around 1748 — became one of the Revolution's most consequential intelligence agents by weaponizing the very prejudice that bound him. In 1781, with his enslaver's consent, he joined the Marquis de Lafayette's command and posed as a runaway offering his services to the British; Lord Cornwallis, certain that an enslaved man posed no threat, used him as a scout. James was in fact a double agent, ferrying accurate British troop <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">dispositions</button><span class="gloss-def" hidden> (positions and arrangements)</span></span> to Lafayette while seeding Cornwallis's camp with <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">disinformation</button><span class="gloss-def" hidden> (deliberately false information)</span></span>.</p>
 <p>His intelligence helped the allied American and French armies pin Cornwallis at Yorktown, whose surrender on October 19, 1781 effectively decided the war. Lafayette later certified his value in a 1784 testimonial, writing that James had done "essential services to me while I had the honour to command in this state" (Lafayette, 1784). Yet victory bought him nothing: Virginia's 1782 emancipation law rewarded enslaved men who had served as soldiers, not as spies, so James remained enslaved until he petitioned the Assembly, which freed him by an act passed in late 1786 and finalized in January 1787.</p>
 <p>He took the name James Armistead Lafayette, farmed in New Kent County, and in 1818 secured a state pension for his service — recognition that came grudgingly and late. When Lafayette toured America in 1824, the two men reunited, and a celebrated portrait fixed James's likeness for history. His life poses the Revolution's central question in its sharpest form: what did "liberty" mean in a republic that a man could help create and still not be free within?</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Enslaved in Virginia from around 1748, he turned the enemy's prejudice into his cover.</li><li>Posed as a runaway serving the British; Cornwallis used him as a scout.</li><li>He was, in truth, a double agent feeding Lafayette real intelligence.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Ferried accurate British dispositions to Lafayette while seeding Cornwallis's camp with disinformation.</li><li>His intelligence helped the allied armies pin Cornwallis at Yorktown (surrender Oct 19, 1781).</li><li>Lafayette's 1784 testimonial praised his 'essential services.'</li><li>His cover worked because the British assumed an enslaved man was no threat.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Virginia's 1782 law freed enslaved soldiers, not spies, so he stayed enslaved until 1786–87.</li><li>He secured a state pension only in 1818 — recognition late and grudging.</li><li>His 1824 reunion with Lafayette became a celebrated portrait.</li><li>His life sharpens the Revolution's central contradiction about liberty.</li></ul>
           </div>
         </section>
@@ -312,21 +342,12 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     });
   });
 
-  var toggle = document.querySelector('.theme-toggle');
-  if (toggle) {
-    try {
-      var t = localStorage.getItem('rvTheme');
-      if (t) root.setAttribute('data-theme', t);
-    } catch (e) {}
-    toggle.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark'
-        || (!root.hasAttribute('data-theme')
-            && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('rvTheme', next); } catch (e) {}
-    });
-  }
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
 })();</script>
+<script src="../../reader-tools.js"></script>
 </body>
 </html>

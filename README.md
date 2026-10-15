@@ -112,7 +112,7 @@ This project uses [Semantic Versioning](https://semver.org):
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
-Current version: **3.2.0**
+Current version: **3.2.1**
 
 ---
 

@@ -986,7 +986,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '3.2.0'; // keep in sync with index.html footer and CHANGELOG
+        const APP_VERSION = '3.2.1'; // keep in sync with index.html footer and CHANGELOG
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION + (typeof BUILD_HASH !== 'undefined' ? ' (' + BUILD_HASH + ')' : ''); })();
         const OLD_KEY = 'revolutionaryVoicesScript';

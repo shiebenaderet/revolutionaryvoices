@@ -2508,3 +2508,25 @@ html.rt-playing .on-air-dot { background: #fff !important; box-shadow: 0 0 8px #
 .container .header.studio .studio-tools { border: 0 !important; background: transparent !important; padding: 0 !important; margin-left: auto; }
 .container .header.studio .studio-bar { align-items: center; }
 .auto-save-indicator, .auto-save-indicator * { color: var(--mast-ink) !important; }
+
+/* Masthead on one row (3.2.1): title, On Air and the three buttons share a
+   line, with less space above and below the dial. */
+.container .header.studio { padding: 12px 40px 10px !important; margin-bottom: 18px !important; }
+.container .header.studio .studio-bar { flex-wrap: nowrap; gap: 12px; }
+.container .header.studio .studio-brand { font-size: 24px; white-space: nowrap; }
+.container .header.studio .studio-brand .brand-sub { font-size: 17px; }
+.container .header.studio .studio-tools { flex-wrap: nowrap; gap: 8px; width: auto; }
+.container .header.studio .hdr-btn, .container .header.studio .rt-btn { min-height: 40px; padding: 4px 12px; font-size: 15px; }
+.container .header.studio .on-air-light { padding: 3px 8px; font-size: 14px; }
+.container .tuner-stepper { margin-top: 10px !important; padding-top: 12px !important; }
+.container .tuner-mark .t-name { padding-top: 3px; padding-bottom: 3px; }
+@media (max-width: 900px) {
+    .container .header.studio .studio-brand .brand-sub { display: none; }
+}
+@media (max-width: 640px) {
+    .container .header.studio { padding: 10px 16px 8px !important; }
+    .container .header.studio .studio-bar { flex-wrap: wrap; gap: 8px; }
+    .container .header.studio .studio-brand { font-size: 20px; }
+    .container .header.studio .studio-tools { width: 100%; }
+    .container .header.studio .on-air-light { margin-left: auto; }
+}

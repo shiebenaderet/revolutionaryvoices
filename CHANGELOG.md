@@ -6,6 +6,14 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.2.1] - 2026-10-15
+
+### Changed
+
+- The masthead fits on one row: title, On Air and Listen / Font / My Work share a line, with less space around the step dial. On a phone it is two tight rows.
+
+---
+
 ## [3.2.0] - 2026-10-15
 
 ### Changed

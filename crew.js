@@ -557,17 +557,23 @@
 
   /* The paper copy follows the print standard: black on white, Atkinson, text at
      11pt or larger, writing lines 0.34in apart. */
-  window.printGroupDoc = function () {
+  /* Any paper sheet from this site prints the same way: black on white,
+     Atkinson, text at 11pt or larger, writing lines 0.34in apart. The Group Doc
+     frame and the My Lines sheet both use it, so they match each other and the
+     site, which is styled as the same handout. */
+  function printSheet(title, bodyHTML) {
     var css = new URL('fonts/fonts.css', location.href).href;
-    var doc = '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>' + esc(val('podcastName') || 'Group Doc') + '</title>' +
+    var doc = '<!doctype html><html lang="en"><head><meta charset="utf-8"><title>' + esc(title) + '</title>' +
       '<link rel="stylesheet" href="' + css + '"><style>' +
       '@page{size:letter;margin:0.6in}body{font-family:"Atkinson Hyperlegible Next",Verdana,sans-serif;color:#000;background:#fff;font-size:11.5pt;line-height:1.4}' +
       'h1{font-size:20pt;margin:0 0 4pt}h2{font-size:14pt;margin:14pt 0 6pt;break-after:avoid}p{margin:0 0 4pt}' +
       'table{width:100%;border-collapse:collapse;margin:0 0 6pt}th,td{border:1px solid #000;padding:4pt 6pt;text-align:left;vertical-align:top}' +
       'td.fr-cell{height:0.34in}.fr-note,.fr-help{font-size:10pt}' +
-      '.fr-box{border:1.5px solid #000;border-radius:4pt;padding:6pt 8pt;margin:0 0 8pt;break-inside:avoid}' +
+      '.fr-box{border:1.5px solid #000;padding:6pt 8pt;margin:0 0 8pt;break-inside:avoid}' +
       '.fr-lines{margin-top:4pt}.fr-line{display:block;height:0.34in;border-bottom:1px solid #000}' +
-      '.fr-check li{margin:0 0 4pt}</style></head><body>' + frameHTML(false) + '</body></html>';
+      '.fr-check li{margin:0 0 4pt}.fr-frame{font-style:italic;margin:6pt 0 0}.fr-blank{display:inline-block;min-width:1.6in;border-bottom:1px solid #000}' +
+      '.fr-bank{border:1px dashed #000;padding:3pt 6pt;margin:4pt 0 2pt;font-size:10.5pt}.fr-names{margin:0 0 8pt}' +
+      '</style></head><body>' + bodyHTML + '</body></html>';
     var f = document.createElement('iframe');
     f.setAttribute('aria-hidden', 'true');
     f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0';
@@ -579,7 +585,8 @@
       }, 400);
     };
     f.srcdoc = doc;
-  };
+  }
+  window.printGroupDoc = function () { printSheet(val('podcastName') || 'Group Doc', frameHTML(false)); };
 
   /* ---------------------------------------------------------------- practice */
   var SECTION_RE = /^\s*(#+\s*)?(the\s+)?(hook|story|wrap|intro|introduction|content|conclusion)\b[^:]*$/i;
@@ -677,4 +684,11 @@
   PARTS.forEach(function (p) { p.styles.forEach(function (s) { s.beats.forEach(function (b) { guideFor(b[0]); }); }); });
   markListen();
   syncFactRows();
+
+  /* Shared with lines.js (My Lines), which builds on the same parts and beats. */
+  window.RV_CREW = {
+    PARTS: PARTS, VOICES: VOICES, CREW_OPENING: CREW_OPENING,
+    guideFor: guideFor, chosen: chosen, allBeats: allBeats, crewMembers: crewMembers,
+    isCrew: isCrew, voiceLabel: voiceLabel, linesFor: linesFor, printSheet: printSheet, esc: esc
+  };
 })();

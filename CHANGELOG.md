@@ -6,6 +6,25 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.1.0] - 2026-10-15
+
+### Added
+
+- **My Lines** (crew step, between Group Doc and Practice). Each student builds the lines for the voice they perform on their own Chromebook, one box at a time, with help that starts at their reading level and can be changed anytime:
+  - **Quick:** short sentence frames (at most two blanks, at most twelve printed words) filled by tapping a word bank drawn only from the topic's reading. Only the frame being worked shows its word bank, and frames are optional ("Pick the frames that fit"). Each box has a worked example about a different person with the last frame left blank, and a printed goal ("Aim for 2 or 3 sentences"). Students can change the assembled lines or type their own words in any blank.
+  - **Clear:** the question, optional **Stuck?** starters, ruled lines.
+  - **Full:** the question and ruled lines.
+  - **Deep:** the question, ruled lines, and one "go further" move.
+  - **Copy my lines** gives "Name: line" blocks to paste into the Group Doc. **Print my lines sheet** prints the same frames, word bank and ruled lines on paper.
+- `builder-banks.js`: word banks for all 22 topics (703 phrases). Every year and proper noun is checked against that topic's own reading text, and phrases are written to read correctly after "I", "she" or "he", and a group name. Legends are worded as legends ("may have", "became a legend").
+
+### Changed
+
+- **The site looks like a handout.** It is black on white with one face, square boxes with thin black rules, text fields as lines to write on, and writing boxes ruled like paper (0.35in). There are no tints, shadows, gradients, rounded cards or decorative icons. Selection shows by inverting or a heavier rule, never by color alone. The page sits like a sheet on a desk. The step row, buttons, checkboxes and voice labels all follow the same print style, so the Group Doc paper copy and the My Lines sheet match the screen. Dark mode is the same sheet inverted. The standalone reading pages match.
+- Voices are shown as a word in a box (and H / N / S on the style diagrams), not by color.
+
+---
+
 ## [3.0.0] - 2026-10-15
 
 ### Workflow restructure: crews plan here and write together in a Google Doc

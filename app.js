@@ -986,7 +986,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '3.0.0'; // keep in sync with index.html footer and CHANGELOG
+        const APP_VERSION = '3.1.0'; // keep in sync with index.html footer and CHANGELOG
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION + (typeof BUILD_HASH !== 'undefined' ? ' (' + BUILD_HASH + ')' : ''); })();
         const OLD_KEY = 'revolutionaryVoicesScript';
@@ -1521,11 +1521,12 @@
         // ============================================
         // Steps by data-step id. Two paths share Start and Read:
         //   solo: Start, Read, Hook, Story, Wrap, Finish  (the whole script is written here)
-        //   crew: Start, Read, Plan, Group Doc, Practice  (the script is written in a Google Doc)
-        const WIZ_NAMES = { 0: 'Start', 1: 'Read', 2: 'Hook', 3: 'Story', 4: 'Wrap', 5: 'Finish', 6: 'Plan', 7: 'Group Doc', 8: 'Practice' };
-        const WIZ_ALL = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        //   crew: Start, Read, Plan, Group Doc, My Lines, Practice  (the script is written in a Google Doc;
+        //         each student builds their own voice's lines on My Lines, with help matched to their level)
+        const WIZ_NAMES = { 0: 'Start', 1: 'Read', 2: 'Hook', 3: 'Story', 4: 'Wrap', 5: 'Finish', 6: 'Plan', 7: 'Group Doc', 8: 'Practice', 9: 'My Lines' };
+        const WIZ_ALL = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         const WIZ_SOLO = [0, 1, 2, 3, 4, 5];
-        const WIZ_CREW = [0, 1, 6, 7, 8];
+        const WIZ_CREW = [0, 1, 6, 7, 9, 8];
         const WIZ_FINISH = 5;
         const WIZ_RADIO = { 2: 'intro', 3: 'content', 4: 'conclusion' };
         const WIZ_CLASS = { 2: 'section-intro', 3: 'section-content', 4: 'section-conclusion' };
@@ -1563,7 +1564,7 @@
                     document.querySelector('input[name="content"]:checked') ||
                     document.querySelector('input[name="conclusion"]:checked'));
             }
-            if (n === WIZ_FINISH || n === 8) return true;
+            if (n === WIZ_FINISH || n === 8 || n === 9) return true;
             if (n === 6) {
                 return ['intro', 'content', 'conclusion'].every(r => document.querySelector('input[name="' + r + '"]:checked'));
             }
@@ -1604,7 +1605,7 @@
             if (typeof rvRenderVoiceBank === 'function') rvRenderVoiceBank(rvCurrentTopic());
             if (typeof updateExemplarNotes === 'function') updateExemplarNotes();
             if (typeof crewOnStep === 'function') crewOnStep(n);
-            if (typeof closeReadingDrawer === 'function' && [2, 3, 4, 6].indexOf(n) === -1) closeReadingDrawer(false);
+            if (typeof closeReadingDrawer === 'function' && [2, 3, 4, 6, 9].indexOf(n) === -1) closeReadingDrawer(false);
             if (window.READER_TOOLS) window.READER_TOOLS.reset();
             wizUpdateNav();
             wizUpdateStepper();

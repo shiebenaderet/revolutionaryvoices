@@ -1665,6 +1665,22 @@
             <div class="doc-preview" id="docPreview" aria-label="Preview of your Group Doc frame"></div>
         </div>
 
+        <!-- CREW STEP: MY LINES (crew path). Each student builds the lines for their own voice. Built by lines.js. -->
+        <div class="section section-lines wizard-step" data-step="9">
+            <h2>My Lines</h2>
+            <p class="step-lead">Build the lines for the voice you will perform. Then copy them into your Group Doc.</p>
+            <div class="lines-who" id="linesWho"></div>
+            <div class="lines-help" id="linesHelp"></div>
+            <div id="linesStyles"></div>
+            <div id="linesBeats"></div>
+            <div class="doc-actions lines-actions">
+                <button type="button" class="btn" onclick="copyMyLines()">Copy my lines</button>
+                <button type="button" class="btn btn-secondary" onclick="printMyLines()">Print my lines sheet</button>
+            </div>
+            <p class="field-hint">Paste your lines into the matching boxes in your Group Doc. Your crew can change them together.</p>
+            <textarea id="linesState" hidden aria-hidden="true" tabindex="-1"></textarea>
+        </div>
+
         <!-- CREW STEP: PRACTICE (crew path only). -->
         <div class="section section-practice wizard-step" data-step="8">
             <h2><i class="fas fa-microphone" aria-hidden="true"></i> Practice</h2>
@@ -1729,7 +1745,7 @@
     <footer class="site-footer">
         <span>Revolutionary Voices Script Builder</span>
         <span class="footer-sep">-</span>
-        <span id="footerVersion">v3.0.0</span>
+        <span id="footerVersion">v3.1.0</span>
         <span class="footer-sep">-</span>
         <span>voices.mrbsocialstudies.org</span>
     </footer>
@@ -1766,7 +1782,9 @@
     <script src="sources.js"></script>
     <script src="version.js"></script>
     <script src="app.js"></script>
+    <script src="builder-banks.js"></script>
     <script src="crew.js"></script>
+    <script src="lines.js"></script>
     <script src="reader-tools.js"></script>
 </body>
 </html>

@@ -12,7 +12,7 @@ Students build a podcast-style historical episode in which a Host, a Narrator an
 
 | Path | Steps | Where the script is written |
 |---|---|---|
-| **Crew** (2 to 4 people) | Start, Read, Plan, Group Doc, Practice | Together, in a shared Google Doc |
+| **Crew** (2 to 4 people) | Start, Read, Plan, Group Doc, My Lines, Practice | Together, in a shared Google Doc |
 | **Solo** | Start, Read, Hook, Story, Wrap, Finish | Here, one part at a time |
 
 ### Crew path
@@ -23,6 +23,7 @@ Students build a podcast-style historical episode in which a Host, a Narrator an
 | Read | Pick a reading by its first sentence, read it, build the **Fact Bank** (fact plus source), write a **working thesis**. |
 | Plan | Episode map, pick a style for the Hook, Story and Wrap, and write one line per box. |
 | Group Doc | **Copy the frame** and paste it into a new Google Doc, or **print a paper copy** with ruled lines. Share with the crew and the teacher. Students can change the frame or make their own. |
+| My Lines | Each student, on their own Chromebook, builds the lines for their voice one box at a time. Help starts at their reading level: **Quick** taps words into short sentence frames (word banks in `builder-banks.js`, drawn only from the reading), **Clear** gets "Stuck?" starters, **Full** writes on lines, **Deep** adds a go-further move. Copy the lines into the Doc, or print the sheet. |
 | Practice | Paste the finished script ("Maria: ...") to time it and rehearse line by line. |
 
 ### Jobs
@@ -38,7 +39,7 @@ Students build a podcast-style historical episode in which a Host, a Narrator an
 
 - **Reading levels: Quick, Clear, Full, Deep** (formerly Level 0 to 3, and "Easier language" etc. here). The names describe the text, never the reader. 22 topics, same facts at every level, glossed vocabulary at every level.
 - **Listen and Font** on every screen and reading page (`reader-tools.js`, ported from colonial-unrest): read-aloud with sentence highlighting; Atkinson Hyperlegible Next (default), Lexend, OpenDyslexic or Verdana; text size; wider spacing; Light / Dark. It is called "Font", not "dyslexia": a comfort setting, not an accommodation.
-- **One typeface,** Atkinson Hyperlegible Next, bundled. No letter-spaced capitals, no italic running text, nothing a student reads under 15px.
+- **Looks like a handout:** black on white, Atkinson Hyperlegible Next, square boxes with thin rules, ruled writing boxes, no tints or decorative icons. The paper copies (Group Doc, My Lines) use the same style, so screen and paper match. No letter-spaced capitals, no italic running text, nothing a student reads under 15px.
 - **Works offline:** fonts and icons are self-hosted; no CDN calls at runtime.
 - **No login:** work saves in the browser's `localStorage` and reopens on return. **My Work** lists scripts and holds **Back up** / **Restore** (a Google Doc copy with a restore code, or a file).
 - **Primary sources** for every topic: Source Spotlight on Read, a Voice Bank in the writing drawer.
@@ -65,6 +66,8 @@ readings/          GENERATED standalone reading pages, one clean URL per topic
                    (/readings/<topic>/) — edit readings.js, then rebuild
 version.js         Build hash (updated by the pre-commit hook)
 crew.js            Crew path: crew table, Fact Bank, level cards, Plan, Group Doc frame, Practice
+lines.js           My Lines: sentence frames by level (Quick / Clear / Full / Deep)
+builder-banks.js   Quick-level word banks for the frames, one per topic, from readings.js only
 reader-tools.js    Listen and Font (ported from colonial-unrest; changes marked ADAPTED)
 fonts/             Self-hosted Atkinson Hyperlegible Next, Lexend, OpenDyslexic (OFL), Font Awesome CSS
 webfonts/          Font Awesome icon font files (woff2)
@@ -109,7 +112,7 @@ This project uses [Semantic Versioning](https://semver.org):
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
-Current version: **3.0.0**
+Current version: **3.1.0**
 
 ---
 

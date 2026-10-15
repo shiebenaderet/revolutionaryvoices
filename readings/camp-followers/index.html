@@ -142,6 +142,30 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
   .gloss-def[hidden] { display:inline; }
   .gloss-word { text-decoration:none; padding:0; margin:0; }
 }
+/* Handout look (3.1.0): matches the script builder and the paper copies.
+   Black on white, square boxes with thin black rules, no tints or shadows. */
+:root { --brand:#000; --brand-dark:#000; --brand-deep:#000; --ink:#000; --page-bg:#e9e7e2;
+  --surface:#fff; --surface-2:#fff; --line:#000; --muted:#333; --accent:#000; --gold:#000;
+  --code-conclusion:#000; --edge:#000; --radius:0; --shadow:none; }
+:root[data-theme="dark"] { --brand:#f4f4f4; --brand-dark:#f4f4f4; --brand-deep:#f4f4f4; --ink:#f4f4f4; --page-bg:#000;
+  --surface:#111; --surface-2:#111; --line:#f4f4f4; --muted:#d0d0d0; --accent:#f4f4f4; --gold:#f4f4f4;
+  --code-conclusion:#f4f4f4; --edge:#f4f4f4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --brand:#f4f4f4; --brand-dark:#f4f4f4; --brand-deep:#f4f4f4;
+  --ink:#f4f4f4; --page-bg:#000; --surface:#111; --surface-2:#111; --line:#f4f4f4; --muted:#d0d0d0; --accent:#f4f4f4;
+  --gold:#f4f4f4; --code-conclusion:#f4f4f4; --edge:#f4f4f4; } }
+.wrap { background:var(--surface); border:1px solid var(--line); margin-top:16px; }
+.reading-viewer { border:1.5px solid var(--line) !important; border-radius:0 !important; box-shadow:none !important; }
+.wrap * { border-radius:0 !important; box-shadow:none !important; }
+.level-pill { background:var(--surface) !important; color:var(--ink) !important; border:2px solid var(--line) !important; }
+.level-pill[aria-pressed="true"] { background:var(--ink) !important; color:var(--surface) !important; }
+.reading-quickfacts { background:var(--surface) !important; border:1.5px solid var(--line) !important; }
+.facts-group h3, .reading-head h1, .eyebrow { color:var(--ink) !important; }
+.wrap a { color:var(--ink) !important; }
+#rtools .rt-btn { background:var(--surface); }
+#rtools .rt-btn.rt-primary { background:var(--ink); color:var(--surface) !important; border-color:var(--ink); }
+#rtools .rt-btn.rt-primary * { color:var(--surface) !important; }
+#rtools .rt-btn svg { display:none; }
+
 </style>
 <noscript><style>
 .level-panel[hidden]{display:block}.level-toggle{display:none}

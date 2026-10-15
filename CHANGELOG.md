@@ -6,6 +6,13 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.2.3] - 2026-10-15
+
+### Fixed
+
+- **Browsers kept last year's styles and code after the update.** The new page loaded with the old `styles.css` and `app.js` from the browser's cache, so it showed the old typewriter font, rounded boxes, "Step 1 of 6 · Basics", an unstyled My Work button and "v1.3.0" in the footer. Every stylesheet and script link now carries `?v=3.2.3`, so a new version always loads fresh. Bump it with each release (`index.html` and `build-readings.js`).
+- The footer no longer shows the build code from version 2.0.0 (`10da653`), which was never updated.
+
 ## [3.2.2] - 2026-10-15
 
 ### Changed

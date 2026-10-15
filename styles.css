@@ -2530,3 +2530,85 @@ html.rt-playing .on-air-dot { background: #fff !important; box-shadow: 0 0 8px #
     .container .header.studio .studio-tools { width: 100%; }
     .container .header.studio .on-air-light { margin-left: auto; }
 }
+
+/* =====================================================================
+   3.3.0 MASTHEAD: one quiet row, then the tuning dial.
+   Title on the left, three plain-text tools on the right, no boxes.
+   The steps sit on a dial window: tick marks across the top, each step
+   a station, and a red needle on the one you're on.
+   ===================================================================== */
+.container .header.studio { padding: 14px 40px 0 !important; }
+@media (max-width: 640px) { .container .header.studio { padding: 12px 16px 0 !important; } }
+.container .header.studio .studio-bar { flex-wrap: nowrap; align-items: center; gap: 10px 16px; }
+.container .header.studio .studio-brand { font-size: 22px; line-height: 1.2; margin: 0; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.container .header.studio .studio-brand .brand-sub { font-size: 16px; font-weight: 600; }
+.container .header.studio .studio-brand .brand-sub::before { content: none; }
+.container .studio-brand i.fas { font-size: .85em; }
+
+/* On Air: a small lamp, no box. It lights red while Listen reads. */
+.container .on-air-light { border: 0 !important; padding: 0 !important; font-size: 14px; font-weight: 700; gap: 6px; color: var(--mast-soft) !important; background: transparent !important; white-space: nowrap; }
+html.rt-playing .container .on-air-light { color: #ff8a73 !important; background: transparent !important; }
+html.rt-playing .on-air-dot { background: #ff5a3c !important; box-shadow: 0 0 8px #ff5a3c !important; }
+
+/* Listen, Font, My Work: plain words on the dark strip, gold underline on hover. */
+.container .header.studio .studio-tools { margin-left: auto; gap: 2px; padding: 0 !important; background: transparent !important; border: 0 !important; flex-wrap: nowrap; }
+.container .header.studio .hdr-btn, .container .header.studio .rt-btn,
+.container .header.studio .rt-btn.rt-primary {
+    background: transparent !important; border: 0 !important; color: var(--mast-ink) !important;
+    font-size: 16px; font-weight: 700; min-height: 44px; padding: 6px 12px !important; box-shadow: none !important;
+    text-decoration: none; text-underline-offset: 6px;
+}
+.container .header.studio .rt-btn.rt-primary *, .container .header.studio .hdr-btn * { color: var(--mast-ink) !important; }
+.container .header.studio .hdr-btn:hover, .container .header.studio .rt-btn:hover,
+.container .header.studio .hdr-btn[aria-expanded="true"] { outline: 0; text-decoration: underline 3px var(--gold); }
+.container .header.studio .hdr-caret { font-size: .8em; margin-left: 2px; }
+html.rt-playing .container .header.studio .rt-btn.rt-primary { text-decoration: underline 3px #ff5a3c; }
+
+/* The dial window. */
+.container .tuner-stepper {
+    display: flex !important; flex-wrap: nowrap !important; justify-content: space-between; gap: 0 !important;
+    position: relative; margin: 12px -40px 0 !important; padding: 18px 40px 10px !important;
+    background: rgba(0,0,0,.28); border-top: 1px solid rgba(251,241,220,.12);
+}
+@media (max-width: 640px) { .container .tuner-stepper { margin: 10px -16px 0 !important; padding: 16px 8px 8px !important; } }
+.container .tuner-stepper::before {
+    display: block !important; content: ""; position: absolute; left: 0; right: 0; top: 0; height: 9px; opacity: .55;
+    background-image: repeating-linear-gradient(90deg, var(--mast-soft) 0 1px, transparent 1px 8px) !important;
+}
+.container .tuner-mark {
+    flex: 1 1 0 !important; min-width: 0; min-height: 44px; position: relative; display: flex; flex-direction: column; align-items: center;
+    gap: 2px; background: none !important; border: 0 !important; padding: 0 2px !important; cursor: pointer;
+}
+/* Each station gets a taller tick on the dial. */
+.container .tuner-mark .t-tick { display: block !important; position: absolute; top: -18px; left: 50%; width: 2px; height: 14px; margin-left: -1px; background: var(--mast-soft) !important; box-shadow: none !important; }
+.container .tuner-mark .t-name, .container .tuner-mark.active .t-name, .container .tuner-mark.locked .t-name, .container .tuner-mark.completed .t-name {
+    display: flex; flex-direction: column; align-items: center; gap: 0; padding: 0 !important; border: 0 !important; background: transparent !important;
+    font-size: 15px; font-weight: 600; line-height: 1.2; text-align: center; white-space: normal; text-decoration: none !important; color: var(--mast-ink) !important;
+}
+.container .tuner-mark .t-num, .container .tuner-mark.active .t-num, .container .tuner-mark.completed .t-num, .container .tuner-mark.locked .t-num {
+    width: auto; height: auto; border: 0 !important; background: transparent !important; border-radius: 0 !important;
+    font-size: 12px; font-weight: 700; color: var(--mast-soft) !important; font-variant-numeric: tabular-nums;
+}
+.container .tuner-mark.completed .t-num::after { content: " ✓"; }
+.container .tuner-mark.locked .t-name { color: var(--mast-soft) !important; font-weight: 500; }
+.container .tuner-mark.locked { cursor: not-allowed; }
+/* You are here: gold label, and the needle runs down through the dial. */
+.container .tuner-mark.active .t-name { color: var(--gold) !important; font-weight: 800; }
+.container .tuner-mark.active .t-num { color: var(--gold) !important; }
+.container .tuner-mark.active .t-tick { top: -18px; height: 16px; width: 3px; margin-left: -1.5px; background: #ff5a3c !important; box-shadow: 0 0 8px rgba(255,90,60,.8) !important; }
+.container .tuner-mark.active::before { display: none !important; }
+.container .tuner-mark:hover:not(.locked) .t-name { text-decoration: underline 2px var(--gold) !important; text-underline-offset: 4px; }
+.container .tuner-mark:focus-visible { outline: 3px solid var(--gold); outline-offset: -2px; }
+@media (max-width: 640px) {
+    .container .header.studio .studio-bar { flex-wrap: wrap; }
+    .container .header.studio .studio-brand { font-size: 20px; }
+    .container .on-air-light { display: none !important; }
+    .container .header.studio .studio-tools { width: 100%; margin: 0 0 0 -12px; justify-content: flex-start; }
+    .container .tuner-mark .t-name { font-size: 13px !important; }
+}
+
+/* Step headings: focus lands here for screen readers when you change steps,
+   but a heading isn't something you click, so no box. No rust tab either. */
+.container .wizard-step > h2:focus, .container .wizard-step h2[tabindex="-1"]:focus,
+.container .wizard-step[tabindex="-1"]:focus { outline: none !important; }
+.container .wizard-step > h2::after { content: none !important; }

@@ -6,6 +6,17 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.3.0] - 2026-10-15
+
+### Changed
+
+- **A calmer masthead with a real tuning dial.** The header was a pile of boxes: a boxed On Air sign, three boxed buttons, six dashed step boxes and a tick strip. Now the title, a small On Air lamp and three plain-word tools (Listen, Font, My Work) share one row. The steps sit on a dial window underneath: tick marks across the top, a taller tick for each step, the number above each name, and a red needle with a gold label on the step you're on. Done steps show a check; steps you can't open yet are dimmer. On a phone the tools drop to their own row and the dial still fits all six steps.
+- The rust tab next to each step heading is gone.
+
+### Fixed
+
+- A blue box no longer appears around the step heading after you change a field. Focus still moves to the heading for screen readers when you change steps.
+
 ## [3.2.3] - 2026-10-15
 
 ### Fixed

@@ -61,6 +61,8 @@ styles.css         On The Air theme and layout
 readings.js        Leveled reading library (22 topics, 4 levels, facts, sources)
 sources.js         Primary-source library (Source Spotlight, Voice Bank, Two Sources)
 check-sources.js   Mechanical slur check for excerpts (runs in pre-commit)
+check-levels.js    Reading-level check: every reading measures inside its level (node check-levels.js)
+READING-LEVELS.md  The one definition of Quick / Clear / Full / Deep, shared across the course sites
 build-readings.js  Generates readings/ from readings.js (node build-readings.js)
 readings/          GENERATED standalone reading pages, one clean URL per topic
                    (/readings/<topic>/) — edit readings.js, then rebuild
@@ -112,7 +114,7 @@ This project uses [Semantic Versioning](https://semver.org):
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
-Current version: **3.2.1**
+Current version: **3.2.2**
 
 ---
 
@@ -121,6 +123,16 @@ Current version: **3.2.1**
 Pure static site - no build step. Edit `index.html`, `app.js`, `styles.css`, or `readings.js` directly and open `index.html` in a browser.
 
 To add a new reading topic, add an entry to `window.RV_READINGS` in `readings.js` (and a matching row in `window.RV_TOPICS`). Each topic needs `name`, `tagline`, `quickFacts`, four `levels` (`mostSupport`, `someSupport`, `standard`, `challenge`, shown to students as Quick, Clear, Full, Deep), `keyFacts` for hook/content/conclusion, and `sources`. Use the same facts at every level; gloss hard words on Most Support.
+
+After editing `readings.js`, run the checks:
+
+```
+node check-sources.js    # slur check on primary-source excerpts
+node check-levels.js     # every reading measures inside its level (READING-LEVELS.md)
+node build-readings.js   # regenerate readings/
+```
+
+`check-levels.js` measures each reading with the shared Flesch-Kincaid formula from `READING-LEVELS.md` (Quick 5.0, Clear 7.5, Full 10.5, Deep above that topic's Full; each topic must step up Quick < Clear < Full < Deep) and checks the level names and blurbs in `app.js` and `build-readings.js`. A reading that fails is rewritten, language only, never relabeled.
 
 Deployed via GitHub Pages with a custom domain (`CNAME` file). Push to `main` to deploy.
 

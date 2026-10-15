@@ -202,4 +202,12 @@ Each phase ships on its own and is useful alone.
 3. **The site makes the frame,** and students are free to change it or make their own. It comes both as a Doc to paste and as a printable skeleton with boxes and ruled lines.
 4. **Calendar** (ams-planning `Unit-2-Blueprint.html`, `course-calendar.js`): launch and research Oct 26 to 29, script builder introduced Fri Oct 30, writing Mon Nov 2 and Tue Nov 3, recording Nov 4.
 5. **Reading levels are Quick, Clear, Full, Deep** across every course site (formerly Level 0 to 3).
+
+   **Reading levels note (3.2.2).** What each name means is defined once, in
+   `READING-LEVELS.md` at the repo root (an identical copy lives in every course
+   repo): the blurbs, the reader bands, and a measured Flesch-Kincaid limit per level
+   (Quick 5.0, Clear 7.5, Full 10.5, Deep above that topic's Full). `node
+   check-levels.js` enforces it on `readings.js`. A reading that measures outside its
+   level is rewritten (language only, never the facts), not relabeled.
+
 6. **Translations later.**

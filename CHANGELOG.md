@@ -6,6 +6,27 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.2.2] - 2026-10-15
+
+### Changed
+
+- **Readings re-leveled so each level measures the same as across the course.** Quick, Clear, Full and Deep now follow one definition shared by every course site and handout (`READING-LEVELS.md`). Fifteen readings that measured outside their level were rewritten: four Quick (Abigail Adams, Native Americans, Loyalists, Hessians), nine Clear (James Armistead, Peter Salem, Joseph Brant, Mercy Otis Warren, Benedict Arnold, African Americans, Loyalists, Young Soldiers, Women's Work) and two Full (African Americans, Women's Work). Only the language changed: long sentences were split, rare words swapped for plain ones, and side details moved into their own sentences. Every fact, year, name, glossed term and quote stays. Flesch-Kincaid grade, before and after:
+
+  | Level | Before (average, range) | After (average, range) | Limit |
+  |---|---|---|---|
+  | Quick | 4.2 (2.0-6.7) | 3.9 (2.0-4.9) | 5.0 |
+  | Clear | 7.3 (4.8-9.4) | 6.4 (4.8-7.4) | 7.5 |
+  | Full | 9.3 (7.3-11.8) | 9.0 (7.3-10.4) | 10.5 |
+  | Deep | 15.6 (12.6-19.5) | 15.6 (12.6-19.5) | above that topic's Full |
+
+  Every topic now steps up Quick < Clear < Full < Deep (Joseph Brant's Clear and Full had measured the same).
+
+### Added
+
+- `check-levels.js`: measures every reading with the shared formula, prints the table, and fails on any reading over its level's limit, any topic whose levels do not step up, or any level name or blurb in `app.js` or `build-readings.js` that differs from `READING-LEVELS.md`. Run `node check-levels.js` after editing `readings.js`.
+
+---
+
 ## [3.2.1] - 2026-10-15
 
 ### Changed

@@ -2404,3 +2404,107 @@ body { background: var(--desk) !important; color: var(--ink); }
 .lb-last { font-weight: 700; }
 .lb-frame:not(.is-open) .lb-sentence { margin-bottom: 2px; }
 .lb-open { font-size: 16px; }
+
+/* ============================================
+   WAVE 15 (3.2.0): HANDOUT IN THE STUDIO
+   The handout structure stays (square boxes, ruled lines, one face, no clutter);
+   the warmth comes back: a walnut desk, a dark station masthead with the On Air
+   light and the tuning-dial steps, a warm cream sheet, brown ink and rules, one
+   rust accent for "this is the action", and a colored stripe on each voice
+   label (the word stays, so color is never the only cue). Paper copies stay
+   black and white for the copier.
+   ============================================ */
+:root, :root[data-theme="light"] {
+    --paper: #fffaf0; --ink: #2a1d12; --desk: #3b2a1c; --rule: #3a2a1a; --soft-rule: #b9a888; --muted: #5a4a38;
+    --accent: #a8431a; --accent-ink: #fffaf0; --gold: #e0a52e;
+    --mast: #2a1d12; --mast-ink: #fbf1dc; --mast-soft: #cdbb98;
+    --voice-host-c: #1f6f64; --voice-narrator-c: #55732a; --voice-subject-c: #a8431a;
+    --btn-bg: var(--accent); --btn-ink: var(--accent-ink);
+    --focus: #1d4ed8;
+}
+:root[data-theme="dark"] {
+    --paper: #1e1711; --ink: #f3e6cf; --desk: #0d0906; --rule: #e6d4b4; --soft-rule: #6e5d47; --muted: #cdbb98;
+    --accent: #f0a05a; --accent-ink: #1a1208; --gold: #f0bf57;
+    --mast: #0d0906; --mast-ink: #fbf1dc; --mast-soft: #b9a888;
+    --voice-host-c: #43c2b1; --voice-narrator-c: #a3c26a; --voice-subject-c: #f0a05a;
+    --focus: #93c5fd;
+}
+body { background: var(--desk) !important; }
+.container { border: 0; padding-top: 0; }
+.site-footer, .site-footer * { color: var(--mast-soft) !important; }
+
+/* The masthead: a dark station strip across the top of the sheet. */
+.container .header.studio {
+    background: var(--mast) !important; color: var(--mast-ink); border: 0 !important; border-bottom: 4px solid var(--gold) !important;
+    margin: 0 -40px 24px !important; padding: 18px 40px 14px !important;
+}
+@media (max-width: 640px) { .container .header.studio { margin: 0 -16px 18px !important; padding: 14px 16px 12px !important; } }
+.container .header.studio .studio-brand, .container .header.studio .studio-brand * { color: var(--mast-ink) !important; }
+.container .header.studio .studio-brand .brand-sub { color: var(--gold) !important; }
+.container .studio-brand i.fas { display: inline-block !important; color: var(--gold) !important; margin-right: 4px; }
+.on-air-light { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 15px; padding: 4px 10px;
+    border: 2px solid var(--mast-soft); color: var(--mast-soft) !important; background: transparent !important; }
+.on-air-dot { width: 10px; height: 10px; border-radius: 50% !important; background: var(--mast-soft) !important; }
+/* It lights up while Listen is reading aloud. */
+html.rt-playing .on-air-light { border-color: #e2462a; color: #fff !important; background: #b8321b !important; }
+html.rt-playing .on-air-dot { background: #fff !important; box-shadow: 0 0 8px #fff !important; }
+@media (prefers-reduced-motion: no-preference) { html.rt-playing .on-air-dot { animation: onAirPulse 1.4s ease-in-out infinite !important; } }
+.container .header.studio .hdr-btn, .container .header.studio .rt-btn {
+    background: transparent !important; color: var(--mast-ink) !important; border: 2px solid var(--mast-soft) !important;
+}
+.container .header.studio .hdr-btn *, .container .header.studio .rt-btn * { color: var(--mast-ink) !important; }
+.container .header.studio .rt-btn.rt-primary { background: var(--gold) !important; border-color: var(--gold) !important; color: #1a1208 !important; }
+.container .header.studio .rt-btn.rt-primary * { color: #1a1208 !important; }
+.container .header.studio .hdr-btn:focus-visible, .container .header.studio .rt-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+
+/* Steps on the tuning dial: tick marks behind, the current station in gold. */
+.container .tuner-stepper { position: relative; margin-top: 16px; padding-top: 14px; }
+.container .tuner-stepper::before { display: block !important; content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px;
+    background-image: repeating-linear-gradient(90deg, var(--mast-soft) 0 1px, transparent 1px 10px) !important; opacity: .7; }
+.container .tuner-mark .t-name { background: transparent !important; color: var(--mast-ink) !important; border-color: var(--mast-soft); }
+.container .tuner-mark .t-num { background: transparent !important; color: var(--mast-ink) !important; border-color: var(--mast-soft) !important; }
+.container .tuner-mark.active .t-name { background: var(--gold) !important; color: #1a1208 !important; border-color: var(--gold); }
+.container .tuner-mark.active .t-num { background: #1a1208 !important; color: var(--gold) !important; border-color: #1a1208 !important; }
+.container .tuner-mark.completed .t-num { background: var(--mast-ink) !important; color: var(--mast) !important; border-color: var(--mast-ink) !important; }
+.container .tuner-mark.locked .t-name { color: var(--mast-soft) !important; }
+.container .tuner-mark:focus-visible { outline: 3px solid var(--gold); }
+
+/* Headings carry a short rust tab, like a station marker. */
+.container .wizard-step > h2::after { content: ""; display: block; width: 48px; height: 4px; margin-top: 6px; background: var(--accent) !important; }
+
+/* The action is rust; everything else stays ink on cream. */
+.container .btn, .backup-dialog .btn, .practice-bar-btn {
+    background: var(--accent) !important; border-color: var(--accent) !important; color: var(--accent-ink) !important;
+}
+.container .btn *, .backup-dialog .btn *, .practice-bar-btn * { color: var(--accent-ink) !important; }
+.container .btn.btn-secondary, .backup-dialog .btn.btn-secondary, #wizBack { background: var(--paper) !important; color: var(--ink) !important; border-color: var(--rule) !important; }
+.container .btn.btn-secondary *, #wizBack * { color: var(--ink) !important; }
+.level-pill.active, .level-pill[aria-pressed="true"], .lb-chip.is-on, .lb-box-btn.is-current, .rt-opt[aria-pressed="true"] {
+    background: var(--accent) !important; color: var(--accent-ink) !important; border-color: var(--accent) !important;
+}
+.container input[type="checkbox"], .container input[type="radio"], .chip-check input, .ready-read input { accent-color: var(--accent) !important; }
+.style-card.is-on, .style-card:has(input:checked), .map-part { border-color: var(--accent) !important; }
+.style-card.is-on .style-name::before, .style-card:has(input:checked) .style-name::before { color: var(--accent) !important; }
+.container .link-btn, .container a { color: var(--accent) !important; }
+.lb-frame.is-done .lb-sentence::after { color: var(--accent) !important; }
+.auto-save-indicator { background: var(--mast) !important; border-left: 4px solid var(--gold) !important; }
+
+/* Voices: the word in a box, with a colored stripe. */
+.voice-chip, .speaker-chip, .role-chip-preview { border-left: 6px solid var(--voice-host-c) !important; }
+.voice-chip.voice-narrator, .speaker-chip.chip-narrator { border-left-color: var(--voice-narrator-c) !important; }
+.voice-chip.voice-subject, .speaker-chip.chip-subject { border-left-color: var(--voice-subject-c) !important; }
+.voice-chip.voice-all { border-left-color: var(--gold) !important; }
+.beat-dot { border-bottom: 4px solid var(--voice-host-c) !important; }
+.beat-dot.voice-narrator { border-bottom-color: var(--voice-narrator-c) !important; }
+.beat-dot.voice-subject { border-bottom-color: var(--voice-subject-c) !important; }
+.chip-voice-host span { border-bottom: 3px solid var(--voice-host-c); }
+.chip-voice-narrator span { border-bottom: 3px solid var(--voice-narrator-c); }
+.chip-voice-subject span { border-bottom: 3px solid var(--voice-subject-c); }
+
+/* Script on screen: a studio script page. */
+.script-doc-header { border-bottom: 3px solid var(--gold) !important; }
+.script-line.practice-active { outline-color: var(--accent) !important; }
+.container .studio-brand i.fas { display: none !important; }
+.container .header.studio .studio-tools { border: 0 !important; background: transparent !important; padding: 0 !important; margin-left: auto; }
+.container .header.studio .studio-bar { align-items: center; }
+.auto-save-indicator, .auto-save-indicator * { color: var(--mast-ink) !important; }

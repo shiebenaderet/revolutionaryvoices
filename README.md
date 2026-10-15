@@ -39,7 +39,7 @@ Students build a podcast-style historical episode in which a Host, a Narrator an
 
 - **Reading levels: Quick, Clear, Full, Deep** (formerly Level 0 to 3, and "Easier language" etc. here). The names describe the text, never the reader. 22 topics, same facts at every level, glossed vocabulary at every level.
 - **Listen and Font** on every screen and reading page (`reader-tools.js`, ported from colonial-unrest): read-aloud with sentence highlighting; Atkinson Hyperlegible Next (default), Lexend, OpenDyslexic or Verdana; text size; wider spacing; Light / Dark. It is called "Font", not "dyslexia": a comfort setting, not an accommodation.
-- **Looks like a handout:** black on white, Atkinson Hyperlegible Next, square boxes with thin rules, ruled writing boxes, no tints or decorative icons. The paper copies (Group Doc, My Lines) use the same style, so screen and paper match. No letter-spaced capitals, no italic running text, nothing a student reads under 15px.
+- **A handout in the studio:** a warm cream sheet on a walnut desk under a dark station masthead (On Air light, tuning-dial steps), Atkinson Hyperlegible Next, square boxes with brown rules, ruled writing boxes, one rust accent for actions, no decorative clutter. The paper copies (Group Doc, My Lines) use the same style, so screen and paper match. No letter-spaced capitals, no italic running text, nothing a student reads under 15px.
 - **Works offline:** fonts and icons are self-hosted; no CDN calls at runtime.
 - **No login:** work saves in the browser's `localStorage` and reopens on return. **My Work** lists scripts and holds **Back up** / **Restore** (a Google Doc copy with a restore code, or a file).
 - **Primary sources** for every topic: Source Spotlight on Read, a Voice Bank in the writing drawer.
@@ -112,7 +112,7 @@ This project uses [Semantic Versioning](https://semver.org):
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
-Current version: **3.1.0**
+Current version: **3.2.0**
 
 ---
 

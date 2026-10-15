@@ -140,28 +140,29 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
   .gloss-def[hidden] { display:inline; }
   .gloss-word { text-decoration:none; padding:0; margin:0; }
 }
-/* Handout look (3.1.0): matches the script builder and the paper copies.
-   Black on white, square boxes with thin black rules, no tints or shadows. */
-:root { --brand:#000; --brand-dark:#000; --brand-deep:#000; --ink:#000; --page-bg:#e9e7e2;
-  --surface:#fff; --surface-2:#fff; --line:#000; --muted:#333; --accent:#000; --gold:#000;
-  --code-conclusion:#000; --edge:#000; --radius:0; --shadow:none; }
-:root[data-theme="dark"] { --brand:#f4f4f4; --brand-dark:#f4f4f4; --brand-deep:#f4f4f4; --ink:#f4f4f4; --page-bg:#000;
-  --surface:#111; --surface-2:#111; --line:#f4f4f4; --muted:#d0d0d0; --accent:#f4f4f4; --gold:#f4f4f4;
-  --code-conclusion:#f4f4f4; --edge:#f4f4f4; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --brand:#f4f4f4; --brand-dark:#f4f4f4; --brand-deep:#f4f4f4;
-  --ink:#f4f4f4; --page-bg:#000; --surface:#111; --surface-2:#111; --line:#f4f4f4; --muted:#d0d0d0; --accent:#f4f4f4;
-  --gold:#f4f4f4; --code-conclusion:#f4f4f4; --edge:#f4f4f4; } }
-.wrap { background:var(--surface); border:1px solid var(--line); margin-top:16px; }
+/* Handout in the studio (3.2.0): matches the script builder. A warm cream
+   sheet on a walnut desk, brown ink and rules, square boxes, one rust accent. */
+:root { --brand:#a8431a; --brand-dark:#a8431a; --brand-deep:#2a1d12; --ink:#2a1d12; --page-bg:#3b2a1c;
+  --surface:#fffaf0; --surface-2:#fffaf0; --line:#3a2a1a; --muted:#5a4a38; --accent:#a8431a; --gold:#e0a52e;
+  --code-conclusion:#2a1d12; --edge:#3a2a1a; --radius:0; --shadow:none; }
+:root[data-theme="dark"] { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf; --ink:#f3e6cf; --page-bg:#0d0906;
+  --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a; --gold:#f0bf57;
+  --code-conclusion:#f3e6cf; --edge:#e6d4b4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf;
+  --ink:#f3e6cf; --page-bg:#0d0906; --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a;
+  --gold:#f0bf57; --code-conclusion:#f3e6cf; --edge:#e6d4b4; } }
+.wrap { background:var(--surface); margin-top:16px; border-top:4px solid var(--gold); }
 .reading-viewer { border:1.5px solid var(--line) !important; border-radius:0 !important; box-shadow:none !important; }
 .wrap * { border-radius:0 !important; box-shadow:none !important; }
 .level-pill { background:var(--surface) !important; color:var(--ink) !important; border:2px solid var(--line) !important; }
-.level-pill[aria-pressed="true"] { background:var(--ink) !important; color:var(--surface) !important; }
+.level-pill[aria-pressed="true"] { background:var(--accent) !important; color:var(--surface) !important; border-color:var(--accent) !important; }
 .reading-quickfacts { background:var(--surface) !important; border:1.5px solid var(--line) !important; }
-.facts-group h3, .reading-head h1, .eyebrow { color:var(--ink) !important; }
-.wrap a { color:var(--ink) !important; }
+.facts-group h3, .reading-head h1 { color:var(--ink) !important; }
+.eyebrow { color:var(--accent) !important; }
+.wrap a { color:var(--accent) !important; }
 #rtools .rt-btn { background:var(--surface); }
-#rtools .rt-btn.rt-primary { background:var(--ink); color:var(--surface) !important; border-color:var(--ink); }
-#rtools .rt-btn.rt-primary * { color:var(--surface) !important; }
+#rtools .rt-btn.rt-primary { background:var(--gold); color:#1a1208 !important; border-color:var(--gold); }
+#rtools .rt-btn.rt-primary * { color:#1a1208 !important; }
 #rtools .rt-btn svg { display:none; }
 
 .wrap ul { margin:0 0 18px 18px; padding:0; }

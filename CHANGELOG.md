@@ -6,6 +6,15 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.2.0] - 2026-10-15
+
+### Changed
+
+- **Handout in the studio.** The handout structure stays (square boxes, ruled lines, one face, no clutter) and the radio warmth comes back: a walnut desk, a dark station masthead with the tuning-dial step row and the current step in gold, a warm cream sheet with brown ink and rules, one rust accent for every action (buttons, selected choices, links), and a colored stripe on each voice label (the word stays, so color is never the only cue). Each step heading has a short rust marker. Dark mode is the same studio at night. Reading pages match. Paper copies stay black and white for the copier.
+- **The On Air light** in the masthead lights up while Listen is reading aloud.
+
+---
+
 ## [3.1.0] - 2026-10-15
 
 ### Added

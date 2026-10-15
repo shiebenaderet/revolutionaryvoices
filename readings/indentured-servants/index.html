@@ -15,16 +15,17 @@
   --code-conclusion:#c2701a;
   --focus:#d4661a; --radius:14px;
   --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --font-head:'Roboto Slab',Georgia,serif;
-  --font-mono:'Space Mono',ui-monospace,monospace;
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
 }
 :root[data-theme="dark"] {
   --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
   --ink:#f3e6cf; --page-bg:#1f1611;
   --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
   --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-  --code-conclusion:#e8985a;
+  --code-conclusion:#e8985a; --edge:#a8987a;
   --focus:#f0bf57;
   --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
 }
@@ -34,19 +35,21 @@
     --ink:#f3e6cf; --page-bg:#1f1611;
     --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
     --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-    --code-conclusion:#e8985a;
+    --code-conclusion:#e8985a; --edge:#a8987a;
     --focus:#f0bf57;
     --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
   }
 }
 
-@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
   font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
-  font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight:400; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
   font-weight:700; font-display:swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -58,8 +61,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 
 .page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
   justify-content:space-between; margin-bottom:18px; }
-.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--brand); margin:0; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
 .theme-toggle { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
   cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
@@ -75,9 +80,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
 .level-pill { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
-  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
   display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
-.level-pill .level-word { font-size:.8em; }
+.level-pill { min-width:64px; }
 .level-pill:hover { border-color:var(--gold); }
 .level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
   border-color:var(--gold); font-weight:700; }
@@ -148,20 +153,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 <div class="wrap">
   <div class="page-head">
     <p class="eyebrow">Revolutionary Voices · Reading</p>
-    <button type="button" class="theme-toggle">Dark / light</button>
+    <div id="rtools"></div>
   </div>
 
-  <article class="reading-viewer">
+  <article class="reading-viewer" data-listen>
     <header class="reading-head">
       <div>
         <h1>Indentured Servants</h1>
         <p class="reading-tagline">Workers who had signed a contract to serve, living through a war about freedom while they were not free</p>
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
-          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
-          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
-          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
-          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false" title="Plain words, a little more detail.">Clear</button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true" title="The grade-level reading.">Full</button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false" title="Adds real quotes from the time and what historians argue.">Deep</button>
       </div>
     </header>
 
@@ -172,7 +177,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <span class="qf"><strong>Key tension:</strong> Caught in a war for &quot;freedom&quot; while not free themselves</span>
     </div>
 
-      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+      <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
         <div class="reading-body"><p><strong>Indentured servants</strong> were workers who signed a deal to work for a master for several years. Most were poor people from Europe. They signed a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">contract</button><span class="gloss-def" hidden> (a written promise)</span></span> to work — usually 4 to 7 years — to pay for their trip to America.</p>
 <p>During those years, they had almost no freedom. They could not marry without permission. They could not own land. They could even be bought and sold, a little like enslaved people. But their contract would end one day, and then they would be free.</p>
 <p>There were about 50,000 to 60,000 indentured servants during the Revolution.</p>
@@ -181,75 +186,75 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Indentured servants (workers who signed a deal to work for years) served a master.</li><li>Most were poor people from Europe.</li><li>They signed a contract to pay for their trip to America.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>They could not marry or own land during their contract.</li><li>They could even be bought and sold.</li><li>Some joined the American army for a promise of freedom.</li><li>Some ran to the British, who also promised freedom.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>After the war, some gained freedom and even land.</li><li>Others stayed poor.</li><li>&quot;Freedom&quot; did not mean the same thing for everyone.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+      <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
         <div class="reading-body"><p>Indentured servants were one of the Revolution's most overlooked groups. Most were poor Europeans. They signed a contract (an "indenture") to work for a master for several years — usually 4 to 7. In return, the master paid the cost of their trip to America.</p>
 <p>During their service, they had very limited freedom. They could not marry without permission. They could not own property. They could even be bought and sold. But their contracts would eventually end. By the time of the Revolution, an estimated 50,000 to 60,000 people were serving as indentured servants — about 2% of the colonial population.</p>
 <p>The war forced them into hard choices. Some stayed and finished their service. Others enlisted in the Continental Army, sometimes with a master's permission and a promise of freedom. Some ran away to the British, who also promised liberty. After the war, some gained their freedom and even <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">land grants</button><span class="gloss-def" hidden> (free land given by the government)</span></span> for their service. Others struggled in poverty. Their story is a reminder that the Revolution's promise of "liberty" did not include everyone equally.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Indentured servants were mostly poor Europeans bound by contract.</li><li>They worked 4 to 7 years to pay for their passage to America.</li><li>About 50,000–60,000 were serving during the Revolution.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>During service they couldn't marry, own property, and could be sold.</li><li>Some enlisted in the Continental Army for a promise of freedom.</li><li>Some ran to the British, who promised liberty too.</li><li>Some, especially women, judged running too dangerous and stayed.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Some gained freedom and land grants for their service.</li><li>Others struggled in poverty after the war.</li><li>The Revolution's 'liberty' did not include everyone equally.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="standard" data-level-word="Standard">
+      <div class="level-panel" data-level="standard" data-level-word="Full">
         <div class="reading-body"><p>Indentured servants were among the people caught in the middle of a war fought for "liberty." There were an estimated 50,000 to 60,000 of them, roughly two percent of the colonial population. Most were poor Europeans who had signed an indenture — a contract binding them to work for a master for a set term, commonly four to seven years, to repay the cost of their passage to America.</p>
 <p>Their condition was a kind of temporary bondage. Until their term ended, they could not marry without permission, could not own property, and could be bought and sold. Unlike enslaved people, though, they would one day go free. When war came in 1775, that distinction shaped impossible choices. Many enlisted in the Continental Army, sometimes serving as a master's <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">substitute</button><span class="gloss-def" hidden> (someone who serves in another's place)</span></span> in exchange for an early release. Others fled to British lines, drawn by promises of immediate freedom. Still others, especially women, judged flight too dangerous and served out their terms.</p>
 <p>The war's outcomes for them were uneven. Some won their freedom through military service and even received land grants as veterans. Some who reached the British were evacuated to Nova Scotia, free but impoverished. Many simply returned to poverty at the bottom of colonial society. Their experience underscores a hard truth about the Revolution: its soaring language of freedom coexisted with everyday systems of unfreedom that bound poor whites as well as the enslaved.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>~50,000–60,000 indentured servants — about 2% of the population — were caught in a war for 'liberty.'</li><li>Most were poor Europeans bound by an indenture (a work contract).</li><li>Terms commonly ran 4–7 years to repay the cost of passage.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Until their term ended they couldn't marry or own property and could be sold.</li><li>Many enlisted, sometimes as a master's substitute, for an early release.</li><li>Others fled to British lines drawn by promises of immediate freedom.</li><li>Some, especially women, served out their terms instead.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Some won freedom and veteran land grants through service.</li><li>Some who reached the British were evacuated to Nova Scotia, free but poor.</li><li>Many simply returned to poverty at society's bottom.</li><li>Soaring talk of freedom coexisted with everyday unfreedom.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+      <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
         <div class="reading-body"><p>The Revolution's rhetoric of liberty rang strangely for indentured servants — perhaps 50,000 to 60,000 people, about two percent of the population, who lived in a contractually defined unfreedom. Most were poor Europeans (a system so common that, by some estimates, half to two-thirds of all white immigrants to the colonies had arrived as bound labor) who had mortgaged years of their lives — typically four to seven — against the price of an Atlantic passage.</p>
 <p>Theirs was a status that troubled the era's neat categories: not <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">chattel slaves</button><span class="gloss-def" hidden> (people owned as property for life)</span></span>, since the indenture expired, but during its term subject to sale, denied marriage and property, and disciplined by their masters. War sharpened the contradiction into choice. Some servants enlisted in the Continental Army — frequently as substitutes their masters supplied in lieu of personal service — trading the indenture for the dangers of the ranks and a chance at freedom and a postwar land grant; others <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">absconded</button><span class="gloss-def" hidden> (fled in secret)</span></span> to British lines that, like Dunmore's proclamation to the enslaved, dangled immediate liberty; the most constrained, often women alone, calculated that flight was a worse gamble than endurance.</p>
 <p>What their stories reveal is that "freedom" in 1776 was not a single condition but a spectrum, and that the Revolution rearranged the bottom of colonial society without abolishing its hierarchies. Some bound laborers climbed, through service, into landowning citizenship; others were evacuated, free but destitute, to Nova Scotia; most were simply reabsorbed into a laboring poor whose unfreedom the new republic left largely intact. To narrate their experience is to ask how wide the Revolution's liberty was ever meant to extend.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Perhaps 50,000–60,000 people lived in a contractually defined unfreedom.</li><li>Half to two-thirds of white immigrants had arrived as bound labor.</li><li>They mortgaged years of their lives against an Atlantic passage.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Not chattel slaves (the indenture expired), but subject to sale, and denied marriage and property.</li><li>Many enlisted as substitutes their masters supplied in lieu of service.</li><li>Others absconded to British lines that, like Dunmore's, offered immediate liberty.</li><li>The most constrained, often women alone, judged endurance the safer gamble.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>'Freedom' in 1776 was a spectrum, not a single condition.</li><li>Some bound laborers climbed into landowning citizenship through service.</li><li>Others were evacuated, free but destitute, to Nova Scotia.</li><li>Most were reabsorbed into a laboring poor the republic left unfree.</li></ul>
           </div>
         </section>
@@ -310,21 +315,12 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     });
   });
 
-  var toggle = document.querySelector('.theme-toggle');
-  if (toggle) {
-    try {
-      var t = localStorage.getItem('rvTheme');
-      if (t) root.setAttribute('data-theme', t);
-    } catch (e) {}
-    toggle.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark'
-        || (!root.hasAttribute('data-theme')
-            && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('rvTheme', next); } catch (e) {}
-    });
-  }
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
 })();</script>
+<script src="../../reader-tools.js"></script>
 </body>
 </html>

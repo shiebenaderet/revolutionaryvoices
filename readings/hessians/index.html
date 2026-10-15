@@ -15,16 +15,17 @@
   --code-conclusion:#c2701a;
   --focus:#d4661a; --radius:14px;
   --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --font-head:'Roboto Slab',Georgia,serif;
-  --font-mono:'Space Mono',ui-monospace,monospace;
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
 }
 :root[data-theme="dark"] {
   --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
   --ink:#f3e6cf; --page-bg:#1f1611;
   --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
   --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-  --code-conclusion:#e8985a;
+  --code-conclusion:#e8985a; --edge:#a8987a;
   --focus:#f0bf57;
   --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
 }
@@ -34,19 +35,21 @@
     --ink:#f3e6cf; --page-bg:#1f1611;
     --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
     --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-    --code-conclusion:#e8985a;
+    --code-conclusion:#e8985a; --edge:#a8987a;
     --focus:#f0bf57;
     --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
   }
 }
 
-@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
   font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
-  font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight:400; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
   font-weight:700; font-display:swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -58,8 +61,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 
 .page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
   justify-content:space-between; margin-bottom:18px; }
-.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--brand); margin:0; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
 .theme-toggle { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
   cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
@@ -75,9 +80,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
 .level-pill { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
-  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
   display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
-.level-pill .level-word { font-size:.8em; }
+.level-pill { min-width:64px; }
 .level-pill:hover { border-color:var(--gold); }
 .level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
   border-color:var(--gold); font-weight:700; }
@@ -148,20 +153,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 <div class="wrap">
   <div class="page-head">
     <p class="eyebrow">Revolutionary Voices · Reading</p>
-    <button type="button" class="theme-toggle">Dark / light</button>
+    <div id="rtools"></div>
   </div>
 
-  <article class="reading-viewer">
+  <article class="reading-viewer" data-listen>
     <header class="reading-head">
       <div>
         <h1>Hessian Soldiers</h1>
         <p class="reading-tagline">About 30,000 German soldiers were paid to fight for Britain. Many never went home.</p>
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
-          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
-          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
-          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
-          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false" title="Plain words, a little more detail.">Clear</button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true" title="The grade-level reading.">Full</button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false" title="Adds real quotes from the time and what historians argue.">Deep</button>
       </div>
     </header>
 
@@ -172,7 +177,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <span class="qf"><strong>The twist:</strong> As many as 40 to 50 of every 100 never went home. Some died. Some stayed in America.</span>
     </div>
 
-      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+      <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
         <div class="reading-body"><p>During the Revolution, not all of Britain's soldiers were British. About 30,000 of them were Germans. Americans called them <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Hessians</button><span class="gloss-def" hidden> (German soldiers fighting for Britain)</span></span>, because many came from a German area called Hesse-Kassel.</p>
 <p>In the 1700s, Germany was not one country. It was many small states. Some German rulers made money by renting out their soldiers to other countries. Britain paid them to send soldiers to fight in America.</p>
 <p>Many Hessians did not want to be there. Some were <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">drafted</button><span class="gloss-def" hidden> (forced to serve)</span></span>. Others joined for money or adventure. They were well-trained soldiers.</p>
@@ -182,75 +187,75 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Not all of Britain's soldiers were British.</li><li>About 30,000 were Germans called &quot;Hessians.&quot;</li><li>Many came from a German area called Hesse-Kassel.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>German rulers rented out their soldiers for money.</li><li>Some Hessians were drafted (forced to serve); some joined for money or adventure.</li><li>They were well-trained soldiers.</li><li>At Trenton in 1776, Washington captured about 900 of them.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Many Hessians never went home.</li><li>Some died; thousands chose to stay in America.</li><li>They became American farmers.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+      <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
         <div class="reading-body"><p>Not all the soldiers fighting to keep America under British rule were British. Nearly a third were Germans. Americans called them "Hessians" because many came from the German state of Hesse-Kassel. About 30,000 German soldiers crossed the Atlantic to fight in America.</p>
 <p>In the 1700s, "Germany" was not one country but many small states. Some German rulers earned money by renting out their soldiers to other nations. These soldiers were called "subsidy troops," and Britain paid for tens of thousands of them. Hessians had different reasons for being there. Some were career soldiers. Some were <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">drafted</button><span class="gloss-def" hidden> (forced to join the army)</span></span> against their will. Some volunteered for the money or adventure. They were well-trained and fought in many battles.</p>
 <p>One famous moment came at the Battle of Trenton in December 1776. Washington's surprise attack captured about 900 Hessians. By the war's end, as many as 40 to 50 percent of the German soldiers never returned home. Some were killed. But thousands chose to stay in America, often settling among German-speaking communities and starting new lives.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Nearly a third of Britain's soldiers in America were German.</li><li>Americans called them &quot;Hessians&quot; after Hesse-Kassel.</li><li>About 30,000 crossed the Atlantic to fight.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>German rulers earned money renting out &quot;subsidy troops.&quot;</li><li>Some Hessians were career soldiers; some were drafted; some volunteered.</li><li>They fought in many battles and were well-trained.</li><li>At Trenton (Dec 1776), Washington captured about 900 Hessians.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>As many as 40–50% never returned home.</li><li>Some died; thousands stayed in America.</li><li>Many settled where other Germans lived and started new lives.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="standard" data-level-word="Standard">
+      <div class="level-panel" data-level="standard" data-level-word="Full">
         <div class="reading-body"><p>When Americans pictured the enemy in the Revolution, they often pictured "Hessians" — German soldiers fighting for Britain. About 30,000 of them crossed the Atlantic. At times they made up nearly a third of British land forces, a number roughly comparable to the entire Continental Army at its peak. Most were called Hessians after Hesse-Kassel, though they came from several German states.</p>
 <p>In the 1700s, "Germany" was a patchwork of small <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">principalities</button><span class="gloss-def" hidden> (territories ruled by princes)</span></span>. Some of their rulers made money by hiring out trained soldiers as "subsidy troops," and Britain paid these princes to supply men. That is why Americans have loosely called the Hessians "mercenaries." Most, though, were not freelance fighters but professional or <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">conscripted</button><span class="gloss-def" hidden> (forced into service)</span></span> soldiers sent by their states. Their reasons for being in America ranged from career duty to forced conscription to the lure of a signing bonus and adventure. They fought hard in many campaigns, from New York to the Carolinas.</p>
 <p>The Hessians' most famous moment was an American victory over them. On December 26, 1776, Washington crossed the Delaware and surprised the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">garrison</button><span class="gloss-def" hidden> (the troops stationed there)</span></span> at Trenton, capturing about 900 men. Over the course of the war, perhaps 40 to 50 percent of the German soldiers never went home. Thousands died. Thousands more chose to remain in America, often settling among Pennsylvania's German-speaking communities. They changed their names, farmed, and became citizens of the country they had been sent to subdue.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>About 30,000 German soldiers fought for Britain — at times nearly a third of its army.</li><li>Americans called them &quot;Hessians&quot; after Hesse-Kassel.</li><li>That was roughly the size of the whole Continental Army at its peak.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>German princes hired out trained &quot;subsidy troops&quot; for pay.</li><li>&quot;Mercenary&quot; is loose — most were professional or conscripted, not freelance.</li><li>Reasons ranged from career duty to forced conscription to a signing bonus.</li><li>On Dec 26, 1776, Washington surprised Trenton and captured ~900 Hessians.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Perhaps 40–50% of the German soldiers never went home.</li><li>Thousands died; thousands more chose to stay in America.</li><li>Many settled among Pennsylvania Germans, changed their names, and farmed.</li><li>They became citizens of the country they were sent to subdue.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+      <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
         <div class="reading-body"><p>The "Hessians" loom in American memory as the Revolution's faceless foreign menace, yet their story is among the war's most human studies in coercion, survival, and reinvention. Roughly 30,000 German soldiers — named for Hesse-Kassel, though drawn from several states — were shipped across the Atlantic to fight for George III, at times constituting nearly a third of his forces in America.</p>
 <p>The word "mercenary," long attached to them, misleads. The German lands were a mosaic of small <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">polities</button><span class="gloss-def" hidden> (self-ruling states)</span></span>, and several of their rulers — many tied by blood to the British crown — <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">defrayed</button><span class="gloss-def" hidden> (helped fill)</span></span> their treasuries by leasing regiments as "subsidy troops." The soldiers themselves rarely chose the bargain: some were career professionals, but many were conscripts swept up by their princes, fighting not for pay they kept but at the command of rulers who pocketed the British subsidies. That distinction matters, because it makes the Hessians less hired guns than men sold into a distant war. Their competence was real — disciplined troops who fought from Long Island to Guilford Courthouse — but so was their alienation.</p>
 <p>Nothing illustrates the latter like the aftermath of Trenton: Washington's Christmas-night crossing of the Delaware netted some 900 prisoners on December 26, 1776, many of whom were marched through the countryside and, tellingly, settled comfortably among Pennsylvania's Germans. By war's end, as much as 40 to 50 percent of the German contingent never returned — killed, or, in their thousands, choosing to vanish into America, <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">anglicizing</button><span class="gloss-def" hidden> (making English)</span></span> "Johann" to "John" and farming the land of their former enemies. Their quiet defection is its own verdict on a war they had been compelled to wage.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>The &quot;Hessians&quot; loom in memory as the war's faceless foreign menace.</li><li>Roughly 30,000 Germans, drawn from several states, fought for George III.</li><li>At times they were nearly a third of his forces in America.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>&quot;Mercenary&quot; misleads — rulers pocketed British subsidies for leased regiments.</li><li>Many soldiers were conscripts, not volunteers — men sold into a distant war.</li><li>They fought competently from Long Island to Guilford Courthouse.</li><li>Trenton (Dec 26, 1776) netted ~900 prisoners, many settled among Pennsylvania Germans.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>As much as 40–50% of the contingent never returned.</li><li>Thousands vanished into America, anglicizing &quot;Johann&quot; to &quot;John.&quot;</li><li>Many farmed the land of their former enemies.</li><li>Their choice to stay is a quiet verdict on a war they were compelled to wage.</li></ul>
           </div>
         </section>
@@ -312,21 +317,12 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     });
   });
 
-  var toggle = document.querySelector('.theme-toggle');
-  if (toggle) {
-    try {
-      var t = localStorage.getItem('rvTheme');
-      if (t) root.setAttribute('data-theme', t);
-    } catch (e) {}
-    toggle.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark'
-        || (!root.hasAttribute('data-theme')
-            && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('rvTheme', next); } catch (e) {}
-    });
-  }
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
 })();</script>
+<script src="../../reader-tools.js"></script>
 </body>
 </html>

@@ -32,17 +32,19 @@ function loadReadings() {
     return { topics: RV_TOPICS, readings: RV_READINGS };
 }
 
+/* Students see one-word names that describe the text, never the reader
+   (3.0.0; these were stars and "Most support" ... "Challenge"). The keys stay. */
 const LEVELS = [
-    { key: 'mostSupport', stars: '★',    word: 'Most support' },
-    { key: 'someSupport', stars: '★★',   word: 'Some support' },
-    { key: 'standard',    stars: '★★★',  word: 'Standard' },
-    { key: 'challenge',   stars: '★★★★', word: 'Challenge' }
+    { key: 'mostSupport', word: 'Quick', blurb: 'Short sentences. Key words explained.' },
+    { key: 'someSupport', word: 'Clear', blurb: 'Plain words, a little more detail.' },
+    { key: 'standard',    word: 'Full',  blurb: 'The grade-level reading.' },
+    { key: 'challenge',   word: 'Deep',  blurb: 'Adds real quotes from the time and what historians argue.' }
 ];
 
 const SECTION_LABEL = {
-    hook: 'For your Hook (Introduction)',
-    content: 'For your Content',
-    conclusion: 'For your Conclusion'
+    hook: 'For your Hook',
+    content: 'For your Story',
+    conclusion: 'For your Wrap'
 };
 
 /* Mirrors rvFactsFor() in app.js: facts are either a shared array or
@@ -76,16 +78,17 @@ const TOKENS = `
   --code-conclusion:#c2701a;
   --focus:#d4661a; --radius:14px;
   --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --font-head:'Roboto Slab',Georgia,serif;
-  --font-mono:'Space Mono',ui-monospace,monospace;
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
 }
 :root[data-theme="dark"] {
   --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
   --ink:#f3e6cf; --page-bg:#1f1611;
   --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
   --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-  --code-conclusion:#e8985a;
+  --code-conclusion:#e8985a; --edge:#a8987a;
   --focus:#f0bf57;
   --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
 }
@@ -95,7 +98,7 @@ const TOKENS = `
     --ink:#f3e6cf; --page-bg:#1f1611;
     --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
     --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-    --code-conclusion:#e8985a;
+    --code-conclusion:#e8985a; --edge:#a8987a;
     --focus:#f0bf57;
     --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
   }
@@ -106,13 +109,15 @@ const TOKENS = `
    the index at readings/index.html (../fonts). */
 function fontFaces(fontBase) {
     return `
-@font-face { font-family:'Inter'; src:url('${fontBase}/inter.woff2') format('woff2');
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('${fontBase}/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('${fontBase}/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('${fontBase}/Lexend-Variable.woff2') format('woff2');
   font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Roboto Slab'; src:url('${fontBase}/roboto-slab.woff2') format('woff2');
-  font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('${fontBase}/space-mono-regular.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('${fontBase}/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight:400; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('${fontBase}/space-mono-bold.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('${fontBase}/OpenDyslexic-Bold.woff2') format('woff2');
   font-weight:700; font-display:swap; }`;
 }
 
@@ -144,8 +149,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 
 .page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
   justify-content:space-between; margin-bottom:18px; }
-.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--brand); margin:0; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
 .theme-toggle { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
   cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
@@ -161,9 +168,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
 .level-pill { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
-  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
   display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
-.level-pill .level-word { font-size:.8em; }
+.level-pill { min-width:64px; }
 .level-pill:hover { border-color:var(--gold); }
 .level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
   border-color:var(--gold); font-weight:700; }
@@ -266,21 +273,11 @@ const PAGE_JS = `
     });
   });
 
-  var toggle = document.querySelector('.theme-toggle');
-  if (toggle) {
-    try {
-      var t = localStorage.getItem('rvTheme');
-      if (t) root.setAttribute('data-theme', t);
-    } catch (e) {}
-    toggle.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark'
-        || (!root.hasAttribute('data-theme')
-            && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('rvTheme', next); } catch (e) {}
-    });
-  }
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
 })();`;
 
 function renderPage(topic, reading, allTopics) {
@@ -292,9 +289,8 @@ function renderPage(topic, reading, allTopics) {
         .filter(l => reading.levels && reading.levels[l.key])
         .map(l =>
             `<button type="button" class="level-pill" data-level="${l.key}" ` +
-            `aria-pressed="${l.key === 'standard'}">` +
-            `<span aria-hidden="true">${l.stars}</span>` +
-            `<span class="level-word">${l.word}</span></button>`)
+            `aria-pressed="${l.key === 'standard'}" title="${esc(l.blurb)}">` +
+            `${l.word}</button>`)
         .join('\n          ');
 
     /* One panel per level, each carrying its own body and its own key
@@ -358,10 +354,10 @@ ${PAGE_CSS}
 <div class="wrap">
   <div class="page-head">
     <p class="eyebrow">Revolutionary Voices · Reading</p>
-    <button type="button" class="theme-toggle">Dark / light</button>
+    <div id="rtools"></div>
   </div>
 
-  <article class="reading-viewer">
+  <article class="reading-viewer" data-listen>
     <header class="reading-head">
       <div>
         <h1>${esc(reading.name)}</h1>
@@ -386,6 +382,7 @@ ${sourcesBlock}
   </p>
 </div>
 <script>${PAGE_JS}</script>
+<script src="../../reader-tools.js"></script>
 </body>
 </html>
 `;
@@ -454,7 +451,7 @@ ${PAGE_CSS}
 <div class="wrap">
   <p class="eyebrow">Revolutionary Voices</p>
   <h1>Readings</h1>
-  <p class="reading-tagline">${built.length} topics, four language levels each.</p>
+  <p class="reading-tagline">${built.length} topics. Each one comes in four versions: Quick, Clear, Full and Deep.</p>
 ${sections}
 </div>
 </body>

@@ -15,16 +15,17 @@
   --code-conclusion:#c2701a;
   --focus:#d4661a; --radius:14px;
   --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --font-head:'Roboto Slab',Georgia,serif;
-  --font-mono:'Space Mono',ui-monospace,monospace;
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
 }
 :root[data-theme="dark"] {
   --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
   --ink:#f3e6cf; --page-bg:#1f1611;
   --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
   --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-  --code-conclusion:#e8985a;
+  --code-conclusion:#e8985a; --edge:#a8987a;
   --focus:#f0bf57;
   --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
 }
@@ -34,19 +35,21 @@
     --ink:#f3e6cf; --page-bg:#1f1611;
     --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
     --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-    --code-conclusion:#e8985a;
+    --code-conclusion:#e8985a; --edge:#a8987a;
     --focus:#f0bf57;
     --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
   }
 }
 
-@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
   font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
-  font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight:400; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
   font-weight:700; font-display:swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -58,8 +61,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 
 .page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
   justify-content:space-between; margin-bottom:18px; }
-.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--brand); margin:0; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
 .theme-toggle { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
   cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
@@ -75,9 +80,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
 .level-pill { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
-  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
   display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
-.level-pill .level-word { font-size:.8em; }
+.level-pill { min-width:64px; }
 .level-pill:hover { border-color:var(--gold); }
 .level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
   border-color:var(--gold); font-weight:700; }
@@ -148,20 +153,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 <div class="wrap">
   <div class="page-head">
     <p class="eyebrow">Revolutionary Voices · Reading</p>
-    <button type="button" class="theme-toggle">Dark / light</button>
+    <div id="rtools"></div>
   </div>
 
-  <article class="reading-viewer">
+  <article class="reading-viewer" data-listen>
     <header class="reading-head">
       <div>
         <h1>Women in the Revolutionary War</h1>
         <p class="reading-tagline">Women ran boycotts, farms, and army camps. After the war they still did not have equal rights</p>
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
-          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
-          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
-          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
-          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false" title="Plain words, a little more detail.">Clear</button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true" title="The grade-level reading.">Full</button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false" title="Adds real quotes from the time and what historians argue.">Deep</button>
       </div>
     </header>
 
@@ -172,7 +177,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <span class="qf"><strong>Voices to recover:</strong> Daughters of Liberty, Abigail Adams, camp followers</span>
     </div>
 
-      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+      <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
         <div class="reading-body"><p>Women did many important jobs in the Revolutionary War. But after the war, they did not get the same freedom they helped win.</p>
 <p>Before the war, women joined <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">boycotts</button><span class="gloss-def" hidden> (refusing to buy something to protest)</span></span>. Women stopped buying British cloth and tea. They made their own cloth at "spinning bees." This hurt Britain's money.</p>
 <p>When men went to fight, women ran the farms, shops, and homes. This was a huge job.</p>
@@ -182,20 +187,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Women did many important jobs in the war.</li><li>They joined boycotts and stopped buying British goods.</li><li>But after the war they did not get equal rights.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Women made their own cloth at 'spinning bees.'</li><li>When men left to fight, women ran the farms and shops.</li><li>Some followed the army to cook and nurse.</li><li>A few were spies or dressed as men to fight.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>After the war, women still could not vote.</li><li>The law of coverture (a wife had no rights apart from her husband) stayed in place.</li><li>They kept fighting for their rights for many years.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+      <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
         <div class="reading-body"><p>Women played essential roles in the Revolutionary War — even though they were left out of the freedom they helped create.</p>
 <p>Before the fighting started, women led the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">boycotts</button><span class="gloss-def" hidden> (refusing to buy goods as protest)</span></span> of British goods. Groups called the Daughters of Liberty held "spinning bees" to make their own cloth instead of buying British fabric. In 1770, hundreds of Boston women signed a promise not to drink British tea. Because women made most household purchases, their choices put real economic pressure on Britain.</p>
 <p>When men marched off to war, women became <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">"deputy husbands"</button><span class="gloss-def" hidden> (they ran the farm or shop in the husband's place)</span></span>. Thousands of women also followed the army as camp followers, cooking, washing, and nursing the wounded. A few served as spies, and a very small number disguised themselves as men to fight.</p>
@@ -203,55 +208,55 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Women led the boycotts of British goods before the war.</li><li>The Daughters of Liberty made their own cloth at 'spinning bees.'</li><li>They helped win a freedom they were then denied.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>In 1770, hundreds of Boston women pledged not to drink British tea.</li><li>Women became 'deputy husbands' (they ran the farm or shop in the husband's place).</li><li>Thousands followed the army as camp followers.</li><li>A few spied; a very few fought in disguise.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Little changed legally for women after the war.</li><li>Under coverture, a wife had no legal identity of her own (no rights apart from her husband).</li><li>The fight for women's rights would continue for generations.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="standard" data-level-word="Standard">
+      <div class="level-panel" data-level="standard" data-level-word="Full">
         <div class="reading-body"><p>Women were everywhere in the Revolution — organizing, managing, nursing, spying, occasionally fighting. Yet they were excluded from the liberty they helped secure. Abigail Adams captured the irony in 1776 when she asked her husband to "Remember the Ladies," and he brushed her off.</p>
 <p>Their resistance began with economics. Women made most household purchases, so the boycotts of British goods depended on them. The Daughters of Liberty held "spinning bees" to produce <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">homespun cloth</button><span class="gloss-def" hidden> (cloth families made at home)</span></span>. In 1770, several hundred Boston women publicly pledged to give up British tea. They turned shopping into political protest at a time when women were expected to stay out of politics. When the men left to fight, women became "deputy husbands," running farms, businesses, and finances. Thousands more traveled with the army as camp followers who cooked, laundered, and nursed, sharing the soldiers' dangers. A handful spied. A very few, like Deborah Sampson, enlisted in disguise.</p>
 <p>After the war, the legal world barely shifted. Under coverture, a married woman had no separate legal identity, could not vote, and had limited property rights. Women had been essential to victory, but the Revolution's promises of liberty and equality were not extended to them. Later activists would seize on that contradiction, tracing the women's-rights movement back to this generation.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Women organized, managed, nursed, spied, and occasionally fought — then were left out of the liberty they won.</li><li>Abigail Adams's 1776 'Remember the Ladies' caught the irony.</li><li>Boycotts depended on women, who made most household purchases.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>The Daughters of Liberty spun homespun; ~300 Boston women pledged off British tea (1770).</li><li>Women became 'deputy husbands,' managing farms, shops, and finances.</li><li>Thousands were camp followers — cooking, laundering, nursing.</li><li>A handful spied; a few, like Deborah Sampson, enlisted in disguise.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>After the war, coverture left wives without the vote or full property rights.</li><li>The Revolution's promises were not extended to women.</li><li>Later activists traced the women's-rights movement back to this generation.</li><li>The era offered mainly 'republican motherhood' — a real but limited role.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+      <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
         <div class="reading-body"><p>The Revolution could not have been won without women, and it repaid them with exclusion — a paradox that makes their story a test of how broadly the era's ideals actually reached. Even before Lexington, women turned the household into a theater of resistance: since they controlled most consumer spending, the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">non-importation</button><span class="gloss-def" hidden> (refusing to import British goods)</span></span> boycotts depended on them, and the Daughters of Liberty recast "women's work" as political action, spinning homespun and, in 1770, gathering several hundred Boston signatures pledging to forgo British tea.</p>
 <p>With husbands and sons at war, women became "deputy husbands," managing farms, shops, and ledgers in a legal system that normally barred them from such roles; thousands followed the army as camp followers — indispensable cooks, laundresses, and nurses whom officers alternately relied on and resented. A smaller number gathered intelligence, and a rare few, such as Deborah Sampson, crossed the ultimate line and soldiered in disguise. As the historian Carol Berkin has argued, this was among the first times American women acted collectively for political ends — experience that seeded later movements.</p>
 <p>Yet independence left the doctrine of coverture intact: a married woman remained legally absorbed into her husband, without the vote and with little property right. The most the Revolution offered was the ideal of "republican motherhood" — woman as educator of virtuous citizens — a real but <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">circumscribed</button><span class="gloss-def" hidden> (tightly limited)</span></span> role. Abigail Adams's "Remember the Ladies," and John's laughing refusal, frame the central question a podcast can press: who, exactly, was included when Americans said "all men are created equal"?</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>The Revolution couldn't have been won without women — and repaid them with exclusion.</li><li>Women turned the household into a theater of resistance.</li><li>Their story tests how broadly the era's ideals actually reached.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Boycotts depended on women's control of household spending.</li><li>'Deputy husbands' ran farms and ledgers a legal system normally barred them from.</li><li>Camp followers were indispensable yet resented by officers.</li><li>Carol Berkin: among the first times American women acted collectively for political ends.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Independence left coverture intact — wives legally absorbed into husbands.</li><li>The era's main offer was 'republican motherhood,' circumscribed but real.</li><li>'Remember the Ladies' and John's refusal frame who 'all men' included.</li><li>Their experience seeded later women's movements.</li></ul>
           </div>
         </section>
@@ -313,21 +318,12 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     });
   });
 
-  var toggle = document.querySelector('.theme-toggle');
-  if (toggle) {
-    try {
-      var t = localStorage.getItem('rvTheme');
-      if (t) root.setAttribute('data-theme', t);
-    } catch (e) {}
-    toggle.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark'
-        || (!root.hasAttribute('data-theme')
-            && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('rvTheme', next); } catch (e) {}
-    });
-  }
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
 })();</script>
+<script src="../../reader-tools.js"></script>
 </body>
 </html>

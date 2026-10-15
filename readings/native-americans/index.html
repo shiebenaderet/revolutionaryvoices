@@ -15,16 +15,17 @@
   --code-conclusion:#c2701a;
   --focus:#d4661a; --radius:14px;
   --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --font-head:'Roboto Slab',Georgia,serif;
-  --font-mono:'Space Mono',ui-monospace,monospace;
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
 }
 :root[data-theme="dark"] {
   --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
   --ink:#f3e6cf; --page-bg:#1f1611;
   --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
   --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-  --code-conclusion:#e8985a;
+  --code-conclusion:#e8985a; --edge:#a8987a;
   --focus:#f0bf57;
   --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
 }
@@ -34,19 +35,21 @@
     --ink:#f3e6cf; --page-bg:#1f1611;
     --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
     --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-    --code-conclusion:#e8985a;
+    --code-conclusion:#e8985a; --edge:#a8987a;
     --focus:#f0bf57;
     --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
   }
 }
 
-@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
   font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
-  font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight:400; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
   font-weight:700; font-display:swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -58,8 +61,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 
 .page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
   justify-content:space-between; margin-bottom:18px; }
-.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--brand); margin:0; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
 .theme-toggle { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
   cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
@@ -75,9 +80,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
 .level-pill { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
-  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
   display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
-.level-pill .level-word { font-size:.8em; }
+.level-pill { min-width:64px; }
 .level-pill:hover { border-color:var(--gold); }
 .level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
   border-color:var(--gold); font-weight:700; }
@@ -148,20 +153,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 <div class="wrap">
   <div class="page-head">
     <p class="eyebrow">Revolutionary Voices · Reading</p>
-    <button type="button" class="theme-toggle">Dark / light</button>
+    <div id="rtools"></div>
   </div>
 
-  <article class="reading-viewer">
+  <article class="reading-viewer" data-listen>
     <header class="reading-head">
       <div>
         <h1>Native Americans in the Revolutionary War</h1>
         <p class="reading-tagline">Native nations had to pick a side in a war over their own land</p>
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
-          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
-          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
-          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
-          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false" title="Plain words, a little more detail.">Clear</button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true" title="The grade-level reading.">Full</button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false" title="Adds real quotes from the time and what historians argue.">Deep</button>
       </div>
     </header>
 
@@ -172,7 +177,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <span class="qf"><strong>The cost:</strong> The war hurt Native people on every side. The 1783 peace deal ignored Native allies.</span>
     </div>
 
-      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+      <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
         <div class="reading-body"><p>Native American nations were put in a terrible spot during the Revolution. Two groups — the British and the American colonists — were fighting over land that belonged to Native peoples. Neither side asked their permission.</p>
 <p>Each nation had to choose: help the British, help the Americans, or try to stay <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">neutral</button><span class="gloss-def" hidden> (not taking either side)</span></span>.</p>
 <p>Most Native nations helped the British. Why? In 1763, Britain had made a rule to stop colonists from moving onto Native land. The colonists wanted that land. So the British seemed like the safer choice.</p>
@@ -181,75 +186,75 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Two groups were fighting over Native land.</li><li>Neither side asked Native peoples for permission.</li><li>Each nation had to choose a side or try to stay out.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Most Native nations helped the British.</li><li>In 1763 Britain had tried to stop colonists from taking Native land.</li><li>The Iroquois Confederacy (six Native nations working together) split apart.</li><li>The Oneida and Tuscarora helped the Americans.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>The war hurt Native people no matter which side they chose.</li><li>American soldiers burned dozens of Native towns.</li><li>The peace deal gave Native land to the U.S. without asking them.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+      <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
         <div class="reading-body"><p>Native American nations faced an impossible choice during the Revolution. The British and the American colonists were fighting over land. That land had belonged to Native peoples for thousands of years — and neither side asked permission. Each nation had to decide: help the British, help the Americans, or try to stay <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">neutral</button><span class="gloss-def" hidden> (not taking either side)</span></span>.</p>
 <p>Most Native nations sided with the British. This wasn't love of British rule — it was strategy. After 1763, Britain had drawn a line (an official rule called the Proclamation of 1763). The line was meant to keep colonists from settling west on Native land. The colonists ignored it and kept coming. So many nations judged that Britain was more likely to protect their land.</p>
 <p>The decision tore communities apart. The Iroquois Confederacy had been united for centuries. Now it split: most nations backed Britain, but the Oneida and Tuscarora helped the Americans. The war <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">devastated</button><span class="gloss-def" hidden> (destroyed and ruined)</span></span> Native peoples no matter their choice. In 1779 the Sullivan Expedition burned about 40 Iroquois towns. Worst of all was the 1783 <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Treaty of Paris</button><span class="gloss-def" hidden> (the official peace agreement)</span></span> that ended the war. It handed Native land to the United States without consulting the nations who lived there.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>The British and colonists fought over land that belonged to Native peoples.</li><li>Neither side asked permission.</li><li>Each nation had to help the British, help the Americans, or stay neutral.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Most sided with Britain — a strategy, not love of British rule.</li><li>The Proclamation of 1763 had tried to limit settlers on Native land.</li><li>The Iroquois Confederacy split: most backed Britain; Oneida and Tuscarora helped the Americans.</li><li>Colonists kept settling Native land anyway.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>The war devastated Native peoples regardless of their choice.</li><li>In 1779 the Sullivan Expedition burned about 40 Iroquois towns.</li><li>The 1783 peace handed Native land to the U.S. without consulting them.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="standard" data-level-word="Standard">
+      <div class="level-panel" data-level="standard" data-level-word="Full">
         <div class="reading-body"><p>For Native American nations, the Revolution was a war fought over their homelands by two groups of outsiders. Neither side recognized Native rights. The nations had to choose among bad options: ally with Britain, ally with the Americans, or attempt a neutrality that both sides would violate.</p>
 <p>Most Native warriors who fought sided with Britain. That was a strategic judgment, not affection. After the Seven Years' War, the Proclamation of 1763 had drawn a line along the Appalachian Mountains barring colonial settlement to the west. The line was weakly enforced, but it signaled at least <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">nominal</button><span class="gloss-def" hidden> (in name only)</span></span> British respect for Native territory. Land-hungry colonists openly ignored it. The choice of sides shattered alliances. The Iroquois Confederacy (Haudenosaunee), united for generations, split apart. Most of its nations backed Britain, but the Oneida and Tuscarora aided the Americans — even bringing food to Valley Forge.</p>
 <p>The war devastated Native communities regardless of allegiance. In 1779 the Sullivan Expedition, ordered by Washington, burned some forty Iroquois towns and their crops. In 1782, Pennsylvania militia <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">massacred</button><span class="gloss-def" hidden> (brutally killed)</span></span> ninety-six peaceful, Christian Delaware (Lenape) people at Gnadenhütten. The final betrayal came at the end of the war. The 1783 Treaty of Paris transferred vast Native homelands to the United States without consulting — or even mentioning — the nations who had lived there and fought in the war. For Native peoples, American independence meant accelerating loss.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>The Revolution was a war fought over Native homelands by two groups of outsiders.</li><li>Neither recognized Native rights.</li><li>Nations had to choose among bad options — including a neutrality both sides violated.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Most Native fighters sided with Britain as a strategic judgment.</li><li>The Proclamation of 1763 signaled limited British respect for Native land; colonists ignored it.</li><li>The Haudenosaunee split — most for Britain, the Oneida and Tuscarora for the Americans.</li><li>Oneida even brought food to Valley Forge.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>The 1779 Sullivan Expedition burned ~40 Iroquois towns and crops.</li><li>In 1782 militia massacred 96 peaceful Christian Delaware at Gnadenhütten.</li><li>The 1783 Treaty of Paris gave away Native homelands without consulting the nations.</li><li>For Native peoples, independence meant accelerating loss.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+      <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
         <div class="reading-body"><p>To Native American nations, the American Revolution was someone else's civil war waged across their <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">sovereign</button><span class="gloss-def" hidden> (self-governing)</span></span> land — a contest in which both parties claimed territory that belonged to neither. Forced to wager their futures, most nations that took up arms sided with Britain, and the logic was coldly sound: the Crown's Proclamation of 1763 had at least drawn a line against westward settlement, whereas the colonists embodied the very land hunger that line was meant to restrain.</p>
 <p>The war fractured Native <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">polities</button><span class="gloss-def" hidden> (organized nations and governments)</span></span> from within. The Haudenosaunee (Iroquois) Confederacy — a six-nation league of remarkable longevity — broke apart, with the Mohawk, Seneca, Cayuga, and Onondaga generally siding with Britain while the Oneida and Tuscarora supported the Americans, scouting for the Continental Army and carrying provisions to Valley Forge. Neutrality, attempted by nations like the Delaware, proved impossible to hold. And loyalty earned no protection: Washington's 1779 Sullivan Expedition torched roughly forty Iroquois towns to break the Confederacy's capacity to fight, and in 1782 Pennsylvania militia murdered ninety-six unarmed Christian Delaware at Gnadenhütten.</p>
 <p>The deepest betrayal was diplomatic: the 1783 Treaty of Paris ceded sovereignty over enormous Native homelands to the new United States without consulting, or even naming, the nations who inhabited them. For Native America, the Revolution did not extend liberty; it removed a check on expansion, opening a century of <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">dispossession</button><span class="gloss-def" hidden> (having land and homes taken away)</span></span>. A podcast that centers their experience reveals the Revolution's other face — independence for some, built on the coming conquest of others.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>To Native nations, it was someone else's war waged across their sovereign land.</li><li>Both parties claimed territory that belonged to neither.</li><li>Each nation had to wager its future on a bad bet.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Most who fought sided with Britain; the Crown's 1763 Proclamation checked settlement.</li><li>The six-nation Haudenosaunee Confederacy broke apart from within.</li><li>Oneida and Tuscarora scouted for the Continental Army and supplied Valley Forge.</li><li>Neutrality (e.g., the Delaware) proved impossible to hold.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Loyalty earned no protection: even Oneida allies lost their lands.</li><li>Sullivan (1779) torched ~40 towns; Gnadenhütten (1782) killed 96 unarmed Christian Delaware.</li><li>The 1783 treaty ceded Native homelands without naming the nations on them.</li><li>The Revolution removed a check on expansion, opening a century of dispossession.</li></ul>
           </div>
         </section>
@@ -311,21 +316,12 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     });
   });
 
-  var toggle = document.querySelector('.theme-toggle');
-  if (toggle) {
-    try {
-      var t = localStorage.getItem('rvTheme');
-      if (t) root.setAttribute('data-theme', t);
-    } catch (e) {}
-    toggle.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark'
-        || (!root.hasAttribute('data-theme')
-            && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('rvTheme', next); } catch (e) {}
-    });
-  }
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
 })();</script>
+<script src="../../reader-tools.js"></script>
 </body>
 </html>

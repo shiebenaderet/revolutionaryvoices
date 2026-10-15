@@ -15,16 +15,17 @@
   --code-conclusion:#c2701a;
   --focus:#d4661a; --radius:14px;
   --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-  --font-head:'Roboto Slab',Georgia,serif;
-  --font-mono:'Space Mono',ui-monospace,monospace;
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
 }
 :root[data-theme="dark"] {
   --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
   --ink:#f3e6cf; --page-bg:#1f1611;
   --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
   --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-  --code-conclusion:#e8985a;
+  --code-conclusion:#e8985a; --edge:#a8987a;
   --focus:#f0bf57;
   --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
 }
@@ -34,19 +35,21 @@
     --ink:#f3e6cf; --page-bg:#1f1611;
     --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
     --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
-    --code-conclusion:#e8985a;
+    --code-conclusion:#e8985a; --edge:#a8987a;
     --focus:#f0bf57;
     --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
   }
 }
 
-@font-face { font-family:'Inter'; src:url('../../fonts/inter.woff2') format('woff2');
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
   font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Roboto Slab'; src:url('../../fonts/roboto-slab.woff2') format('woff2');
-  font-weight:100 900; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-regular.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
   font-weight:400; font-display:swap; }
-@font-face { font-family:'Space Mono'; src:url('../../fonts/space-mono-bold.woff2') format('woff2');
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
   font-weight:700; font-display:swap; }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -58,8 +61,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 
 .page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
   justify-content:space-between; margin-bottom:18px; }
-.eyebrow { font-family:var(--font-mono); font-size:.78rem; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--brand); margin:0; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
 .theme-toggle { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
   cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
@@ -75,9 +80,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
 .level-pill { background:var(--surface-2); color:var(--muted);
   border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
-  min-height:44px; cursor:pointer; font-family:var(--font-mono); font-size:.85rem;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
   display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
-.level-pill .level-word { font-size:.8em; }
+.level-pill { min-width:64px; }
 .level-pill:hover { border-color:var(--gold); }
 .level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
   border-color:var(--gold); font-weight:700; }
@@ -148,20 +153,20 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 <div class="wrap">
   <div class="page-head">
     <p class="eyebrow">Revolutionary Voices · Reading</p>
-    <button type="button" class="theme-toggle">Dark / light</button>
+    <div id="rtools"></div>
   </div>
 
-  <article class="reading-viewer">
+  <article class="reading-viewer" data-listen>
     <header class="reading-head">
       <div>
         <h1>Loyalists / Tories</h1>
         <p class="reading-tagline">About 15 to 20 of every 100 colonists stayed with Britain, and many lost everything</p>
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
-          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false"><span aria-hidden="true">★</span><span class="level-word">Most support</span></button>
-          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false"><span aria-hidden="true">★★</span><span class="level-word">Some support</span></button>
-          <button type="button" class="level-pill" data-level="standard" aria-pressed="true"><span aria-hidden="true">★★★</span><span class="level-word">Standard</span></button>
-          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false"><span aria-hidden="true">★★★★</span><span class="level-word">Challenge</span></button>
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false" title="Plain words, a little more detail.">Clear</button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true" title="The grade-level reading.">Full</button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false" title="Adds real quotes from the time and what historians argue.">Deep</button>
       </div>
     </header>
 
@@ -172,7 +177,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <span class="qf"><strong>The cost:</strong> 60,000 to 80,000 left America. Homes and land were taken.</span>
     </div>
 
-      <div class="level-panel" data-level="mostSupport" data-level-word="Most support" hidden>
+      <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
         <div class="reading-body"><p>Not everyone in America wanted to break away from Britain. About 15 to 20 out of every 100 colonists stayed loyal to the British king. They were called <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Loyalists</button><span class="gloss-def" hidden> (people who stayed with the king)</span></span>. Patriots called them "Tories" as an insult.</p>
 <p>Loyalists were not cowards or <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">traitors</button><span class="gloss-def" hidden> (people who turn against their own country)</span></span>. They just made a different choice. Some were rich people who did well under British rule. Some were poor farmers who feared Patriot mobs. Some were enslaved people who joined the British because Britain promised them freedom.</p>
 <p>This made the Revolution a kind of <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">civil war</button><span class="gloss-def" hidden> (a war between people of the same country)</span></span>. Neighbors and even families fought each other.</p>
@@ -181,75 +186,75 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Not everyone wanted to leave Britain.</li><li>About 15–20 of every 100 colonists stayed loyal.</li><li>Patriots called them 'Tories' as an insult.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Loyalists were not cowards or traitors.</li><li>Some were rich; some were poor farmers afraid of mobs.</li><li>Some were enslaved people the British promised to free.</li><li>It became a civil war (neighbors fighting neighbors).</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>Patriots burned Loyalists' homes and took their land and belongings.</li><li>60,000 to 80,000 Loyalists left America for good.</li><li>Their side lost, so their stories are often left out.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="someSupport" data-level-word="Some support" hidden>
+      <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
         <div class="reading-body"><p>Not all colonists wanted <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">independence</button><span class="gloss-def" hidden> (America becoming its own country)</span></span>. Between 15 and 20 percent of Americans — roughly 400,000 to 500,000 people — stayed loyal to Britain during the Revolution. They were called Loyalists, and Patriots insulted them as "Tories."</p>
 <p>Loyalists weren't traitors or cowards; they made a different choice for different reasons. Some were wealthy people tied to British trade. Some were small farmers who feared Patriot mob violence more than British taxes. Some were enslaved people who sided with Britain because it promised them freedom. Others simply feared that revolution would bring chaos.</p>
 <p>This made the war a civil war as much as a war against Britain — neighbors, friends, and even families split apart. Patriots often <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">persecuted</button><span class="gloss-def" hidden> (treated cruelly for their beliefs)</span></span> Loyalists: they were threatened, tarred and feathered, and had their property <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">confiscated</button><span class="gloss-def" hidden> (taken away by the government)</span></span>. As a result, an estimated 60,000 to 80,000 Loyalists fled the country — one of the largest forced migrations in American history — resettling in Canada, Britain, and elsewhere. Because they lost, their stories were largely erased from American memory.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>Between 15 and 20 percent of colonists stayed loyal to Britain.</li><li>That was about 400,000–500,000 people.</li><li>Patriots insulted them as 'Tories.'</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Loyalists chose Britain for many reasons.</li><li>Some were wealthy traders; some feared Patriot mobs; some sought freedom from slavery.</li><li>The war became a civil war splitting neighbors and families.</li><li>Patriots tarred and feathered Loyalists and seized their property.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>About 60,000–80,000 Loyalists fled the country.</li><li>They resettled in Canada, Britain, and elsewhere.</li><li>Because they lost, their stories were largely erased.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="standard" data-level-word="Standard">
+      <div class="level-panel" data-level="standard" data-level-word="Full">
         <div class="reading-body"><p>The American Revolution is usually told from the winners' side. But a sizable minority of colonists opposed independence. Historians estimate 15 to 20 percent of Americans — perhaps 400,000 to 500,000 people — remained loyal to Britain. Patriots branded them "Tories," an insult that stuck.</p>
 <p>Loyalists were not simply villains or cowards. Their reasons were varied and often understandable. Some were merchants and officials whose fortunes depended on British connections. Many were ordinary farmers who feared the violence of Patriot mobs more than distant taxes, or who believed revolution would unleash chaos. Tens of thousands were enslaved people, for whom the British — not the Patriots — offered the credible promise of freedom. This diversity meant the Revolution was also a civil war. It split neighbors, congregations, and families.</p>
 <p>Patriots treated Loyalists harshly. Committees enforced loyalty oaths, crowds tarred and feathered the defiant, and state governments <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">confiscated</button><span class="gloss-def" hidden> (seized)</span></span> Loyalist property. Roughly 60,000 to 80,000 Loyalists ultimately fled to Canada (especially the Maritimes and Ontario), Britain, the Caribbean, and beyond. It was one of the largest forced migrations in American history. Because history is written by victors, their experience was long erased. Recovering it reveals that "the American people" were never of one mind about independence.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>A sizable minority — 15–20% of colonists — opposed independence.</li><li>Perhaps 400,000–500,000 people remained loyal to Britain.</li><li>Patriots branded them 'Tories.'</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Reasons varied: merchants tied to Britain, farmers fearing mobs, enslaved people seeking freedom.</li><li>The Revolution was also a civil war splitting neighbors and families.</li><li>Patriots used loyalty oaths, tar-and-feathering, and property confiscation.</li><li>Enslaved people had the clearest stake in a British victory.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>States confiscated Loyalist property; crowds enforced loyalty by force.</li><li>Roughly 60,000–80,000 fled — to Canada, Britain, the Caribbean — a huge forced migration.</li><li>Because victors write history, their experience was long erased.</li><li>Recovering it shows Americans were never of one mind about independence.</li></ul>
           </div>
         </section>
       </div>
-      <div class="level-panel" data-level="challenge" data-level-word="Challenge" hidden>
+      <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
         <div class="reading-body"><p>The tidy story of a united people rising against tyranny dissolves on contact with the Loyalists — the 15 to 20 percent of colonists, perhaps 400,000 to 500,000 people, who judged that their interests, consciences, or safety lay with the Crown. "Tory," the Patriots' <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">epithet</button><span class="gloss-def" hidden> (insulting label)</span></span> for them, has done lasting work in flattening a varied population into caricature.</p>
 <p>Their motives resist a single explanation. Some were officeholders and merchants bound to imperial networks; many more were farmers and frontier folk who feared revolutionary committees and mobs more than parliamentary taxes, or who, as religious <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">pacifists</button><span class="gloss-def" hidden> (people whose faith forbids fighting)</span></span> or simple conservatives, dreaded the disorder a rebellion might unleash. Crucially, the largest group with the clearest stake in a British victory were enslaved people, for whom the Crown's proclamations made freedom a concrete offer the Patriots would not match. The Revolution was therefore also an American civil war, turning neighbor against neighbor and dividing families — Benjamin Franklin's own Loyalist son William among the casualties of that rupture.</p>
 <p>Patriots policed loyalty with oath laws, social <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">ostracism</button><span class="gloss-def" hidden> (being shut out by the community)</span></span>, tarring and feathering, and the wholesale confiscation of estates; between 60,000 and 80,000 Loyalists eventually left, scattering to Nova Scotia, Ontario, Britain, and the Caribbean in one of the great forced migrations of the age. Their erasure from national memory is itself instructive: a revolution narrated only by its winners hides how contested, coercive, and genuinely civil-war-like the founding really was. To tell a Loyalist's story is to ask what we owe the people history's victors chose to forget.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
-            <h3>For your Hook (Introduction)</h3>
+            <h3>For your Hook</h3>
             <ul><li>The story of a united people dissolves on contact with the Loyalists.</li><li>15–20% of colonists (maybe 400,000–500,000) sided with the Crown.</li><li>'Tory' flattened a varied population into caricature.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Content</h3>
+            <h3>For your Story</h3>
             <ul><li>Motives ranged from imperial officeholders to pacifists to frightened frontier farmers.</li><li>The largest group with a clear stake in British victory were enslaved people.</li><li>It was an American civil war — even Franklin's Loyalist son William.</li><li>Patriots policed loyalty with oaths, ostracism, and confiscation.</li></ul>
           </div>
           <div class="facts-group">
-            <h3>For your Conclusion</h3>
+            <h3>For your Wrap</h3>
             <ul><li>60,000–80,000 left in one of the age's great forced migrations.</li><li>Their erasure hides how contested and coercive the founding was.</li><li>A revolution narrated only by winners conceals its civil-war character.</li><li>Telling a Loyalist's story asks what we owe those history chose to forget.</li></ul>
           </div>
         </section>
@@ -311,21 +316,12 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     });
   });
 
-  var toggle = document.querySelector('.theme-toggle');
-  if (toggle) {
-    try {
-      var t = localStorage.getItem('rvTheme');
-      if (t) root.setAttribute('data-theme', t);
-    } catch (e) {}
-    toggle.addEventListener('click', function () {
-      var dark = root.getAttribute('data-theme') === 'dark'
-        || (!root.hasAttribute('data-theme')
-            && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = dark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('rvTheme', next); } catch (e) {}
-    });
-  }
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
 })();</script>
+<script src="../../reader-tools.js"></script>
 </body>
 </html>

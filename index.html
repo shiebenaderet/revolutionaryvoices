@@ -9,12 +9,12 @@
     <script>try{var t=localStorage.getItem('rvTheme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 
     <!-- Font Awesome 6 - self-hosted to avoid school CDN blocks -->
-    <link rel="stylesheet" href="fonts/fa-all.min.css?v=3.3.0">
+    <link rel="stylesheet" href="fonts/fa-all.min.css?v=3.4.0">
 
     <!-- Theme fonts - self-hosted to avoid school CDN blocks -->
-    <link rel="stylesheet" href="fonts/fonts.css?v=3.3.0">
+    <link rel="stylesheet" href="fonts/fonts.css?v=3.4.0">
 
-    <link rel="stylesheet" href="styles.css?v=3.3.0">
+    <link rel="stylesheet" href="styles.css?v=3.4.0">
 </head>
 <body>
     <a href="#wizardContent" class="skip-link">Skip to current step</a>
@@ -76,16 +76,13 @@
                 <input type="text" id="studentName" placeholder="First name and last initial, like Maria G." oninput="updateTimeEstimate(); checkBasicsReveal()">
             </div>
 
-            <!-- Crew: everyone gets a job and a voice. Built by crew.js. -->
+            <!-- Crew: names and jobs. Who says each part comes later, on Plan. Built by crew.js. -->
             <div id="crewWrap" hidden>
                 <h3 class="crew-title">Your crew</h3>
-                <p class="field-hint">Everyone gets a job and a voice. You can share a job or take more than one. In a pair, or when someone is out, one person does two jobs.</p>
+                <p class="field-hint">Give everyone a job. Two people can share a job, and one person can do two. You'll pick who says what after you plan the episode.</p>
+                <div class="crew-jobs-body" id="crewJobsBody"></div>
                 <div id="crewRows"></div>
                 <p class="crew-check" id="crewCheck" role="status" aria-live="polite"></p>
-                <details class="crew-jobs">
-                    <summary>What does each job do?</summary>
-                    <div class="crew-jobs-body" id="crewJobsBody"></div>
-                </details>
             </div>
 
             <label for="subject">Who is your episode about?</label>
@@ -104,7 +101,7 @@
         <!-- RESEARCH -->
         <div class="section section-research wizard-step" data-step="1">
             <h2><i class="fas fa-book-open" aria-hidden="true"></i> Read</h2>
-            <p class="research-intro">Here's the reading for <strong id="researchTopicName">your topic</strong>. Everyone reads, each at the level that fits. Then build your Fact Bank and your working thesis.</p>
+            <p class="research-intro">Here's the reading for <strong id="researchTopicName">your topic</strong>. Everyone reads it, at whatever level works for you. Then fill in the Fact Bank and write your working thesis.</p>
             <p class="research-note" id="researchNote" hidden>Go back to <strong>Start</strong> and choose your topic to load a reading.</p>
 
             <!-- First visit: pick a level by reading the same sentence at each one. Built by crew.js. -->
@@ -134,16 +131,16 @@
             <!-- Fact Bank: rows built by crew.js -->
             <section class="fact-bank" aria-labelledby="factBankTitle">
                 <h3 id="factBankTitle"><i class="fas fa-clipboard-list" aria-hidden="true"></i> Fact Bank</h3>
-                <p class="field-hint" id="factBankHint">Put each fact in your own words and say where it came from. Aim for six. Every fact in your script should trace back to one of these.</p>
+                <p class="field-hint" id="factBankHint">Write each fact in your own words, and say where you found it. Aim for six. Every fact in your script should come from this list.</p>
                 <div id="factRows"></div>
                 <button type="button" class="link-btn" id="factMore" onclick="addFactRow()"><i class="fas fa-plus" aria-hidden="true"></i> Add another fact</button>
             </section>
 
             <section class="thesis-box" aria-labelledby="thesisTitle">
                 <h3 id="thesisTitle"><i class="fas fa-bullseye" aria-hidden="true"></i> Your working thesis</h3>
-                <label for="workingThesis">In one or two sentences: why does this person's story matter, and what does it show about the Revolution?</label>
+                <label for="workingThesis">Why does this person's story matter, and what does it show about the Revolution? Answer in one or two sentences.</label>
                 <textarea id="workingThesis" rows="3" placeholder="[Name] mattered because… Their story shows that…"></textarea>
-                <p class="field-hint">It's a working thesis, so it can change as you write.</p>
+                <p class="field-hint">A working thesis is your main idea for now. It can change as you write.</p>
             </section>
 
             <label class="ready-read" for="researchRead">
@@ -1635,7 +1632,7 @@
         <!-- CREW STEP: PLAN THE EPISODE (crew path only). Built by crew.js. -->
         <div class="section section-plan wizard-step" data-step="6">
             <h2><i class="fas fa-map" aria-hidden="true"></i> Plan the Episode</h2>
-            <p class="step-lead">Every episode has three parts. Pick a style for each one, then write one line for each box: what happens there. Not full sentences yet. You'll write the script together in your Google Doc.</p>
+            <p class="step-lead">Every episode has three parts. Pick a style for each part. Then write one line in each box saying what happens there. Notes are fine; the full script comes later, in your Google Doc.</p>
             <div class="episode-map" id="episodeMap"></div>
             <div id="planParts"></div>
         </div>
@@ -1643,7 +1640,7 @@
         <!-- CREW STEP: GROUP DOC (crew path only). Built by crew.js. -->
         <div class="section section-doc wizard-step" data-step="7">
             <h2><i class="fas fa-file-alt" aria-hidden="true"></i> Your Group Doc</h2>
-            <p class="step-lead">This is a frame to start from. Change anything: add boxes, cut boxes, move them around, or build your own version. Just keep a Hook, a Story, and a Wrap, and cite your facts.</p>
+            <p class="step-lead">This frame is a starting point. You can add boxes, cut them, move them, or build your own version. Keep a Hook, a Story and a Wrap, and say where each fact came from.</p>
             <ol class="doc-steps">
                 <li><strong>One person</strong> taps <strong>Copy the frame</strong>, then <strong>Open a new Google Doc</strong>, and pastes (<kbd>Ctrl</kbd>+<kbd>V</kbd>).</li>
                 <li>Name the Doc <strong id="docTitleHint">Podcast name - your names</strong>.</li>
@@ -1666,10 +1663,10 @@
             <div class="doc-preview" id="docPreview" aria-label="Preview of your Group Doc frame"></div>
         </div>
 
-        <!-- CREW STEP: MY LINES (crew path). Each student builds the lines for their own voice. Built by lines.js. -->
+        <!-- CREW STEP: MY LINES (crew path). Each student builds their own boxes (from Who says it? on Plan). Built by lines.js. -->
         <div class="section section-lines wizard-step" data-step="9">
             <h2>My Lines</h2>
-            <p class="step-lead">Build the lines for the voice you will perform. Then copy them into your Group Doc.</p>
+            <p class="step-lead">Write your own lines, one box at a time. Then copy them into your Group Doc.</p>
             <div class="lines-who" id="linesWho"></div>
             <div class="lines-help" id="linesHelp"></div>
             <div id="linesStyles"></div>
@@ -1685,10 +1682,10 @@
         <!-- CREW STEP: PRACTICE (crew path only). -->
         <div class="section section-practice wizard-step" data-step="8">
             <h2><i class="fas fa-microphone" aria-hidden="true"></i> Practice</h2>
-            <p class="step-lead">When your script is written, paste it here to time it and practice it out loud, one line at a time.</p>
+            <p class="step-lead">When your script is done, paste it here. You'll see how long it runs, and you can practice it out loud, one line at a time.</p>
             <label for="practiceScript">Paste your script from your Google Doc</label>
             <textarea id="practiceScript" rows="8" placeholder="Start each line with who says it and a colon, like:&#10;MARIA: Welcome to Hidden History.&#10;ALEX: Today we meet a poet who..."></textarea>
-            <p class="field-hint">Start each line with who says it and a colon. Lines without a name stay with the person before them.</p>
+            <p class="field-hint">Start each line with who says it and a colon. A line with no name goes with the person before it.</p>
             <div class="doc-actions">
                 <button type="button" class="btn" onclick="showPastedScript()"><i class="fas fa-play" aria-hidden="true"></i> Show my script</button>
             </div>
@@ -1746,7 +1743,7 @@
     <footer class="site-footer">
         <span>Revolutionary Voices Script Builder</span>
         <span class="footer-sep">-</span>
-        <span id="footerVersion">v3.3.0</span>
+        <span id="footerVersion">v3.4.0</span>
         <span class="footer-sep">-</span>
         <span>voices.mrbsocialstudies.org</span>
     </footer>
@@ -1779,13 +1776,14 @@
         </aside>
     </div>
 
-    <script src="readings.js?v=3.3.0"></script>
-    <script src="sources.js?v=3.3.0"></script>
-    <script src="version.js?v=3.3.0"></script>
-    <script src="app.js?v=3.3.0"></script>
-    <script src="builder-banks.js?v=3.3.0"></script>
-    <script src="crew.js?v=3.3.0"></script>
-    <script src="lines.js?v=3.3.0"></script>
-    <script src="reader-tools.js?v=3.3.0"></script>
+    <script src="readings.js?v=3.4.0"></script>
+    <script src="sources.js?v=3.4.0"></script>
+    <script src="version.js?v=3.4.0"></script>
+    <script src="app.js?v=3.4.0"></script>
+    <script src="builder-banks.js?v=3.4.0"></script>
+    <script src="cast-core.js?v=3.4.0"></script>
+    <script src="crew.js?v=3.4.0"></script>
+    <script src="lines.js?v=3.4.0"></script>
+    <script src="reader-tools.js?v=3.4.0"></script>
 </body>
 </html>

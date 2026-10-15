@@ -6,6 +6,24 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.4.0] - 2026-10-15
+
+### Changed
+
+- **Who says what comes after the plan, not before it.** Start asks only for names and jobs now. The voices an episode has depend on its styles (a Dramatic Hook, a News Report and a Legacy wrap have no Narrator at all), so picking them on Start let a student choose a part the episode never uses and reach My Lines with nothing to write. After the styles on the Plan step, **Who says it?** lists only the parts those styles use, with how many boxes each has. Students check who says each one; two can share a part and one can say two. **Split it up for us** tries every way of dividing the parts and picks the fairest: everyone gets lines, the busiest and least busy are as close as possible (within four boxes in every episode, and usually one), and two people don't voice the historical figure unless there's no fair alternative. A shared part's boxes alternate between the people sharing it, so co-hosts each get lines and no box is written twice. Plan can't move on until every part has someone.
+- Every box on the plan, in the Group Doc and on the paper copy shows its part and the one name who says it, like "Host (Maya)". The crew table says what each person says.
+- **My Lines** asks "Which one are you?" and shows that student's boxes. No voice question.
+- **Plainer instructions on the crew path**, written for students reading well below grade level without talking down to them. Start is about half as long, with one line per job. Words a student might not know are gone or explained where they appear: "stitches everyone's lines together", "trace back to", "cite", "a working thesis" (now "your main idea for now"), "Suggesting mode" (now "so changes show up as suggestions").
+
+### Added
+
+- Two crew members with the same first name get a nudge on Start to add a last initial, since My Lines and Who says it? tell people apart by name.
+- `check-crew.js`, a consistency check for the crew path: every box has its My Lines kind, guidance and a known part; every Quick frame has at least two words for each blank in every topic's word bank; every style's radio exists; Split it up covers every part and gives everyone lines in all 192 episodes; the version numbers agree. `cast-core.js` holds the Who says it? logic so the page and the check run the same code.
+
+### Saved work
+
+- Voice choices from 3.3 and earlier load into Who says it? (same field ids). Nothing to redo.
+
 ## [3.3.0] - 2026-10-15
 
 ### Changed

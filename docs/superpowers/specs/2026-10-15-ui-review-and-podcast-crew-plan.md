@@ -211,3 +211,4 @@ Each phase ships on its own and is useful alone.
    level is rewritten (language only, never the facts), not relabeled.
 
 6. **Translations later.**
+7. **Who says what comes after the plan (3.4.0).** Start is names and jobs only. The styles decide which voices an episode has, so the voices are picked after them, on Plan, under **Who says it?**, with a **Split it up for us** button. A shared voice's boxes alternate. My Lines shows each student the boxes with their name on them. Instructions on the crew path are written for students reading three or more years below grade level (30 to 50 percent of some periods), without talking down to them. `check-crew.js` checks the whole crew path before each release.

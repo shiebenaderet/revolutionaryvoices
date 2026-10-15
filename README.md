@@ -19,11 +19,11 @@ Students build a podcast-style historical episode in which a Host, a Narrator an
 
 | Step | What students do |
 |---|---|
-| Start | Topic, podcast name, and the crew: each person checks one or more **jobs** (Researcher, Lead Scriptwriter, Chief Editor) and one or more **voices** (Host, Narrator, Subject). Jobs can be shared or split. |
+| Start | Topic, podcast name, and the crew: each person checks one or more **jobs** (Researcher, Lead Scriptwriter, Chief Editor). Jobs can be shared or split. |
 | Read | Pick a reading by its first sentence, read it, build the **Fact Bank** (fact plus source), write a **working thesis**. |
-| Plan | Episode map, pick a style for the Hook, Story and Wrap, and write one line per box. |
+| Plan | Episode map, pick a style for the Hook, Story and Wrap, and write one line per box. Then **Who says it?**: only the parts (Host, Narrator, Subject) those styles use, each with its box count; students check who says each one, or tap **Split it up for us** for the fairest split. A shared part's boxes alternate between the people sharing it. |
 | Group Doc | **Copy the frame** and paste it into a new Google Doc, or **print a paper copy** with ruled lines. Share with the crew and the teacher. Students can change the frame or make their own. |
-| My Lines | Each student, on their own Chromebook, builds the lines for their voice one box at a time. Help starts at their reading level: **Quick** taps words into short sentence frames (word banks in `builder-banks.js`, drawn only from the reading), **Clear** gets "Stuck?" starters, **Full** writes on lines, **Deep** adds a go-further move. Copy the lines into the Doc, or print the sheet. |
+| My Lines | Each student taps their name and builds the boxes with their name on them, one box at a time. Help starts at their reading level: **Quick** taps words into short sentence frames (word banks in `builder-banks.js`, drawn only from the reading), **Clear** gets "Stuck?" starters, **Full** writes on lines, **Deep** adds a go-further move. Copy the lines into the Doc, or print the sheet. |
 | Practice | Paste the finished script ("Maria: ...") to time it and rehearse line by line. |
 
 ### Jobs
@@ -31,7 +31,7 @@ Students build a podcast-style historical episode in which a Host, a Narrator an
 - **Researcher:** leads the reading, builds the Fact Bank; in the Doc, fact-checks with comments.
 - **Lead Scriptwriter:** picks the styles and fills the plan; in the Doc, drafts and stitches the lines together.
 - **Chief Editor:** keeps the time target and checklist; in the Doc, works in Suggesting mode and times a read-aloud.
-- **Everyone** reads at their own level and writes the lines for the voice they perform, which puts each student's writing in the Doc's version history.
+- **Everyone** reads at their own level and writes their own boxes, which puts each student's writing in the Doc's version history.
 
 ---
 
@@ -62,6 +62,8 @@ readings.js        Leveled reading library (22 topics, 4 levels, facts, sources)
 sources.js         Primary-source library (Source Spotlight, Voice Bank, Two Sources)
 check-sources.js   Mechanical slur check for excerpts (runs in pre-commit)
 check-levels.js    Reading-level check: every reading measures inside its level (node check-levels.js)
+cast-core.js       Who says it? logic (the fair split, who says each box), shared by the page and check-crew.js
+check-crew.js      Crew-path consistency check: every box, word bank, style and crew size (node check-crew.js)
 READING-LEVELS.md  The one definition of Quick / Clear / Full / Deep, shared across the course sites
 build-readings.js  Generates readings/ from readings.js (node build-readings.js)
 readings/          GENERATED standalone reading pages, one clean URL per topic
@@ -114,7 +116,7 @@ This project uses [Semantic Versioning](https://semver.org):
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
-Current version: **3.3.0**
+Current version: **3.4.0**
 
 ---
 
@@ -129,10 +131,13 @@ After editing `readings.js`, run the checks:
 ```
 node check-sources.js    # slur check on primary-source excerpts
 node check-levels.js     # every reading measures inside its level (READING-LEVELS.md)
+node check-crew.js       # the crew path holds together (see below)
 node build-readings.js   # regenerate readings/
 ```
 
 `check-levels.js` measures each reading with the shared Flesch-Kincaid formula from `READING-LEVELS.md` (Quick 5.0, Clear 7.5, Full 10.5, Deep above that topic's Full; each topic must step up Quick < Clear < Full < Deep) and checks the level names and blurbs in `app.js` and `build-readings.js`. A reading that fails is rewritten, language only, never relabeled.
+
+`check-crew.js` exists because of a bug that never threw an error: voices were picked on Start, before the styles, and most style combinations don't use all three, so a student could reach My Lines with no boxes. It checks that every box has a My Lines kind, a solo field to take its guidance from and a known voice; that every Quick frame's blanks have at least two words in every topic's word bank; that every style's radio exists; that **Split it up for us** covers every part and gives everyone lines for all 192 episodes (every style combination, crews of 2, 3 and 4), within four boxes of even; and that the asset version, footer, `APP_VERSION` and CHANGELOG agree. Run it before every release.
 
 Deployed via GitHub Pages with a custom domain (`CNAME` file). Push to `main` to deploy.
 

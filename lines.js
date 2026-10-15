@@ -1,5 +1,7 @@
-/* My Lines (3.1.0): each student builds the lines for the voice they perform,
-   with help matched to their level, then copies them into the Group Doc.
+/* My Lines (3.1.0): each student builds their own boxes, with help matched to
+   their level, then copies them into the Group Doc. Since 3.4.0 a crew student's
+   boxes come from Who says it? on the Plan step: the student taps their name and
+   sees the boxes with their name on them.
 
      Quick  - one short frame per sentence, at most two blanks, filled by tapping
               a word bank drawn only from the topic's reading (builder-banks.js),
@@ -35,7 +37,7 @@
      who is speaking in the frames: I (the historical figure) or they (Host,
      Narrator, reporter). */
   var KINDS = {
-    crew_intro: { ask: 'Say your name and the voice you play.', person: 'they', frames: [
+    crew_intro: { ask: 'Say your name and the part you play.', person: 'they', frames: [
       "Hi, I'm [text:your first name].", "I'm the [voice] today."] },
     welcome: { ask: 'Welcome listeners. Say who the episode is about.', person: 'they', frames: [
       'Welcome to {podcast}.', 'Today you will meet {name}, [whoName].', '{name} lived in [where] in [when].'] },
@@ -148,7 +150,7 @@
     conclusion: 'Go further: say what changed and what stayed unfinished, using "but" or "even though".'
   };
   var SLOT_NAME = {
-    where: 'a place', when: 'a time', people: 'a person', feeling: 'a feeling', sound: 'a sound', voice: 'your voice',
+    where: 'a place', when: 'a time', people: 'a person', feeling: 'a feeling', sound: 'a sound', voice: 'your part',
     whoI: 'who', whoName: 'who they were'
   };
   function slotName(slot, person) {
@@ -189,7 +191,11 @@
     var shared = window.RV_BANK_SHARED || {};
     if (slot === 'feeling') return shared.feelings || [];
     if (slot === 'sound') return shared.sounds || [];
-    if (slot === 'voice') return ['Host', 'Narrator', 'Subject'];
+    if (slot === 'voice') {
+      var used = C.isCrew() ? C.cast().used : [];
+      var vs = C.VOICES.filter(function (v) { return !used.length || used.indexOf(v.id) !== -1; });
+      return vs.map(function (v) { return v.name; });
+    }
     return bank[slot] || [];
   }
   function modelTopic() {
@@ -258,12 +264,26 @@
   }
 
   /* ---------------------------------------------------------------- render */
+  /* In a crew, a student's boxes are the ones with their name on them. */
+  function byCast(st) { return C.isCrew() && !!st.name; }
+  function syncVoices(st) {
+    if (!byCast(st)) return;
+    var c = C.cast();
+    var me = c.members.filter(function (m) { return m.label === st.name; })[0];
+    st.voices = me ? me.voices.map(function (v) { return v.id; }).filter(function (v) { return c.used.indexOf(v) !== -1; }) : [];
+  }
+  function voiceNames(st) {
+    return st.voices.map(function (v) { return C.VOICES.filter(function (x) { return x.id === v; })[0].name; }).join(' and ');
+  }
   function myBeats(st) {
     var out = [];
+    var owners = byCast(st) ? C.cast().owners : null;
     C.PARTS.forEach(function (part) {
       var style = C.chosen(part);
       var beats = style ? C.allBeats(part, style).filter(function (b) {
-        return b[2] === 'all' || st.voices.indexOf(b[2]) !== -1;
+        if (b[2] === 'all') return true;
+        if (owners) return (owners[b[0]] || []).indexOf(st.name) !== -1;
+        return st.voices.indexOf(b[2]) !== -1;
       }) : [];
       out.push({ part: part, style: style, beats: beats });
     });
@@ -274,7 +294,7 @@
     var host = $('linesWho');
     if (!host) return;
     var members = C.isCrew() ? C.crewMembers().filter(function (m) { return m.name; }) : [];
-    var html = '<fieldset class="lines-field"><legend>Who are you?</legend>';
+    var html = '<fieldset class="lines-field"><legend>Which one are you?</legend>';
     if (members.length) {
       html += '<div class="chip-checks">';
       members.forEach(function (m) {
@@ -286,12 +306,17 @@
       html += '<label for="linesNameInput" class="sr-only">Your first name</label>' +
         '<input type="text" id="linesNameInput" class="lines-name" placeholder="Your first name" value="' + esc(st.name || '') + '">';
     }
-    html += '</fieldset><fieldset class="lines-field"><legend>Which voice do you play?</legend><div class="chip-checks">';
-    C.VOICES.forEach(function (v) {
-      html += '<label class="chip-check"><input type="checkbox" name="linesVoice" value="' + v.id + '"' +
-        (st.voices.indexOf(v.id) !== -1 ? ' checked' : '') + '><span>' + v.name + '</span></label>';
-    });
-    html += '</div></fieldset>';
+    html += '</fieldset>';
+    if (!members.length) {
+      html += '<fieldset class="lines-field"><legend>Which part do you say?</legend><div class="chip-checks">';
+      C.VOICES.forEach(function (v) {
+        html += '<label class="chip-check"><input type="checkbox" name="linesVoice" value="' + v.id + '"' +
+          (st.voices.indexOf(v.id) !== -1 ? ' checked' : '') + '><span>' + v.name + '</span></label>';
+      });
+      html += '</div></fieldset>';
+    } else if (st.name && !st.voices.length) {
+      html += '<p class="lines-empty">Your name isn\'t on a part yet. Go back to <strong>Plan</strong> and check it under Who says it?</p>';
+    }
     host.innerHTML = html;
   }
 
@@ -451,12 +476,13 @@
   function renderBeats(st) {
     var host = $('linesBeats');
     if (!host) return;
-    if (!st.voices.length) { host.innerHTML = '<p class="lines-empty">Pick your voice above to see your boxes.</p>'; return; }
+    if (C.isCrew() && !st.name) { host.innerHTML = '<p class="lines-empty">Tap your name above to see your boxes.</p>'; return; }
+    if (!byCast(st) && !st.voices.length) { host.innerHTML = '<p class="lines-empty">Pick your part above to see your boxes.</p>'; return; }
     var rows = myBeats(st);
     var notes = '';
     rows.forEach(function (row) {
       if (!row.style) notes += '<p class="lines-empty">Pick the style for ' + row.part.name + ' above.</p>';
-      else if (!row.beats.length) notes += '<p class="lines-empty">Your voice has no boxes in ' + row.part.name + '. Help a crewmate, or ask your crew to give you one.</p>';
+      else if (!row.beats.length) notes += '<p class="lines-empty">You have no boxes in ' + row.part.name + '. Help a crewmate with theirs.</p>';
     });
     var all = flatBeats(st);
     if (!all.length) { host.innerHTML = notes; return; }
@@ -492,10 +518,7 @@
 
   function render() {
     var st = load();
-    if (!st.voices.length && st.name && C.isCrew()) {
-      var me = C.crewMembers().filter(function (m) { return m.name === st.name; })[0];
-      if (me) st.voices = me.voices.map(function (v) { return v.id; });
-    }
+    syncVoices(st);
     /* The crew introduction already knows who is speaking. */
     if (st.name || st.voices.length) {
       var gi = beatState(st, 'group-intro');
@@ -608,8 +631,10 @@
       var t = e.target, st;
       if (t.name === 'linesName') {
         st = load(); st.name = t.value;
-        var me = C.crewMembers().filter(function (m) { return m.name === t.value; })[0];
-        if (me && me.voices.length) st.voices = me.voices.map(function (v) { return v.id; });
+        syncVoices(st);
+        var gi = beatState(st, 'group-intro');
+        gi.s['0-0'] = st.name;
+        if (st.voices.length) gi.s['1-0'] = voiceNames(st).split(' and ')[0];
         store(st); render(); return;
       }
       if (t.name === 'linesVoice') {
@@ -632,7 +657,8 @@
   function linesText(st) {
     var bank = currentBank();
     var who = st.name || 'Me';
-    var voices = st.voices.map(function (v) { return C.VOICES.filter(function (x) { return x.id === v; })[0].name; }).join(' and ');
+    syncVoices(st);
+    var voices = voiceNames(st);
     var out = [who + (voices ? ' (' + voices + ')' : '')];
     myBeats(st).forEach(function (row) {
       row.beats.forEach(function (b) {
@@ -661,7 +687,8 @@
     var st = load();
     var bank = currentBank();
     var level = helpLevel(st);
-    var voices = st.voices.map(function (v) { return C.VOICES.filter(function (x) { return x.id === v; })[0].name; }).join(' and ');
+    syncVoices(st);
+    var voices = voiceNames(st);
     var h = ['<h1>My Lines' + (voices ? ': ' + esc(voices) : '') + '</h1>',
       '<p class="fr-names"><strong>Name:</strong> ' + (st.name ? esc(st.name) : '<span class="fr-blank"></span>') +
       ' &nbsp; <strong>Podcast:</strong> ' + esc(($('podcastName') && $('podcastName').value) || '') + '</p>'];

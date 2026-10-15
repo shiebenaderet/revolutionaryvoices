@@ -1,5 +1,5 @@
 # Revolutionary Voices: UI Review and Podcast Crew Plan
-*Review and proposal · 2026-10-15 · not yet approved, nothing built*
+*Review and proposal · 2026-10-15 · approved the same day and built as 3.0.0 (see CHANGELOG)*
 
 ## Why now
 
@@ -195,13 +195,11 @@ Each phase ships on its own and is useful alone.
 4. **Group Doc and Practice paste-in.** Rich-text export, `docs.new`, paste a
    finished script back in for timing and rehearsal.
 
-## Decisions needed before building
+## Decisions (Mr. B, Oct 15)
 
-1. Production jobs **plus** on-air voices for every student, as above?
-2. Writing moves to Google Docs for groups, with the site's full-prose path kept for
-   solo and absent students?
-3. Generated paste-in Group Doc, or a teacher template copied through Classroom?
-4. How many class days does the podcast get? That sets how much planning happens
-   on the site versus in the Doc.
-5. Level 0 translations (Spanish, Portuguese, Russian, Chinese, as in Colonial
-   Unrest): in scope for this round or later?
+1. **Jobs and voices for everyone, but flexible.** Students can share a job, split one, or take two, and the site says so plainly. Built as checkboxes, not one-per-person.
+2. **Groups write in Google Docs; solo students write on the site.**
+3. **The site makes the frame,** and students are free to change it or make their own. It comes both as a Doc to paste and as a printable skeleton with boxes and ruled lines.
+4. **Calendar** (ams-planning `Unit-2-Blueprint.html`, `course-calendar.js`): launch and research Oct 26 to 29, script builder introduced Fri Oct 30, writing Mon Nov 2 and Tue Nov 3, recording Nov 4.
+5. **Reading levels are Quick, Clear, Full, Deep** across every course site (formerly Level 0 to 3).
+6. **Translations later.**

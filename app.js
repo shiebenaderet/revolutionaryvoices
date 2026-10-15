@@ -1,11 +1,10 @@
 // Show secondary Step 1 fields once Name and Topic are both filled
         function checkBasicsReveal() {
-            const name = document.getElementById('studentName');
+            // The podcast name shows once a topic is chosen (it is suggested from the topic).
             const topic = document.getElementById('subject');
             const more = document.getElementById('basicsMore');
             if (!more) return;
-            const filled = name && name.value.trim().length > 0 && topic && topic.value.trim().length > 0;
-            more.classList.toggle('revealed', filled);
+            more.classList.toggle('revealed', !!(topic && topic.value.trim()));
         }
 
         // Update role chip previews as students type their names
@@ -14,15 +13,20 @@
                 var input = document.getElementById('role' + role);
                 var preview = document.getElementById('rolePreview' + role);
                 if (!input || !preview) return;
-                preview.textContent = input.value.trim().toUpperCase() || role.toUpperCase();
+                preview.textContent = input.value.trim() || role;
             });
         }
 
-        // Get the display name for a role - falls back to the label if no name entered
+        // Get the display name for a role - falls back to the label if no name entered.
+        // A crew names its voices on the Start step; a solo student can name them on Finish.
         function getRoleName(role) {
+            if (typeof crewVoiceNames === 'function') {
+                var crew = crewVoiceNames(role.toLowerCase());
+                if (crew) return crew;
+            }
             var input = document.getElementById('role' + role);
             var v = input && input.value.trim();
-            return v ? v.toUpperCase() : role.toUpperCase();
+            return v ? v : role;
         }
 
         // Show/hide role card rows based on group size
@@ -102,7 +106,7 @@
             }
 
             const size = document.getElementById('groupSize') && document.getElementById('groupSize').value;
-            if (size === '2' || size === '3') {
+            if (size === '2' || size === '3' || size === '4') {
                 introWords += countFieldWords('group-intro');
                 introWords += countFieldWords('group-welcome');
             }
@@ -172,7 +176,7 @@
             var badge = document.getElementById('wizTimeBadge');
             var text = document.getElementById('wizTimeBadgeText');
             if (!badge || !text) return;
-            if (typeof wizCurrent === 'undefined' || wizCurrent < 2) { badge.style.display = 'none'; return; }
+            if (typeof wizCurrent === 'undefined' || [2, 3, 4, 5].indexOf(wizCurrent) === -1) { badge.style.display = 'none'; return; }
             var words = countScriptWords().total;
             if (words === 0) { badge.style.display = 'none'; return; }
             badge.style.display = 'inline-flex';
@@ -315,8 +319,9 @@
             const groupForm = document.getElementById('intro-group');
             const badge = document.getElementById('groupBadge');
             const tip = document.getElementById('groupTip');
-            const isGroup = size === '2' || size === '3';
+            const isGroup = size === '2' || size === '3' || size === '4';
             if (groupForm) groupForm.hidden = !isGroup;
+            if (typeof crewUpdateMode === 'function') crewUpdateMode();
             if (isGroup && badge && tip) {
                 badge.textContent = size + ' people';
                 if (size === '2') {
@@ -349,7 +354,7 @@
 
             // Update display
             if (totalWords > 0) {
-                const onFinish = (typeof wizCurrent !== 'number') || (typeof WIZ_LAST !== 'number') || (wizCurrent === WIZ_LAST);
+                const onFinish = (typeof wizCurrent !== 'number') || (wizCurrent === WIZ_FINISH);
                 const te = document.getElementById('timeEstimator');
                 if (te) te.style.display = onFinish ? 'block' : 'none';
                 const setTxt = function(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; };
@@ -503,16 +508,7 @@
 
         // Generate script
         function generateScript() {
-            if (practiceActive) {
-                practiceActive = false;
-                practiceLineIndex = 0;
-                var pb = document.getElementById('practiceBar');
-                if (pb) pb.classList.remove('active');
-                var pn = document.getElementById('practiceNav');
-                if (pn) pn.style.display = 'none';
-                var ptb = document.getElementById('practiceToggleBtn');
-                if (ptb) ptb.innerHTML = '<i class="fas fa-play" aria-hidden="true"></i> Start practice';
-            }
+            stopPractice();
             clearValidationSummary();
             const studentName = document.getElementById('studentName').value;
             suggestPodcastName();
@@ -527,21 +523,21 @@
             if (!podcastName) { problems.push({ label: 'Add your podcast name', target: '#podcastName', field: 'podcastName' }); }
             if (!subject) { problems.push({ label: 'Add your subject (who or what your podcast is about)', target: '#subject', field: 'subject' }); }
             const introTypeCheck = document.querySelector('input[name="intro"]:checked');
-            if (!introTypeCheck) { problems.push({ label: 'Choose an introduction style', target: '.section-intro' }); }
+            if (!introTypeCheck) { problems.push({ label: 'Choose a Hook style', target: '.section-intro' }); }
             const contentTypeCheck = document.querySelector('input[name="content"]:checked');
-            if (!contentTypeCheck) { problems.push({ label: 'Choose a content format', target: '.section-content' }); }
+            if (!contentTypeCheck) { problems.push({ label: 'Choose a Story format', target: '.section-content' }); }
             const conclusionTypeCheck = document.querySelector('input[name="conclusion"]:checked');
-            if (!conclusionTypeCheck) { problems.push({ label: 'Choose a conclusion type', target: '.section-conclusion' }); }
+            if (!conclusionTypeCheck) { problems.push({ label: 'Choose a Wrap style', target: '.section-conclusion' }); }
 
             // Catch a near-empty script: a style is chosen but nothing was written in it
             if (introTypeCheck && !sectionStarted('section-intro', 'intro')) {
-                problems.push({ label: 'Write something in your Introduction (it looks empty)', target: '.section-intro' });
+                problems.push({ label: 'Write something in your Hook (it looks empty)', target: '.section-intro' });
             }
             if (contentTypeCheck && !sectionStarted('section-content', 'content')) {
-                problems.push({ label: 'Write something in your Content section (it looks empty)', target: '.section-content' });
+                problems.push({ label: 'Write something in your Story (it looks empty)', target: '.section-content' });
             }
             if (conclusionTypeCheck && !sectionStarted('section-conclusion', 'conclusion')) {
-                problems.push({ label: 'Write something in your Conclusion (it looks empty)', target: '.section-conclusion' });
+                problems.push({ label: 'Write something in your Wrap (it looks empty)', target: '.section-conclusion' });
             }
 
             if (problems.length) {
@@ -681,11 +677,17 @@
             script += '✓ Mark where to pause and emphasize\n';
             script += '✓ Add emotion and expression!\n';
 
-            // Append research notes / sources for the teacher and for fact-checking
-            const sources = document.getElementById('researchSources') ? document.getElementById('researchSources').value.trim() : '';
+            // Append the working thesis and the Fact Bank for the teacher and for fact-checking
+            const fv = function(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; };
+            const factLines = [];
+            for (let i = 1; i <= 10; i++) {
+                if (fv('fact' + i) || fv('fact' + i + '-src')) factLines.push('- ' + fv('fact' + i) + (fv('fact' + i + '-src') ? ' (' + fv('fact' + i + '-src') + ')' : ''));
+            }
+            const sources = (fv('workingThesis') ? 'Working thesis: ' + fv('workingThesis') + '\n\n' : '') +
+                (factLines.length ? 'Fact Bank:\n' + factLines.join('\n') : '');
             if (sources) {
                 script += '\n===============================================\n';
-                script += 'RESEARCH NOTES & SOURCES (not read aloud)\n';
+                script += 'THESIS AND SOURCES (not read aloud)\n';
                 script += '===============================================\n';
                 script += sources + '\n';
             }
@@ -699,7 +701,7 @@
             var scriptSections = buildScriptSections();
             renderFormattedScript(scriptSections);
             wizGenerated = true;
-            if (typeof showStep === 'function') showStep(WIZ_LAST); // make sure we're on the Finish step
+            if (typeof showStep === 'function') showStep(WIZ_FINISH); // make sure we're on the Finish step
             document.getElementById('finalScript').style.display = 'block';
             updateProgress();
             warnLeftoverPlaceholders(script);
@@ -742,7 +744,7 @@
                 }
             }
             var allIntroLines = groupLines.concat(introLines);
-            if (allIntroLines.length) sections.push({ label: 'INTRODUCTION', lines: allIntroLines });
+            if (allIntroLines.length) sections.push({ label: 'The Hook', lines: allIntroLines });
 
             // Content lines
             var contentLines = [];
@@ -761,7 +763,8 @@
                     }
                 } else if (ct === 'news') {
                     ['news-opening', 'news-background', 'news-quote', 'news-turning', 'news-aftermath', 'news-closing'].forEach(function(id) {
-                        if (v(id)) contentLines.push({ role: 'host', text: v(id) });
+                        // The quote is the historical figure's own words, so the Subject voices it.
+                        if (v(id)) contentLines.push({ role: id === 'news-quote' ? 'subject' : 'host', text: v(id) });
                     });
                 } else if (ct === 'diary') {
                     if (v('diary-intro')) contentLines.push({ role: 'narrator', text: v('diary-intro') });
@@ -773,7 +776,7 @@
                     if (v('diary-closing')) contentLines.push({ role: 'narrator', text: v('diary-closing') });
                 }
             }
-            if (contentLines.length) sections.push({ label: 'CONTENT', lines: contentLines });
+            if (contentLines.length) sections.push({ label: 'The Story', lines: contentLines });
 
             // Conclusion lines
             var conclusionLines = [];
@@ -787,7 +790,7 @@
                 };
                 (ids[concl] || []).forEach(function(id) { if (v(id)) conclusionLines.push({ role: 'host', text: v(id) }); });
             }
-            if (conclusionLines.length) sections.push({ label: 'CONCLUSION', lines: conclusionLines });
+            if (conclusionLines.length) sections.push({ label: 'The Wrap', lines: conclusionLines });
 
             return sections;
         }
@@ -795,16 +798,27 @@
         var practiceActive = false;
         var practiceLineIndex = 0;
 
+        // Practice works on whichever script is on screen: the built script on
+        // Finish (solo) or the pasted script on Practice (crew).
+        function practiceEls() {
+            var step = document.querySelector('.wizard-step.is-active') || document;
+            return {
+                lines: step.querySelectorAll('.script-doc .script-line'),
+                bar: step.querySelector('.practice-bar'),
+                nav: step.querySelector('.practice-nav'),
+                count: step.querySelector('.practice-nav-count'),
+                btn: step.querySelector('.practice-bar-btn')
+            };
+        }
+
         function togglePracticeMode() {
+            var p = practiceEls();
             practiceActive = !practiceActive;
-            var bar = document.getElementById('practiceBar');
-            var nav = document.getElementById('practiceNav');
-            var btn = document.getElementById('practiceToggleBtn');
-            if (!bar) return;
-            bar.classList.toggle('active', practiceActive);
-            if (nav) nav.style.display = practiceActive ? 'flex' : 'none';
-            if (btn) {
-                btn.innerHTML = practiceActive
+            if (!p.bar) return;
+            p.bar.classList.toggle('active', practiceActive);
+            if (p.nav) p.nav.style.display = practiceActive ? 'flex' : 'none';
+            if (p.btn) {
+                p.btn.innerHTML = practiceActive
                     ? '<i class="fas fa-stop" aria-hidden="true"></i> Stop'
                     : '<i class="fas fa-play" aria-hidden="true"></i> Start practice';
             }
@@ -816,25 +830,30 @@
             }
         }
 
+        function stopPractice() {
+            if (!practiceActive) return;
+            togglePracticeMode();
+        }
+
         function practiceMove(dir) {
-            var lines = document.querySelectorAll('#scriptOutput .script-line');
+            var lines = practiceEls().lines;
             practiceLineIndex = Math.max(0, Math.min(lines.length - 1, practiceLineIndex + dir));
             applyPracticeHighlight();
         }
 
         function applyPracticeHighlight() {
-            var lines = document.querySelectorAll('#scriptOutput .script-line');
-            var count = document.getElementById('practiceNavCount');
-            lines.forEach(function(line, i) {
+            var p = practiceEls();
+            p.lines.forEach(function(line, i) {
                 line.classList.toggle('practice-active', i === practiceLineIndex);
                 line.classList.toggle('practice-dim', i !== practiceLineIndex);
             });
-            if (count) count.textContent = 'Line ' + (practiceLineIndex + 1) + ' of ' + lines.length;
-            if (lines[practiceLineIndex]) lines[practiceLineIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (p.count) p.count.textContent = 'Line ' + (practiceLineIndex + 1) + ' of ' + p.lines.length;
+            var cur = p.lines[practiceLineIndex];
+            if (cur) cur.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' });
         }
 
         function clearPracticeHighlight() {
-            document.querySelectorAll('#scriptOutput .script-line').forEach(function(line) {
+            document.querySelectorAll('.script-doc .script-line').forEach(function(line) {
                 line.classList.remove('practice-active', 'practice-dim');
             });
         }
@@ -967,7 +986,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '1.3.0'; // keep in sync with index.html footer and CHANGELOG
+        const APP_VERSION = '3.0.0'; // keep in sync with index.html footer and CHANGELOG
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION + (typeof BUILD_HASH !== 'undefined' ? ' (' + BUILD_HASH + ')' : ''); })();
         const OLD_KEY = 'revolutionaryVoicesScript';
@@ -985,7 +1004,7 @@
                 console.error('Error saving scripts:', e);
                 const isQuota = e && (e.name === 'QuotaExceededError' || e.code === 22);
                 const msg = isQuota
-                    ? 'Storage full - your work could not save. Try deleting old scripts from the ... menu, or download a backup.'
+                    ? 'Storage full: your work could not save. Delete old scripts from My Work, or back up your work.'
                     : 'Could not save your work. Try refreshing the page.';
                 showToast(msg, 6000);
                 return false;
@@ -1014,9 +1033,16 @@
         }
 
         // Save the current form into the current slot (creating one if needed)
+        // True once a student has typed or chosen anything. A blank form is never
+        // saved as a new script (closing an untouched page used to add an empty one).
+        function formHasWork(fields) {
+            return Object.keys(fields).some(function(k) { return fields[k] && k !== 'subject-level'; });
+        }
+
         function saveCurrent() {
             try {
                 const data = getAllFormData();
+                if (!currentSlotId && !formHasWork(data.fields)) return true;
                 const store = readStore();
                 if (!currentSlotId) currentSlotId = 'slot_' + Date.now();
                 store[currentSlotId] = { id: currentSlotId, name: slotName(), timestamp: data.timestamp, fields: data.fields };
@@ -1220,6 +1246,7 @@
                     refreshSlotMenu();
                     document.getElementById('saveControls').style.display = 'flex';
                     if (typeof wizGoToFrontier === 'function') wizGoToFrontier();
+                    closeBackupPanel();
                     showToast('✅ Imported "' + name + '"');
                 } catch (err) {
                     console.error(err);
@@ -1292,9 +1319,9 @@
             const done = () => showToast('Copied. Open your Google Doc and paste (Ctrl+V or Cmd+V).');
             const fallback = () => {
                 // Old-browser fallback: drop it in the resume box so they can copy manually
+                openBackupPanel('restore');
                 const ta = document.getElementById('resumeText');
-                const panel = document.getElementById('resumePanel');
-                if (panel && ta) { panel.hidden = false; ta.value = text; ta.focus(); ta.select(); }
+                if (ta) { ta.value = text; ta.focus(); ta.select(); }
                 showToast('Press Ctrl+C to copy this text, then paste it into your Google Doc.');
             };
             if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1306,28 +1333,23 @@
             copyWorkToDoc();
         }
 
-        function openRestoreFromHeader() {
-            const box = document.getElementById('docSafe');
-            if (box) box.open = true;
-            const panel = document.getElementById('resumePanel');
-            if (panel) panel.hidden = false;
-            const btn = document.querySelector('.btn-doc-restore');
-            if (btn) btn.setAttribute('aria-expanded', 'true');
-            if (box) {
-                try { box.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' }); } catch (e) {}
-            }
-            const ta = document.getElementById('resumeText');
-            if (ta) setTimeout(function() { try { ta.focus(); } catch (e) {} }, 60);
+        // One dialog for both jobs, opened from My Work (and the Start step's restore link).
+        function openBackupPanel(mode) {
+            const dlg = document.getElementById('backupDialog');
+            if (!dlg) return;
+            const restore = mode === 'restore';
+            document.getElementById('backupPane').hidden = restore;
+            document.getElementById('restorePane').hidden = !restore;
+            document.getElementById('backupTitle').textContent = restore ? 'Restore my work' : 'Back up my work';
+            setResumeNote('');
+            if (!dlg.open) { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); }
+            const first = restore ? document.getElementById('resumeText') : dlg.querySelector('#backupPane .btn');
+            if (first) setTimeout(function() { try { first.focus(); } catch (e) {} }, 30);
         }
-
-        function toggleResume() {
-            const panel = document.getElementById('resumePanel');
-            const btn = document.querySelector('.btn-doc-restore');
-            if (!panel) return;
-            const show = panel.hidden;
-            panel.hidden = !show;
-            if (btn) btn.setAttribute('aria-expanded', show ? 'true' : 'false');
-            if (show) { const ta = document.getElementById('resumeText'); if (ta) ta.focus(); }
+        function closeBackupPanel() {
+            const dlg = document.getElementById('backupDialog');
+            if (!dlg) return;
+            if (dlg.close) dlg.close(); else dlg.removeAttribute('open');
         }
 
         function setResumeNote(msg, kind) {
@@ -1360,7 +1382,7 @@
             setResumeNote('✅ Restored! Your work is back. Keep saving to your Doc as you go.', 'ok');
             if (typeof wizGoToFrontier === 'function') wizGoToFrontier();
             showToast('✅ Welcome back — your work is restored.');
-            setTimeout(() => { const p = document.getElementById('resumePanel'); if (p) p.hidden = true; }, 1500);
+            setTimeout(closeBackupPanel, 1500);
         }
         
         // Initialize on page load
@@ -1373,9 +1395,18 @@
             document.getElementById('saveControls').style.display = 'flex';
             updateWorkName();
 
-            // If saved work exists, the "Open saved work…" menu in the bar shows it.
-            const _rn = document.getElementById('restoreNotification');
-            if (_rn && Object.keys(readStore()).length > 0) { _rn.style.display = 'block'; }
+            // Coming back: reopen the most recent script instead of a blank form.
+            // Other scripts stay one tap away in My Work.
+            const _slots = Object.values(readStore()).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            if (_slots.length) {
+                // The topic list must exist before a saved topic can be selected.
+                if (typeof rvInitResearch === 'function') rvInitResearch();
+                currentSlotId = _slots[0].id;
+                applyData(_slots[0]);
+                updateWorkName();
+                refreshSlotMenu();
+                setTimeout(function() { showToast('Welcome back. Your work is open.'); }, 600);
+            }
 
             // Auto-save on every edit
             const inputs = document.querySelectorAll('input[type="text"], textarea, select, input[type="radio"], input[type="checkbox"]');
@@ -1488,21 +1519,40 @@
         // WIZARD: one step on screen at a time.
         // Guided forward (Next needs content); jump freely to any reached step.
         // ============================================
-        const WIZ_NAMES = ['Basics', 'Research', 'Introduction', 'Content', 'Conclusion', 'Finish & Submit'];
-        const WIZ_LAST = 5;
+        // Steps by data-step id. Two paths share Start and Read:
+        //   solo: Start, Read, Hook, Story, Wrap, Finish  (the whole script is written here)
+        //   crew: Start, Read, Plan, Group Doc, Practice  (the script is written in a Google Doc)
+        const WIZ_NAMES = { 0: 'Start', 1: 'Read', 2: 'Hook', 3: 'Story', 4: 'Wrap', 5: 'Finish', 6: 'Plan', 7: 'Group Doc', 8: 'Practice' };
+        const WIZ_ALL = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        const WIZ_SOLO = [0, 1, 2, 3, 4, 5];
+        const WIZ_CREW = [0, 1, 6, 7, 8];
+        const WIZ_FINISH = 5;
         const WIZ_RADIO = { 2: 'intro', 3: 'content', 4: 'conclusion' };
         const WIZ_CLASS = { 2: 'section-intro', 3: 'section-content', 4: 'section-conclusion' };
         let wizCurrent = 0;
         let wizGenerated = false;
+
+        function wizIsSolo() {
+            const g = document.getElementById('groupSize');
+            return !!(g && g.value === '1');
+        }
+        function wizPath() { return wizIsSolo() ? WIZ_SOLO : WIZ_CREW; }
+        function wizLast() { const p = wizPath(); return p[p.length - 1]; }
+        function wizPos(n) { return wizPath().indexOf(n); }
 
         function wizEls(n) { return document.querySelectorAll('[data-step="' + n + '"]'); }
 
         // A step is "done" enough to advance / to unlock later steps.
         function wizStepDone(n) {
             if (n === 0) {
-                return ['studentName', 'subject'].every(id => {
-                    const el = document.getElementById(id); return el && el.value.trim().length > 0;
-                });
+                const g = document.getElementById('groupSize');
+                const t = document.getElementById('subject');
+                if (!(g && g.value) || !(t && t.value)) return false;
+                if (wizIsSolo()) {
+                    const nm = document.getElementById('studentName');
+                    return !!(nm && nm.value.trim());
+                }
+                return typeof crewNamesComplete === 'function' ? crewNamesComplete() : true;
             }
             if (n === 1) {
                 const t = document.getElementById('subject');
@@ -1513,7 +1563,14 @@
                     document.querySelector('input[name="content"]:checked') ||
                     document.querySelector('input[name="conclusion"]:checked'));
             }
-            if (n === WIZ_LAST) return true;
+            if (n === WIZ_FINISH || n === 8) return true;
+            if (n === 6) {
+                return ['intro', 'content', 'conclusion'].every(r => document.querySelector('input[name="' + r + '"]:checked'));
+            }
+            if (n === 7) {
+                const shared = document.getElementById('docShared');
+                return !!(shared && shared.checked);
+            }
             const radio = WIZ_RADIO[n];
             const cls = WIZ_CLASS[n];
             if (!document.querySelector('input[name="' + radio + '"]:checked')) return false;
@@ -1527,25 +1584,28 @@
 
         // First not-done step = how far a student may jump. Earlier steps stay unlocked.
         function wizFrontier() {
-            for (let i = 0; i <= WIZ_LAST; i++) { if (!wizStepDone(i)) return i; }
-            return WIZ_LAST;
+            const path = wizPath();
+            for (let i = 0; i < path.length; i++) { if (!wizStepDone(path[i])) return path[i]; }
+            return path[path.length - 1];
         }
 
         function showStep(n) {
-            n = Math.max(0, Math.min(WIZ_LAST, n));
+            const path = wizPath();
+            if (path.indexOf(n) === -1) n = path[Math.max(0, Math.min(path.length - 1, wizPos(wizCurrent)))] || 0;
+            if (n !== wizCurrent && typeof stopPractice === 'function') stopPractice();
             wizCurrent = n;
-            for (let i = 0; i <= WIZ_LAST; i++) {
-                wizEls(i).forEach(el => el.classList.toggle('is-active', i === n));
-            }
+            WIZ_ALL.forEach(i => wizEls(i).forEach(el => el.classList.toggle('is-active', i === n)));
             const fs = document.getElementById('finalScript');
-            if (fs) fs.style.display = (n === WIZ_LAST && wizGenerated) ? 'block' : 'none';
+            if (fs) fs.style.display = (n === WIZ_FINISH && wizGenerated) ? 'block' : 'none';
             const te = document.getElementById('timeEstimator');
-            if (te) { if (n === WIZ_LAST) { updateTimeEstimate(); } else { te.style.display = 'none'; } }
+            if (te) { if (n === WIZ_FINISH) { updateTimeEstimate(); } else { te.style.display = 'none'; } }
             if (n === 1 && typeof rvSyncFromSelect === 'function') rvSyncFromSelect();
             if (typeof rvRenderStepFacts === 'function') rvRenderStepFacts(n);
             if (typeof rvRenderVoiceBank === 'function') rvRenderVoiceBank(rvCurrentTopic());
             if (typeof updateExemplarNotes === 'function') updateExemplarNotes();
-            if (typeof closeReadingDrawer === 'function' && (n < 2 || n > 4)) closeReadingDrawer(false);
+            if (typeof crewOnStep === 'function') crewOnStep(n);
+            if (typeof closeReadingDrawer === 'function' && [2, 3, 4, 6].indexOf(n) === -1) closeReadingDrawer(false);
+            if (window.READER_TOOLS) window.READER_TOOLS.reset();
             wizUpdateNav();
             wizUpdateStepper();
             const first = wizEls(n)[0];
@@ -1561,50 +1621,73 @@
             const back = document.getElementById('wizBack');
             const next = document.getElementById('wizNext');
             const label = document.getElementById('wizLabel');
-            if (label) label.textContent = 'Step ' + (wizCurrent + 1) + ' of 6 · ' + WIZ_NAMES[wizCurrent];
-            if (back) back.disabled = (wizCurrent === 0);
+            const path = wizPath();
+            const pos = wizPos(wizCurrent);
+            if (label) label.textContent = 'Step ' + (pos + 1) + ' of ' + path.length + ': ' + WIZ_NAMES[wizCurrent];
+            if (back) back.disabled = (pos <= 0);
             if (next) {
-                if (wizCurrent >= WIZ_LAST) { next.style.display = 'none'; }
+                if (pos >= path.length - 1) { next.style.display = 'none'; }
                 else {
                     next.style.display = '';
-                    next.innerHTML = (wizCurrent === WIZ_LAST - 1 ? 'Finish ' : 'Next ') + '<i class="fas fa-arrow-right" aria-hidden="true"></i>';
+                    next.innerHTML = 'Next: ' + WIZ_NAMES[path[pos + 1]] + ' <i class="fas fa-arrow-right" aria-hidden="true"></i>';
                 }
             }
         }
 
+        // Build the step bar for the current path (it changes when the group size does).
+        function wizBuildStepper() {
+            const nav = document.getElementById('wizSteps');
+            if (!nav) return;
+            const path = wizPath();
+            const key = path.join(',');
+            if (nav.dataset.path === key) return;
+            nav.dataset.path = key;
+            nav.innerHTML = path.map((id, i) =>
+                '<button type="button" class="tuner-mark" id="wizChip' + id + '" onclick="wizGoChip(' + id + ')">' +
+                '<span class="t-tick" aria-hidden="true"></span>' +
+                '<span class="t-name"><span class="t-num" aria-hidden="true">' + (i + 1) + '</span> ' + WIZ_NAMES[id] + '</span>' +
+                '</button>').join('');
+        }
+
         function wizUpdateStepper() {
+            wizBuildStepper();
             const frontier = wizFrontier();
-            for (let i = 0; i <= WIZ_LAST; i++) {
-                const chip = document.getElementById('wizChip' + i);
-                if (!chip) continue;
-                const done = wizStepDone(i);
-                chip.classList.toggle('active', i === wizCurrent);
-                chip.classList.toggle('completed', done && i !== wizCurrent);
-                const locked = i > frontier;
+            const fpos = wizPos(frontier);
+            wizPath().forEach((id, i) => {
+                const chip = document.getElementById('wizChip' + id);
+                if (!chip) return;
+                const done = wizStepDone(id);
+                const locked = i > fpos;
+                chip.classList.toggle('active', id === wizCurrent);
+                chip.classList.toggle('completed', done && !locked && id !== wizCurrent);
                 chip.classList.toggle('locked', locked);
-                chip.setAttribute('aria-current', i === wizCurrent ? 'step' : 'false');
+                if (id === wizCurrent) chip.setAttribute('aria-current', 'step'); else chip.removeAttribute('aria-current');
                 chip.setAttribute('aria-disabled', locked ? 'true' : 'false');
-            }
+                chip.setAttribute('aria-label', WIZ_NAMES[id] + (done && !locked && id !== wizCurrent ? ', done' : '') + (locked ? ', locked' : ''));
+            });
         }
 
         function wizNext() {
-            if (wizCurrent >= WIZ_LAST) return;
+            const path = wizPath();
+            const pos = wizPos(wizCurrent);
+            if (pos >= path.length - 1) return;
             if (!wizStepDone(wizCurrent)) { wizNudge(); return; }
             const leaving = wizCurrent;
-            showStep(wizCurrent + 1);
-            if (leaving === 0) {
+            showStep(path[pos + 1]);
+            if (leaving === 0 && wizIsSolo()) {
                 setTimeout(function() {
-                    showToast('Saved on this computer. On a shared Chromebook, tap Copy to Google Doc in the top right.', 6000);
+                    showToast('Saved on this computer. On a shared Chromebook, open My Work and tap Back up my work.', 6000);
                 }, 800);
             }
         }
-        function wizBack() { if (wizCurrent > 0) showStep(wizCurrent - 1); }
+        function wizBack() {
+            const pos = wizPos(wizCurrent);
+            if (pos > 0) showStep(wizPath()[pos - 1]);
+        }
 
         function wizGoChip(i) {
-            if (i > wizFrontier()) {
-                const stepNames = ['Basics', 'Research', 'Intro', 'Content', 'Conclusion', 'Finish'];
-                const needed = stepNames[wizFrontier()] || 'the current step';
-                showToast('Finish ' + needed + ' first to unlock this step 🔒');
+            if (wizPos(i) > wizPos(wizFrontier())) {
+                showToast('Finish ' + (WIZ_NAMES[wizFrontier()] || 'this step') + ' first to unlock this step');
                 return;
             }
             showStep(i);
@@ -1622,18 +1705,38 @@
             const n = wizCurrent;
             let target = null;
             if (n === 0) {
-                target = ['studentName', 'subject'].map(id => document.getElementById(id)).find(el => el && !el.value.trim());
+                const g = document.getElementById('groupSize');
+                if (!g.value) { target = g; }
+                else if (wizIsSolo()) {
+                    target = ['studentName', 'subject'].map(id => document.getElementById(id)).find(el => el && !el.value.trim());
+                } else {
+                    target = (typeof crewFirstMissingName === 'function' && crewFirstMissingName()) ||
+                        (!document.getElementById('subject').value ? document.getElementById('subject') : null);
+                }
+                showToast(target && target.id === 'groupSize' ? 'Choose how many people are making this podcast' : 'Fill this in, then tap Next');
+                wizNudgeField(target);
+                return;
             } else if (n === 1) {
                 const t = document.getElementById('subject');
                 if (!t || !t.value) {
-                    showToast('Choose your topic on the Basics step first');
+                    showToast('Choose your topic on the Start step first');
                     showStep(0);
                     if (t) wizNudgeField(t);
                     return;
                 }
                 const read = document.getElementById('researchRead');
-                showToast('Read the piece, then check I read this and I\'m ready to write');
+                showToast('Read the piece, then check "I read this and I\'m ready to write"');
                 wizNudgeField(read);
+                return;
+            } else if (n === 6) {
+                const missing = ['intro', 'content', 'conclusion'].find(r => !document.querySelector('input[name="' + r + '"]:checked'));
+                target = document.querySelector('.plan-part[data-radio="' + missing + '"] input[type="radio"]');
+                showToast('Pick a style for each part');
+                wizNudgeField(target);
+                return;
+            } else if (n === 7) {
+                showToast('Make your Doc and share it, then check the box');
+                wizNudgeField(document.getElementById('docShared'));
                 return;
             } else {
                 const radio = WIZ_RADIO[n];
@@ -1645,14 +1748,19 @@
                     target = sec && sec.querySelector('.form-section.active textarea');
                 }
             }
-            showToast('Add a little here first, then tap Next ✏️');
+            showToast('Add a little here first, then tap Next');
             wizNudgeField(target);
         }
 
         // Called by generateScript() once the script is built (lives on the Finish step).
-        function wizMarkGenerated() { wizGenerated = true; if (wizCurrent !== WIZ_LAST) showStep(WIZ_LAST); else wizUpdateStepper(); }
+        function wizMarkGenerated() { wizGenerated = true; if (wizCurrent !== WIZ_FINISH) showStep(WIZ_FINISH); else wizUpdateStepper(); }
         // Called after restoring saved work — drop the student where they left off.
-        function wizGoToFrontier() { showStep(wizFrontier()); }
+        function wizGoToFrontier() { wizUpdateStepper(); showStep(wizFrontier()); }
+        // The path changed (group size picked or changed): rebuild the bar, stay on a valid step.
+        function wizPathChanged() {
+            wizUpdateStepper();
+            if (wizPos(wizCurrent) === -1) showStep(0); else wizUpdateNav();
+        }
 
         function wizInit() {
             if (typeof rvInitResearch === 'function') rvInitResearch();
@@ -1662,9 +1770,10 @@
                     el.addEventListener('input', wizUpdateStepper);
                     el.addEventListener('change', () => { wizUpdateStepper(); wizUpdateNav(); });
                 });
-            showStep(wizFrontier());
             updateRoleCard();
             updateGroupOptions();
+            wizUpdateStepper();
+            showStep(wizFrontier());
             if (typeof rvSyncFromSelect === 'function') rvSyncFromSelect();
         }
 
@@ -1673,7 +1782,16 @@
         // Reading content lives in readings.js (window.RV_READINGS / RV_TOPICS).
         // ============================================
         const RV_LEVEL_KEY = 'rvReadingLevel';
-        const RV_SECTION_LABEL = { hook: 'For your Hook (Introduction)', content: 'For your Content', conclusion: 'For your Conclusion' };
+        // Students see one-word names that describe the text, never the reader.
+        // The keys (and the saved preference) keep the internal level names.
+        const RV_LEVEL_NAMES = { mostSupport: 'Quick', someSupport: 'Clear', standard: 'Full', challenge: 'Deep' };
+        const RV_LEVEL_BLURBS = {
+            mostSupport: 'Short sentences. Key words explained.',
+            someSupport: 'Plain words, a little more detail.',
+            standard: 'The grade-level reading.',
+            challenge: 'Adds real quotes from the time and what historians argue.'
+        };
+        const RV_SECTION_LABEL = { hook: 'For your Hook', content: 'For your Story', conclusion: 'For your Wrap' };
         let rvLevelCur = (function () { try { return localStorage.getItem(RV_LEVEL_KEY) || 'standard'; } catch (e) { return 'standard'; } })();
         function rvLevel() { return rvLevelCur; }
         // Facts for a section at the current level. Supports either a leveled object
@@ -1762,18 +1880,18 @@
                     note.hidden = false;
                     note.innerHTML = (subj && subj.value)
                         ? 'The reading for <strong>' + chosenName + '</strong> is still being added. You can still build your script. Use your class resources to research this topic.'
-                        : 'Go back to <strong>Basics</strong> and choose your topic to load a reading.';
+                        : 'Go back to <strong>Start</strong> and choose your topic to load a reading.';
                 }
                 const emptyMsg = (subj && subj.value)
                     ? 'The reading for this topic is still being added. Use your notes and class resources.'
-                    : 'Choose your topic on the Basics step to see the reading here.';
+                    : 'Choose your topic on the Start step to see the reading here.';
                 rvShowDrawerReading(false, emptyMsg);
                 if (typeof rvRenderSpotlight === 'function') rvRenderSpotlight(null);
                 if (typeof rvRenderVoiceBank === 'function') rvRenderVoiceBank(null);
             }
         }
 
-        // Subject changed (the topic dropdown lives on the Basics step): refresh everything.
+        // Subject changed (the topic dropdown lives on the Start step): refresh everything.
         function onTopicChange() {
             suggestPodcastName();
             updateExemplarNotes();
@@ -1805,9 +1923,12 @@
 
         function setReadingLevel(key) {
             rvLevelCur = key;
+            // Saving the key also marks that the student has picked (the first-pick cards then step aside).
             try { localStorage.setItem(RV_LEVEL_KEY, key); } catch (e) {}
             const id = rvCurrentTopic();
             if (id) rvRenderReading(id);
+            if (window.READER_TOOLS) window.READER_TOOLS.reset();
+            if (typeof crewRenderLevelPick === 'function') crewRenderLevelPick();
         }
 
         function rvRenderReading(id) {
@@ -1829,6 +1950,8 @@
             if (qfEl) qfEl.hidden = !qf;
             document.querySelectorAll('.level-pill').forEach(function(p) {
                 p.classList.toggle('active', p.dataset.level === level);
+                p.setAttribute('aria-pressed', String(p.dataset.level === level));
+                p.title = RV_LEVEL_BLURBS[p.dataset.level] || '';
             });
             const body = (r.levels && r.levels[level]) || r.levels.standard || '';
             setBoth('readingBody', 'drawerReadingBody', body);
@@ -1965,13 +2088,8 @@
         // Fill the "key facts for this part" panel on the Intro/Content/Conclusion steps
         function rvRenderStepFacts(stepNum) {
             const keyByStep = { 2: 'hook', 3: 'content', 4: 'conclusion' };
-            const sectionLabel = { 2: 'Introduction', 3: 'Content', 4: 'Conclusion' };
-            const levelLabel = {
-                mostSupport: 'Easier language',
-                someSupport: 'A bit easier',
-                standard: 'Standard',
-                challenge: 'Harder language'
-            };
+            const sectionLabel = { 2: 'Hook', 3: 'Story', 4: 'Wrap' };
+            const levelLabel = RV_LEVEL_NAMES;
             const key = keyByStep[stepNum];
             if (!key) return;
             const box = document.querySelector('[data-step="' + stepNum + '"] .step-facts');
@@ -1981,7 +2099,7 @@
             const items = r ? rvFactsFor(r, key) : null;
             if (!id || !r) {
                 box.hidden = false;
-                box.innerHTML = '<details class="step-facts-details"><summary><i class="fas fa-clipboard-list" aria-hidden="true"></i> Key facts for your ' + (sectionLabel[stepNum] || 'section') + '</summary><div class="step-facts-empty">Choose your topic on the Basics step to see key facts here.</div></details>';
+                box.innerHTML = '<details class="step-facts-details"><summary><i class="fas fa-clipboard-list" aria-hidden="true"></i> Key facts for your ' + (sectionLabel[stepNum] || 'section') + '</summary><div class="step-facts-empty">Choose your topic on the Start step to see key facts here.</div></details>';
                 return;
             }
             if (!items || !items.length) { box.hidden = true; box.innerHTML = ''; return; }
@@ -2016,7 +2134,7 @@
             const content = document.getElementById('drawerReadingContent');
             if (empty) {
                 empty.hidden = !!hasReading;
-                if (!hasReading) empty.textContent = emptyMsg || 'Choose your topic on the Basics step to see the reading here.';
+                if (!hasReading) empty.textContent = emptyMsg || 'Choose your topic on the Start step to see the reading here.';
             }
             if (content) content.hidden = !hasReading;
         }
@@ -2060,7 +2178,7 @@
                 const subj = document.getElementById('subject');
                 rvShowDrawerReading(false, (subj && subj.value)
                     ? 'The reading for this topic is still being added. Use your notes and class resources.'
-                    : 'Choose your topic on the Basics step to see the reading here.');
+                    : 'Choose your topic on the Start step to see the reading here.');
             }
             rvSetDrawerOpen(true);
             const closeBtn = document.getElementById('readingDrawerClose');
@@ -2197,19 +2315,8 @@
                 btn.addEventListener('click', show);
             });
 
-            // 2) Difficulty badge on each format choice
-            document.querySelectorAll('input[name="intro"], input[name="content"], input[name="conclusion"]').forEach(radio => {
-                const diff = FORMAT_DIFFICULTY[radio.value];
-                if (!diff) return;
-                const label = radio.closest('label') || radio.parentElement;
-                const strong = label && label.querySelector('strong');
-                if (strong && !strong.querySelector('.format-badge')) {
-                    const badge = document.createElement('span');
-                    badge.className = 'difficulty-badge format-badge ' + BADGE_CLASS[diff];
-                    badge.textContent = BADGE_LABEL[diff];
-                    strong.appendChild(badge);
-                }
-            });
+            // (Difficulty badges on the format choices were removed in 3.0.0: they
+            // labeled the student by the choice, the way level names used to.)
 
             buildGlossaryPanel();
         }

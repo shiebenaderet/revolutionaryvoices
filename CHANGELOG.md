@@ -6,6 +6,45 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.0.0] - 2026-10-15
+
+### Workflow restructure: crews plan here and write together in a Google Doc
+
+Groups now plan on this site and write the script together in a Google Doc. Solo students still write the whole script here. Built for Unit 2, Weeks 9 and 10 (launch Oct 26, script builder Oct 30, writing days Nov 2 and 3).
+
+### Added
+
+- **Two paths, chosen on the first step.** Solo: Start, Read, Hook, Story, Wrap, Finish. Crew of 2 to 4: Start, Read, Plan, Group Doc, Practice. The step bar is built from whichever path applies.
+- **Your crew** on Start: every student gets a job (Researcher, Lead Scriptwriter, Chief Editor) and a voice (Host, Narrator, Subject). These are checkboxes, so one student can take two jobs and two students can split one. A live line says which jobs or voices are still open. "What does each job do?" explains each one, before writing and in the Doc.
+- **Fact Bank** on Read: six rows (up to ten) of fact plus source, replacing the free-text notes box. It feeds the Group Doc.
+- **Working thesis** on Read, matching the unit plan's research days.
+- **First-pick reading cards:** the first visit shows the first sentence of the chosen topic at each level, so students pick by reading rather than by label.
+- **Plan the Episode** (crew): an episode map (Hook, Story, Wrap, with time targets), style cards with a small diagram of each style's boxes, and one line to fill per box, each labeled with the voice and the crew member who speaks it.
+- **Group Doc** (crew): **Copy the frame** puts a formatted frame on the clipboard as rich text (crew table, thesis, Fact Bank, one box per beat with guidance, starter and plan line, Editor's Checklist, who does what), ready to paste into a new Google Doc. **Print a paper copy** prints the same frame with ruled writing lines, to the print standard. The frame says plainly that students can change it or make their own version.
+- **Practice** (crew): paste the finished script back in ("Maria: ...") to see the read-aloud time and rehearse line by line with each speaker's name.
+- **Listen and Font** on every screen and every reading page (ported from colonial-unrest's `reader-tools.js`): sentence-by-sentence read-aloud with highlighting, and a Font menu with Atkinson Hyperlegible Next, Lexend, OpenDyslexic and Verdana, text size, wider spacing, and Light / Dark. The menu is called "Font", not "dyslexia": it is a comfort setting, not an accommodation. Lexend and OpenDyslexic are bundled. Nothing loads from Google Fonts.
+
+### Changed
+
+- **Reading levels are named Quick, Clear, Full, Deep** (formerly "Easier language / A bit easier / Standard / Harder language", and on the reading pages stars plus "Most support ... Challenge"). The names describe the text, never the reader. The keys and the saved preference are unchanged.
+- **One typeface:** Atkinson Hyperlegible Next everywhere. Inter, Roboto Slab and Space Mono are removed. No letter-spaced capitals, no italics for running text, nothing a student reads under 15px, and inputs at 17px.
+- **Step bar** at 16px and full contrast, numbered. Locked steps get a dashed underline instead of fading to near-invisible.
+- **Menus consolidated:** the header has three labeled buttons (Listen, Font, My Work) in place of four icon-only buttons. My Work holds your scripts, a new script, **Back up my work**, **Restore my work** and delete. One dialog covers both backup methods (copy to a Google Doc, or a file). The duplicate Google Doc controls, the "Keep a copy in Google Docs" bar under every step, "Save now" and the separate dark-mode button are gone.
+- Steps renamed for a podcast: Hook / Story / Wrap, not Introduction / Content / Conclusion.
+- Coming back to the site reopens your most recent script instead of a blank form.
+- News Report: the "In their own words" quote is voiced by the Subject.
+- Contrast fixes found in an audit of every step in both themes: primary buttons (white on orange was 3.67:1), link teal, key-fact headings, length targets, and several dark-mode panels.
+
+### Removed
+
+- The "Easy start / Medium" badges on the script formats. Like the old level names, they labeled the student by the choice.
+
+### Fixed
+
+- Leaving or reloading an untouched page no longer saves an empty "Untitled script".
+
+---
+
 ## [2.0.0] - 2026-08-25
 
 ### Milestone: every topic now carries a primary source

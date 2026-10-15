@@ -986,7 +986,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '3.3.0'; // keep in sync with index.html footer and CHANGELOG
+        const APP_VERSION = '3.4.0'; // keep in sync with index.html footer and CHANGELOG
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION; })();
         const OLD_KEY = 'revolutionaryVoicesScript';
@@ -1566,7 +1566,8 @@
             }
             if (n === WIZ_FINISH || n === 8 || n === 9) return true;
             if (n === 6) {
-                return ['intro', 'content', 'conclusion'].every(r => document.querySelector('input[name="' + r + '"]:checked'));
+                return ['intro', 'content', 'conclusion'].every(r => document.querySelector('input[name="' + r + '"]:checked')) &&
+                    (typeof crewCastComplete !== 'function' || crewCastComplete());
             }
             if (n === 7) {
                 const shared = document.getElementById('docShared');
@@ -1731,8 +1732,13 @@
                 return;
             } else if (n === 6) {
                 const missing = ['intro', 'content', 'conclusion'].find(r => !document.querySelector('input[name="' + r + '"]:checked'));
-                target = document.querySelector('.plan-part[data-radio="' + missing + '"] input[type="radio"]');
-                showToast('Pick a style for each part');
+                if (missing) {
+                    target = document.querySelector('.plan-part[data-radio="' + missing + '"] input[type="radio"]');
+                    showToast('Pick a style for each part');
+                } else {
+                    target = (typeof crewFirstOpenCast === 'function' && crewFirstOpenCast()) || document.getElementById('castSection');
+                    showToast('Check who says each part, or tap Split it up for us');
+                }
                 wizNudgeField(target);
                 return;
             } else if (n === 7) {

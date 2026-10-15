@@ -2612,3 +2612,20 @@ html.rt-playing .container .header.studio .rt-btn.rt-primary { text-decoration: 
 .container .wizard-step > h2:focus, .container .wizard-step h2[tabindex="-1"]:focus,
 .container .wizard-step[tabindex="-1"]:focus { outline: none !important; }
 .container .wizard-step > h2::after { content: none !important; }
+
+/* 3.4.0 Start: the jobs as one short line each, above the crew rows. */
+.crew-jobs-body .job-list { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 4px 0 14px; }
+.crew-jobs-body .job-list dt { margin: 0; }
+.crew-jobs-body .job-list dd { margin: 0; color: var(--ink); }
+@media (max-width: 560px) { .crew-jobs-body .job-list { grid-template-columns: 1fr; gap: 0 0; } .crew-jobs-body .job-list dd { margin-bottom: 8px; } }
+
+/* 3.4.0 Plan: Who says it? One row per part the episode uses, names to check. */
+.cast { margin-top: 28px; padding-top: 18px; border-top: 2px solid var(--rule); }
+.cast h3 { margin: 0 0 4px; }
+.cast-grid { margin: 10px 0 6px; }
+.cast-grid:focus { outline: none; }
+.cast-row { border: 1.5px solid var(--rule) !important; border-radius: 0 !important; padding: 8px 14px 12px; margin: 0 0 10px; background: var(--paper) !important; }
+.cast-row legend { padding: 0 6px; display: flex; align-items: center; gap: 10px; }
+.cast-count { font-size: 15px; font-weight: 600; color: var(--muted); }
+.cast-does { margin: 2px 0 8px; font-size: 16px; }
+.cast-actions { margin: 4px 0 6px; }

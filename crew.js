@@ -1,16 +1,19 @@
 /* Crew workflow for Revolutionary Voices (3.0.0).
 
    A group plans on this site and writes the script together in a Google Doc:
-     Start      - who is in the crew, and each person's job(s) and voice(s)
+     Start      - who is in the crew, and each person's job(s)
      Read       - first-pick level cards, the Fact Bank, the working thesis
-     Plan       - pick a style for the Hook, Story and Wrap; one line per box
+     Plan       - pick a style for the Hook, Story and Wrap; one line per box;
+                  then Who says it?: names on the parts this episode uses
      Group Doc  - copy a frame into a Google Doc (or print it on paper)
      Practice   - paste the finished script back to time it and rehearse
    A solo student still writes the whole script in the Hook / Story / Wrap steps.
 
    Jobs and voices are checkboxes, not one-per-person dropdowns, on purpose: in a
    pair, or when someone is out, one student does two jobs, and two students can
-   split one job. Every input here has an id, so app.js saves and restores it like
+   split one job. Voices are picked after the styles (3.4.0), because the styles
+   decide which voices an episode has: a Dramatic Hook, a News Report and a Legacy
+   wrap have no Narrator at all. Every input here has an id, so app.js saves and restores it like
    any other field. They are all built now, while the page is parsing, so they
    exist before app.js restores saved work on load. */
 (function () {
@@ -19,20 +22,20 @@
   var CREW_MAX = 4, FACT_MAX = 10, FACT_START = 6;
 
   var JOBS = [
-    { id: 'research', name: 'Researcher',
-      before: 'Leads the reading and builds the Fact Bank, with a source for every fact.',
-      during: 'Checks facts while the script is written. Leaves a comment when a line needs a source.' },
-    { id: 'write', name: 'Lead Scriptwriter',
-      before: 'Picks the styles for the Hook, Story and Wrap, and fills in the plan.',
-      during: "Drafts the script in the Doc and stitches everyone's lines together." },
-    { id: 'edit', name: 'Chief Editor',
-      before: 'Keeps the time target and the checklist.',
-      during: 'Works in Suggesting mode, makes sure every voice has lines, and times a read-aloud.' }
+    { id: 'research', name: 'Researcher', short: 'Finds the facts and where each one came from.',
+      before: 'Leads the reading and fills in the Fact Bank. Every fact gets a source.',
+      during: 'Checks the facts in the Doc. Adds a comment when a line needs a source.' },
+    { id: 'write', name: 'Lead Scriptwriter', short: 'Picks the styles and pulls the script together.',
+      before: 'Picks a style for each part and fills in the plan.',
+      during: "Writes the first draft in the Doc and puts everyone's lines in order." },
+    { id: 'edit', name: 'Chief Editor', short: 'Keeps the script on time and on track.',
+      before: 'Watches the time and the checklist.',
+      during: 'Edits in Suggesting mode, so changes show up as suggestions. Makes sure everyone has lines, and times a read-aloud.' }
   ];
   var VOICES = [
-    { id: 'host', name: 'Host', does: 'Welcomes listeners and asks the questions.' },
+    { id: 'host', name: 'Host', does: 'Talks to listeners and asks the questions.' },
     { id: 'narrator', name: 'Narrator', does: 'Sets the scene and moves the story along.' },
-    { id: 'subject', name: 'Subject', does: 'Speaks as the historical figure, in first person.' }
+    { id: 'subject', name: 'Subject', does: 'The person from history, speaking as "I".' }
   ];
 
   /* The three parts and the boxes ("beats") inside each style. Field ids are the
@@ -86,8 +89,8 @@
 
   var CHECKLIST = [
     'The Hook grabs listeners in the first 30 to 45 seconds.',
-    'Every voice in the crew has lines.',
-    'Every fact traces back to the Fact Bank, with its source.',
+    'Everyone in the crew has lines.',
+    'Every fact comes from the Fact Bank and says where it came from.',
     'The Wrap says why this story matters (your thesis).',
     'The historical figure speaks in first person ("I", "my").',
     'We read it aloud with a timer: 3 to 5 minutes.',
@@ -156,11 +159,6 @@
       JOBS.forEach(function (j) {
         html += '<label class="chip-check"><input type="checkbox" id="crew' + i + '-job-' + j.id + '"><span>' + j.name + '</span></label>';
       });
-      html += '</div></div><div class="crew-picks"><span class="crew-pick-label" id="crew' + i + '-voices-label">Voice</span>' +
-        '<div class="chip-checks" role="group" aria-labelledby="crew' + i + '-voices-label">';
-      VOICES.forEach(function (v) {
-        html += '<label class="chip-check chip-voice-' + v.id + '"><input type="checkbox" id="crew' + i + '-voice-' + v.id + '"><span>' + v.name + '</span></label>';
-      });
       html += '</div></div>';
       row.innerHTML = html;
       host.appendChild(row);
@@ -169,15 +167,39 @@
     host.addEventListener('change', crewCheck);
 
     var jobs = '<dl class="job-list">';
-    JOBS.forEach(function (j) {
-      jobs += '<dt>' + j.name + '</dt><dd><strong>Before writing:</strong> ' + j.before + '<br><strong>In the Doc:</strong> ' + j.during + '</dd>';
-    });
-    jobs += '<dt>Everyone</dt><dd>Reads the source at their own level, and writes the lines for the voice they will perform.</dd></dl>';
-    jobs += '<dl class="job-list">';
-    VOICES.forEach(function (v) { jobs += '<dt>' + v.name + ' voice</dt><dd>' + v.does + '</dd>'; });
-    jobs += '</dl><p class="field-hint">Sharing is fine. Two people can split a job (one edits the Hook, the other the Story), and one person can do two.</p>';
+    JOBS.forEach(function (j) { jobs += '<dt>' + j.name + '</dt><dd>' + j.short + '</dd>'; });
+    jobs += '<dt>Everyone</dt><dd>Reads the source and writes their own lines.</dd></dl>';
     if ($('crewJobsBody')) $('crewJobsBody').innerHTML = jobs;
   }
+
+  /* Who says each part. The checkboxes keep their 3.0 ids (crew1-voice-host and so
+     on), so saved work still loads; they are built now and parked, and Plan moves
+     them into the Who says it? grid. */
+  var CAST_INPUTS = {};
+  function buildCastInputs() {
+    var park = el('div', { hidden: '', id: 'castInputPark' });
+    for (var i = 1; i <= CREW_MAX; i++) {
+      VOICES.forEach(function (v) {
+        var lab = el('label', { 'class': 'chip-check cast-pick' });
+        lab.innerHTML = '<input type="checkbox" id="crew' + i + '-voice-' + v.id + '"><span></span>';
+        CAST_INPUTS[i + '-' + v.id] = lab;
+        park.appendChild(lab);
+      });
+    }
+    document.body.appendChild(park);
+  }
+  /* A name checked or unchecked: redraw the plan (its box labels and the cast
+     status) and keep focus on the same checkbox. */
+  document.addEventListener('change', function (e) {
+    var t = e.target;
+    if (!t || !/^crew\d-voice-/.test(t.id || '')) return;
+    var id = t.id;
+    save();
+    renderPlan();
+    refreshSteps();
+    var again = $(id);
+    if (again) again.focus();
+  });
 
   function crewSize() {
     var g = $('groupSize');
@@ -191,6 +213,7 @@
     for (var i = 1; i <= crewSize(); i++) {
       out.push({
         n: i, name: val('crew' + i + '-name'),
+        label: val('crew' + i + '-name') || 'Person ' + i,
         jobs: JOBS.filter(function (j) { return checked('crew' + i + '-job-' + j.id); }),
         voices: VOICES.filter(function (v) { return checked('crew' + i + '-voice-' + v.id); })
       });
@@ -208,17 +231,13 @@
     JOBS.forEach(function (j) {
       if (!members.some(function (m) { return m.jobs.indexOf(j) !== -1; })) open.push(j.name);
     });
-    VOICES.forEach(function (v) {
-      if (v.id === 'narrator' && crewSize() === 2) return; /* a pair can skip the Narrator */
-      if (!members.some(function (m) { return m.voices.indexOf(v) !== -1; })) open.push(v.name + ' voice');
-    });
-    var noVoice = members.filter(function (m) { return m.name && !m.voices.length; }).map(function (m) { return m.name; });
-    var msg = '';
-    if (open.length) msg = 'Still open: ' + open.join(', ') + '. Someone can take two.';
-    else msg = 'Every job and voice has someone.';
-    if (noVoice.length) msg += ' ' + noVoice.join(' and ') + (noVoice.length > 1 ? ' need' : ' needs') + ' a voice too.';
+    var noJob = members.filter(function (m) { return m.name && !m.jobs.length; }).map(function (m) { return m.name; });
+    var msg = open.length ? 'Still need: ' + open.join(', ') + '. Someone can take two.' : 'Every job has someone.';
+    var dup = names.filter(function (n, i) { return names.map(function (x) { return x.toLowerCase(); }).indexOf(n.toLowerCase()) !== i; });
+    if (dup.length) msg += ' Two people are named ' + dup[0] + ': add a last initial, like ' + dup[0] + ' R.';
+    if (noJob.length) msg += ' ' + noJob.join(' and ') + (noJob.length > 1 ? ' need' : ' needs') + ' a job too.';
     var box = $('crewCheck');
-    if (box) { box.textContent = msg; box.classList.toggle('is-ok', !open.length && !noVoice.length); }
+    if (box) { box.textContent = msg; box.classList.toggle('is-ok', !open.length && !noJob.length && !dup.length); }
     refreshSteps();
   }
 
@@ -232,13 +251,13 @@
     var hint = $('pathHint');
     if (hint) {
       hint.textContent = solo ? 'You will write your whole script here, one part at a time.'
-        : crew ? 'Your crew plans here, then writes the script together in a Google Doc.'
+        : crew ? 'Your crew plans here. Then you write the script together in a Google Doc.'
         : 'Groups plan here, then write together in a Google Doc. If you are working alone, you write your whole script here.';
     }
     var fh = $('factBankHint');
     if (fh) fh.textContent = crew
-      ? 'The Researcher leads, and anyone can add. Put each fact in your own words and say where it came from. Aim for six. Every fact in your script should trace back to one of these.'
-      : 'Put each fact in your own words and say where it came from. Aim for six. Every fact in your script should trace back to one of these.';
+      ? 'The Researcher leads, and anyone can add. Write each fact in your own words, and say where you found it. Aim for six. Every fact in your script should come from this list.'
+      : 'Write each fact in your own words, and say where you found it. Aim for six. Every fact in your script should come from this list.';
     if (crew) crewCheck();
     if (typeof wizPathChanged === 'function') wizPathChanged();
   };
@@ -359,9 +378,105 @@
     var v = VOICES.filter(function (x) { return x.id === voice; })[0];
     return { name: v ? v.name : voice, who: window.crewVoiceNames(voice) };
   }
-  function chip(voice) {
-    var l = voiceLabel(voice);
-    return '<span class="voice-chip voice-' + voice + '">' + esc(l.name) + (l.who ? ' <span class="voice-who">(' + esc(l.who) + ')</span>' : '') + '</span>';
+  /* The voice on a box and the name(s) who say that box. */
+  function boxLabel(b) {
+    if (b[2] === 'all') return { name: 'Everyone', who: '' };
+    var owners = cast().owners[b[0]] || [];
+    return { name: voiceLabel(b[2]).name, who: owners.join(' and ') };
+  }
+  function chip(b) {
+    var l = boxLabel(b);
+    return '<span class="voice-chip voice-' + b[2] + '">' + esc(l.name) + (l.who ? ' <span class="voice-who">(' + esc(l.who) + ')</span>' : '') + '</span>';
+  }
+
+  /* ---------------------------------------------------------------- who says it */
+  /* The cast follows the styles: only the voices the chosen styles use, each with
+     its boxes in episode order. When two people share a voice, its boxes alternate
+     between them, so co-hosts each get lines and nobody writes the same box twice. */
+  function episodeBeats() {
+    var out = [];
+    PARTS.forEach(function (part) { var s = chosen(part); if (s) allBeats(part, s).forEach(function (b) { out.push(b); }); });
+    return out;
+  }
+  function allChosen() { return PARTS.every(function (p) { return !!chosen(p); }); }
+  function cast() {
+    var members = crewMembers();
+    var used = [], byVoice = {};
+    episodeBeats().forEach(function (b) {
+      if (b[2] === 'all') return;
+      if (!byVoice[b[2]]) { byVoice[b[2]] = []; used.push(b[2]); }
+      byVoice[b[2]].push(b[0]);
+    });
+    used.sort(function (a, b) { return VOICES.map(function (v) { return v.id; }).indexOf(a) - VOICES.map(function (v) { return v.id; }).indexOf(b); });
+    var who = {};
+    used.forEach(function (vid) {
+      who[vid] = members.filter(function (m) { return checked('crew' + m.n + '-voice-' + vid); }).map(function (m) { return m.label; });
+    });
+    var r = window.RV_CAST.owners(used, byVoice, who, members.map(function (m) { return m.label; }));
+    var owners = r.owners, boxes = r.boxes, open = r.open;
+    var idle = members.filter(function (m) { return !boxes[m.label]; }).map(function (m) { return m.label; });
+    return { members: members, used: used, byVoice: byVoice, owners: owners, boxes: boxes, open: open, idle: idle };
+  }
+  window.crewCastComplete = function () { return !isCrew() || (allChosen() && !cast().open.length); };
+  window.crewFirstOpenCast = function () {
+    var c = cast();
+    return c.open.length ? $('crew1-voice-' + c.open[0]) : null;
+  };
+
+  /* Split it up for us: every voice gets someone, then anyone left without lines
+     shares the busiest voice. Students can change any box afterwards. */
+  window.crewSplitCast = function () {
+    var c = cast();
+    if (!c.used.length) return;
+    c.members.forEach(function (m) { VOICES.forEach(function (v) { var x = $('crew' + m.n + '-voice-' + v.id); if (x) x.checked = false; }); });
+    var assign = window.RV_CAST.split(c.used, c.byVoice, c.members.map(function (m) { return m.n; }));
+    Object.keys(assign).forEach(function (vid) { assign[vid].forEach(function (n) { var x = $('crew' + n + '-voice-' + vid); if (x) x.checked = true; }); });
+    save();
+    renderPlan();
+    refreshSteps();
+    var g = $('castGrid');
+    if (g) g.focus();
+  };
+
+  function renderCast(host) {
+    var sec = el('section', { 'class': 'cast', id: 'castSection', 'aria-labelledby': 'castTitle' });
+    if (!allChosen()) {
+      sec.innerHTML = '<h3 id="castTitle">Who says it?</h3><p class="field-hint">Pick a style for all three parts first. Then you will choose who says each part.</p>';
+      host.appendChild(sec);
+      return;
+    }
+    var c = cast();
+    var html = '<h3 id="castTitle">Who says it?</h3>' +
+      '<p class="field-hint">Your styles use ' + (c.used.length === 1 ? 'one part' : c.used.length + ' parts') + '. Check who says each one. ' +
+      'Two people can share a part, and one person can say two.</p>' +
+      '<div class="cast-grid" id="castGrid" tabindex="-1"></div>' +
+      '<div class="cast-actions"><button type="button" class="btn btn-secondary" onclick="crewSplitCast()">Split it up for us</button></div>' +
+      '<p class="crew-check" id="castCheck" role="status" aria-live="polite"></p>';
+    sec.innerHTML = html;
+    var grid = sec.querySelector('#castGrid');
+    c.used.forEach(function (vid) {
+      var v = VOICES.filter(function (x) { return x.id === vid; })[0];
+      var n = c.byVoice[vid].length;
+      var row = el('fieldset', { 'class': 'cast-row voice-' + vid });
+      row.innerHTML = '<legend><span class="voice-chip voice-' + vid + '">' + v.name + '</span> <span class="cast-count">' + n + (n === 1 ? ' box' : ' boxes') + '</span></legend>' +
+        '<p class="cast-does">' + esc(v.does) + '</p>';
+      var picks = el('div', { 'class': 'chip-checks' });
+      c.members.forEach(function (m) {
+        var lab = CAST_INPUTS[m.n + '-' + vid];
+        lab.querySelector('span').textContent = m.label;
+        picks.appendChild(lab);
+      });
+      row.appendChild(picks);
+      grid.appendChild(row);
+    });
+    host.appendChild(sec);
+    var msg;
+    if (c.open.length) msg = 'Still need someone for: ' + c.open.map(function (vid) { return voiceLabel(vid).name; }).join(', ') + '.';
+    else if (c.idle.length) msg = 'Every part has someone. ' + c.idle.join(' and ') + (c.idle.length > 1 ? ' have' : ' has') + ' no lines yet: share a part with them.';
+    else msg = 'Every part has someone, and everyone has lines.';
+    var box = sec.querySelector('#castCheck');
+    box.textContent = msg;
+    box.classList.toggle('is-ok', !c.open.length && !c.idle.length);
   }
   /* Choose a style here and it is the same style on the solo steps. The solo
      forms are shown without scrolling to them, since they are off screen. */
@@ -393,6 +508,8 @@
     /* Park the one-line inputs before redrawing, so their typed text survives. */
     var park = $('planInputPark');
     Object.keys(PLAN_INPUTS).forEach(function (k) { park.appendChild(PLAN_INPUTS[k]); });
+    var castPark = $('castInputPark');
+    Object.keys(CAST_INPUTS).forEach(function (k) { castPark.appendChild(CAST_INPUTS[k]); });
     host.innerHTML = '';
     PARTS.forEach(function (part, i) {
       var s = chosen(part);
@@ -415,7 +532,7 @@
         allBeats(part, s).forEach(function (b) {
           var g = guideFor(b[0]);
           var li = el('li', { 'class': 'plan-beat' });
-          li.innerHTML = '<div class="plan-beat-head"><label for="plan-' + b[0] + '" class="plan-beat-title">' + esc(b[1]) + '</label>' + chip(b[2]) + '</div>' +
+          li.innerHTML = '<div class="plan-beat-head"><label for="plan-' + b[0] + '" class="plan-beat-title">' + esc(b[1]) + '</label>' + chip(b) + '</div>' +
             (g.what ? '<p class="plan-beat-what">' + esc(g.what.replace(/[.\s]+$/, '')) + '.' + (g.target ? ' <span class="plan-beat-target">Aim for ' + esc(g.target) + '.</span>' : '') + '</p>' : '');
           li.appendChild(PLAN_INPUTS[b[0]]);
           list.appendChild(li);
@@ -427,8 +544,7 @@
         r.addEventListener('change', function () { pickStyle(part, r.value); });
       });
     });
-    var note = el('p', { 'class': 'field-hint' }, 'Change who says what if it fits your episode better. Just make sure every voice in your crew has lines.');
-    host.appendChild(note);
+    renderCast(host);
   }
 
   /* ---------------------------------------------------------------- the frame */
@@ -451,14 +567,15 @@
     var h = [];
     h.push('<h1>' + esc(podcast) + '</h1>');
     if (topic) h.push('<p><strong>Episode about:</strong> ' + esc(topic) + '</p>');
-    h.push('<p' + (forDoc ? ' style="' + GRAY + '"' : ' class="fr-note"') + '>This is a frame to start from. Add boxes, cut boxes, move them, or make your own version. Keep a Hook, a Story and a Wrap, and cite your facts. Start every line with who says it, like <strong>Maria:</strong> …</p>');
+    h.push('<p' + (forDoc ? ' style="' + GRAY + '"' : ' class="fr-note"') + '>This is a frame to start from. You can add boxes, cut them, move them, or make your own version. Keep a Hook, a Story and a Wrap, and say where each fact came from. Start every line with who says it, like <strong>Maria:</strong> …</p>');
 
+    var cs = cast();
     h.push('<h2>Our Crew</h2><table class="fr-table" style="' + B + 'width:100%"><tr>' +
-      ['Name', 'Job', 'Voice'].map(function (x) { return '<th style="' + TD + 'text-align:left">' + x + '</th>'; }).join('') + '</tr>');
+      ['Name', 'Job', 'Says'].map(function (x) { return '<th style="' + TD + 'text-align:left">' + x + '</th>'; }).join('') + '</tr>');
     members.forEach(function (m) {
       h.push('<tr><td style="' + TD + '">' + (esc(m.name) || '&nbsp;') + '</td><td style="' + TD + '">' +
         esc(m.jobs.map(function (j) { return j.name; }).join(', ')) + '</td><td style="' + TD + '">' +
-        esc(m.voices.map(function (v) { return v.name; }).join(', ')) + '</td></tr>');
+        esc(m.voices.filter(function (v) { return cs.used.indexOf(v.id) !== -1; }).map(function (v) { return v.name; }).join(', ')) + '</td></tr>');
     });
     h.push('</table>');
 
@@ -482,8 +599,8 @@
       if (!s) { h.push(box('<p>Pick a style for ' + part.name + ' on the Plan step.</p>', 3)); return; }
       allBeats(part, s).forEach(function (b) {
         var g = guideFor(b[0]);
-        var v = voiceLabel(b[2]);
-        var who = v.who ? ' (' + esc(v.who) + ')' : (b[2] === 'all' ? '' : ' (nobody yet: pick someone)');
+        var v = boxLabel(b);
+        var who = v.who ? ' (' + esc(v.who) + ')' : (b[2] === 'all' ? '' : ' (nobody yet: pick someone on the Plan step)');
         var head = '<p><strong>' + esc(b[1]) + '</strong> · ' + esc(v.name) + who + '</p>';
         var help = '';
         if (g.what) help += esc(g.what.replace(/[.\s]+$/, '')) + '.' + (g.target ? ' Aim for ' + esc(g.target) + '.' : '');
@@ -500,7 +617,7 @@
     h.push('</ul>');
     h.push('<h2>Who Does What in This Doc</h2><ul>');
     JOBS.forEach(function (j) { h.push('<li><strong>' + j.name + ':</strong> ' + esc(j.during) + '</li>'); });
-    h.push('<li><strong>Everyone:</strong> writes the lines for the voice they will perform.</li></ul>');
+    h.push('<li><strong>Everyone:</strong> writes their own lines.</li></ul>');
     return h.join('\n');
 
     function box(inner, lines) {
@@ -523,7 +640,7 @@
     var dj = $('docJobs');
     if (dj && !dj.innerHTML) {
       dj.innerHTML = '<ul>' + JOBS.map(function (j) { return '<li><strong>' + j.name + ':</strong> ' + j.during + '</li>'; }).join('') +
-        '<li><strong>Everyone:</strong> writes the lines for the voice they will perform. Leave comments instead of deleting someone else\'s lines.</li></ul>';
+        '<li><strong>Everyone:</strong> writes their own lines. To change someone else\'s line, leave a comment instead of deleting it.</li></ul>';
     }
   }
 
@@ -676,6 +793,7 @@
   }
 
   buildCrewRows();
+  buildCastInputs();
   buildFactRows();
   buildPlanInputs();
   /* Read every field's guidance now, before app.js folds the helper text into
@@ -689,6 +807,6 @@
   window.RV_CREW = {
     PARTS: PARTS, VOICES: VOICES, CREW_OPENING: CREW_OPENING,
     guideFor: guideFor, chosen: chosen, allBeats: allBeats, crewMembers: crewMembers,
-    isCrew: isCrew, voiceLabel: voiceLabel, linesFor: linesFor, printSheet: printSheet, esc: esc
+    isCrew: isCrew, voiceLabel: voiceLabel, boxLabel: boxLabel, cast: cast, linesFor: linesFor, printSheet: printSheet, esc: esc
   };
 })();

@@ -2405,6 +2405,22 @@ body { background: var(--desk) !important; color: var(--ink); }
 .lb-frame:not(.is-open) .lb-sentence { margin-bottom: 2px; }
 .lb-open { font-size: 16px; }
 
+/* My Lines (3.5.0): My Facts, Add one of your facts, the finish line, own words */
+.lf-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; }
+.lf-row .lf-t { flex: 2 1 260px; } .lf-row .lf-s { flex: 1 1 180px; }
+.lb-facts { border-top: 1px solid var(--soft-rule); padding-top: 8px; margin-top: 8px; }
+.lb-fact { font-weight: 400; }
+.lb-voice-nudge { margin: 0 0 4px; font-weight: 600; }
+.lb-own-mark { margin: 4px 0 2px; font-weight: 800; }
+.lb-finish { border: 2px solid var(--rule); padding: 8px 14px; margin: 0 0 16px; background: var(--paper); }
+.lb-finish.is-done { border-width: 3px; }
+.lb-finish-head { margin: 0 0 4px; }
+.lb-finish ul { list-style: none; margin: 0; padding: 0; }
+.lb-finish li { margin: 2px 0; font-size: 17px; }
+.lb-finish li.is-done { font-weight: 700; }
+.lb-finish input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--ink); vertical-align: -3px; }
+.style-card.is-closed { opacity: .6; cursor: not-allowed; border-style: dashed !important; }
+
 /* ============================================
    WAVE 15 (3.2.0): HANDOUT IN THE STUDIO
    The handout structure stays (square boxes, ruled lines, one face, no clutter);

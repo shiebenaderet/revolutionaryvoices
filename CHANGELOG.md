@@ -6,6 +6,28 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.5.0] - 2026-10-23
+
+### Added
+
+- **My Facts on My Lines.** Each student types two or more facts from their paper Research Notes, with where each came from. The Fact Bank lives on the Researcher's Chromebook; these live on each student's, so every student brings their own research to their lines.
+- **Add one of your facts** in every box, at every level. Students pick how the sentence starts (just the fact, "Most people don't know that…", "Historians know that…", "According to [source],…") and click a fact to add it to their lines.
+- **The source line.** Whoever has the last box of the Wrap gets one more box: "We learned about [person] from ___ and ___," with their own sources and the reading to pick from, or their own words.
+- **A finish line** at the top of My Lines that fills in as students work: every box has words, two of my facts are in my lines, my source line is filled in (for whoever has it), and I read my lines out loud once (a box they check).
+- **Our Sources** at the end of the Group Doc, listing the Fact Bank's sources with room for the rest: the episode's reference page.
+- `project.html`: the project at a glance (schedule, jobs, parts, what to bring, how it's graded, Ready to Record), linked from Start. It matches the printed crew cover sheet and is built from the same text (ams-planning `tools/build-podcast-overview.py`).
+
+### Changed
+
+- **Nobody plays a person who was enslaved.** For James Armistead Lafayette, Peter Salem, Phillis Wheatley, Crispus Attucks, African Americans, and Enslaved People and British Freedom Offers, the Interview and Diary styles are not offered, every Subject box becomes the Narrator's, and the "I" frames become Narrator frames ("{name} was…", "In [when], {name}…"). In Their Own Words reads real words from the Voice Bank as a quote and says who said them. The editor's checklist says so in place of the first-person line.
+- **Episodes run 2 to 4 minutes** (was 3 to 5). The Hook and the Wrap are about 30 seconds each and the Story 1 to 3 minutes; Practice calls 2 to 4 minutes a good length.
+- **Frames for anyone.** How much help? now says "Want sentence frames to start from? Pick Quick." At Quick, students get a nudge to make the lines sound like them ("Change any word you would say differently") and a "Said it your way" mark once they do.
+- "Click", not "tap", on My Lines (Chromebooks).
+
+### Saved work
+
+- Work from 3.4 loads unchanged. My Facts start empty, and the source line box is new.
+
 ## [3.4.0] - 2026-10-15
 
 ### Changed

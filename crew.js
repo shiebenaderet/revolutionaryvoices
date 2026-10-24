@@ -42,7 +42,7 @@
      solo writing fields, so a style chosen here is the same style on the solo
      steps, and the guidance and sentence starters come from those fields. */
   var PARTS = [
-    { radio: 'intro', prefix: 'intro-', name: 'The Hook', time: '30 to 45 seconds', styles: [
+    { radio: 'intro', prefix: 'intro-', name: 'The Hook', time: 'about 30 seconds', styles: [
       { id: 'dramatic', name: 'Dramatic Hook', desc: 'Start inside a tense moment.', beats: [
         ['dramatic-hook', 'The Moment', 'host'], ['dramatic-subject', 'Who This Is', 'host'], ['dramatic-stakes', 'What Was at Stake', 'host']] },
       { id: 'fact', name: 'Shocking Fact', desc: 'Open with something surprising and true.', beats: [
@@ -53,7 +53,7 @@
         ['sound-effects', 'Sound Effects', 'narrator'], ['sound-setting', 'When and Where', 'narrator'],
         ['sound-subject', 'Who Is There', 'narrator'], ['sound-conflict', 'The Problem They Face', 'narrator']] }
     ] },
-    { radio: 'content', prefix: 'content-', name: 'The Story', time: '2 to 4 minutes', styles: [
+    { radio: 'content', prefix: 'content-', name: 'The Story', time: '1 to 3 minutes', styles: [
       { id: 'interview', name: 'Interview', desc: 'The Host asks, the historical figure answers.', beats: [
         ['interview-intro', 'Set Up the Interview', 'narrator'],
         ['q1', 'Question 1', 'host'], ['a1', 'Answer 1', 'subject'], ['q2', 'Question 2', 'host'], ['a2', 'Answer 2', 'subject'],
@@ -72,7 +72,7 @@
         ['diary2-content', 'Entry 2: The Turning Point', 'subject'], ['diary3-content', 'Entry 3: Looking Back', 'subject'],
         ['diary-closing', 'What the Diary Shows', 'narrator']] }
     ] },
-    { radio: 'conclusion', prefix: 'conclusion-', name: 'The Wrap', time: '45 to 60 seconds', styles: [
+    { radio: 'conclusion', prefix: 'conclusion-', name: 'The Wrap', time: 'about 30 seconds', styles: [
       { id: 'significance', name: 'Why It Matters', desc: 'Sum up, then show the bigger picture.', beats: [
         ['sig-what', 'What Happened', 'host'], ['sig-reveals', 'What It Shows', 'host'], ['sig-why', 'Why We Should Care', 'host'], ['sig-final', 'Final Thought', 'host']] },
       { id: 'today', name: 'Then and Now', desc: 'Connect the story to today.', beats: [
@@ -92,10 +92,23 @@
     'Everyone in the crew has lines.',
     'Every fact comes from the Fact Bank and says where it came from.',
     'The Wrap says why this story matters (your thesis).',
-    'The historical figure speaks in first person ("I", "my").',
-    'We read it aloud with a timer: 3 to 5 minutes.',
+    'We read it aloud with a timer: 2 to 4 minutes.',
     'Every line starts with who says it, like "Maria: ..."'
   ];
+
+  /* Oct 23 (teacher): nobody plays a person who was enslaved. For these topics the
+     Narrator tells the story and reads the person's own words when we have them, so
+     the styles built on a Subject speaking as "I" (Interview, Diary) are not offered,
+     and every Subject box becomes the Narrator's. */
+  var NO_SUBJECT = ['james-armistead', 'peter-salem', 'phillis-wheatley', 'crispus-attucks', 'african-americans', 'enslaved-british-freedom'];
+  var SUBJECT_STYLES = ['interview', 'diary'];
+  function noSubject() { return typeof rvCurrentTopic === 'function' && NO_SUBJECT.indexOf(rvCurrentTopic()) !== -1; }
+  function styleOpen(st) { return !(noSubject() && SUBJECT_STYLES.indexOf(st.id) !== -1); }
+  function checklist() {
+    return noSubject()
+      ? CHECKLIST.concat(['Nobody plays the person: the Narrator tells their story, and real words from the time are read as a quote, saying who said them.'])
+      : CHECKLIST.concat(['The historical figure speaks in first person ("I", "my").']);
+  }
 
   /* ---------------------------------------------------------------- helpers */
   function $(id) { return document.getElementById(id); }
@@ -354,6 +367,7 @@
   function allBeats(part, style) {
     var beats = style.beats.slice();
     if (part.radio === 'intro' && isCrew()) beats = CREW_OPENING.concat(beats);
+    if (noSubject()) beats = beats.map(function (b) { return b[2] === 'subject' ? [b[0], b[1], 'narrator'] : b; });
     return beats;
   }
   function buildPlanInputs() {
@@ -371,7 +385,8 @@
   function chosen(part) {
     var r = document.querySelector('input[name="' + part.radio + '"]:checked');
     if (!r) return null;
-    return part.styles.filter(function (s) { return s.id === r.value; })[0] || null;
+    var st = part.styles.filter(function (s) { return s.id === r.value; })[0] || null;
+    return st && styleOpen(st) ? st : null;
   }
   function voiceLabel(voice) {
     if (voice === 'all') return { name: 'Everyone', who: '' };
@@ -503,7 +518,7 @@
         '<span class="map-style">' + (s ? esc(s.name) : 'Pick a style') + '</span></div>' +
         (i < PARTS.length - 1 ? '<span class="map-arrow" aria-hidden="true">»</span>' : '');
     });
-    if ($('episodeMap')) $('episodeMap').innerHTML = mapHtml + '<p class="map-total">The whole episode: 3 to 5 minutes.</p>';
+    if ($('episodeMap')) $('episodeMap').innerHTML = mapHtml + '<p class="map-total">The whole episode: 2 to 4 minutes.</p>';
 
     /* Park the one-line inputs before redrawing, so their typed text survives. */
     var park = $('planInputPark');
@@ -518,14 +533,16 @@
         '<div class="style-cards" role="radiogroup" aria-label="' + part.name + ' style">';
       part.styles.forEach(function (st) {
         var on = s && s.id === st.id;
-        html += '<label class="style-card' + (on ? ' is-on' : '') + '">' +
-          '<input type="radio" name="plan-' + part.radio + '" value="' + st.id + '"' + (on ? ' checked' : '') + '>' +
-          '<span class="style-name">' + st.name + '</span><span class="style-desc">' + st.desc + '</span>' +
+        var open = styleOpen(st);
+        html += '<label class="style-card' + (on ? ' is-on' : '') + (open ? '' : ' is-closed') + '">' +
+          '<input type="radio" name="plan-' + part.radio + '" value="' + st.id + '"' + (on ? ' checked' : '') + (open ? '' : ' disabled') + '>' +
+          '<span class="style-name">' + st.name + '</span><span class="style-desc">' + (open ? st.desc : 'Not for this topic: nobody plays a person who was enslaved.') + '</span>' +
           '<span class="beat-strip" aria-hidden="true" data-no-listen>' +
-          st.beats.map(function (b) { return '<span class="beat-dot voice-' + b[2] + '" title="' + esc(b[1]) + '"></span>'; }).join('') +
+          allBeats({ radio: '' }, st).map(function (b) { return '<span class="beat-dot voice-' + b[2] + '" title="' + esc(b[1]) + '"></span>'; }).join('') +
           '</span></label>';
       });
       html += '</div>';
+      if (part.radio === 'content' && noSubject()) html += '<p class="field-hint">For this topic, the Narrator tells the person\'s story. The Narrator can read real words from the time as a quote, from the Voice Bank, saying who said them.</p>';
       sec.innerHTML = html;
       if (s) {
         var list = el('ol', { 'class': 'plan-beats' });
@@ -612,8 +629,14 @@
       });
     });
 
+    h.push('<h2>Our Sources</h2>');
+    var srcs = [];
+    facts().forEach(function (f) { if (f.src && srcs.indexOf(f.src) === -1) srcs.push(f.src); });
+    h.push(box('<p' + (forDoc ? ' style="' + GRAY + '"' : ' class="fr-help"') + '>List every source you used, one per line: who made it, its title, where you found it. Include the source your crew found.</p>' +
+      (srcs.length ? '<ul>' + srcs.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : ''), srcs.length ? 2 : 4));
+
     h.push('<h2>Editor\'s Checklist</h2><ul style="list-style:none;padding-left:0" class="fr-check">');
-    CHECKLIST.forEach(function (c) { h.push('<li>☐ ' + esc(c) + '</li>'); });
+    checklist().forEach(function (c) { h.push('<li>☐ ' + esc(c) + '</li>'); });
     h.push('</ul>');
     h.push('<h2>Who Does What in This Doc</h2><ul>');
     JOBS.forEach(function (j) { h.push('<li><strong>' + j.name + ':</strong> ' + esc(j.during) + '</li>'); });
@@ -753,7 +776,7 @@
     sections.forEach(function (s) { s.lines.forEach(function (l) { words += l.text.split(/\s+/).filter(Boolean).length; }); });
     var mins = words / 130;
     var t = Math.floor(mins) + ':' + String(Math.round((mins % 1) * 60)).padStart(2, '0');
-    var verdict = mins < 3 ? 'a little short: aim for 3 to 5 minutes' : mins <= 6 ? 'a good length' : 'long: try to cut it to 5 or 6 minutes';
+    var verdict = mins < 2 ? 'a little short: aim for 2 to 4 minutes' : mins <= 4 ? 'a good length' : 'long: cut it to 4 minutes or less';
     var html = '<div class="script-doc-header"><div class="script-doc-title">' + esc(val('podcastName') || 'Our Podcast') + '</div>' +
       (val('studentName') ? '<div class="script-doc-meta">' + esc(val('studentName')) + '</div>' : '') +
       '<div class="script-doc-time"><i class="fas fa-clock" aria-hidden="true"></i> About ' + t + ' read aloud (' + words + ' words): ' + verdict + '</div></div><div class="script-doc-body">';
@@ -807,6 +830,6 @@
   window.RV_CREW = {
     PARTS: PARTS, VOICES: VOICES, CREW_OPENING: CREW_OPENING,
     guideFor: guideFor, chosen: chosen, allBeats: allBeats, crewMembers: crewMembers,
-    isCrew: isCrew, voiceLabel: voiceLabel, boxLabel: boxLabel, cast: cast, linesFor: linesFor, printSheet: printSheet, esc: esc
+    isCrew: isCrew, noSubject: noSubject, voiceLabel: voiceLabel, boxLabel: boxLabel, cast: cast, linesFor: linesFor, printSheet: printSheet, esc: esc
   };
 })();

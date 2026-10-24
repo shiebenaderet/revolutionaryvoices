@@ -27,7 +27,7 @@
   var esc = C.esc;
   var LEVELS = ['mostSupport', 'someSupport', 'standard', 'challenge'];
   var HELP_BLURB = {
-    mostSupport: 'Fill in sentence frames by tapping words.',
+    mostSupport: 'Fill in sentence frames by clicking words.',
     someSupport: 'Write it, with starters if you get stuck.',
     standard: 'Write it yourself.',
     challenge: 'Write it yourself, then go further.'
@@ -122,8 +122,30 @@
     legacy_lesson: { ask: 'Say what we can learn.', person: 'they', frames: [
       'The lesson is that you can [text:what we can do].', '{name} [hard], and still [did].'] },
     legacy_honor: { ask: 'Say how we can honor them.', person: 'they', frames: [
-      'We honor {name} by [text:what we can do].', 'Remember {name}, [whoName].'] }
+      'We honor {name} by [text:what we can do].', 'Remember {name}, [whoName].'] },
+    /* Oct 23: for the six topics about people who were enslaved, nobody plays the
+       person. These replace the "I" boxes; the Narrator tells it, and real words are
+       read as a quote. */
+    narr_before: { ask: 'Tell about their life before. Use their name or "they".', person: 'they', frames: [
+      '{name} was [whoI].', '{name} lived in [where] in [when].', 'Life was hard, because {name} [hard].'] },
+    narr_turn: { ask: 'Tell the big moment. Use their name or "they".', person: 'they', frames: [
+      'In [when], {name} [did].', 'It took courage, because {name} [hard].'] },
+    narr_after: { ask: 'Tell what happened after.', person: 'they', frames: [
+      'After that, {name} [did].', 'Because of all this, {name} [mattered].'] },
+    words_quote: { ask: 'Read real words from the time, and say who said them. Find them in the Voice Bank under Your reading.', person: 'they', frames: [
+      'In [when], [text:who said it] said: "[text:the words, from the Voice Bank]"', 'Those words show that {name} [mattered].'] }
   };
+  var NARRATOR_KIND = { subject_before: 'narr_before', subject_turn: 'narr_turn', subject_after: 'narr_after', news_quote: 'words_quote' };
+  /* The source line (Oct 23): said by whoever has the last box of the Wrap. */
+  var SOURCE_ID = 'source-line';
+  var SOURCE_KIND = { ask: 'Say where your facts came from. Name your reading and the source your crew found.', person: 'they', frames: [
+    'We learned about {name} from [src] and [src].'] };
+  function kindFor(id) {
+    if (id === SOURCE_ID) return SOURCE_KIND;
+    var k = BEAT_KIND[id];
+    if (k && C.noSubject && C.noSubject() && NARRATOR_KIND[k]) k = NARRATOR_KIND[k];
+    return KINDS[k];
+  }
   var BEAT_KIND = {
     'group-intro': 'crew_intro', 'group-welcome': 'welcome',
     'dramatic-hook': 'hook_moment', 'dramatic-subject': 'hook_who', 'dramatic-stakes': 'hook_stakes',
@@ -150,7 +172,7 @@
     conclusion: 'Go further: say what changed and what stayed unfinished, using "but" or "even though".'
   };
   var SLOT_NAME = {
-    where: 'a place', when: 'a time', people: 'a person', feeling: 'a feeling', sound: 'a sound', voice: 'your part',
+    where: 'a place', when: 'a time', people: 'a person', feeling: 'a feeling', sound: 'a sound', voice: 'your part', src: 'a source',
     whoI: 'who', whoName: 'who they were'
   };
   function slotName(slot, person) {
@@ -169,6 +191,7 @@
     try { st = raw ? JSON.parse(raw) : {}; } catch (e) { st = {}; }
     st.voices = st.voices || [];
     st.beats = st.beats || {};
+    st.facts = st.facts || [{ t: '', src: '' }, { t: '', src: '' }];
     return st;
   }
   function store(st) {
@@ -191,6 +214,11 @@
     var shared = window.RV_BANK_SHARED || {};
     if (slot === 'feeling') return shared.feelings || [];
     if (slot === 'sound') return shared.sounds || [];
+    if (slot === 'src') {
+      var st0 = load(), out = ['our reading on Revolutionary Voices'];
+      (st0.facts || []).forEach(function (f) { var x = (f.src || '').trim(); if (x && out.indexOf(x) === -1) out.push(x); });
+      return out;
+    }
     if (slot === 'voice') {
       var used = C.isCrew() ? C.cast().used : [];
       var vs = C.VOICES.filter(function (v) { return !used.length || used.indexOf(v.id) !== -1; });
@@ -239,6 +267,33 @@
     if (out) out = out.charAt(0).toUpperCase() + out.slice(1);
     return complete ? out : '';
   }
+  function beatText(st, id) {
+    var bs = st.beats[id];
+    if (!bs) return '';
+    var kind = kindFor(id);
+    var base = (helpLevel(st) === 'mostSupport' && !bs.edited && kind) ? assemble(kind, currentBank(), bs.s) : (bs.text || '');
+    if (helpLevel(st) === 'mostSupport' && !bs.edited && bs.add && bs.add.length) base = (base ? base + ' ' : '') + bs.add.join(' ');
+    return base;
+  }
+  /* A fact counts once it shows up in the student's lines: added with the button,
+     or typed in (the first five words match). */
+  function factWords(t) { return String(t || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean); }
+  function factUsed(fact, all) {
+    var w = factWords(fact);
+    if (w.length < 3) return false;
+    var probe = w.slice(0, Math.min(5, w.length)).join(' ');
+    return factWords(all).join(' ').indexOf(probe) !== -1;
+  }
+  var LEADS = [['', 'Just the fact'], ["Most people don't know that", "Most people don't know that…"], ['Historians know that', 'Historians know that…'], ['src', 'According to [source],…']];
+  var COMMON = /^(the|a|an|he|she|they|it|in|on|at|after|before|when|during|many|most|some|his|her|their|this|that|there|people|by|for|from|about)\b/i;
+  function withLead(lead, f) {
+    var t = String(f.t || '').trim().replace(/\s+/g, ' ');
+    if (!/[.!?]$/.test(t)) t += '.';
+    if (!lead) return t.charAt(0).toUpperCase() + t.slice(1);
+    var low = COMMON.test(t) ? t.charAt(0).toLowerCase() + t.slice(1) : t;
+    if (lead === 'src') return 'According to ' + ((f.src || '').trim() || 'our source') + ', ' + low;
+    return lead + ' ' + low;
+  }
   function hasBlank(parts) { return parts.some(function (p) { return p.slot; }); }
   /* Filled frames, in order. A frame with no blank (like "Welcome to our
      podcast.") joins in once the student has filled any other frame. */
@@ -285,6 +340,10 @@
         if (owners) return (owners[b[0]] || []).indexOf(st.name) !== -1;
         return st.voices.indexOf(b[2]) !== -1;
       }) : [];
+      if (part.radio === 'conclusion' && style) {
+        var every = C.allBeats(part, style), last = every[every.length - 1];
+        if (beats.some(function (b) { return b[0] === last[0]; })) beats = beats.concat([[SOURCE_ID, 'Source Line', last[2]]]);
+      }
       out.push({ part: part, style: style, beats: beats });
     });
     return out;
@@ -325,7 +384,7 @@
     if (!host) return;
     var cur = helpLevel(st);
     var html = '<fieldset class="lines-field"><legend>How much help?</legend>' +
-      '<p class="field-hint">It starts at your reading level. Change it anytime.</p><div class="level-toggle" role="group" aria-label="Writing help">';
+      '<p class="field-hint">It starts at your reading level. Want sentence frames to start from? Pick Quick. Change it anytime.</p><div class="level-toggle" role="group" aria-label="Writing help">';
     LEVELS.forEach(function (k) {
       html += '<button type="button" class="level-pill' + (k === cur ? ' active' : '') + '" aria-pressed="' + (k === cur) + '" data-help="' + k + '">' +
         RV_LEVEL_NAMES[k] + '</button>';
@@ -349,10 +408,10 @@
   }
 
   function beatHTML(st, part, b) {
-    var id = b[0], kind = KINDS[BEAT_KIND[id]];
+    var id = b[0], kind = kindFor(id);
     if (!kind) return '';
     var bank = currentBank();
-    var g = C.guideFor(id);
+    var g = id === SOURCE_ID ? { what: '', target: '10-20 words', starter: 'We learned about' } : C.guideFor(id);
     var bs = beatState(st, id);
     var level = helpLevel(st);
     var v = C.voiceLabel(b[2]);
@@ -421,11 +480,80 @@
       html += '<p class="lb-stretch">' + esc(STRETCH[part.radio]) + '</p>';
     }
 
-    var text = (level === 'mostSupport' && !bs.edited) ? assemble(kind, bank, bs.s) : bs.text;
-    html += '<label class="lb-out-label" for="lt-' + id + '">' + (level === 'mostSupport' ? 'Your lines (you can change them)' : 'Your lines') + '</label>' +
-      '<textarea class="lb-out" id="lt-' + id + '" data-beat="' + id + '" rows="3">' + esc(text) + '</textarea>';
-    if (level === 'mostSupport' && bs.edited) html += '<button type="button" class="link-btn lb-reset" data-reset="' + id + '">Go back to the frames</button>';
+    html += factsHTML(st, id);
+    var text = beatText(st, id);
+    html += '<label class="lb-out-label" for="lt-' + id + '">Your lines</label>';
+    if (level === 'mostSupport') html += '<p class="field-hint lb-voice-nudge">Now make it sound like you. Change any word you would say differently.</p>';
+    html += '<textarea class="lb-out" id="lt-' + id + '" data-beat="' + id + '" rows="3">' + esc(text) + '</textarea>';
+    if (level === 'mostSupport' && bs.edited) html += '<p class="lb-own-mark">&#9733; Said it your way</p><button type="button" class="link-btn lb-reset" data-reset="' + id + '">Go back to the frames</button>';
     return html + '</section>';
+  }
+
+  /* "Add one of your facts": the student's facts from My Facts, each a button,
+     with a choice of how the sentence starts. */
+  function factsHTML(st, id) {
+    var fs = (st.facts || []).map(function (f, i) { return { f: f, i: i }; }).filter(function (x) { return (x.f.t || '').trim(); });
+    if (id === SOURCE_ID || id === 'group-intro') return '';
+    if (!fs.length) return '<p class="lb-facts-empty field-hint">Type your facts in <strong>My Facts</strong> at the top, and they show up here to add.</p>';
+    var lead = st.lead || '';
+    var html = '<div class="lb-facts"><p class="lb-bank-label"><strong>Add one of your facts</strong></p>' +
+      '<div class="lb-bank" role="group" aria-label="How the fact starts"><span class="lb-bank-label">Start it with:</span>';
+    LEADS.forEach(function (l) {
+      var on = lead === l[0];
+      html += '<button type="button" class="lb-chip' + (on ? ' is-on' : '') + '" aria-pressed="' + on + '" data-lead="' + esc(l[0]) + '">' + esc(l[1]) + '</button>';
+    });
+    html += '</div><div class="lb-bank" role="group" aria-label="Your facts">';
+    fs.forEach(function (x) {
+      html += '<button type="button" class="lb-chip lb-fact" data-addfact="' + x.i + '">+ ' + esc(x.f.t.length > 70 ? x.f.t.slice(0, 67) + '…' : x.f.t) + '</button>';
+    });
+    return html + '</div></div>';
+  }
+
+  /* My Facts (Oct 23): each student brings two or more facts from their paper
+     Research Notes, with where each came from. The Fact Bank lives on the
+     Researcher's Chromebook; this lives on each student's. */
+  function renderFacts(st) {
+    var host = $('linesFacts');
+    if (!host) return;
+    var html = '<fieldset class="lines-field"><legend>My Facts</legend>' +
+      '<p class="field-hint">Type two or more facts from your Research Notes, and where each one came from. You will add them to your lines.</p>';
+    st.facts.forEach(function (f, i) {
+      html += '<div class="lf-row"><label class="sr-only" for="lf-t-' + i + '">Fact ' + (i + 1) + '</label>' +
+        '<input type="text" class="lf-t" id="lf-t-' + i + '" data-i="' + i + '" placeholder="Fact ' + (i + 1) + ', in your own words" value="' + esc(f.t) + '" autocomplete="off">' +
+        '<label class="sr-only" for="lf-s-' + i + '">Where fact ' + (i + 1) + ' came from</label>' +
+        '<input type="text" class="lf-s" id="lf-s-' + i + '" data-i="' + i + '" placeholder="Where it came from" value="' + esc(f.src) + '" autocomplete="off"></div>';
+    });
+    if (st.facts.length < 5) html += '<button type="button" class="link-btn" data-morefacts="1">+ Add another fact</button>';
+    host.innerHTML = html + '</fieldset>';
+  }
+
+  /* The finish line: three checks a student can see filling in, the same every day. */
+  function finishState(st) {
+    var all = flatBeats(st);
+    var lines = all.map(function (x) { return beatText(st, x.b[0]); }).join(' ');
+    var used = (st.facts || []).filter(function (f) { return factUsed(f.t, lines); }).length;
+    var checks = [
+      [all.length > 0 && all.every(function (x) { return beatDone(st, x.b[0]); }), 'Every box has words'],
+      [used >= 2, 'Two of my facts are in my lines' + (used === 1 ? ' (1 so far)' : '')]
+    ];
+    if (all.some(function (x) { return x.b[0] === SOURCE_ID; })) checks.push([beatDone(st, SOURCE_ID), 'My source line is filled in']);
+    checks.push([!!st.readAloud, 'I read my lines out loud once']);
+    return checks;
+  }
+  function renderFinish(st) {
+    var host = $('linesFinish');
+    if (!host) return;
+    if (C.isCrew() && !st.name) { host.innerHTML = ''; return; }
+    var checks = finishState(st);
+    var done = checks.every(function (c) { return c[0]; });
+    var html = '<div class="lb-finish' + (done ? ' is-done' : '') + '"><p class="lb-finish-head"><strong>' + (done ? 'Your lines are done.' : 'Your lines are done when:') + '</strong></p><ul>';
+    checks.forEach(function (c, i) {
+      var last = i === checks.length - 1;
+      html += '<li class="' + (c[0] ? 'is-done' : '') + '">' + (last
+        ? '<label><input type="checkbox" class="lb-read"' + (st.readAloud ? ' checked' : '') + '> ' + esc(c[1]) + '</label>'
+        : '<span aria-hidden="true">' + (c[0] ? '&#10003;' : '&#9744;') + '</span> ' + esc(c[1]) + '<span class="sr-only">' + (c[0] ? ', done' : ', not yet') + '</span>') + '</li>';
+    });
+    host.innerHTML = html + '</ul></div>';
   }
 
   /* A worked example about someone else, on the same frames, with the last
@@ -467,16 +595,13 @@
     return out;
   }
   function beatDone(st, id) {
-    var bs = st.beats[id];
-    if (!bs) return false;
-    var kind = KINDS[BEAT_KIND[id]];
-    var text = (helpLevel(st) === 'mostSupport' && !bs.edited && kind) ? assemble(kind, currentBank(), bs.s) : bs.text;
+    var text = beatText(st, id);
     return !!(text && text.trim());
   }
   function renderBeats(st) {
     var host = $('linesBeats');
     if (!host) return;
-    if (C.isCrew() && !st.name) { host.innerHTML = '<p class="lines-empty">Tap your name above to see your boxes.</p>'; return; }
+    if (C.isCrew() && !st.name) { host.innerHTML = '<p class="lines-empty">Click your name above to see your boxes.</p>'; return; }
     if (!byCast(st) && !st.voices.length) { host.innerHTML = '<p class="lines-empty">Pick your part above to see your boxes.</p>'; return; }
     var rows = myBeats(st);
     var notes = '';
@@ -516,6 +641,27 @@
     peek.querySelector('button').addEventListener('click', function () { if (typeof toggleReadingDrawer === 'function') toggleReadingDrawer(this); });
   }
 
+  /* Update the open box's fact buttons in place. Redrawing the whole box here ate
+     the click that blurred the fact field (a student typed a fact, clicked Next box,
+     and nothing happened). */
+  function refreshFacts() {
+    var beat = document.querySelector('#linesBeats .lb-beat');
+    if (!beat) return;
+    var old = beat.querySelector('.lb-facts, .lb-facts-empty');
+    var html = factsHTML(load(), beat.dataset.beat);
+    var tmp = document.createElement('div'); tmp.innerHTML = html;
+    var fresh = tmp.firstElementChild;
+    if (old && fresh) old.parentNode.replaceChild(fresh, old);
+    else if (old) old.parentNode.removeChild(old);
+    else if (fresh) { var lab = beat.querySelector('.lb-out-label'); if (lab) lab.parentNode.insertBefore(fresh, lab); }
+  }
+  function ensureHosts() {
+    var who = $('linesWho');
+    if (!who) return;
+    if (!$('linesFacts')) { var f = document.createElement('div'); f.id = 'linesFacts'; who.parentNode.insertBefore(f, who.nextSibling); }
+    var help = $('linesHelp');
+    if (help && !$('linesFinish')) { var d = document.createElement('div'); d.id = 'linesFinish'; d.setAttribute('aria-live', 'polite'); help.parentNode.insertBefore(d, help.nextSibling); }
+  }
   function render() {
     var st = load();
     syncVoices(st);
@@ -526,9 +672,12 @@
       if (!gi.s['1-0'] && st.voices.length) gi.s['1-0'] = C.VOICES.filter(function (v) { return v.id === st.voices[0]; })[0].name;
     }
     addPeek();
+    ensureHosts();
     renderWho(st);
+    renderFacts(st);
     renderHelp(st);
     renderStyles();
+    renderFinish(st);
     renderBeats(st);
     if (window.READER_TOOLS) window.READER_TOOLS.reset();
   }
@@ -538,7 +687,9 @@
      control the student just used. */
   function rerenderBeat(id, focusSel) {
     var scrollY = window.scrollY;
-    renderBeats(load());
+    var st0 = load();
+    renderFinish(st0);
+    renderBeats(st0);
     window.scrollTo(0, scrollY);
     if (focusSel) {
       var f = document.querySelector('.lb-beat[data-beat="' + id + '"] ' + focusSel);
@@ -554,6 +705,19 @@
       if (!t) return;
       var st, beat = t.closest('.lb-beat');
       if (t.dataset.help) { st = load(); st.help = t.dataset.help; store(st); render(); return; }
+      if (t.dataset.morefacts) { st = load(); st.facts.push({ t: '', src: '' }); store(st); renderFacts(st); var nf = $('lf-t-' + (st.facts.length - 1)); if (nf) nf.focus(); return; }
+      if (t.dataset.lead != null && beat) { st = load(); st.lead = t.dataset.lead; store(st); rerenderBeat(beat.dataset.beat, '.lb-chip[data-lead="' + CSS.escape(t.dataset.lead) + '"]'); return; }
+      if (t.dataset.addfact != null && beat) {
+        st = load();
+        var fb = beatState(st, beat.dataset.beat), f = st.facts[+t.dataset.addfact];
+        if (!f) return;
+        var line = withLead(st.lead || '', f);
+        if (helpLevel(st) === 'mostSupport' && !fb.edited) { fb.add = (fb.add || []).concat([line]); }
+        else { fb.text = ((fb.text || '').trim() ? fb.text.trim() + ' ' : '') + line; }
+        store(st);
+        rerenderBeat(beat.dataset.beat, '.lb-out');
+        return;
+      }
       if (t.dataset.go != null) {
         st = load(); st.cur = +t.dataset.go; store(st); renderBeats(st);
         var h = document.querySelector('#linesBeats .lb-part');
@@ -569,7 +733,7 @@
         st = load();
         var bs = beatState(st, beat.dataset.beat);
         bs.s[t.dataset.key] = bs.s[t.dataset.key] === t.dataset.val ? '' : t.dataset.val;
-        var kindNow = KINDS[BEAT_KIND[beat.dataset.beat]];
+        var kindNow = kindFor(beat.dataset.beat);
         var fiNow = +t.dataset.key.split('-')[0];
         if (sentence(parse(kindNow.frames[fiNow], fiNow, currentBank()), bs.s)) {
           var nxt = firstOpen(kindNow, currentBank(), bs.s);
@@ -600,7 +764,7 @@
       }
       if (t.dataset.reset && beat) {
         st = load();
-        var r = beatState(st, t.dataset.reset); r.edited = false; r.text = '';
+        var r = beatState(st, t.dataset.reset); r.edited = false; r.text = ''; r.add = [];
         store(st);
         rerenderBeat(t.dataset.reset, '.lb-out');
       }
@@ -613,6 +777,16 @@
         bs.text = t.value;
         if (helpLevel(st) === 'mostSupport') bs.edited = true;
         store(st);
+        renderFinish(st);
+        return;
+      }
+      if (t.classList.contains('lf-t') || t.classList.contains('lf-s')) {
+        st = load();
+        var fi = +t.dataset.i;
+        st.facts[fi] = st.facts[fi] || { t: '', src: '' };
+        st.facts[fi][t.classList.contains('lf-t') ? 't' : 'src'] = t.value;
+        store(st);
+        renderFinish(st);
         return;
       }
       if (t.classList.contains('lb-own')) {
@@ -622,13 +796,15 @@
         store(st);
         var out = beat.querySelector('.lb-out');
         var b = beat.dataset.beat;
-        if (out && !beatState(st, b).edited) out.value = assemble(KINDS[BEAT_KIND[b]], currentBank(), beatState(st, b).s);
+        if (out && !beatState(st, b).edited) out.value = assemble(kindFor(b), currentBank(), beatState(st, b).s);
         return;
       }
       if (t.id === 'linesNameInput') { st = load(); st.name = t.value.trim(); store(st); }
     });
     stepEl.addEventListener('change', function (e) {
       var t = e.target, st;
+      if (t.classList.contains('lb-read')) { st = load(); st.readAloud = t.checked; store(st); renderFinish(st); return; }
+      if (t.classList.contains('lf-t') || t.classList.contains('lf-s')) { refreshFacts(); return; }
       if (t.name === 'linesName') {
         st = load(); st.name = t.value;
         syncVoices(st);
@@ -662,10 +838,7 @@
     var out = [who + (voices ? ' (' + voices + ')' : '')];
     myBeats(st).forEach(function (row) {
       row.beats.forEach(function (b) {
-        var bs = st.beats[b[0]];
-        if (!bs) return;
-        var kind = KINDS[BEAT_KIND[b[0]]];
-        var text = (helpLevel(st) === 'mostSupport' && !bs.edited && kind) ? assemble(kind, bank, bs.s) : bs.text;
+        var text = beatText(st, b[0]);
         if (!text || !text.trim()) return;
         out.push('', row.part.name + ': ' + b[1], who + ': ' + text.trim());
       });
@@ -696,9 +869,9 @@
       if (!row.beats.length) return;
       h.push('<h2>' + row.part.name + ' <span style="font-weight:400">(' + row.part.time + ')</span></h2>');
       row.beats.forEach(function (b) {
-        var kind = KINDS[BEAT_KIND[b[0]]];
+        var kind = kindFor(b[0]);
         if (!kind) return;
-        var g = C.guideFor(b[0]);
+        var g = b[0] === SOURCE_ID ? { target: '10-20 words' } : C.guideFor(b[0]);
         var inner = '<p><strong>' + esc(b[1]) + '</strong> · ' + esc(C.voiceLabel(b[2]).name) + '</p><p>' + esc(kind.ask) + ' Aim for ' + goal(g.target) + '.</p>';
         if (level === 'mostSupport') {
           var words = {};

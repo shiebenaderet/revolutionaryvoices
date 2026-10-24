@@ -29,10 +29,71 @@ window.RV_TOPICS = [
   { id: 'camp-followers', name: 'Camp Followers', group: 'Groups & themes', available: true },
   { id: 'young-soldiers', name: 'Young Soldiers & Teenage Patriots', group: 'Groups & themes', available: true },
   { id: 'enslaved-british-freedom', name: 'Enslaved People and British Freedom Offers', group: 'Groups & themes', available: true, aliases: ['The Paradox of Enslaved People & British Freedom'] },
-  { id: 'womens-economic-agency', name: "Women's Work and Political Voice", group: 'Groups & themes', available: true, aliases: ["Women's Economic Agency vs. Political Invisibility"] }
+  { id: 'womens-economic-agency', name: "Women's Work and Political Voice", group: 'Groups & themes', available: true, aliases: ["Women's Economic Agency vs. Political Invisibility"] },
+  { id: 'haym-salomon', name: 'Haym Salomon', group: "Mr. B's Sample", available: true }
 ];
 
 window.RV_READINGS = {
+  'haym-salomon': {
+    name: 'Haym Salomon',
+    tagline: "Mr. B's sample episode: a Jewish immigrant who helped prisoners escape and raised money for a broke government, and the legend that grew up around him",
+    quickFacts: [
+      ['Born', '1740, Lissa, Poland, to a Jewish family'],
+      ['Died', 'January 1785, Philadelphia (about age 44)'],
+      ['Role', 'Merchant, prisoner of the British, then a money broker for Congress'],
+      ['Famous for', 'A legend that he paid for the Revolution, which historians say is not true']
+    ],
+    levels: {
+      mostSupport: `
+<p>Haym Salomon was born in Poland in 1740. His family was Jewish. He moved to New York and worked as a <strong>merchant</strong> (a person who buys and sells goods).</p>
+<p>In 1776, the British took over New York. They said Salomon was a spy. They put him in prison.</p>
+<p>Salomon spoke many languages. So a German general working for the British put him to work. He got food and supplies for the officers. But in secret, he helped American and French prisoners escape.</p>
+<p>In 1778, the British came after him again. He ran away to Philadelphia. He had to leave his wife and their baby behind. He lost almost everything he owned.</p>
+<p>In Philadelphia, he started over. The new government was out of money. Salomon helped it turn paper promises into cash. He kept a small fee for his work. He also lent his own money to leaders who were broke.</p>
+<p>Salomon died in 1785. Later, people said he paid for the whole war. They put it on a stamp. But historians checked the records. They say it is a <strong>legend</strong> (a story that grew bigger than the truth).</p>`,
+      someSupport: `
+<p>Haym Salomon was born in 1740 in Lissa, Poland, to a Jewish family. He traveled in Europe and learned several languages. In the early 1770s he came to New York and worked as a <strong>merchant</strong> (someone who buys and sells goods).</p>
+<p>In September 1776 the British captured New York. They arrested Salomon as a spy and locked him in prison. Because he spoke German, a Hessian general put him to work buying supplies for the officers. That gave him some freedom. He used it to help American and French prisoners escape.</p>
+<p>By August 1778 the British were after him again, and he escaped to Philadelphia. He left behind his wife, a month-old baby, and almost everything he owned. He asked Congress for a job, and it said no.</p>
+<p>So he started over as a <strong>broker</strong> (someone paid a small fee to help others buy and sell). In 1781 Robert Morris took charge of the government's money and turned to Salomon. France and the Netherlands had loaned money as paper promises called bills of exchange. Salomon found buyers who paid cash for them. He also lent his own money to leaders like James Madison, sometimes without charging anything back.</p>
+<p>Salomon died in January 1785. Years later his son told Congress that his father had lent the government huge sums. That claim became a legend, even on a 1975 stamp. Historians who checked the records say he never lent the government his own money.</p>`,
+      standard: `
+<p>Haym Salomon was born in 1740 in Lissa, Poland, to a Jewish family. He traveled across Europe, picked up several languages, and settled in New York in the early 1770s as a <strong>merchant</strong> (someone who buys and sells goods for a living).</p>
+<p>When the British captured New York in September 1776, they arrested Salomon as a suspected spy and held him in the city's military prison. His languages saved him: a Hessian general put him to work as a supplier for the officers. That job gave him enough freedom to work against the British from the inside, and he helped French and American prisoners escape. By August 1778 the British were after him again. He fled to Philadelphia, leaving his wife, a month-old child, and most of his property behind. In a request to Congress that month, he asked for any job in his line of business. Congress gave him none.</p>
+<p>He rebuilt his life as a <strong>broker</strong> (someone who arranges sales for others and keeps a small fee). In 1781 Congress put Robert Morris in charge of its finances, and Morris used Salomon to sell bills of exchange, the paper promises that carried loans from France and the Netherlands. Salomon turned them into cash the government could spend. He also made personal loans, sometimes without interest, to members of Congress such as James Madison.</p>
+<p>Salomon died in January 1785, about age 44. In the 1840s his son asked Congress to repay loans his father had supposedly made, first $353,000 and later $3 million. The story stuck. A 1975 stamp called him a "Financial Hero." But historians who studied Morris's records, in 1931 and again in 1977, found that Salomon never lent the government his own money and never claimed he had.</p>`,
+      challenge: `
+<p>Haym Salomon's reputation has two lives: the documented career of a Polish-born Jewish broker who served the Revolution at real personal risk, and a nineteenth-century legend that credited him with financing it. Born in 1740 in Lissa, he arrived in New York in the early 1770s, and when the British occupied the city in September 1776 he was imprisoned as a suspected spy. His fluency in German led a Hessian commander to employ him as a <strong>purveyor</strong> (a supplier of provisions) to officers, a position he used to assist French and American prisoners in escaping.</p>
+<p>Exposed again in August 1778, he fled to Philadelphia; his memorial to Congress that month describes the loss of his property and the wife and infant left behind, and asks only for employment. Refused, he became a bill broker, and after 1781 the Superintendent of Finance, Robert Morris, relied on him to convert foreign bills of exchange, the instruments carrying French and Dutch loans, into usable currency. He earned ordinary commissions, styled himself "Broker to the Office of Finance," and extended personal, sometimes interest-free, loans to impoverished delegates such as James Madison.</p>
+<p>After his death in January 1785, his son petitioned Congress in the 1840s for repayment of fabulous sums, eventually $3 million, and the claim hardened into public memory: a proposed medal, a Chicago monument, a 1975 stamp. Max Kohler's 1931 study and Morris Schappes's work on the Morris diaries showed that Salomon lent the government nothing of his own. The more interesting question for a historian is why the legend proved so durable, and what it reveals about how communities claim a place in the national story.</p>`
+    },
+    keyFacts: {
+      hook: {
+        mostSupport: ['A stamp in 1975 called him a "Financial Hero."', 'People said he paid for the war.', 'Historians say that part is not true.'],
+        someSupport: ['A 1975 stamp called Haym Salomon a "Financial Hero."', 'The back of the stamp said he raised most of the money for the war.', 'Historians who checked the records say that is a legend.'],
+        standard: ['A 1975 U.S. stamp honored him as a "Financial Hero."', 'Its back claimed he raised most of the money for the Revolution.', 'Historians found no record that he lent the government his own money.'],
+        challenge: ['A 1975 stamp and later monuments credited him with financing the Revolution.', 'Studies in 1931 and 1977 found he never lent the government his own money.', 'His real career is riskier and stranger than the legend.']
+      },
+      content: {
+        mostSupport: ['The British put him in prison as a spy in 1776.', 'In secret, he helped prisoners escape.', 'Later he helped the government turn paper promises into cash.'],
+        someSupport: ['Arrested as a spy in 1776, he worked for a Hessian general because he spoke German.', 'He helped American and French prisoners escape, then fled to Philadelphia in 1778.', 'As a broker for Robert Morris, he sold bills of exchange for cash.'],
+        standard: ['Jailed as a suspected spy in 1776, he supplied Hessian officers and helped prisoners escape.', 'In 1778 he fled to Philadelphia, leaving his wife, a month-old child and his property.', 'After 1781 he sold bills of exchange for Robert Morris and lent money to Madison.'],
+        challenge: ['His German made him a purveyor to Hessian officers, cover for helping prisoners escape.', "His 1778 memorial asked Congress only for work in his trade; it gave him none.", 'He converted French and Dutch bills of exchange into cash for Morris, for ordinary commissions.']
+      },
+      conclusion: {
+        mostSupport: ['He died in 1785.', 'His son later said he paid for the war.', 'The real story is enough.'],
+        someSupport: ['He died in January 1785.', "His son's claims in the 1840s started the legend.", 'He risked his life for a country that was not his yet.'],
+        standard: ['He died in January 1785, about age 44.', "The legend began with his son's claims to Congress in the 1840s.", 'He helped keep a broke government running, and that is real.'],
+        challenge: ['The legend hardened into stamps and monuments.', 'Historians traced it to family claims, not to records.', 'The question is why the legend lasted, and who needed it.']
+      }
+    },
+    sources: [
+      { title: 'Journal of the American Revolution — Hugh T. Harrington, "Financial Hero?" (2013), with his 1778 request to Congress', url: 'https://allthingsliberty.com/2013/01/financial-hero/' },
+      { title: 'Jewish Encyclopedia (1906) — "Salomon, Haym" (repeats the loan claim: good practice for checking a source)', url: 'https://jewishencyclopedia.com/articles/13035-salomon-haym' },
+      { title: 'The Historical Marker Database — Haym Salomon marker, Philadelphia (1997)', url: 'https://www.hmdb.org/m.asp?m=9311' }
+    ]
+  },
+
   'phillis-wheatley': {
     name: 'Phillis Wheatley',
     tagline: 'Enslaved poet who became the first African American woman to publish a book of poetry',

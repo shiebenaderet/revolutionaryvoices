@@ -73,7 +73,7 @@
     font: 'Font', speed: 'Speed', voice: 'Voice', computer: 'Computer',
     teacher: 'Mr. B', size: 'Size', spacing: 'Spacing', normal: 'Normal',
     wide: 'Wide', none: 'This browser cannot read aloud.',
-    tip: 'While it reads, tap any paragraph to jump there.'
+    tip: 'While it reads, click any paragraph to jump there.'
   };
 
   var FONTS = [

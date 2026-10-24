@@ -6,6 +6,17 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.5.2] - 2026-10-23
+
+### Changed
+
+- **Say Hello, not "I'm the narrator."** The crew's first box (was Crew Introductions) now asks students to say hi and their first name the way real podcast hosts do, and to skip their part: "Hi, I'm Maya." / "And I'm Leo." The person from history doesn't say hello; the Subject's first words come inside the story. The box shows as "Everyone but the Subject," it can be left empty (it doesn't hold up the finish line), and the solo path's Group Introduction says the same. Teacher, Oct 23: the old "I'm the Host today. I'm the Narrator" opening sounded fake for a podcast.
+- **The source line can credit a voice:** an optional second frame, "[who] read the words of [person]," for crews where someone voiced the person from history.
+
+### Fixed
+
+- **Haym Salomon's 1778 request says "helped them off to make their Escape,"** not "oft." The teacher's model research checked the handwritten original (a photo is in Jane Frances Amler's 2004 book); the Source Spotlight and Voice Bank now match it. Two sources added to the Salomon reading: Amler's book and Christopher J. Young's 2011 article on why the legend grew.
+
 ## [3.5.1] - 2026-10-23
 
 ### Added

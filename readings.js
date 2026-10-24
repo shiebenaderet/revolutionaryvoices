@@ -90,7 +90,9 @@ window.RV_READINGS = {
     sources: [
       { title: 'Journal of the American Revolution — Hugh T. Harrington, "Financial Hero?" (2013), with his 1778 request to Congress', url: 'https://allthingsliberty.com/2013/01/financial-hero/' },
       { title: 'Jewish Encyclopedia (1906) — "Salomon, Haym" (repeats the loan claim: good practice for checking a source)', url: 'https://jewishencyclopedia.com/articles/13035-salomon-haym' },
-      { title: 'The Historical Marker Database — Haym Salomon marker, Philadelphia (1997)', url: 'https://www.hmdb.org/m.asp?m=9311' }
+      { title: 'The Historical Marker Database — Haym Salomon marker, Philadelphia (1997)', url: 'https://www.hmdb.org/m.asp?m=9311' },
+      { title: 'Christopher J. Young, "Barnet Hodes\'s Quest to Remember Haym Salomon" (American Jewish Archives Journal, 2011): why the legend grew in the 1920s-1940s', url: 'https://sites.americanjewisharchives.org/publications/journal/PDF/2011_63_02_00_young.pdf' },
+      { title: 'Jane Frances Amler, Haym Salomon: Patriot Banker of the American Revolution (2004), on the Internet Archive: his 1778 request and a photo of the original', url: 'https://archive.org/details/haymsalomonpatri0000amle' }
     ]
   },
 

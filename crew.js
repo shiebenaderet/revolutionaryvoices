@@ -85,7 +85,7 @@
     ] }
   ];
   /* A crew's Hook opens with the crew introducing themselves. */
-  var CREW_OPENING = [['group-intro', 'Crew Introductions', 'all'], ['group-welcome', 'Welcome Listeners', 'host']];
+  var CREW_OPENING = [['group-intro', 'Say Hello', 'all'], ['group-welcome', 'Welcome Listeners', 'host']];
 
   var CHECKLIST = [
     'The Hook grabs listeners in the first 30 to 45 seconds.',
@@ -388,14 +388,17 @@
     var st = part.styles.filter(function (s) { return s.id === r.value; })[0] || null;
     return st && styleOpen(st) ? st : null;
   }
+  /* Say Hello (Oct 23, teacher): real podcasts don't announce "I'm the narrator", and the
+     person from history shouldn't say hi before the story starts. Everyone else says hello. */
+  function allLabel() { return cast().used.indexOf('subject') !== -1 ? 'Everyone but the Subject' : 'Everyone'; }
   function voiceLabel(voice) {
-    if (voice === 'all') return { name: 'Everyone', who: '' };
+    if (voice === 'all') return { name: allLabel(), who: '' };
     var v = VOICES.filter(function (x) { return x.id === voice; })[0];
     return { name: v ? v.name : voice, who: window.crewVoiceNames(voice) };
   }
   /* The voice on a box and the name(s) who say that box. */
   function boxLabel(b) {
-    if (b[2] === 'all') return { name: 'Everyone', who: '' };
+    if (b[2] === 'all') return { name: allLabel(), who: '' };
     var owners = cast().owners[b[0]] || [];
     return { name: voiceLabel(b[2]).name, who: owners.join(' and ') };
   }

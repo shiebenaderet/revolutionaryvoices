@@ -37,8 +37,8 @@
      who is speaking in the frames: I (the historical figure) or they (Host,
      Narrator, reporter). */
   var KINDS = {
-    crew_intro: { ask: 'Say your name and the part you play.', person: 'they', frames: [
-      "Hi, I'm [text:your first name].", "I'm the [voice] today."] },
+    crew_intro: { ask: 'Say hi and your first name, the way real podcast hosts do. Skip your part (host, narrator): listeners can tell.', person: 'they', frames: [
+      "Hi, I'm [text:your first name].", "And I'm [text:your first name]."] },
     welcome: { ask: 'Welcome listeners. Say who the episode is about.', person: 'they', frames: [
       'Welcome to {podcast}.', 'Today you will meet {name}, [whoName].', '{name} lived in [where] in [when].'] },
     hook_moment: { ask: 'Start inside an exciting moment.', person: 'they', frames: [
@@ -138,8 +138,8 @@
   var NARRATOR_KIND = { subject_before: 'narr_before', subject_turn: 'narr_turn', subject_after: 'narr_after', news_quote: 'words_quote' };
   /* The source line (Oct 23): said by whoever has the last box of the Wrap. */
   var SOURCE_ID = 'source-line';
-  var SOURCE_KIND = { ask: 'Say where your facts came from. Name your reading and the source your crew found.', person: 'they', frames: [
-    'We learned about {name} from [src] and [src].'] };
+  var SOURCE_KIND = { ask: 'Say where your facts came from: your reading and the source your crew found. If someone voiced the person from history, say who.', person: 'they', frames: [
+    'We learned about {name} from [src] and [src].', '[text:who read them] read the words of {name}.'] };
   function kindFor(id) {
     if (id === SOURCE_ID) return SOURCE_KIND;
     var k = BEAT_KIND[id];
@@ -354,7 +354,7 @@
     C.PARTS.forEach(function (part) {
       var style = C.chosen(part);
       var beats = style ? C.allBeats(part, style).filter(function (b) {
-        if (b[2] === 'all') return true;
+        if (b[2] === 'all') return !(st.voices.length && st.voices.every(function (v) { return v === 'subject'; }));
         if (owners) return (owners[b[0]] || []).indexOf(st.name) !== -1;
         return st.voices.indexOf(b[2]) !== -1;
       }) : [];
@@ -436,7 +436,7 @@
     var html = '<section class="lb-beat" data-beat="' + id + '">' +
       '<div class="plan-beat-head"><h4 class="lb-title">' + esc(b[1]) + '</h4><span class="voice-chip voice-' + b[2] + '">' + esc(v.name) + '</span></div>' +
       '<p class="lb-ask">' + esc(kind.ask) + '</p>' +
-      '<p class="lb-goal">Aim for ' + goal(g.target) + '.' + (level === 'mostSupport' ? ' Pick the frames that fit. You don\'t need all of them.' : '') + '</p>';
+      '<p class="lb-goal">' + (id === 'group-intro' ? 'One short sentence. Not saying hello? Leave this box empty.' : 'Aim for ' + goal(g.target) + '.') + (level === 'mostSupport' ? ' Pick the frames that fit. You don\'t need all of them.' : '') + '</p>';
 
     if (level === 'mostSupport') {
       /* Only the frame being worked shows its word banks; the others show as a
@@ -552,7 +552,7 @@
     var boxes = all.map(function (x) { return beatText(st, x.b[0]); });
     var used = (st.facts || []).filter(function (f) { return factUsed(f.t, lines, boxes); }).length;
     var checks = [
-      [all.length > 0 && all.every(function (x) { return beatDone(st, x.b[0]); }), 'Every box has words'],
+      [all.length > 0 && all.every(function (x) { return x.b[0] === 'group-intro' || beatDone(st, x.b[0]); }), 'Every box has words'],
       [used >= 2, 'Two of my facts are in my lines' + (used === 1 ? ' (1 so far)' : '')]
     ];
     if (all.some(function (x) { return x.b[0] === SOURCE_ID; })) checks.push([beatDone(st, SOURCE_ID), 'My source line is filled in']);
@@ -688,7 +688,6 @@
     if (st.name || st.voices.length) {
       var gi = beatState(st, 'group-intro');
       if (!gi.s['0-0'] && st.name) gi.s['0-0'] = st.name;
-      if (!gi.s['1-0'] && st.voices.length) gi.s['1-0'] = C.VOICES.filter(function (v) { return v.id === st.voices[0]; })[0].name;
     }
     addPeek();
     ensureHosts();
@@ -829,7 +828,6 @@
         syncVoices(st);
         var gi = beatState(st, 'group-intro');
         gi.s['0-0'] = st.name;
-        if (st.voices.length) gi.s['1-0'] = voiceNames(st).split(' and ')[0];
         store(st); render(); return;
       }
       if (t.name === 'linesVoice') {

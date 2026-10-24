@@ -986,7 +986,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '3.5.0'; // keep in sync with index.html footer and CHANGELOG
+        const APP_VERSION = '3.5.1'; // keep in sync with index.html footer and CHANGELOG
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION; })();
         const OLD_KEY = 'revolutionaryVoicesScript';
@@ -1396,7 +1396,7 @@
             updateWorkName();
 
             // Coming back: reopen the most recent script instead of a blank form.
-            // Other scripts stay one tap away in My Work.
+            // Other scripts stay one click away in My Work.
             const _slots = Object.values(readStore()).sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
             if (_slots.length) {
                 // The topic list must exist before a saved topic can be selected.
@@ -1678,7 +1678,7 @@
             showStep(path[pos + 1]);
             if (leaving === 0 && wizIsSolo()) {
                 setTimeout(function() {
-                    showToast('Saved on this computer. On a shared Chromebook, open My Work and tap Back up my work.', 6000);
+                    showToast('Saved on this computer. On a shared Chromebook, open My Work and click Back up my work.', 6000);
                 }, 800);
             }
         }
@@ -1715,7 +1715,7 @@
                     target = (typeof crewFirstMissingName === 'function' && crewFirstMissingName()) ||
                         (!document.getElementById('subject').value ? document.getElementById('subject') : null);
                 }
-                showToast(target && target.id === 'groupSize' ? 'Choose how many people are making this podcast' : 'Fill this in, then tap Next');
+                showToast(target && target.id === 'groupSize' ? 'Choose how many people are making this podcast' : 'Fill this in, then click Next');
                 wizNudgeField(target);
                 return;
             } else if (n === 1) {
@@ -1737,7 +1737,7 @@
                     showToast('Pick a style for each part');
                 } else {
                     target = (typeof crewFirstOpenCast === 'function' && crewFirstOpenCast()) || document.getElementById('castSection');
-                    showToast('Check who says each part, or tap Split it up for us');
+                    showToast('Check who says each part, or click Split it up for us');
                 }
                 wizNudgeField(target);
                 return;
@@ -1755,7 +1755,7 @@
                     target = sec && sec.querySelector('.form-section.active textarea');
                 }
             }
-            showToast('Add a little here first, then tap Next');
+            showToast('Add a little here first, then click Next');
             wizNudgeField(target);
         }
 
@@ -2005,7 +2005,7 @@
                 '<h4 class="spotlight-doc">' + s.doc + '</h4>' +
                 '<p class="spotlight-context">' + s.context + '</p>' +
                 '<div class="period-text">' + s.text + '</div>' +
-                '<p class="spotlight-gloss-hint">Tap a <dfn data-def="like this — tap again to hide">dotted word</dfn> for its meaning.</p>' +
+                '<p class="spotlight-gloss-hint">Click a <dfn data-def="like this — click again to hide">dotted word</dfn> for its meaning.</p>' +
                 '<div class="spotlight-task"><strong>Make it yours:</strong> ' + s.task + '</div>' +
                 '<p class="spotlight-cite">' + s.cite +
                 (s.url ? ' — <a href="' + s.url + '" target="_blank" rel="noopener">see the source</a>' : '') + '</p>';
@@ -2305,7 +2305,7 @@
                 const cap = document.createElement('div');
                 cap.className = 'verb-meaning';
                 cap.setAttribute('aria-live', 'polite');
-                cap.textContent = 'Tip: tap or move to a word to see what it means.';
+                cap.textContent = 'Tip: click or move to a word to see what it means.';
                 bank.appendChild(cap);
             });
             document.querySelectorAll('.verb-btn').forEach(btn => {

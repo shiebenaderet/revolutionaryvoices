@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haym Salomon — Revolutionary Voices</title>
+<meta name="description" content="Mr. B's sample episode: a Jewish immigrant who helped prisoners escape and raised money for a broke government, and the legend that grew up around him">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/haym-salomon/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a; --edge:#a8987a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a; --edge:#a8987a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill { min-width:64px; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+/* Handout in the studio (3.2.0): matches the script builder. A warm cream
+   sheet on a walnut desk, brown ink and rules, square boxes, one rust accent. */
+:root { --brand:#a8431a; --brand-dark:#a8431a; --brand-deep:#2a1d12; --ink:#2a1d12; --page-bg:#3b2a1c;
+  --surface:#fffaf0; --surface-2:#fffaf0; --line:#3a2a1a; --muted:#5a4a38; --accent:#a8431a; --gold:#e0a52e;
+  --code-conclusion:#2a1d12; --edge:#3a2a1a; --radius:0; --shadow:none; }
+:root[data-theme="dark"] { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf; --ink:#f3e6cf; --page-bg:#0d0906;
+  --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a; --gold:#f0bf57;
+  --code-conclusion:#f3e6cf; --edge:#e6d4b4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf;
+  --ink:#f3e6cf; --page-bg:#0d0906; --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a;
+  --gold:#f0bf57; --code-conclusion:#f3e6cf; --edge:#e6d4b4; } }
+.wrap { background:var(--surface); margin-top:16px; border-top:4px solid var(--gold); }
+.reading-viewer { border:1.5px solid var(--line) !important; border-radius:0 !important; box-shadow:none !important; }
+.wrap * { border-radius:0 !important; box-shadow:none !important; }
+.level-pill { background:var(--surface) !important; color:var(--ink) !important; border:2px solid var(--line) !important; }
+.level-pill[aria-pressed="true"] { background:var(--accent) !important; color:var(--surface) !important; border-color:var(--accent) !important; }
+.reading-quickfacts { background:var(--surface) !important; border:1.5px solid var(--line) !important; }
+.facts-group h3, .reading-head h1 { color:var(--ink) !important; }
+.eyebrow { color:var(--accent) !important; }
+.wrap a { color:var(--accent) !important; }
+#rtools .rt-btn { background:var(--surface); }
+#rtools .rt-btn.rt-primary { background:var(--gold); color:#1a1208 !important; border-color:var(--gold); }
+#rtools .rt-btn.rt-primary * { color:#1a1208 !important; }
+#rtools .rt-btn svg { display:none; }
+
+</style>
+<noscript><style>
+.level-panel[hidden]{display:block}.level-toggle{display:none}
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · Reading</p>
+    <div id="rtools"></div>
+  </div>
+
+  <article class="reading-viewer" data-listen>
+    <header class="reading-head">
+      <div>
+        <h1>Haym Salomon</h1>
+        <p class="reading-tagline">Mr. B's sample episode: a Jewish immigrant who helped prisoners escape and raised money for a broke government, and the legend that grew up around him</p>
+      </div>
+      <div class="level-toggle" role="group" aria-label="Reading level">
+          <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
+          <button type="button" class="level-pill" data-level="someSupport" aria-pressed="false" title="Plain words, a little more detail.">Clear</button>
+          <button type="button" class="level-pill" data-level="standard" aria-pressed="true" title="The grade-level reading.">Full</button>
+          <button type="button" class="level-pill" data-level="challenge" aria-pressed="false" title="Adds real quotes from the time and what historians argue.">Deep</button>
+      </div>
+    </header>
+
+    <div class="reading-quickfacts">
+        <span class="qf"><strong>Born:</strong> 1740, Lissa, Poland, to a Jewish family</span>
+        <span class="qf"><strong>Died:</strong> January 1785, Philadelphia (about age 44)</span>
+        <span class="qf"><strong>Role:</strong> Merchant, prisoner of the British, then a money broker for Congress</span>
+        <span class="qf"><strong>Famous for:</strong> A legend that he paid for the Revolution, which historians say is not true</span>
+    </div>
+
+      <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
+        <div class="reading-body"><p>Haym Salomon was born in Poland in 1740. His family was Jewish. He moved to New York and worked as a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">merchant</button><span class="gloss-def" hidden> (a person who buys and sells goods)</span></span>.</p>
+<p>In 1776, the British took over New York. They said Salomon was a spy. They put him in prison.</p>
+<p>Salomon spoke many languages. So a German general working for the British put him to work. He got food and supplies for the officers. But in secret, he helped American and French prisoners escape.</p>
+<p>In 1778, the British came after him again. He ran away to Philadelphia. He had to leave his wife and their baby behind. He lost almost everything he owned.</p>
+<p>In Philadelphia, he started over. The new government was out of money. Salomon helped it turn paper promises into cash. He kept a small fee for his work. He also lent his own money to leaders who were broke.</p>
+<p>Salomon died in 1785. Later, people said he paid for the whole war. They put it on a stamp. But historians checked the records. They say it is a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">legend</button><span class="gloss-def" hidden> (a story that grew bigger than the truth)</span></span>.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook</h3>
+            <ul><li>A stamp in 1975 called him a &quot;Financial Hero.&quot;</li><li>People said he paid for the war.</li><li>Historians say that part is not true.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Story</h3>
+            <ul><li>The British put him in prison as a spy in 1776.</li><li>In secret, he helped prisoners escape.</li><li>Later he helped the government turn paper promises into cash.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Wrap</h3>
+            <ul><li>He died in 1785.</li><li>His son later said he paid for the war.</li><li>The real story is enough.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
+        <div class="reading-body"><p>Haym Salomon was born in 1740 in Lissa, Poland, to a Jewish family. He traveled in Europe and learned several languages. In the early 1770s he came to New York and worked as a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">merchant</button><span class="gloss-def" hidden> (someone who buys and sells goods)</span></span>.</p>
+<p>In September 1776 the British captured New York. They arrested Salomon as a spy and locked him in prison. Because he spoke German, a Hessian general put him to work buying supplies for the officers. That gave him some freedom. He used it to help American and French prisoners escape.</p>
+<p>By August 1778 the British were after him again, and he escaped to Philadelphia. He left behind his wife, a month-old baby, and almost everything he owned. He asked Congress for a job, and it said no.</p>
+<p>So he started over as a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">broker</button><span class="gloss-def" hidden> (someone paid a small fee to help others buy and sell)</span></span>. In 1781 Robert Morris took charge of the government's money and turned to Salomon. France and the Netherlands had loaned money as paper promises called bills of exchange. Salomon found buyers who paid cash for them. He also lent his own money to leaders like James Madison, sometimes without charging anything back.</p>
+<p>Salomon died in January 1785. Years later his son told Congress that his father had lent the government huge sums. That claim became a legend, even on a 1975 stamp. Historians who checked the records say he never lent the government his own money.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook</h3>
+            <ul><li>A 1975 stamp called Haym Salomon a &quot;Financial Hero.&quot;</li><li>The back of the stamp said he raised most of the money for the war.</li><li>Historians who checked the records say that is a legend.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Story</h3>
+            <ul><li>Arrested as a spy in 1776, he worked for a Hessian general because he spoke German.</li><li>He helped American and French prisoners escape, then fled to Philadelphia in 1778.</li><li>As a broker for Robert Morris, he sold bills of exchange for cash.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Wrap</h3>
+            <ul><li>He died in January 1785.</li><li>His son's claims in the 1840s started the legend.</li><li>He risked his life for a country that was not his yet.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="standard" data-level-word="Full">
+        <div class="reading-body"><p>Haym Salomon was born in 1740 in Lissa, Poland, to a Jewish family. He traveled across Europe, picked up several languages, and settled in New York in the early 1770s as a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">merchant</button><span class="gloss-def" hidden> (someone who buys and sells goods for a living)</span></span>.</p>
+<p>When the British captured New York in September 1776, they arrested Salomon as a suspected spy and held him in the city's military prison. His languages saved him: a Hessian general put him to work as a supplier for the officers. That job gave him enough freedom to work against the British from the inside, and he helped French and American prisoners escape. By August 1778 the British were after him again. He fled to Philadelphia, leaving his wife, a month-old child, and most of his property behind. In a request to Congress that month, he asked for any job in his line of business. Congress gave him none.</p>
+<p>He rebuilt his life as a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">broker</button><span class="gloss-def" hidden> (someone who arranges sales for others and keeps a small fee)</span></span>. In 1781 Congress put Robert Morris in charge of its finances, and Morris used Salomon to sell bills of exchange, the paper promises that carried loans from France and the Netherlands. Salomon turned them into cash the government could spend. He also made personal loans, sometimes without interest, to members of Congress such as James Madison.</p>
+<p>Salomon died in January 1785, about age 44. In the 1840s his son asked Congress to repay loans his father had supposedly made, first $353,000 and later $3 million. The story stuck. A 1975 stamp called him a "Financial Hero." But historians who studied Morris's records, in 1931 and again in 1977, found that Salomon never lent the government his own money and never claimed he had.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook</h3>
+            <ul><li>A 1975 U.S. stamp honored him as a &quot;Financial Hero.&quot;</li><li>Its back claimed he raised most of the money for the Revolution.</li><li>Historians found no record that he lent the government his own money.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Story</h3>
+            <ul><li>Jailed as a suspected spy in 1776, he supplied Hessian officers and helped prisoners escape.</li><li>In 1778 he fled to Philadelphia, leaving his wife, a month-old child and his property.</li><li>After 1781 he sold bills of exchange for Robert Morris and lent money to Madison.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Wrap</h3>
+            <ul><li>He died in January 1785, about age 44.</li><li>The legend began with his son's claims to Congress in the 1840s.</li><li>He helped keep a broke government running, and that is real.</li></ul>
+          </div>
+        </section>
+      </div>
+      <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
+        <div class="reading-body"><p>Haym Salomon's reputation has two lives: the documented career of a Polish-born Jewish broker who served the Revolution at real personal risk, and a nineteenth-century legend that credited him with financing it. Born in 1740 in Lissa, he arrived in New York in the early 1770s, and when the British occupied the city in September 1776 he was imprisoned as a suspected spy. His fluency in German led a Hessian commander to employ him as a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">purveyor</button><span class="gloss-def" hidden> (a supplier of provisions)</span></span> to officers, a position he used to assist French and American prisoners in escaping.</p>
+<p>Exposed again in August 1778, he fled to Philadelphia; his memorial to Congress that month describes the loss of his property and the wife and infant left behind, and asks only for employment. Refused, he became a bill broker, and after 1781 the Superintendent of Finance, Robert Morris, relied on him to convert foreign bills of exchange, the instruments carrying French and Dutch loans, into usable currency. He earned ordinary commissions, styled himself "Broker to the Office of Finance," and extended personal, sometimes interest-free, loans to impoverished delegates such as James Madison.</p>
+<p>After his death in January 1785, his son petitioned Congress in the 1840s for repayment of fabulous sums, eventually $3 million, and the claim hardened into public memory: a proposed medal, a Chicago monument, a 1975 stamp. Max Kohler's 1931 study and Morris Schappes's work on the Morris diaries showed that Salomon lent the government nothing of his own. The more interesting question for a historian is why the legend proved so durable, and what it reveals about how communities claim a place in the national story.</p></div>
+        <section class="reading-facts">
+          <h2>Key facts to use in your script</h2>
+          <div class="facts-group">
+            <h3>For your Hook</h3>
+            <ul><li>A 1975 stamp and later monuments credited him with financing the Revolution.</li><li>Studies in 1931 and 1977 found he never lent the government his own money.</li><li>His real career is riskier and stranger than the legend.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Story</h3>
+            <ul><li>His German made him a purveyor to Hessian officers, cover for helping prisoners escape.</li><li>His 1778 memorial asked Congress only for work in his trade; it gave him none.</li><li>He converted French and Dutch bills of exchange into cash for Morris, for ordinary commissions.</li></ul>
+          </div>
+          <div class="facts-group">
+            <h3>For your Wrap</h3>
+            <ul><li>The legend hardened into stamps and monuments.</li><li>Historians traced it to family claims, not to records.</li><li>The question is why the legend lasted, and who needed it.</li></ul>
+          </div>
+        </section>
+      </div>
+
+        <section class="reading-sources">
+          <h2>Where these facts come from</h2>
+          <ul>
+            <li><a href="https://allthingsliberty.com/2013/01/financial-hero/" target="_blank" rel="noopener">Journal of the American Revolution — Hugh T. Harrington, &quot;Financial Hero?&quot; (2013), with his 1778 request to Congress</a></li>
+            <li><a href="https://jewishencyclopedia.com/articles/13035-salomon-haym" target="_blank" rel="noopener">Jewish Encyclopedia (1906) — &quot;Salomon, Haym&quot; (repeats the loan claim: good practice for checking a source)</a></li>
+            <li><a href="https://www.hmdb.org/m.asp?m=9311" target="_blank" rel="noopener">The Historical Marker Database — Haym Salomon marker, Philadelphia (1997)</a></li>
+          </ul>
+        </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    Same facts at every level — only the language changes.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
+})();</script>
+<script src="../../reader-tools.js?v=3.5.1"></script>
+</body>
+</html>

@@ -6,6 +6,18 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.5.1] - 2026-10-23
+
+### Added
+
+- **Haym Salomon, Mr. B's sample episode,** as a topic in its own group ("Mr. B's Sample") at the end of the topic list. It has the full kit: a reading at Quick, Clear, Full and Deep (measured inside each level's limits), key facts, a Quick word bank, and a Source Spotlight and Voice Bank from his 1778 request to Congress. The teacher builds his model episode on the site with it, so students watch the same steps they will take. It is not one of the 22 student topics.
+
+### Fixed
+
+- **A fact retold in a student's own words now counts** toward "Two of my facts are in my lines" (most of its key words in one box). Before, only a fact added with the button or typed with the same first five words counted, so the teacher's model run, which retold every fact, never got the check.
+- **My Facts and the read-aloud check belong to each student,** not to the Chromebook. Crewmates who share a computer each pick their name and see their own facts.
+- "Click", not "tap", everywhere a student reads it (Group Doc steps, Share, reminders, the gloss hint).
+
 ## [3.5.0] - 2026-10-23
 
 ### Added

@@ -21,6 +21,18 @@ window.RV_BANK_SHARED = {
 };
 
 window.RV_BANKS = {
+  'haym-salomon': {
+    name: 'Haym Salomon', nameMid: 'Haym Salomon', group: false,
+    whoI: ['a Jewish immigrant from Poland', 'a merchant in New York', 'a prisoner of the British', 'a money broker'],
+    whoName: ['a Jewish immigrant from Poland', 'a merchant who spoke many languages', 'a broker who raised money for Congress'],
+    where: ['New York', 'Philadelphia', 'Poland', 'a British prison'],
+    when: ['1776', '1778', '1781', 'the Revolution'],
+    people: ['Robert Morris', 'James Madison', 'the British', 'Hessian officers'],
+    did: ['helped prisoners escape', 'escaped to Philadelphia', 'sold bills of exchange for Congress', 'lent money to leaders who were broke', 'started over as a broker'],
+    hard: ['got arrested as a spy', 'lost almost everything', 'had to leave family behind', 'got turned down for a job by Congress'],
+    mattered: ['helped keep a broke government running', 'risked everything for a country that was not home yet', 'helped prisoners get free']
+  },
+
   'phillis-wheatley': {
     name: 'Phillis Wheatley',
     nameMid: 'Phillis Wheatley',

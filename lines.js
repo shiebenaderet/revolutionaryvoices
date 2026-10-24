@@ -191,7 +191,12 @@
     try { st = raw ? JSON.parse(raw) : {}; } catch (e) { st = {}; }
     st.voices = st.voices || [];
     st.beats = st.beats || {};
-    st.facts = st.facts || [{ t: '', src: '' }, { t: '', src: '' }];
+    /* My Facts and the read-aloud check belong to the student, not the Chromebook:
+       crewmates who share one computer each pick their name and see their own. */
+    st.byName = st.byName || {};
+    var key = st.name || '';
+    if (!st.byName[key]) st.byName[key] = { facts: (st.facts && !Object.keys(st.byName).length) ? st.facts : [{ t: '', src: '' }, { t: '', src: '' }], readAloud: false };
+    st.facts = st.byName[key].facts;
     return st;
   }
   function store(st) {
@@ -278,12 +283,25 @@
   /* A fact counts once it shows up in the student's lines: added with the button,
      or typed in (the first five words match). */
   function factWords(t) { return String(t || '').toLowerCase().replace(/[^a-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean); }
-  function factUsed(fact, all) {
+  /* A fact counts once it shows up in the student's lines: added with the button, typed
+     with the same first five words, or retold in their own words (most of its key words
+     in one box). The teacher's model run retold every fact and none counted. */
+  var STOP = /^(that|this|with|from|they|them|their|there|were|was|have|been|into|about|after|before|when|what|which|would|could|said|also|than|then|just|only|over|some|most|more|very)$/;
+  function keyWords(t) { return factWords(t).filter(function (w) { return w.length >= 4 && !STOP.test(w); }); }
+  function factUsed(fact, all, boxes) {
     var w = factWords(fact);
     if (w.length < 3) return false;
     var probe = w.slice(0, Math.min(5, w.length)).join(' ');
-    return factWords(all).join(' ').indexOf(probe) !== -1;
+    if (factWords(all).join(' ').indexOf(probe) !== -1) return true;
+    var keys = keyWords(fact).filter(function (k, i, a) { return a.indexOf(k) === i; });
+    if (keys.length < 2) return false;
+    var need = Math.max(2, Math.ceil(keys.length * 0.6));
+    return (boxes || [all]).some(function (b) {
+      var bw = factWords(b);
+      return keys.filter(function (k) { return bw.some(function (x) { return x === k || (x.length > 4 && k.length > 4 && x.slice(0, 5) === k.slice(0, 5)); }); }).length >= need;
+    });
   }
+
   var LEADS = [['', 'Just the fact'], ["Most people don't know that", "Most people don't know that…"], ['Historians know that', 'Historians know that…'], ['src', 'According to [source],…']];
   var COMMON = /^(the|a|an|he|she|they|it|in|on|at|after|before|when|during|many|most|some|his|her|their|this|that|there|people|by|for|from|about)\b/i;
   function withLead(lead, f) {
@@ -531,13 +549,14 @@
   function finishState(st) {
     var all = flatBeats(st);
     var lines = all.map(function (x) { return beatText(st, x.b[0]); }).join(' ');
-    var used = (st.facts || []).filter(function (f) { return factUsed(f.t, lines); }).length;
+    var boxes = all.map(function (x) { return beatText(st, x.b[0]); });
+    var used = (st.facts || []).filter(function (f) { return factUsed(f.t, lines, boxes); }).length;
     var checks = [
       [all.length > 0 && all.every(function (x) { return beatDone(st, x.b[0]); }), 'Every box has words'],
       [used >= 2, 'Two of my facts are in my lines' + (used === 1 ? ' (1 so far)' : '')]
     ];
     if (all.some(function (x) { return x.b[0] === SOURCE_ID; })) checks.push([beatDone(st, SOURCE_ID), 'My source line is filled in']);
-    checks.push([!!st.readAloud, 'I read my lines out loud once']);
+    checks.push([!!st.byName[st.name || ''].readAloud, 'I read my lines out loud once']);
     return checks;
   }
   function renderFinish(st) {
@@ -550,7 +569,7 @@
     checks.forEach(function (c, i) {
       var last = i === checks.length - 1;
       html += '<li class="' + (c[0] ? 'is-done' : '') + '">' + (last
-        ? '<label><input type="checkbox" class="lb-read"' + (st.readAloud ? ' checked' : '') + '> ' + esc(c[1]) + '</label>'
+        ? '<label><input type="checkbox" class="lb-read"' + (st.byName[st.name || ''].readAloud ? ' checked' : '') + '> ' + esc(c[1]) + '</label>'
         : '<span aria-hidden="true">' + (c[0] ? '&#10003;' : '&#9744;') + '</span> ' + esc(c[1]) + '<span class="sr-only">' + (c[0] ? ', done' : ', not yet') + '</span>') + '</li>';
     });
     host.innerHTML = html + '</ul></div>';
@@ -803,7 +822,7 @@
     });
     stepEl.addEventListener('change', function (e) {
       var t = e.target, st;
-      if (t.classList.contains('lb-read')) { st = load(); st.readAloud = t.checked; store(st); renderFinish(st); return; }
+      if (t.classList.contains('lb-read')) { st = load(); st.byName[st.name || ''].readAloud = t.checked; store(st); renderFinish(st); return; }
       if (t.classList.contains('lf-t') || t.classList.contains('lf-s')) { refreshFacts(); return; }
       if (t.name === 'linesName') {
         st = load(); st.name = t.value;

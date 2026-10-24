@@ -302,7 +302,7 @@
         '<label class="sr-only" for="fact' + i + '">Fact ' + i + '</label>' +
         '<input type="text" id="fact' + i + '" placeholder="Fact ' + i + '">' +
         '<label class="sr-only" for="fact' + i + '-src">Source for fact ' + i + '</label>' +
-        '<input type="text" id="fact' + i + '-src" placeholder="Source, like Britannica">' +
+        '<input type="text" id="fact' + i + '-src" placeholder="Where it came from: the page, book or museum">' +
         '</div>';
     }
     host.innerHTML = html;

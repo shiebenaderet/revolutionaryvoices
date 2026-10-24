@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.5.3] - 2026-10-23
+
+### Changed
+
+- The Fact Bank's source box says "Where it came from: the page, book or museum" (was "Source, like Britannica"). Teachers tell Researchers that a site's name alone isn't a source; the hint now says the same. Wording only.
+
 ## [3.5.2] - 2026-10-23
 
 ### Changed

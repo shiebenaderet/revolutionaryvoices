@@ -6,6 +6,13 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.5.5] - 2026-10-26
+
+### Added
+
+- **The War in Seven Stops moved here** (`war-timeline.html`), from unrest.mrbsocialstudies.org, which now redirects to it, stop anchors and `?level=` included. Teacher, Oct 26: the podcast's background belongs with the podcast. Built by `tools/build-war-timeline.py` (moved with it); pictures in `images/war/`; Listen and Font from `war-reader-tools.js`, the unrest site's reader tools kept as their own copy so `reader-tools.js` here is untouched. Hidden Voice links are now same-site (`readings/<id>/`).
+- Links to it from the Read step ("Where does your topic fit in the war?"), the reading library, and Tuesday's row on the project page.
+
 ## [3.5.4] - 2026-10-26
 
 ### Changed

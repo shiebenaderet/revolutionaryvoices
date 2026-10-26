@@ -407,7 +407,7 @@ ${sourcesBlock}
   </p>
 </div>
 <script>${PAGE_JS}</script>
-<script src="../../reader-tools.js?v=3.5.4"></script>
+<script src="../../reader-tools.js?v=3.5.5"></script>
 </body>
 </html>
 `;
@@ -477,6 +477,7 @@ ${PAGE_CSS}
   <p class="eyebrow">Revolutionary Voices</p>
   <h1>Readings</h1>
   <p class="reading-tagline">${built.length} topics. Each one comes in four versions: Quick, Clear, Full and Deep.</p>
+  <p class="reading-tagline">Where does each topic fit in the war? <a href="../war-timeline.html">The War in Seven Stops</a></p>
 ${sections}
 </div>
 </body>

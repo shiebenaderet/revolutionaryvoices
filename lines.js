@@ -138,7 +138,7 @@
   var NARRATOR_KIND = { subject_before: 'narr_before', subject_turn: 'narr_turn', subject_after: 'narr_after', news_quote: 'words_quote' };
   /* The source line (Oct 23): said by whoever has the last box of the Wrap. */
   var SOURCE_ID = 'source-line';
-  var SOURCE_KIND = { ask: 'Say where your facts came from: your reading and the source your crew found. If someone voiced the person from history, say who.', person: 'they', frames: [
+  var SOURCE_KIND = { ask: 'Say where your facts came from: your reading and the source your group found. If someone voiced the person from history, say who.', person: 'they', frames: [
     'We learned about {name} from [src] and [src].', '[text:who read them] read the words of {name}.'] };
   function kindFor(id) {
     if (id === SOURCE_ID) return SOURCE_KIND;
@@ -416,7 +416,7 @@
     if (!host) return;
     var missing = C.PARTS.filter(function (p) { return !C.chosen(p); });
     if (!missing.length) { host.innerHTML = ''; return; }
-    var html = '<fieldset class="lines-field"><legend>Which styles did your crew pick?</legend>' +
+    var html = '<fieldset class="lines-field"><legend>Which styles did your group pick?</legend>' +
       '<p class="field-hint">Ask your Lead Scriptwriter, or look at your Group Doc.</p>';
     missing.forEach(function (part) {
       html += '<label for="linesStyle-' + part.radio + '">' + part.name + '</label><select id="linesStyle-' + part.radio + '" data-part="' + part.radio + '">' +
@@ -626,7 +626,7 @@
     var notes = '';
     rows.forEach(function (row) {
       if (!row.style) notes += '<p class="lines-empty">Pick the style for ' + row.part.name + ' above.</p>';
-      else if (!row.beats.length) notes += '<p class="lines-empty">You have no boxes in ' + row.part.name + '. Help a crewmate with theirs.</p>';
+      else if (!row.beats.length) notes += '<p class="lines-empty">You have no boxes in ' + row.part.name + '. Help a groupmate with theirs.</p>';
     });
     var all = flatBeats(st);
     if (!all.length) { host.innerHTML = notes; return; }

@@ -407,7 +407,7 @@ ${sourcesBlock}
   </p>
 </div>
 <script>${PAGE_JS}</script>
-<script src="../../reader-tools.js?v=3.5.3"></script>
+<script src="../../reader-tools.js?v=3.5.4"></script>
 </body>
 </html>
 `;

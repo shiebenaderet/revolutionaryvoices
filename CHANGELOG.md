@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.5.4] - 2026-10-26
+
+### Changed
+
+- **Say "group," not "crew,"** everywhere a student reads it: Start ("Your group"), the Group Doc steps and frame ("Our Group," "the source your group found"), the checklist, My Lines ("Which styles did your group pick?", "Help a groupmate"). Teacher, Oct 24: the class calls them groups. Code names (`crew.js`, `crew1-name` and the rest) are unchanged, so saved work still loads.
+
 ## [3.5.3] - 2026-10-23
 
 ### Changed

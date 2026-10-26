@@ -89,7 +89,7 @@
 
   var CHECKLIST = [
     'The Hook grabs listeners in the first 30 to 45 seconds.',
-    'Everyone in the crew has lines.',
+    'Everyone in the group has lines.',
     'Every fact comes from the Fact Bank and says where it came from.',
     'The Wrap says why this story matters (your thesis).',
     'We read it aloud with a timer: 2 to 4 minutes.',
@@ -264,7 +264,7 @@
     var hint = $('pathHint');
     if (hint) {
       hint.textContent = solo ? 'You will write your whole script here, one part at a time.'
-        : crew ? 'Your crew plans here. Then you write the script together in a Google Doc.'
+        : crew ? 'Your group plans here. Then you write the script together in a Google Doc.'
         : 'Groups plan here, then write together in a Google Doc. If you are working alone, you write your whole script here.';
     }
     var fh = $('factBankHint');
@@ -590,7 +590,7 @@
     h.push('<p' + (forDoc ? ' style="' + GRAY + '"' : ' class="fr-note"') + '>This is a frame to start from. You can add boxes, cut them, move them, or make your own version. Keep a Hook, a Story and a Wrap, and say where each fact came from. Start every line with who says it, like <strong>Maria:</strong> …</p>');
 
     var cs = cast();
-    h.push('<h2>Our Crew</h2><table class="fr-table" style="' + B + 'width:100%"><tr>' +
+    h.push('<h2>Our Group</h2><table class="fr-table" style="' + B + 'width:100%"><tr>' +
       ['Name', 'Job', 'Says'].map(function (x) { return '<th style="' + TD + 'text-align:left">' + x + '</th>'; }).join('') + '</tr>');
     members.forEach(function (m) {
       h.push('<tr><td style="' + TD + '">' + (esc(m.name) || '&nbsp;') + '</td><td style="' + TD + '">' +
@@ -635,7 +635,7 @@
     h.push('<h2>Our Sources</h2>');
     var srcs = [];
     facts().forEach(function (f) { if (f.src && srcs.indexOf(f.src) === -1) srcs.push(f.src); });
-    h.push(box('<p' + (forDoc ? ' style="' + GRAY + '"' : ' class="fr-help"') + '>List every source you used, one per line: who made it, its title, where you found it. Include the source your crew found.</p>' +
+    h.push(box('<p' + (forDoc ? ' style="' + GRAY + '"' : ' class="fr-help"') + '>List every source you used, one per line: who made it, its title, where you found it. Include the source your group found.</p>' +
       (srcs.length ? '<ul>' + srcs.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : ''), srcs.length ? 2 : 4));
 
     h.push('<h2>Editor\'s Checklist</h2><ul style="list-style:none;padding-left:0" class="fr-check">');

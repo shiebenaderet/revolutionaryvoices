@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.6.1] - 2026-10-26
+
+### Fixed
+
+- **Dead source links.** Teacher, Oct 26: the Mount Vernon link for James Armistead Lafayette was down. Every source link on the readings (111) was checked, in a real browser where sites block scripts. 20 were dead or locked: 12 now point to the current page (Mount Vernon's testimonial page for Armistead, its Continental Army, Native Americans and indentured-servants pages; Britannica's Nancy Hart and indentured labor pages; the Museum of the American Revolution's "When Women Lost the Vote"; the Battlefield Trust's roles of Native Americans; the MHS Boston Massacre feature; Encyclopedia Virginia for Dunmore's Proclamation and indentured servants; NPS for the Oneida), the "Sentiments" link now opens the broadside instead of a 1787 Constitution printing, and 7 with no replacement were removed (each topic keeps at least three sources). DocSouth (Nell, 1855) and the New Georgia Encyclopedia did not respond at all on Oct 26 and are left as they are.
+
 ## [3.6.0] - 2026-10-26
 
 ### Changed

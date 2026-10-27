@@ -307,7 +307,7 @@ window.RV_READINGS = {
       { title: 'Britannica — Crispus Attucks', url: 'https://www.britannica.com/biography/Crispus-Attucks' },
       { title: 'American Battlefield Trust — Crispus Attucks', url: 'https://www.battlefields.org/learn/biographies/crispus-attucks' },
       { title: 'National Park Service — Crispus Attucks', url: 'https://www.nps.gov/people/crispus-attucks.htm' },
-      { title: 'Massachusetts Historical Society — Boston Massacre', url: 'https://www.masshist.org/features/boston-massacre' }
+      { title: 'Massachusetts Historical Society — Perspectives on the Boston Massacre', url: 'https://www.masshist.org/features/massacre' }
     ]
   },
 
@@ -394,7 +394,7 @@ window.RV_READINGS = {
     },
     sources: [
       { title: 'Encyclopedia Virginia — James Lafayette', url: 'https://encyclopediavirginia.org/entries/lafayette-james-ca-1748-1830/' },
-      { title: "George Washington's Mount Vernon — James Armistead Lafayette", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/james-armistead-lafayette/' },
+      { title: "George Washington's Mount Vernon — Lafayette's Testimonial to James Fayette", url: 'https://www.mountvernon.org/george-washington/revolutionary-war/spying-and-espionage/american-spies-revolution/lafayettes' },
       { title: 'American Battlefield Trust — James Armistead Lafayette', url: 'https://www.battlefields.org/learn/biographies/james-armistead-lafayette' },
       { title: 'Library of Virginia — James Lafayette petition (1786)', url: 'https://www.lva.virginia.gov/collections/educator-resources/dbva/items/show/277' }
     ]
@@ -656,7 +656,6 @@ window.RV_READINGS = {
       { title: 'Smithsonian Magazine — Did the Midnight Ride of Sybil Ludington Ever Happen?', url: 'https://www.smithsonianmag.com/history/did-midnight-ride-sibyl-ludington-ever-happen-180979557/' },
       { title: 'Paula D. Hunt, "Sybil Ludington…" (New England Quarterly, 2015)', url: 'https://direct.mit.edu/tneq/article/88/2/187/58029/Sybil-Ludington-the-Female-Paul-Revere-The-Making' },
       { title: 'Britannica — Sybil Ludington', url: 'https://www.britannica.com/biography/Sybil-Ludington' },
-      { title: 'National Women\'s History Museum — Sybil Ludington', url: 'https://www.womenshistory.org/education-resources/biographies/sybil-ludington' }
     ]
   },
 
@@ -1102,7 +1101,7 @@ window.RV_READINGS = {
     sources: [
       { title: 'New Georgia Encyclopedia — Nancy Hart', url: 'https://www.georgiaencyclopedia.org/articles/history-archaeology/nancy-hart-ca-1735-1830/' },
       { title: 'Georgia Historical Society — Nancy Hart', url: 'https://www.georgiahistory.com/marker-monday-nancy-hart/' },
-      { title: 'Britannica — Nancy Hart', url: 'https://www.britannica.com/biography/Nancy-Hart' },
+      { title: 'Britannica — Nancy Hart', url: 'https://www.britannica.com/biography/Nancy-Hart-American-Revolution-heroine' },
       { title: 'Digital Library of Georgia — Nancy Hart', url: 'https://dlg.usg.edu/record/nge_ngen_nancy-hart-ca-1735-1830' }
     ]
   },
@@ -1195,7 +1194,6 @@ window.RV_READINGS = {
       { title: 'Britannica — Benedict Arnold', url: 'https://www.britannica.com/biography/Benedict-Arnold' },
       { title: 'American Battlefield Trust — Benedict Arnold', url: 'https://www.battlefields.org/learn/biographies/benedict-arnold' },
       { title: "George Washington's Mount Vernon — Benedict Arnold", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/benedict-arnold/' },
-      { title: 'American Battlefield Trust — Benedict Arnold\'s Treason', url: 'https://www.battlefields.org/learn/articles/benedict-arnold-and-his-treason' }
     ]
   },
 
@@ -1287,8 +1285,7 @@ window.RV_READINGS = {
     },
     sources: [
       { title: 'American Battlefield Trust — Women in the American Revolution', url: 'https://www.battlefields.org/learn/articles/women-american-revolution' },
-      { title: 'Museum of the American Revolution — When Women Lost the Vote', url: 'https://www.amrevmuseum.org/womenandtheamericanrevolution' },
-      { title: "George Washington's Mount Vernon — Women in the Revolution", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/women-in-the-american-revolution' },
+      { title: 'Museum of the American Revolution — When Women Lost the Vote', url: 'https://www.amrevmuseum.org/exhibits/when-women-lost-the-vote-a-revolutionary-story' },
       { title: 'National Park Service — Women of the Continental Army', url: 'https://www.nps.gov/articles/000/women-of-the-army.htm' },
       { title: 'Elizabeth Ellet, The Women of the American Revolution (1848)', url: 'https://www.gutenberg.org/ebooks/49411' }
     ]
@@ -1458,9 +1455,9 @@ window.RV_READINGS = {
       }
     },
     sources: [
-      { title: 'American Battlefield Trust — American Indians in the Revolutionary War', url: 'https://www.battlefields.org/learn/articles/american-indians-revolutionary-war' },
-      { title: "George Washington's Mount Vernon — Native Americans", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/native-americans' },
-      { title: 'Oneida Indian Nation — The Oneida and the American Revolution', url: 'https://www.oneidaindiannation.com/the-oneidas-and-the-american-revolution/' },
+      { title: 'American Battlefield Trust — Roles of Native Americans during the Revolution', url: 'https://www.battlefields.org/learn/articles/roles-native-americans-during-revolution' },
+      { title: "George Washington's Mount Vernon — Native Americans", url: 'https://www.mountvernon.org/george-washington/native-americans/' },
+      { title: 'National Park Service — The Oneida in the American Revolution', url: 'https://www.nps.gov/articles/the-oneida-nation-in-the-american-revolution.htm' },
       { title: 'National Park Service — The Six Nations and the Revolution', url: 'https://www.nps.gov/articles/000/the-six-nations-confederacy-during-the-american-revolution.htm' },
       { title: 'Oklahoma State University — Indian Affairs: Laws and Treaties', url: 'https://treaties.okstate.edu/' }
     ]
@@ -1625,10 +1622,9 @@ window.RV_READINGS = {
       }
     },
     sources: [
-      { title: 'Britannica — Indentured Servitude', url: 'https://www.britannica.com/topic/indentured-servitude' },
-      { title: "George Washington's Mount Vernon — Indentured Servants", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/indentured-servants/' },
-      { title: 'Colonial Williamsburg — Indentured Servants', url: 'https://www.colonialwilliamsburg.org/learn/deep-dives/indentured-servants-in-colonial-virginia/' },
-      { title: 'Gilder Lehrman Institute — Indentured Servitude', url: 'https://www.gilderlehrman.org/history-resources/teaching-resource/historical-context-indentured-servitude' }
+      { title: 'Britannica — Indentured Labor', url: 'https://www.britannica.com/topic/indentured-labor' },
+      { title: "George Washington's Mount Vernon — George Washington and Indentured Servants", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/george-washington-and-indentured-servants' },
+      { title: 'Encyclopedia Virginia — Indentured Servants in Colonial Virginia', url: 'https://encyclopediavirginia.org/entries/indentured-servants-in-colonial-virginia/' },
     ]
   },
 
@@ -1713,7 +1709,6 @@ window.RV_READINGS = {
       { title: 'Journal of the American Revolution — 8 Fast Facts About Hessians', url: 'https://allthingsliberty.com/2014/08/8-fast-facts-about-hessians/' },
       { title: 'Baroness von Riedesel, Letters and Journals (1867) — a first-person voice from the German side', url: 'https://archive.org/details/lettersjournalsr00ried' },
       { title: "George Washington's Mount Vernon — Hessians", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/hessians/' },
-      { title: 'Britannica — Hessian', url: 'https://www.britannica.com/topic/Hessian-German-mercenary' }
     ]
   },
 
@@ -1904,9 +1899,8 @@ window.RV_READINGS = {
     sources: [
       { title: 'American Battlefield Trust — Joseph Plumb Martin', url: 'https://www.battlefields.org/learn/biographies/joseph-plumb-martin' },
       { title: 'Joseph Plumb Martin, A Narrative of a Revolutionary Soldier (1830) — his own words', url: 'https://en.wikisource.org/wiki/The_Adventures_Of_A_Revolutionary_Soldier' },
-      { title: "George Washington's Mount Vernon — Continental Army", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/the-continental-army' },
+      { title: "George Washington's Mount Vernon — Continental Army", url: 'https://www.mountvernon.org/library/digitalhistory/digital-encyclopedia/article/continental-army' },
       { title: 'Ebenezer Fox, The Revolutionary Adventures of Ebenezer Fox (1847)', url: 'https://archive.org/details/revolutionaryadv00foxe' },
-      { title: 'National Park Service — Valley Forge: Life of a Soldier', url: 'https://www.nps.gov/vafo/learn/historyculture/soldierlife.htm' }
     ]
   },
 
@@ -2003,7 +1997,7 @@ window.RV_READINGS = {
     sources: [
       { title: 'Museum of the American Revolution — Black Patriots and Loyalists', url: 'https://www.amrevmuseum.org/read-the-revolution/black-patriots-and-loyalists' },
       { title: "George Washington's Mount Vernon — Slavery & the Revolution", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/african-americans-in-the-revolutionary-war' },
-      { title: 'National Park Service — Dunmore\'s Proclamation', url: 'https://www.nps.gov/articles/000/lord-dunmore-s-proclamation.htm' },
+      { title: "Encyclopedia Virginia — Lord Dunmore's Proclamation", url: 'https://encyclopediavirginia.org/entries/lord-dunmores-proclamation/' },
       { title: "Dunmore's Proclamation (1775) — the full text", url: 'https://en.wikisource.org/wiki/Dunmore%27s_Proclamation' },
       { title: 'The Book of Negroes (1783) — searchable ledger of 3,000 Black Loyalists (Nova Scotia Archives)', url: 'https://archives.novascotia.ca/africanns/book-of-negroes/' },
       { title: 'Boston King, Memoirs (1798) — an enslaved man who took the British offer, in his own words', url: 'https://blackloyalist.com/cdc/documents/diaries/king-memoirs.htm' },
@@ -2089,11 +2083,9 @@ window.RV_READINGS = {
       }
     },
     sources: [
-      { title: 'Museum of the American Revolution — When Women Lost the Vote', url: 'https://www.amrevmuseum.org/womenandtheamericanrevolution' },
+      { title: 'Museum of the American Revolution — When Women Lost the Vote', url: 'https://www.amrevmuseum.org/exhibits/when-women-lost-the-vote-a-revolutionary-story' },
       { title: 'Blackstone on coverture — the law that made married women legally invisible (Avalon Project, Yale)', url: 'https://avalon.law.yale.edu/18th_century/blackstone_bk1ch15.asp' },
-      { title: '"Sentiments of an American Woman" (1780) — Library of Congress', url: 'https://www.loc.gov/item/90898138/' },
-      { title: "George Washington's Mount Vernon — Women in the Revolution", url: 'https://www.mountvernon.org/george-washington/the-revolutionary-war/women-in-the-american-revolution' },
-      { title: 'Gilder Lehrman Institute — Women in the American Revolution', url: 'https://www.gilderlehrman.org/history-resources/essays/women-american-revolution' }
+      { title: '"Sentiments of an American Woman" (1780) — Library of Congress', url: 'https://www.loc.gov/item/rbpe.14600300/' },
     ]
   }
 };

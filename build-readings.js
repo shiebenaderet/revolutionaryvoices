@@ -185,6 +185,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .reading-body p { margin:0 0 12px; }
 .reading-body em { font-style:italic; }
 .reading-body strong { color:var(--brand-deep); }
+.reading-heading { margin:6px 0 0; color:var(--accent); font-size:1.2rem; line-height:1.3; }
+.reading-body h3 { margin:22px 0 6px; color:var(--brand-deep); font-size:1.1rem; line-height:1.3; }
+.reading-body h3:first-child { margin-top:4px; }
 
 /* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
    plus negative margin widens the tap area without shifting the text. */
@@ -386,7 +389,7 @@ ${PAGE_CSS}
     <header class="reading-head">
       <div>
         <h1>${esc(reading.name)}</h1>
-        ${reading.tagline ? `<p class="reading-tagline">${esc(reading.tagline)}</p>` : ''}
+        ${reading.heading ? `<h2 class="reading-heading">${esc(reading.heading)}</h2>` : (reading.tagline ? `<p class="reading-tagline">${esc(reading.tagline)}</p>` : '')}
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
           ${pills}

@@ -97,6 +97,9 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .reading-body p { margin:0 0 12px; }
 .reading-body em { font-style:italic; }
 .reading-body strong { color:var(--brand-deep); }
+.reading-heading { margin:6px 0 0; color:var(--accent); font-size:1.2rem; line-height:1.3; }
+.reading-body h3 { margin:22px 0 6px; color:var(--brand-deep); font-size:1.1rem; line-height:1.3; }
+.reading-body h3:first-child { margin-top:4px; }
 
 /* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
    plus negative margin widens the tap area without shifting the text. */
@@ -185,7 +188,7 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     <header class="reading-head">
       <div>
         <h1>Abigail Adams</h1>
-        <p class="reading-tagline">Letter-writer who urged the founders to &quot;Remember the Ladies&quot;</p>
+        <h2 class="reading-heading">A Letter from Braintree</h2>
       </div>
       <div class="level-toggle" role="group" aria-label="Reading level">
           <button type="button" class="level-pill" data-level="mostSupport" aria-pressed="false" title="Short sentences. Key words explained.">Quick</button>
@@ -203,21 +206,29 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
     </div>
 
       <div class="level-panel" data-level="mostSupport" data-level-word="Quick" hidden>
-        <div class="reading-body"><p>Abigail Adams was born in Massachusetts in 1744. Girls did not go to school then. But she read many books. She taught herself.</p>
-<p>She married John Adams. He was a leader in the fight for <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">independence</button><span class="gloss-def" hidden> (America becoming its own country)</span></span>. They talked about everything, even <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">politics</button><span class="gloss-def" hidden> (government and laws)</span></span>.</p>
-<p>During the war, John was away for a long time. She ran the farm and the money. She raised the children all by herself. She did it very well.</p>
-<p>In 1776 she wrote a famous letter. She told John to "Remember the Ladies." She wanted the new country to give women rights too.</p>
-<p>She also said slavery was wrong.</p>
-<p>Later, John became president. Abigail was the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">First Lady</button><span class="gloss-def" hidden> (the president's wife)</span></span>. She died in 1818. People still read her letters today.</p></div>
+        <div class="reading-body"><p>On March 31, 1776, Abigail Adams sat down to write a letter. She was at her farm in Braintree, Massachusetts. Her husband, John Adams, was far away in Philadelphia. He was at the Continental Congress. That was the meeting of leaders from all the colonies. She asked him if Congress had voted for <strong>independence</strong> yet. Independence means America would be its own country. Then she told him what she wanted in the new laws.</p>
+<h3>A Minister's Daughter</h3>
+<p>Abigail Smith was born on November 22, 1744. She grew up in Weymouth, Massachusetts. Her father was the town minister. Schools then were for boys. So she never went to school. She read the books in her father's library. In 1764 she married John Adams. He was a young lawyer.</p>
+<h3>Running the Farm</h3>
+<p>In 1774 John Adams went to Congress. After that he was away for years at a time. Abigail Adams stayed home. She raised the children. She ran the farm and the family's money.</p>
+<p>The war came close to her home. On June 17, 1775, she heard cannons from Braintree. It was the Battle of Bunker Hill. The next day she wrote to John. She told him their friend Dr. Joseph Warren had been killed. She wrote that Charlestown "is laid in ashes."</p>
+<p>The two wrote to each other all the time. More than 1,100 of their letters still exist.</p>
+<h3>Remember the Ladies</h3>
+<p>In her letter of March 31, 1776, she asked John to think of women. "Remember the Ladies," she wrote. She said husbands should not have all the power. She said women would not obey laws they had no voice in. The Patriots said the same thing about Britain.</p>
+<p>John wrote back on April 14. He said he could only laugh. He called her "saucy." That summer the Declaration of Independence was signed. It said nothing about women's rights.</p>
+<h3>Against Slavery</h3>
+<p>Adams also wrote against <strong>slavery</strong>. In slavery, a person is owned by someone else. In 1774 she wrote that it was wrong to fight for freedom and take it from others. In 1797 a free Black boy named James went to a night school. A neighbor did not want him there. Adams stood up for the boy. She said he was as free as any of the young men.</p>
+<h3>First Lady</h3>
+<p>In 1797 John Adams became the second president. Abigail Adams was the <strong>First Lady</strong>. The First Lady is the wife of the president. She held that job until 1801. Later, women who wanted the right to vote used her words. Abigail Adams died at home in Quincy on October 28, 1818. She was 73.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
             <h3>For your Hook</h3>
-            <ul><li>Girls did not go to school then.</li><li>Abigail taught herself by reading many books.</li><li>She married John Adams, a leader for independence (America becoming its own country).</li></ul>
+            <ul><li>Schools then were for boys, so she never went to school.</li><li>She taught herself by reading the books in her father's library.</li><li>She married John Adams, a leader for independence (America becoming its own country).</li></ul>
           </div>
           <div class="facts-group">
             <h3>For your Story</h3>
-            <ul><li>John was away a long time during the war.</li><li>Abigail ran the farm, the money, and the children alone.</li><li>In 1776 she wrote to 'Remember the Ladies.'</li><li>She wanted women to have rights too.</li></ul>
+            <ul><li>John was away for years during the war.</li><li>Abigail ran the farm, the money, and the children on her own.</li><li>In 1776 she wrote to John to 'Remember the Ladies.'</li><li>She wanted the new laws to protect women too.</li></ul>
           </div>
           <div class="facts-group">
             <h3>For your Wrap</h3>
@@ -226,62 +237,95 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
         </section>
       </div>
       <div class="level-panel" data-level="someSupport" data-level-word="Clear" hidden>
-        <div class="reading-body"><p>Abigail Adams was born on November 22, 1744, in Weymouth, Massachusetts. In the 1700s most girls did not go to school, but Abigail taught herself by reading books in her father's library. She became one of the best-educated women of her time.</p>
-<p>She married John Adams, a lawyer and leader of the independence movement. During the Revolutionary War, John was often away serving in the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Continental Congress</button><span class="gloss-def" hidden> (the assembly of colonial leaders)</span></span>. Abigail managed the farm, the money, and the children on her own — and kept the family secure.</p>
-<p>Abigail and John wrote each other more than 1,100 letters. In her most famous letter, written March 31, 1776, she asked John to "Remember the Ladies" and not give husbands all the power. She believed the new nation should treat women more fairly. Abigail also spoke out against slavery. Later she became the second <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">First Lady</button><span class="gloss-def" hidden> (the president's wife)</span></span>. She died in 1818, and her letters are still read today.</p></div>
+        <div class="reading-body"><p>On March 31, 1776, Abigail Adams wrote a letter from the family farm in Braintree, Massachusetts. Her husband, John Adams, was in Philadelphia at the Continental Congress, the meeting of leaders from all the colonies. The British army had left Boston two weeks before. In the letter she asked whether Congress had declared <strong>independence</strong>, which would make the colonies their own country. Then she told him what she wanted in the new nation's laws.</p>
+<h3>A Minister's Daughter</h3>
+<p>Abigail Smith was born on November 22, 1744, in Weymouth, Massachusetts. Her father, William Smith, was the town's minister. New England schools of that time were for boys, so she never went to school. She learned at home by reading the books in her father's library. On October 25, 1764, a month before she turned twenty, she married John Adams, a young lawyer from Braintree.</p>
+<h3>Running the Farm</h3>
+<p>In 1774 John Adams went to Philadelphia as a delegate to the First Continental Congress. For most of the next ten years he was away, first in Congress and later in Europe. Abigail Adams stayed in Braintree, raised their children, and ran the farm and the family's money.</p>
+<p>The war came close to her home. On June 17, 1775, she heard the cannon of the Battle of Bunker Hill from Braintree. The next day she wrote to John that their friend Dr. Joseph Warren had been killed and that Charlestown "is laid in ashes."</p>
+<p>The two wrote to each other constantly. More than 1,100 of their letters survive. They are one of the best records historians have of family life during the Revolution.</p>
+<h3>Remember the Ladies</h3>
+<p>In her letter of March 31, 1776, she asked John to keep women in mind when Congress wrote the laws of the new country. She told him to "Remember the Ladies" and not to give husbands unlimited power over their wives. She warned that women would not feel bound by laws in which they had no voice. That was the same argument the Patriots made against Britain.</p>
+<p>John Adams answered on April 14. He wrote that he could only laugh at her idea, and he called her "saucy." That summer the Declaration of Independence said nothing about women's rights.</p>
+<h3>Against Slavery</h3>
+<p>Adams also wrote against slavery. In September 1774 she told John that it seemed wrong to her to fight for freedom while taking it from others. In 1797 a free Black boy named James began going to an evening school in Quincy. A neighbor objected. Adams went to the neighbor and said the boy was as free as any of the young men and should not be kept out of school because his face was Black.</p>
+<h3>First Lady</h3>
+<p>John Adams became the second president of the United States in 1797. Abigail Adams was the <strong>First Lady</strong>, the wife of the president, from 1797 to 1801. In later years, women who worked for the right to vote quoted her 1776 letter in their own speeches and books. Abigail Adams died of typhoid fever at home in Quincy on October 28, 1818, at age 73.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
             <h3>For your Hook</h3>
-            <ul><li>Born in 1744, when most girls did not go to school.</li><li>She taught herself by reading in her father's library.</li><li>She married John Adams, a leader of the independence movement.</li></ul>
+            <ul><li>Born in 1744, when New England schools were for boys, so she never went to school.</li><li>She learned at home by reading in her father's library.</li><li>She married John Adams in 1764, a lawyer who became a leader of the independence movement.</li></ul>
           </div>
           <div class="facts-group">
             <h3>For your Story</h3>
-            <ul><li>While John served in Congress, Abigail managed the farm and finances alone.</li><li>She and John wrote over 1,100 letters.</li><li>On March 31, 1776, she asked John to 'Remember the Ladies.'</li><li>She wanted the new nation to treat women more fairly.</li></ul>
+            <ul><li>While John served in Congress and in Europe, Abigail ran the farm and the family's money.</li><li>She and John wrote more than 1,100 letters to each other.</li><li>On March 31, 1776, she asked John to 'Remember the Ladies.'</li><li>She warned that women would not obey laws they had no voice in, the same argument Patriots used against Britain.</li></ul>
           </div>
           <div class="facts-group">
             <h3>For your Wrap</h3>
-            <ul><li>She also spoke out against slavery.</li><li>She later became the second First Lady.</li><li>Women's-rights leaders later quoted her famous letter.</li></ul>
+            <ul><li>She also wrote against slavery and stood up for a Black boy's right to go to school in 1797.</li><li>She was the second First Lady, from 1797 to 1801.</li><li>Women who worked for the right to vote later quoted her 'Remember the Ladies' letter.</li></ul>
           </div>
         </section>
       </div>
       <div class="level-panel" data-level="standard" data-level-word="Full">
-        <div class="reading-body"><p>Abigail Adams was born Abigail Smith on November 22, 1744, in Weymouth, Massachusetts. Like most girls of her era, she had no formal schooling. Instead she read <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">voraciously</button><span class="gloss-def" hidden> (eagerly and constantly)</span></span> in her father's library and became one of the most learned women of her time. At nineteen she married John Adams. The two formed a genuine intellectual partnership, debating politics as equals in person and on paper.</p>
-<p>The Revolution took John to the Continental Congress for months at a time. While he was away, Abigail ran the family farm and finances, navigated wartime shortages and disease, and kept the household <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">solvent</button><span class="gloss-def" hidden> (able to pay its bills)</span></span>. That was work women of her day rarely controlled. She and John exchanged more than 1,100 letters, now among the richest records of the era. In her most famous, dated March 31, 1776, she urged him: "Remember the Ladies, and be more generous and favourable to them than your ancestors… Remember all Men would be tyrants if they could." John brushed the plea aside. But Abigail had named a contradiction the Revolution left unresolved.</p>
-<p>Abigail also condemned slavery as a betrayal of the liberty Americans claimed — at a time when many founders enslaved people. She later served as the nation's second First Lady and died in 1818. Generations of women's-rights advocates would invoke her words as proof that the demand for women's equality was as old as the country itself.</p></div>
+        <div class="reading-body"><p>On March 31, 1776, Abigail Adams wrote a letter from the family farm in Braintree, Massachusetts. Her husband, John Adams, was in Philadelphia as a delegate to the Continental Congress. The British army had sailed out of Boston two weeks before. In the letter she asked whether Congress had "declared an independancy." Then she told him what she wanted in the new nation's laws.</p>
+<h3>A Minister's Daughter</h3>
+<p>Abigail Smith was born on November 22, 1744, in Weymouth, Massachusetts. Her father, William Smith, was the town's Congregational minister. New England schools of that time were for boys, so she never went to school. She learned at home, reading the books in her father's library. On October 25, 1764, a month before her twentieth birthday, she married John Adams, a young lawyer from Braintree.</p>
+<h3>Running the Farm</h3>
+<p>In 1774 John Adams went to Philadelphia as a delegate to the First Continental Congress. For most of the next ten years he was away, first in Congress and later in Europe as a <strong>diplomat</strong>, an official who represents his country abroad. Abigail Adams stayed in Braintree, raised their children, and ran the farm and the family's money.</p>
+<p>The war came close to her home. On June 17, 1775, she heard the cannon of the Battle of Bunker Hill from Braintree. The next day she wrote to John: "The Day; perhaps the decisive Day is come on which the fate of America depends." She told him that their friend Dr. Joseph Warren had been killed and that "Charlstown is laid in ashes."</p>
+<p>The two wrote to each other constantly. More than 1,100 of their letters survive, and they are one of the best records historians have of family life during the Revolution.</p>
+<h3>Remember the Ladies</h3>
+<p>In her letter of March 31, 1776, she asked John to keep women in mind when Congress wrote the laws of the new country. "I desire you would Remember the Ladies, and be more generous and favourable to them than your ancestors," she wrote. "Do not put such unlimited power into the hands of the Husbands. Remember all Men would be tyrants if they could." She warned that if the laws ignored women, "we are determined to foment a Rebelion," and that women would not be bound by "any Laws in which we have no voice, or Representation." The Patriots had made the same argument against Britain, that Parliament could not tax people who had no <strong>representation</strong>, no one to speak for them in the government.</p>
+<p>John Adams answered on April 14. "As to your extraordinary Code of Laws, I cannot but laugh," he wrote, and he called her "saucy." That summer the Declaration of Independence said nothing about women's rights.</p>
+<h3>Against Slavery</h3>
+<p>Adams also wrote against slavery. In September 1774 she told John that it had "allways appeard a most iniquitious Scheme to me" to fight for liberty while "daily robbing and plundering" it from people who had as good a right to it. In 1797 a free Black boy named James began attending an evening school in Quincy. A neighbor objected. Adams went to the neighbor and defended the boy. "The Boy is a Freeman as much as any of the young Men," she wrote afterward, "and merely because his Face is Black, is he to be denied instruction."</p>
+<h3>First Lady</h3>
+<p>John Adams became the second president of the United States in 1797, and Abigail Adams was the <strong>First Lady</strong>, the wife of the president, from 1797 to 1801. In later years, women who campaigned for the right to vote quoted her 1776 letter in their own speeches and books. Abigail Adams died of typhoid fever at home in Quincy on October 28, 1818, at the age of 73.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
             <h3>For your Hook</h3>
-            <ul><li>Born 1744; self-educated because girls were denied formal schooling.</li><li>Became one of the most learned women of her era.</li><li>Married John Adams at 19 and became his political partner.</li></ul>
+            <ul><li>Born 1744 in Weymouth, Massachusetts; never went to school because New England schools were for boys.</li><li>Learned at home from her father's library and became one of the best-read women of her time.</li><li>Married John Adams on October 25, 1764, a month before she turned 20.</li></ul>
           </div>
           <div class="facts-group">
             <h3>For your Story</h3>
-            <ul><li>Ran the family farm and finances through wartime shortages while John served in Congress.</li><li>She and John exchanged 1,100+ letters, now key historical records.</li><li>Her March 31, 1776 letter urged: 'Remember the Ladies… all Men would be tyrants if they could.'</li><li>John dismissed the plea, but it named an unresolved contradiction.</li></ul>
+            <ul><li>Ran the family farm and finances through the war years while John served in Congress and in Europe.</li><li>She and John exchanged more than 1,100 letters, now one of the best records of family life in the Revolution.</li><li>Her March 31, 1776 letter asked him to 'Remember the Ladies' and warned that 'all Men would be tyrants if they could.'</li><li>John replied that he 'cannot but laugh' and called her 'saucy'; the Declaration said nothing about women.</li></ul>
           </div>
           <div class="facts-group">
             <h3>For your Wrap</h3>
-            <ul><li>She condemned slavery as a betrayal of American liberty.</li><li>She served as the nation's second First Lady and died in 1818.</li><li>Later women's-rights advocates invoked her words as proof their demand was as old as the country.</li></ul>
+            <ul><li>In 1774 she called it 'a most iniquitious Scheme' to fight for liberty while taking it from others.</li><li>She served as the nation's second First Lady from 1797 to 1801 and died in 1818.</li><li>Later women's-rights campaigners quoted 'Remember the Ladies' in their speeches and books.</li></ul>
           </div>
         </section>
       </div>
       <div class="level-panel" data-level="challenge" data-level-word="Deep" hidden>
-        <div class="reading-body"><p>Abigail Adams — born Abigail Smith in 1744, daughter of a Weymouth minister — turned the denial of a formal education into a lifelong, self-directed one, emerging as perhaps the most <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">incisive</button><span class="gloss-def" hidden> (sharp and penetrating)</span></span> political mind among the founding generation's women. Her marriage to John Adams in 1764 produced not only a family but one of history's great correspondences: more than a thousand letters in which she analyzed war, governance, and the moral stakes of independence as his trusted counselor.</p>
-<p>Her best-known intervention came on March 31, 1776, as Congress edged toward independence: "I desire you would Remember the Ladies… Do not put such unlimited power into the hands of the Husbands. Remember all Men would be tyrants if they could" (Adams, 1776). John's reply was <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">jocular</button><span class="gloss-def" hidden> (joking)</span></span> dismissal — he "cannot but laugh" at her "extraordinary Code of Laws" and calls her "saucy" — and the laughter is itself instructive: the Revolution's language of natural rights stopped, by design, at the household door. Abigail pressed further than many peers, denouncing slavery as plain hypocrisy and, in one 1797 episode, defending a free Black youth's right to attend evening school.</p>
-<p>She managed the Adams farm through war, inoculation, and inflation; she became the second First Lady; she died in 1818. Her enduring power lies less in any law she changed — she changed none directly — than in the standard she set: nineteenth- and twentieth-century <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">suffragists</button><span class="gloss-def" hidden> (campaigners for women's right to vote)</span></span> would quote "Remember the Ladies" as evidence that American women had demanded equality from the republic's first breath.</p></div>
+        <div class="reading-body"><p>On March 31, 1776, Abigail Adams wrote a letter from the family farm in Braintree, Massachusetts. Her husband, John Adams, was in Philadelphia as a delegate to the Continental Congress. The British army had sailed out of Boston two weeks before, ending a siege that had lasted since April 1775. In the letter she asked whether Congress had "declared an independancy." Then she told him what she wanted in the new nation's laws.</p>
+<h3>A Minister's Daughter</h3>
+<p>Abigail Smith was born on November 22, 1744, in Weymouth, Massachusetts. Her father, William Smith, was the town's Congregational minister. New England schools of that time were for boys, so she never went to school. She learned at home, reading the books in her father's library, and her spelling stayed her own for the rest of her life, because English spelling was not yet standard and she had taught herself. On October 25, 1764, a month before her twentieth birthday, she married John Adams, a young lawyer from Braintree.</p>
+<h3>Running the Farm</h3>
+<p>In 1774 John Adams went to Philadelphia as a delegate to the First Continental Congress. For most of the next ten years he was away, first in Congress and later in Europe as a <strong>diplomat</strong>, an official who represents his country abroad. Abigail Adams stayed in Braintree, raised their four children, and ran the farm and the family's money. She kept the family's accounts and reported to John on prices, taxes and the harvest.</p>
+<p>The war came close to her home. On June 17, 1775, she heard the cannon of the Battle of Bunker Hill from Braintree. The next day she wrote to John: "The Day; perhaps the decisive Day is come on which the fate of America depends." She told him that their friend Dr. Joseph Warren had been killed, that "Charlstown is laid in ashes," and that "the constant roar of the cannon is so distressing that we can not Eat, Drink or Sleep." Their son John Quincy Adams, then seven years old, later recalled watching the fires from a hill near the farm.</p>
+<p>The two wrote to each other constantly. The Massachusetts Historical Society holds 1,160 letters between them, written from 1762 to 1801, and the family saved them. They are one of the best records historians have of family life during the Revolution.</p>
+<h3>Remember the Ladies</h3>
+<p>In her letter of March 31, 1776, she asked John to keep women in mind when Congress wrote the laws of the new country. "I desire you would Remember the Ladies, and be more generous and favourable to them than your ancestors," she wrote. "Do not put such unlimited power into the hands of the Husbands. Remember all Men would be tyrants if they could." She warned that if the laws ignored women, "we are determined to foment a Rebelion, and will not hold ourselves bound by any Laws in which we have no voice, or Representation." The Patriots had made the same argument against Britain, that Parliament could not tax people who had no <strong>representation</strong>, no one to speak for them in the government. Under the laws of the time, a married woman's property and earnings were controlled by her husband, and no woman in Massachusetts could vote.</p>
+<p>John Adams answered on April 14. "As to your extraordinary Code of Laws, I cannot but laugh," he wrote. He said he had heard that the war had loosened every kind of authority, that "Indians slighted their Guardians and Negroes grew insolent to their Masters," but that her letter was the first hint "that another Tribe more numerous and powerfull than all the rest were grown discontented." He joked that giving up the men's authority would subject them "to the Despotism of the Peticoat," and he added, "you are so saucy, I wont blot it out." That summer the Declaration of Independence said nothing about women's rights.</p>
+<h3>Against Slavery</h3>
+<p>Adams also wrote against slavery. In September 1774 she told John that it had "allways appeard a most iniquitious Scheme to me" to fight for liberty while "daily robbing and plundering" it from people who had as good a right to it. In February 1797 a free Black boy named James began attending Master Heath's evening school in Quincy. A neighbor named Faxon objected to his being there. Adams went to Faxon and defended the boy. "The Boy is a Freeman as much as any of the young Men," she wrote on February 13, "and merely because his Face is Black, is he to be denied instruction."</p>
+<h3>First Lady</h3>
+<p>John Adams became the second president of the United States in 1797, and Abigail Adams was the <strong>First Lady</strong>, the wife of the president, from 1797 to 1801. In later years, women who campaigned for the right to vote quoted her 1776 letter in their own speeches and books. Abigail Adams died of typhoid fever at home in Quincy on October 28, 1818, at the age of 73.</p></div>
         <section class="reading-facts">
           <h2>Key facts to use in your script</h2>
           <div class="facts-group">
             <h3>For your Hook</h3>
-            <ul><li>Born 1744 to a Weymouth minister; turned a denied education into a self-directed one.</li><li>Married John Adams in 1764, beginning one of history's great correspondences.</li><li>Emerged as a sharp political mind among the founding generation's women.</li></ul>
+            <ul><li>Born Nov. 22, 1744, to a Weymouth minister; schools were for boys, so she taught herself from her father's library.</li><li>Married John Adams on Oct. 25, 1764; the Massachusetts Historical Society holds 1,160 letters between them.</li><li>Heard the cannon of Bunker Hill from Braintree on June 17, 1775, and wrote the next day: 'The Day; perhaps the decisive Day is come.'</li></ul>
           </div>
           <div class="facts-group">
             <h3>For your Story</h3>
-            <ul><li>Managed the Adams farm through war, inoculation, and inflation — work women rarely controlled.</li><li>Her 1776 letter pressed natural-rights logic into the household: 'Remember the Ladies.'</li><li>John's jocular dismissal showed the Revolution's rights talk stopped at the home's door.</li><li>She corresponded as John's trusted political counselor.</li></ul>
+            <ul><li>Ran the Braintree farm, hired the hands and reported on prices and taxes while John was in Congress and Europe.</li><li>Her 1776 letter turned the Patriots' own argument on them: women would not be bound by 'any Laws in which we have no voice, or Representation.'</li><li>John's April 14 reply called her 'saucy' and joked about 'the Despotism of the Peticoat.'</li><li>The Declaration of Independence that summer said nothing about women's rights.</li></ul>
           </div>
           <div class="facts-group">
             <h3>For your Wrap</h3>
-            <ul><li>She denounced slavery as hypocrisy and defended a free Black youth's right to school (1797).</li><li>Her power lies in the standard she set, not any law she changed.</li><li>Suffragists quoted 'Remember the Ladies' for generations.</li><li>She died in 1818 as the second First Lady.</li></ul>
+            <ul><li>In 1797 she defended a free Black boy's place in a Quincy evening school: 'merely because his Face is Black, is he to be denied instruction.'</li><li>No law changed because of her letter; the Declaration of 1776 said nothing about women.</li><li>Suffragists later quoted 'Remember the Ladies' as evidence that American women had asked for equality in 1776.</li><li>She died at home in Quincy on October 28, 1818, at age 73.</li></ul>
           </div>
         </section>
       </div>

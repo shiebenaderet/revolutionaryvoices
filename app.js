@@ -986,7 +986,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '3.5.5'; // keep in sync with index.html footer and CHANGELOG
+        const APP_VERSION = '3.5.6'; // keep in sync with index.html footer and CHANGELOG
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION; })();
         const OLD_KEY = 'revolutionaryVoicesScript';
@@ -1948,7 +1948,11 @@
             };
             const setBoth = function(a, b, html) { set(a, html); set(b, html); };
             setBoth('readingName', 'drawerReadingName', r.name);
-            setBoth('readingTagline', 'drawerReadingTagline', r.tagline || '');
+            setBoth('readingTagline', 'drawerReadingTagline', r.heading || r.tagline || '');
+            ['readingTagline', 'drawerReadingTagline'].forEach(function(id) {
+                const e = document.getElementById(id);
+                if (e) e.classList.toggle('reading-heading', !!r.heading);
+            });
             const qf = (r.quickFacts || []).map(function(f) {
                 return '<span class="qf"><strong>' + f[0] + ':</strong> ' + f[1] + '</span>';
             }).join('');

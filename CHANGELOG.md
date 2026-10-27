@@ -6,6 +6,20 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.5.6] - 2026-10-26
+
+### Fixed
+
+- **Facts in the readings, before students research from them (Oct 28).** Every topic's four levels, Quick Facts, Key Facts, taglines and source library were checked claim by claim against the listed sources and other reputable references, then each finding was checked again by a second reviewer before any edit. 219 small edits fix errors only; wording, level and layout are otherwise unchanged (a full rewrite in textbook voice comes later). The larger fixes:
+  - Camp followers: about 1 woman for every 30 soldiers and about 400 women at Valley Forge (NPS, John Rees), replacing 5,000 to 20,000, 1 in 3 to 5, and 3,000 to 4,000.
+  - Mary Ludwig Hays born 1754, not 1744; the Quick reading now matches the other levels and Wednesday's slide: most of the Molly Pitcher story is legend.
+  - Blackstone's coverture passage dated 1765 (Book I), not 1769, in all 13 places; New Jersey women's vote (1776 to 1807) acknowledged.
+  - Benedict Arnold married Peggy Shippen in 1779; Andrew Jackson was 14 when captured; Virginia's law freeing soldier substitutes was 1783; the First Rhode Island was a mostly Black regiment, not integrated.
+  - Deborah Sampson's husband's pension was paid to their children in 1838, after his death; Revere helped with her federal pension, not the 1792 back pay.
+  - Peter Salem was not named for an owner; Sybil Ludington's story first appears in an 1854 letter (printed 1880); Phillis Wheatley was invited by Washington, and a meeting is tradition; Crispus Attucks was one of five who died from the shooting, not all that night.
+  - Legend and tradition hedged where historians do (the Oneida food at Valley Forge, Brant at the Cedars, Nancy Hart's details, "first" claims for Attucks and Mercy Otis Warren); quotation cuts marked with [...]; dead source links replaced.
+- **Not changed, for the teacher:** whether James Armistead used the name "Armistead" (Encyclopedia Virginia says he took only "Lafayette") is a site-wide naming question.
+
 ## [3.5.5] - 2026-10-26
 
 ### Added

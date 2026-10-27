@@ -21,7 +21,7 @@ window.RV_SOURCES = {
       doc: "Haym Salomon's request (memorial) to Congress",
       date: 'August 25, 1778, Philadelphia, days after he escaped New York',
       context: 'Requests to Congress were written about the person in the third person, so "he" is Salomon himself. He had just escaped from British-held New York. Read it like a historian: what does he say he did, what does he say it cost him, and what does he ask for?',
-      text: '<p>[&hellip;] he was given over to the Hessian Commander who appointed him in the <dfn data-def="the army department that buys food and supplies">Commissary</dfn> Way as <dfn data-def="a supplier of food and goods">Purveyor</dfn> chiefly for the Officers. [&hellip;] He has been of great service to the French and American prisoners, and has assisted them with money, and helped them off to make their escape. [&hellip;] has upon this event most irrecoverably lost all his <dfn data-def="belongings and money owed to him">effects and credits</dfn> to the amount of five or six thousand Pounds Sterling [&hellip;] and left his distressed wife and a child of a month old at New York [&hellip;] he most humbly <dfn data-def="asks, begs">prayeth</dfn> to grant him any <dfn data-def="job">Employ</dfn> in the way of his business.</p>',
+      text: '<p>[&hellip;] he was given over to the Hessian Commander who appointed him in the <dfn data-def="the army department that buys food and supplies">Commissary</dfn> Way as <dfn data-def="a supplier of food and goods">Purveyor</dfn> chiefly for the Officers. [&hellip;] He has been of great service to the French and American prisoners, and has assisted them with money, and helped them <dfn data-def="often">oft</dfn> to make their escape. [&hellip;] has upon this event most irrecoverably lost all his <dfn data-def="belongings and money owed to him">effects and credits</dfn> to the amount of five or six thousand Pounds Sterling [&hellip;] and left his distressed wife and a child of a month old at New York [&hellip;] he most humbly <dfn data-def="asks, begs">prayeth</dfn> to grant him any <dfn data-def="job">Employ</dfn> in the way of his business.</p>',
       cite: 'Haym Salomon, memorial to the Continental Congress, August 25, 1778, as printed in Hugh T. Harrington, "Financial Hero?" Journal of the American Revolution (2013) and Jane Frances Amler, Haym Salomon (2004), with a photo of the handwritten original; some spelling modernized',
       url: 'https://allthingsliberty.com/2013/01/financial-hero/',
       task: 'Find ONE thing he says he did and ONE thing he says it cost him. Then: what does he ask Congress for, and why might that surprise people who believe the legend?'
@@ -29,7 +29,7 @@ window.RV_SOURCES = {
     voices: [
       { q: 'Financial Hero', who: 'The 1975 U.S. stamp: a claim to check', s: ['hook'] },
       { q: 'he was given over to the Hessian Commander who appointed him in the Commissary Way as Purveyor chiefly for the Officers', who: 'Salomon, request to Congress, 1778', s: ['content'] },
-      { q: 'He has been of great service to the French and American prisoners, and has assisted them with money, and helped them off to make their escape.', who: 'Salomon, request to Congress, 1778', s: ['content'] },
+      { q: 'He has been of great service to the French and American prisoners, and has assisted them with money, and helped them oft to make their escape.', who: 'Salomon, request to Congress, 1778', s: ['content'] },
       { q: 'most irrecoverably lost all his effects and credits to the amount of five or six thousand Pounds Sterling', who: 'Salomon, request to Congress, 1778', s: ['content'] },
       { q: 'he most humbly prayeth to grant him any Employ in the way of his business', who: 'Salomon, request to Congress, 1778', s: ['content', 'conclusion'] },
       { q: 'did not himself lend money to the government and never claimed he did', who: 'Historian Morris U. Schappes, quoted in the Journal of the American Revolution', s: ['conclusion'] }
@@ -39,21 +39,21 @@ window.RV_SOURCES = {
   'joseph-brant': {
     spotlight: {
       doc: 'Brant writes to an American colonel',
-      date: 'Winter 1784–85',
-      context: 'Americans called him "Monster Brant." Here is Brant himself, after the war, writing to the American colonel James Monroe — the future president. English was his second or third language, and he says so himself. Read what he claims about how the Mohawk fought, and how he closes: looking toward the Grand River, his people’s new home in Canada.',
+      date: 'Late November 1784',
+      context: 'Americans called him "Monster Brant." Here is Brant himself, after the war, writing to an American colonel, James Monroe — very likely the future president. English was his second or third language, and he says so himself. Read what he claims about how the Mohawk fought, and how he closes: looking toward the Grand River, his people’s new home in Canada.',
       text: `<p>[We] have during the war always favored the prisoners, especially women and children; and likewise did push the matter forward since, to promote peace, and to renew the friendship with you again as we formerly had, in honestly manner. We mean to go through with it and be done with it, that every body should mind their own business and be happy. This is our customs and manners of the <dfn data-def="Brant's spelling of Mohawks">Mohocks</dfn>, whenever engaged any thing. They are all-ways active and true; &mdash; no double faces at war, or any other business. [&hellip;] we have been a generous enemy to you during the war [&hellip;]</p>
 <p>It would relieve me many points if you would be so kind as to answer me this letter, as far as you will understand my English [&hellip;] If I could see you, and talk with you, I could explain myself better than a letter half English half Indian. [&hellip;] early in the Spring I shall leave this, and go to my new country at Grand River.</p>
 <p>I am your well-wisher, And humble servant, JOS. BRANT, or Thayendanegea.</p>`,
-      cite: "Joseph Brant (Thayendanegea) to Colonel James Monroe, winter 1784–85, printed in Stone's Life of Joseph Brant (1838)",
+      cite: "Joseph Brant (Thayendanegea) to Colonel James Monroe, late November 1784, printed in Stone's Life of Joseph Brant (1838)",
       url: 'https://www.gutenberg.org/ebooks/53353',
       task: 'Set this letter against the nickname "Monster Brant." What does Brant claim about how the Mohawk fought — and what in his own words makes the claim believable or not? Notice what he says about his English: what does that detail add to your picture of him?'
     },
     voices: [
-      { q: 'we have been a generous enemy to you during the war', who: 'Brant to Colonel Monroe, 1784–85', s: ['hook', 'content'] },
-      { q: 'always favored the prisoners, especially women and children', who: 'Brant to Monroe, 1784–85', s: ['content'] },
-      { q: 'no double faces at war, or any other business', who: 'Brant on the Mohawk way, 1784–85', s: ['content'] },
+      { q: 'we have been a generous enemy to you during the war', who: 'Brant to Colonel Monroe, 1784', s: ['hook', 'content'] },
+      { q: 'always favored the prisoners, especially women and children', who: 'Brant to Monroe, 1784', s: ['content'] },
+      { q: 'no double faces at war, or any other business', who: 'Brant on the Mohawk way, 1784', s: ['content'] },
       { q: 'a letter half English half Indian', who: 'Brant, on his own words', s: ['hook', 'content'] },
-      { q: 'early in the Spring I shall leave this, and go to my new country at Grand River', who: 'Brant to Monroe, 1784–85', s: ['conclusion'] },
+      { q: 'early in the Spring I shall leave this, and go to my new country at Grand River', who: 'Brant to Monroe, 1784', s: ['conclusion'] },
       { q: 'through their encroaching disposition, we have found they pay little regard to engagements', who: 'Brant to Lord Sidney, London, 1786 — on American land promises', s: ['content', 'conclusion'] }
     ]
   },
@@ -81,11 +81,11 @@ window.RV_SOURCES = {
     spotlight: {
       doc: 'The Sentiments of an American Woman — a broadside',
       date: 'Philadelphia, summer 1780',
-      context: 'A broadside — a printed sheet posted and passed hand to hand — appeared in Philadelphia in 1780, almost certainly written by Esther de Berdt Reed. It launched the biggest women’s fundraising campaign of the war: going door to door, the Ladies Association collected some 300,000 paper dollars for Washington’s soldiers. This is how it begins — an argument that patriotism does not belong to men.',
+      context: 'A broadside — a printed sheet posted and passed hand to hand — appeared in Philadelphia in 1780, most likely written by Esther de Berdt Reed. It launched the biggest women’s fundraising campaign of the war: going door to door, the Ladies Association collected some 300,000 paper dollars for Washington’s soldiers. This is how it begins — an argument that patriotism does not belong to men.',
       text: `<p>On the commencement of actual war, the Women of America <dfn data-def="clearly showed">manifested</dfn> a firm resolution to contribute as much as could depend on them, to the deliverance of their country. Animated by the purest patriotism, they are sensible of sorrow at this day, in not offering more than <dfn data-def="empty; producing nothing">barren</dfn> wishes for the success of so glorious a Revolution. [&hellip;]</p>
 <p>Born for liberty, <dfn data-def="refusing with pride">disdaining</dfn> to bear the irons of a <dfn data-def="unjustly harsh, like a tyrant">tyrannic</dfn> Government, we associate ourselves to the grandeur of those Sovereigns, cherished and revered, who have held with so much splendour the scepter of the greatest States.</p>`,
       cite: '"The Sentiments of an American Woman" (Philadelphia, 1780), attributed to Esther de Berdt Reed',
-      url: 'https://www.loc.gov/item/90898138/',
+      url: 'https://www.loc.gov/item/rbpe.14600300/',
       task: '"Born for liberty" — the writer claims the Revolution for women. Put her argument into one sentence your Host could say on air. Then add what the campaign actually DID, so listeners hear action, not just words.'
     },
     voices: [
@@ -97,18 +97,18 @@ window.RV_SOURCES = {
 
   'womens-economic-agency': {
     spotlight: {
-      doc: 'Blackstone on coverture — the actual 1769 text',
-      date: 'Commentaries on the Laws of England, 1769',
-      context: 'This is the legal rule that made married women invisible, in the original spelling. Printers of the 1700s used the "long s" (ſ), which looks like an f — read "hufband" as "husband" and you can decode any eighteenth-century page. Blackstone’s Commentaries taught this law to every American lawyer of the founding generation.',
+      doc: 'Blackstone on coverture — the actual 1765 text',
+      date: 'Commentaries on the Laws of England, 1765',
+      context: 'This is the legal rule that made married women invisible, in the original spelling. Printers of the 1700s used the "long s" (ſ), which looks like an f — read "hufband" as "husband" and you can decode any eighteenth-century page. Blackstone’s Commentaries taught this law to most American lawyers of the founding generation.',
       text: `<p>By marriage, the hufband and wife are one perfon in law: that is, the very being or legal exiftence of the woman is <dfn data-def="suspended — paused, as if she were not there">fufpended</dfn> during the marriage, or at leaft is incorporated and <dfn data-def="consolidated — merged into one">confolidated</dfn> into that of the hufband: under whofe wing, protection, and cover, fhe performs every thing; and is therefore called in our <dfn data-def="the old French used in English law courts">law-french</dfn> a <dfn data-def="a 'covered woman' — a married woman in law">feme-covert</dfn>; is faid to be covert-baron, or under the protection and influence of her hufband, her baron, or lord; and her condition during her marriage is called her coverture.</p>`,
-      cite: 'William Blackstone, Commentaries on the Laws of England, Book I, ch. 15 (1769) — Avalon Project, Yale Law School',
+      cite: 'William Blackstone, Commentaries on the Laws of England, Book I, ch. 15 (1765) — Avalon Project, Yale Law School',
       url: 'https://avalon.law.yale.edu/18th_century/blackstone_bk1ch15.asp',
       task: 'First, decode it: rewrite the passage in modern spelling. Then translate it into plain English. Finally — say what this one sentence meant for a married woman who ran a farm or a shop.'
     },
     voices: [
-      { q: 'the hufband and wife are one perfon in law', who: 'Blackstone, 1769 (original spelling)', s: ['hook', 'content'] },
-      { q: 'the very being or legal exiftence of the woman is fufpended during the marriage', who: 'Blackstone, 1769', s: ['content'] },
-      { q: 'her condition during her marriage is called her coverture', who: 'Blackstone, 1769', s: ['content', 'conclusion'] }
+      { q: 'the hufband and wife are one perfon in law', who: 'Blackstone, 1765 (original spelling)', s: ['hook', 'content'] },
+      { q: 'the very being or legal exiftence of the woman is fufpended during the marriage', who: 'Blackstone, 1765', s: ['content'] },
+      { q: 'her condition during her marriage is called her coverture', who: 'Blackstone, 1765', s: ['content', 'conclusion'] }
     ]
   },
 
@@ -116,7 +116,7 @@ window.RV_SOURCES = {
     spotlight: {
       doc: '"Remember the Ladies" — the letter itself',
       date: 'Braintree, March 31, 1776',
-      context: 'Three months before the Declaration, Abigail Adams writes to John at the Continental Congress. The spelling is hers — "Laidies," "Rebelion" — because letters between the Adamses were fast, private, and honest. John wrote back that he "cannot but laugh" at her "saucy" letter. Read what she actually threatened.',
+      context: 'Three months before the Declaration, Abigail Adams writes to John at the Continental Congress. The spelling is hers — "Laidies," "Rebelion" — because spelling was not yet standard and she had taught herself. John wrote back that he "cannot but laugh" at her ideas and called her "saucy." Read what she actually threatened.',
       text: `<p>I long to hear that you have declared an independancy &mdash; and by the way in the new <dfn data-def="the new nation's system of laws">Code of Laws</dfn> which I suppose it will be necessary for you to make I desire you would Remember the Ladies, and be more generous and favourable to them than your ancestors. Do not put such unlimited power into the hands of the Husbands. Remember all Men would be tyrants if they could. If perticuliar care and attention is not paid to the Laidies we are determined to <dfn data-def="stir up">foment</dfn> a Rebelion, and will not hold ourselves bound by any Laws in which we have no voice, or <dfn data-def="having a say in government — the Revolution's own demand">Representation</dfn>.</p>`,
       cite: 'Abigail Adams to John Adams, March 31, 1776 (Adams Family Papers, Massachusetts Historical Society)',
       url: 'https://www.masshist.org/digitaladams/archive/doc?id=L17760331aa',
@@ -134,10 +134,10 @@ window.RV_SOURCES = {
     spotlight: {
       doc: 'The petition of "A Great Number of Blackes"',
       date: 'Massachusetts, January 13, 1777',
-      context: 'Six months after the Declaration of Independence, eight Black men — Prince Hall among them — petitioned the Massachusetts legislature to free every enslaved person in the state. The spelling is the manuscript’s own: men denied schooling, wielding the Revolution’s exact logic. Their last argument turns the Patriots’ own words against them.',
+      context: 'Six months after the Declaration of Independence, eight Black men — Prince Hall among them — petitioned the Massachusetts legislature to free every enslaved person in the state. The spelling is this manuscript copy’s own. Notice how it wields the Revolution’s exact logic. Their last argument turns the Patriots’ own words against them.',
       text: `<p>The petition of A Great Number of Blackes detained in a State of Slavery in the Bowels of a free &amp; christian Country Humbly <dfn data-def="old legal word ('showeth') — respectfully states">shuwith</dfn> that your Petitioners Apprehend that Thay have in Common with all other men a Natural and <dfn data-def="unalienable — impossible to take away">Unaliable</dfn> Right to that freedom which the Grat Parent of the Unavese hath Bestowed equalley on all menkind and which they have Never forfuted by Any <dfn data-def="agreement or contract">Compact</dfn> or Agreement whatever &mdash; but thay wher Unjustly Dragged by the hand of cruel Power from their Derest frinds [&hellip;] Brough hear Either to Be sold Like Beast of Burthen &amp; Like them Condemnd to Slavery for Life [&hellip;]</p>
 <p>they therfor humble Beseech your Honours [&hellip;] cause an act of the Legislatur to be past Wherby they may Be Restored to the Enjoyments of that Which is the Naturel Right of all men [&hellip;] so may the Inhabitance of thes State No longer chargeable with the <dfn data-def="inconsistency — saying one thing and doing another">inconsistancey</dfn> of acting themselves the part which thay condem and oppose in Others [&hellip;]</p>`,
-      cite: 'Petition for freedom to the Massachusetts Council and House of Representatives, January 13, 1777 (Massachusetts Historical Society)',
+      cite: 'Petition for freedom to the Massachusetts Council and House of Representatives, January 13, 1777 (manuscript copy, Massachusetts Historical Society)',
       url: 'https://www.masshist.org/database/557',
       task: 'The last line is one of the sharpest arguments of the whole Revolution: Massachusetts is "acting the part it condemns in Others." Put the petition into two modern sentences — the claim, and the demand.'
     },
@@ -188,7 +188,7 @@ window.RV_SOURCES = {
       doc: 'Mittelberger — the ship becomes a market',
       date: 'Philadelphia, 1750; published 1756',
       context: 'Gottlieb Mittelberger crossed from Germany in 1750 and watched what happened when a ship full of poor immigrants reached Philadelphia. He went home and published a warning to anyone thinking of making the voyage. This scene — human beings bargained for on a ship’s deck — is the system the Revolution’s language of liberty never touched.',
-      text: `<p>Every day Englishmen, Dutchmen and <dfn data-def="German-speaking">High-German</dfn> people come from the city of Philadelphia and other places [&hellip;] and select among the healthy persons such as they <dfn data-def="judge; consider">deem</dfn> suitable for their business, and bargain with them how long they will serve for their passage [&hellip;] Adult persons serve 3, 4, 5 or 6 years for the amount due by them, according to their age and strength. But very young people, from 10 to 15 years, must serve till they are 21 years old.</p>
+      text: `<p>Every day Englishmen, Dutchmen and <dfn data-def="German-speaking">High-German</dfn> people come from the city of Philadelphia and other places [&hellip;] and select among the healthy persons such as they <dfn data-def="judge; consider">deem</dfn> suitable for their business, and bargain with them how long they will serve for their passage [&hellip;] adult persons bind themselves in writing to serve 3, 4, 5 or 6 years for the amount due by them, according to their age and strength. But very young people, from 10 to 15 years, must serve till they are 21 years old.</p>
 <p>Many parents must sell and trade away their children like so many head of cattle; for if their children take the debt upon themselves, the parents can leave the ship free and <dfn data-def="free to go">unrestrained</dfn>. [&hellip;] it often happens that such parents and children, after leaving the ship, do not see each other again for many years, perhaps no more in all their lives.</p>`,
       cite: 'Gottlieb Mittelberger, Journey to Pennsylvania in the Year 1750 (published 1756; trans. 1898)',
       url: 'https://history.hanover.edu/courses/excerpts/144mittelberger.html',
@@ -225,9 +225,9 @@ window.RV_SOURCES = {
   'young-soldiers': {
     spotlight: {
       doc: 'Joseph Plumb Martin, A Narrative of a Revolutionary Soldier',
-      date: 'Published 1830; the scene is June 1776',
-      context: 'Martin published his memoir in 1830, at age 70, looking back on the whole war. In this scene it is June 1776 — and he is fifteen years old, deciding whether to sign.',
-      text: `<p>Well, as I have said, enlisting orders were out; I used frequently to go to the <dfn data-def="the meeting place for enlisting">rendezvous</dfn>, where I saw many of my young associates enlist, had repeated <dfn data-def="teasing back and forth">banterings</dfn> to engage with them, but still, when it came "case in hand," I had my misgivings. If I once undertake, thought I, I must stick to it, there will be no receding. [&hellip;] I one evening went off with a full determination to enlist at all hazards. When I arrived at the place of rendezvous I found a number of young men of my acquaintance there; the old bantering began &mdash; come, if you will enlist I will, says one, you have long been talking about it, says another &mdash; come, now is the time.</p>
+      date: 'Published 1830; the scene is summer 1776',
+      context: 'Martin published his memoir in 1830, at age 69, looking back on the whole war. In this scene it is summer 1776 — and he is fifteen years old, deciding whether to sign.',
+      text: `<p>Well, as I have said, enlisting orders were out; I used frequently to go to the <dfn data-def="the meeting place for enlisting">rendezvous</dfn>, where I saw many of my young associates enlist, had repeated <dfn data-def="teasing back and forth">banterings</dfn> to engage with them, but still, when it came "case in hand," I had my misgivings. If I once undertake, thought I, I must stick to it, there will be no receding. [&hellip;] I one evening went off with a full determination to enlist at all hazards. When I arrived at the place of rendezvous I found a number of young men of my acquaintance there; the old bantering began &mdash; come, if you will enlist I will, says one, you have long been talking about it, says another &mdash; come, now is the time. [&hellip;]</p>
 <p>So seating myself at the table, enlisting orders were immediately presented to me; I took up the pen, loaded it with the fatal charge, made several mimic imitations of writing my name, but took especial care not to touch the paper with the pen until an unlucky <dfn data-def="an old word for a person; a fellow">wight</dfn> who was leaning over my shoulder gave my hand a stroke, which caused the pen to make a woful scratch on the paper. "O, he has enlisted," said he, "he has made his mark, he is fast enough now." Well, thought I, I may as well go through with the business now as not; so I wrote my name fairly upon the <dfn data-def="the enlistment papers — a signed contract">indentures</dfn>. And now I was a <em>soldier</em>, in name at least, if not in practice.</p>`,
       cite: 'Joseph Plumb Martin, A Narrative of Some of the Adventures, Dangers and Sufferings of a Revolutionary Soldier (1830), ch. II',
       url: 'https://en.wikisource.org/wiki/The_Adventures_Of_A_Revolutionary_Soldier',
@@ -235,7 +235,7 @@ window.RV_SOURCES = {
     },
     voices: [
       { q: 'If I once undertake, thought I, I must stick to it, there will be no receding.', who: 'Joseph Plumb Martin, age 15', s: ['hook'] },
-      { q: 'come, if you will enlist I will, says one, you have long been talking about it, says another — come, now is the time', who: 'Boys at the rendezvous, June 1776', s: ['hook', 'content'] },
+      { q: 'come, if you will enlist I will, says one, you have long been talking about it, says another — come, now is the time', who: 'Young men at the rendezvous, 1776', s: ['hook', 'content'] },
       { q: 'O, he has enlisted, he has made his mark, he is fast enough now.', who: 'A bystander, as the pen slipped', s: ['content'] },
       { q: 'And now I was a soldier, in name at least, if not in practice.', who: 'Joseph Plumb Martin, 1830', s: ['content', 'conclusion'] },
       { q: 'The horrors of battle then presented themselves to my mind in all their hideousness.', who: 'Joseph Plumb Martin, 1830', s: ['content', 'conclusion'] }
@@ -258,7 +258,7 @@ window.RV_SOURCES = {
       { q: 'WE whose Names are under-written, do assure the World, that the POEMS … were … written by Phillis', who: 'The 1773 attestation', s: ['hook', 'content'] },
       { q: 'She has been examined by some of the best Judges, and is thought qualified to write them.', who: 'The 1773 attestation', s: ['content'] },
       { q: "'TWAS mercy brought me from my Pagan land", who: 'Wheatley, "On being brought from Africa to America" (1773)', s: ['hook', 'content'] },
-      { q: "Remember, Christians, Negroes, black as Cain, / May be refin'd, and join th' angelic train.", who: 'Wheatley, 1773 — her answer to readers who scorned her race', s: ['content', 'conclusion'] },
+      { q: "Remember, Christians, Negros, black as Cain, / May be refin'd, and join th' angelic train.", who: 'Wheatley, 1773 — her answer to readers who scorned her race', s: ['content', 'conclusion'] },
       { q: 'in sixteen Months Time from her Arrival, attained the English language', who: 'John Wheatley’s letter, 1772', s: ['content'] }
     ]
   },
@@ -267,7 +267,7 @@ window.RV_SOURCES = {
     spotlight: {
       doc: 'Johnson, Colonel Henry Ludington: A Memoir',
       date: 'Published 1907 — 130 years after the ride',
-      context: 'This book is where the famous ride story comes from. It was written in 1907, paid for by the Ludington family, spells her name "Sibyl," and cites no source from 1777. Read it the way a historian would: it is vivid — but which of its claims would need evidence?',
+      context: 'This book is where the famous version of the ride story comes from. It was written in 1907, paid for by the Ludington family, spells her name "Sibyl," and cites no source from 1777. Read it the way a historian would: it is vivid — but which of its claims would need evidence?',
       text: `<p>In this emergency he turned to his daughter Sibyl, who, a few days before, had passed her sixteenth birthday, and bade her to take a horse, ride for the men, and tell them to be at his house by daybreak. [&hellip;] Imagination only can picture what it was a century and a quarter ago, on a dark night, with reckless bands of "Cowboys" and "Skinners" abroad in the land. But the child performed her task, clinging to a man's saddle, and guiding her steed with only a <dfn data-def="a rough rope bridle — no proper reins">hempen halter</dfn>, as she rode through the night, bearing the news of the <dfn data-def="the violent looting and burning of a town">sack</dfn> of Danbury.</p>
 <p>There is no extravagance in comparing her ride with that of Paul Revere and its midnight message. Nor was her errand less efficient than his. By daybreak, thanks to her daring, nearly the whole regiment was <dfn data-def="gathered for military duty">mustered</dfn> before her father's house at Fredericksburgh, and an hour or two later was on the march for vengeance on the raiders.</p>`,
       cite: 'Willis Fletcher Johnson, Colonel Henry Ludington: A Memoir (New York, 1907) — commissioned by Ludington’s descendants',
@@ -287,7 +287,7 @@ window.RV_SOURCES = {
     spotlight: {
       doc: 'Warren, History of the American Revolution — the opening address',
       date: 'Published 1805',
-      context: 'Mercy Otis Warren published her three-volume history in 1805 — the first history of the Revolution written by a woman. In its opening pages she answers, in her own voice, the claim that politics "lay out of the road of female life." One artifact to know: in the original printing, most letter s’s appear as the old "long s" (ſ), so the page literally reads "aſſigned to each ſex." We have modernized those letters; the words are hers.',
+      context: 'Mercy Otis Warren published her three-volume history in 1805 — the first full history of the Revolution written by a woman. In its opening pages she answers, in her own voice, the claim that politics "lay out of the road of female life." One artifact to know: in the original printing, most letter s’s appear as the old "long s" (ſ), so the page literally reads "aſſigned to each ſex." We have modernized those letters; the words are hers.',
       text: `<p>The solemnity that covered every countenance, when contemplating the sword uplifted, and the horrors of civil war rushing to habitations not <dfn data-def="hardened by experience; used to">inured</dfn> to scenes of <dfn data-def="violent robbery and destruction">rapine</dfn> and misery; even to the quiet cottage, where only concord and affection had reigned; stimulated to observation a mind that had not yielded to the assertion, that all political attentions lay out of the road of female life.</p>
 <p>It is true there are certain appropriate duties assigned to each sex; and doubtless it is the more peculiar <dfn data-def="special area of duty">province</dfn> of masculine strength, not only to repel the bold invader of the rights of his country and of mankind, but in the nervous style of manly eloquence, to describe the blood-stained field, and relate the story of slaughtered armies.</p>
 <p>Sensible of this, the trembling heart has recoiled at the magnitude of the undertaking, and the hand often shrunk back from the task; yet, recollecting that every domestic enjoyment depends on the unimpaired possession of civil and religious liberty [&hellip;] the work was not <dfn data-def="given up; abandoned">relinquished</dfn>.</p>`,
@@ -317,7 +317,7 @@ window.RV_SOURCES = {
     },
     voices: [
       { q: 'a monument to be erected to the memory of Crispus Attucks, the first martyr of the American Revolution', who: 'Petition of seven Black Bostonians, 1851', s: ['hook', 'content'] },
-      { q: 'Be not afraid; they dare not fire', who: 'Words attributed to Attucks in Botta’s history, quoted by Nell', s: ['content'] },
+      { q: 'Be not afraid; they dare not fire', who: 'Botta’s 1809 history, quoted by Nell: words it gives to Attucks and twelve companions together, from no eyewitness', s: ['content'] },
       { q: 'the day which history selects as the dawn of the American Revolution', who: 'Nell, 1855, on the 5th of March', s: ['conclusion'] },
       { q: 'an adverse report', who: 'The legislature’s answer, 1851 — no monument', s: ['content', 'conclusion'] }
     ]
@@ -327,10 +327,10 @@ window.RV_SOURCES = {
     spotlight: {
       doc: "Lafayette's certificate for James",
       date: 'Richmond, November 21, 1784',
-      context: 'In 1784 Lafayette learned that the spy who helped win Yorktown was still enslaved. He wrote this certificate in his own imperfect English — the capital letters and French spellings are his. James carried the paper for two years and attached it to his petition for freedom; Virginia’s Assembly freed him by an act finalized in January 1787, and he took the name James Armistead Lafayette.',
+      context: 'In 1784 Lafayette learned that the spy who helped win Yorktown was still enslaved. He wrote this certificate in his own imperfect English — the capital letters and French spellings are his. James used the paper in a 1784 petition that failed, then petitioned again in 1786; Virginia’s Assembly freed him by an act finalized in January 1787, and he took the name James Armistead Lafayette.',
       text: `<p>This is to Certify that the <dfn data-def="the person carrying this paper">Bearer</dfn> By the Name of James Has done Essential Services to Me While I Had the Honour to Command in this State. His Intelligence from the Ennemy's Camp were Industriously Collected and Most faithfully deliver'd. He perfectly Acquitted Himself With Some Important <dfn data-def="assigned tasks or missions">Commissions</dfn> I Gave Him and Appears to me Entitled to Every Reward his <dfn data-def="Lafayette's careful word for James's enslavement">Situation</dfn> Can Admit of.</p>
 <p>Done under my hand, Richmond, November 21st, 1784. &mdash; LAFAYETTE.</p>`,
-      cite: "Lafayette's testimonial for James, November 21, 1784 (Library of Virginia)",
+      cite: "Lafayette's certificate for James, November 21, 1784, as printed in Encyclopedia Virginia",
       url: 'https://encyclopediavirginia.org/entries/lafayette-james-ca-1748-1830/',
       task: '"Entitled to Every Reward his Situation Can Admit of." What is Lafayette carefully not saying with the word "Situation"? Explain, in your own words, what this one paragraph of paper could do for James — and what it could not do by itself.'
     },
@@ -353,7 +353,7 @@ window.RV_SOURCES = {
       task: 'Two sentences of dialogue carry this whole scene. Retell the moment in your own words — then decide which line your podcast should quote, and what your Narrator must explain around it.'
     },
     voices: [
-      { q: 'Whom can we trust now?', who: 'Washington to Lafayette, September 25, 1780', s: ['hook', 'content'] },
+      { q: 'Whom can we trust now?', who: 'Washington to Lafayette, September 25, 1780 (as told by Sparks, 1835)', s: ['hook', 'content'] },
       { q: 'It was clear that he had gone to the enemy.', who: 'Sparks, 1835', s: ['content'] },
       { q: 'Come, Gentlemen; since Mrs. Arnold is unwell, and the General is absent, let us sit down without ceremony.', who: 'Washington, keeping the secret at dinner', s: ['content', 'conclusion'] }
     ]
@@ -363,7 +363,7 @@ window.RV_SOURCES = {
     spotlight: {
       doc: 'Ellet, The Women of the American Revolution — the Hart chapter',
       date: 'Published 1848 — 65 years after the war',
-      context: 'Elizabeth Ellet’s 1848 best-seller is the book that made Nancy Hart famous, built from stories neighbors told decades later. Notice the voice: Ellet mocks Hart’s looks, class, and manners even while celebrating her courage. This is how a real frontier woman became a legend. Ask of each detail: how could anyone in 1848 verify this?',
+      context: 'Elizabeth Ellet’s 1848 best-seller is the book that spread Nancy Hart’s fame nationwide, built from stories first printed decades after the war. Notice the voice: Ellet mocks Hart’s looks, class, and manners even while celebrating her courage. This is how a real frontier woman became a legend. Ask of each detail: how could anyone in 1848 verify this?',
       text: `<p>This person was NANCY HART, a woman entirely uneducated, and ignorant of all the conventional civilities of life, but a zealous lover of liberty and of the "liberty boys," as she called the <dfn data-def="supporters of the Revolution — the Patriots">whigs</dfn>. [&hellip;] This vulgar and illiterate, but hospitable and <dfn data-def="brave">valorous</dfn> female patriot could boast no share of beauty; a fact she would herself have readily acknowledged, had she ever enjoyed an opportunity of looking in a mirror.</p>
 <p>She was cross-eyed, with a broad, angular mouth &mdash; ungainly in figure, rude in speech, and awkward in manners &mdash; but having a woman's heart for her friends, though that of a tigress [&hellip;] for the enemies of her country. She was well known to the tories, who stood somewhat in fear of her vengeance for any grievance or aggressive act; though they let pass no opportunity of teasing and annoying her, when they could do so with <dfn data-def="without fear of punishment">impunity</dfn>.</p>`,
       cite: 'Elizabeth F. Ellet, The Women of the American Revolution, vol. 2 (New York, 1848), ch. XLIII',
@@ -372,7 +372,7 @@ window.RV_SOURCES = {
     },
     voices: [
       { q: 'a zealous lover of liberty and of the "liberty boys," as she called the whigs', who: 'Ellet, 1848', s: ['hook'] },
-      { q: "having a woman's heart for her friends, though that of a tigress for the enemies of her country", who: 'Ellet, 1848', s: ['content'] },
+      { q: "having a woman's heart for her friends, though that of a tigress […] for the enemies of her country", who: 'Ellet, 1848', s: ['content'] },
       { q: 'the tories, who stood somewhat in fear of her vengeance', who: 'Ellet, 1848', s: ['content', 'conclusion'] }
     ]
   },
@@ -383,7 +383,7 @@ window.RV_SOURCES = {
       date: 'The battle: June 28, 1778; published 1830',
       context: 'Martin fought at Monmouth and published his memoir in 1830. This is the only eyewitness account of a woman serving a cannon in that battle — the seed at the center of the "Molly Pitcher" story. Read it beside the famous legend and notice everything Martin does NOT say: no name, no fallen husband, no taking his place at the gun.',
       text: `<p>One little incident happened, during the heat of the <dfn data-def="heavy cannon fire">cannonade</dfn>, which I was eye-witness to, and which I think would be unpardonable not to mention. A woman whose husband belonged to the Artillery, and who was then attached to a <dfn data-def="a cannon">piece</dfn> in the engagement, attended with her husband at the piece the whole time; while in the act of reaching a <dfn data-def="a bundle of gunpowder for one shot">cartridge</dfn> and having one of her feet as far before the other as she could step, a cannon shot from the enemy passed directly between her legs without doing any other damage than carrying away all the lower part of her petticoat, &mdash; looking at it with apparent unconcern, she observed, that it was lucky it did not pass a little higher, for in that case it might have carried away something else, and continued her occupation.</p>`,
-      cite: 'Joseph Plumb Martin, A Narrative of a Revolutionary Soldier (1830), ch. IV — the Battle of Monmouth',
+      cite: 'Joseph Plumb Martin, A Narrative of Some of the Adventures, Dangers, and Sufferings of a Revolutionary Soldier (1830), ch. IV — the Battle of Monmouth',
       url: 'https://en.wikisource.org/wiki/The_Adventures_Of_A_Revolutionary_Soldier',
       task: 'List what the famous legend adds that this eyewitness never says. Then decide what you can responsibly put in your script — and how your Host will signal the difference between "an eyewitness saw" and "the story goes."'
     },
@@ -420,9 +420,9 @@ window.RV_SOURCES = {
       doc: 'Nell, The Colored Patriots of the American Revolution',
       date: 'Published 1855',
       context: 'William C. Nell, a Black abolitionist historian, spent years gathering the record of Black Revolutionary soldiers that white historians were leaving out. He writes in the language of his own time ("colored"). Here he quotes an earlier historian of Bunker Hill, Samuel Swett — and then, in a footnote, catches the record being erased.',
-      text: `<p>Swett, in his "Sketches of Bunker Hill Battle," <dfn data-def="refers to; mentions">alludes</dfn> to the presence of a colored man in that fight. He says: &mdash; "He appeared at Bunker Hill, and, says the historian, 'Among those who mounted the works was the gallant Major Pitcairn, who <dfn data-def="triumphantly; boastfully">exultingly</dfn> cried out, "The day is ours!" when a black soldier named Salem shot him through, and he fell.' A contribution was made in the army for the colored soldier, and he was presented to Washington as having performed this feat."</p>
+      text: `<p>Swett, in his "Sketches of Bunker Hill Battle," <dfn data-def="refers to; mentions">alludes</dfn> to the presence of a colored man in that fight. He says: &mdash; "[&hellip;] He appeared at Bunker Hill, and, says the historian, 'Among those who mounted the works was the gallant Major Pitcairn, who <dfn data-def="triumphantly; boastfully">exultingly</dfn> cried out, "The day is ours!" when a black soldier named Salem shot him through, and he fell. [&hellip;]' A contribution was made in the army for the colored soldier, and he was presented to Washington as having performed this feat."</p>
 <p>Besides Salem, there were quite a number of colored soldiers at Bunker Hill. Among them, Titus Coburn, Alexander Ames, and Barzilai Lew, all of Andover; and also Cato Howe, of Plymouth, &mdash; each of whom received a pension.</p>
-<p><em>Nell's footnote:</em> In some engravings of the battle, this colored soldier occupies a prominent position; but in more recent editions, his figure is <dfn data-def="Latin: 'he is not found'">non est inventus</dfn>. A significant, but inglorious omission.</p>`,
+<p><em>Nell's footnote:</em> In some engravings of the battle, this colored soldier occupies a prominent position; but in more recent editions, his figure is <dfn data-def="Latin: 'he is not found'">non est inventus</dfn>. A significant, but inglorious omission. [&hellip;]</p>`,
       cite: 'William C. Nell, The Colored Patriots of the American Revolution (Boston, 1855), quoting Samuel Swett',
       url: 'https://docsouth.unc.edu/neh/nell/nell.html',
       task: 'Nell’s footnote catches Peter Salem being painted OUT of the picture, edition by edition. Retell what the footnote says in your own words — and say why Nell thought it mattered.'
@@ -439,9 +439,9 @@ window.RV_SOURCES = {
     spotlight: {
       doc: "Lord Dunmore's Proclamation",
       date: 'November 7, 1775',
-      context: 'The royal governor of Virginia issued this from a warship offshore. It is written in the language of a slaveholding empire — read it as evidence of exactly what was offered, to whom, and why. Freedom appears in one clause, with conditions attached.',
+      context: 'The royal governor of Virginia issued this from a ship offshore. It is written in the language of a slaveholding empire — read it as evidence of exactly what was offered, to whom, and why. Freedom appears in one clause, with conditions attached.',
       text: `<p>I have thought fit to issue this my <dfn data-def="an official public announcement">Proclamation</dfn> [&hellip;] I do in Virtue of the Power and Authority to ME given, by His Majesty, determine to execute <dfn data-def="rule by the army instead of the ordinary courts">Martial Law</dfn> [&hellip;] I do require every Person capable of bearing Arms, to resort to His Majesty's STANDARD, or be looked upon as Traitors to His Majesty's Crown and Government [&hellip;]</p>
-<p>And I do hereby further declare all <dfn data-def="workers bound by contract for a set term of years">indented Servants</dfn>, Negroes, or others, (appertaining to Rebels,) free that are able and willing to bear Arms, they joining His Majesty's Troops as soon as may be, for the more speedily reducing this Colony to a proper Sense of their Duty, to His Majesty's Crown and Dignity.</p>
+<p>And I do hereby further declare all <dfn data-def="workers bound by contract for a set term of years">indented Servants</dfn>, Negroes, or others, (appertaining to Rebels,) free that are able and willing to bear Arms, they joining His Majesty's Troops as soon as may be, for the more speedily reducing this Colony to a proper Sense of their Duty, to His Majesty's Crown and Dignity. [&hellip;]</p>
 <p>GIVEN under my Hand on board the Ship WILLIAM, off Norfolk, the 7th Day of November [1775]. DUNMORE.</p>`,
       cite: "Dunmore's Proclamation, November 7, 1775",
       url: 'https://en.wikisource.org/wiki/Dunmore%27s_Proclamation',
@@ -449,7 +449,7 @@ window.RV_SOURCES = {
     },
     voices: [
       { q: 'I do hereby further declare all indented Servants, Negroes, or others, (appertaining to Rebels,) free that are able and willing to bear Arms', who: "Dunmore's Proclamation, 1775", s: ['hook', 'content'] },
-      { q: "GIVEN under my Hand on board the Ship WILLIAM, off Norfolk", who: "Dunmore's Proclamation — issued from a warship", s: ['hook'] },
+      { q: "GIVEN under my Hand on board the Ship WILLIAM, off Norfolk", who: "Dunmore's Proclamation — issued from a ship", s: ['hook'] },
       { q: 'for the more speedily reducing this Colony to a proper Sense of their Duty', who: "Dunmore's Proclamation — the offer's real purpose", s: ['content', 'conclusion'] },
       { q: 'Dinah Haynes, age 45, bound for Port Roseway aboard the Mars', who: 'Book of Negroes ledger, 1783', s: ['content', 'conclusion'] },
       { q: 'Charles, age 18, bound for St. Johns aboard the Mars', who: 'Book of Negroes ledger, 1783', s: ['conclusion'] }
@@ -464,7 +464,7 @@ window.RV_SOURCES = {
       },
       b: {
         label: 'B — The ledger (1783)',
-        text: `<p>When the British evacuated New York in 1783, clerks recorded 3,009 Black men, women, and children sailing to Nova Scotia. Each line is a person:</p>
+        text: `<p>When the British evacuated New York in 1783, clerks recorded about 3,000 Black men, women, and children sailing away, most to Nova Scotia. Each line is a person:</p>
 <ul class="ts-ledger">
 <li>Paul, age 19 &mdash; bound for St. Johns aboard the <em>Aurora</em></li>
 <li>Sarah Fox, age 21 &mdash; bound for St. Johns aboard the <em>Spencer</em></li>

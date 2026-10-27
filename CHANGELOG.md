@@ -6,6 +6,18 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.6.0] - 2026-10-26
+
+### Changed
+
+- **All 23 readings rewritten in textbook voice** (Quick, Clear, Full, Deep, and every Key Facts list). Teacher, Oct 26: the old readings "feel very AI." The new text follows the historical-prose style (TCI History Alive!, Holt): a documented opening scene, `<h3>` subheads every two or three paragraphs at every level, vocabulary defined inside the sentence, legend and tradition stated plainly, and every level ending on an event, not a moral. Deep now goes deeper with documents, numbers and how-we-know, not longer sentences, so it measures far lower than the old essay-style Deep (average FK about 9 instead of 15) while still stepping up from Full. Built from the facts verified for 3.5.6; every fact the writer added was then checked by a separate reviewer, whose 107 fixes are applied.
+- **Heading in place of the gray tagline.** Each topic has a `heading` (for example "A Spy in the British Camp"), shown under the name on the reading pages and the Read step. `tagline` stays in the data for menus and link previews.
+- Key Facts keep the same number of items per list, so the Fact Bank and Group Doc are unchanged. Names, source lists and URLs are unchanged.
+
+### Fixed
+
+- `APP_VERSION` in app.js now matches the footer and changelog (3.5.6 had missed it).
+
 ## [3.5.6] - 2026-10-26
 
 ### Fixed

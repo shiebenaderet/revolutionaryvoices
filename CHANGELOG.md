@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.6.2] - 2026-10-26
+
+### Fixed
+
+- **Salomon's 1778 request reads "helped them off," as in the handwritten original** (photo in Amler, p. 58; Mr. B's Sample Research). 3.5.6 had changed it to "oft" from a typed transcription. Restored in the Source Spotlight (glossed "away, out of British hands"), the Voice Bank and the Deep reading and Key Facts.
+
 ## [3.6.1] - 2026-10-26
 
 ### Fixed

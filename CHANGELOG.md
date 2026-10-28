@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.6.3] - 2026-10-27
+
+### Added
+
+- **Source Spotlight on every reading page.** Teacher, Oct 27: on research day every student checks two sources on the Research Notes, the document from the time and one link from "Where these facts come from". The Spotlight (sources.js) was only in the builder's Read step, on the Researcher's Chromebook, so `build-readings.js` now puts it on all 23 reading pages as "Source Spotlight: A Document from the Time", between the reading and the source list: the document, its date and context, the period text with click-to-show glosses, Make it yours, and the citation with its link. Same for every level.
+
 ## [3.6.2] - 2026-10-26
 
 ### Fixed

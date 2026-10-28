@@ -29,7 +29,31 @@ function loadReadings() {
     if (!RV_TOPICS || !RV_READINGS) {
         throw new Error('readings.js did not define RV_TOPICS / RV_READINGS');
     }
+    const ssrc = fs.readFileSync(path.join(ROOT, 'sources.js'), 'utf8');
+    vm.runInContext(ssrc, sandbox, { filename: 'sources.js' });
+    SOURCES = sandbox.window.RV_SOURCES || {};
     return { topics: RV_TOPICS, readings: RV_READINGS };
+}
+let SOURCES = {};
+
+/* Teacher, Oct 27: every student checks two sources on the Research Notes, the document from the
+   time and one link, so the Source Spotlight (sources.js, until now only in the builder's Read step)
+   is on every reading page too, between the reading and "Where these facts come from". Its
+   <dfn data-def> glosses become the page's own click-to-show glosses. */
+function spotlightBlock(id) {
+    const sp = (SOURCES[id] || {}).spotlight;
+    if (!sp) return '';
+    const text = sp.text.replace(/<dfn data-def="([^"]*)">([^<]*)<\/dfn>/g, (m, def, word) =>
+        `<span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">${word}</button>` +
+        `<span class="gloss-def" hidden> (${def})</span></span>`);
+    return `\n        <section class="reading-spotlight">\n` +
+        `          <h2>Source Spotlight: A Document from the Time</h2>\n` +
+        `          <p class="sp-doc"><b>${sp.doc}</b> <span class="sp-date">${sp.date}</span></p>\n` +
+        `          <p class="sp-context">${sp.context}</p>\n` +
+        `          <div class="period-text">${text}</div>\n` +
+        `          <p class="sp-task"><b>Make it yours:</b> ${sp.task}</p>\n` +
+        `          <p class="sp-cite">${sp.cite}${sp.url ? ` &middot; <a href="${sp.url}" target="_blank" rel="noopener">See the source</a>` : ''}</p>\n` +
+        `        </section>`;
 }
 
 /* Students see one-word names that describe the text, never the reader
@@ -210,6 +234,16 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .facts-group li { margin:3px 0; }
 .reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
 .reading-sources a { color:var(--accent); }
+.reading-spotlight { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-spotlight h2 { color:var(--accent); margin:0 0 10px; font-size:1.15rem; }
+.reading-spotlight .sp-doc { margin:0 0 6px; }
+.reading-spotlight .sp-date { color:var(--muted); font-size:.95rem; margin-left:6px; }
+.reading-spotlight .sp-context { color:var(--muted); margin:0 0 10px; }
+.reading-spotlight .period-text { background:var(--surface, #fffaf0); border-left:4px solid var(--accent); padding:10px 14px; margin:0 0 10px; }
+.reading-spotlight .period-text p { margin:0 0 8px; }
+.reading-spotlight .sp-task { margin:0 0 8px; }
+.reading-spotlight .sp-cite { font-size:.9rem; color:var(--muted); margin:0; }
+.reading-spotlight a { color:var(--accent); }
 
 .level-panel[hidden] { display:none; }
 :focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
@@ -401,6 +435,7 @@ ${quickFacts ? `
     </div>` : ''}
 
       ${panels}
+${spotlightBlock(topic.id)}
 ${sourcesBlock}
   </article>
 

@@ -1033,6 +1033,10 @@
         .reading-body { line-height: 1.75; color: var(--ink); }
         .reading-body p { margin: 0 0 12px; }
         .reading-body em { font-style: italic; }
+        .spotlight-plain { background: var(--surface); border-left: 4px solid var(--accent); padding: 8px 12px; margin: 8px 0; }
+        .spotlight-plain p { margin: 0 0 8px; }
+        .spotlight-original { margin: 8px 0; }
+        .spotlight-original > summary { cursor: pointer; font-weight: 700; color: var(--accent); }
         .reading-tagline.reading-heading { margin: 4px 0 0; color: var(--accent); font-size: 1.12em; font-weight: 700; line-height: 1.3; }
         .reading-body h3 { margin: 20px 0 6px; font-size: 1.08em; line-height: 1.3; }
         .reading-body h3:first-child { margin-top: 4px; }

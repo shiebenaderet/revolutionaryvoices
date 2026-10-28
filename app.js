@@ -986,7 +986,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '3.6.3'; // keep in sync with index.html footer and CHANGELOG
+        const APP_VERSION = '3.6.4'; // keep in sync with index.html footer and CHANGELOG
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION; })();
         const OLD_KEY = 'revolutionaryVoicesScript';
@@ -2002,15 +2002,20 @@
             const src = rvSourceFor(id);
             if (!src || !src.spotlight) { box.hidden = true; box.innerHTML = ''; return; }
             const s = src.spotlight;
+            // Oct 27 (teacher): Quick and Clear read a plain version first; the original stays under it.
+            const pl = s.plain && s.plain[rvLevel()];
+            const original = '<div class="period-text">' + s.text + '</div>' +
+                '<p class="spotlight-gloss-hint">Click a <dfn data-def="like this — click again to hide">dotted word</dfn> for its meaning.</p>';
             let html =
                 '<details class="source-spotlight">' +
                 '<summary><i class="fas fa-scroll" aria-hidden="true"></i> Source Spotlight — read the real thing <span class="spotlight-date">' + s.date + '</span></summary>' +
                 '<div class="spotlight-body">' +
                 '<h4 class="spotlight-doc">' + s.doc + '</h4>' +
-                '<p class="spotlight-context">' + s.context + '</p>' +
-                '<div class="period-text">' + s.text + '</div>' +
-                '<p class="spotlight-gloss-hint">Click a <dfn data-def="like this — click again to hide">dotted word</dfn> for its meaning.</p>' +
-                '<div class="spotlight-task"><strong>Make it yours:</strong> ' + s.task + '</div>' +
+                '<p class="spotlight-context">' + (pl ? pl.context : s.context) + '</p>' +
+                (pl ? '<div class="spotlight-plain">' + pl.text + '</div>' +
+                      '<details class="spotlight-original"><summary>Read the original</summary>' + original + '</details>'
+                    : original) +
+                '<div class="spotlight-task"><strong>Make it yours:</strong> ' + (pl ? pl.task : s.task) + '</div>' +
                 '<p class="spotlight-cite">' + s.cite +
                 (s.url ? ' — <a href="' + s.url + '" target="_blank" rel="noopener">see the source</a>' : '') + '</p>';
             if (src.twoSources) {

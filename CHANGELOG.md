@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.6.4] - 2026-10-27
+
+### Added
+
+- **Plain-English Source Spotlights at Quick and Clear.** Teacher, Oct 27: the documents from the time were "WAY above" the lowest readers (the 1777 freedom petition is one 168-word sentence; every Spotlight measured above Quick, most above Full). Each Spotlight now carries `plain.mostSupport` and `plain.someSupport` (context, text, task), written at the level and checked line by line against the original by a separate reviewer (34 fidelity fixes before shipping). At Quick and Clear the reading page and the builder's Read step show the plain version first, with the original under "Read the original" (glosses still work); Full and Deep show the original as before. The Spotlight now sits inside each level's panel on the reading pages so it switches with the level buttons. `check-levels.js` measures the plain versions against the Quick and Clear limits (138 fields). This sets aside, for the two lower levels, the original design rule that paraphrase is the student's task.
+
 ## [3.6.3] - 2026-10-27
 
 ### Added

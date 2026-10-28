@@ -40,18 +40,21 @@ let SOURCES = {};
    time and one link, so the Source Spotlight (sources.js, until now only in the builder's Read step)
    is on every reading page too, between the reading and "Where these facts come from". Its
    <dfn data-def> glosses become the page's own click-to-show glosses. */
-function spotlightBlock(id) {
+function spotlightBlock(id, level) {
     const sp = (SOURCES[id] || {}).spotlight;
     if (!sp) return '';
+    const pl = sp.plain && sp.plain[level];
     const text = sp.text.replace(/<dfn data-def="([^"]*)">([^<]*)<\/dfn>/g, (m, def, word) =>
         `<span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">${word}</button>` +
         `<span class="gloss-def" hidden> (${def})</span></span>`);
     return `\n        <section class="reading-spotlight">\n` +
         `          <h2>Source Spotlight: A Document from the Time</h2>\n` +
         `          <p class="sp-doc"><b>${sp.doc}</b> <span class="sp-date">${sp.date}</span></p>\n` +
-        `          <p class="sp-context">${sp.context}</p>\n` +
-        `          <div class="period-text">${text}</div>\n` +
-        `          <p class="sp-task"><b>Make it yours:</b> ${sp.task}</p>\n` +
+        `          <p class="sp-context">${pl ? pl.context : sp.context}</p>\n` +
+        (pl ? `          <div class="sp-plain">${pl.text}</div>\n` +
+              `          <details class="sp-original"><summary>Read the original</summary><div class="period-text">${text}</div></details>\n`
+            : `          <div class="period-text">${text}</div>\n`) +
+        `          <p class="sp-task"><b>Make it yours:</b> ${pl ? pl.task : sp.task}</p>\n` +
         `          <p class="sp-cite">${sp.cite}${sp.url ? ` &middot; <a href="${sp.url}" target="_blank" rel="noopener">See the source</a>` : ''}</p>\n` +
         `        </section>`;
 }
@@ -242,6 +245,10 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .reading-spotlight .period-text { background:var(--surface, #fffaf0); border-left:4px solid var(--accent); padding:10px 14px; margin:0 0 10px; }
 .reading-spotlight .period-text p { margin:0 0 8px; }
 .reading-spotlight .sp-task { margin:0 0 8px; }
+.reading-spotlight .sp-plain { background:var(--surface, #fffaf0); border-left:4px solid var(--accent); padding:10px 14px; margin:0 0 10px; }
+.reading-spotlight .sp-plain p { margin:0 0 8px; }
+.reading-spotlight .sp-original { margin:0 0 10px; }
+.reading-spotlight .sp-original > summary { cursor:pointer; font-weight:700; color:var(--accent); margin-bottom:8px; }
 .reading-spotlight .sp-cite { font-size:.9rem; color:var(--muted); margin:0; }
 .reading-spotlight a { color:var(--accent); }
 
@@ -378,7 +385,7 @@ function renderPage(topic, reading, allTopics) {
             return `<div class="level-panel" data-level="${l.key}" ` +
                    `data-level-word="${esc(l.word)}"${l.key === 'standard' ? '' : ' hidden'}>\n` +
                    `        <div class="reading-body">${glossify(reading.levels[l.key].trim())}</div>` +
-                   factsBlock + `\n      </div>`;
+                   factsBlock + spotlightBlock(topic.id, l.key) + `\n      </div>`;
         })
         .join('\n      ');
 
@@ -435,7 +442,6 @@ ${quickFacts ? `
     </div>` : ''}
 
       ${panels}
-${spotlightBlock(topic.id)}
 ${sourcesBlock}
   </article>
 

@@ -129,6 +129,26 @@ for (const id of Object.keys(R)) {
 console.log(pad('average', 28) + LEVEL_NAMES.map(n => lpad(counts[n] ? (sums[n] / counts[n]).toFixed(1) : '-', 7)).join(''));
 console.log(`limits: Quick <= ${LEVEL_LIMITS.Quick}, Clear <= ${LEVEL_LIMITS.Clear}, Full <= ${LEVEL_LIMITS.Full}, Deep > Full\n`);
 
+/* Oct 27: the Source Spotlight's plain versions (sources.js spotlight.plain) are held to the
+   same limits as the readings at their level: context, text and task each. */
+{
+    const S = runIn(fs.readFileSync(path.join(__dirname, 'sources.js'), 'utf8'), 'sources.js', { window: {} }).window.RV_SOURCES || {};
+    let n = 0;
+    for (const [id, src] of Object.entries(S)) {
+        const pl = src.spotlight && src.spotlight.plain;
+        if (!pl) continue;
+        for (const [key, name] of [['mostSupport', 'Quick'], ['someSupport', 'Clear']]) {
+            if (!pl[key]) { problems.push(`${id}: Spotlight has no ${name} plain version`); continue; }
+            for (const f of ['context', 'text', 'task']) {
+                const html = /^\s*</.test(pl[key][f] || '') ? pl[key][f] : `<p>${pl[key][f] || ''}</p>`;
+                const g = fkGrade(html).grade; n++;
+                if (g > LEVEL_LIMITS[name]) problems.push(`${id}: Spotlight ${name} ${f} measures ${g.toFixed(1)} (limit ${LEVEL_LIMITS[name]})`);
+            }
+        }
+    }
+    console.log(`Spotlight plain versions: ${n} fields checked\n`);
+}
+
 if (problems.length) {
     console.log(problems.join('\n'));
     console.log(`\n${problems.length} problem${problems.length === 1 ? '' : 's'}`);

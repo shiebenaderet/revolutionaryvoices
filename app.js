@@ -986,7 +986,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '3.6.4'; // keep in sync with index.html footer and CHANGELOG
+        const APP_VERSION = '3.6.5'; // keep in sync with index.html footer and CHANGELOG
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION; })();
         const OLD_KEY = 'revolutionaryVoicesScript';
@@ -2012,8 +2012,8 @@
                 '<div class="spotlight-body">' +
                 '<h4 class="spotlight-doc">' + s.doc + '</h4>' +
                 '<p class="spotlight-context">' + (pl ? pl.context : s.context) + '</p>' +
-                (pl ? '<div class="spotlight-plain">' + pl.text + '</div>' +
-                      '<details class="spotlight-original"><summary>Read the original</summary>' + original + '</details>'
+                (pl ? '<div class="spotlight-plain">' + '<p class="plain-label"><b>Simplified version, not the source.</b> These are not the writer&rsquo;s words, so do not quote them. To quote, use the original words below.</p>' + pl.text + '</div>' +
+                      '<details class="spotlight-original"><summary>Read the original (the real words you can quote)</summary>' + original + '</details>'
                     : original) +
                 '<div class="spotlight-task"><strong>Make it yours:</strong> ' + (pl ? pl.task : s.task) + '</div>' +
                 '<p class="spotlight-cite">' + s.cite +

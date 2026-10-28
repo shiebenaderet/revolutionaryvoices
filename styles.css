@@ -1035,6 +1035,8 @@
         .reading-body em { font-style: italic; }
         .spotlight-plain { background: var(--surface); border-left: 4px solid var(--accent); padding: 8px 12px; margin: 8px 0; }
         .spotlight-plain p { margin: 0 0 8px; }
+        .spotlight-plain { border-left-style: dashed; }
+        .spotlight-plain .plain-label { font-size: .92em; color: var(--ink); background: #fff3cd; border: 1px solid #c9a227; padding: 6px 10px; margin: 0 0 10px; }
         .spotlight-original { margin: 8px 0; }
         .spotlight-original > summary { cursor: pointer; font-weight: 700; color: var(--accent); }
         .reading-tagline.reading-heading { margin: 4px 0 0; color: var(--accent); font-size: 1.12em; font-weight: 700; line-height: 1.3; }

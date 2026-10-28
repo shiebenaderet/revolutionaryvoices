@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.6.5] - 2026-10-27
+
+### Changed
+
+- **Plain Spotlights are labeled as not the source.** Teacher, Oct 27: "I don't want them to quote it as fact." Each Quick and Clear plain version opens with a yellow label, "Simplified version, not the source. These are not the writer's words, so do not quote them. To quote, use the original words below," sits behind a dashed edge, and the link under it reads "Read the original (the real words you can quote)." On the reading pages and in the builder's Read step.
+
 ## [3.6.4] - 2026-10-27
 
 ### Added

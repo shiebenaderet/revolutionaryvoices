@@ -51,8 +51,8 @@ function spotlightBlock(id, level) {
         `          <h2>Source Spotlight: A Document from the Time</h2>\n` +
         `          <p class="sp-doc"><b>${sp.doc}</b> <span class="sp-date">${sp.date}</span></p>\n` +
         `          <p class="sp-context">${pl ? pl.context : sp.context}</p>\n` +
-        (pl ? `          <div class="sp-plain">${pl.text}</div>\n` +
-              `          <details class="sp-original"><summary>Read the original</summary><div class="period-text">${text}</div></details>\n`
+        (pl ? `          <div class="sp-plain"><p class="plain-label"><b>Simplified version, not the source.</b> These are not the writer&rsquo;s words, so do not quote them. To quote, use the original words below.</p>${pl.text}</div>\n` +
+              `          <details class="sp-original"><summary>Read the original (the real words you can quote)</summary><div class="period-text">${text}</div></details>\n`
             : `          <div class="period-text">${text}</div>\n`) +
         `          <p class="sp-task"><b>Make it yours:</b> ${pl ? pl.task : sp.task}</p>\n` +
         `          <p class="sp-cite">${sp.cite}${sp.url ? ` &middot; <a href="${sp.url}" target="_blank" rel="noopener">See the source</a>` : ''}</p>\n` +
@@ -247,6 +247,8 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .reading-spotlight .sp-task { margin:0 0 8px; }
 .reading-spotlight .sp-plain { background:var(--surface, #fffaf0); border-left:4px solid var(--accent); padding:10px 14px; margin:0 0 10px; }
 .reading-spotlight .sp-plain p { margin:0 0 8px; }
+.reading-spotlight .sp-plain { border-left-style:dashed; }
+.reading-spotlight .plain-label { font-size:.92rem; color:var(--ink); background:#fff3cd; border:1px solid #c9a227; padding:6px 10px; margin:0 0 10px; }
 .reading-spotlight .sp-original { margin:0 0 10px; }
 .reading-spotlight .sp-original > summary { cursor:pointer; font-weight:700; color:var(--accent); margin-bottom:8px; }
 .reading-spotlight .sp-cite { font-size:.9rem; color:var(--muted); margin:0; }

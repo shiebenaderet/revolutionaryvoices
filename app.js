@@ -1938,6 +1938,26 @@
             if (typeof crewRenderLevelPick === 'function') crewRenderLevelPick();
         }
 
+        // Find a Face (readings.js, RV_FACES): real people for a group topic,
+        // at the bottom of the reading. Teacher, Oct 28.
+        function rvFindAFace(id) {
+            const f = window.RV_FACES && window.RV_FACES[id];
+            if (!f) return '';
+            const link = function(url, text) {
+                return '<a href="' + url + '" target="_blank" rel="noopener">' + text + '</a>';
+            };
+            const items = f.people.map(function(p) {
+                const links = [];
+                if (p[2]) links.push(link('https://en.wikipedia.org/wiki/' + p[2], 'Wikipedia'));
+                if (p[3]) links.push(link(p[3], 'Britannica'));
+                return '<li><strong>' + p[0] + '</strong>, ' + p[1] + '. ' + links.join(' · ') + '</li>';
+            }).join('');
+            const bg = f.bg ? '<p class="faf-bg">About the group: ' + link(f.bg[1], 'Britannica: ' + f.bg[0]) + '</p>' : '';
+            return '<div class="find-a-face"><h4><i class="fas fa-user" aria-hidden="true"></i> Find a Face</h4>' +
+                '<p>Your topic is a group. Pick one real person from this list. Read about them. Add one fact about them to your Fact Bank, with the source.</p>' +
+                '<ul>' + items + '</ul>' + bg + '</div>';
+        }
+
         function rvRenderReading(id) {
             const r = window.RV_READINGS[id];
             if (!r) return;
@@ -1978,6 +1998,11 @@
                 return '<li><a href="' + s.url + '" target="_blank" rel="noopener">' + s.title + '</a></li>';
             }).join('');
             set('readingSources', srcItems ? '<h4><i class="fas fa-link" aria-hidden="true"></i> Where these facts come from</h4><ul>' + srcItems + '</ul>' : '');
+            const faces = rvFindAFace(id);
+            if (faces) {
+                const rs = document.getElementById('readingSources');
+                if (rs) rs.innerHTML += faces;
+            }
             set('drawerReadingSources', srcItems ? '<ul>' + srcItems + '</ul>' : '');
             const srcWrap = document.getElementById('drawerSourcesWrap');
             if (srcWrap) srcWrap.hidden = !srcItems;

@@ -2089,3 +2089,54 @@ window.RV_READINGS = {
     ]
   }
 };
+
+/* Find a Face (teacher, Oct 28): a group topic still needs a real person to tell the story.
+   Shown at the bottom of each group reading, in the builder's Read step and on the reading pages.
+   Wikipedia links checked Oct 28; Britannica links from britannica.com search. `bg` = a page on
+   the group itself, used where the people listed have no Britannica entry. */
+window.RV_FACES = {
+  'hessians': { people: [
+    ['Johann Rall', 'commander at Trenton', 'Johann_Rall', 'https://www.britannica.com/biography/Johann-Rall'],
+    ['Wilhelm von Knyphausen', 'top Hessian general', 'Wilhelm_von_Knyphausen', 'https://www.britannica.com/biography/Wilhelm-Freiherr-von-Knyphausen'],
+    ['Johann Gottfried Seume', 'drafted and shipped to America', 'Johann_Gottfried_Seume']
+  ] },
+  'camp-followers': { people: [
+    ['Margaret Corbin', "took over her husband's cannon", 'Margaret_Corbin', 'https://www.britannica.com/biography/Margaret-Corbin'],
+    ['Martha Washington', 'spent the winters in camp', 'Martha_Washington', 'https://www.britannica.com/biography/Martha-Washington']
+  ] },
+  'young-soldiers': { people: [
+    ['Joseph Plumb Martin', 'joined the army at 15', 'Joseph_Plumb_Martin'],
+    ['James Forten', 'sailor at 14, captured at sea', 'James_Forten'],
+    ['Andrew Jackson', 'courier at 13, captured', 'Andrew_Jackson', 'https://www.britannica.com/biography/Andrew-Jackson']
+  ] },
+  'enslaved-british-freedom': { people: [
+    ['Harry Washington', 'escaped Mount Vernon to the British', 'Harry_Washington'],
+    ['Colonel Tye', 'led Black Loyalist raids in New Jersey', 'Colonel_Tye']
+  ], bg: ['Lord Dunmore, who made the 1775 freedom offer', 'https://www.britannica.com/biography/John-Murray-4th-Earl-of-Dunmore'] },
+  'native-americans': { people: [
+    ['Molly Brant', 'Mohawk leader who sided with Britain', 'Molly_Brant', 'https://www.britannica.com/biography/Mary-Brant'],
+    ['Cornplanter', 'Seneca war leader', 'Cornplanter', 'https://www.britannica.com/biography/Cornplanter'],
+    ['Daniel Nimham', 'Stockbridge chief who fought for the Patriots', 'Daniel_Nimham']
+  ] },
+  'african-americans': { people: [
+    ['Salem Poor', 'praised for his bravery at Bunker Hill', 'Salem_Poor', 'https://kids.britannica.com/students/article/Salem-Poor/333502'],
+    ['Prince Hall', 'asked Massachusetts to end slavery', 'Prince_Hall']
+  ] },
+  'women': { people: [
+    ['Lydia Darragh', 'Quaker spy in Philadelphia', 'Lydia_Darragh', 'https://www.britannica.com/biography/Lydia-Barrington-Darragh'],
+    ['Esther de Berdt Reed', 'raised money for the army', 'Esther_de_Berdt_Reed']
+  ] },
+  'womens-economic-agency': { people: [
+    ['Penelope Barker', 'led the Edenton tea boycott', 'Penelope_Barker'],
+    ['Sarah Franklin Bache', "led a drive to sew soldiers' shirts", 'Sarah_Franklin_Bache']
+  ], bg: ['the Daughters of Liberty', 'https://kids.britannica.com/students/article/Daughters-of-Liberty/641827'] },
+  'loyalists': { people: [
+    ['Thomas Hutchinson', 'Massachusetts governor', 'Thomas_Hutchinson_(governor)', 'https://www.britannica.com/biography/Thomas-Hutchinson'],
+    ['Joseph Galloway', 'Pennsylvania leader who fled to Britain', 'Joseph_Galloway', 'https://www.britannica.com/biography/Joseph-Galloway'],
+    ['William Franklin', "Ben Franklin's Loyalist son", 'William_Franklin']
+  ] },
+  'indentured-servants': { people: [
+    ['Matthew Lyon', 'came as a servant at 15, later a soldier', 'Matthew_Lyon'],
+    ['John Harrower', 'servant who kept a diary in Virginia', 'John_Harrower']
+  ], bg: ['indentured labor', 'https://www.britannica.com/topic/indentured-labor'] }
+};

@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.6.6] - 2026-10-28
+
+### Added
+
+- **Find a Face on every group reading.** Teacher, Oct 28: group topics should explain what the group faced, but the podcast needs a real person's story. Each of the 10 group readings now ends with "Find a Face": two or three real people from that group, each with a one-line description and Wikipedia and Britannica links, plus a Britannica background page on the group where the people listed have no Britannica entry. Data in `readings.js` (`RV_FACES`); shown at the bottom of the builder's Read step and of each reading page. Matches the Find a Face slides in the Oct 29 deck.
+
 ## [3.6.5] - 2026-10-27
 
 ### Changed

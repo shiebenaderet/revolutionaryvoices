@@ -32,9 +32,11 @@ function loadReadings() {
     const ssrc = fs.readFileSync(path.join(ROOT, 'sources.js'), 'utf8');
     vm.runInContext(ssrc, sandbox, { filename: 'sources.js' });
     SOURCES = sandbox.window.RV_SOURCES || {};
+    FACES = sandbox.window.RV_FACES || {};
     return { topics: RV_TOPICS, readings: RV_READINGS };
 }
 let SOURCES = {};
+let FACES = {};
 
 /* Teacher, Oct 27: every student checks two sources on the Research Notes, the document from the
    time and one link, so the Source Spotlight (sources.js, until now only in the builder's Read step)
@@ -237,6 +239,8 @@ h1,h2,h3,h4,h5 { font-family:var(--font-head); }
 .facts-group li { margin:3px 0; }
 .reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
 .reading-sources a { color:var(--accent); }
+.find-a-face p { margin:0 0 8px; }
+.find-a-face .faf-bg { color:var(--muted); margin:8px 0 0; }
 .reading-spotlight { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
 .reading-spotlight h2 { color:var(--accent); margin:0 0 10px; font-size:1.15rem; }
 .reading-spotlight .sp-doc { margin:0 0 6px; }
@@ -351,6 +355,25 @@ const PAGE_JS = `
   } catch (e) {}
 })();`;
 
+/* Find a Face (readings.js, RV_FACES): real people for a group topic, at the bottom of the
+   reading page, after the sources. Teacher, Oct 28. */
+function facesBlock(id) {
+    const f = FACES[id];
+    if (!f) return '';
+    const a = (url, text) => `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(text)}</a>`;
+    const items = f.people.map(p => {
+        const links = [];
+        if (p[2]) links.push(a('https://en.wikipedia.org/wiki/' + p[2], 'Wikipedia'));
+        if (p[3]) links.push(a(p[3], 'Britannica'));
+        return `<li><strong>${esc(p[0])}</strong>, ${esc(p[1])}. ${links.join(' · ')}</li>`;
+    }).join('\n            ');
+    const bg = f.bg ? `\n          <p class="faf-bg">About the group: ${a(f.bg[1], 'Britannica: ' + f.bg[0])}</p>` : '';
+    return `\n        <section class="reading-sources find-a-face">\n` +
+        `          <h2>Find a Face</h2>\n` +
+        `          <p>Your topic is a group. Pick one real person from this list. Read about them. Add one fact about them to your Fact Bank, with the source.</p>\n` +
+        `          <ul>\n            ${items}\n          </ul>${bg}\n        </section>`;
+}
+
 function renderPage(topic, reading, allTopics) {
     const quickFacts = (reading.quickFacts || [])
         .map(f => `<span class="qf"><strong>${esc(f[0])}:</strong> ${esc(f[1])}</span>`)
@@ -444,7 +467,7 @@ ${quickFacts ? `
     </div>` : ''}
 
       ${panels}
-${sourcesBlock}
+${sourcesBlock}${facesBlock(topic.id)}
   </article>
 
   <p class="page-foot">

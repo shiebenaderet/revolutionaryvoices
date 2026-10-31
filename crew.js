@@ -386,18 +386,18 @@
 
   /* Plan questions (teacher, Oct 31): students can't describe a box they haven't
      written yet, so Plan asks questions they answer from their Fact Bank instead.
-     The Story comes first because the Hook and the Wrap come out of it. The answers
+     The parts run in the order the episode plays (teacher, Oct 31). The answers
      go into the Group Doc and show on My Lines beside each box. The old one-line
      plan inputs stay parked, so a plan saved before this still reaches the Doc. */
-  var PLAN_ORDER = ['content', 'intro', 'conclusion'];
+  var PLAN_ORDER = ['intro', 'content', 'conclusion'];
   var PLAN_LEAD = {
-    content: 'Answer these first. They are the middle of your episode, and the Hook and Wrap come from them.',
-    intro: 'Now pick the most surprising thing in your story. That is how you grab listeners.',
+    intro: 'Grab listeners with the most surprising thing in your story.',
+    content: 'Tell what happened, from beginning to end.',
     conclusion: 'End with why your story matters. This is where your working thesis goes.'
   };
   var PLAN_QS = {
     content: [
-      { id: 'pq-before', label: 'Before', q: 'Who is your story about, and where and when does it start?', start: 'It starts in ___ in ___, when ___', fact: true },
+      { id: 'pq-before', label: 'Before', q: 'Who is your story about, and where and when does it start?', start: 'This is the story of ___, in ___ in ___', fact: true },
       { id: 'pq-turn', label: 'The Turning Point', q: 'What problem or choice did they face, and what did they do?', start: 'Their big problem was ___, so they ___', fact: true },
       { id: 'pq-after', label: 'After', q: 'What happened because of what they did?', start: 'Because of this, ___', fact: true }
     ],
@@ -405,8 +405,7 @@
       { id: 'pq-hook', label: 'The Surprise', q: 'What is the most surprising true thing in your story?', start: 'Most people don\'t know that ___', fact: true }
     ],
     conclusion: [
-      { id: 'pq-care', label: 'Why It Matters', q: 'Why should someone today care about this story?', start: 'This story matters today because ___' },
-      { id: 'pq-without', label: 'Without Them', q: 'What would the story of the Revolution leave out without them?', start: 'Without them, the story of the Revolution would leave out ___' }
+      { id: 'pq-care', label: 'Why It Matters', q: 'Why should someone today care about this story?', start: 'This story matters today because ___' }
     ]
   };
   /* What each Hook style sounds like, so a style is something you can hear, not a label. */
@@ -602,15 +601,7 @@
   function renderPlan() {
     var host = $('planParts');
     if (!host) return;
-    var mapHtml = '';
-    PARTS.forEach(function (part, i) {
-      var s = chosen(part);
-      mapHtml += '<div class="map-part"><span class="map-name">' + part.name + '</span><span class="map-time">' + part.time + '</span>' +
-        '<span class="map-style">' + (s ? esc(s.name) : 'Pick a style') + '</span></div>' +
-        (i < PARTS.length - 1 ? '<span class="map-arrow" aria-hidden="true">»</span>' : '');
-    });
-    if ($('episodeMap')) $('episodeMap').innerHTML = mapHtml +
-      '<p class="map-total">The whole episode: 2 to 4 minutes. It plays in this order, but you plan the Story first.</p>';
+    if ($('episodeMap')) $('episodeMap').innerHTML = '';
 
     /* Park the inputs before redrawing, so their typed text survives. */
     var park = $('planInputPark');

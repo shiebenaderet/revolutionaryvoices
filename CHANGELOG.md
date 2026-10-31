@@ -6,6 +6,15 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.7.1] - 2026-10-31
+
+### Changed
+
+- **Plan runs in the order the episode plays.** Teacher, Oct 31: the page showed Hook » Story » Wrap and then asked for the Story first, which reads as a mistake to an 8th grader. The parts are now 1. The Hook, 2. The Story, 3. The Wrap.
+- **No episode map at the top.** The numbered parts are the outline; the map repeated it and showed three "Pick a style" boxes before anything was picked. The lead now says the episode runs 2 to 4 minutes.
+- **The first Story starter answers the question:** "This is the story of ___, in ___ in ___" (it asked who, and the old starter skipped the who).
+- **The Wrap asks one question** under the thesis: why someone today should care. "What would the story of the Revolution leave out without them?" is gone; it repeated the thesis.
+
 ## [3.7.0] - 2026-10-31
 
 ### Changed

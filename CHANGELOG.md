@@ -6,6 +6,18 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.7.0] - 2026-10-31
+
+### Changed
+
+- **Plan asks questions instead of "one line per box."** Teacher, Oct 31: students can't describe a box before they've written it, so the old Plan (pick a style, then write a line saying what happens in each of up to 17 boxes) was hard to follow. Plan now asks six questions students answer in a few words from their Fact Bank, each with a "Start with" sentence starter:
+  - **The Story, planned first** (the Hook and Wrap come out of it): Before (who, where and when), The Turning Point (the problem or choice, and what they did), After (what happened because of it). Each picks the Fact Bank fact that proves it.
+  - **The Hook:** the most surprising true thing in the story, with its fact.
+  - **The Wrap:** the working thesis shown on the page, then why someone today should care, and what the story of the Revolution would leave out without them.
+  - The style cards come after each part's questions. Each says who talks in plain words ("Who talks: Narrator, Subject") instead of the H/N/S badges, and each Hook style shows what it sounds like.
+  - The per-box lines and Say Hello are off the Plan step. The boxes, Say Hello included, are still in the Group Doc and on My Lines.
+- **The answers carry forward.** The Group Doc frame prints "Our plan" at the top of each part (with the fact number), and My Lines shows "Your group's plan" above each box on the Chromebook that made the plan. A plan saved with the old one-line boxes still prints in the Doc.
+
 ## [3.6.6] - 2026-10-28
 
 ### Added

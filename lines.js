@@ -438,6 +438,14 @@
       '<p class="lb-ask">' + esc(kind.ask) + '</p>' +
       '<p class="lb-goal">' + (id === 'group-intro' ? 'One short sentence. Not saying hello? Leave this box empty.' : 'Aim for ' + goal(g.target) + '.') + (level === 'mostSupport' ? ' Pick the frames that fit. You don\'t need all of them.' : '') + '</p>';
 
+    /* The group's answers from Plan for this part (Oct 31), so the box starts from the plan. */
+    var notes = C.planNotes && part ? C.planNotes(part.radio) : [];
+    if (notes.length) {
+      html += '<details class="lb-plan" open><summary>Your group\'s plan for ' + esc(part.name) + '</summary><ul>' +
+        notes.map(function (x) { return '<li><strong>' + esc(x.label) + ':</strong> ' + esc(x.answer || '') + (x.fact ? ' <span class="field-hint">(' + esc(x.fact) + ')</span>' : '') + '</li>'; }).join('') +
+        '</ul></details>';
+    }
+
     if (level === 'mostSupport') {
       /* Only the frame being worked shows its word banks; the others show as a
          sentence with blanks and a button to work on them. Less on screen. */

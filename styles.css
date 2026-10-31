@@ -2106,6 +2106,23 @@ kbd { font-family: var(--face); border: 1px solid var(--edge); border-radius: 4p
 .plan-beat-what { font-size: 15px; color: var(--muted); margin: 2px 0 6px; }
 .plan-beat-target { white-space: nowrap; }
 .plan-line { width: 100%; margin: 0; }
+.plan-part-lead { margin: 0 0 10px; }
+.plan-qs { display: grid; gap: 10px; margin: 0 0 14px; }
+.plan-q { border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px 12px; background: var(--surface); }
+.plan-q-label { display: grid; gap: 2px; margin: 0 0 4px; }
+.plan-q-name { font-size: 15px; font-weight: 700; color: var(--muted); }
+.plan-q-text { font-size: 18px; font-weight: 800; }
+.plan-q-start { font-size: 15px; color: var(--muted); margin: 0 0 6px; }
+.plan-q-fact { display: grid; gap: 4px; margin-top: 8px; }
+.plan-q-fact label { font-size: 15px; font-weight: 600; margin: 0; }
+.plan-fact-pick { width: 100%; max-width: 100%; font: inherit; font-size: 16px; padding: 6px 8px; }
+.plan-thesis { border-left: 4px solid var(--accent, var(--ink)); padding: 6px 10px; margin: 0 0 12px; background: var(--surface-2, var(--surface)); }
+.plan-style-title { margin: 4px 0 8px; font-size: 17px; }
+.style-sounds { font-size: 15px; }
+.style-who { font-size: 15px; font-weight: 600; color: var(--muted); }
+.lb-plan { border: 1.5px solid var(--line); border-radius: 10px; padding: 6px 12px; margin: 6px 0 10px; background: var(--surface); }
+.lb-plan summary { font-weight: 700; cursor: pointer; }
+.lb-plan ul { margin: 6px 0 4px; padding-left: 20px; }
 .voice-chip { display: inline-block; font-size: 15px; font-weight: 700; color: #fff; background: var(--voice-host); border-radius: 999px; padding: 1px 10px; }
 .voice-chip.voice-narrator { background: var(--voice-narrator); }
 .voice-chip.voice-subject { background: var(--voice-subject); }

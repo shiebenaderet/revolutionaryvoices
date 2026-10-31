@@ -21,7 +21,7 @@ Students build a podcast-style historical episode in which a Host, a Narrator an
 |---|---|
 | Start | Topic, podcast name, and the crew: each person checks one or more **jobs** (Researcher, Lead Scriptwriter, Chief Editor). Jobs can be shared or split. |
 | Read | Pick a reading by its first sentence, read it, build the **Fact Bank** (fact plus source), write a **working thesis**. |
-| Plan | Episode map, pick a style for the Hook, Story and Wrap, and write one line per box. Then **Who says it?**: only the parts (Host, Narrator, Subject) those styles use, each with its box count; students check who says each one, or tap **Split it up for us** for the fairest split. A shared part's boxes alternate between the people sharing it. |
+| Plan | Episode map, then questions for each part, answered in a few words from the Fact Bank (the Story first, then the Hook and the Wrap), and a style for each part. Then **Who says it?**: only the parts (Host, Narrator, Subject) those styles use, each with its box count; students check who says each one, or tap **Split it up for us** for the fairest split. A shared part's boxes alternate between the people sharing it. |
 | Group Doc | **Copy the frame** and paste it into a new Google Doc, or **print a paper copy** with ruled lines. Share with the crew and the teacher. Students can change the frame or make their own. |
 | My Lines | Each student taps their name and builds the boxes with their name on them, one box at a time. Help starts at their reading level: **Quick** taps words into short sentence frames (word banks in `builder-banks.js`, drawn only from the reading), **Clear** gets "Stuck?" starters, **Full** writes on lines, **Deep** adds a go-further move. Copy the lines into the Doc, or print the sheet. |
 | Practice | Paste the finished script ("Maria: ...") to time it and rehearse line by line. |
@@ -116,7 +116,7 @@ This project uses [Semantic Versioning](https://semver.org):
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
-Current version: **3.4.0**
+Current version: **3.7.0**
 
 ---
 

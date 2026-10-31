@@ -381,6 +381,94 @@
       park.appendChild(input);
     });
     document.body.appendChild(park);
+    buildPlanQuestions(park);
+  }
+
+  /* Plan questions (teacher, Oct 31): students can't describe a box they haven't
+     written yet, so Plan asks questions they answer from their Fact Bank instead.
+     The Story comes first because the Hook and the Wrap come out of it. The answers
+     go into the Group Doc and show on My Lines beside each box. The old one-line
+     plan inputs stay parked, so a plan saved before this still reaches the Doc. */
+  var PLAN_ORDER = ['content', 'intro', 'conclusion'];
+  var PLAN_LEAD = {
+    content: 'Answer these first. They are the middle of your episode, and the Hook and Wrap come from them.',
+    intro: 'Now pick the most surprising thing in your story. That is how you grab listeners.',
+    conclusion: 'End with why your story matters. This is where your working thesis goes.'
+  };
+  var PLAN_QS = {
+    content: [
+      { id: 'pq-before', label: 'Before', q: 'Who is your story about, and where and when does it start?', start: 'It starts in ___ in ___, when ___', fact: true },
+      { id: 'pq-turn', label: 'The Turning Point', q: 'What problem or choice did they face, and what did they do?', start: 'Their big problem was ___, so they ___', fact: true },
+      { id: 'pq-after', label: 'After', q: 'What happened because of what they did?', start: 'Because of this, ___', fact: true }
+    ],
+    intro: [
+      { id: 'pq-hook', label: 'The Surprise', q: 'What is the most surprising true thing in your story?', start: 'Most people don\'t know that ___', fact: true }
+    ],
+    conclusion: [
+      { id: 'pq-care', label: 'Why It Matters', q: 'Why should someone today care about this story?', start: 'This story matters today because ___' },
+      { id: 'pq-without', label: 'Without Them', q: 'What would the story of the Revolution leave out without them?', start: 'Without them, the story of the Revolution would leave out ___' }
+    ]
+  };
+  /* What each Hook style sounds like, so a style is something you can hear, not a label. */
+  var SOUNDS_LIKE = {
+    dramatic: 'Picture this: it\'s 1776, and ___',
+    fact: 'Here is a surprising fact: ___',
+    question: 'What would make someone ___?',
+    sound: '(sound of ___) It is ___, in ___.'
+  };
+  var PQ_BLOCKS = {};
+  function buildPlanQuestions(park) {
+    PLAN_ORDER.forEach(function (radio) {
+      PLAN_QS[radio].forEach(function (q) {
+        var b = el('div', { 'class': 'plan-q' });
+        b.innerHTML = '<label class="plan-q-label" for="' + q.id + '"><span class="plan-q-name">' + esc(q.label) + '</span>' +
+          '<span class="plan-q-text">' + esc(q.q) + '</span></label>' +
+          '<p class="plan-q-start">Start with: ' + esc(q.start) + '</p>';
+        b.appendChild(el('input', { type: 'text', id: q.id, 'class': 'plan-line', maxlength: '200', placeholder: 'A few words. Notes are fine.' }));
+        if (q.fact) {
+          var row = el('div', { 'class': 'plan-q-fact' });
+          var opts = '<option value="">Pick a fact</option>';
+          for (var i = 1; i <= FACT_MAX; i++) opts += '<option value="' + i + '">Fact ' + i + '</option>';
+          row.innerHTML = '<label for="' + q.id + '-fact">Which fact from your Fact Bank proves it?</label>' +
+            '<select id="' + q.id + '-fact" class="plan-fact-pick">' + opts + '</select>';
+          b.appendChild(row);
+        }
+        PQ_BLOCKS[q.id] = b;
+        park.appendChild(b);
+      });
+    });
+  }
+  /* A fact by its Fact Bank number (the number students see on the Read step). */
+  function factNo(n) {
+    var t = n ? val('fact' + n) : '';
+    return t ? { n: n, fact: t, src: val('fact' + n + '-src') } : null;
+  }
+  /* Fact choices show the fact itself; empty Fact Bank rows are hidden. Values stay
+     1 to FACT_MAX, so a saved choice restores before the facts are drawn. */
+  function syncFactPicks() {
+    var any = false;
+    for (var i = 1; i <= FACT_MAX; i++) if (factNo(i)) any = true;
+    document.querySelectorAll('.plan-fact-pick').forEach(function (s) {
+      Array.prototype.forEach.call(s.options, function (o) {
+        if (!o.value) { o.textContent = any ? 'Pick a fact' : 'Fill in your Fact Bank on the Read step first'; return; }
+        var f = factNo(o.value);
+        o.hidden = !f && !o.selected;
+        if (f) o.textContent = 'Fact ' + o.value + ': ' + (f.fact.length > 70 ? f.fact.slice(0, 68) + '…' : f.fact);
+        else o.textContent = 'Fact ' + o.value + ' (empty)';
+      });
+    });
+  }
+  /* The group's plan for one part, for the Group Doc and My Lines. */
+  function planNotes(radio) {
+    return (PLAN_QS[radio] || []).map(function (q) {
+      var f = q.fact ? factNo(val(q.id + '-fact')) : null;
+      return { label: q.label, answer: val(q.id), factNo: f ? 'Fact ' + f.n : '', fact: f ? 'Fact ' + f.n + ': ' + f.fact + (f.src ? ' (' + f.src + ')' : '') : '' };
+    }).filter(function (x) { return x.answer || x.fact; });
+  }
+  function voicesIn(st) {
+    var seen = [];
+    allBeats({ radio: '' }, st).forEach(function (b) { if (seen.indexOf(b[2]) === -1) seen.push(b[2]); });
+    return VOICES.filter(function (v) { return seen.indexOf(v.id) !== -1; }).map(function (v) { return v.name; });
   }
   function chosen(part) {
     var r = document.querySelector('input[name="' + part.radio + '"]:checked');
@@ -521,18 +609,34 @@
         '<span class="map-style">' + (s ? esc(s.name) : 'Pick a style') + '</span></div>' +
         (i < PARTS.length - 1 ? '<span class="map-arrow" aria-hidden="true">»</span>' : '');
     });
-    if ($('episodeMap')) $('episodeMap').innerHTML = mapHtml + '<p class="map-total">The whole episode: 2 to 4 minutes.</p>';
+    if ($('episodeMap')) $('episodeMap').innerHTML = mapHtml +
+      '<p class="map-total">The whole episode: 2 to 4 minutes. It plays in this order, but you plan the Story first.</p>';
 
-    /* Park the one-line inputs before redrawing, so their typed text survives. */
+    /* Park the inputs before redrawing, so their typed text survives. */
     var park = $('planInputPark');
     Object.keys(PLAN_INPUTS).forEach(function (k) { park.appendChild(PLAN_INPUTS[k]); });
+    Object.keys(PQ_BLOCKS).forEach(function (k) { park.appendChild(PQ_BLOCKS[k]); });
     var castPark = $('castInputPark');
     Object.keys(CAST_INPUTS).forEach(function (k) { castPark.appendChild(CAST_INPUTS[k]); });
+    syncFactPicks();
     host.innerHTML = '';
-    PARTS.forEach(function (part, i) {
+    PLAN_ORDER.forEach(function (radio, i) {
+      var part = PARTS.filter(function (p) { return p.radio === radio; })[0];
       var s = chosen(part);
       var sec = el('section', { 'class': 'plan-part', 'data-radio': part.radio });
-      var html = '<h3>' + (i + 1) + '. ' + part.name + ' <span class="plan-time">' + part.time + '</span></h3>' +
+      sec.innerHTML = '<h3>' + (i + 1) + '. ' + part.name + ' <span class="plan-time">' + part.time + '</span></h3>' +
+        '<p class="plan-part-lead">' + esc(PLAN_LEAD[radio]) + '</p>';
+      if (radio === 'conclusion') {
+        var thesis = val('workingThesis');
+        sec.appendChild(el('p', { 'class': 'plan-thesis' }, thesis
+          ? '<strong>Your working thesis:</strong> ' + esc(thesis)
+          : '<strong>Your working thesis:</strong> not written yet. Write it on the Read step, then come back.'));
+      }
+      var qs = el('div', { 'class': 'plan-qs' });
+      PLAN_QS[radio].forEach(function (q) { qs.appendChild(PQ_BLOCKS[q.id]); });
+      sec.appendChild(qs);
+
+      var html = '<h4 class="plan-style-title">Pick a style for ' + part.name + '</h4>' +
         '<div class="style-cards" role="radiogroup" aria-label="' + part.name + ' style">';
       part.styles.forEach(function (st) {
         var on = s && s.id === st.id;
@@ -540,25 +644,13 @@
         html += '<label class="style-card' + (on ? ' is-on' : '') + (open ? '' : ' is-closed') + '">' +
           '<input type="radio" name="plan-' + part.radio + '" value="' + st.id + '"' + (on ? ' checked' : '') + (open ? '' : ' disabled') + '>' +
           '<span class="style-name">' + st.name + '</span><span class="style-desc">' + (open ? st.desc : 'Not for this topic: nobody plays a person who was enslaved.') + '</span>' +
-          '<span class="beat-strip" aria-hidden="true" data-no-listen>' +
-          allBeats({ radio: '' }, st).map(function (b) { return '<span class="beat-dot voice-' + b[2] + '" title="' + esc(b[1]) + '"></span>'; }).join('') +
-          '</span></label>';
+          (open && SOUNDS_LIKE[st.id] ? '<span class="style-sounds">Sounds like: “' + esc(SOUNDS_LIKE[st.id]) + '”</span>' : '') +
+          (open ? '<span class="style-who">Who talks: ' + esc(voicesIn(st).join(', ')) + '</span>' : '') +
+          '</label>';
       });
       html += '</div>';
       if (part.radio === 'content' && noSubject()) html += '<p class="field-hint">For this topic, the Narrator tells the person\'s story. The Narrator can read real words from the time as a quote, from the Voice Bank, saying who said them.</p>';
-      sec.innerHTML = html;
-      if (s) {
-        var list = el('ol', { 'class': 'plan-beats' });
-        allBeats(part, s).forEach(function (b) {
-          var g = guideFor(b[0]);
-          var li = el('li', { 'class': 'plan-beat' });
-          li.innerHTML = '<div class="plan-beat-head"><label for="plan-' + b[0] + '" class="plan-beat-title">' + esc(b[1]) + '</label>' + chip(b) + '</div>' +
-            (g.what ? '<p class="plan-beat-what">' + esc(g.what.replace(/[.\s]+$/, '')) + '.' + (g.target ? ' <span class="plan-beat-target">Aim for ' + esc(g.target) + '.</span>' : '') + '</p>' : '');
-          li.appendChild(PLAN_INPUTS[b[0]]);
-          list.appendChild(li);
-        });
-        sec.appendChild(list);
-      }
+      sec.insertAdjacentHTML('beforeend', html);
       host.appendChild(sec);
       sec.querySelectorAll('input[type="radio"]').forEach(function (r) {
         r.addEventListener('change', function () { pickStyle(part, r.value); });
@@ -616,6 +708,12 @@
     PARTS.forEach(function (part) {
       var s = chosen(part);
       h.push('<h2>' + part.name + ' <span style="font-weight:400">(' + part.time + (s ? ', ' + esc(s.name) : '') + ')</span></h2>');
+      var notes = planNotes(part.radio);
+      if (notes.length) {
+        h.push('<p><strong>Our plan:</strong></p><ul>' + notes.map(function (x) {
+          return '<li><strong>' + esc(x.label) + ':</strong> ' + esc(x.answer || '') + (x.factNo ? ' <span style="' + GRAY + '" class="fr-help">(' + esc(x.factNo) + ' in the Fact Bank)</span>' : '') + '</li>';
+        }).join('') + '</ul>');
+      }
       if (!s) { h.push(box('<p>Pick a style for ' + part.name + ' on the Plan step.</p>', 3)); return; }
       allBeats(part, s).forEach(function (b) {
         var g = guideFor(b[0]);
@@ -832,7 +930,7 @@
   /* Shared with lines.js (My Lines), which builds on the same parts and beats. */
   window.RV_CREW = {
     PARTS: PARTS, VOICES: VOICES, CREW_OPENING: CREW_OPENING,
-    guideFor: guideFor, chosen: chosen, allBeats: allBeats, crewMembers: crewMembers,
+    guideFor: guideFor, planNotes: planNotes, chosen: chosen, allBeats: allBeats, crewMembers: crewMembers,
     isCrew: isCrew, noSubject: noSubject, voiceLabel: voiceLabel, boxLabel: boxLabel, cast: cast, linesFor: linesFor, printSheet: printSheet, esc: esc
   };
 })();

@@ -51,9 +51,9 @@
         ['fact-statement', 'The Surprise', 'host']] }
     ] },
     { radio: 'content', prefix: 'content-', name: 'The Story', time: '1 to 2 minutes', styles: [
-      { id: 'narrative', name: 'Three Scenes', desc: 'Before, the turning point, and after.', beats: [
-        ['narrative-intro', 'Set the Scene', 'narrator'], ['narrative-scene1', 'Before', 'subject'],
-        ['narrative-scene2', 'The Turning Point', 'subject'], ['narrative-scene3', 'After', 'subject']] }
+      { id: 'narrative', name: 'Three Scenes', desc: 'Who they were, what they did, and what happened because of it.', beats: [
+        ['narrative-intro', 'Set the Scene', 'narrator'], ['narrative-scene1', 'Who They Were', 'subject'],
+        ['narrative-scene2', 'What They Did', 'subject'], ['narrative-scene3', 'What Happened Because of It', 'subject']] }
     ] },
     { radio: 'conclusion', prefix: 'conclusion-', name: 'The Wrap', time: 'about 30 seconds', styles: [
       { id: 'significance', name: 'Why It Matters', desc: 'Your thesis, and why it matters today.', beats: [
@@ -66,9 +66,9 @@
     'group-welcome': { what: 'Welcome listeners. Say the podcast name and who the episode is about', target: '15-25 words (1-2 sentences)', starter: 'Welcome to' },
     'fact-statement': { what: 'Tell the most surprising true thing in your story. Use your plan for The Hook', target: '20-40 words (2-3 sentences)', starter: "Most people don't know that" },
     'narrative-intro': { what: 'Set the scene: when and where the story starts, and who we will hear about', target: '20-40 words (2-3 sentences)', starter: 'It is' },
-    'narrative-scene1': { what: 'Before: who the person is and where their story starts. Use your plan for Before', target: '40-70 words (3-5 sentences)', starter: 'This is the story of' },
-    'narrative-scene2': { what: 'The turning point: the problem or choice they faced, and what they did. Use your plan', target: '40-70 words (3-5 sentences)', starter: 'Everything changed when' },
-    'narrative-scene3': { what: 'After: what happened because of what they did. Use your plan for After', target: '40-70 words (3-5 sentences)', starter: 'Because of this' },
+    'narrative-scene1': { what: 'Who they were and where they lived during the Revolution. Use your plan for Who They Were', target: '40-70 words (3-5 sentences)', starter: 'This is the story of' },
+    'narrative-scene2': { what: 'What they did during the Revolution, and why it was hard or risky. Use your plan for What They Did', target: '40-70 words (3-5 sentences)', starter: 'During the war,' },
+    'narrative-scene3': { what: 'What happened because of what they did. Use your plan for What Happened Because of It', target: '40-70 words (3-5 sentences)', starter: 'Because of this' },
     'sig-why': { what: 'Why it matters: say your thesis and why someone today should care. Use your plan for The Wrap', target: '40-60 words (3-4 sentences)', starter: 'This story matters today because' }
   };
   /* A crew's Hook opens with the crew introducing themselves. */
@@ -379,14 +379,14 @@
   var PLAN_ORDER = ['intro', 'content', 'conclusion'];
   var PLAN_LEAD = {
     intro: 'Grab listeners with the most surprising thing in your story.',
-    content: 'Tell what happened, from beginning to end.',
+    content: 'Tell who they were, what they did, and what happened because of it.',
     conclusion: 'End with why your story matters. This is where your working thesis goes.'
   };
   var PLAN_QS = {
     content: [
-      { id: 'pq-before', label: 'Before', q: 'Who is your story about, and where and when does it start?', start: 'This is the story of ___, in ___ in ___', fact: true },
-      { id: 'pq-turn', label: 'The Turning Point', q: 'What problem or choice did they face, and what did they do?', start: 'Their big problem was ___, so they ___', fact: true },
-      { id: 'pq-after', label: 'After', q: 'What happened because of what they did?', start: 'Because of this, ___', fact: true }
+      { id: 'pq-before', label: 'Who They Were', q: 'Who is your story about, and where did they live during the Revolution?', start: 'This is the story of ___, who lived in ___', fact: true },
+      { id: 'pq-turn', label: 'What They Did', q: 'What did they do during the Revolution, and why was it hard or risky?', start: 'During the Revolution, ___. This was hard because ___', fact: true },
+      { id: 'pq-after', label: 'What Happened Because of It', q: 'What happened because of what they did?', start: 'Because of this, ___', fact: true }
     ],
     intro: [
       { id: 'pq-hook', label: 'The Surprise', q: 'What is the most surprising true thing in your story?', start: 'Most people don\'t know that ___', fact: true }

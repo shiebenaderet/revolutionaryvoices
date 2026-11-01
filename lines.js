@@ -69,12 +69,12 @@
       "Now let's hear from {name}, [whoName].", '{name} will tell us about [when].'] },
     transition: { ask: 'Move the story forward in time.', person: 'they', frames: [
       'But in [when], everything changed.', 'Years later, {name} [did].'] },
-    subject_before: { ask: 'Speak as the person. Tell about your life before.', person: 'I', frames: [
-      'I was [whoI].', 'I lived in [where] in [when].', 'Every day I felt [feeling], because I [hard].'] },
-    subject_turn: { ask: 'Speak as the person. Tell about the big moment.', person: 'I', frames: [
-      'In [when], I [did].', 'I felt [feeling], but I [did].', 'The hardest part was that I [hard].'] },
-    subject_after: { ask: 'Speak as the person. Tell what happened after.', person: 'I', frames: [
-      'After that, I [did].', 'I want you to remember that I [did].', 'Because of all this, I [mattered].'] },
+    subject_before: { ask: 'Speak as the person. Tell who you were and where you lived.', person: 'I', frames: [
+      'I was [whoI].', 'I lived in [where] in [when].'] },
+    subject_turn: { ask: 'Speak as the person. Tell what you did during the Revolution, and why it was hard.', person: 'I', frames: [
+      'During the war, I [did].', 'It was hard, because I [hard].', 'I felt [feeling], but I kept going.'] },
+    subject_after: { ask: 'Speak as the person. Tell what happened because of what you did.', person: 'I', frames: [
+      'After that, I [did].', 'Because of all this, I [mattered].', 'I want you to remember that I [did].'] },
     host_question: { ask: 'Ask the person a question.', person: 'they', frames: [
       'What was your life like in [where]?', 'What happened in [when]?', 'How did you feel about [people]?', 'What was the hardest part of being [whoI]?'] },
     subject_answer: { ask: 'Answer as the person. Use "I".', person: 'I', frames: [
@@ -126,11 +126,11 @@
     /* Oct 23: for the six topics about people who were enslaved, nobody plays the
        person. These replace the "I" boxes; the Narrator tells it, and real words are
        read as a quote. */
-    narr_before: { ask: 'Tell about their life before. Use their name or "they".', person: 'they', frames: [
-      '{name} was [whoI].', '{name} lived in [where] in [when].', 'Life was hard, because {name} [hard].'] },
-    narr_turn: { ask: 'Tell the big moment. Use their name or "they".', person: 'they', frames: [
-      'In [when], {name} [did].', 'It took courage, because {name} [hard].'] },
-    narr_after: { ask: 'Tell what happened after.', person: 'they', frames: [
+    narr_before: { ask: 'Tell who they were and where they lived. Use their name or "they".', person: 'they', frames: [
+      '{name} was [whoI].', '{name} lived in [where] in [when].'] },
+    narr_turn: { ask: 'Tell what they did during the Revolution, and why it was hard. Use their name or "they".', person: 'they', frames: [
+      'During the war, {name} [did].', 'It took courage, because {name} [hard].'] },
+    narr_after: { ask: 'Tell what happened because of what they did.', person: 'they', frames: [
       'After that, {name} [did].', 'Because of all this, {name} [mattered].'] },
     words_quote: { ask: 'Read real words from the time, and say who said them. Find them in the Voice Bank under Your reading.', person: 'they', frames: [
       'In [when], [text:who said it] said: "[text:the words, from the Voice Bank]"', 'Those words show that {name} [mattered].'] }

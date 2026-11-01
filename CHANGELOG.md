@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.8.2] - 2026-11-01
+
+### Changed
+
+- **The Story fits every topic.** Teacher, Nov 1: "not everyone had a clear time when things changed." Before / The Turning Point / After assumed one dramatic moment; Phillis Wheatley wrote for years, and the group topics are many people. The Story's boxes and Plan questions are now **Who They Were** ("Who is your story about, and where did they live during the Revolution?"), **What They Did** ("What did they do during the Revolution, and why was it hard or risky?") and **What Happened Because of It**. Writing Help's frames follow ("During the war, I ___." "It was hard, because I ___."), with no "big moment" or choice assumed.
+
 ## [3.8.1] - 2026-11-01
 
 ### Changed

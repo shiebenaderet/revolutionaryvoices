@@ -41,49 +41,36 @@
   /* The three parts and the boxes ("beats") inside each style. Field ids are the
      solo writing fields, so a style chosen here is the same style on the solo
      steps, and the guidance and sentence starters come from those fields. */
+  /* The short episode (teacher, Nov 1: "many will struggle" to write a full script in two days).
+     Every group writes the same boxes, and each Plan question becomes one box, so the plan is the
+     outline. The style ids are the solo steps' radios (Shocking Fact, Story in Three Scenes, Why It
+     Matters), trimmed to the boxes below; the longer styles stay on the solo path. */
   var PARTS = [
     { radio: 'intro', prefix: 'intro-', name: 'The Hook', time: 'about 30 seconds', styles: [
-      { id: 'dramatic', name: 'Dramatic Hook', desc: 'Start inside a tense moment.', beats: [
-        ['dramatic-hook', 'The Moment', 'host'], ['dramatic-subject', 'Who This Is', 'host'], ['dramatic-stakes', 'What Was at Stake', 'host']] },
-      { id: 'fact', name: 'Shocking Fact', desc: 'Open with something surprising and true.', beats: [
-        ['fact-statement', 'The Fact', 'host'], ['fact-significance', 'Why It Surprises Us', 'host'], ['fact-subject', 'Meet the Person', 'host']] },
-      { id: 'question', name: 'Mystery Question', desc: 'Ask a question listeners want answered.', beats: [
-        ['question-hook', 'The Question', 'host'], ['question-buildup', 'More Questions', 'host'], ['question-answer', 'A Hint at the Answer', 'host']] },
-      { id: 'sound', name: 'Sound and Setting', desc: 'Drop listeners into the time and place.', beats: [
-        ['sound-effects', 'Sound Effects', 'narrator'], ['sound-setting', 'When and Where', 'narrator'],
-        ['sound-subject', 'Who Is There', 'narrator'], ['sound-conflict', 'The Problem They Face', 'narrator']] }
+      { id: 'fact', name: 'The Surprise', desc: 'Open with the most surprising true thing in your story.', beats: [
+        ['fact-statement', 'The Surprise', 'host']] }
     ] },
-    { radio: 'content', prefix: 'content-', name: 'The Story', time: '1 to 3 minutes', styles: [
-      { id: 'interview', name: 'Interview', desc: 'The Host asks, the historical figure answers.', beats: [
-        ['interview-intro', 'Set Up the Interview', 'narrator'],
-        ['q1', 'Question 1', 'host'], ['a1', 'Answer 1', 'subject'], ['q2', 'Question 2', 'host'], ['a2', 'Answer 2', 'subject'],
-        ['q3', 'Question 3', 'host'], ['a3', 'Answer 3', 'subject'], ['q4', 'Question 4', 'host'], ['a4', 'Answer 4', 'subject'],
-        ['q5', 'Question 5', 'host'], ['a5', 'Answer 5', 'subject']] },
-      { id: 'narrative', name: 'Story in Three Scenes', desc: 'The historical figure tells it, scene by scene.', beats: [
-        ['narrative-intro', 'Set Up the Story', 'narrator'], ['narrative-scene1', 'Scene 1: Before', 'subject'],
-        ['narrative-trans1', 'Move to Scene 2', 'narrator'], ['narrative-scene2', 'Scene 2: The Turning Point', 'subject'],
-        ['narrative-trans2', 'Move to Scene 3', 'narrator'], ['narrative-scene3', 'Scene 3: After', 'subject']] },
-      { id: 'news', name: 'News Report', desc: 'Report it live, like a reporter at the time.', beats: [
-        ['news-opening', 'On the Scene', 'host'], ['news-background', 'What Led to This', 'host'],
-        ['news-quote', 'In Their Own Words', 'subject'], ['news-turning', 'The Turning Point', 'host'],
-        ['news-aftermath', 'What Happened Next', 'host'], ['news-closing', 'Sign Off', 'host']] },
-      { id: 'diary', name: 'Diary Entries', desc: 'Three entries that show change over time.', beats: [
-        ['diary-intro', 'Set Up the Diary', 'narrator'], ['diary1-content', 'Entry 1: The Beginning', 'subject'],
-        ['diary2-content', 'Entry 2: The Turning Point', 'subject'], ['diary3-content', 'Entry 3: Looking Back', 'subject'],
-        ['diary-closing', 'What the Diary Shows', 'narrator']] }
+    { radio: 'content', prefix: 'content-', name: 'The Story', time: '1 to 2 minutes', styles: [
+      { id: 'narrative', name: 'Three Scenes', desc: 'Before, the turning point, and after.', beats: [
+        ['narrative-intro', 'Set the Scene', 'narrator'], ['narrative-scene1', 'Before', 'subject'],
+        ['narrative-scene2', 'The Turning Point', 'subject'], ['narrative-scene3', 'After', 'subject']] }
     ] },
     { radio: 'conclusion', prefix: 'conclusion-', name: 'The Wrap', time: 'about 30 seconds', styles: [
-      { id: 'significance', name: 'Why It Matters', desc: 'Sum up, then show the bigger picture.', beats: [
-        ['sig-what', 'What Happened', 'host'], ['sig-reveals', 'What It Shows', 'host'], ['sig-why', 'Why We Should Care', 'host'], ['sig-final', 'Final Thought', 'host']] },
-      { id: 'today', name: 'Then and Now', desc: 'Connect the story to today.', beats: [
-        ['today-lesson', 'The Lesson', 'host'], ['today-parallel', 'Where We See It Today', 'host'], ['today-specific', 'A Real Example', 'host'], ['today-final', 'Why It Matters Now', 'host']] },
-      { id: 'challenge', name: 'The Missing Story', desc: 'Show what the usual story leaves out.', beats: [
-        ['challenge-standard', 'The Usual Story', 'host'], ['challenge-missing', "What's Missing", 'host'], ['challenge-why', 'Why It Was Left Out', 'host'],
-        ['challenge-lose', 'What We Lose', 'host'], ['challenge-final', 'A Challenge for Listeners', 'host']] },
-      { id: 'legacy', name: 'Legacy', desc: 'What they left behind, and what we can learn.', beats: [
-        ['legacy-impact', 'Their Impact', 'host'], ['legacy-lesson', 'The Lesson', 'host'], ['legacy-universal', 'For Everyone', 'host'], ['legacy-honor', 'How We Honor Them', 'host']] }
+      { id: 'significance', name: 'Why It Matters', desc: 'Your thesis, and why it matters today.', beats: [
+        ['sig-why', 'Why It Matters', 'host']] }
     ] }
   ];
+  /* What each short box asks for, in place of the solo field's longer guidance. The starters match
+     the Plan questions' "Start with" lines. */
+  var SHORT_GUIDE = {
+    'group-welcome': { what: 'Welcome listeners. Say the podcast name and who the episode is about', target: '15-25 words (1-2 sentences)', starter: 'Welcome to' },
+    'fact-statement': { what: 'Tell the most surprising true thing in your story. Use your plan for The Hook', target: '20-40 words (2-3 sentences)', starter: "Most people don't know that" },
+    'narrative-intro': { what: 'Set the scene: when and where the story starts, and who we will hear about', target: '20-40 words (2-3 sentences)', starter: 'It is' },
+    'narrative-scene1': { what: 'Before: who the person is and where their story starts. Use your plan for Before', target: '40-70 words (3-5 sentences)', starter: 'This is the story of' },
+    'narrative-scene2': { what: 'The turning point: the problem or choice they faced, and what they did. Use your plan', target: '40-70 words (3-5 sentences)', starter: 'Everything changed when' },
+    'narrative-scene3': { what: 'After: what happened because of what they did. Use your plan for After', target: '40-70 words (3-5 sentences)', starter: 'Because of this' },
+    'sig-why': { what: 'Why it matters: say your thesis and why someone today should care. Use your plan for The Wrap', target: '40-60 words (3-4 sentences)', starter: 'This story matters today because' }
+  };
   /* A crew's Hook opens with the crew introducing themselves. */
   var CREW_OPENING = [['group-intro', 'Say Hello', 'all'], ['group-welcome', 'Welcome Listeners', 'host']];
 
@@ -92,7 +79,7 @@
     'Everyone in the group has lines.',
     'Every fact comes from the Fact Bank and says where it came from.',
     'The Wrap says why this story matters (your thesis).',
-    'We read it aloud with a timer: 2 to 4 minutes.',
+    'We read it aloud with the timer on a Chromebook: 2 to 4 minutes.',
     'Every line starts with who says it, like "Maria: ..."'
   ];
 
@@ -156,7 +143,7 @@
     if (!g.what && field.placeholder) g.what = field.placeholder;
     return g;
   }
-  function guideFor(id) { if (!GUIDE[id]) GUIDE[id] = readGuide(id); return GUIDE[id]; }
+  function guideFor(id) { if (SHORT_GUIDE[id]) return SHORT_GUIDE[id]; if (!GUIDE[id]) GUIDE[id] = readGuide(id); return GUIDE[id]; }
 
   /* ---------------------------------------------------------------- crew rows */
   function buildCrewRows() {
@@ -408,13 +395,6 @@
       { id: 'pq-care', label: 'Why It Matters', q: 'Why should someone today care about this story?', start: 'This story matters today because ___' }
     ]
   };
-  /* What each Hook style sounds like, so a style is something you can hear, not a label. */
-  var SOUNDS_LIKE = {
-    dramatic: 'Picture this: it\'s 1776, and ___',
-    fact: 'Here is a surprising fact: ___',
-    question: 'What would make someone ___?',
-    sound: '(sound of ___) It is ___, in ___.'
-  };
   var PQ_BLOCKS = {};
   function buildPlanQuestions(park) {
     PLAN_ORDER.forEach(function (radio) {
@@ -457,6 +437,19 @@
       });
     });
   }
+  /* Each Plan question is one box in the short episode. */
+  var PLAN_FOR_BEAT = { 'fact-statement': 'pq-hook', 'narrative-scene1': 'pq-before', 'narrative-scene2': 'pq-turn',
+    'narrative-scene3': 'pq-after', 'sig-why': 'pq-care' };
+  function planNoteFor(beatId) {
+    var qid = PLAN_FOR_BEAT[beatId];
+    if (!qid) return null;
+    var q = null;
+    PLAN_ORDER.forEach(function (rd) { PLAN_QS[rd].forEach(function (x) { if (x.id === qid) q = x; }); });
+    var f = q && q.fact ? factNo(val(qid + '-fact')) : null;
+    var a = val(qid);
+    if (!a && !f) return null;
+    return { label: q.label, answer: a, factNo: f ? 'Fact ' + f.n : '', fact: f ? 'Fact ' + f.n + ': ' + f.fact + (f.src ? ' (' + f.src + ')' : '') : '' };
+  }
   /* The group's plan for one part, for the Group Doc and My Lines. */
   function planNotes(radio) {
     return (PLAN_QS[radio] || []).map(function (q) {
@@ -470,10 +463,20 @@
     return VOICES.filter(function (v) { return seen.indexOf(v.id) !== -1; }).map(function (v) { return v.name; });
   }
   function chosen(part) {
+    var st = part.styles[0];
+    if (isCrew()) {
+      /* One style per part: keep the solo radio checked, so the wizard's checks and saved work agree. */
+      var radio = document.querySelector('input[name="' + part.radio + '"][value="' + st.id + '"]');
+      if (radio && !radio.checked) {
+        radio.checked = true;
+        var f = $(part.prefix + st.id); if (f) f.classList.add('active');
+      }
+      return st;
+    }
     var r = document.querySelector('input[name="' + part.radio + '"]:checked');
     if (!r) return null;
-    var st = part.styles.filter(function (s) { return s.id === r.value; })[0] || null;
-    return st && styleOpen(st) ? st : null;
+    var hit = part.styles.filter(function (s) { return s.id === r.value; })[0] || null;
+    return hit && styleOpen(hit) ? hit : null;
   }
   /* Say Hello (Oct 23, teacher): real podcasts don't announce "I'm the narrator", and the
      person from history shouldn't say hi before the story starts. Everyone else says hello. */
@@ -552,7 +555,7 @@
     }
     var c = cast();
     var html = '<h3 id="castTitle">Who says it?</h3>' +
-      '<p class="field-hint">Your styles use ' + (c.used.length === 1 ? 'one part' : c.used.length + ' parts') + '. Check who says each one. ' +
+      '<p class="field-hint">Your script uses ' + (c.used.length === 1 ? 'one part' : c.used.length + ' parts') + '. Check who says each one. ' +
       'Two people can share a part, and one person can say two.</p>' +
       '<div class="cast-grid" id="castGrid" tabindex="-1"></div>' +
       '<div class="cast-actions"><button type="button" class="btn btn-secondary" onclick="crewSplitCast()">Split it up for us</button></div>' +
@@ -563,8 +566,9 @@
       var v = VOICES.filter(function (x) { return x.id === vid; })[0];
       var n = c.byVoice[vid].length;
       var row = el('fieldset', { 'class': 'cast-row voice-' + vid });
+      var names = episodeBeats().filter(function (bt) { return bt[2] === vid; }).map(function (bt) { return bt[1]; });
       row.innerHTML = '<legend><span class="voice-chip voice-' + vid + '">' + v.name + '</span> <span class="cast-count">' + n + (n === 1 ? ' box' : ' boxes') + '</span></legend>' +
-        '<p class="cast-does">' + esc(v.does) + '</p>';
+        '<p class="cast-does">' + esc(v.does) + ' <span class="cast-boxes">Says: ' + esc(names.join(', ')) + '.</span></p>';
       var picks = el('div', { 'class': 'chip-checks' });
       c.members.forEach(function (m) {
         var lab = CAST_INPUTS[m.n + '-' + vid];
@@ -627,25 +631,12 @@
       PLAN_QS[radio].forEach(function (q) { qs.appendChild(PQ_BLOCKS[q.id]); });
       sec.appendChild(qs);
 
-      var html = '<h4 class="plan-style-title">Pick a style for ' + part.name + '</h4>' +
-        '<div class="style-cards" role="radiogroup" aria-label="' + part.name + ' style">';
-      part.styles.forEach(function (st) {
-        var on = s && s.id === st.id;
-        var open = styleOpen(st);
-        html += '<label class="style-card' + (on ? ' is-on' : '') + (open ? '' : ' is-closed') + '">' +
-          '<input type="radio" name="plan-' + part.radio + '" value="' + st.id + '"' + (on ? ' checked' : '') + (open ? '' : ' disabled') + '>' +
-          '<span class="style-name">' + st.name + '</span><span class="style-desc">' + (open ? st.desc : 'Not for this topic: nobody plays a person who was enslaved.') + '</span>' +
-          (open && SOUNDS_LIKE[st.id] ? '<span class="style-sounds">Sounds like: “' + esc(SOUNDS_LIKE[st.id]) + '”</span>' : '') +
-          (open ? '<span class="style-who">Who talks: ' + esc(voicesIn(st).join(', ')) + '</span>' : '') +
-          '</label>';
-      });
-      html += '</div>';
+      var boxes = allBeats(part, s).map(function (bt) { return esc(bt[1]) + ' <span class="plan-box-who">(' + esc(voiceLabel(bt[2]).name) + ')</span>'; });
+      if (part.radio === 'conclusion') boxes.push('Source Line');
+      var html = '<p class="plan-boxes"><strong>In your script:</strong> ' + boxes.join(' · ') + '</p>';
       if (part.radio === 'content' && noSubject()) html += '<p class="field-hint">For this topic, the Narrator tells the person\'s story. The Narrator can read real words from the time as a quote, from the Voice Bank, saying who said them.</p>';
       sec.insertAdjacentHTML('beforeend', html);
       host.appendChild(sec);
-      sec.querySelectorAll('input[type="radio"]').forEach(function (r) {
-        r.addEventListener('change', function () { pickStyle(part, r.value); });
-      });
     });
     renderCast(host);
   }
@@ -661,90 +652,79 @@
      Google Docs (boxes with room to type); forDoc=false is the on-screen preview
      and the paper copy (boxes with ruled lines to write on). */
   function frameHTML(forDoc) {
+    /* The Group Doc is the script itself (teacher, Nov 1: the old frame of tables was hard to read
+       and use). Each box: its name and who writes it, the group's plan for it, a sentence starter,
+       then the writer's name with room to write. When every box is filled, it is the script. */
     var podcast = val('podcastName') || 'Our Podcast';
     var topic = val('subject');
     var members = crewMembers();
-    var B = forDoc ? 'border:1px solid #000;border-collapse:collapse;' : '';
-    var TD = forDoc ? 'border:1px solid #000;padding:6pt 8pt;vertical-align:top;' : '';
-    var GRAY = forDoc ? 'color:#444;font-size:10pt;' : '';
-    var h = [];
-    h.push('<h1>' + esc(podcast) + '</h1>');
-    if (topic) h.push('<p><strong>Episode about:</strong> ' + esc(topic) + '</p>');
-    h.push('<p' + (forDoc ? ' style="' + GRAY + '"' : ' class="fr-note"') + '>This is a frame to start from. You can add boxes, cut them, move them, or make your own version. Keep a Hook, a Story and a Wrap, and say where each fact came from. Start every line with who says it, like <strong>Maria:</strong> …</p>');
-
     var cs = cast();
-    h.push('<h2>Our Group</h2><table class="fr-table" style="' + B + 'width:100%"><tr>' +
-      ['Name', 'Job', 'Says'].map(function (x) { return '<th style="' + TD + 'text-align:left">' + x + '</th>'; }).join('') + '</tr>');
-    members.forEach(function (m) {
-      h.push('<tr><td style="' + TD + '">' + (esc(m.name) || '&nbsp;') + '</td><td style="' + TD + '">' +
-        esc(m.jobs.map(function (j) { return j.name; }).join(', ')) + '</td><td style="' + TD + '">' +
-        esc(m.voices.filter(function (v) { return cs.used.indexOf(v.id) !== -1; }).map(function (v) { return v.name; }).join(', ')) + '</td></tr>');
-    });
-    h.push('</table>');
-
+    var GRAY = forDoc ? ' style="color:#555;font-size:10pt;margin:0"' : ' class="fr-help"';
+    var TIGHT = forDoc ? ' style="margin:0"' : '';
+    var h = [];
+    h.push('<h1>' + esc(podcast) + (topic ? ': ' + esc(topic) : '') + '</h1>');
+    h.push('<p><strong>Our group:</strong> ' + members.map(function (m) {
+      var says = m.voices.filter(function (v) { return cs.used.indexOf(v.id) !== -1; }).map(function (v) { return v.name; });
+      return esc(m.name || ('Person ' + m.n)) + (says.length ? ' (' + esc(says.join(' and ')) + ')' : '');
+    }).join(', ') + '</p>');
     var thesis = val('workingThesis');
-    h.push('<h2>Our Working Thesis</h2>');
-    h.push(box(thesis ? '<p>' + esc(thesis) + '</p>' : '', thesis ? 0 : 2));
+    h.push('<p><strong>Our thesis:</strong> ' + (thesis ? esc(thesis) : '________________________________') + '</p>');
+    h.push('<p' + GRAY + '>Write your lines under your name. Start every line with who says it, like <strong>Maria:</strong> When every box is filled, this is your script. You can add lines or change anything.</p>');
 
-    var fb = facts();
-    while (fb.length < FACT_START) fb.push({ fact: '', src: '' });
-    h.push('<h2>Fact Bank</h2><table class="fr-table" style="' + B + 'width:100%"><tr>' +
-      ['', 'Fact', 'Source'].map(function (x, i) { return '<th style="' + TD + 'text-align:left' + (i === 0 ? ';width:24pt' : '') + '">' + x + '</th>'; }).join('') + '</tr>');
-    fb.forEach(function (f, i) {
-      h.push('<tr><td style="' + TD + '">' + (i + 1) + '</td><td style="' + TD + '" class="fr-cell">' + (esc(f.fact) || '&nbsp;') +
-        '</td><td style="' + TD + '" class="fr-cell">' + (esc(f.src) || '&nbsp;') + '</td></tr>');
-    });
-    h.push('</table>');
+    function writeLine(name, lines, prefill) {
+      var who = esc(name || '________') + ':';
+      if (forDoc) return '<p><strong>' + who + '</strong> ' + (prefill ? esc(prefill) : '') + '</p>' + (prefill ? '' : '<p>&nbsp;</p>');
+      var ruled = '';
+      for (var j = 0; j < lines; j++) ruled += '<span class="fr-line"></span>';
+      return '<div class="fr-write"><strong>' + who + '</strong> ' + (prefill ? esc(prefill) : '') + (prefill ? '' : '<div class="fr-lines">' + ruled + '</div>') + '</div>';
+    }
+    function boxBlock(title, whoNames, plan, starter, target, body) {
+      var out = '<div class="fr-box"' + (forDoc ? '' : '') + '>';
+      out += '<p' + TIGHT + '><strong>' + esc(title) + '</strong>' + (whoNames ? ' · ' + esc(whoNames) : '') + (target ? ' <span' + GRAY.replace('margin:0', 'margin:0;display:inline') + '>(' + esc(target) + ')</span>' : '') + '</p>';
+      if (plan) out += '<p' + GRAY + '>Our plan: ' + esc(plan) + '</p>';
+      if (starter) out += '<p' + GRAY + '>Start with: “' + esc(starter.replace(/[.\s]+$/, '')) + '…”</p>';
+      return out + body + '</div>';
+    }
 
     PARTS.forEach(function (part) {
       var s = chosen(part);
-      h.push('<h2>' + part.name + ' <span style="font-weight:400">(' + part.time + (s ? ', ' + esc(s.name) : '') + ')</span></h2>');
-      var notes = planNotes(part.radio);
-      if (notes.length) {
-        h.push('<p><strong>Our plan:</strong></p><ul>' + notes.map(function (x) {
-          return '<li><strong>' + esc(x.label) + ':</strong> ' + esc(x.answer || '') + (x.factNo ? ' <span style="' + GRAY + '" class="fr-help">(' + esc(x.factNo) + ' in the Fact Bank)</span>' : '') + '</li>';
-        }).join('') + '</ul>');
-      }
-      if (!s) { h.push(box('<p>Pick a style for ' + part.name + ' on the Plan step.</p>', 3)); return; }
+      h.push('<h2>' + part.name + ' <span style="font-weight:400">(' + part.time + ')</span></h2>');
       allBeats(part, s).forEach(function (b) {
         var g = guideFor(b[0]);
-        var v = boxLabel(b);
-        var who = v.who ? ' (' + esc(v.who) + ')' : (b[2] === 'all' ? '' : ' (nobody yet: pick someone on the Plan step)');
-        var head = '<p><strong>' + esc(b[1]) + '</strong> · ' + esc(v.name) + who + '</p>';
-        var help = '';
-        if (g.what) help += esc(g.what.replace(/[.\s]+$/, '')) + '.' + (g.target ? ' Aim for ' + esc(g.target) + '.' : '');
-        if (g.starter) help += (help ? '<br>' : '') + 'Start with: “' + esc(g.starter.replace(/[.\s]+$/, '')) + '…”';
-        var plan = val('plan-' + b[0]);
-        var body = head + (help ? '<p style="' + GRAY + '" class="fr-help">' + help + '</p>' : '') +
-          (plan ? '<p><strong>Plan:</strong> ' + esc(plan) + '</p>' : '');
-        h.push(box(body, linesFor(g.target)));
+        var target = g.target ? g.target.replace(/\s*\(.*\)\s*$/, '') : '';
+        if (b[2] === 'all') {
+          var hello = members.filter(function (m) {
+            return !(m.voices.length && m.voices.every(function (v) { return v.id === 'subject'; }));
+          });
+          h.push(boxBlock(b[1], '', '', '', '', hello.map(function (m) { return writeLine(m.name, 1, 'Hi, I\'m ' + (m.name || '___') + '.'); }).join('')));
+          return;
+        }
+        var owners = cs.owners[b[0]] || [];
+        var pn = planNoteFor(b[0]);
+        var plan = pn ? (pn.answer || '') + (pn.factNo ? ' (' + pn.factNo + ')' : '') : '';
+        var oldPlan = val('plan-' + b[0]);
+        if (!plan && oldPlan) plan = oldPlan;
+        h.push(boxBlock(b[1], owners.join(' and '), plan, g.starter, target,
+          writeLine(owners.join(' and '), linesFor(g.target))));
       });
+      if (part.radio === 'conclusion') {
+        var every = allBeats(part, s), last = every[every.length - 1];
+        var who = (cs.owners[last[0]] || []).join(' and ');
+        h.push(boxBlock('Source Line', who, '', 'We learned about ' + (topic || '[person]') + ' from', '10-20 words',
+          writeLine(who, 2)));
+      }
     });
 
-    h.push('<h2>Our Sources</h2>');
-    var srcs = [];
-    facts().forEach(function (f) { if (f.src && srcs.indexOf(f.src) === -1) srcs.push(f.src); });
-    h.push(box('<p' + (forDoc ? ' style="' + GRAY + '"' : ' class="fr-help"') + '>List every source you used, one per line: who made it, its title, where you found it. Include the source your group found.</p>' +
-      (srcs.length ? '<ul>' + srcs.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : ''), srcs.length ? 2 : 4));
-
-    h.push('<h2>Editor\'s Checklist</h2><ul style="list-style:none;padding-left:0" class="fr-check">');
+    var fb = facts();
+    if (fb.length) {
+      h.push('<h2>Our Facts</h2><ol>');
+      fb.forEach(function (f) { h.push('<li>' + esc(f.fact) + (f.src ? ' <span' + GRAY.replace('margin:0', 'margin:0;display:inline') + '>(' + esc(f.src) + ')</span>' : '') + '</li>'); });
+      h.push('</ol>');
+    }
+    h.push('<h2>Before You Record</h2><ul style="list-style:none;padding-left:0" class="fr-check">');
     checklist().forEach(function (c) { h.push('<li>☐ ' + esc(c) + '</li>'); });
     h.push('</ul>');
-    h.push('<h2>Who Does What in This Doc</h2><ul>');
-    JOBS.forEach(function (j) { h.push('<li><strong>' + j.name + ':</strong> ' + esc(j.during) + '</li>'); });
-    h.push('<li><strong>Everyone:</strong> writes their own lines.</li></ul>');
     return h.join('\n');
-
-    function box(inner, lines) {
-      if (forDoc) {
-        var room = '';
-        for (var i = 0; i < Math.max(1, Math.ceil(lines / 2)); i++) room += '<p>&nbsp;</p>';
-        return '<table style="' + B + 'width:100%;margin:0 0 8pt"><tr><td style="' + TD + '">' + inner + room + '</td></tr></table>';
-      }
-      var ruled = '';
-      for (var j = 0; j < lines; j++) ruled += '<span class="fr-line"></span>';
-      return '<div class="fr-box">' + inner + (lines ? '<div class="fr-lines">' + ruled + '</div>' : '') + '</div>';
-    }
   }
 
   function renderDocPreview() {
@@ -773,7 +753,7 @@
       var done = false;
       try { done = document.execCommand('copy'); } catch (e) {}
       if (done) { sel.removeAllRanges(); ok(); }
-      else if (typeof showToast === 'function') showToast('The frame is selected. Press Ctrl+C to copy it.', 6000);
+      else if (typeof showToast === 'function') showToast('The script is selected. Press Ctrl+C to copy it.', 6000);
     };
     try {
       if (navigator.clipboard && window.ClipboardItem) {
@@ -921,7 +901,7 @@
   /* Shared with lines.js (My Lines), which builds on the same parts and beats. */
   window.RV_CREW = {
     PARTS: PARTS, VOICES: VOICES, CREW_OPENING: CREW_OPENING,
-    guideFor: guideFor, planNotes: planNotes, chosen: chosen, allBeats: allBeats, crewMembers: crewMembers,
+    guideFor: guideFor, planNotes: planNotes, planNoteFor: planNoteFor, chosen: chosen, allBeats: allBeats, crewMembers: crewMembers,
     isCrew: isCrew, noSubject: noSubject, voiceLabel: voiceLabel, boxLabel: boxLabel, cast: cast, linesFor: linesFor, printSheet: printSheet, esc: esc
   };
 })();

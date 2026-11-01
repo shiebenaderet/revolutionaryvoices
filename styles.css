@@ -2676,3 +2676,9 @@ html.rt-playing .container .header.studio .rt-btn.rt-primary { text-decoration: 
 .cast-count { font-size: 15px; font-weight: 600; color: var(--muted); }
 .cast-does { margin: 2px 0 8px; font-size: 16px; }
 .cast-actions { margin: 4px 0 6px; }
+
+/* Short episode (Nov 1): box list on Plan, plan note on My Lines, the script-style Group Doc */
+.plan-boxes { margin: 4px 0 0; font-size: 16px; }
+.plan-box-who, .cast-boxes { color: var(--muted); }
+p.lb-plan { border: 1.5px solid var(--line); border-radius: 10px; padding: 6px 12px; margin: 6px 0 10px; background: var(--surface); }
+.fr-write { margin: 4px 0 0; }

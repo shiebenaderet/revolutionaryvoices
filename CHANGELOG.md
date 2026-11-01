@@ -6,6 +6,15 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.8.0] - 2026-11-01
+
+### Changed
+
+- **The short episode.** Teacher, Nov 1: many students will not write a full script in two days, and the lowest readers need a frame for every part. Every group now writes the same boxes, and each Plan question is one box, so the plan is the outline: Say Hello and Welcome Listeners, The Surprise (Hook); Set the Scene, Before, The Turning Point, After (Story); Why It Matters and the Source Line (Wrap). About 9 boxes instead of 15 or more, so each student writes 2 to 4. No style cards on Plan; under each part, "In your script" lists its boxes, and Who says it? lists the boxes each part says. Each box has short guidance and a starter that matches its Plan question (`SHORT_GUIDE` in crew.js), and My Lines' Quick frames and word banks are unchanged. The longer styles stay on the solo path.
+- **The Group Doc is the script.** Teacher, Nov 1: the frame of tables was "hard to read and use." The Doc now lists the boxes in order; each says who writes it, the group's plan for that box (with its fact number), a sentence starter and the length, then the writer's name with room to write. The facts follow as a plain list, then Before You Record. The button is "Copy the script."
+- **My Lines shows the plan for that box**, not the whole part, on the Chromebook that made the plan.
+- **Time it with the Chromebook's timer.** Teacher, Nov 1: going back to the site to practice is a barrier. The checklist says to read it aloud with the timer on a Chromebook; Practice stays for groups who want it.
+
 ## [3.7.1] - 2026-10-31
 
 ### Changed

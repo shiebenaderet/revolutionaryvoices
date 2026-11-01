@@ -9,12 +9,12 @@
     <script>try{var t=localStorage.getItem('rvTheme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 
     <!-- Font Awesome 6 - self-hosted to avoid school CDN blocks -->
-    <link rel="stylesheet" href="fonts/fa-all.min.css?v=3.7.1">
+    <link rel="stylesheet" href="fonts/fa-all.min.css?v=3.8.0">
 
     <!-- Theme fonts - self-hosted to avoid school CDN blocks -->
-    <link rel="stylesheet" href="fonts/fonts.css?v=3.7.1">
+    <link rel="stylesheet" href="fonts/fonts.css?v=3.8.0">
 
-    <link rel="stylesheet" href="styles.css?v=3.7.1">
+    <link rel="stylesheet" href="styles.css?v=3.8.0">
 </head>
 <body>
     <a href="#wizardContent" class="skip-link">Skip to current step</a>
@@ -1634,7 +1634,7 @@
         <!-- CREW STEP: PLAN THE EPISODE (crew path only). Built by crew.js. -->
         <div class="section section-plan wizard-step" data-step="6">
             <h2><i class="fas fa-map" aria-hidden="true"></i> Plan the Episode</h2>
-            <p class="step-lead">Your episode has three parts and runs 2 to 4 minutes. Answer the questions for each part in a few words. Then pick a style. Your answers go into your Group Doc.</p>
+            <p class="step-lead">Your episode has three parts and runs 2 to 4 minutes. Answer the questions for each part in a few words. Each answer becomes one box in your script, and they all go into your Group Doc.</p>
             <div id="episodeMap" hidden></div>
             <div id="planParts"></div>
         </div>
@@ -1642,14 +1642,14 @@
         <!-- CREW STEP: GROUP DOC (crew path only). Built by crew.js. -->
         <div class="section section-doc wizard-step" data-step="7">
             <h2><i class="fas fa-file-alt" aria-hidden="true"></i> Your Group Doc</h2>
-            <p class="step-lead">This frame is a starting point. You can add boxes, cut them, move them, or build your own version. Keep a Hook, a Story and a Wrap, and say where each fact came from.</p>
+            <p class="step-lead">This Doc is your script. Each box says who writes it, your group's plan for it, and a sentence starter. Write your lines under your name, here or on My Lines.</p>
             <ol class="doc-steps">
-                <li><strong>One person</strong> clicks <strong>Copy the frame</strong>, then <strong>Open a new Google Doc</strong>, and pastes (<kbd>Ctrl</kbd>+<kbd>V</kbd>).</li>
+                <li><strong>One person</strong> clicks <strong>Copy the script</strong>, then <strong>Open a new Google Doc</strong>, and pastes (<kbd>Ctrl</kbd>+<kbd>V</kbd>).</li>
                 <li>Name the Doc <strong id="docTitleHint">Podcast name - your names</strong>.</li>
                 <li>Click <strong>Share</strong>. Add everyone in your group as an Editor, and Mr. B.</li>
             </ol>
             <div class="doc-actions">
-                <button type="button" class="btn" onclick="copyGroupDoc()"><i class="fas fa-copy" aria-hidden="true"></i> Copy the frame</button>
+                <button type="button" class="btn" onclick="copyGroupDoc()"><i class="fas fa-copy" aria-hidden="true"></i> Copy the script</button>
                 <button type="button" class="btn btn-secondary" onclick="openGoogleDoc()"><i class="fas fa-file-alt" aria-hidden="true"></i> Open a new Google Doc</button>
                 <button type="button" class="btn btn-secondary" onclick="printGroupDoc()"><i class="fas fa-print" aria-hidden="true"></i> Print a paper copy</button>
             </div>
@@ -1661,8 +1661,8 @@
                 <input type="checkbox" id="docShared" onchange="wizUpdateStepper(); autoSave()">
                 Our Doc is made and shared with everyone
             </label>
-            <h3 class="doc-preview-title">Your frame</h3>
-            <div class="doc-preview" id="docPreview" aria-label="Preview of your Group Doc frame"></div>
+            <h3 class="doc-preview-title">Your script</h3>
+            <div class="doc-preview" id="docPreview" aria-label="Preview of your Group Doc script"></div>
         </div>
 
         <!-- CREW STEP: MY LINES (crew path). Each student builds their own boxes (from Who says it? on Plan). Built by lines.js. -->
@@ -1745,7 +1745,7 @@
     <footer class="site-footer">
         <span>Revolutionary Voices Script Builder</span>
         <span class="footer-sep">-</span>
-        <span id="footerVersion">v3.7.1</span>
+        <span id="footerVersion">v3.8.0</span>
         <span class="footer-sep">-</span>
         <span>voices.mrbsocialstudies.org</span>
     </footer>
@@ -1778,14 +1778,14 @@
         </aside>
     </div>
 
-    <script src="readings.js?v=3.7.1"></script>
-    <script src="sources.js?v=3.7.1"></script>
-    <script src="version.js?v=3.7.1"></script>
-    <script src="app.js?v=3.7.1"></script>
-    <script src="builder-banks.js?v=3.7.1"></script>
-    <script src="cast-core.js?v=3.7.1"></script>
-    <script src="crew.js?v=3.7.1"></script>
-    <script src="lines.js?v=3.7.1"></script>
-    <script src="reader-tools.js?v=3.7.1"></script>
+    <script src="readings.js?v=3.8.0"></script>
+    <script src="sources.js?v=3.8.0"></script>
+    <script src="version.js?v=3.8.0"></script>
+    <script src="app.js?v=3.8.0"></script>
+    <script src="builder-banks.js?v=3.8.0"></script>
+    <script src="cast-core.js?v=3.8.0"></script>
+    <script src="crew.js?v=3.8.0"></script>
+    <script src="lines.js?v=3.8.0"></script>
+    <script src="reader-tools.js?v=3.8.0"></script>
 </body>
 </html>

@@ -438,12 +438,10 @@
       '<p class="lb-ask">' + esc(kind.ask) + '</p>' +
       '<p class="lb-goal">' + (id === 'group-intro' ? 'One short sentence. Not saying hello? Leave this box empty.' : 'Aim for ' + goal(g.target) + '.') + (level === 'mostSupport' ? ' Pick the frames that fit. You don\'t need all of them.' : '') + '</p>';
 
-    /* The group's answers from Plan for this part (Oct 31), so the box starts from the plan. */
-    var notes = C.planNotes && part ? C.planNotes(part.radio) : [];
-    if (notes.length) {
-      html += '<details class="lb-plan" open><summary>Your group\'s plan for ' + esc(part.name) + '</summary><ul>' +
-        notes.map(function (x) { return '<li><strong>' + esc(x.label) + ':</strong> ' + esc(x.answer || '') + (x.fact ? ' <span class="field-hint">(' + esc(x.fact) + ')</span>' : '') + '</li>'; }).join('') +
-        '</ul></details>';
+    /* The group's plan for this box (Nov 1: each Plan question is one box), on the Chromebook that made the plan. */
+    var pn = C.planNoteFor ? C.planNoteFor(id) : null;
+    if (pn) {
+      html += '<p class="lb-plan"><strong>Your group\'s plan:</strong> ' + esc(pn.answer || '') + (pn.fact ? ' <span class="field-hint">(' + esc(pn.fact) + ')</span>' : '') + '</p>';
     }
 
     if (level === 'mostSupport') {

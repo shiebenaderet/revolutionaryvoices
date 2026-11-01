@@ -539,8 +539,17 @@
   function renderFacts(st) {
     var host = $('linesFacts');
     if (!host) return;
+    /* Nov 1 (teacher): no retyping. On the Chromebook that has the Fact Bank, its facts are one click away. */
+    var bank = groupFacts().filter(function (g) { return !st.facts.some(function (f) { return (f.t || '').trim() === g.t; }); });
     var html = '<fieldset class="lines-field"><legend>My Facts</legend>' +
-      '<p class="field-hint">Type two or more facts from your Research Notes, and where each one came from. You will add them to your lines.</p>';
+      '<p class="field-hint">' + (groupFacts().length
+        ? 'Click two or more facts from your Fact Bank that go with your boxes. Or type your own, with where each one came from.'
+        : 'Copy two or more facts from the list at the end of your Group Doc, or type them from your Research Notes, with where each one came from.') + '</p>';
+    if (bank.length) {
+      html += '<div class="lf-bank"><span class="lb-boxes-label">From your Fact Bank:</span>' + bank.map(function (g) {
+        return '<button type="button" class="lb-chip" data-bankfact="' + g.n + '">+ ' + esc(g.t.length > 70 ? g.t.slice(0, 68) + '…' : g.t) + '</button>';
+      }).join('') + '</div>';
+    }
     st.facts.forEach(function (f, i) {
       html += '<div class="lf-row"><label class="sr-only" for="lf-t-' + i + '">Fact ' + (i + 1) + '</label>' +
         '<input type="text" class="lf-t" id="lf-t-' + i + '" data-i="' + i + '" placeholder="Fact ' + (i + 1) + ', in your own words" value="' + esc(f.t) + '" autocomplete="off">' +
@@ -549,6 +558,15 @@
     });
     if (st.facts.length < 5) html += '<button type="button" class="link-btn" data-morefacts="1">+ Add another fact</button>';
     host.innerHTML = html + '</fieldset>';
+  }
+
+  function groupFacts() {
+    var out = [];
+    for (var i = 1; i <= 10; i++) {
+      var t = $('fact' + i), sEl = $('fact' + i + '-src');
+      if (t && t.value.trim()) out.push({ n: i, t: t.value.trim(), src: sEl ? sEl.value.trim() : '' });
+    }
+    return out;
   }
 
   /* The finish line: three checks a student can see filling in, the same every day. */
@@ -729,6 +747,17 @@
       if (!t) return;
       var st, beat = t.closest('.lb-beat');
       if (t.dataset.help) { st = load(); st.help = t.dataset.help; store(st); render(); return; }
+      if (t.dataset.bankfact) {
+        st = load();
+        var g = groupFacts().filter(function (x) { return String(x.n) === t.dataset.bankfact; })[0];
+        if (g) {
+          var slot = st.facts.filter(function (f) { return !(f.t || '').trim(); })[0];
+          if (slot) { slot.t = g.t; slot.src = g.src; } else st.facts.push({ t: g.t, src: g.src });
+          store(st); renderFacts(st); renderFinish(st);
+          if (typeof refreshFacts === 'function') refreshFacts();
+        }
+        return;
+      }
       if (t.dataset.morefacts) { st = load(); st.facts.push({ t: '', src: '' }); store(st); renderFacts(st); var nf = $('lf-t-' + (st.facts.length - 1)); if (nf) nf.focus(); return; }
       if (t.dataset.lead != null && beat) { st = load(); st.lead = t.dataset.lead; store(st); rerenderBeat(beat.dataset.beat, '.lb-chip[data-lead="' + CSS.escape(t.dataset.lead) + '"]'); return; }
       if (t.dataset.addfact != null && beat) {

@@ -986,7 +986,7 @@
         // ============================================
         // All scripts live under one key as { id: {id, name, timestamp, fields} }.
         // currentSlotId points at the script being edited (null = new, unsaved).
-        const APP_VERSION = '3.8.0'; // keep in sync with index.html footer and CHANGELOG
+        const APP_VERSION = '3.8.1'; // keep in sync with index.html footer and CHANGELOG
         const STORE_KEY = 'rvScripts';
         (function() { var el = document.getElementById('footerVersion'); if (el) el.textContent = 'v' + APP_VERSION; })();
         const OLD_KEY = 'revolutionaryVoicesScript';
@@ -1523,7 +1523,7 @@
         //   solo: Start, Read, Hook, Story, Wrap, Finish  (the whole script is written here)
         //   crew: Start, Read, Plan, Group Doc, My Lines, Practice  (the script is written in a Google Doc;
         //         each student builds their own voice's lines on My Lines, with help matched to their level)
-        const WIZ_NAMES = { 0: 'Start', 1: 'Read', 2: 'Hook', 3: 'Story', 4: 'Wrap', 5: 'Finish', 6: 'Plan', 7: 'Group Doc', 8: 'Practice', 9: 'My Lines' };
+        const WIZ_NAMES = { 0: 'Start', 1: 'Read', 2: 'Hook', 3: 'Story', 4: 'Wrap', 5: 'Finish', 6: 'Plan', 7: 'Group Doc', 8: 'Time It', 9: 'Writing Help' };
         const WIZ_ALL = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         const WIZ_SOLO = [0, 1, 2, 3, 4, 5];
         const WIZ_CREW = [0, 1, 6, 7, 9, 8];

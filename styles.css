@@ -2682,3 +2682,12 @@ html.rt-playing .container .header.studio .rt-btn.rt-primary { text-decoration: 
 .plan-box-who, .cast-boxes { color: var(--muted); }
 p.lb-plan { border: 1.5px solid var(--line); border-radius: 10px; padding: 6px 12px; margin: 6px 0 10px; background: var(--surface); }
 .fr-write { margin: 4px 0 0; }
+
+/* Time It (Nov 1) and the Fact Bank chips on Writing Help */
+.time-it { border: 2px solid var(--ink); border-radius: 12px; padding: 16px; margin: 12px 0; text-align: center; background: var(--surface); }
+.time-it-clock { font-size: 64px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.time-it-actions { display: flex; gap: 10px; justify-content: center; margin: 10px 0 4px; }
+.time-it-verdict { font-weight: 700; margin: 6px 0 0; min-height: 1.4em; }
+.practice-more { margin-top: 14px; }
+.practice-more summary { font-weight: 700; cursor: pointer; }
+.lf-bank { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 4px 0 10px; }

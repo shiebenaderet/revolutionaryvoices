@@ -6,6 +6,14 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.8.1] - 2026-11-01
+
+### Changed
+
+- **My Lines is now Writing Help, and optional.** Teacher, Nov 1: going back and forth between the site and the Doc is a barrier. The step says so: "Stuck on a box? Build it here with sentence frames, then paste it under your name in the Group Doc. Or write straight in the Doc."
+- **No retyping facts.** On the Chromebook with the Fact Bank, My Facts shows each Fact Bank fact as a button; one click adds it with its source. Elsewhere the hint points to the fact list at the end of the Group Doc.
+- **Practice is now Time It.** A stopwatch: read the Doc aloud, Start, Stop, and it says whether the script is under 2, between 2 and 4, or over 4 minutes. The paste-and-practice tool is still there, folded under "Want to practice line by line?"
+
 ## [3.8.0] - 2026-11-01
 
 ### Changed

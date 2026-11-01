@@ -79,7 +79,7 @@
     'Everyone in the group has lines.',
     'Every fact comes from the Fact Bank and says where it came from.',
     'The Wrap says why this story matters (your thesis).',
-    'We read it aloud with the timer on a Chromebook: 2 to 4 minutes.',
+    'We read it aloud with a timer (Time It on the script builder, or any Chromebook timer): 2 to 4 minutes.',
     'Every line starts with who says it, like "Maria: ..."'
   ];
 
@@ -865,6 +865,38 @@
     save();
     try { out.focus({ preventScroll: true }); } catch (e) {}
     out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  /* ---------------------------------------------------------------- time it */
+  /* Nov 1 (teacher): students can't use phone timers, and going back to paste the script was a
+     barrier. A plain stopwatch: read the Doc aloud while it runs. */
+  var timeIt = { start: 0, spent: 0, tick: null };
+  function timeItShow() {
+    var ms = timeIt.spent + (timeIt.start ? Date.now() - timeIt.start : 0);
+    var sec = Math.floor(ms / 1000);
+    if ($('timeItClock')) $('timeItClock').textContent = Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+    return sec;
+  }
+  window.timeItToggle = function () {
+    var go = $('timeItGo'), v = $('timeItVerdict');
+    if (timeIt.start) {
+      timeIt.spent += Date.now() - timeIt.start; timeIt.start = 0;
+      clearInterval(timeIt.tick); timeIt.tick = null;
+      var sec = timeItShow();
+      if (go) go.textContent = 'Keep going';
+      if (v) v.textContent = sec < 120 ? 'Under 2 minutes: add a detail to a scene.' : sec <= 240 ? 'Between 2 and 4 minutes: a good length.' : 'Over 4 minutes: cut a sentence that repeats.';
+    } else {
+      timeIt.start = Date.now();
+      timeIt.tick = setInterval(timeItShow, 250);
+      if (go) go.textContent = 'Stop';
+      if (v) v.textContent = '';
+    }
+  };
+  window.timeItReset = function () {
+    clearInterval(timeIt.tick); timeIt = { start: 0, spent: 0, tick: null };
+    timeItShow();
+    if ($('timeItGo')) $('timeItGo').textContent = 'Start';
+    if ($('timeItVerdict')) $('timeItVerdict').textContent = '';
   };
 
   /* ---------------------------------------------------------------- steps */

@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.8.4] - 2026-11-01
+
+### Fixed
+
+- **Dark mode: text you couldn't read.** Teacher, Nov 1. Each spot paired a fixed light color with text that turns light in dark mode, or the reverse: the yellow "In plain words" box on Boston King's memoir and the "Simplified version, not the source" label on every Quick and Clear reading (now `--callout-bg` / `--callout-line` tokens with a dark-mode value), the same label in the builder's Read step and reading drawer, the Group Doc preview's title (black on dark), the open "Your reading" button (dark on dark) and the keyboard skip link. Found with a contrast check of every page and wizard step, crew and solo, at every reading level, in both themes; all text now measures at least 4.5:1 in both.
+
 ## [3.8.3] - 2026-11-01
 
 ### Added

@@ -1036,7 +1036,7 @@
         .spotlight-plain { background: var(--surface); border-left: 4px solid var(--accent); padding: 8px 12px; margin: 8px 0; }
         .spotlight-plain p { margin: 0 0 8px; }
         .spotlight-plain { border-left-style: dashed; }
-        .spotlight-plain .plain-label { font-size: .92em; color: var(--ink); background: #fff3cd; border: 1px solid #c9a227; padding: 6px 10px; margin: 0 0 10px; }
+        .spotlight-plain .plain-label { font-size: .92em; color: #3a2a1a; background: #fff3cd; border: 1px solid #c9a227; padding: 6px 10px; margin: 0 0 10px; }
         .spotlight-original { margin: 8px 0; }
         .spotlight-original > summary { cursor: pointer; font-weight: 700; color: var(--accent); }
         .reading-tagline.reading-heading { margin: 4px 0 0; color: var(--accent); font-size: 1.12em; font-weight: 700; line-height: 1.3; }
@@ -2691,3 +2691,10 @@ p.lb-plan { border: 1.5px solid var(--line); border-radius: 10px; padding: 6px 1
 .practice-more { margin-top: 14px; }
 .practice-more summary { font-weight: 700; cursor: pointer; }
 .lf-bank { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 4px 0 10px; }
+
+/* Dark mode fixes (Nov 1, teacher: "spots where you can't read the text"). Each one paired a
+   fixed color with a background that changes in dark mode. Found by a contrast check of every
+   step in both themes. */
+.doc-preview, .doc-preview h1, .doc-preview h2 { color: var(--ink); }
+.reading-peek-btn:hover, .reading-peek-btn[aria-expanded="true"] { background: var(--gold) !important; color: #3a2a1a !important; }
+.skip-link { background: var(--ink) !important; color: var(--paper, #fffaf0) !important; }

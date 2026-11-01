@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Boston King's Memoirs: The War Years — Revolutionary Voices</title>
+<meta name="description" content="Written by Boston King, 1798, with word help and read-aloud.">
+<link rel="canonical" href="https://voices.mrbsocialstudies.org/readings/boston-king-memoir/">
+<style>
+:root {
+  --brand:#d4661a; --brand-dark:#a94f12; --brand-deep:#8a5a2b;
+  --ink:#3a2a1a; --page-bg:#f5ead3;
+  --surface:#fffaf0; --surface-2:#fbf3e0; --line:#e6d6b6; --muted:#5c4f3d;
+  --accent:#1f7a6e; --accent-press:#155f55; --gold:#e0a52e;
+  --code-conclusion:#c2701a;
+  --focus:#d4661a; --radius:14px;
+  --shadow:0 4px 0 rgba(58,42,26,.10), 0 12px 26px rgba(58,42,26,.10);
+  --edge:#74674f;
+  --font-body:'Atkinson Hyperlegible Next','Atkinson Hyperlegible',Verdana,system-ui,sans-serif;
+  --font-head:var(--font-body);
+  --font-mono:var(--font-body);
+}
+:root[data-theme="dark"] {
+  --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+  --ink:#f3e6cf; --page-bg:#1f1611;
+  --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+  --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+  --code-conclusion:#e8985a; --edge:#a8987a;
+  --focus:#f0bf57;
+  --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand:#ef8a3b; --brand-dark:#c66e26; --brand-deep:#e9c79c;
+    --ink:#f3e6cf; --page-bg:#1f1611;
+    --surface:#2a201a; --surface-2:#241b15; --line:#43342a; --muted:#bda88a;
+    --accent:#43c2b1; --accent-press:#2f9e8f; --gold:#f0bf57;
+    --code-conclusion:#e8985a; --edge:#a8987a;
+    --focus:#f0bf57;
+    --shadow:0 4px 0 rgba(0,0,0,.4), 0 14px 30px rgba(0,0,0,.5);
+  }
+}
+
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable.woff2') format('woff2');
+  font-weight:200 800; font-style:normal; font-display:swap; }
+@font-face { font-family:'Atkinson Hyperlegible Next'; src:url('../../fonts/AtkinsonHyperlegibleNext-Variable-Italic.woff2') format('woff2');
+  font-weight:200 800; font-style:italic; font-display:swap; }
+@font-face { font-family:'Lexend'; src:url('../../fonts/Lexend-Variable.woff2') format('woff2');
+  font-weight:100 900; font-display:swap; }
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Regular.woff2') format('woff2');
+  font-weight:400; font-display:swap; }
+@font-face { font-family:'OpenDyslexic'; src:url('../../fonts/OpenDyslexic-Bold.woff2') format('woff2');
+  font-weight:700; font-display:swap; }
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin:0; background:var(--page-bg); color:var(--ink);
+  font-family:var(--font-body); line-height:1.6;
+  -webkit-text-size-adjust:100%; }
+h1,h2,h3,h4,h5 { font-family:var(--font-head); }
+.wrap { max-width:820px; margin:0 auto; padding:24px 20px 64px; }
+
+.page-head { display:flex; flex-wrap:wrap; gap:12px; align-items:baseline;
+  justify-content:space-between; margin-bottom:18px; }
+.eyebrow { font-size:1rem; font-weight:700; color:var(--brand-deep); margin:0; }
+/* Listen and Font (reader-tools.js) sit on the light page here, not a dark header. */
+#rtools { --hdr-ink:var(--ink); --hdr-edge:var(--edge); }
+#rtools .rt-btn.rt-primary { color:#1a1208; }
+.theme-toggle { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:6px 14px;
+  cursor:pointer; font-family:var(--font-mono); font-size:.82rem; }
+.theme-toggle:hover { border-color:var(--gold); }
+
+.reading-viewer { border:2px solid var(--line); border-radius:var(--radius);
+  background:var(--surface); box-shadow:var(--shadow); padding:22px 24px; }
+.reading-head { display:flex; flex-wrap:wrap; gap:12px; align-items:flex-start;
+  justify-content:space-between; }
+.reading-head h1 { margin:0; color:var(--brand-deep); font-size:1.6rem; line-height:1.2; }
+.reading-tagline { margin:6px 0 0; color:var(--muted); font-size:.95rem; }
+
+.level-toggle { display:flex; gap:6px; flex-wrap:wrap; }
+.level-pill { background:var(--surface-2); color:var(--muted);
+  border:1.5px solid var(--line); border-radius:999px; padding:10px 16px;
+  min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:1rem; font-weight:700;
+  display:inline-flex; align-items:center; gap:6px; letter-spacing:.04em; }
+.level-pill { min-width:64px; }
+.level-pill:hover { border-color:var(--gold); }
+.level-pill[aria-pressed="true"] { background:var(--gold); color:#3a2a1a;
+  border-color:var(--gold); font-weight:700; }
+
+.reading-quickfacts { display:flex; flex-wrap:wrap; gap:8px 16px; margin:16px 0;
+  padding:12px 14px; background:var(--surface-2); border-radius:10px;
+  border:1px solid var(--line); }
+.reading-quickfacts .qf { font-size:.9rem; color:var(--ink); }
+.reading-quickfacts strong { color:var(--brand-deep); }
+
+.reading-body { line-height:1.75; color:var(--ink); font-size:1.02rem; }
+.reading-body p { margin:0 0 12px; }
+.reading-body em { font-style:italic; }
+.reading-body strong { color:var(--brand-deep); }
+.reading-heading { margin:6px 0 0; color:var(--accent); font-size:1.2rem; line-height:1.3; }
+.reading-body h3 { margin:22px 0 6px; color:var(--brand-deep); font-size:1.1rem; line-height:1.3; }
+.reading-body h3:first-child { margin-top:4px; }
+
+/* Tap-to-reveal vocabulary gloss. The word itself is the button; padding
+   plus negative margin widens the tap area without shifting the text. */
+.gloss-word { font:inherit; font-weight:700; color:var(--brand-deep);
+  background:none; border:none; cursor:pointer;
+  text-decoration:underline dotted var(--gold) 2px; text-underline-offset:3px;
+  padding:8px 3px; margin:-8px -1px; }
+.gloss-word:hover { background:var(--surface-2); border-radius:6px; }
+.gloss-word[aria-expanded="true"] { background:var(--surface-2);
+  border-radius:6px; text-decoration-style:solid; }
+.gloss-def { color:var(--muted); }
+.gloss-def[hidden] { display:none; }
+
+.reading-facts { margin-top:20px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-facts h2, .reading-sources h2 { color:var(--accent); margin:0 0 10px;
+  font-size:1.05rem; }
+.facts-group { margin:0 0 12px; }
+.facts-group h3 { margin:0 0 4px; color:var(--code-conclusion); font-size:.95rem; }
+.facts-group ul, .reading-sources ul { margin:0 0 0 18px; padding:0; }
+.facts-group li { margin:3px 0; }
+.reading-sources { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-sources a { color:var(--accent); }
+.find-a-face p { margin:0 0 8px; }
+.find-a-face .faf-bg { color:var(--muted); margin:8px 0 0; }
+.reading-spotlight { margin-top:16px; border-top:2px dashed var(--line); padding-top:16px; }
+.reading-spotlight h2 { color:var(--accent); margin:0 0 10px; font-size:1.15rem; }
+.reading-spotlight .sp-doc { margin:0 0 6px; }
+.reading-spotlight .sp-date { color:var(--muted); font-size:.95rem; margin-left:6px; }
+.reading-spotlight .sp-context { color:var(--muted); margin:0 0 10px; }
+.reading-spotlight .period-text { background:var(--surface, #fffaf0); border-left:4px solid var(--accent); padding:10px 14px; margin:0 0 10px; }
+.reading-spotlight .period-text p { margin:0 0 8px; }
+.reading-spotlight .sp-task { margin:0 0 8px; }
+.reading-spotlight .sp-plain { background:var(--surface, #fffaf0); border-left:4px solid var(--accent); padding:10px 14px; margin:0 0 10px; }
+.reading-spotlight .sp-plain p { margin:0 0 8px; }
+.reading-spotlight .sp-plain { border-left-style:dashed; }
+.reading-spotlight .plain-label { font-size:.92rem; color:var(--ink); background:#fff3cd; border:1px solid #c9a227; padding:6px 10px; margin:0 0 10px; }
+.reading-spotlight .sp-original { margin:0 0 10px; }
+.reading-spotlight .sp-original > summary { cursor:pointer; font-weight:700; color:var(--accent); margin-bottom:8px; }
+.reading-spotlight .sp-cite { font-size:.9rem; color:var(--muted); margin:0; }
+.reading-spotlight a { color:var(--accent); }
+
+.level-panel[hidden] { display:none; }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.page-foot { margin-top:22px; font-size:.85rem; color:var(--muted); }
+.page-foot a { color:var(--accent); }
+
+@media (max-width:520px) {
+  .wrap { padding:16px 14px 48px; }
+  .reading-viewer { padding:16px 15px; }
+  .reading-head h1 { font-size:1.35rem; }
+}
+
+@media print {
+  .theme-toggle, .level-toggle { display:none; }
+  body { background:#fff; }
+  .reading-viewer { border:none; box-shadow:none; padding:0; }
+  .level-panel[hidden] { display:block; }
+  .level-panel::before { content:"Level: " attr(data-level-word);
+    display:block; font-weight:700; margin:14px 0 6px; }
+  .gloss-def[hidden] { display:inline; }
+  .gloss-word { text-decoration:none; padding:0; margin:0; }
+}
+/* Handout in the studio (3.2.0): matches the script builder. A warm cream
+   sheet on a walnut desk, brown ink and rules, square boxes, one rust accent. */
+:root { --brand:#a8431a; --brand-dark:#a8431a; --brand-deep:#2a1d12; --ink:#2a1d12; --page-bg:#3b2a1c;
+  --surface:#fffaf0; --surface-2:#fffaf0; --line:#3a2a1a; --muted:#5a4a38; --accent:#a8431a; --gold:#e0a52e;
+  --code-conclusion:#2a1d12; --edge:#3a2a1a; --radius:0; --shadow:none; }
+:root[data-theme="dark"] { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf; --ink:#f3e6cf; --page-bg:#0d0906;
+  --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a; --gold:#f0bf57;
+  --code-conclusion:#f3e6cf; --edge:#e6d4b4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --brand:#f0a05a; --brand-dark:#f0a05a; --brand-deep:#f3e6cf;
+  --ink:#f3e6cf; --page-bg:#0d0906; --surface:#1e1711; --surface-2:#1e1711; --line:#e6d4b4; --muted:#cdbb98; --accent:#f0a05a;
+  --gold:#f0bf57; --code-conclusion:#f3e6cf; --edge:#e6d4b4; } }
+.wrap { background:var(--surface); margin-top:16px; border-top:4px solid var(--gold); }
+.reading-viewer { border:1.5px solid var(--line) !important; border-radius:0 !important; box-shadow:none !important; }
+.wrap * { border-radius:0 !important; box-shadow:none !important; }
+.level-pill { background:var(--surface) !important; color:var(--ink) !important; border:2px solid var(--line) !important; }
+.level-pill[aria-pressed="true"] { background:var(--accent) !important; color:var(--surface) !important; border-color:var(--accent) !important; }
+.reading-quickfacts { background:var(--surface) !important; border:1.5px solid var(--line) !important; }
+.facts-group h3, .reading-head h1 { color:var(--ink) !important; }
+.eyebrow { color:var(--accent) !important; }
+.wrap a { color:var(--accent) !important; }
+#rtools .rt-btn { background:var(--surface); }
+#rtools .rt-btn.rt-primary { background:var(--gold); color:#1a1208 !important; border-color:var(--gold); }
+#rtools .rt-btn.rt-primary * { color:#1a1208 !important; }
+#rtools .rt-btn svg { display:none; }
+
+.memoir-intro { border:1.5px solid var(--line); border-radius:10px; padding:10px 14px; margin:0 0 14px; background:var(--surface,#fff); }
+.memoir-intro p { margin:0 0 8px; } .memoir-intro p:last-child { margin:0; }
+.memoir-plain { font-size:.95rem; background:#fff3cd; border:1px solid #c9a227; padding:6px 10px; color:var(--ink); }
+.memoir-after { border-top:2px dashed var(--line); padding-top:14px; margin-top:16px; }
+.memoir-cite { font-size:.9rem; color:var(--muted); }
+</style>
+<noscript><style>
+.gloss-def[hidden]{display:inline}
+.gloss-word{text-decoration:none;cursor:text;padding:0;margin:0}
+</style></noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Revolutionary Voices · A Document From the Time</p>
+    <div id="rtools"></div>
+  </div>
+
+  <article class="reading-viewer" data-listen>
+    <header class="reading-head">
+      <div>
+        <h1>Boston King's Memoirs: The War Years</h1>
+        <h2 class="reading-heading">Written by Boston King, 1798</h2>
+      </div>
+    </header>
+    <div class="memoir-intro">
+      <p>Boston King was born into slavery in South Carolina around 1760. During the Revolution he escaped to the British, who promised freedom to enslaved people who joined them. After the war he went to Nova Scotia, then to Sierra Leone in Africa. He wrote his life story in England in 1796, and a Methodist magazine printed it in 1798.</p>
+      <p>These are his own words from 1798. King uses the words of his time, like &quot;slaves&quot; and &quot;master.&quot; Today we say &quot;enslaved people&quot; and &quot;enslaver,&quot; because they were people forced into slavery. Some parts describe beatings and cruelty.</p>
+      <p>Click an underlined word to see what it means. Click Listen at the top to hear it read aloud. The headings and the &quot;In plain words&quot; lines are added to help you; they are not King's words, so do not quote them.</p>
+    </div>
+    <div class="reading-body">
+        <h3>Why He Wrote</h3>
+        <p class="memoir-plain"><b>In plain words:</b> King says he is writing to thank God, and because friends asked him to. He says he knows only a little English.</p>
+        <p>It is by no means an agreeable task to write an account of my Life, yet my gratitude to Almighty God, who considered my <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">affliction</button><span class="gloss-def" hidden> (suffering)</span></span>, and looked upon me in my <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">low estate</button><span class="gloss-def" hidden> (low position in life)</span></span>, who delivered me from the hand of the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">oppressor</button><span class="gloss-def" hidden> (someone who rules people cruelly and unfairly)</span></span>, and established my goings, impels me to acknowledge his goodness: And the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">importunity</button><span class="gloss-def" hidden> (asking again and again)</span></span> of many respectable friends, whom I highly esteem, have induced me to set down, as they occurred to my memory, a few of the most striking incidents I have met with in my <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">pilgrimage</button><span class="gloss-def" hidden> (journey through life)</span></span>. I am well aware of my inability for such an undertaking, having only a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">slight acquaintance</button><span class="gloss-def" hidden> (a little knowledge)</span></span> with the language in which I write, and being obliged to snatch a few hours, now and then, from pursuits, which to me, perhaps, are more profitable. However, such as it is, I present it to the Friends of Religion and Humanity, hoping that it will be of some use to mankind.</p>
+        <h3>Growing Up Enslaved</h3>
+        <p class="memoir-plain"><b>In plain words:</b> King was born into slavery in South Carolina. His father was kidnapped from Africa. As a boy, King worked in the house, cared for cattle and traveled with racehorses.</p>
+        <p>I was born in the Province of South Carolina, 28 miles from CharlesTown. My father was stolen away from Africa when he was young. I have reason to believe that he lived in the fear and love of God. He attended to that true Light which lighteth every man that cometh into world. He lost no opportunity of hearing the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Gospel</button><span class="gloss-def" hidden> (the Christian teachings about Jesus)</span></span>, and never omitted praying with his family every night. He likewise read to them, and to as many as were inclined to hear. On the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Lord's Day</button><span class="gloss-def" hidden> (Sunday)</span></span> he rose very early, and met his family: After which he worked in the field till about three in the afternoon, and then went into the woods and read till sunset: The slaves being obliged to work on the Lord's Day to <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">procure</button><span class="gloss-def" hidden> (get)</span></span> such things as were not allowed by their masters.</p>
+        <p>He was beloved by this master, and had the charge of the Plantation as a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">driver</button><span class="gloss-def" hidden> (an enslaved man made to oversee the other enslaved workers)</span></span> for many years. In his old age he was employed as a mill-cutter. Those who knew him, say, that they never heard him swear an oath, but on the contrary, he <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">reproved</button><span class="gloss-def" hidden> (scolded)</span></span> all who spoke improper words in his hearing. To the utmost of his power he endeavored to make his family happy, and his death was a very great loss to us all. My mother was employed chiefly in attending upon those that were sick, having some knowledge of the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">virtue of herbs</button><span class="gloss-def" hidden> (healing power of plants)</span></span>, which she learned from the Indians. She likewise had the care of making the people's clothes, and on these accounts was <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">indulged</button><span class="gloss-def" hidden> (given)</span></span> with many privileges which the rest of the slaves were not.</p>
+        <p>When I was six years old I waited in the house upon my master. In my 9th year I was put to mind the cattle. Here I learnt from my <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">comrades</button><span class="gloss-def" hidden> (friends)</span></span> the horrible sins of Swearing and Cursing. When 12 years old, it pleased God to alarm me by a remarkable dream. At midday, when the cattle went under the shade of the trees, I dreamt that the world was on fire, and that I saw the supreme Judge descend on his great white Throne. I saw millions of millions of souls; some of whom ascended up to heaven; while others were rejected, and fell into the greatest confusion and despair.</p>
+        <p>This dream made such an impression upon my mind, that I <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">refrained</button><span class="gloss-def" hidden> (held back)</span></span> from swearing and bad company, and from that time acknowledged that there was a God; but how to serve God I knew not. Being obliged to travel in different parts of America with racehorses, I suffered many hardships. Happening one time to lose a boot belonging to the Groom, he would not suffer me to have any shoes all that Winter, which was a great punishment to me.</p>
+        <h3>Beaten as an Apprentice</h3>
+        <p class="memoir-plain"><b>In plain words:</b> At 16 King was sent to learn to be a carpenter. His master beat him so badly that twice he could not work for weeks.</p>
+        <p>When 16 years old, I was <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">bound apprentice</button><span class="gloss-def" hidden> (sent to learn a trade from a master for a set number of years)</span></span> to a trade. After being in the shop about two years, I had the charge of my master's tools, which being very good, were often used by the men, if I happened to be out of the way: When this was the case, or any of them were lost, or misplaced, my master beat me severely, striking me upon my head, or any other part without mercy. One time in the holy-days, my master and the men being from home, and the care of the house <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">devolving</button><span class="gloss-def" hidden> (falling)</span></span> upon me and the younger apprentices, the house was broke open, and robbed of many valuable articles, thro' the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">negligence</button><span class="gloss-def" hidden> (carelessness)</span></span> of the apprentice who had then the charge of it.</p>
+        <p>When I came home in the evening, and saw what had happened, my <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">consternation</button><span class="gloss-def" hidden> (shock and alarm)</span></span> was inconceivable, as all that we had in the world could not make good the loss. The week following, when the master came to town, I was beat in the most unmerciful manner, so that I was not able to do any thing for a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">fortnight</button><span class="gloss-def" hidden> (two weeks)</span></span>. About eight months after, we were employed in building a storehouse, and nails were very <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">dear</button><span class="gloss-def" hidden> (expensive)</span></span> at that time, it being in the American war, so that the workmen had their nails weighed out to them; on this account they made the younger apprentices watch the nails while they were at dinner.</p>
+        <p>It being my lot one day to take care of them, which I did till an apprentice returned to his work, and then I went to dine. In the mean time he took away all the nails belonging to one of the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">journeymen</button><span class="gloss-def" hidden> (trained workers paid by the day)</span></span>, and he being of very violent temper, accused me to the master with stealing of them. For this offense I was beat and tortured most cruelly, and was laid up three weeks before I was able to do any work. My <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">proprietor</button><span class="gloss-def" hidden> (the man who claimed to own him)</span></span>, hearing of the bad usage I received, came to town, and severely <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">reprimanded</button><span class="gloss-def" hidden> (scolded)</span></span> my master for beating me in such a manner, threatening him, that if he ever heard the like again, he would take me away and put me to another master to finish my time, and make him pay for it. This had a good effect and he behaved much better to me, the two succeeding years, and I began to acquire a proper knowledge of my trade.</p>
+        <h3>Escape to the British</h3>
+        <p class="memoir-plain"><b>In plain words:</b> The British captured Charleston in 1780. Afraid of a cruel punishment over a borrowed horse, King ran to the British, who took him in. Then he caught smallpox.</p>
+        <p>My master being <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">apprehensive</button><span class="gloss-def" hidden> (worried)</span></span> that Charles Town was in danger on account of the war, removed into the country, about 38 miles off. Here we built a large house for Mr. Waters, during which time the English took CharlesTown. Having obtained leave one day to see my parents, who had lived about 12 miles off, and it being late before I could go, I was obliged to borrow one of Mr. Waters's horses; but a servant of my master's, took the horse from me to go a little journey, and stayed two or three days longer than he ought. This involved me in the greatest <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">perplexity</button><span class="gloss-def" hidden> (worry)</span></span>, and I expected the severest punishment, because the gentleman to whom the horse belonged was a very bad man, and knew not how to <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">shew</button><span class="gloss-def" hidden> (show)</span></span> mercy.</p>
+        <p>To escape his cruelty, I determined to go to CharlesTown, and throw myself into the hands of the English. They received me readily, and I began to feel the happiness of liberty, of which I knew nothing before, altho' I was grieved at first, to be obliged to leave my friends, and among strangers. In this situation I was seized with the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">smallpox</button><span class="gloss-def" hidden> (a deadly disease that spreads from person to person)</span></span> and suffered great hardships; for all the Blacks affected with that disease, were ordered to be carried a mile from the camp, lest the soldiers should be infected, and disabled from marching. This was a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">grievous</button><span class="gloss-def" hidden> (very painful)</span></span> circumstance to me and many others. We lay sometimes a whole day without any thing to eat or drink; but <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Providence</button><span class="gloss-def" hidden> (God's care)</span></span> sent a man, who belonged to the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">York volunteers</button><span class="gloss-def" hidden> (a Loyalist regiment from New York)</span></span> whom I was acquainted with, to my relief. He brought me such things as I stood in need of; and by the blessing of the Lord I began to recover.</p>
+        <h3>Left Behind, Then With the Army</h3>
+        <p class="memoir-plain"><b>In plain words:</b> Sick with smallpox, King was left behind, but the Americans were afraid of the disease and left him alone. He got well and joined the British army, and cared for the soldier who had helped him.</p>
+        <p>By this time, the English left the place; but as I was unable to march with the army, I expected to be taken by the enemy. However when they came, and understood that we were ill of the smallpox, they <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">precipitately</button><span class="gloss-def" hidden> (in a hurry)</span></span> left us for fear of the infection. Two days after, the wagons were sent to convey us to the English Army, and we were put into a little cottage, (being 25 in number) about a quarter of a mile from the Hospital. Being recovered, I marched with the army to <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Chamblem</button><span class="gloss-def" hidden> (probably Camden, South Carolina, a British post)</span></span>. When we came to the headquarters, our regiment was 35 miles off. I stayed at the headquarters three weeks during which time our regiment had an <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">engagement</button><span class="gloss-def" hidden> (battle)</span></span> with the Americans, and the man who relieved me when I was ill of the smallpox, was wounded in the battle, and brought to the hospital.</p>
+        <p>As soon as I heard of his misfortune, I went to see him, and <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">tarried</button><span class="gloss-def" hidden> (stayed)</span></span> with him in the hospital six weeks, till he recovered; rejoicing that it was in my power to return him the kindness he had shewed me.</p>
+        <h3>A Captain Who Changed Sides</h3>
+        <p class="memoir-plain"><b>In plain words:</b> A militia captain left the British and wanted to make King his slave. King escaped and walked back to the British army.</p>
+        <p>From thence I went to a place about 35 miles off, where we stayed two months: at the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">expiration</button><span class="gloss-def" hidden> (end)</span></span> of which, an <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">express</button><span class="gloss-def" hidden> (an urgent message)</span></span> came to the Colonel to <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">decamp</button><span class="gloss-def" hidden> (pack up and leave camp)</span></span> in fifteen minutes. When these orders arrived I was at a distance from the camp, catching some fish for the captain that I waited upon; upon returning to the camp, to my great astonishment, I found all the English were gone, and had left only a few <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">militia</button><span class="gloss-def" hidden> (part-time soldiers)</span></span>. I felt my mind greatly alarmed, but Captain Lewes, who commanded the militia, said, "You need not be uneasy, for you will see your regiment before 7 o'clock tonight." This satisfied me for the present, and in two hours we set off.</p>
+        <p>As we were on the march, the Captain asked, "How will you like me to be your master?" I answered that I was Captain Grey's servant. "Yes," said he; "but I expect they are all taken prisoners before now; and I have been long enough in the English service, and am determined to leave them." These words roused my <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">indignation</button><span class="gloss-def" hidden> (anger at something unfair)</span></span>, and I spoke some sharp things to him. But he calmly replied, "If you do not behave well, I will put you in <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">irons</button><span class="gloss-def" hidden> (chains)</span></span>, and give you a dozen <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">stripes</button><span class="gloss-def" hidden> (lashes with a whip)</span></span> every morning." I now perceived that my case was desperate, and that I had nothing to trust to, but to wait the first opportunity for making my escape.</p>
+        <p>The next morning, I was sent with a little boy over the river to an island to fetch the Captain some horses. When we came to the Island we found about fifty of the English horses, that Captain Lewes had stolen from them at different times while they were at Rockmount. Upon our return to the Captain with the horses we were sent for, he immediately set off by himself. I stayed till about 10 o'clock and then resolved to go to the English army. After traveling 24 miles, I came to a farmer's house, where I tarried all night, and was well used. Early in the morning I continued my journey till I came to the ferry, and found all the boats were on the other side of the river: After anxiously waiting some hours, Major Dial crossed the river, and asked me many questions concerning the regiment to which I belonged.</p>
+        <p>I gave him satisfactory answers, and he ordered the boat to put me over. Being arrived at the headquarters, I informed my Captain that Mr. Lewes had deserted. I also told him of the horses which Lewes had conveyed to the Island. Three weeks after, our <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Light-horse</button><span class="gloss-def" hidden> (soldiers on horseback)</span></span> went to the Island and burnt his house; they likewise brought back forty of the horses, but he escaped.</p>
+        <h3>A Message Through Enemy Country</h3>
+        <p class="memoir-plain"><b>In plain words:</b> King carried an urgent letter on foot through land the Americans held, so British soldiers could get help. When riders came, he lay flat beside the road until they passed.</p>
+        <p>I tarried with Captain Grey about a year, and then left him, and came to <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Nelson's ferry</button><span class="gloss-def" hidden> (a river crossing on the Santee River in South Carolina)</span></span>. Here I entered into the service of the commanding officer of that place. But our situation was very <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">precarious</button><span class="gloss-def" hidden> (dangerous and uncertain)</span></span>; and we expected to be made prisoners every day; for the Americans had 1600 men, not far off; whereas our whole number amounted only to 250: But here were 1200 English about 30 miles off; only we knew not how to inform them of our danger, as the Americans were in possession of the country. Our commander at length determined to send me with a letter, promising me great rewards, if I was successful in the business, I refused going on horseback, and set off on foot about 3 o'clock in the afternoon; I expected every moment to fall in with the enemy, whom I well knew would shew me no mercy.</p>
+        <p>I went on without interruption, till I got within six miles of my journey's end, and then was alarmed with a great noise a little before me. But I stepped out of the road, and fell flat upon my face till they were gone by. I then arose, and praised the Name of the Lord for his great mercy, and again pursued my journey, till I came to <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Mums-corner</button><span class="gloss-def" hidden> (Moncks Corner, South Carolina)</span></span> tavern. I knocked at the door, but they blew out the candle. I knocked again, and <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">entreated</button><span class="gloss-def" hidden> (begged)</span></span> the master to open the door. At last he came with a frightful <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">countenance</button><span class="gloss-def" hidden> (face)</span></span>, and said "I thought it was the Americans; for they were here about an hour ago, and I thought they were returned again."</p>
+        <p>I asked, How many were there? he answered, "about one hundred," I desired him to saddle his horse for me, which he did, and went with me himself. When we had gone about two miles, we were stopped by the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">picket-guard</button><span class="gloss-def" hidden> (soldiers posted to watch for the enemy)</span></span>, till the Captain came out with 30 men: As soon as he knew that I had brought an express from Nelson's-ferry, he received me with great kindness, and expressed his <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">approbation</button><span class="gloss-def" hidden> (approval)</span></span> of my courage and conduct in this dangerous business. Next morning, Colonel Small gave me three <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">shillings</button><span class="gloss-def" hidden> (British coins)</span></span>, and many fine promises, which were all that I ever received for this service from him. However he sent 600 men to relieve the troops at Nelson's-ferry.</p>
+        <h3>Captured at Sea</h3>
+        <p class="memoir-plain"><b>In plain words:</b> King sailed to New York and married. Out on a boat, he was captured by Americans and held in New Jersey, afraid he would be made a slave again.</p>
+        <p>Soon after I went to Charlestown, and entered on board a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">man of war</button><span class="gloss-def" hidden> (a warship)</span></span>. As we were going to Chesepeak Bay, we were at the taking of a rich <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">prize</button><span class="gloss-def" hidden> (an enemy ship captured at sea)</span></span>. We stayed in the bay two days, and then sailed for New-York, where I went on shore. Here I endeavoured to follow my trade, but for want of tools was obliged to <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">relinquish</button><span class="gloss-def" hidden> (give up)</span></span> it, and enter into service. But the wages were so low that I was not able to keep myself in clothes, so that I was under the necessity of leaving my master and going to another. I stayed with him four months, but he never paid me, and I was obliged to leave him also, and work about the town until I was married.</p>
+        <p>A year after I was taken very ill, but the Lord raised me up again in about five weeks. I then went out in a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">pilotboat</button><span class="gloss-def" hidden> (a small boat that guides ships into a harbor)</span></span>. We were at sea eight days, and had only <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">provisions</button><span class="gloss-def" hidden> (food)</span></span> for five, so that we were in danger of starving. On the 9th day we were taken by an American <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">whaleboat</button><span class="gloss-def" hidden> (a long rowboat, used by Americans to raid British boats)</span></span>. I went on board them with a cheerful countenance, and asked for bread and water, and made very free with them. They carried me to <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Brunswick</button><span class="gloss-def" hidden> (New Brunswick, New Jersey)</span></span>, and used me well. Notwithstanding which, my mind was fairly distressed at the thought of being again reduced to slavery, and separated from my wife and family; and at the same time it was exceeding difficult to escape from my <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">bondage</button><span class="gloss-def" hidden> (slavery)</span></span>, because the river at <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Amboy</button><span class="gloss-def" hidden> (Perth Amboy, New Jersey)</span></span> was above a mile over, and likewise another to cross at Staten-Island.</p>
+        <p>I called to remembrance the many great deliverances the Lord had wrought for me, and <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">besought</button><span class="gloss-def" hidden> (begged)</span></span> him to save me this once, and I would serve him all the days of my life. While my mind was thus exercised, I went into the jail to see a lad whom I was acquainted with at New-York. He had been taken prisoner, and attempted to make his escape, but was caught 12 miles off: They tied him to the tail of a horse, and in this manner brought him back to Brunswick. When I saw him, his feet were fastened in the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">stocks</button><span class="gloss-def" hidden> (a wooden frame that locks a prisoner's feet or hands)</span></span>, and at night both his hands. This was a terrifying sight to me, as I expected to meet with the same kind of treatment, if taken in the act of attempting to regain my liberty.</p>
+        <p>I was thankful that I was not confined in a jail, and my master used me as well as I could expect; and indeed the slaves about Baltimore, Philadelphia, and New-York, have as good <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">victuals</button><span class="gloss-def" hidden> (food)</span></span> as many of the English; for they have meat once a day, and milk for breakfast and supper; and what is better than all, many of the masters send their slaves to school at night, that they may learn to read the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Scriptures</button><span class="gloss-def" hidden> (the Bible)</span></span>. This is a privilege indeed. But alas, all these enjoyments could not satisfy me without liberty! Sometimes I thought, if it was the will of God that I should be a slave, I was ready to <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">resign myself</button><span class="gloss-def" hidden> (give in)</span></span> to his will; but at other times I could not find the least desire to content myself in slavery.</p>
+        <h3>Escape Across the River</h3>
+        <p class="memoir-plain"><b>In plain words:</b> In the middle of the night, King waded across a river past the guards, hid all day, and took a boat to Staten Island and back to the British in New York.</p>
+        <p>Being permitted to walk about when my work was done, I used to go to the ferry, and observed, that when it was low water the people waded across the river; tho' at the same time I saw there were guards posted at the place to prevent the escape of prisoners and slaves. As I was at prayer on Sunday evening, I thought the Lord heard me, and would mercifully deliver me. Therefore putting my confidence in him, about one o'clock in the morning I went down to the river side, and found the guards were either asleep or in the tavern. I instantly entered into the river, but when I was a little distance from the opposite shore, I heard the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">sentinels</button><span class="gloss-def" hidden> (guards)</span></span> disputing among themselves: One said "I am sure I saw a man cross the river."</p>
+        <p>Another replied, "There is no such thing." It seems they were afraid to fire at me, or make an alarm, lest they should be punished for their negligence. When I had got a little distance from the shore, I fell down upon my knees, and thanked God for the deliverance. I traveled till about five in the morning, and then concealed myself till seven o'clock at night, when I proceeded forward, thro' bushes and marshes, near the road, for fear of being discovered. When I came to the river, opposite Staten-Island, I found a boat; and altho' it was very near a whaleboat, yet I ventured into it, and cutting the rope, got safe over. The commanding officer, when informed of my case, gave me a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">passport</button><span class="gloss-def" hidden> (a pass that let him travel)</span></span>, and I proceeded to New-York.</p>
+        <h3>Freedom in Danger</h3>
+        <p class="memoir-plain"><b>In plain words:</b> When the war ended in 1783, enslavers came to New York to take back the people who had escaped. The British gave King and others certificates of freedom and ships to Nova Scotia.</p>
+        <p>When I arrived at New-York, my friends rejoiced to see me once more restored to liberty, and joined me in praising the Lord for his mercy and goodness. But notwithstanding this great deliverance, and the promises I had made to serve God, yet my good resolutions soon vanished away like the morning dew: The love of this world extinguished my good desires, and stole away my heart from God, so that I rested in <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">a mere form of religion</button><span class="gloss-def" hidden> (going through the motions of religion)</span></span> for near three years. About which time, (in 1783) the horrors and <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">devastation</button><span class="gloss-def" hidden> (destruction)</span></span> of war happily terminated and peace was restored between America and Great Britain, which <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">diffused</button><span class="gloss-def" hidden> (spread)</span></span> universal joy among all parties; except us, who had escaped from slavery and taken refuge in the English army; for a report prevailed at New-York, that all the slaves, in number 2000, were to be delivered up to their masters altho' some of them had been three or four years among the English.</p>
+        <p>This dreadful rumour filled us all with inexpressible <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">anguish</button><span class="gloss-def" hidden> (great pain and sorrow)</span></span> and terror, especially when we saw our old masters coming from Virginia, North Carolina, and other parts, and seizing upon their slaves in the streets of New York, or even dragging them out of their beds. Many of the slaves had very cruel masters, so that the thoughts of returning home with them embittered life to us. For some days we lost our appetite for food, and sleep departed from our eyes. The English had compassion upon us in the day of distress, and issued out a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Proclamation</button><span class="gloss-def" hidden> (an official announcement. British commanders had promised freedom to enslaved people who escaped to British lines)</span></span>, importing, That all slaves should be free, who had taken refuge in the British lines, and claimed the <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">sanction</button><span class="gloss-def" hidden> (protection)</span></span> and privileges of the Proclamations respecting the security and protection of Negroes.</p>
+        <p>In consequence of this, each of us received a <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">certificate</button><span class="gloss-def" hidden> (a paper that proved he was free, signed by a British general)</span></span> from the commanding officer at New-York, which dispelled all our fears, and filled us with joy and gratitude. Soon after, ships were fitted out, and furnished with every necessary for conveying us to Nova Scotia. We arrived at <span class="gloss"><button type="button" class="gloss-word" aria-expanded="false">Birch Town</button><span class="gloss-def" hidden> (Birchtown, Nova Scotia, a town of Black Loyalists)</span></span> in the month of August, where we all safely landed. Every family had a lot of land, and we exerted all our strength in order to build comfortable huts before the cold weather set in.</p>
+    </div>
+    <section class="reading-sources memoir-after">
+      <h2>What Came Next</h2>
+      <p>King's memoir goes on. In Nova Scotia he became a Methodist preacher and survived a famine by building boats. In 1792 he sailed with about 1,200 Black Loyalists to Sierra Leone, studied in England from 1794 to 1796, and went back to Sierra Leone as a teacher.</p>
+      <p><a href="https://blackloyalist.com/cdc/documents/diaries/king-memoirs.htm" target="_blank" rel="noopener">The whole memoir, at the Black Loyalist Heritage site</a></p>
+      <p class="memoir-cite">Boston King, &quot;Memoirs of the Life of Boston King, a Black Preacher,&quot; Methodist Magazine (London), March-June 1798.</p>
+    </section>
+  </article>
+
+  <p class="page-foot">
+    Part of <a href="https://voices.mrbsocialstudies.org">Revolutionary Voices</a>.
+    <a href="../enslaved-british-freedom/">Back to the reading</a>.
+  </p>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  try {
+    var saved = localStorage.getItem('rvReadingLevel');
+    if (saved) show(saved);
+  } catch (e) {}
+
+  function show(level) {
+    var found = false;
+    document.querySelectorAll('.level-panel').forEach(function (p) {
+      var match = p.dataset.level === level;
+      p.hidden = !match;
+      if (match) found = true;
+    });
+    if (!found) return false;
+    document.querySelectorAll('.level-pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.level === level));
+    });
+    return true;
+  }
+
+  document.querySelectorAll('.level-pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      if (!show(b.dataset.level)) return;
+      try { localStorage.setItem('rvReadingLevel', b.dataset.level); } catch (e) {}
+    });
+  });
+
+  document.querySelectorAll('.gloss-word').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var def = b.nextElementSibling;
+      if (!def) return;
+      var opening = def.hidden;
+      def.hidden = !opening;
+      b.setAttribute('aria-expanded', String(opening));
+    });
+  });
+
+  /* The saved light/dark choice (set from the Font menu here or in the app). */
+  try {
+    var t = localStorage.getItem('rvTheme');
+    if (t) root.setAttribute('data-theme', t);
+  } catch (e) {}
+})();</script>
+<script src="../../reader-tools.js?v=3.5.5"></script>
+</body>
+</html>

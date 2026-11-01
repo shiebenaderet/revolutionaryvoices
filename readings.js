@@ -2000,6 +2000,7 @@ window.RV_READINGS = {
       { title: "Encyclopedia Virginia — Lord Dunmore's Proclamation", url: 'https://encyclopediavirginia.org/entries/lord-dunmores-proclamation/' },
       { title: "Dunmore's Proclamation (1775) — the full text", url: 'https://en.wikisource.org/wiki/Dunmore%27s_Proclamation' },
       { title: 'The Book of Negroes (1783) — searchable ledger of 3,000 Black Loyalists (Nova Scotia Archives)', url: 'https://archives.novascotia.ca/africanns/book-of-negroes/' },
+      { title: 'Boston King, Memoirs (1798): the war years, with word help and Listen (on this site)', url: 'https://voices.mrbsocialstudies.org/readings/boston-king-memoir/' },
       { title: 'Boston King, Memoirs (1798) — an enslaved man who took the British offer, in his own words', url: 'https://blackloyalist.com/cdc/documents/diaries/king-memoirs.htm' },
       { title: 'World History Encyclopedia — African Americans in the American Revolution', url: 'https://www.worldhistory.org/article/2449/african-americans-in-the-american-revolution/' }
     ]

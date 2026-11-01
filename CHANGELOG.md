@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.8.3] - 2026-11-01
+
+### Added
+
+- **Boston King's Memoirs: The War Years** at `/readings/boston-king-memoir/`. Teacher, Nov 1: the Black Loyalist transcription is "a GREAT resource" with no vocabulary supports. King's own words (1798) from his childhood to landing at Birchtown, Nova Scotia in 1783, about 3,500 words in 10 parts, with 75 click-to-show glosses, Listen and Font, our headings, and an "In plain words" line for each part, labeled as not his words. A short introduction frames the period language and warns of the beatings described. Text handling is scanning repair only (31 repairs, each listed in `tools/build-memoir-data.py`, which writes `memoirs.js`); `build-readings.js` renders it. Linked first under "Where these facts come from" on the Enslaved People and British Freedom Offers reading, ahead of the original.
+
 ## [3.8.2] - 2026-11-01
 
 ### Changed

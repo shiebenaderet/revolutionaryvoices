@@ -396,7 +396,8 @@ window.RV_READINGS = {
       { title: 'Encyclopedia Virginia — James Lafayette', url: 'https://encyclopediavirginia.org/entries/lafayette-james-ca-1748-1830/' },
       { title: "George Washington's Mount Vernon — Lafayette's Testimonial to James Fayette", url: 'https://www.mountvernon.org/george-washington/revolutionary-war/spying-and-espionage/american-spies-revolution/lafayettes' },
       { title: 'American Battlefield Trust — James Armistead Lafayette', url: 'https://www.battlefields.org/learn/biographies/james-armistead-lafayette' },
-      { title: 'Library of Virginia — James Lafayette petition (1786)', url: 'https://www.lva.virginia.gov/collections/educator-resources/dbva/items/show/277' }
+      { title: 'Library of Virginia — James Lafayette petition (1786)', url: 'https://www.lva.virginia.gov/collections/educator-resources/dbva/items/show/277' },
+      { title: 'Colonial Williamsburg — 5 Things You Should Know About James Lafayette (video)', url: 'https://www.youtube.com/watch?v=WSoOhw4UT5w' }
     ]
   },
 

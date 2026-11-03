@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.8.5] - 2026-11-02
+
+### Added
+
+- **Video on the James Armistead Lafayette reading.** Teacher, Nov 2. Colonial Williamsburg's "5 Things You Should Know About James Lafayette" is now listed last under "Where these facts come from," marked (video).
+
 ## [3.8.4] - 2026-11-01
 
 ### Fixed

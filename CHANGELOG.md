@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.8.6] - 2026-11-05
+
+### Changed
+
+- **Podcast schedule: one more work day.** Teacher, Nov 5. Friday 11/6 is for finishing the recording; Monday 11/9 is for finishing the edit and turning the episode in on WeVideo; Tuesday 11/10 is the listening session and Quiz 2 review. The project page's schedule and intro line now say so.
+
 ## [3.8.5] - 2026-11-02
 
 ### Added

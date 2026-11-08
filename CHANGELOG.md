@@ -6,6 +6,12 @@ Format: [Semantic Versioning](https://semver.org) - `MAJOR.MINOR.PATCH`
 
 ---
 
+## [3.8.7] - 2026-11-07
+
+### Changed
+
+- **Podcast schedule: episodes due Tuesday.** Teacher, Nov 7. Week 10's rows now say what ran (sample podcasts and the script builder, hooks, the sample episode with the Story and the Wrap, two library recording days). Monday 11/9 is for finishing the edit and re-recording; episodes are turned in on WeVideo on Tuesday 11/10, the day of the listening session and Quiz 2 review.
+
 ## [3.8.6] - 2026-11-05
 
 ### Changed
